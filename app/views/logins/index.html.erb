@@ -1,0 +1,13 @@
+<div class="container">
+
+<p id="login_description">
+  <%= t :login_description %>  
+</p>
+
+<div id="login_form">
+  <p><%= link_to icon('google')   + ' &nbsp;'.html_safe + t(:google_login), google_login_path, class: :google_button %></p>
+  <p><%= link_to icon('facebook') + ' &nbsp;'.html_safe + t(:facebook_login), facebook_login_path, class: :facebook_button %></p>
+</div>
+
+</div>
+

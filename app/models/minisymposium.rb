@@ -1,0 +1,5 @@
+class Minisymposium < Presentation
+
+end
+
+
