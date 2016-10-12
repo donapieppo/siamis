@@ -16,12 +16,6 @@ class OrganizersController < ApplicationController
     end
   end
 
-  def check_email
-    respond_to do |format|
-      format.json { render json: User.where(email: params[:email]).any? }
-    end
-  end
-
   private 
 
   def organizer_params
