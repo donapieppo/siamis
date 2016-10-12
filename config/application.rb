@@ -7,6 +7,7 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 MASTERS_OF_UNIVERSE = ['pietro.donatini@unibo.it']
+ORGANIZER_COMMITTEE = ['fiorella.sgallari@unibo.it', 'serena.morigi@unibo.it']
 
 module Siamis
   class Application < Rails::Application

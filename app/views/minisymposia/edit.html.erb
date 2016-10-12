@@ -1,0 +1,16 @@
+<%= render partial: 'form' %>  
+
+<ul>
+  <% @minisymposium.organizers.includes(:user).each do |organizer| %>  
+    <li><%= organizer %> (<%= organizer.user.email %>)</li>
+  <% end %>
+</ul>
+
+<p class="centered">
+  <%= link_to 'Add Organizer', new_minisymposium_organizer_path(@minisymposium), class: 'btn btn-default btn-lg' %>  
+</p>
+<p class="centered">
+  <%= link_to 'Add Speaker', '', class: 'btn btn-default btn-lg' %>  
+</p>
+
+

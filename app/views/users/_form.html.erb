@@ -1,0 +1,21 @@
+<%= horizontal_form_for @user do |user| %>  
+  <%= user.input :email, disabled: true %>  
+  <%= user.input :name %>  
+  <%= user.input :surname %>  
+  <%= user.input :affiliation %>  
+  <%= user.submit %>  
+<% end %>
+
+<%# <%= javascript_tag do %1> %>  
+<%# $(function() { %>
+<%#   $("#user_attributes").hide(); %>
+<%#   $("#check_mail_button").click( function() { %>
+<%#   var url = "<%= check_email_users_path %1>.json?email=" + $("#user_email").val(); %>
+<%#     $.getJSON(url, function(result) { %>
+<%#       alert(result); %>
+<%#     }); %>
+<%#     $("#check_mail_button").hide(); %>
+<%#     $("#user_attributes").show(); %>
+<%#   }); %>
+<%# }); %>
+<%# <% end %1> %>

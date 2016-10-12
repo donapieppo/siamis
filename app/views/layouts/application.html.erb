@@ -16,6 +16,7 @@
   </head>
   <body>
     <%= render partial: 'layouts/menu' %>
+    <%= render partial: 'layouts/header' if @home_header %>  
 
     <div class="container">
       <%= bootstrap_flash %>

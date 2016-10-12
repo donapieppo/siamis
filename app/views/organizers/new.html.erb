@@ -1,0 +1,19 @@
+<%= horizontal_form_for [@minisymposium || @minitutorial, @organizer] do |organizer| %>  
+  <%= organizer.dm_error_notification %>  
+
+  <% uncorrect_email = (@organizer.email.blank? or @organizer.errors[:email].any?) %> 
+
+  <%= organizer.input :email, readonly: ! uncorrect_email %>  
+
+  <% unless uncorrect_email or @organizer.errors[:email].any? %> 
+    <p>There is no user with the mail < <%= @organizer.email %> >.
+       Please submit all the info</p>
+    <%= organizer.input :name %>  
+    <%= organizer.input :surname %>  
+    <%= organizer.input :affiliation %>  
+    <%= organizer.input :address %>  
+  <% end %>
+  <%= organizer.submit %>  
+<% end %>
+
+
