@@ -2,8 +2,13 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'home#index'
 
-  resources :minisymposia
+  resources :minisymposia do
+    resources :organizers 
+  end
+
   resources :minitutorials
+  resources :organizers
+  resources :users 
 
   get 'login',                       to: 'logins#index',     as: :login
   get 'logins/logout',               to: 'logins#logout',    as: :logout
