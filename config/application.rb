@@ -17,5 +17,7 @@ module Siamis
     config.time_zone = 'Rome'
     config.i18n.default_locale = :en
     config.active_record.time_zone_aware_types = [:datetime, :time]
+
+    config.impersonate_admins = ['pietro.donatini@unibo.it']
   end
 end

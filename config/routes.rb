@@ -4,11 +4,17 @@ Rails.application.routes.draw do
 
   resources :minisymposia do
     resources :organizers 
+    resources :presentations
   end
+
+  resources :speakers 
 
   resources :minitutorials
   resources :organizers
   resources :users 
+  resources :presentations do 
+    resources :speakers
+  end
 
   get 'login',                       to: 'logins#index',     as: :login
   get 'logins/logout',               to: 'logins#logout',    as: :logout
@@ -21,4 +27,9 @@ Rails.application.routes.draw do
   post 'auth/developer/callback',    to: 'logins#developer'
 
   get '/privacy', to: 'home#privacy', as: :privacy
+
+  get 'who_impersonate',    to: 'impersonations#who_impersonate',    as: :who_impersonate
+  get 'impersonate/:id',    to: 'impersonations#impersonate',        as: :impersonate
+  get 'stop_impersonating', to: 'impersonations#stop_impersonating', as: :stop_impersonating
+
 end
