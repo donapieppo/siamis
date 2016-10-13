@@ -1,0 +1,9 @@
+<h1>Presentation</h1>
+
+<h2><%= @minitutorial || @minisymposium %></h2>
+
+<%= horizontal_form_for [(@minitutorial || @minisymposium), @presentation] do |presentation| %>  
+  <%= presentation.input :name %>  
+  <%= presentation.input :abstract %>  
+  <%= presentation.submit %>  
+<% end %>

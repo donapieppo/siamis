@@ -9,9 +9,13 @@
 <p><strong>Deadline</strong> for submission of <em>minisymposium proposals</em>: October 2017</p>
 <p><strong>Deadline</strong> for submission of <em>minisymposium speaker abstracts</em>: November 2017</p>
 
+<h2>My minisymposia</h2>
+
+<ul>
 <% current_user.minisymposia.each do |minisymposium| %>  
-  <%= link_to minisymposium,  edit_minisymposium_path(minisymposium) %>  
+  <li><%= link_to minisymposium,  edit_minisymposium_path(minisymposium) %> </li>
 <% end %>
+</ul>
 
 <p class="centered">
   <%= link_to 'Submit Minisymposium Proposal', new_minisymposium_path, class: 'btn btn-default btn-lg' %>  

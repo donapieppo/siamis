@@ -1,11 +1,11 @@
 class User < ApplicationRecord
   has_many :admins
   has_many :organizers
-  has_many :minisymposia, through: :organizers
+  has_many :minisymposia,  through: :organizers
   has_many :minitutorials, through: :organizers
 
-  validates :email, uniqueness: {}
-  validates :name, presence: {}
+  validates :email,   uniqueness: {}
+  validates :name,    presence: {}
   validates :surname, presence: {}
 
   def to_s
@@ -21,7 +21,11 @@ class User < ApplicationRecord
     self.organizer? and return true
     case what
     when Minisymposium
-      self.id != what.organizer_id
+      what.organizers.where(user_id: self.id).any?
+    when Minitutorial
+      what.organizers.where(user_id: self.id).any?
+    when Speaker
+      self.owns? (what.minitutorial || what.minisymposium)
     else
       false
     end

@@ -1,16 +1,35 @@
+<h1>Organizing Minisymposium</h1>
+
 <%= render partial: 'form' %>  
 
+<h3>Organizers</h3>
 <ul>
-  <% @minisymposium.organizers.includes(:user).each do |organizer| %>  
-    <li><%= organizer %> (<%= organizer.user.email %>)</li>
-  <% end %>
+<% @minisymposium.organizers.includes(:user).each do |organizer| %>  
+  <li><%= organizer %> (<%= organizer.user.email %>)</li>
+<% end %>
 </ul>
 
+<h3>Presentations</h3>
+<dl>
+<% @minisymposium.presentations.each do |presentation| %>  
+  <dt>
+    <%= presentation %>  
+    <%# <%= link_to_new 'Add presentation', new_speaker_presentation_path(speaker) %1> %>  
+  </dt>
+  <% presentation.speakers.each do |speaker| %>  
+    <dd><%= speaker %> <%= link_to_delete speaker_path(speaker) %></dd>
+  <% end %>
+  <dd><%= link_to 'add speaker', new_presentation_speaker_path(presentation) %> </dd>
+<% end %>
+</dl>
+
+<div>
 <p class="centered">
   <%= link_to 'Add Organizer', new_minisymposium_organizer_path(@minisymposium), class: 'btn btn-default btn-lg' %>  
 </p>
 <p class="centered">
-  <%= link_to 'Add Speaker', '', class: 'btn btn-default btn-lg' %>  
+  <%= link_to 'Add Presentation', new_minisymposium_presentation_path(@minisymposium), class: 'btn btn-default btn-lg' %>  
 </p>
+</div>
 
 
