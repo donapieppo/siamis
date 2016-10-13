@@ -28,6 +28,9 @@ en:
     attributes:
       minisymposium:
         name: Title
+        description: Summary
+      presentation:
+        name: Title
 
   simple_form:
     hints:
