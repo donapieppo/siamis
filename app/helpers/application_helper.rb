@@ -86,4 +86,18 @@ module ApplicationHelper
     raw %Q|<p class="info">| + capture(&block) + %Q|</p>|
   end
 
+  # IMPERSONATION
+  def stop_impersonation_link
+    if (current_user == true_user)
+      "" 
+    else
+      "You (#{true_user.email}) are impersonating <strong>#{current_user.email}</strong><br/> #{link_to icon('reply') + " back to admin", stop_impersonating_path}"
+    end
+  end
+
+  def start_impersonation_link
+    if true_user_can_impersonate?
+      link_to icon('user') + " impersona", who_impersonate_path
+    end
+  end
 end

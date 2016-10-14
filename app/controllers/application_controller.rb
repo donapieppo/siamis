@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :current_user_owns?, :current_user_owns!
+  helper_method :current_user, :current_user_owns?, :current_user_owns!, :true_user_can_impersonate?
 
   before_action :log_current_user, :force_sso_user
 
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_master_of_universe!
-    (@current_user and @current_user.master_of_universe?) or raise NO_ACCESS
+    (current_user and current_user.master_of_universe?) or raise NO_ACCESS
   end
 
   def current_user_owns?(what)
@@ -46,4 +46,16 @@ class ApplicationController < ActionController::Base
   def current_user_owns!(what)
     current_user_owns?(what) or raise "NotAuthorized"
   end
+
+  def true_user_can_impersonate?
+    true_user and Rails.configuration.impersonate_admins and Rails.configuration.impersonate_admins.include?(true_user.email)
+  end
+
+  def set_minisymosium_and_minitutorial_and_presentation
+    @minisymposium = Minisymposium.find(params[:minisymposium_id]) if params[:minisymposium_id]
+    @minitutorial  = Minitutorial.find(params[:minitutorial_id]) if params[:minitutorial_id]
+    @presentation  = Presentation.find(params[:presentation_id]) if params[:presentation_id]
+    @what = @minisymposium || @minitutorial || @presentation
+  end
+
 end

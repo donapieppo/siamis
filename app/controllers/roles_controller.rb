@@ -16,11 +16,5 @@ class RolesController < ApplicationController
     p.permit(:email, :name, :surname, :affiliation, :address, :minisymposium_id, :minitutorial_id)
   end
 
-  def set_minisymosium_and_minitutorial_and_presentation
-    @minisymposium = Minisymposium.find(params[:minisymposium_id]) if params[:minisymposium_id]
-    @minitutorial  = Minitutorial.find(params[:minitutorial_id]) if params[:minitutorial_id]
-    @presentation  = Presentation.find(params[:presentation_id]) if params[:presentation_id]
-  end
-
 end
 

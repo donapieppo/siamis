@@ -26,13 +26,6 @@ class ImpersonationsController < ApplicationController
     redirect_to root_path and return
   end
 
-  private 
-
-  # for example in config/initializers/project_name.rb you have
-  # config.impersonate_admins = ['user.one@unibo.it', 'user.two@unibo.it']
-  def true_user_can_impersonate?
-    true_user and Rails.configuration.impersonate_admins and Rails.configuration.impersonate_admins.include?(true_user.email)
-  end
 end
 
 

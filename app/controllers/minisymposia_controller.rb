@@ -5,6 +5,10 @@ class MinisymposiaController < ApplicationController
   def index
   end
 
+  def show
+    @minisymposium = Minisymposium.find(params[:id])
+  end
+
   def new
     @minisymposium = Minisymposium.new
   end
@@ -13,7 +17,7 @@ class MinisymposiaController < ApplicationController
     @minisymposium = Minisymposium.new(minisymposium_params)
     if @minisymposium.save 
       @minisymposium.organizers.create!(user_id: current_user.id)
-      redirect_to edit_minisymposium_path(@minisymposium), notice: 'The minisymposium has been created.'
+      redirect_to minisymposium_path(@minisymposium), notice: 'The minisymposium has been created.'
     else
       render action: :new
     end
@@ -24,7 +28,7 @@ class MinisymposiaController < ApplicationController
 
   def update
     if @minisymposium.update_attributes(minisymposium_params)
-      redirect_to [:edit, @minisymposium], notice: 'The minisymposium has been updated.'
+      redirect_to @minisymposium, notice: 'The minisymposium has been updated.'
     else
       render action: :edit
     end

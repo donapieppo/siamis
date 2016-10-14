@@ -11,11 +11,20 @@
 
 <h2>My minisymposia</h2>
 
+<p>As organizer</p>
 <ul>
 <% current_user.minisymposia.each do |minisymposium| %>  
-  <li><%= link_to minisymposium,  edit_minisymposium_path(minisymposium) %> </li>
+  <li><%= link_to minisymposium, minisymposium_path(minisymposium) %></li>
 <% end %>
 </ul>
+
+<p>As speaker</p>
+<ul>
+<% current_user.presentations.where.not(minisymposium_id: nil).each do |presentation| %>  
+  <li><%= link_to presentation, presentation_path(presentation) %></li>
+<% end %>
+</ul>
+
 
 <p class="centered">
   <%= link_to 'Submit Minisymposium Proposal', new_minisymposium_path, class: 'btn btn-default btn-lg' %>  

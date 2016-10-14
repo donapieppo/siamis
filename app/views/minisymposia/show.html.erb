@@ -1,0 +1,30 @@
+<h1><%= @minisymposium.name %></h1>
+
+<div class="well">
+  <p><em><%= @minisymposium.description %> <%= link_to 'edit', edit_minisymposium_path(@minisymposium) %></em></p>
+</div>
+
+<ul>
+  <% @minisymposium.organizers.includes(:user).each do |organizer| %>  
+    <li>Organizer: <em><%= organizer %> (<%= organizer.user.affiliation %>)</em></li>
+  <% end %>
+</ul>
+
+<h3>Presentations</h3>
+<ul class="all_clickable">
+  <% @minisymposium.presentations.each do |presentation| %>  
+    <li><%= link_to presentation, presentation %></li>
+  <% end %>
+</ul>
+
+<div>
+  <p class="centered">
+  <%= link_to 'Add Organizer', new_minisymposium_organizer_path(@minisymposium), class: 'btn btn-default btn-lg' %>  
+  </p>
+  <p class="centered">
+  <%= link_to 'Add Presentation', new_minisymposium_presentation_path(@minisymposium), class: 'btn btn-default btn-lg' %>  
+  </p>
+</div>
+
+
+

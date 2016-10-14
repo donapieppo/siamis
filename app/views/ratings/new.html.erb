@@ -1,0 +1,11 @@
+<h1><%= @rating.about_string %></h1>
+
+<p>GIVE RATING</p>
+
+<%= horizontal_form_for [@rating.about, @rating] do |rating| %>  
+  <%= rating.input :score, collection: (0..5) %>  
+  <%= rating.input :notes %>  
+  <%= rating.submit %>  
+<% end %>
+
+
