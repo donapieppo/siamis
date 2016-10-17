@@ -3,19 +3,20 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :users 
-  resources :speakers 
+  resources :authors 
   resources :minisymposia do
     resources :organizers 
     resources :presentations
     resources :ratings
   end
   resources :presentations do 
-    resources :speakers
+    resources :authors
     resources :ratings
   end
 
   resources :minitutorials 
   resources :organizers
+  resources :ratings
 
   get 'login',                       to: 'logins#index',     as: :login
   get 'logins/logout',               to: 'logins#logout',    as: :logout
