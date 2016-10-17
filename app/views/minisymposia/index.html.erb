@@ -9,24 +9,41 @@
 <p><strong>Deadline</strong> for submission of <em>minisymposium proposals</em>: October 2017</p>
 <p><strong>Deadline</strong> for submission of <em>minisymposium speaker abstracts</em>: November 2017</p>
 
-<h2>My minisymposia</h2>
+<% if current_user %>  
+  <p class="centered">
+  <%= link_to 'Submit Minisymposium Proposal', new_minisymposium_path, class: :big_button %>  
+  </p>
 
-<p>As organizer</p>
-<ul>
-<% current_user.minisymposia.each do |minisymposium| %>  
-  <li><%= link_to minisymposium, minisymposium_path(minisymposium) %></li>
+  <h2>As organizer</h2>
+  <ul>
+    <% current_user.minisymposia.each do |minisymposium| %>  
+      <li><%= link_to minisymposium, minisymposium_path(minisymposium) %></li>
+    <% end %>
+  </ul>
+
+  <h2>As author</h2>
+  <ul>
+    <% current_user.presentations.at_minisymposium.each do |presentation| %>  
+      <li><%= link_to presentation, presentation_path(presentation) %></li>
+    <% end %>
+  </ul>
+
+  <% if current_user.committee_organizer? %>  
+    <h2>As commission</h2>
+    <ul>
+      <% Minisymposium.find_each do |minisymposium| %>  
+        <li>
+          <%= link_to minisymposium, minisymposium_path(minisymposium) %> 
+          <ul>
+            <% minisymposium.ratings.each do |rating| %>  
+              <li><%= rating %> </li>
+            <% end %>
+          </ul>
+        </li>
+         
+      <% end %> 
+    </ul>
+  <% end %>
+
 <% end %>
-</ul>
-
-<p>As speaker</p>
-<ul>
-<% current_user.presentations.where.not(minisymposium_id: nil).each do |presentation| %>  
-  <li><%= link_to presentation, presentation_path(presentation) %></li>
-<% end %>
-</ul>
-
-
-<p class="centered">
-  <%= link_to 'Submit Minisymposium Proposal', new_minisymposium_path, class: 'btn btn-default btn-lg' %>  
-</p>
 

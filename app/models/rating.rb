@@ -15,9 +15,9 @@ class Rating < ApplicationRecord
   def about_string
     case what = about
     when Minitutorial, Minisymposium
-      "#{what} #{what.organizers.map(&:user).join(', ')}"
+      "#{what} (#{what.organizers.map(&:user).join(', ')})"
     when Presentation
-      "#{what} (#{what.speakers.map(&:to_s).join(', ')})"
+      "#{what} (#{what.authors.map(&:to_s).join(', ')})"
     else
       ""
     end

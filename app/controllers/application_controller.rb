@@ -35,8 +35,20 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def user_master_of_universe?
+    current_user and current_user.master_of_universe?
+  end
+
   def user_master_of_universe!
-    (current_user and current_user.master_of_universe?) or raise NO_ACCESS
+    user_master_of_universe? or raise NO_ACCESS
+  end
+
+  def user_committee_organizer?
+    current_user and current_user.committee_organizer?
+  end
+
+  def user_committee_organizer!
+    user_committee_organizer? or raise NO_ACCESS
   end
 
   def current_user_owns?(what)

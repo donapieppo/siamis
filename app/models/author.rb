@@ -1,4 +1,4 @@
-class Speaker <  Role
+class Author <  Role
   belongs_to :user
   belongs_to :presentation
 

@@ -11,20 +11,42 @@
 </ul>
 
 <h3>Presentations</h3>
-<ul class="all_clickable">
+<ul>
   <% @minisymposium.presentations.each do |presentation| %>  
-    <li><%= link_to presentation, presentation %></li>
+    <li>
+      <%= link_to presentation, presentation %><br/>
+      <%= presentation.authors.includes(:user).map(&:to_s).join(', ') %>
+    </li>
   <% end %>
 </ul>
 
-<div>
+<% if current_user.committee_organizer? %>  
+  <h3>Ratings</h3>
+  <ul>
+    <% @minisymposium.ratings.each do |rating| %>  
+      <li><%= rating %> (<%= rating.notes %>) </li>
+    <% end %>
+  </ul>
   <p class="centered">
-  <%= link_to 'Add Organizer', new_minisymposium_organizer_path(@minisymposium), class: 'btn btn-default btn-lg' %>  
+  <% if rating = current_user.ratings.where(minisymposium: @minisymposium).first %>  
+    you rated <strong><%= rating.score %>/5 </strong> this Minisymposium
+    <br/> <%= link_to_delete 'delete your rating', ratings_path(rating) %>  
+  <% else %>
+    <%= link_to 'Give Rating', new_minisymposium_rating_path(@minisymposium), class: :big_button %>  
+  <% end %>
   </p>
-  <p class="centered">
-  <%= link_to 'Add Presentation', new_minisymposium_presentation_path(@minisymposium), class: 'btn btn-default btn-lg' %>  
-  </p>
-</div>
+<% end %>
+
+<% if current_user.organizer?(@minisymposium) %>  
+  <div>
+    <p class="centered">
+    <%= link_to 'Add Organizer', new_minisymposium_organizer_path(@minisymposium), class: :big_button %>  
+    </p>
+    <p class="centered">
+    <%= link_to 'Add Presentation', new_minisymposium_presentation_path(@minisymposium), class: :big_button %>  
+    </p>
+  </div>
+<% end %>
 
 
 

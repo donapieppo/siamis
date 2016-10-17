@@ -1,5 +1,7 @@
 <h1>Presentation</h1>
 
-<h2><%= @minitutorial || @minisymposium %></h2>
+<% if @what %>  
+  <h2><%= @what %></h2>
+<% end %>
 
 <%= render partial: 'form' %>  

@@ -1,4 +1,4 @@
-<%= horizontal_form_for [(@minitutorial || @minisymposium), @presentation] do |presentation| %>  
+<%= horizontal_form_for [@what, @presentation] do |presentation| %>  
   <%= presentation.input :name %>  
   <%= presentation.input :abstract %>  
   <%= presentation.submit %>  

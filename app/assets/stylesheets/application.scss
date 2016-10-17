@@ -52,6 +52,12 @@ h2:after {
   @extend .btn;
   @extend .btn-primary;
 }
+.big_button {
+  @extend .btn;
+  @extend .btn-lg;
+  @extend .btn-primary;
+}
+
 
 /* NAVBAR */
 .navbar {
@@ -124,3 +130,8 @@ span.actions {
   }
 }
 
+.rating_score {
+  span {
+    @extend .radio-inline;
+  }
+}

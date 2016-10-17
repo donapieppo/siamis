@@ -3,9 +3,12 @@ class PresentationsController < ApplicationController
   before_action :set_minisymosium_and_minitutorial_and_check_permission, only: [:new, :create]
   before_action :set_presentation_and_check_permission, only: [:edit, :update]
 
+  def index
+  end
+
   def show
     @presentation = Presentation.find(params[:id])
-    @speakers = @presentation.speakers.includes(:user)
+    @authors = @presentation.authors.includes(:user)
   end
 
   def new
@@ -13,9 +16,16 @@ class PresentationsController < ApplicationController
   end
 
   def create
-    @presentation = (@minisymposium || @minitutorial).presentations.new(presentation_params)
+    @presentation = @what ? @what.presentations.new(presentation_params) : Presentation.new(presentation_params)
     if @presentation.save
-      redirect_to new_presentation_speaker_path(@presentation)
+      # we are not authors
+      if @what 
+        redirect_to new_presentation_author_path(@presentation)
+      # we are authors
+      else
+        @presentation.users << current_user
+        redirect_to @presentation
+      end
     else
       render action: :new
     end
@@ -32,6 +42,13 @@ class PresentationsController < ApplicationController
     end
   end
 
+  def destroy
+    @presentation = Presentation.find(params[:id])
+    current_user.owns!(@presentation) or raise NOACCESS
+    @presentation.delete
+    redirect_to presentations_path
+  end
+
   private
 
   def presentation_params
@@ -41,6 +58,7 @@ class PresentationsController < ApplicationController
   def set_minisymosium_and_minitutorial_and_check_permission
     @minisymposium = Minisymposium.find(params[:minisymposium_id]) if params[:minisymposium_id]
     @minitutorial  = Minitutorial.find(params[:minitutorial_id]) if params[:minitutorial_id]
+    @what = @minisymposium || @minitutorial
     current_user.owns!(@minisymposium || @minitutorial)
   end
 

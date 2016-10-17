@@ -1,15 +1,19 @@
-<h1><%= @presentation.name %></h1>
+<h1>Presentation 
+  <% if parent = @presentation.parent_event %>  
+    in <small><%= link_to parent, parent %></small>
+  <% end %>
+</h1>
 
-<p>Presentation in <strong><%= link_to @presentation.parent_event, @presentation.parent_event %></strong></p>
 
 <div class="well">
+  <%= @presentation.name %>
   <%= @presentation.abstract %> -
   <%= link_to('edit', edit_presentation_path(@presentation)) if current_user_owns?(@presentation) %>  
 </div>
 
 <ul>
-  <% @speakers.each do |speaker| %>  
-    <li><%= speaker.user %> <%= link_to_delete speaker_path(speaker) %></li>
+  <% @authors.each do |author| %>  
+    <li><%= author.user %> <%= link_to_delete author_path(author) %></li>
   <% end %>
-  <li><%= link_to 'add speaker', new_presentation_speaker_path(@presentation) %></li>
+  <li><%= link_to 'add author', new_presentation_author_path(@presentation) %></li>
 </ul>

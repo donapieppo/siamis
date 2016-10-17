@@ -1,5 +1,5 @@
 class MinisymposiaController < ApplicationController
-  before_action :force_sso_user
+  before_action :force_sso_user, except: :index
   before_action :set_minisymposium_and_check_permission, only: [:edit, :update]
 
   def index
@@ -17,7 +17,7 @@ class MinisymposiaController < ApplicationController
     @minisymposium = Minisymposium.new(minisymposium_params)
     if @minisymposium.save 
       @minisymposium.organizers.create!(user_id: current_user.id)
-      redirect_to minisymposium_path(@minisymposium), notice: 'The minisymposium has been created.'
+      redirect_to @minisymposium, notice: 'The minisymposium has been created.'
     else
       render action: :new
     end

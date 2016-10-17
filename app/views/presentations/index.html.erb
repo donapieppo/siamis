@@ -1,0 +1,17 @@
+<h1>Presentations</h1>
+
+<p>You are author in the following presentations:</p>
+
+<% current_user.presentations.each do |presentation| %>  
+  <p>
+  <%= link_to presentation, presentation %>  
+  <% if parent = presentation.parent_event %>  
+    (in <%= t parent.class %> "<%= link_to parent, parent %>")
+  <% end %>
+  <%= link_to_delete presentation_path(presentation) %>  
+  </p>
+<% end %>
+
+<p class="centered">
+<%= link_to 'Submit Proposal', new_presentation_path, class: :big_button %>  
+</p>

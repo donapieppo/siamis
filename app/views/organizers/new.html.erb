@@ -1,4 +1,4 @@
-<%= horizontal_form_for [@minisymposium || @minitutorial, @organizer] do |organizer| %>  
+<%= horizontal_form_for [@what, @organizer] do |organizer| %>  
   <%= organizer.dm_error_notification %>  
 
   <% uncorrect_email = (@organizer.email.blank? or @organizer.errors[:email].any?) %> 

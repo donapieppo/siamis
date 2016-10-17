@@ -1,5 +1,5 @@
 class RatingsController < ApplicationController
-  before_action :user_master_of_universe!
+  before_action :user_committee_organizer!
   before_action :set_minisymosium_and_minitutorial_and_presentation
 
   def index
@@ -14,10 +14,14 @@ class RatingsController < ApplicationController
     @rating = @what.ratings.new(rating_params)
     @rating.user = current_user
     if @rating.save
-      redirect_to root_path
+      redirect_to @what
     else
       render action: :new
     end
+  end
+
+  def destroy
+    raise "TO IMPLEMENT"
   end
 
   private

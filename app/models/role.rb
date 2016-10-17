@@ -10,6 +10,16 @@ class Role < ApplicationRecord
     self.user.to_s
   end
 
+  def what_for
+    if self.minisymposium_id
+      self.minisymposium
+    elsif self.minitutorial_id
+      self.minitutorial
+    elsif self.presentation_id
+      self.presentation
+    end
+  end
+
   private
 
   def set_or_create_user_from_email
@@ -24,7 +34,7 @@ class Role < ApplicationRecord
       elsif self.minitutorial_id and self.class.where(user_id: _user.id, minitutorial_id: self.minitutorial_id).any? 
         self.errors.add(:email, "User is already organizer of this minitutorial")
       elsif self.presentation_id and self.class.where(user_id: _user.id, presentation_id: self.presentation_id).any? 
-        self.errors.add(:email, "User is already speaker of this presentation")
+        self.errors.add(:email, "User is already author of this presentation")
       end
       self.user_id = _user.id 
     else
