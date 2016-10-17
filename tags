@@ -11,6 +11,8 @@ ApplicationHelper	app/helpers/application_helper.rb	/^module ApplicationHelper$/
 ApplicationJob	app/jobs/application_job.rb	/^class ApplicationJob < ActiveJob::Base$/;"	c
 ApplicationMailer	app/mailers/application_mailer.rb	/^class ApplicationMailer < ActionMailer::Base$/;"	c
 ApplicationRecord	app/models/application_record.rb	/^class ApplicationRecord < ActiveRecord::Base$/;"	c
+Author	app/models/author.rb	/^class Author <  Role$/;"	c
+AuthorsController	app/controllers/authors_controller.rb	/^class AuthorsController < RolesController$/;"	c
 Channel	app/channels/application_cable/channel.rb	/^  class Channel < ActionCable::Channel::Base$/;"	c	class:ApplicationCable
 Connection	app/channels/application_cable/connection.rb	/^  class Connection < ActionCable::Connection::Base$/;"	c	class:ApplicationCable
 FormBuilder	app/helpers/form_helper.rb	/^  class FormBuilder < ActionView::Helpers::FormBuilder$/;"	c	class:SimpleForm
@@ -24,6 +26,7 @@ MinisymposiaController	app/controllers/minisymposia_controller.rb	/^class Minisy
 Minisymposium	app/models/minisymposium.rb	/^class Minisymposium < ApplicationRecord$/;"	c
 Minitutorial	app/models/minitutorial.rb	/^class Minitutorial < ApplicationRecord$/;"	c
 MinitutorialsController	app/controllers/minitutorials_controller.rb	/^class MinitutorialsController < ApplicationController$/;"	c
+NotificationMailer	app/mailers/notification_mailer.rb	/^class NotificationMailer < ApplicationMailer$/;"	c
 Organizer	app/models/organizer.rb	/^class Organizer <  Role$/;"	c
 OrganizersController	app/controllers/organizers_controller.rb	/^class OrganizersController < RolesController$/;"	c
 Presentation	app/models/presentation.rb	/^class Presentation < ApplicationRecord$/;"	c
@@ -35,24 +38,28 @@ RatingsController	app/controllers/ratings_controller.rb	/^class RatingsControlle
 Role	app/models/role.rb	/^class Role < ApplicationRecord$/;"	c
 RolesController	app/controllers/roles_controller.rb	/^class RolesController < ApplicationController$/;"	c
 SimpleForm	app/helpers/form_helper.rb	/^module SimpleForm$/;"	m
-Speaker	app/models/speaker.rb	/^class Speaker <  Role$/;"	c
-SpeakersController	app/controllers/speakers_controller.rb	/^class SpeakersController < RolesController$/;"	c
 User	app/models/user.rb	/^class User < ApplicationRecord$/;"	c
 UsersController	app/controllers/users_controller.rb	/^class UsersController < ApplicationController$/;"	c
+about	app/models/rating.rb	/^  def about$/;"	f	class:Rating
+about_string	app/models/rating.rb	/^  def about_string$/;"	f	class:Rating
 allow_and_create	app/controllers/logins_controller.rb	/^  def allow_and_create$/;"	f	class:LoginsController
 big_icon	app/helpers/application_helper.rb	/^  def big_icon(name, options = {})$/;"	f	class:ApplicationHelper
 bootstrap_flash	app/helpers/application_helper.rb	/^  def bootstrap_flash$/;"	f	class:ApplicationHelper
 bootstrap_modal_div	app/helpers/application_helper.rb	/^  def bootstrap_modal_div$/;"	f	class:ApplicationHelper
 check_email	app/controllers/users_controller.rb	/^  def check_email$/;"	f	class:UsersController
 class_active	app/helpers/application_helper.rb	/^  def class_active(x,y)$/;"	f	class:ApplicationHelper
+committee_organizer?	app/models/user.rb	/^  def committee_organizer?$/;"	f	class:User
+create	app/controllers/authors_controller.rb	/^  def create$/;"	f	class:AuthorsController
 create	app/controllers/minisymposia_controller.rb	/^  def create $/;"	f	class:MinisymposiaController
 create	app/controllers/organizers_controller.rb	/^  def create$/;"	f	class:OrganizersController
 create	app/controllers/presentations_controller.rb	/^  def create$/;"	f	class:PresentationsController
-create	app/controllers/speakers_controller.rb	/^  def create$/;"	f	class:SpeakersController
+create	app/controllers/ratings_controller.rb	/^  def create$/;"	f	class:RatingsController
 create	app/controllers/users_controller.rb	/^  def create$/;"	f	class:UsersController
 current_user	app/controllers/application_controller.rb	/^  def current_user$/;"	f	class:ApplicationController
 current_user_owns!	app/controllers/application_controller.rb	/^  def current_user_owns!(what)$/;"	f	class:ApplicationController
 current_user_owns?	app/controllers/application_controller.rb	/^  def current_user_owns?(what)$/;"	f	class:ApplicationController
+destroy	app/controllers/presentations_controller.rb	/^  def destroy$/;"	f	class:PresentationsController
+destroy	app/controllers/ratings_controller.rb	/^  def destroy$/;"	f	class:RatingsController
 destroy	app/controllers/roles_controller.rb	/^  def destroy$/;"	f	class:RolesController
 developer	app/controllers/logins_controller.rb	/^  def developer$/;"	f	class:LoginsController
 dl_field	app/helpers/application_helper.rb	/^  def dl_field(object, what)$/;"	f	class:ApplicationHelper
@@ -72,6 +79,8 @@ index	app/controllers/home_controller.rb	/^  def index$/;"	f	class:HomeControlle
 index	app/controllers/logins_controller.rb	/^  def index$/;"	f	class:LoginsController
 index	app/controllers/minisymposia_controller.rb	/^  def index$/;"	f	class:MinisymposiaController
 index	app/controllers/minitutorials_controller.rb	/^  def index$/;"	f	class:MinitutorialsController
+index	app/controllers/presentations_controller.rb	/^  def index$/;"	f	class:PresentationsController
+index	app/controllers/ratings_controller.rb	/^  def index$/;"	f	class:RatingsController
 info_tag	app/helpers/application_helper.rb	/^  def info_tag(&block)$/;"	f	class:ApplicationHelper
 link_to_back	app/helpers/link_helper.rb	/^  def link_to_back url$/;"	f	class:LinkHelper
 link_to_delete	app/helpers/link_helper.rb	/^  def link_to_delete(name = "", url)$/;"	f	class:LinkHelper
@@ -89,14 +98,14 @@ logout	app/controllers/logins_controller.rb	/^  def logout$/;"	f	class:LoginsCon
 logout_link	app/helpers/menu_helper.rb	/^  def logout_link$/;"	f	class:MenuHelper
 master_of_universe?	app/models/user.rb	/^  def master_of_universe?$/;"	f	class:User
 minisymposium_params	app/controllers/minisymposia_controller.rb	/^  def minisymposium_params$/;"	f	class:MinisymposiaController
+new	app/controllers/authors_controller.rb	/^  def new$/;"	f	class:AuthorsController
 new	app/controllers/minisymposia_controller.rb	/^  def new$/;"	f	class:MinisymposiaController
 new	app/controllers/organizers_controller.rb	/^  def new$/;"	f	class:OrganizersController
 new	app/controllers/presentations_controller.rb	/^  def new$/;"	f	class:PresentationsController
 new	app/controllers/ratings_controller.rb	/^  def new$/;"	f	class:RatingsController
-new	app/controllers/speakers_controller.rb	/^  def new$/;"	f	class:SpeakersController
 new	app/controllers/users_controller.rb	/^  def new$/;"	f	class:UsersController
 no_access	app/controllers/logins_controller.rb	/^  def no_access$/;"	f	class:LoginsController
-organizer?	app/models/user.rb	/^  def organizer?$/;"	f	class:User
+organizer?	app/models/user.rb	/^  def organizer?(what)$/;"	f	class:User
 owns!	app/models/user.rb	/^  def owns!(what)$/;"	f	class:User
 owns?	app/models/user.rb	/^  def owns?(what)$/;"	f	class:User
 parent_event	app/models/presentation.rb	/^  def parent_event$/;"	f	class:Presentation
@@ -107,11 +116,12 @@ popover_help	app/helpers/application_helper.rb	/^  def popover_help(title, conte
 presentation_params	app/controllers/presentations_controller.rb	/^  def presentation_params$/;"	f	class:PresentationsController
 privacy_alert	app/helpers/privacy_helper.rb	/^  def privacy_alert$/;"	f	class:PrivacyHelper
 privacy_cookie_name	app/helpers/privacy_helper.rb	/^  def privacy_cookie_name$/;"	f	class:PrivacyHelper
+rating_params	app/controllers/ratings_controller.rb	/^  def rating_params$/;"	f	class:RatingsController
 redirect_unsigned_user	app/controllers/application_controller.rb	/^  def redirect_unsigned_user$/;"	f	class:ApplicationController
 roles_params	app/controllers/roles_controller.rb	/^  def roles_params$/;"	f	class:RolesController
 set_minisymosium_and_minitutorial	app/controllers/users_controller.rb	/^  def set_minisymosium_and_minitutorial$/;"	f	class:UsersController
 set_minisymosium_and_minitutorial_and_check_permission	app/controllers/presentations_controller.rb	/^  def set_minisymosium_and_minitutorial_and_check_permission$/;"	f	class:PresentationsController
-set_minisymosium_and_minitutorial_and_presentation	app/controllers/roles_controller.rb	/^  def set_minisymosium_and_minitutorial_and_presentation$/;"	f	class:RolesController
+set_minisymosium_and_minitutorial_and_presentation	app/controllers/application_controller.rb	/^  def set_minisymosium_and_minitutorial_and_presentation$/;"	f	class:ApplicationController
 set_minisymposium_and_check_permission	app/controllers/minisymposia_controller.rb	/^  def set_minisymposium_and_check_permission$/;"	f	class:MinisymposiaController
 set_or_create_user_from_email	app/models/role.rb	/^  def set_or_create_user_from_email$/;"	f	class:Role
 set_presentation_and_check_permission	app/controllers/presentations_controller.rb	/^  def set_presentation_and_check_permission$/;"	f	class:PresentationsController
@@ -122,18 +132,24 @@ start_impersonation_link	app/helpers/application_helper.rb	/^  def start_imperso
 stop_impersonating	app/controllers/impersonations_controller.rb	/^  def stop_impersonating$/;"	f	class:ImpersonationsController
 stop_impersonation_link	app/helpers/application_helper.rb	/^  def stop_impersonation_link$/;"	f	class:ApplicationHelper
 support_mail	app/helpers/link_helper.rb	/^  def support_mail$/;"	f	class:LinkHelper
+to_s	app/models/author.rb	/^  def to_s$/;"	f	class:Author
 to_s	app/models/minisymposium.rb	/^  def to_s$/;"	f	class:Minisymposium
 to_s	app/models/minitutorial.rb	/^  def to_s$/;"	f	class:Minitutorial
 to_s	app/models/presentation.rb	/^  def to_s$/;"	f	class:Presentation
+to_s	app/models/rating.rb	/^  def to_s$/;"	f	class:Rating
 to_s	app/models/role.rb	/^  def to_s$/;"	f	class:Role
-to_s	app/models/speaker.rb	/^  def to_s$/;"	f	class:Speaker
 to_s	app/models/user.rb	/^  def to_s$/;"	f	class:User
 tooltip	app/helpers/application_helper.rb	/^  def tooltip(key)$/;"	f	class:ApplicationHelper
 true_user_can_impersonate?	app/controllers/application_controller.rb	/^  def true_user_can_impersonate?$/;"	f	class:ApplicationController
 update	app/controllers/minisymposia_controller.rb	/^  def update$/;"	f	class:MinisymposiaController
 update	app/controllers/presentations_controller.rb	/^  def update$/;"	f	class:PresentationsController
+user_committee_organizer!	app/controllers/application_controller.rb	/^  def user_committee_organizer!$/;"	f	class:ApplicationController
+user_committee_organizer?	app/controllers/application_controller.rb	/^  def user_committee_organizer?$/;"	f	class:ApplicationController
 user_master_of_universe!	app/controllers/application_controller.rb	/^  def user_master_of_universe!$/;"	f	class:ApplicationController
+user_master_of_universe?	app/controllers/application_controller.rb	/^  def user_master_of_universe?$/;"	f	class:ApplicationController
 user_params	app/controllers/users_controller.rb	/^  def user_params$/;"	f	class:UsersController
 user_signed_in?	app/helpers/application_helper.rb	/^  def user_signed_in?$/;"	f	class:ApplicationHelper
 vertical_form_for	app/helpers/form_helper.rb	/^  def vertical_form_for(record, options={}, &block)$/;"	f	class:FormHelper
+welcome_email	app/mailers/notification_mailer.rb	/^  def welcome_email(user)$/;"	f	class:NotificationMailer
+what_for	app/models/role.rb	/^  def what_for$/;"	f	class:Role
 who_impersonate	app/controllers/impersonations_controller.rb	/^  def who_impersonate$/;"	f	class:ImpersonationsController
