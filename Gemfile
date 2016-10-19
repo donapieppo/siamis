@@ -9,6 +9,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'therubyracer', platforms: :ruby
 gem 'pretender', '~> 0.2'
+gem 'savon'
 
 gem 'omniauth'
 gem 'omniauth-google-oauth2'  
