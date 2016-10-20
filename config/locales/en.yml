@@ -31,12 +31,18 @@ en:
         description: Summary
       presentation:
         name: Title
+      user:
+        siag: SIAG/IS Member
+        siam: SIAM Member
 
   simple_form:
     hints:
       minisymposium: 
         title: Describe the subject of your minisymposium as accurately and specifically as possible in not more than ten words.
         description: Describe your minisymposium in not more than 100 words. 
+      user:
+        siam: IEEE SPS and ASA Imaging Science Section members are eligible to register at the SIAM Member rate.
+        student: STUDENTS MUST SHOW A CURRENT STUDENT ID UPON CHECKING IN AT THE SIAM REGISTRATION DESK.
 
   helpers:
     submit:
