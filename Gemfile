@@ -16,6 +16,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 
 gem 'simple_form'
+gem 'country_select'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 
