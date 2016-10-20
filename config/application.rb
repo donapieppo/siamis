@@ -19,5 +19,10 @@ module Siamis
     config.active_record.time_zone_aware_types = [:datetime, :time]
 
     config.impersonate_admins = ['pietro.donatini@unibo.it']
+
+    routes.default_url_options[:host]     = 'localhost:3000'
+    routes.default_url_options[:protocol] = 'http'
+
+    config.pre_registration_date = Date.parse('12/03/2018')
   end
 end
