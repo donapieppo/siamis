@@ -12,68 +12,58 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
-  create_table "minisymposia", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "name"
-    t.text    "description", limit: 65535
-    t.boolean "accepted"
-  end
-
-  create_table "minisymposia_proposal_users", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "minisymposium_id", null: false, unsigned: true
-    t.integer "proposal_user_id", null: false, unsigned: true
-    t.index ["minisymposium_id"], name: "minisymposium_id", using: :btree
-    t.index ["proposal_user_id"], name: "proposal_user_id", using: :btree
-  end
-
-  create_table "minisymposia_users", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "minisymposium_id", null: false, unsigned: true
-    t.integer "user_id",          null: false, unsigned: true
-    t.index ["minisymposium_id"], name: "minisymposium_id", using: :btree
+  create_table "authors", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "user_id",         null: false, unsigned: true
+    t.integer "presentation_id",              unsigned: true
+    t.index ["presentation_id"], name: "presentation_id", using: :btree
     t.index ["user_id"], name: "user_id", using: :btree
   end
 
-  create_table "minitutorials", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "name"
-    t.text    "description", limit: 65535
-    t.boolean "accepted"
+  create_table "organizers", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "user_id",    null: false, unsigned: true
+    t.integer "session_id",              unsigned: true
+    t.index ["session_id"], name: "session_id", using: :btree
+    t.index ["user_id"], name: "user_id", using: :btree
+  end
+
+  create_table "payments", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id",                 unsigned: true
+    t.string   "shopid"
+    t.string   "paymentid",    limit: 40
+    t.string   "shopuserref"
+    t.string   "shopusername"
+    t.integer  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "presentations", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "type"
-    t.string "name"
-    t.text   "abstract", limit: 65535
+    t.string  "name"
+    t.text    "abstract",   limit: 65535
+    t.integer "session_id",               unsigned: true
+    t.index ["session_id"], name: "session_id", using: :btree
   end
 
-  create_table "proposal_users", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
-    t.string "surname"
-    t.string "email"
-    t.string "affiliation"
-    t.text   "address",     limit: 65535
-  end
-
-  create_table "roles", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "type",             null: false
-    t.integer "user_id",          null: false, unsigned: true
-    t.boolean "commette"
-    t.integer "minisymposium_id",              unsigned: true
-    t.integer "minitutorial_id",               unsigned: true
-    t.index ["minisymposium_id"], name: "minisymposium_id", using: :btree
-    t.index ["minitutorial_id"], name: "minitutorial_id", using: :btree
+  create_table "ratings", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "user_id",                  null: false, unsigned: true
+    t.integer "session_id",                            unsigned: true
+    t.integer "score"
+    t.text    "notes",      limit: 65535
+    t.index ["session_id"], name: "session_id", using: :btree
     t.index ["user_id"], name: "user_id", using: :btree
+  end
+
+  create_table "rooms", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string  "name"
+    t.string  "address"
+    t.integer "capacity"
   end
 
   create_table "sessions", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
-    t.text   "description", limit: 65535
-  end
-
-  create_table "speakers", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "user_id",                       null: false, unsigned: true
-    t.integer "presentation_id",               null: false, unsigned: true
-    t.text    "description",     limit: 65535
-    t.index ["presentation_id"], name: "presentation_id", using: :btree
-    t.index ["user_id"], name: "user_id", using: :btree
+    t.string  "type",        limit: 40
+    t.string  "name"
+    t.text    "description", limit: 65535
+    t.boolean "accepted"
   end
 
   create_table "users", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -85,11 +75,4 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at"
   end
 
-  add_foreign_key "minisymposia_proposal_users", "minisymposia", name: "minisymposia_proposal_users_ibfk_1"
-  add_foreign_key "minisymposia_proposal_users", "proposal_users", name: "minisymposia_proposal_users_ibfk_2"
-  add_foreign_key "minisymposia_users", "minisymposia", name: "minisymposia_users_ibfk_1"
-  add_foreign_key "minisymposia_users", "users", name: "minisymposia_users_ibfk_2"
-  add_foreign_key "roles", "users", name: "roles_ibfk_1"
-  add_foreign_key "speakers", "presentations", name: "speakers_ibfk_2"
-  add_foreign_key "speakers", "users", name: "speakers_ibfk_1"
 end
