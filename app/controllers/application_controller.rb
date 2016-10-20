@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :current_user_owns?, :current_user_owns!, :true_user_can_impersonate?
 
-  before_action :log_current_user, :force_sso_user
+  before_action :log_current_user, :force_sso_user, :registration
 
   def current_user
     return nil unless session[:user_id]
@@ -26,6 +26,11 @@ class ApplicationController < ActionController::Base
       session[:original_request] = request.fullpath
       redirect_to login_path and return 
     end
+  end
+
+  def registration
+    current_user or return true
+    @registration ||= current_user.registration
   end
 
   def redirect_unsigned_user
@@ -65,8 +70,8 @@ class ApplicationController < ActionController::Base
 
   def set_minisymosium_and_minitutorial_and_presentation
     @minisymposium = Minisymposium.find(params[:minisymposium_id]) if params[:minisymposium_id]
-    @minitutorial  = Minitutorial.find(params[:minitutorial_id]) if params[:minitutorial_id]
-    @presentation  = Presentation.find(params[:presentation_id]) if params[:presentation_id]
+    @minitutorial  = Minitutorial.find(params[:minitutorial_id])   if params[:minitutorial_id]
+    @presentation  = Presentation.find(params[:presentation_id])   if params[:presentation_id]
     @what = @minisymposium || @minitutorial || @presentation
   end
 

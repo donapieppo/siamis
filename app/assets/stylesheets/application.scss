@@ -57,6 +57,14 @@ h2:after {
   @extend .btn-lg;
   @extend .btn-primary;
 }
+.big_pay_button {
+  @extend .btn;
+  @extend .btn-lg;
+  @extend .btn-default;
+  input {
+    font-size: 1.5em;
+  }
+}
 
 
 /* NAVBAR */

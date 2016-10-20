@@ -34,6 +34,20 @@ class PresentationsController < ApplicationController
   def edit
   end
 
+  def add
+    @contributed_session = ContributedSession.find(params[:contributed_session_id])
+    @presentation = Presentation.find(params[:id])
+    @contributed_session.presentations << @presentation
+    redirect_to @contributed_session
+  end
+
+  def remove
+    @contributed_session = ContributedSession.find(params[:contributed_session_id])
+    @presentation = Presentation.find(params[:id])
+    @presentation.update_attribute(:session_id, nil)
+    redirect_to @contributed_session
+  end
+
   def update
     if @presentation.update_attributes(presentation_params)
       redirect_to @presentation, notice: 'OK'
@@ -59,7 +73,7 @@ class PresentationsController < ApplicationController
     @minisymposium = Minisymposium.find(params[:minisymposium_id]) if params[:minisymposium_id]
     @minitutorial  = Minitutorial.find(params[:minitutorial_id]) if params[:minitutorial_id]
     @what = @minisymposium || @minitutorial
-    current_user.owns!(@minisymposium || @minitutorial)
+    current_user.owns!(@what) if @what
   end
 
   def set_presentation_and_check_permission

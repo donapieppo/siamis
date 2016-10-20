@@ -1,0 +1,2 @@
+class PosterSession < Session
+end

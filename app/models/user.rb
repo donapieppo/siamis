@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :authors
   has_many :presentations, through: :authors
   has_many :ratings
+  has_many :payments
+  has_one  :registration
 
   validates :email,   uniqueness: true
   validates :name,    presence: true
@@ -24,9 +26,9 @@ class User < ApplicationRecord
     self.committee_organizer? and return true
     case what
     when Minisymposium, Minitutorial
-      what.organizers.where(user_id: self.id).any?
-    when Author
-      self.owns? (what.minitutorial || what.minisymposium)
+      self.organizer?(what)
+    #when Author
+    #  self.owns? (what.minitutorial || what.minisymposium)
     when Presentation
       what.user_ids.include?(self.id)
     else
@@ -42,8 +44,24 @@ class User < ApplicationRecord
     ORGANIZER_COMMITTEE.include?(self.email)
   end
 
+  # minisymposium
+  # minitutorial
   def organizer?(what)
     what.organizers.where(user_id: self.id).any?
   end
+
+  def speaker_or_organizer?
+    self.presentations.any? or self.organizers.any? or self.committee_organizer?
+  end
+
+  def fee
+    Fee.new(self)
+  end
+
+  def can_register?
+    # FIXME mettere date
+    ! self.payments.verified.any?
+  end
+
 end
 

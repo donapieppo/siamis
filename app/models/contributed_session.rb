@@ -1,0 +1,2 @@
+class ContributedSession < Session
+end

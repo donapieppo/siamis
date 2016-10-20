@@ -1,0 +1,5 @@
+<h1>Contributed Sessions</h1>
+
+<% ContributedSession.find_each do |contributed_session| %>  
+  <%= link_to contributed_session, contributed_session %>  
+<% end %>

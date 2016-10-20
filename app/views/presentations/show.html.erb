@@ -1,9 +1,7 @@
-<h1>Presentation 
-  <% if parent = @presentation.parent_event %>  
-    in <small><%= link_to parent, parent %></small>
-  <% end %>
-</h1>
-
+<% if parent = @presentation.parent_event %>  
+  <h1><%= link_to parent, parent %></h1>
+  <h2>Presentation in <%= parent.class %></h2>
+<% end %>
 
 <div class="well">
   <%= @presentation.name %>
@@ -11,6 +9,7 @@
   <%= link_to('edit', edit_presentation_path(@presentation)) if current_user_owns?(@presentation) %>  
 </div>
 
+<p>Authors:</p>
 <ul>
   <% @authors.each do |author| %>  
     <li><%= author.user %> <%= link_to_delete author_path(author) %></li>

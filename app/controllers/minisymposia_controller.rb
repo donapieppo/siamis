@@ -16,7 +16,7 @@ class MinisymposiaController < ApplicationController
   def create 
     @minisymposium = Minisymposium.new(minisymposium_params)
     if @minisymposium.save 
-      @minisymposium.organizers.create!(user_id: current_user.id)
+      @minisymposium.organizers.create!(user: current_user)
       redirect_to @minisymposium, notice: 'The minisymposium has been created.'
     else
       render action: :new

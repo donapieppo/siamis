@@ -1,0 +1,17 @@
+<h1>Session: <%= @contributed_session %></h1>
+
+<%= link_to 'edit', [:edit, @contributed_session] %>  
+
+<ul>
+  <% @contributed_session.presentations.each do |presentation| %>  
+    <li><%= presentation %> <%= link_to icon('minus') + ' remove', remove_contributed_session_presentation_path(@contributed_session, presentation), class: :button, method: :put %></li>
+  <% end %>
+</ul>
+
+<h2>Choose presentations</h2>
+
+<ul>
+  <% Presentation.unassigned.each do |presentation| %> 
+    <li><%= presentation %> <%= link_to icon('plus') + ' add', add_contributed_session_presentation_path(@contributed_session, presentation), class: :button, method: :put %>  </li>
+  <% end %>
+</ul>

@@ -4,16 +4,17 @@ class RolesController < ApplicationController
     @role = Role.find(params[:id])
     current_user.owns!(@role)
     @role.destroy
-    redirect_to @role.what_for, notice: 'OK'
+    redirect_to @role.session, notice: 'OK'
   end
 
   private 
 
   def roles_params
     p = (params[:author] || params[:organizer])
-    p[:minisymposium_id] = @minisymposium.id if @minisymposium
-    p[:minitutorial_id]  = @minitutorial.id if @minitutorial
-    p.permit(:email, :name, :surname, :affiliation, :address, :minisymposium_id, :minitutorial_id)
+    if what = @minisymposium || @minitutorial || @presentation
+      p[:session_id] = what.id
+    end
+    p.permit(:email, :name, :surname, :affiliation, :address, :session_id)
   end
 
 end

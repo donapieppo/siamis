@@ -1,0 +1,38 @@
+<h1>Registration</h1>
+
+<h3>You</h3>
+
+<%= horizontal_form_for @me do |user| %>  
+  <%= user.input :name %>  
+  <%= user.input :surname %>  
+  <%= user.input :affiliation %>  
+  <%= user.input :address %>  
+  <%= user.input :country %>  
+  <%= user.input :biography %>  
+  <%= user.input :siam %>  
+  <%= user.input :siag %>  
+  <%= user.input :student %>  
+  <%= user.submit %>  
+<% end %>
+
+<h3>Payments</h3>
+
+<h4>Conference Registration Fee Includes:</h4>
+
+<ul>
+  <li>Admission to all technical sessions</li>
+  <li>Business Meeting (open to SIAG/IS members)</li>
+  <li>Coffee breaks daily</li>
+  <li>Room set-ups and audio/visual equipment</li>
+  <li>Welcome Reception and Poster Session</li>
+</ul>
+
+
+<% if current_user.can_register? %>  
+  <%= link_to new_payment_path, class: "big_pay_button" do %>  
+    PAY <%= @price_to_pay_and_reason[0] %> &euro; for Registration" 
+    <br/>(<%= @price_to_pay_and_reason[1] %>)
+  <% end %>
+<% end %>
+
+

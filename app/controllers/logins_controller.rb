@@ -51,7 +51,6 @@ class LoginsController < ApplicationController
     cookies.delete(Rails.configuration.session_options[:key].to_sym)
     session[:user_id] = nil
     logger.info("after logout we redirect to params[:return] = #{params[:return]}")
-    # redirect_to (params[:return] || 'https://www.muriditalia.it')
     redirect_to root_path 
   end
 

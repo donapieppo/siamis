@@ -22,6 +22,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    user = User.find(params[:id])
+    if user == current_user or current_user.master_of_universe?
+      if user.update_attributes(user_params)
+        redirect_to new_registration_path
+      end
+    else
+      redirect_to root_path
+    end
+  end
+
+
   def check_email
     respond_to do |format|
       format.json { render json: User.where(email: params[:email]).any? }
@@ -31,7 +43,7 @@ class UsersController < ApplicationController
   private 
 
   def user_params
-    params[:user].permit(:name, :surname, :email)
+    params[:user].permit(:name, :surname, :email, :affiliation, :address, :country, :siag, :siam, :student)
   end
 
   def set_minisymosium_and_minitutorial
