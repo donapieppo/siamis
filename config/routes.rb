@@ -9,14 +9,33 @@ Rails.application.routes.draw do
     resources :presentations
     resources :ratings
   end
+  resources :minitutorials do
+    resources :organizers 
+    resources :presentations
+    resources :ratings
+  end
+  resources :contributed_sessions do
+    resources :presentations do 
+      put 'add', on: :member
+      put 'remove', on: :member
+    end
+  end
   resources :presentations do 
     resources :authors
     resources :ratings
   end
 
-  resources :minitutorials 
+  resources :payments do
+    get :verify, on: :member, as: :verify
+    get :error,  on: :member, as: :error
+  end
+
   resources :organizers
   resources :ratings
+
+  resources :registrations do 
+    get :check, on: :collection, as: :check
+  end
 
   get 'login',                       to: 'logins#index',     as: :login
   get 'logins/logout',               to: 'logins#logout',    as: :logout
