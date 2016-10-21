@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :force_sso_user
+  before_action :set_user_and_check_permission, only: [:edit, :update]
 
   def new
     if params[:user] and params[:user][:email] 
@@ -22,12 +23,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def update
-    user = User.find(params[:id])
-    if user == current_user or current_user.master_of_universe?
-      if user.update_attributes(user_params)
-        redirect_to new_registration_path
-      end
+    if @user.update_attributes(user_params)
+      redirect_to new_registration_path
     else
       redirect_to root_path
     end
@@ -50,5 +51,11 @@ class UsersController < ApplicationController
     @minisymosium = Minisymposium.find(params[:minisymposium_id]) if params[:minisymposium_id]
     @minitutorial = Minitutorial.find(params[:minitutorial_id]) if params[:minitutorial_id]
   end
+
+  def set_user_and_check_permission
+    @user = User.find(params[:id])
+    @user == current_user or current_user.master_of_universe? or raise NOACCESS
+  end
+
 end
 
