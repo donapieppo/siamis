@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :current_user_owns?, :current_user_owns!, :true_user_can_impersonate?
+  helper_method :current_user, :current_user_owns?, :current_user_owns!, :true_user_can_impersonate?, :user_committee_organizer?
 
   before_action :log_current_user, :force_sso_user, :registration
 
