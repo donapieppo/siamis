@@ -1,0 +1,8 @@
+<dl class="dl-horizontal">
+  <% [:name, :surname, :affiliation, :address, :country, :siag, :siam, :student].each do |field| %>  
+    <%= dl_field(user, field) %>  
+  <% end %>
+  <dt>Contact</dt>
+  <dd><%= mail_to user.email, user.cn %></dd>
+</dl>
+

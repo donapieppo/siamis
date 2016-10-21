@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   before_action :force_sso_user
   before_action :set_user_and_check_permission, only: [:edit, :update]
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def new
     if params[:user] and params[:user][:email] 
       if @user = User.where(email: params[:user][:email]).first
