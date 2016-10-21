@@ -3,3 +3,9 @@
 <% ContributedSession.find_each do |contributed_session| %>  
   <%= link_to contributed_session, contributed_session %>  
 <% end %>
+
+<% if user_committee_organizer? %>  
+  <p class="centered">
+    <%= link_to 'Create Contributed Session', new_contributed_session_path, class: :big_button %>  
+  </p>
+<% end %>
