@@ -1,12 +1,16 @@
 <h1><%= @minisymposium.name %></h1>
 
 <div class="well">
-  <p><em><%= @minisymposium.description %> <%= link_to 'edit', edit_minisymposium_path(@minisymposium) %></em></p>
+  <em><%= @minisymposium.description %></em>
+  <%= link_to 'edit', edit_minisymposium_path(@minisymposium) if current_user.owns?(@minisymposium) %>
+  </p>
 </div>
 
 <ul>
   <% @minisymposium.organizers.includes(:user).each do |organizer| %>  
-    <li>Organizer: <em><%= organizer %> (<%= organizer.user.affiliation %>)</em></li>
+    <li>
+      Organizer: <%= show_user(organizer.user) %>
+    </li>
   <% end %>
 </ul>
 
@@ -15,7 +19,9 @@
   <% @minisymposium.presentations.each do |presentation| %>  
     <li>
       <%= link_to presentation, presentation %><br/>
-      <%= presentation.authors.includes(:user).map(&:to_s).join(', ') %>
+      by <% presentation.authors.includes(:user).each do |author| %>
+        <%= show_user(author.user) %>
+      <% end %>
     </li>
   <% end %>
 </ul>
@@ -32,7 +38,7 @@
     you rated <strong><%= rating.score %>/5 </strong> this Minisymposium
     <br/> <%= link_to_delete 'delete your rating', ratings_path(rating) %>  
   <% else %>
-    <%= link_to 'Give Rating', new_minisymposium_rating_path(@minisymposium), class: :big_button %>  
+    <%= link_to icon('star') + ' Rate the presentation', new_minisymposium_rating_path(@minisymposium), class: :big_button %>  
   <% end %>
   </p>
 <% end %>

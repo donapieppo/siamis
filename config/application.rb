@@ -24,5 +24,6 @@ module Siamis
     routes.default_url_options[:protocol] = 'http'
 
     config.pre_registration_date = Date.parse('12/03/2018')
+    config.message_footer = "Siam-is18 test application"
   end
 end

@@ -2,11 +2,7 @@
 
 <h3>Your data</h3>
 
-<dl class="dl-horizontal">
-  <% [:name, :surname, :email, :affiliation, :address, :country].each do |field| %>  
-    <%= dl_field(current_user, field) %>  
-  <% end %>
-</dl>
+<%= render current_user %>  
 
 <%= link_to 'edit', edit_user_path(current_user) %>  
 
@@ -22,6 +18,11 @@
   <li>Welcome Reception and Poster Session</li>
 </ul>
 
+<h4>Fees</h4>
+
+<% Fee.prices.each do |name, amounts| %>  
+  <%= name %>: <%= amounts.inspect %>  <br/>
+<% end %>
 
 <% if current_user.can_register? %>  
   <%= link_to new_payment_path, class: "big_pay_button" do %>  

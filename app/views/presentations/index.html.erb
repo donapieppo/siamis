@@ -6,8 +6,8 @@
   <% @current_user_presentations.each do |presentation| %>  
     <p>
     <%= link_to presentation, presentation %>  
-    <% if parent = presentation.parent_event %>  
-      (in <%= t parent.class %> "<%= link_to parent, parent %>")
+    <% if presentation.session %>  
+      (in <%= t presentation.session.class %> "<%= link_to presentation.session, presentation.session %>")
     <% end %>
     <%= link_to_delete presentation_path(presentation) %>  
     </p>

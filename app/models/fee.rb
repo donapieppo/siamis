@@ -30,5 +30,9 @@ class Fee
   def price_to_pay
     price_to_pay_and_reason[0]
   end
+
+  def self.prices
+    Prices
+  end
 end
 

@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :users 
-  resources :authors 
+  resources :authors do
+    put :make_speaker, on: :member
+  end
   resources :minisymposia do
     resources :organizers 
     resources :presentations

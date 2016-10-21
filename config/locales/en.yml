@@ -40,6 +40,7 @@ en:
         country: Country
         siag: SIAG/IS Member
         siam: SIAM Member
+        student: Student
 
   simple_form:
     hints:
