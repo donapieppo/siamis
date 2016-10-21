@@ -1,6 +1,7 @@
 class AuthorsController < ApplicationController
   before_action :force_sso_user
   before_action :set_presentation, only: [:new, :create]
+  before_action :set_author_and_check_permission, only: [:make_speaker, :destroy]
 
   def new
     @author = Author.new
@@ -17,10 +18,13 @@ class AuthorsController < ApplicationController
   end
 
   def destroy
-    @author = Author.find(params[:id])
-    current_user.owns!(@author)
     @author.destroy
     redirect_to @author.presentation, notice: 'OK'
+  end
+
+  def make_speaker
+    @author.is_speaker
+    redirect_to @author.presentation
   end
 
   private
@@ -31,6 +35,11 @@ class AuthorsController < ApplicationController
 
   def set_presentation
     @presentation  = Presentation.find(params[:presentation_id]) 
+  end
+
+  def set_author_and_check_permission
+    @author = Author.find(params[:id])
+    current_user.owns!(@author.presentation)
   end
 end
 
