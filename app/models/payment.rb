@@ -11,11 +11,15 @@ class Payment < ApplicationRecord
 
   scope :verified, -> { where(verified: true) }
 
+  def description
+    "Siam-IS18 registration: #{user.to_s} <#{user.email}>"
+  end
+
   # AFTER_CREATE???
   def start_pay
     self.new_record? and return nil
     @unicredit = Unicredit.new(self)
-    payment_id, redirect_url = @unicredit.ask(100, "Siamis payment for #{user.to_s}")
+    payment_id, redirect_url = @unicredit.ask(100, description)
     self.payment_id = payment_id
     self.save!
     @redirect_url = redirect_url
@@ -33,8 +37,8 @@ class Payment < ApplicationRecord
   private
 
   def create_seed_and_shop_id
-    self.seed = SecureRandom.hex(10)
-    self.shop_id = "#{self.id}-#{self.seed}"
+    self.seed = SecureRandom.hex(8)
+    self.shop_id = "Siam-#{self.id}-#{self.seed}"
     self.save
   end
 end
