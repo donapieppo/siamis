@@ -27,6 +27,8 @@ class Fee
     end
   end
 
-
+  def price_to_pay
+    price_to_pay_and_reason[0]
+  end
 end
 
