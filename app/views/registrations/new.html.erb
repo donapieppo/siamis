@@ -1,19 +1,14 @@
-<h1>Registration</h1>
+<h1>Meeting Registration</h1>
 
-<h3>You</h3>
+<h3>Your data</h3>
 
-<%= horizontal_form_for @me do |user| %>  
-  <%= user.input :name %>  
-  <%= user.input :surname %>  
-  <%= user.input :affiliation %>  
-  <%= user.input :address %>  
-  <%= user.input :country %>  
-  <%= user.input :biography %>  
-  <%= user.input :siam %>  
-  <%= user.input :siag %>  
-  <%= user.input :student %>  
-  <%= user.submit %>  
-<% end %>
+<dl class="dl-horizontal">
+  <% [:name, :surname, :email, :affiliation, :address, :country].each do |field| %>  
+    <%= dl_field(current_user, field) %>  
+  <% end %>
+</dl>
+
+<%= link_to 'edit', edit_user_path(current_user) %>  
 
 <h3>Payments</h3>
 
