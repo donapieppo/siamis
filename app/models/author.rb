@@ -9,4 +9,10 @@ class Author < ApplicationRecord
   def to_s
     self.user.to_s
   end
+
+  def is_speaker
+    self.presentation.authors.each do |a|
+      a.update_attribute(:speak, a == self)
+    end
+  end
 end
