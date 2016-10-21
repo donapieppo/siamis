@@ -17,6 +17,10 @@ class User < ApplicationRecord
     "#{self.name} #{self.surname} (#{self.affiliation})"
   end
 
+  def cn
+    "#{self.name} #{self.surname}"
+  end
+
   def owns!(what)
     self.owns?(what) or raise NoAccess
   end
@@ -27,10 +31,12 @@ class User < ApplicationRecord
     case what
     when Minisymposium, Minitutorial
       self.organizer?(what)
-    #when Author
-    #  self.owns? (what.minitutorial || what.minisymposium)
     when Presentation
-      what.user_ids.include?(self.id)
+      if [Minitutorial, Minisymposium].include?(what.session.class)
+        self.organizer?(what.session)
+      else
+        what.user_ids.include?(self.id)
+      end
     else
       false
     end
