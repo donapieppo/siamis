@@ -7,6 +7,11 @@ class RegistrationsController < ApplicationController
     @price_to_pay_and_reason = @fee.price_to_pay_and_reason
   end
 
+  def show
+    @registrtion = current_user.registration
+    @payment = @registration.payment
+  end
+
   def check
     raise "OK"
   end
