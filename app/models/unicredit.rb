@@ -23,8 +23,8 @@ class Unicredit
                 Amount: amount,
                 CurrencyCode: 'EUR', 
                 LangID: 'EN',
-                NotifyURL: Rails.application.routes.url_helpers.verify_payment_url(payment),
-                ErrorURL:  Rails.application.routes.url_helpers.error_payment_url(payment)
+                NotifyURL: Rails.application.routes.url_helpers.verify_payment_url(@payment),
+                ErrorURL:  Rails.application.routes.url_helpers.error_payment_url(@payment)
     }
 
     signature    = get_signature(request, request.keys)

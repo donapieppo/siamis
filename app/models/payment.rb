@@ -1,11 +1,13 @@
 class Payment < ApplicationRecord
   belongs_to :user
+  has_one :registration
 
   validates :user_id, presence: true
 
   attr_accessor :redirect_url
 
-  after_create :create_seed_and_shop_id
+  after_create :create_seed_and_shop_id,
+               :start_pay
 
   scope :verified, -> { where(verified: true) }
 
@@ -22,6 +24,8 @@ class Payment < ApplicationRecord
   def verify
     if res = Unicredit.new(self).verify
       self.update_attribute(:verified, true)
+      # FIXME 
+      self.user.registration = Registration.new(payment: self)
     end
     res
   end
