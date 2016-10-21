@@ -22,7 +22,7 @@ module ApplicationHelper
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">Risultati</h4>
+              <h4 class="modal-title"></h4>
             </div>
             <div class="modal-body">
             </div>
@@ -73,8 +73,11 @@ module ApplicationHelper
       content_tag(:dt, I18n.t(object).capitalize) + 
       content_tag(:dd, what)
     else
+      val = object.send(what)
+      val == false and val = "-"
+      val == true  and val = icon('check')
       content_tag(:dt, I18n.t("activerecord.attributes.#{object.class.to_s.downcase}.#{what}").capitalize) + 
-      content_tag(:dd, object.send(what)) # what is a symbol
+      content_tag(:dd, val) # what is a symbol
     end
   end
 
@@ -99,5 +102,13 @@ module ApplicationHelper
     if true_user_can_impersonate?
       link_to icon('user') + " impersona", who_impersonate_path
     end
+  end
+
+  def user_modal_link(user)
+    link_to user.cn, user_path(user), remote: true 
+  end
+
+  def show_user(user)
+    user_modal_link(user) + " (" + user.affiliation + ")"
   end
 end

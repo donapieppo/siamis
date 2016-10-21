@@ -7,7 +7,7 @@ module LinkHelper
   alias back_link_to :link_to_back
 
   def link_to_delete(name = "", url)
-    link_to icon('trash-o') + " " + name, url, method: :delete, title: 'elimina', data: {confirm: 'Siete sicuri di voler cancellare?'} 
+    link_to icon('trash-o') + " " + name, url, method: :delete, title: 'delete', data: {confirm: 'Are you sure?'} 
   end
 
   def link_to_download(url)
@@ -16,11 +16,11 @@ module LinkHelper
   alias_method :download_link, :link_to_download
 
   def link_to_show(name = "", url)
-    link_to icon('search') + " " + name, url, title: "Mostra dettagli"
+    link_to icon('search') + " " + name, url, title: "Show details"
   end
 
   def link_to_edit(name = "", url)
-    link_to icon('pencil') + " " + name, url, title: "Inserisci/modifica dati"
+    link_to icon('pencil') + " " + name, url, title: "Modify"
   end
 
   def link_to_edit2(name = "", url)
@@ -33,7 +33,7 @@ module LinkHelper
 
   # REMOTE
   def link_to_remote_edit(url)
-    link_to icon('pencil'), url, title: 'Inserisci/modifica dati', data: { toggle: "modal", target: "#main-modal" }
+    link_to icon('pencil'), url, title: 'Modify', data: { toggle: "modal", target: "#main-modal" }
   end
 
   def link_to_remote_new(name = "", url)
