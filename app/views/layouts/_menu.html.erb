@@ -12,17 +12,21 @@
 
   <nav class="collapse navbar-collapse" id="bs-navbar-collapse">
     <ul class="nav navbar-nav navbar-right">
-      <%= dropdown_menu fwicon('circle') + ' Sessions' do  %>  
-       <li><%= link_to fwicon('circle') + ' Minitutorials', minitutorials_path %></li>
-       <li><%= link_to fwicon('circle') + ' Minisymposia', minisymposia_path %></li>
-       <li><%= link_to fwicon('circle') + ' Invited Plenary Speakers', '' %></li>
-       <li><%= link_to fwicon('circle') + ' Poster Sessions', '' %></li>
-       <li><%= link_to fwicon('circle') + ' Contributed Presentations', contributed_sessions_path %></li>
-     <% end %>
-       <li><%= link_to fwicon('circle') + ' Presentations', presentations_path %></li>
-       <% if current_user %>  
-         <li><%= link_to fwicon('circle') + ' Registration', @registration ? registration_path(@registration) : new_registration_path %></li>
-       <% end %>
+      <%= dropdown_menu fwicon('users') + ' Sessions' do  %>  
+        <li><%= link_to fwicon('circle') + ' Minitutorials', minitutorials_path %></li>
+        <li><%= link_to fwicon('circle') + ' Minisymposia', minisymposia_path %></li>
+        <li><%= link_to fwicon('circle') + ' Invited Plenary Speakers', '' %></li>
+        <li><%= link_to fwicon('circle') + ' Poster Sessions', '' %></li>
+        <li><%= link_to fwicon('circle') + ' Contributed Presentations', contributed_sessions_path %></li>
+      <% end %>
+      <li><%= link_to fwicon('comment-o') + ' Presentations', presentations_path %></li>
+      <% if current_user %>  
+        <% if @registration %>  
+          <li><%= link_to fwicon('circle') + ' Your Registration', registration_path(@registration) %></li>
+        <% else %>
+          <li><%= link_to fwicon('credit-card') + ' Register', new_registration_path %></li>
+        <% end %>
+      <% end %>
       <%= logged_user %>
     </ul>
   </nav>
