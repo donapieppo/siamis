@@ -14,22 +14,26 @@ class Presentation < ApplicationRecord
     self.name
   end
 
-  def parent_event
-    self.session
+  def umbrella
+    self.session ? self.session.class : ContributedSession
   end
 
   def parent_event_abbr
-    case parent_event
+    case sessin
     when Minisymposium
       'MS'
     when Minitutorial
       'MT'
     when PosterSession
       'PP'
-    when ContributedSession
+    # ContributedSession
+    else
       'CP'
     end
   end
 
+  def speaker
+    self.authors.where(speak: true).first
+  end
 end
 
