@@ -10,8 +10,8 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    @payment = current_user.payments.create
-    @payment.start_pay
+    @fee = Fee.new(current_user)
+    @payment = current_user.payments.create(amount: @fee.price_to_pay)
     redirect_to @payment.redirect_url
   end
 
