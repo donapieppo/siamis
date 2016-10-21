@@ -1,27 +1,32 @@
 <h1>Presentations</h1>
 
-<p>You are author in the following presentations:</p>
+<% if @current_user_presentations.any? %>  
+  <p>You are author in the following presentations:</p>
 
-<% current_user.presentations.each do |presentation| %>  
-  <p>
-  <%= link_to presentation, presentation %>  
-  <% if parent = presentation.parent_event %>  
-    (in <%= t parent.class %> "<%= link_to parent, parent %>")
+  <% @current_user_presentations.each do |presentation| %>  
+    <p>
+    <%= link_to presentation, presentation %>  
+    <% if parent = presentation.parent_event %>  
+      (in <%= t parent.class %> "<%= link_to parent, parent %>")
+    <% end %>
+    <%= link_to_delete presentation_path(presentation) %>  
+    </p>
   <% end %>
-  <%= link_to_delete presentation_path(presentation) %>  
-  </p>
+<% else %>
+  <span class='alert alert-warning'>You are actually author in no presentations for Siam-is18.</span>
 <% end %>
 
 <p class="centered">
 <%= link_to 'Submit Presentation Proposal', new_presentation_path, class: :big_button %>  
 </p>
 
-<h2>All presentations</h2>
-
 <% if current_user.committee_organizer? %>  
+  <h2>All presentations</h2>
+
+  Since you are in committee organization, here are all the presentations in siam-is18
   <ul>
-  <% Presentation.find_each do |presentation| %>  
-    <li><span class="badge"><%= presentation.parent_event_abbr %></span>  <%= link_to presentation, presentation %></li>
-  <% end %>
+    <% Presentation.find_each do |presentation| %>  
+      <li><span class="badge"><%= presentation.parent_event_abbr %></span>  <%= link_to presentation, presentation %></li>
+    <% end %>
   </ul>
 <% end %>
