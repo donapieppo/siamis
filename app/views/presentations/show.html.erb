@@ -1,6 +1,9 @@
+
 <% if parent = @presentation.parent_event %>  
   <h1><%= link_to parent, parent %></h1>
   <h2>Presentation in <%= parent.class %></h2>
+<% else %>
+  <h1>Contributed Presentation</h1>
 <% end %>
 
 <div class="well">
