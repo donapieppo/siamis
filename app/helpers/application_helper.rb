@@ -17,19 +17,16 @@ module ApplicationHelper
 
   def bootstrap_modal_div
     raw %Q|
-      <div class="modal fade" id="main-modal" >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title"></h4>
-            </div>
-            <div class="modal-body">
-            </div>
-          </div><!-- .modal-content -->
-        </div><!-- .modal-dialog -->
-      </div><!-- .modal -->
-      |
+<div id="main-modal" class="modal">
+    <div class="modal-content">
+      <h4 class="modal-title"></h4>
+      <div class="modal-body">A bunch of text</div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+    </div>
+  </div>
+|
   end
 
   # from https://github.com/seyhunak/twitter-bootstrap-rails

@@ -19,7 +19,7 @@ class Presentation < ApplicationRecord
   end
 
   def parent_event_abbr
-    case sessin
+    case session
     when Minisymposium
       'MS'
     when Minitutorial

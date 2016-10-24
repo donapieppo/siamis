@@ -17,8 +17,11 @@ gem 'omniauth-facebook'
 
 gem 'simple_form'
 gem 'country_select'
-gem 'bootstrap-sass'
-gem 'font-awesome-sass'
+
+gem 'materialize-sass'
+gem 'material_icons'
+#gem 'bootstrap-sass'
+#gem 'font-awesome-sass'
 
 gem 'jquery-rails'
 # gem 'turbolinks', '~> 5'

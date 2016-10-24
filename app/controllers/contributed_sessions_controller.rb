@@ -16,7 +16,7 @@ class ContributedSessionsController < ApplicationController
   def create 
     @contributed_session = ContributedSession.new(contributed_session_params)
     if @contributed_session.save 
-      redirect_to contributed_sessions_path, notice: 'The contributed_session has been created.'
+      redirect_to contributed_session_path(@contributed_session), notice: 'The contributed_session has been created.'
     else
       render action: :new
     end
