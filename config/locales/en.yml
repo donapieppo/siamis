@@ -50,6 +50,9 @@ en:
       user:
         siam: IEEE SPS and ASA Imaging Science Section members are eligible to register at the SIAM Member rate.
         student: STUDENTS MUST SHOW A CURRENT STUDENT ID UPON CHECKING IN AT THE SIAM REGISTRATION DESK.
+    placeholders:
+      organizer:
+        email: name.surnname@example.com
 
   helpers:
     submit:

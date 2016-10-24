@@ -4,7 +4,7 @@ class PresentationsController < ApplicationController
   before_action :set_presentation_and_check_permission, only: [:edit, :update]
 
   def index
-    @current_user_presentations = current_user.presentations.all
+    @current_user_presentations = current_user.presentations.includes(authors: :user, session: [organizers: :user]).all
   end
 
   def show

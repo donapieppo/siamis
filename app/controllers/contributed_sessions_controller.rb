@@ -7,6 +7,8 @@ class ContributedSessionsController < ApplicationController
 
   def show
     @contributed_session = ContributedSession.find(params[:id])
+    @presentations = @contributed_session.presentations.includes(authors: :user)
+    # includes(authors: :user, session: [organizers: :user]).all
   end
 
   def new

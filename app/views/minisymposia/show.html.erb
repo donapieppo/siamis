@@ -14,11 +14,11 @@
   <% end %>
 </ul>
 
-<h3>Presentations</h3>
-<ul>
+<h5>Presentations</h5>
+<ul class="collection">
   <% @minisymposium.presentations.each do |presentation| %>  
-    <li>
-      <%= link_to presentation, presentation %><br/>
+    <li class="collection-item">
+      <h6><%= link_to presentation, presentation %></h6>
       by <% presentation.authors.includes(:user).each do |author| %>
         <%= show_user(author.user) %>
       <% end %>
@@ -27,10 +27,10 @@
 </ul>
 
 <% if current_user.committee_organizer? %>  
-  <h3>Ratings</h3>
-  <ul>
+  <h5>Ratings from commission</h5>
+  <ul class="collection">
     <% @minisymposium.ratings.each do |rating| %>  
-      <li><%= rating %> (<%= rating.notes %>) </li>
+      <li class="collection-item"><%= rating %> (<%= rating.notes %>) </li>
     <% end %>
   </ul>
   <p class="centered">
@@ -38,7 +38,7 @@
     you rated <strong><%= rating.score %>/5 </strong> this Minisymposium
     <br/> <%= link_to_delete 'delete your rating', ratings_path(rating) %>  
   <% else %>
-    <%= link_to icon('star') + ' Rate the presentation', new_minisymposium_rating_path(@minisymposium), class: :big_button %>  
+    <%= link_to "#{material_icon.star.css_class('left')} Rate this Minisymposium".html_safe, new_minisymposium_rating_path(@minisymposium), class: :big_button %>  
   <% end %>
   </p>
 <% end %>

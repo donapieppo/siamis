@@ -1,16 +1,15 @@
 <h1>Presentations</h1>
 
+<dl class="dl-horizontal">
+  <dt>ciao</dt>
+  <dd>ppp</dd>
+</dl>
+
 <% if @current_user_presentations.any? %>  
-  <p>You are author in the following presentations:</p>
+  <h5>You are author in the following presentations:</h5>
 
   <% @current_user_presentations.each do |presentation| %>  
-    <p>
-    <%= link_to presentation, presentation %>  
-    <% if presentation.session %>  
-      (in <%= t presentation.session.class %> "<%= link_to presentation.session, presentation.session %>")
-    <% end %>
-    <%= link_to_delete presentation_path(presentation) %>  
-    </p>
+    <%= render presentation %> 
   <% end %>
 <% else %>
   <span class='alert alert-warning'>You are actually author in no presentations for Siam-is18.</span>
@@ -21,12 +20,13 @@
 </p>
 
 <% if current_user.committee_organizer? %>  
-  <h2>All presentations</h2>
+  <h5>All presentations</h5>
 
-  Since you are in committee organization, here are all the presentations in siam-is18
-  <ul>
-    <% Presentation.find_each do |presentation| %>  
-      <li><span class="badge"><%= presentation.parent_event_abbr %></span>  <%= link_to presentation, presentation %></li>
-    <% end %>
+  Since you are in committee organization, here are all the presentations in siam-is18:
+
+  <ul class="collection">
+  <% Presentation.find_each do |presentation| %>  
+    <li class="collection-item"><%= link_to presentation, presentation %></li>
+  <% end %>
   </ul>
 <% end %>

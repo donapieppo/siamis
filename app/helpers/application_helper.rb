@@ -3,8 +3,13 @@ module ApplicationHelper
     current_user
   end
 
+  def mod_icon(name, text)
+    "#{material_icon.send(name).css_class('left')} #{text}".html_safe
+  end
+
   def icon(name, options = { text: "", size: "18" })
     raw "<i style=\"font-size: #{options[:size]}px\" class=\"fa fa-#{name}\"></i> #{options[:text]}"
+    raw "<i class=\"material-icons\">#{name}</i>"
   end
 
   def fwicon(name, options = { text: "", size: "18" })
@@ -108,4 +113,5 @@ module ApplicationHelper
   def show_user(user)
     user_modal_link(user) + " (" + user.affiliation + ")"
   end
+
 end

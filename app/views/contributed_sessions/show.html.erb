@@ -1,17 +1,23 @@
-<h1>Session: <%= @contributed_session %></h1>
+<h1>Contributed Session</h1>
+
+<h2><%= @contributed_session %></h2>
 
 <%= link_to 'edit', [:edit, @contributed_session] %>  
 
-<ul>
-  <% @contributed_session.presentations.each do |presentation| %>  
-    <li><%= presentation %> <%= link_to icon('minus') + ' remove', remove_contributed_session_presentation_path(@contributed_session, presentation), class: :button, method: :put %></li>
+<% if @presentations.any? %>  
+<h5>Presentations</h5>
+
+<ul class="collection">
+  <% @presentations.each do |presentation| %>  
+    <li class="collection-item"><%= presentation %> <span><%= link_to mod_icon('remove_circle_outline', 'remove from session'), remove_contributed_session_presentation_path(@contributed_session, presentation), method: :put %></span></li>
   <% end %>
 </ul>
+<% end %>
 
-<h2>Choose presentations</h2>
+<h5>Choose presentations for this session</h5>
 
-<ul>
+<ul class="collection">
   <% Presentation.unassigned.each do |presentation| %> 
-    <li><%= presentation %> <%= link_to icon('plus') + ' add', add_contributed_session_presentation_path(@contributed_session, presentation), class: :button, method: :put %>  </li>
+    <li class="collection-item"><%= link_to mod_icon('add_circle_outline', 'add to session'), add_contributed_session_presentation_path(@contributed_session, presentation), method: :put %> <%= presentation %>   </li>
   <% end %>
 </ul>

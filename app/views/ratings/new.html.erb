@@ -1,6 +1,6 @@
 <h1>Give Rating</h1>
 
-<div class='well'><%= @rating.about_string %></div>
+<div><%= @rating.about_string %></div>
 
 <%= horizontal_form_for [@rating.about, @rating] do |rating| %>  
   <%= rating.input :score, collection: (0..5), as: :radio_buttons %>  

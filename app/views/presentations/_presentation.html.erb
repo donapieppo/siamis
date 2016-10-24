@@ -1,0 +1,28 @@
+<div class="card card-presentation <%= defined?(size) ? size : "small" %>">
+<div class="card-content">
+  <p class="card-title">
+  <%= link_to presentation, presentation %>
+  <span class="badge"><%= presentation.parent_event_abbr %></span>
+</p>
+<p><%= presentation.abstract %> </p>
+<ul>
+  <% presentation.authors.each do |author| %>  
+    <li><%= show_user(author.user) %> <%= material_icon.mic if author.speak %>  </li>
+  <% end %>
+</ul>
+<% if presentation.session %>  
+  (in <%= t presentation.session.class %> "<%= link_to presentation.session, presentation.session %>"
+  organized by <%= presentation.session.organizers.map(&:to_s).join(', ') %>)
+<% end %>
+</div>
+<div class="card-action">
+  <% if current_user.owns?(presentation) %>  
+    <% if @contributed_session %>  
+      <%= link_to mod_icon('add_circle', 'add'), add_contributed_session_presentation_path(@contributed_session, presentation), class: :button, method: :put %> 
+    <% end %>
+    <%= link_to_edit('edit', edit_presentation_path(presentation)) if current_user_owns?(presentation) %>  
+    <%= link_to mod_icon('add_circle', 'add author'), new_presentation_author_path(presentation), class: :button %>
+    <%= link_to_delete 'delete', presentation_path(presentation) %>  
+  <% end %>
+</div>
+</div>

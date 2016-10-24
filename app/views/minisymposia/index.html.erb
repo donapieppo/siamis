@@ -14,25 +14,31 @@
   <%= link_to 'Submit Minisymposium Proposal', new_minisymposium_path, class: :big_button %>  
   </p>
 
-  <h2>As organizer</h2>
-  <ul>
-    <% current_user.minisymposia.each do |minisymposium| %>  
-      <li><%= link_to minisymposium, minisymposium_path(minisymposium) %></li>
-    <% end %>
-  </ul>
+  <div class="row">
+    <div class="col m6">
+      <h5>Your minisymposium as author</h5>
+      <ul class="collection">
+        <% current_user.presentations.at_minisymposium.each do |presentation| %>  
+          <li class="collection-item"><%= link_to presentation, presentation_path(presentation) %></li>
+        <% end %>
+      </ul>
+    </div>
 
-  <h2>As author</h2>
-  <ul>
-    <% current_user.presentations.at_minisymposium.each do |presentation| %>  
-      <li><%= link_to presentation, presentation_path(presentation) %></li>
-    <% end %>
-  </ul>
+    <div class="col m6">
+      <h5>Your minisymposia as organizer</h5>
+      <ul class="collection">
+        <% current_user.minisymposia.each do |minisymposium| %>  
+          <li class="collection-item"><%= link_to minisymposium, minisymposium_path(minisymposium) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 
   <% if current_user.committee_organizer? %>  
-    <h2>As commission</h2>
-    <ul>
+    <h5>All Minisymposia</h5>
+    <ul class="collection">
       <% Minisymposium.find_each do |minisymposium| %>  
-        <li>
+        <li class="collection-item">
           <%= link_to minisymposium, minisymposium_path(minisymposium) %> 
           <ul>
             <% minisymposium.ratings.each do |rating| %>  
@@ -40,7 +46,6 @@
             <% end %>
           </ul>
         </li>
-         
       <% end %> 
     </ul>
   <% end %>

@@ -1,27 +1,8 @@
-<h1><%= @presentation.umbrella %></h1>
+<h1><%= t @presentation.umbrella %></h1>
 
 <% if @presentation.session %>  
-  <h2><%= @presentation.session %> <%= link_to icon(:search), @presentation.session %>  </h2>
+  <h2><%= @presentation.session %> <%= link_to icon(:search), @presentation.session %></h2>
 <% end %>
 
-<div class="well">
-  <%= @presentation.name %>
-  <%= @presentation.abstract %> 
-  <%= link_to_edit(edit_presentation_path(@presentation)) if current_user_owns?(@presentation) %>  
-</div>
+<%= render @presentation %>
 
-<p>Authors:</p>
-<ul>
-  <% @authors.each do |author| %>  
-    <li>
-      <%= show_user(author.user) %> 
-      <% if author.speak %>  
-        <%= icon(:microphone) %>  
-      <% else %>
-        <%= link_to 'set as speaker', make_speaker_author_path(author), method: :put %>  
-      <% end %>
-      <%= link_to_delete author_path(author) %>
-    </li>
-  <% end %>
-  <li><%= link_to icon(:plus) + ' add author', new_presentation_author_path(@presentation) %></li>
-</ul>

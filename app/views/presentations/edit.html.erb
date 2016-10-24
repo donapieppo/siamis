@@ -1,1 +1,14 @@
+<h1>Presentation</h1>
+
 <%= render partial: 'form' %>  
+
+<p>Authors:</p>
+<ul class="collection">
+  <% @presentation.authors.each do |author| %>  
+    <li class="collection-item">
+      <%= author.user %> 
+      <%= link_to mod_icon('mic', 'set as speaker'), make_speaker_author_path(author), method: :put, disabled: author.speak, class: :button %>
+      <%= link_to_delete 'delete', author_path(author) %>
+    </li>
+  <% end %>
+</ul>

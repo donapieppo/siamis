@@ -24,7 +24,7 @@ class AuthorsController < ApplicationController
 
   def make_speaker
     @author.is_speaker
-    redirect_to @author.presentation
+    redirect_to [:edit, @author.presentation]
   end
 
   private

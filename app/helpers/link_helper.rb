@@ -7,7 +7,7 @@ module LinkHelper
   alias back_link_to :link_to_back
 
   def link_to_delete(name = "", url)
-    link_to icon('trash-o') + " " + name, url, method: :delete, title: 'delete', data: {confirm: 'Are you sure?'} 
+    link_to mod_icon('delete', name), url, method: :delete, title: 'delete', data: {confirm: 'Are you sure?'}, class: :button 
   end
 
   def link_to_download(url)
@@ -20,7 +20,7 @@ module LinkHelper
   end
 
   def link_to_edit(name = "", url)
-    link_to icon('pencil') + " " + name, url, title: "Modify"
+    link_to mod_icon('mode_edit', name), url, title: "Modify", class: :button
   end
 
   def link_to_edit2(name = "", url)
