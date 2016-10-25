@@ -1,4 +1,4 @@
-<h1><%= @minisymposium.name %></h1>
+<%= title(@minisymposium) %>  
 
 <div class="well">
   <em><%= @minisymposium.description %></em>
@@ -15,8 +15,9 @@
 </ul>
 
 <h5>Presentations</h5>
+<% if @presentations.any? %>  
 <ul class="collection">
-  <% @minisymposium.presentations.each do |presentation| %>  
+  <% @presentations.each do |presentation| %>  
     <li class="collection-item">
       <h6><%= link_to presentation, presentation %></h6>
       by <% presentation.authors.includes(:user).each do |author| %>
@@ -25,12 +26,16 @@
     </li>
   <% end %>
 </ul>
+<% else %>
+  <p>There are no presentations</p>
+<% end %> 
+
 
 <% if current_user.committee_organizer? %>  
   <h5>Ratings from commission</h5>
   <ul class="collection">
     <% @minisymposium.ratings.each do |rating| %>  
-      <li class="collection-item"><%= rating %> (<%= rating.notes %>) </li>
+      <li class="collection-item"><%= rating.user %> <%= rating_stars(rating.score) %> (<%= rating.notes %>) </li>
     <% end %>
   </ul>
   <p class="centered">

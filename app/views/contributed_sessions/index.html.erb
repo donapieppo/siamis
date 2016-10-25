@@ -1,9 +1,10 @@
-<h1>Contributed Sessions</h1>
+<h1>Contributed Presentations</h1>
 
 <ul class="collection">
 <% ContributedSession.find_each do |contributed_session| %>  
-  <li class="collection-item"><%= link_to contributed_session, contributed_session %> </li>
+  <li class="collection-item"><%= link_to contributed_session, contributed_session %></li>
 <% end %>
+</ul>
 
 <% if user_committee_organizer? %>  
   <p class="centered">

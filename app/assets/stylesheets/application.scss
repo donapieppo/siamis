@@ -74,3 +74,15 @@ input[type="submit"] {
     min-width: 30%;
   }
 }
+.Minisymposium {
+  @extend .chip;
+  @extend .lime;
+  @extend .text-lighten-4;
+}
+.ContributedSession {
+  @extend .chip;
+  @extend .teal;
+  @extend .accent-3;
+  @extend .text-lighten-4;
+}
+

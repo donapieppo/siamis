@@ -6,7 +6,8 @@ class MinisymposiaController < ApplicationController
   end
 
   def show
-    @minisymposium = Minisymposium.find(params[:id])
+    @minisymposium = Minisymposium.includes(organizers: :user).find(params[:id])
+    @presentations = @minisymposium.presentations.includes(authors: :user).all
   end
 
   def new

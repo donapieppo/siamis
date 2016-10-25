@@ -42,7 +42,7 @@
           <%= link_to minisymposium, minisymposium_path(minisymposium) %> 
           <ul>
             <% minisymposium.ratings.each do |rating| %>  
-              <li><%= rating %> </li>
+              <li><%= rating.user %>  <%= rating_stars(rating.score) %></li>
             <% end %>
           </ul>
         </li>

@@ -1,23 +1,35 @@
-<h1>Contributed Session</h1>
+<%= title(@contributed_session) %>  
 
-<h2><%= @contributed_session %></h2>
-
-<%= link_to 'edit', [:edit, @contributed_session] %>  
-
-<% if @presentations.any? %>  
-<h5>Presentations</h5>
-
-<ul class="collection">
-  <% @presentations.each do |presentation| %>  
-    <li class="collection-item"><%= presentation %> <span><%= link_to mod_icon('remove_circle_outline', 'remove from session'), remove_contributed_session_presentation_path(@contributed_session, presentation), method: :put %></span></li>
-  <% end %>
-</ul>
+<% if current_user_owns?(@contributed_session) %>  
+  <%= link_to_edit 'edit', [:edit, @contributed_session] %>  
 <% end %>
 
-<h5>Choose presentations for this session</h5>
+<% if @presentations.any? %>  
+  <h5>Presentations</h5>
 
-<ul class="collection">
-  <% Presentation.unassigned.each do |presentation| %> 
-    <li class="collection-item"><%= link_to mod_icon('add_circle_outline', 'add to session'), add_contributed_session_presentation_path(@contributed_session, presentation), method: :put %> <%= presentation %>   </li>
-  <% end %>
-</ul>
+  <ul class="collection">
+    <% @presentations.each do |presentation| %>  
+      <li class="collection-item">
+        <%= presentation %> 
+        <% if current_user_owns?(@contributed_session) %>
+          <span><%= link_to icon('remove_circle'), remove_contributed_session_presentation_path(@contributed_session, presentation), method: :put, title: 'remove from session' %></span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no presentations.</p>
+<% end %>
+
+<% if current_user_owns?(@contributed_session) %>  
+  <h5>Choose presentations for this session</h5>
+
+  <ul class="collection">
+    <% Presentation.unassigned.each do |presentation| %> 
+      <li class="collection-item">
+        <%= presentation %>
+        <span><%= link_to icon('add_circle'), add_contributed_session_presentation_path(@contributed_session, presentation), method: :put, title: 'add to session' %></span>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

@@ -114,4 +114,24 @@ module ApplicationHelper
     user_modal_link(user) + " (" + user.affiliation + ")"
   end
 
+  def rating_stars(rating)
+    (1..rating).map{|i| "<span>★</span>"}.join.html_safe +
+    (rating..4).map{|i| "<span>☆</span>"}.join.html_safe
+  end
+
+  def breadcrumbs
+  end
+
+  def title(what)
+    content_tag(:div, class: 'row') do
+      content_tag(:div, class: 'col s3') do 
+        content_tag(:h1, class: what.class.to_s) do 
+          I18n.t(what.class.to_s)
+        end 
+      end + 
+      content_tag(:div, class: 'col s9') do
+        content_tag(:h1, what.name)
+      end
+    end
+  end
 end

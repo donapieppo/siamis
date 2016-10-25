@@ -1,7 +1,7 @@
 class PresentationsController < ApplicationController
   before_action :force_sso_user
   before_action :set_minisymosium_and_minitutorial_and_check_permission, only: [:new, :create]
-  before_action :set_presentation_and_check_permission, only: [:edit, :update]
+  before_action :set_presentation_and_check_permission, only: [:edit, :update, :add, :remove]
 
   def index
     @current_user_presentations = current_user.presentations.includes(authors: :user, session: [organizers: :user]).all
@@ -37,14 +37,12 @@ class PresentationsController < ApplicationController
 
   def add
     @contributed_session = ContributedSession.find(params[:contributed_session_id])
-    @presentation = Presentation.find(params[:id])
     @contributed_session.presentations << @presentation
     redirect_to @contributed_session
   end
 
   def remove
     @contributed_session = ContributedSession.find(params[:contributed_session_id])
-    @presentation = Presentation.find(params[:id])
     @presentation.update_attribute(:session_id, nil)
     redirect_to @contributed_session
   end

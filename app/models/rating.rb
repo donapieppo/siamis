@@ -22,5 +22,6 @@ class Rating < ApplicationRecord
       ""
     end
   end
+
 end
 
