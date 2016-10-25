@@ -1,13 +1,8 @@
 @import "variables";
-@import "materialize/components/color";
-$primary-color: color("blue-grey", "lighten-2") !default;
-$secondary-color: color("blue-grey", "lighten-1") !default;
-@import "materialize";
-@import "material_icons";
-//@import "bootstrap-sprockets";
-//@import "bootstrap";
-//@import "font-awesome-sprockets";
-//@import "font-awesome";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 .home-header {
   background: url(asset-path('piazza_maggiore.jpg')) no-repeat center top;
@@ -30,13 +25,14 @@ $secondary-color: color("blue-grey", "lighten-1") !default;
 }
 .button {
   @extend .btn;
+  @extend .btn-default;
 }
 .big_button {
-  @extend .btn;
-  @extend .btn-large;
+  @extend .button;
+  @extend .btn-lg;
 }
 .big_pay_button {
-  @extend .btn;
+  @extend .big_button;
   input {
     font-size: 1.5em;
   }
@@ -44,11 +40,9 @@ $secondary-color: color("blue-grey", "lighten-1") !default;
 
 h1 {
   font-size: 2.1rem;
-  color: $secondary-color;
 }
 h2 {
   font-size: 1.8rem;
-  color: $secondary-color;
 }
 
 /* FORMS */
@@ -60,29 +54,19 @@ input[type="submit"] {
   font-size: 18px;
 }
 
-.dl-horizontal {
-  dd {
-    display: inline;
-    margin: 0;
-  }
-  dd:after {
-    display: block;
-    content: '';
-  }
-  dt {
-    display: inline-block;
-    min-width: 30%;
-  }
+.Minisymposium {
+  @extend .well;
+  background-color: #ccc;
+  text-align: center;
 }
 .Minisymposium {
-  @extend .chip;
-  @extend .lime;
-  @extend .text-lighten-4;
+  @extend .well;
+  background-color: #ccc;
+  text-align: center;
 }
-.ContributedSession {
-  @extend .chip;
-  @extend .teal;
-  @extend .accent-3;
-  @extend .text-lighten-4;
+.Presentation {
+  @extend .well;
+  background-color: #ccc;
+  text-align: center;
 }
 

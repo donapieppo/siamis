@@ -3,13 +3,8 @@ module ApplicationHelper
     current_user
   end
 
-  def mod_icon(name, text)
-    "#{material_icon.send(name).css_class('left')} #{text}".html_safe
-  end
-
   def icon(name, options = { text: "", size: "18" })
     raw "<i style=\"font-size: #{options[:size]}px\" class=\"fa fa-#{name}\"></i> #{options[:text]}"
-    raw "<i class=\"material-icons\">#{name}</i>"
   end
 
   def fwicon(name, options = { text: "", size: "18" })
@@ -124,12 +119,12 @@ module ApplicationHelper
 
   def title(what)
     content_tag(:div, class: 'row') do
-      content_tag(:div, class: 'col s3') do 
-        content_tag(:h1, class: what.class.to_s) do 
+      content_tag(:div, class: 'col-md-3') do 
+        content_tag(:div, class: what.class.to_s) do 
           I18n.t(what.class.to_s)
         end 
       end + 
-      content_tag(:div, class: 'col s9') do
+      content_tag(:div, class: 'col-md-9') do
         content_tag(:h1, what.name)
       end
     end
