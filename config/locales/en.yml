@@ -21,6 +21,11 @@
 
 en:
   hello: "Hello world"
+  Minisymposium: Minisymposium
+  Minitutorial: Minitutorial
+  ContributedSession: Contributed Presentation
+
+
 
   activerecord:
     models:
