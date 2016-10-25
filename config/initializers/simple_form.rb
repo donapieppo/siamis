@@ -162,13 +162,4 @@ SimpleForm.setup do |config|
 
   # Defines which i18n scope will be used in Simple Form.
   # config.i18n_scope = 'simple_form'
-  #
- config.wrappers :materialize_form, class: '', error_class: 'has_error' do |b|
-   b.use :html5
-   b.use :placeholder
-   b.use :input
-   b.use :label
-   b.use :error, wrap_with: { tag: 'p' , class: 'error-text'}
-   # b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
-  end
 end
