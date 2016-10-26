@@ -1,4 +1,4 @@
-<%= simple_form_for @user, wrapper: :materialize_form do |user| %>  
+<%= horizontal_form_for @user do |user| %>  
   <%= user.input :email, disabled: true %>  
   <%= user.input :name %>  
   <%= user.input :surname %>  

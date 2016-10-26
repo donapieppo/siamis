@@ -1,12 +1,12 @@
 <h1>Presentations</h1>
 
 <% if @current_user_presentations.any? %>  
-  <h5>You are author in the following presentations:</h5>
+  <h2>You are author in the following presentations:</h2>
   <% @current_user_presentations.each do |presentation| %>  
     <%= render presentation %> 
   <% end %>
 <% else %>
-  <span class='alert alert-warning'>You are actually author in no presentations for Siam-is18.</span>
+  <p class='alert alert-warning'>You are author in no presentations for Siam-is18.</p>
 <% end %>
 
 <p class="centered">
@@ -14,13 +14,13 @@
 </p>
 
 <% if current_user.committee_organizer? %>  
-  <h5>All presentations</h5>
+  <h2>All presentations</h2>
 
-  Since you are in committee organization, here are all the presentations in siam-is18:
+  <p class="alert alert-success">Since you are in committee organization, here are all the presentations in siam-is18:</p>
 
-  <ul class="collection">
+  <ul class="list-group">
   <% Presentation.find_each do |presentation| %>  
-    <li class="collection-item"><%= link_to presentation, presentation %> <span class="badge"><%= presentation.parent_event_abbr %></span></li>
+    <li class="list-group-item"><%= link_to presentation, presentation %> <span class="badge pull-right"><%= presentation.parent_event_abbr %></span></li>
   <% end %>
   </ul>
 <% end %>

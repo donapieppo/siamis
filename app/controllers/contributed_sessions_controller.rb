@@ -3,6 +3,7 @@ class ContributedSessionsController < ApplicationController
   before_action :set_contributred_session_and_check_permission, only: [:edit, :update]
 
   def index
+    @contributed_sessions = ContributedSession.includes(:schedule)
   end
 
   def show

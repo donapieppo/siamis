@@ -17,15 +17,18 @@ module ApplicationHelper
 
   def bootstrap_modal_div
     raw %Q|
-<div id="main-modal" class="modal">
-    <div class="modal-content">
-      <h4 class="modal-title"></h4>
-      <div class="modal-body">A bunch of text</div>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
-    </div>
-  </div>
+      <div class="modal fade" id="main-modal" >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+            </div>
+          </div><!-- .modal-content -->
+        </div><!-- .modal-dialog -->
+      </div><!-- .modal -->
 |
   end
 
@@ -118,13 +121,13 @@ module ApplicationHelper
   end
 
   def title(what)
-    content_tag(:div, class: 'row') do
-      content_tag(:div, class: 'col-md-3') do 
+    content_tag(:div, class: 'title row') do
+      content_tag(:div, class: 'col-md-2') do 
         content_tag(:div, class: what.class.to_s) do 
           I18n.t(what.class.to_s)
         end 
       end + 
-      content_tag(:div, class: 'col-md-9') do
+      content_tag(:div, class: 'col-md-10') do
         content_tag(:h1, what.name)
       end
     end

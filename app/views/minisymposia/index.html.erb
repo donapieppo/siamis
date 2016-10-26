@@ -17,18 +17,18 @@
   <div class="row">
     <div class="col m6">
       <h5>You are author in:</h5>
-      <ul class="collection">
+      <ul class="list-group">
         <% current_user.presentations.at_minisymposium.each do |presentation| %>  
-          <li class="collection-item"><%= link_to presentation, presentation_path(presentation) %></li>
+          <li class="list-group-item"><%= link_to presentation, presentation_path(presentation) %></li>
         <% end %>
       </ul>
     </div>
 
     <div class="col m6">
       <h5>Your are organizer in:</h5>
-      <ul class="collection">
+      <ul class="list-group">
         <% current_user.minisymposia.each do |minisymposium| %>  
-          <li class="collection-item"><%= link_to minisymposium, minisymposium_path(minisymposium) %></li>
+          <li class="list-group-item"><%= link_to minisymposium, minisymposium_path(minisymposium) %></li>
         <% end %>
       </ul>
     </div>
@@ -36,9 +36,9 @@
 
   <% if current_user.committee_organizer? %>  
     <h5>All Minisymposia</h5>
-    <ul class="collection">
+    <ul class="list-group">
       <% Minisymposium.find_each do |minisymposium| %>  
-        <li class="collection-item">
+        <li class="list-group-item">
           <%= link_to minisymposium, minisymposium_path(minisymposium) %> 
           <ul>
             <% minisymposium.ratings.each do |rating| %>  

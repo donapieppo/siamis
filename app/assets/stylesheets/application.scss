@@ -54,19 +54,29 @@ input[type="submit"] {
   font-size: 18px;
 }
 
-.Minisymposium {
-  @extend .well;
-  background-color: #ccc;
+.title {
+  margin: 30px;
+}
+.session_in_title {
+  margin-top: 20px;
+  border: 3px solid #ccc;
+  border-radius: 5px;
   text-align: center;
+  padding: 6px 12px;
+  vertical-align: middle;
+  color: green;
 }
 .Minisymposium {
-  @extend .well;
-  background-color: #ccc;
-  text-align: center;
+  @extend .session_in_title;
+}
+.Minisymposium {
+  @extend .session_in_title;
+}
+.ContributedSession {
+  @extend .session_in_title;
 }
 .Presentation {
-  @extend .well;
-  background-color: #ccc;
-  text-align: center;
+  @extend .session_in_title;
 }
 
+li { list-style-type: none; }

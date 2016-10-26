@@ -1,0 +1,6 @@
+<%= horizontal_form_for @room do |room| %>  
+  <%= room.input :name %> 
+  <%= room.input :capacity %> 
+  <%= room.association :building %> 
+  <%= room.submit %>  
+<% end %>

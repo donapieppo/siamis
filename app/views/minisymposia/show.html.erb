@@ -1,61 +1,57 @@
 <%= title(@minisymposium) %>  
 
-<div class="well">
+<div>
   <em><%= @minisymposium.description %></em>
-  <%= link_to 'edit', edit_minisymposium_path(@minisymposium) if current_user.owns?(@minisymposium) %>
-  </p>
 </div>
+
+<p>
+<%= @minisymposium.schedule %>  
+</p>
 
 <ul>
   <% @minisymposium.organizers.includes(:user).each do |organizer| %>  
     <li>
       Organizer: <%= show_user(organizer.user) %>
-    </li>
-  <% end %>
+  </li>
+<% end %>
 </ul>
 
-<h5>Presentations</h5>
-<% if @presentations.any? %>  
-<ul class="collection">
-  <% @presentations.each do |presentation| %>  
-    <li class="collection-item">
-      <h6><%= link_to presentation, presentation %></h6>
-      by <% presentation.authors.includes(:user).each do |author| %>
-        <%= show_user(author.user) %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
-<% else %>
-  <p>There are no presentations</p>
-<% end %> 
+<h2>Presentations</h2>
 
+<%= render @presentations, short: true %>  
 
 <% if current_user.committee_organizer? %>  
-  <h5>Ratings from commission</h5>
-  <ul class="collection">
+  <h2>Ratings from commission</h2>
+  <ul class="list-group">
     <% @minisymposium.ratings.each do |rating| %>  
-      <li class="collection-item"><%= rating.user %> <%= rating_stars(rating.score) %> (<%= rating.notes %>) </li>
+      <li class="list-group-item"><%= rating.user %> <%= rating_stars(rating.score) %> (<%= rating.notes %>) </li>
     <% end %>
   </ul>
   <p class="centered">
   <% if rating = current_user.ratings.where(minisymposium: @minisymposium).first %>  
     you rated <strong><%= rating.score %>/5 </strong> this Minisymposium
     <br/> <%= link_to_delete 'delete your rating', ratings_path(rating) %>  
-  <% else %>
-    <%= link_to "#{material_icon.star.css_class('left')} Rate this Minisymposium".html_safe, new_minisymposium_rating_path(@minisymposium), class: :big_button %>  
-  <% end %>
+<% else %>
+  <%= link_to icon('star') + " Rate this Minisymposium".html_safe, new_minisymposium_rating_path(@minisymposium), class: :big_button %>  
+<% end %>
   </p>
 <% end %>
 
 <% if current_user.organizer?(@minisymposium) %>  
   <div>
     <p class="centered">
-    <%= link_to 'Add Organizer', new_minisymposium_organizer_path(@minisymposium), class: :big_button %>  
+    <%= link_to icon('user') + ' add Organizer', new_minisymposium_organizer_path(@minisymposium), class: :big_button %>  
     </p>
     <p class="centered">
-    <%= link_to 'Add Presentation', new_minisymposium_presentation_path(@minisymposium), class: :big_button %>  
+    <%= link_to icon('file-audio-o') + ' add Presentation', new_minisymposium_presentation_path(@minisymposium), class: :big_button %>  
     </p>
+    <p class="centered">
+    <%= link_to icon('pencil')  + ' edit', [:edit, @minisymposium], class: :big_button %>  
+    </p>
+    <p class="centered">
+    <%= link_to icon('clock-o') + ' schedule', new_session_schedule_path(@minisymposium), class: :big_button %>  
+    </p>
+
   </div>
 <% end %>
 

@@ -1,4 +1,4 @@
-$('#main-modal').openModal();
+$('#main-modal').modal('show');
 $(".modal-title").html("<h4><%= escape_javascript(@user.cn) %></h4>");
 $(".modal-body").html("<%= escape_javascript(render(@user)) %>");
 

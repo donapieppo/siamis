@@ -1,35 +1,15 @@
 <%= title(@contributed_session) %>  
 
-<% if current_user_owns?(@contributed_session) %>  
-  <%= link_to_edit 'edit', [:edit, @contributed_session] %>  
-<% end %>
-
-<% if @presentations.any? %>  
-  <h5>Presentations</h5>
-
-  <ul class="collection">
-    <% @presentations.each do |presentation| %>  
-      <li class="collection-item">
-        <%= presentation %> 
-        <% if current_user_owns?(@contributed_session) %>
-          <span><%= link_to icon('remove_circle'), remove_contributed_session_presentation_path(@contributed_session, presentation), method: :put, title: 'remove from session' %></span>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>There are no presentations.</p>
-<% end %>
+<p><%= @contributed_session.schedule %></p>
 
 <% if current_user_owns?(@contributed_session) %>  
-  <h5>Choose presentations for this session</h5>
-
-  <ul class="collection">
-    <% Presentation.unassigned.each do |presentation| %> 
-      <li class="collection-item">
-        <%= presentation %>
-        <span><%= link_to icon('add_circle'), add_contributed_session_presentation_path(@contributed_session, presentation), method: :put, title: 'add to session' %></span>
-      </li>
-    <% end %>
-  </ul>
+  <%= link_to icon('pencil')  + ' edit', [:edit, @contributed_session], class: :button %>  
+  <%= link_to icon('clock-o') + ' schedule', new_session_schedule_path(@contributed_session), class: :button %>  
 <% end %>
+
+<h2>Presentations</h2>
+<%= render @presentations, one_line: true, actions: :add %>  
+
+<h2>Presentations to add</h2>
+<%= render Presentation.unassigned.all, one_line: true, actions: :remove %>
+
