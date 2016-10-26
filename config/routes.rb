@@ -10,17 +10,24 @@ Rails.application.routes.draw do
     resources :organizers 
     resources :presentations
     resources :ratings
+    resources :schedules
   end
   resources :minitutorials do
     resources :organizers 
     resources :presentations
     resources :ratings
+    resources :schedules
   end
   resources :contributed_sessions do
+    resources :schedules
     resources :presentations do 
       put 'add', on: :member
       put 'remove', on: :member
     end
+  end
+  resources :schedules
+  resources :sessions do 
+    resources :schedules
   end
   resources :presentations do 
     resources :authors
@@ -34,6 +41,7 @@ Rails.application.routes.draw do
 
   resources :organizers
   resources :ratings
+  resources :rooms
 
   resources :registrations do 
     get :check, on: :collection, as: :check
