@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "schedules", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "session_id", unsigned: true
     t.integer  "room_id",    unsigned: true
-    t.datetime "date"
+    t.datetime "start"
     t.index ["room_id"], name: "room_id", using: :btree
     t.index ["session_id"], name: "session_id", using: :btree
   end
