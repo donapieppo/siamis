@@ -24,8 +24,7 @@ en:
   Minisymposium: Minisymposium
   Minitutorial: Minitutorial
   ContributedSession: Contributed Presentation
-
-
+  Presentation: Presentation
 
   activerecord:
     models:
@@ -63,3 +62,17 @@ en:
     submit:
       minisymposium:
         create: Propose Minisymposium
+  time:
+    formats:
+      default: ! '%d %b at %H:%M'
+      long:    ! '%d %B %Y %H:%M'
+      short:   ! '%d %b %H:%M'
+      date_picker: ! "%d/%m/%Y"
+      datetime_picker: "%d/%m/%Y %H:%M"
+      with_day_name: '%A %d %B %Y ore %H:%M'
+      schedule_day:  '%d'
+
+  date:
+    formats:
+      schedule: '%A %d %B %Y'
+
