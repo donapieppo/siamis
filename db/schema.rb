@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.text    "abstract",   limit: 65535
     t.integer "session_id",               unsigned: true
     t.boolean "accepted"
+    t.boolean "poster"
     t.index ["session_id"], name: "session_id", using: :btree
   end
 
