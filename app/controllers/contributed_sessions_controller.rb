@@ -1,19 +1,19 @@
-class ContributedSessionsController < ApplicationController
-  before_action :force_sso_user, except: :index
-  before_action :set_contributred_session_and_check_permission, only: [:edit, :update]
+class ContributedSessionsController < SessionsController
+  # before_action :force_sso_user, except: :index
+  # before_action :set_contributred_session_and_check_permission, only: [:edit, :update]
 
-  def index
-    @contributed_sessions = ContributedSession.includes(:schedule)
-  end
+  # def index
+  #   @contributed_sessions = ContributedSession.includes(:schedule)
+  # end
 
-  def show
-    @contributed_session = ContributedSession.find(params[:id])
-    @presentations = @contributed_session.presentations.includes(authors: :user)
-    # includes(authors: :user, session: [organizers: :user]).all
-  end
+  # def show
+  #   @contributed_session = ContributedSession.find(params[:id])
+  #   @presentations = @contributed_session.presentations.includes(authors: :user)
+  #   # includes(authors: :user, session: [organizers: :user]).all
+  # end
 
   def new
-    @contributed_session = ContributedSession.new
+    @session = ContributedSession.new
   end
 
   def create 

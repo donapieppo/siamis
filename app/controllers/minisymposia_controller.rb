@@ -1,35 +1,35 @@
-class MinisymposiaController < ApplicationController
-  before_action :force_sso_user, except: :index
-  before_action :set_minisymposium_and_check_permission, only: [:edit, :update]
+class MinisymposiaController < SessionsController
+  # before_action :force_sso_user, except: :index
+  # before_action :set_minisymposium_and_check_permission, only: [:edit, :update]
 
-  def index
-  end
+  # def index
+  # end
 
-  def show
-    @minisymposium = Minisymposium.includes(organizers: :user).find(params[:id])
-    @presentations = @minisymposium.presentations.includes(authors: :user).all
-  end
+  # def show
+  #   @minisymposium = Minisymposium.includes(organizers: :user).find(params[:id])
+  #   @presentations = @minisymposium.presentations.includes(authors: :user).all
+  # end
 
   def new
-    @minisymposium = Minisymposium.new
+    @session = Minisymposium.new
   end
 
   def create 
-    @minisymposium = Minisymposium.new(minisymposium_params)
-    if @minisymposium.save 
-      @minisymposium.organizers.create!(user: current_user)
-      redirect_to @minisymposium, notice: 'The minisymposium has been created.'
+    @session = Minisymposium.new(minisymposium_params)
+    if @session.save 
+      @session.organizers.create!(user: current_user)
+      redirect_to @session, notice: 'The minisymposium has been created.'
     else
       render action: :new
     end
   end
 
-  def edit
-  end
+  #def edit
+  #end
 
   def update
-    if @minisymposium.update_attributes(minisymposium_params)
-      redirect_to @minisymposium, notice: 'The minisymposium has been updated.'
+    if @session.update_attributes(minisymposium_params)
+      redirect_to @session, notice: 'The minisymposium has been updated.'
     else
       render action: :edit
     end
@@ -41,9 +41,9 @@ class MinisymposiaController < ApplicationController
     params[:minisymposium].permit(:name, :description)
   end
 
-  def set_minisymposium_and_check_permission
-    @minisymposium = Minisymposium.find(params[:id])
-    current_user.owns!(@minisymposium)
-  end
+  #def set_minisymposium_and_check_permission
+  #  @minisymposium = Minisymposium.find(params[:id])
+  #  current_user.owns!(@minisymposium)
+  #end
 end
 

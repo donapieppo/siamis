@@ -1,34 +1,32 @@
-class MinitutorialsController < ApplicationController
-  before_action :force_sso_user, except: :index
-  before_action :set_minitutorial_and_check_permission, only: [:edit, :update]
+class MinitutorialsController < SessionsController
+  # before_action :force_sso_user, except: :index
+  # before_action :set_minitutorial_and_check_permission, only: [:edit, :update]
 
-  def index
-  end
-
-  def show
-    @minitutorial = Minitutorial.find(params[:id])
-  end
+  # def show
+  #   @minitutorial  = Minitutorial.find(params[:id])
+  #   @presentations = @minitutorial.presentations.includes(authors: :user).all
+  # end
 
   def new
-    @minitutorial = Minitutorial.new
+    @session = Minitutorial.new
   end
 
   def create 
-    @minitutorial = Minitutorial.new(minitutorial_params)
-    if @minitutorial.save 
-      @minitutorial.organizers.create!(user: current_user)
-      redirect_to @minitutorial, notice: 'The minitutorial has been created.'
+    @session = Minitutorial.new(minitutorial_params)
+    if @session.save 
+      @session.organizers.create!(user: current_user)
+      redirect_to @session, notice: 'The session has been created.'
     else
       render action: :new
     end
   end
 
-  def edit
-  end
+  # def edit
+  # end
 
   def update
-    if @minitutorial.update_attributes(minitutorial_params)
-      redirect_to @minitutorial, notice: 'The minitutorial has been updated.'
+    if @session.update_attributes(minitutorial_params)
+      redirect_to @session, notice: 'The session has been updated.'
     else
       render action: :edit
     end
@@ -36,13 +34,9 @@ class MinitutorialsController < ApplicationController
 
   private
 
+  # fixme in realta' no
   def minitutorial_params
     params[:minitutorial].permit(:name, :description)
-  end
-
-  def set_minitutorial_and_check_permission
-    @minitutorial = Minitutorial.find(params[:id])
-    current_user.owns!(@minitutorial)
   end
 end
 
