@@ -65,8 +65,9 @@ Rails.application.routes.draw do
   get 'logins/no_access',            to: 'logins#no_access',  as: :no_access
 
   post 'auth/developer/callback',    to: 'logins#developer'
+  get 'auth/developer/callback',    to: 'logins#developer'
 
-  get '/privacy', to: 'home#privacy', as: :privacy
+  get 'privacy', to: 'home#privacy', as: :privacy
 
   get 'who_impersonate',    to: 'impersonations#who_impersonate',    as: :who_impersonate
   get 'impersonate/:id',    to: 'impersonations#impersonate',        as: :impersonate

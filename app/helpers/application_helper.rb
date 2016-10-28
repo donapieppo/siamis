@@ -105,7 +105,8 @@ module ApplicationHelper
   end
 
   def user_modal_link(user)
-    link_to user.cn, user_path(user), remote: true 
+    cn = (current_user == user) ? user.cn.upcase : user.cn
+    link_to cn, user_path(user), remote: true 
   end
 
   def show_user(user)
@@ -118,7 +119,7 @@ module ApplicationHelper
   end
 
   def session_parent_list_link(session)
-    name = I18n.t session.class.to_s.pluralize
+    name = I18n.t(session.class.to_s.pluralize)
     link_to name, Rails.application.routes.path_for(controller: session.class.to_s.pluralize.tableize, action: :index)
   end
 
@@ -131,6 +132,7 @@ module ApplicationHelper
       elsif @presentation and @presentation.session
         content_tag('li', session_parent_list_link(@presentation.session)) +
         content_tag('li', link_to(@presentation.session, @presentation.session))
+      elsif controller.controller_name == 'impersonations'
       else
         content_tag('li', link_to(I18n.t(controller.controller_name.camelize), controller: controller.controller_name, action: :index))
       end 

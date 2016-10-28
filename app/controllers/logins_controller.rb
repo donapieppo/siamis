@@ -39,9 +39,9 @@ class LoginsController < ApplicationController
   end
 
   def developer
-    Socket.gethostname == 'truffaut' or Socket.gethostname == 'casa' or raise "NOT IN TRUFFAUT"
+    Socket.gethostname == 'tester' or Socket.gethostname == 'casa' or raise "NOT IN TRUFFAUT"
     Rails.env.development? or raise "NOT IN DEVELOPMENT"
-    request.remote_ip == '127.0.0.1' or request.remote_ip == '::1' or request.remote_ip =~ /^172\.17\.\d+\.\d+/  or raise "ONLY LOCAL OF DOCKER. YOU ARE #{request.remote_ip}"
+    request.remote_ip == '127.0.0.1' or request.remote_ip == '::1' or request.remote_ip == '137.204.134.32' or request.remote_ip =~ /^172\.17\.\d+\.\d+/  or raise "ONLY LOCAL OF DOCKER. YOU ARE #{request.remote_ip}"
     sign_in_and_redirect User.first
   end
 

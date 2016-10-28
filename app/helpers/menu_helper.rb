@@ -1,11 +1,11 @@
 module MenuHelper
 
   def login_link
-    link_to 'accedi / registrati', login_path
+    link_to 'sign-in / register', login_path
   end
 
   def logout_link
-    link_to icon('sign-out'), logout_path, title: 'Disconnetti'
+    link_to icon('sign-out'), logout_path, title: 'sign-out'
   end
 
   def logged_user

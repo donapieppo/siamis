@@ -1,18 +1,10 @@
 <h1>Your registration</h1>
 
 <h3>Your data</h3>
-
-<dl class="dl-horizontal">
-  <% [:name, :surname, :email, :affiliation, :address, :country].each do |field| %>  
-    <%= dl_field(current_user, field) %>  
-  <% end %>
-</dl>
-
-<%= link_to 'edit', edit_user_path(current_user) %>  
+<%= render current_user %>  
 
 <h3>Payments</h3>
 
-You have paid <%= @payment.amount %> &euro; in date
-<%= l @payment.created_at %>  
+You have paid <%= @payment.amount %> &euro; in date <%= l @payment.created_at %>  
 
 
