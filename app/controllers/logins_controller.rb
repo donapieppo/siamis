@@ -45,11 +45,11 @@ class LoginsController < ApplicationController
     sign_in_and_redirect User.first
   end
 
-  # example ["_shibsession_lauree", "_affcf2ffbe098d5a0928dc72cd9de489"]
-  #         ["_lauree_session", "YU5RSTM2OXdYMkRyVjV0SXI1K3c3eDJJdjZQ..... "]
+  # example ["_shibconference_session_lauree", "_affcf2ffbe098d5a0928dc72cd9de489"]
+  #         ["_lauree_conference_session", "YU5RSTM2OXdYMkRyVjV0SXI1K3c3eDJJdjZQ..... "]
   def logout
-    cookies.delete(Rails.configuration.session_options[:key].to_sym)
-    session[:user_id] = nil
+    cookies.delete(Rails.configuration.conference_session_options[:key].to_sym)
+    conference_session[:user_id] = nil
     logger.info("after logout we redirect to params[:return] = #{params[:return]}")
     redirect_to root_path 
   end
@@ -94,8 +94,8 @@ class LoginsController < ApplicationController
   alias_method :log_and_create, :allow_and_create # old syntax 
 
   def sign_in_and_redirect(user)
-    session[:user_id] = user.id
-    # redirect_to session[:original_request] || root_path
+    conference_session[:user_id] = user.id
+    # redirect_to conference_session[:original_request] || root_path
     redirect_to root_path
   end
 end

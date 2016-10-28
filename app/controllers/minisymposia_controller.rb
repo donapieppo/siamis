@@ -1,4 +1,4 @@
-class MinisymposiaController < SessionsController
+class MinisymposiaController < ConferenceSessionsController
   # before_action :force_sso_user, except: :index
   # before_action :set_minisymposium_and_check_permission, only: [:edit, :update]
 
@@ -11,14 +11,14 @@ class MinisymposiaController < SessionsController
   # end
 
   def new
-    @session = Minisymposium.new
+    @conference_session = Minisymposium.new
   end
 
   def create 
-    @session = Minisymposium.new(minisymposium_params)
-    if @session.save 
-      @session.organizers.create!(user: current_user)
-      redirect_to @session, notice: 'The minisymposium has been created.'
+    @conference_session = Minisymposium.new(minisymposium_params)
+    if @conference_session.save 
+      @conference_session.organizers.create!(user: current_user)
+      redirect_to @conference_session, notice: 'The minisymposium has been created.'
     else
       render action: :new
     end
@@ -28,8 +28,8 @@ class MinisymposiaController < SessionsController
   #end
 
   def update
-    if @session.update_attributes(minisymposium_params)
-      redirect_to @session, notice: 'The minisymposium has been updated.'
+    if @conference_session.update_attributes(minisymposium_params)
+      redirect_to @conference_session, notice: 'The minisymposium has been updated.'
     else
       render action: :edit
     end

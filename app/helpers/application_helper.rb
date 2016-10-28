@@ -118,20 +118,20 @@ module ApplicationHelper
     (rating..4).map{|i| "<span>☆</span>"}.join.html_safe
   end
 
-  def session_parent_list_link(session)
-    name = I18n.t(session.class.to_s.pluralize)
-    link_to name, Rails.application.routes.path_for(controller: session.class.to_s.pluralize.tableize, action: :index)
+  def session_parent_list_link(conference_session)
+    name = I18n.t(conference_session.class.to_s.pluralize)
+    link_to name, Rails.application.routes.path_for(controller: conference_session.class.to_s.pluralize.tableize, action: :index)
   end
 
   def breadcrumbs
     content_tag 'ol', class: "breadcrumb" do 
       content_tag('li', link_to('Home', root_path)) +
-      if @session 
-        content_tag('li', session_parent_list_link(@session)) +
-        (@session.new_record? ? '' : content_tag('li', link_to(@session, @session)))
-      elsif @presentation and @presentation.session
+      if @conference_session
+        content_tag('li', session_parent_list_link(@conference_session)) +
+        (@conference_session.new_record? ? '' : content_tag('li', link_to(@conference_session, @conference_session)))
+      elsif @presentation and @presentation.conference_session
         content_tag('li', session_parent_list_link(@presentation.session)) +
-        content_tag('li', link_to(@presentation.session, @presentation.session))
+        content_tag('li', link_to(@presentation.conference_session, @presentation.conference_session))
       elsif controller.controller_name == 'impersonations'
       else
         content_tag('li', link_to(I18n.t(controller.controller_name.camelize), controller: controller.controller_name, action: :index))
@@ -152,8 +152,8 @@ module ApplicationHelper
     end
   end
 
-  def organized_by(session)
-    organizers_string = session.organizers.map(&:to_s).join(', ')
+  def organized_by(conference_session)
+    organizers_string = conference_session.organizers.map(&:to_s).join(', ')
     organizers_string.blank? ? "" : "organized by #{organizers_string}"
   end
 end

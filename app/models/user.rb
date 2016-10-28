@@ -32,8 +32,8 @@ class User < ApplicationRecord
     when Minisymposium, Minitutorial
       self.organizer?(what)
     when Presentation
-      if [Minitutorial, Minisymposium].include?(what.session.class)
-        self.organizer?(what.session)
+      if [Minitutorial, Minisymposium].include?(what.conference_session.class)
+        self.organizer?(what.conference_session)
       else
         what.user_ids.include?(self.id)
       end

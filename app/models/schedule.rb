@@ -1,5 +1,5 @@
 class Schedule < ApplicationRecord
-  belongs_to :session
+  belongs_to :conference_session
   belongs_to :room
 
   def to_s

@@ -1,13 +1,13 @@
-class PosterSessionsController < SessionsController
+class PosterSessionsController < ConferenceSessionsController
   def new
-    @session = PosterSession.new
+    @conference_session = PosterSession.new
   end
 
   def create 
-    @session = PosterSession.new(session_params)
-    if @session.save 
-      @session.organizers.create!(user: current_user)
-      redirect_to @session, notice: 'The session has been created.'
+    @conference_session = PosterSession.new(conference_session_params)
+    if @conference_session.save 
+      @conference_session.organizers.create!(user: current_user)
+      redirect_to @conference_session, notice: 'The conference_session has been created.'
     else
       render action: :new
     end
@@ -17,8 +17,8 @@ class PosterSessionsController < SessionsController
   end
 
   def update
-    if @session.update_attributes(session_params)
-      redirect_to @session, notice: 'The session has been updated.'
+    if @conference_session.update_attributes(conference_session_params)
+      redirect_to @conference_session, notice: 'The conference_session has been updated.'
     else
       render action: :edit
     end
@@ -26,8 +26,8 @@ class PosterSessionsController < SessionsController
 
   private
 
-  def session_params
-    params[:poster_session].permit(:name, :description)
+  def conference_session_params
+    params[:poster_conference_session].permit(:name, :description)
   end
 end
 

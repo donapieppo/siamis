@@ -4,7 +4,7 @@ class PresentationsController < ApplicationController
   before_action :set_presentation_and_check_permission, only: [:edit, :update, :add, :remove]
 
   def index
-    @current_user_presentations = current_user.presentations.includes(authors: :user, session: [organizers: :user]).all
+    @current_user_presentations = current_user.presentations.includes(authors: :user, conference_session: [organizers: :user]).all
   end
 
   def show
@@ -36,15 +36,15 @@ class PresentationsController < ApplicationController
   end
 
   def add
-    @contributed_session = ContributedSession.find(params[:contributed_session_id])
-    @contributed_session.presentations << @presentation
-    redirect_to @contributed_session
+    @contributed_conference_session = ContributedConferenceSession.find(params[:contributed_conference_session_id])
+    @contributed_conference_session.presentations << @presentation
+    redirect_to @contributed_conference_session
   end
 
   def remove
-    @contributed_session = ContributedSession.find(params[:contributed_session_id])
-    @presentation.update_attribute(:session_id, nil)
-    redirect_to @contributed_session
+    @contributed_conference_session = ContributedConferenceSession.find(params[:contributed_conference_session_id])
+    @presentation.update_attribute(:conference_session_id, nil)
+    redirect_to @contributed_conference_session
   end
 
   def update

@@ -4,7 +4,7 @@ class RolesController < ApplicationController
     @role = Role.find(params[:id])
     current_user.owns!(@role)
     @role.destroy
-    redirect_to @role.session, notice: 'OK'
+    redirect_to @role.conference_session, notice: 'OK'
   end
 
   private 
@@ -12,9 +12,9 @@ class RolesController < ApplicationController
   def roles_params
     p = (params[:author] || params[:organizer])
     if what = @minisymposium || @minitutorial || @presentation
-      p[:session_id] = what.id
+      p[:conference_session_id] = what.id
     end
-    p.permit(:email, :name, :surname, :affiliation, :address, :session_id)
+    p.permit(:email, :name, :surname, :affiliation, :address, :conference_session_id)
   end
 
 end

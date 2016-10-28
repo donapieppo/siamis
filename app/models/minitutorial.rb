@@ -1,4 +1,4 @@
-class Minitutorial < Session
+class Minitutorial < ConferenceSession
   DURATION = 20
 
   # can have no name

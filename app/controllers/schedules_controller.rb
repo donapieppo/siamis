@@ -1,14 +1,14 @@
 class SchedulesController < ApplicationController
-  before_action :set_session
+  before_action :set_conference_session
 
   def new
-    @schedule = @session.schedule || @session.build_schedule
+    @schedule = @conference_session.schedule || @conference_session.build_schedule
   end
 
   def create
-    @schedule = @session.schedule || @session.build_schedule
+    @schedule = @conference_session.schedule || @conference_session.build_schedule
     if @schedule.update_attributes(schedule_params)
-      redirect_to @session, notice: 'OK'
+      redirect_to @conference_session, notice: 'OK'
     else
       render action: :new
     end
@@ -18,9 +18,9 @@ class SchedulesController < ApplicationController
     
   private
 
-  def set_session
-    session_id = params[:session_id] || params[:contributed_session_id] || params[:minisymposium_id] || params[:minitutorial_id]
-    @session  = Session.find(session_id)
+  def set_conference_session
+    conference_session_id = params[:conference_session_id] || params[:contributed_conference_session_id] || params[:minisymposium_id] || params[:minitutorial_id]
+    @conference_session  = ConferenceSession.find(conference_session_id)
   end
 
   def schedule_params

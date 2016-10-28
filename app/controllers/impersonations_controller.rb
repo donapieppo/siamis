@@ -13,7 +13,7 @@ class ImpersonationsController < ApplicationController
     if true_user_can_impersonate?
       user = User.find(params[:id])
       logger.info("IMPERSONATION: #{current_user.inspect} -> #{user.inspect}")
-      session[:new_impersonation] = true
+      conference_session[:new_impersonation] = true
       impersonate_user(user)
     end
     redirect_to root_path and return

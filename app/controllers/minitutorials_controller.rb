@@ -1,4 +1,4 @@
-class MinitutorialsController < SessionsController
+class MinitutorialsController < ConferenceSessionsController
   # before_action :force_sso_user, except: :index
   # before_action :set_minitutorial_and_check_permission, only: [:edit, :update]
 
@@ -8,14 +8,14 @@ class MinitutorialsController < SessionsController
   # end
 
   def new
-    @session = Minitutorial.new
+    @conference_session = Minitutorial.new
   end
 
   def create 
-    @session = Minitutorial.new(minitutorial_params)
-    if @session.save 
-      @session.organizers.create!(user: current_user)
-      redirect_to @session, notice: 'The session has been created.'
+    @conference_session = Minitutorial.new(minitutorial_params)
+    if @conference_session.save 
+      @conference_session.organizers.create!(user: current_user)
+      redirect_to @conference_session, notice: 'The conference_session has been created.'
     else
       render action: :new
     end
@@ -25,8 +25,8 @@ class MinitutorialsController < SessionsController
   # end
 
   def update
-    if @session.update_attributes(minitutorial_params)
-      redirect_to @session, notice: 'The session has been updated.'
+    if @conference_session.update_attributes(minitutorial_params)
+      redirect_to @conference_session, notice: 'The conference_session has been updated.'
     else
       render action: :edit
     end

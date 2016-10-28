@@ -1,2 +1,2 @@
-class PlenariesController < SessionsController
+class PlenariesController < ConferenceSessionsController
 end

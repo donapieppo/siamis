@@ -17,8 +17,8 @@ module Role
     if self.email.blank?
       self.errors.add(:email, 'Give email')  
     elsif _user = User.where(email: self.email).first 
-      if self.is_a?(Organizer) and self.session_id and self.class.where(user_id: _user.id, session_id: self.session_id).any? 
-        self.errors.add(:email, "User is already organizer of this #{self.session.class}")
+      if self.is_a?(Organizer) and self.conference_session_id and self.class.where(user_id: _user.id, conference_session_id: self.conference_session_id).any? 
+        self.errors.add(:email, "User is already organizer of this #{self.conference_session.class}")
       elsif self.is_a?(Author) and self.presentation_id and self.class.where(user_id: _user.id, presentation_id: self.presentation_id).any?
         self.errors.add(:email, "User is already author of this #{self.presentation.class}")
       end

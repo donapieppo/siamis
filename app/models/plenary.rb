@@ -1,2 +1,2 @@
-class Plenary < Session
+class Plenary < ConferenceSession
 end

@@ -26,11 +26,30 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "city"
   end
 
+  create_table "conference_sessions", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "type",        limit: 18
+    t.integer  "number"
+    t.string   "name"
+    t.text     "description", limit: 65535
+    t.boolean  "accepted"
+    t.integer  "room_id",                   unsigned: true
+    t.integer  "chair_id",                  unsigned: true
+    t.datetime "start"
+    t.index ["chair_id"], name: "chair_id", using: :btree
+    t.index ["room_id"], name: "room_id", using: :btree
+  end
+
   create_table "organizers", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "user_id",    null: false, unsigned: true
-    t.integer "session_id",              unsigned: true
-    t.index ["session_id"], name: "session_id", using: :btree
+    t.integer "user_id",               null: false, unsigned: true
+    t.integer "conference_session_id",              unsigned: true
+    t.index ["conference_session_id"], name: "conference_session_id", using: :btree
     t.index ["user_id"], name: "user_id", using: :btree
+  end
+
+  create_table "parts", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "num",                   null: false, unsigned: true
+    t.integer "conference_session_id",              unsigned: true
+    t.index ["conference_session_id"], name: "conference_session_id", using: :btree
   end
 
   create_table "payments", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -49,20 +68,20 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "presentations", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string  "name"
-    t.text    "abstract",   limit: 65535
-    t.integer "session_id",               unsigned: true
-    t.boolean "accepted"
+    t.text    "abstract",              limit: 65535
+    t.integer "conference_session_id",               unsigned: true
     t.boolean "poster"
-    t.index ["session_id"], name: "session_id", using: :btree
+    t.boolean "accepted"
+    t.index ["conference_session_id"], name: "conference_session_id", using: :btree
   end
 
   create_table "ratings", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "user_id",                       null: false, unsigned: true
-    t.integer "session_id",                                 unsigned: true
-    t.integer "presentation_id",                            unsigned: true
+    t.integer "user_id",                             null: false, unsigned: true
+    t.integer "conference_session_id",                            unsigned: true
+    t.integer "presentation_id",                                  unsigned: true
     t.integer "score"
-    t.text    "notes",           limit: 65535
-    t.index ["session_id"], name: "session_id", using: :btree
+    t.text    "notes",                 limit: 65535
+    t.index ["conference_session_id"], name: "conference_session_id", using: :btree
     t.index ["user_id"], name: "user_id", using: :btree
   end
 
@@ -82,27 +101,15 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "schedules", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "session_id", unsigned: true
-    t.integer  "room_id",    unsigned: true
+    t.integer  "conference_session_id", unsigned: true
+    t.integer  "room_id",               unsigned: true
     t.datetime "start"
-    t.index ["room_id"], name: "room_id", using: :btree
-    t.index ["session_id"], name: "session_id", using: :btree
-  end
-
-  create_table "sessions", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "type",        limit: 18
-    t.integer  "number"
-    t.string   "name"
-    t.text     "description", limit: 65535
-    t.boolean  "accepted"
-    t.integer  "room_id",                   unsigned: true
-    t.integer  "chair_id",                  unsigned: true
-    t.datetime "start"
-    t.index ["chair_id"], name: "chair_id", using: :btree
+    t.index ["conference_session_id"], name: "conference_session_id", using: :btree
     t.index ["room_id"], name: "room_id", using: :btree
   end
 
   create_table "users", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "salutation",  limit: 20
     t.string   "name"
     t.string   "surname"
     t.string   "email"

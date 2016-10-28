@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   # before_filter :log_current_user, :force_sso_user
   def force_sso_user
     if ! current_user
-      session[:original_request] = request.fullpath
+      conference_session[:original_request] = request.fullpath
       redirect_to login_path and return 
     end
   end

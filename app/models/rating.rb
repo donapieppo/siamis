@@ -1,7 +1,7 @@
 class Rating < ApplicationRecord
   belongs_to :user
-  belongs_to :minisymposium, foreign_key: :session_id, optional: true
-  belongs_to :minitutorial,  foreign_key: :session_id, optional: true
+  belongs_to :minisymposium, foreign_key: :conference_session_id, optional: true
+  belongs_to :minitutorial,  foreign_key: :conference_session_id, optional: true
   belongs_to :presentation,  optional: true
 
   def to_s

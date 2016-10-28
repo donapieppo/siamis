@@ -1,25 +1,25 @@
-class ContributedSessionsController < SessionsController
+class ContributedSessionsController < ConferenceSessionsController
   # before_action :force_sso_user, except: :index
-  # before_action :set_contributred_session_and_check_permission, only: [:edit, :update]
+  # before_action :set_contributred_conference_session_and_check_permission, only: [:edit, :update]
 
   # def index
-  #   @contributed_sessions = ContributedSession.includes(:schedule)
+  #   @contributed_conference_sessions = ContributedConferenceSession.includes(:schedule)
   # end
 
   # def show
-  #   @contributed_session = ContributedSession.find(params[:id])
-  #   @presentations = @contributed_session.presentations.includes(authors: :user)
-  #   # includes(authors: :user, session: [organizers: :user]).all
+  #   @contributed_conference_session = ContributedConferenceSession.find(params[:id])
+  #   @presentations = @contributed_conference_session.presentations.includes(authors: :user)
+  #   # includes(authors: :user, conference_session: [organizers: :user]).all
   # end
 
   def new
-    @session = ContributedSession.new
+    @conference_session = ContributedConferenceSession.new
   end
 
   def create 
-    @contributed_session = ContributedSession.new(contributed_session_params)
-    if @contributed_session.save 
-      redirect_to contributed_session_path(@contributed_session), notice: 'The contributed_session has been created.'
+    @contributed_conference_session = ContributedConferenceSession.new(contributed_conference_session_params)
+    if @contributed_conference_session.save 
+      redirect_to contributed_conference_session_path(@contributed_conference_session), notice: 'The contributed_conference_session has been created.'
     else
       render action: :new
     end
@@ -29,8 +29,8 @@ class ContributedSessionsController < SessionsController
   end
 
   def update
-    if @contributed_session.update_attributes(contributed_session_params)
-      redirect_to @contributed_session, notice: 'The contributed_session has been updated.'
+    if @contributed_conference_session.update_attributes(contributed_conference_session_params)
+      redirect_to @contributed_conference_session, notice: 'The contributed_conference_session has been updated.'
     else
       render action: :edit
     end
@@ -38,13 +38,13 @@ class ContributedSessionsController < SessionsController
 
   private
 
-  def contributed_session_params
-    params[:contributed_session].permit(:name, :description)
+  def contributed_conference_session_params
+    params[:contributed_conference_session].permit(:name, :description)
   end
 
-  def set_contributred_session_and_check_permission
-    @contributed_session = ContributedSession.find(params[:id])
-    current_user.owns!(@contributed_session)
+  def set_contributred_conference_session_and_check_permission
+    @contributed_conference_session = ContributedConferenceSession.find(params[:id])
+    current_user.owns!(@contributed_conference_session)
   end
 end
 

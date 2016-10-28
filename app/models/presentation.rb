@@ -2,32 +2,32 @@ class Presentation < ApplicationRecord
   has_many :authors, dependent: :destroy
   has_many :users, through: :authors
   has_many :ratings
-  belongs_to :session, optional: true
-  belongs_to :minisymposium, foreign_key: :session_id, optional: true
-  belongs_to :minitutorial,  foreign_key: :session_id, optional: true
+  belongs_to :conference_session, optional: true
+  belongs_to :minisymposium, foreign_key: :conference_session_id, optional: true
+  belongs_to :minitutorial,  foreign_key: :conference_session_id, optional: true
 
-  scope :at_minisymposium, -> { left_outer_joins(:session).where.not(session_id: nil).where('sessions.type = "Minisymposium"').references(:session) }
-  scope :at_minitutorial,  -> { left_outer_joins(:session).where.not(session_id: nil).where('sessions.type = "Minitutorial"').references(:session) }
+  scope :at_minisymposium, -> { left_outer_joins(:conference_session).where.not(conference_session_id: nil).where('conference_sessions.type = "Minisymposium"').references(:conference_session) }
+  scope :at_minitutorial,  -> { left_outer_joins(:conference_session).where.not(conference_session_id: nil).where('conference_sessions.type = "Minitutorial"').references(:conference_session) }
 
-  scope :unassigned,       -> { where(session_id: nil) }
+  scope :unassigned,       -> { where(conference_session_id: nil) }
 
   def to_s
     self.name
   end
 
   def umbrella
-    self.session ? self.session.class : ContributedSession
+    self.conference_session ? self.conference_session.class : ContributedConferenceSession
   end
 
   def parent_event_abbr
-    case session
+    case conference_session
     when Minisymposium
       'MS'
     when Minitutorial
       'MT'
-    when PosterSession
+    when PosterConferenceSession
       'PP'
-    # ContributedSession
+    # ContributedConferenceSession
     else
       'CP'
     end
