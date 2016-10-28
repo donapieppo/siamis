@@ -25,6 +25,14 @@ Rails.application.routes.draw do
       put 'remove', on: :member
     end
   end
+  resources :poster_sessions do
+    resources :schedules
+    resources :presentations do 
+      put 'add', on: :member
+      put 'remove', on: :member
+    end
+  end
+  resources :plenaries
   resources :schedules
   resources :sessions do 
     resources :schedules
@@ -47,13 +55,14 @@ Rails.application.routes.draw do
     get :check, on: :collection, as: :check
   end
 
-  get 'login',                       to: 'logins#index',     as: :login
-  get 'logins/logout',               to: 'logins#logout',    as: :logout
+  get 'submissions',                 to: 'submissions#index', as: :submissions
+  get 'login',                       to: 'logins#index',      as: :login
+  get 'logins/logout',               to: 'logins#logout',     as: :logout
   get 'auth/google_oauth2',          as: 'google_login'
   get 'auth/google_oauth2/callback', to: 'logins#google_oauth2'
   get 'auth/facebook',               as: 'facebook_login'
   get 'auth/facebook/callback',      to: 'logins#facebook'
-  get 'logins/no_access',            to: 'logins#no_access', as: :no_access
+  get 'logins/no_access',            to: 'logins#no_access',  as: :no_access
 
   post 'auth/developer/callback',    to: 'logins#developer'
 

@@ -1,0 +1,18 @@
+<h1>Poster Sessions</h1>
+
+<ul class="list-group">
+  <% PosterSession.includes(:schedule).find_each do |poster_session| %>  
+    <li class="list-group-item">
+       <%= link_to poster_session, poster_session %>
+       <span class="pull-right"><%= poster_session.schedule %></span>
+    </li>
+  <% end %>
+</ul>
+
+<% if user_committee_organizer? %>  
+  <p class="centered">
+    <%= link_to 'Create Poster Session', new_poster_session_path, class: :big_button %>  
+  </p>
+<% end %>
+
+

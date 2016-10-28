@@ -1,0 +1,15 @@
+<%= title(@session) %>  
+
+<p><%= @session.schedule %></p>
+
+<% if current_user_owns?(@session) %>  
+  <%= link_to icon('pencil')  + ' edit', [:edit, @session], class: :button %>  
+  <%= link_to icon('clock-o') + ' schedule', new_session_schedule_path(@session), class: :button %>  
+<% end %>
+
+<h2>Presentations</h2>
+<%= render @presentations, one_line: true, actions: [:remove] %>  
+
+<h2>Presentations to add</h2>
+<%= render Presentation.unassigned.all, one_line: true, actions: [:add] %>
+
