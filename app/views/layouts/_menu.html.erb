@@ -15,11 +15,11 @@
       <%= dropdown_menu fwicon('users') + ' Sessions' do  %>  
         <li><%= link_to fwicon('circle') + ' Minitutorials', minitutorials_path %></li>
         <li><%= link_to fwicon('circle') + ' Minisymposia', minisymposia_path %></li>
-        <li><%= link_to fwicon('circle') + ' Invited Plenary Speakers', '' %></li>
-        <li><%= link_to fwicon('circle') + ' Poster Sessions', '' %></li>
+        <li><%= link_to fwicon('circle') + ' Invited Plenary Speakers', plenaries_path %></li>
+        <li><%= link_to fwicon('circle') + ' Poster Sessions', poster_sessions_path %></li>
         <li><%= link_to fwicon('circle') + ' Contributed Presentations', contributed_sessions_path %></li>
       <% end %>
-      <li><%= link_to fwicon('comment-o') + ' Presentations', presentations_path %></li>
+      <li><%= link_to fwicon('file') + ' Submissions', submissions_path %></li>
       <% if current_user %>  
         <% if @registration %>  
           <li><%= link_to fwicon('circle') + ' Your Registration', registration_path(@registration) %></li>
@@ -32,4 +32,4 @@
   </nav>
 </div><!-- container -->
 </header>
-
+o

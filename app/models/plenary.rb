@@ -1,0 +1,2 @@
+class Plenary < Session
+end

@@ -1,15 +1,15 @@
-<%= title(@minisymposium) %>  
+<%= title(@session) %>  
 
 <div>
-  <em><%= @minisymposium.description %></em>
+  <em><%= @session.description %></em>
 </div>
 
 <p>
-<%= @minisymposium.schedule %>  
+<%= @session.schedule %>  
 </p>
 
 <ul>
-  <% @minisymposium.organizers.includes(:user).each do |organizer| %>  
+  <% @session.organizers.includes(:user).each do |organizer| %>  
     <li>
       Organizer: <%= show_user(organizer.user) %>
   </li>
@@ -23,7 +23,7 @@
 <% if current_user.committee_organizer? %>  
   <h2>Ratings from commission</h2>
   <ul class="list-group">
-    <% @minisymposium.ratings.each do |rating| %>  
+    <% @session.ratings.each do |rating| %>  
       <li class="list-group-item"><%= rating.user %> <%= rating_stars(rating.score) %> (<%= rating.notes %>) </li>
     <% end %>
   </ul>
@@ -32,24 +32,24 @@
     you rated <strong><%= rating.score %>/5 </strong> this Minisymposium
     <br/> <%= link_to_delete 'delete your rating', ratings_path(rating) %>  
 <% else %>
-  <%= link_to icon('star') + " Rate this Minisymposium".html_safe, new_minisymposium_rating_path(@minisymposium), class: :big_button %>  
+  <%= link_to icon('star') + " Rate this Minisymposium".html_safe, new_minisymposium_rating_path(@session), class: :big_button %>  
 <% end %>
   </p>
 <% end %>
 
-<% if current_user.organizer?(@minisymposium) %>  
+<% if current_user.organizer?(@session) %>  
   <div>
     <p class="centered">
-    <%= link_to icon('user') + ' add Organizer', new_minisymposium_organizer_path(@minisymposium), class: :big_button %>  
+    <%= link_to icon('user') + ' add Organizer', new_minisymposium_organizer_path(@session), class: :big_button %>  
     </p>
     <p class="centered">
-    <%= link_to icon('file-audio-o') + ' add Presentation', new_minisymposium_presentation_path(@minisymposium), class: :big_button %>  
+    <%= link_to icon('file-audio-o') + ' add Presentation', new_minisymposium_presentation_path(@session), class: :big_button %>  
     </p>
     <p class="centered">
-    <%= link_to icon('pencil')  + ' edit', [:edit, @minisymposium], class: :big_button %>  
+    <%= link_to icon('pencil')  + ' edit', [:edit, @session], class: :big_button %>  
     </p>
     <p class="centered">
-    <%= link_to icon('clock-o') + ' schedule', new_session_schedule_path(@minisymposium), class: :big_button %>  
+    <%= link_to icon('clock-o') + ' schedule', new_session_schedule_path(@session), class: :big_button %>  
     </p>
 
   </div>

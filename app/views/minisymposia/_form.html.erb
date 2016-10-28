@@ -9,9 +9,9 @@
   <li> Describe the scope of your minisymposium.</li>
 </ol>
 
-<%= horizontal_form_for @minisymposium do |minisymposium| %>  
-  <%= minisymposium.input :name %>  
-  <%= minisymposium.input :description %>  
-  <%= minisymposium.submit  %>  
+<%= horizontal_form_for @session do |session| %>  
+  <%= session.input :name %>  
+  <%= session.input :description %>  
+  <%= session.submit  %>  
 <% end %>
 

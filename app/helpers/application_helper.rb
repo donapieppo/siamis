@@ -117,7 +117,24 @@ module ApplicationHelper
     (rating..4).map{|i| "<span>☆</span>"}.join.html_safe
   end
 
+  def session_parent_list_link(session)
+    name = I18n.t session.class.to_s.pluralize
+    link_to name, Rails.application.routes.path_for(controller: session.class.to_s.pluralize.tableize, action: :index)
+  end
+
   def breadcrumbs
+    content_tag 'ol', class: "breadcrumb" do 
+      content_tag('li', link_to('Home', root_path)) +
+      if @session 
+        content_tag('li', session_parent_list_link(@session)) +
+        (@session.new_record? ? '' : content_tag('li', link_to(@session, @session)))
+      elsif @presentation and @presentation.session
+        content_tag('li', session_parent_list_link(@presentation.session)) +
+        content_tag('li', link_to(@presentation.session, @presentation.session))
+      else
+        content_tag('li', link_to(I18n.t(controller.controller_name.camelize), controller: controller.controller_name, action: :index))
+      end 
+    end
   end
 
   def title(what)
@@ -128,8 +145,13 @@ module ApplicationHelper
         end 
       end + 
       content_tag(:div, class: 'col-md-10') do
-        content_tag(:h1, what.name)
+        content_tag(:h1, what.to_s)
       end
     end
+  end
+
+  def organized_by(session)
+    organizers_string = session.organizers.map(&:to_s).join(', ')
+    organizers_string.blank? ? "" : "organized by #{organizers_string}"
   end
 end

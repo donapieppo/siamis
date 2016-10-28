@@ -1,13 +1,14 @@
 class Presentation < ApplicationRecord
   has_many :authors, dependent: :destroy
   has_many :users, through: :authors
+  has_many :ratings
   belongs_to :session, optional: true
   belongs_to :minisymposium, foreign_key: :session_id, optional: true
   belongs_to :minitutorial,  foreign_key: :session_id, optional: true
-  has_many :ratings
 
   scope :at_minisymposium, -> { left_outer_joins(:session).where.not(session_id: nil).where('sessions.type = "Minisymposium"').references(:session) }
   scope :at_minitutorial,  -> { left_outer_joins(:session).where.not(session_id: nil).where('sessions.type = "Minitutorial"').references(:session) }
+
   scope :unassigned,       -> { where(session_id: nil) }
 
   def to_s

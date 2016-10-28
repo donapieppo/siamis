@@ -1,7 +1,7 @@
 <h1>Contributed Presentations</h1>
 
 <ul class="list-group">
-  <% @contributed_sessions.find_each do |contributed_session| %>  
+  <% ContributedSession.includes(:schedule).find_each do |contributed_session| %>  
     <li class="list-group-item">
        <%= link_to contributed_session, contributed_session %>
        <span class="pull-right"><%= contributed_session.schedule %></span>

@@ -1,0 +1,18 @@
+<h1>Submissions</h1>
+
+<% if current_user %>  
+  <%= render @presentations %>  
+  <%= render @minisymposia %>  
+<% end %>
+
+<p class="centered">
+<%= link_to 'Submit Minisymposium Proposal', new_minisymposium_path, class: :big_button %>  
+</p>
+
+<p class="centered">
+<%= link_to 'Submit Presentation Proposal', new_presentation_path, class: :big_button %>  
+</p>
+
+<p class="centered">
+<%= link_to 'Submit Poster Proposal', new_presentation_path(poster: true), class: :big_button %>  
+</p>

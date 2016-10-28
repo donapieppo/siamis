@@ -14,7 +14,7 @@ class User < ApplicationRecord
   validates :surname, presence: true
 
   def to_s
-    "#{self.name} #{self.surname} (#{self.affiliation})"
+    "#{self.cn} (#{self.affiliation})"
   end
 
   def cn

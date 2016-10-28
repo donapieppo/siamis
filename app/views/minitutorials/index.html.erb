@@ -3,3 +3,15 @@
 <p>Multiple minitutorials will be organized for presentation during the conference.</p>
 <p>Additional details will be posted as they become available.</p>
 
+<ul class='list-group'>
+<% Minitutorial.find_each do |minitutorial| %>  
+  <li class='list-group-item'>
+    <%= link_to minitutorial, minitutorial %>
+    <span class="pull-right"><%= minitutorial.schedule %></span>
+  </li>
+<% end %>
+</ul>
+
+<% if user_committee_organizer? %>
+  <%= link_to 'Create a Minitutorial Session', new_minitutorial_path, class: :button %>  
+<% end %>

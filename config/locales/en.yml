@@ -22,9 +22,17 @@
 en:
   hello: "Hello world"
   Minisymposium: Minisymposium
+  Minisymposia: Minisymposia
   Minitutorial: Minitutorial
+  Minitutorials: Minitutorials
   ContributedSession: Contributed Presentation
+  ContributedSessions: Contributed Presentations
+  PosterSession: Poster Session
+  PosterSessions: Poster Sessions
   Presentation: Presentation
+  Presentations: Presentations
+  Submissions: Submissions
+  Plenaries: Invited Plenaries
 
   activerecord:
     models:

@@ -1,12 +1,13 @@
 <% if defined?(one_line) %>  
   <div>
-    <p><%= link_to presentation, presentation %> 
-       <% if current_user.owns?(presentation) and @contributed_session %>
-          <%= link_to icon('plus') + ' add', add_contributed_session_presentation_path(@contributed_session, presentation), class: :button, method: :put, title: 'add to session' %> 
-          <%= link_to icon('minus') + 'remove', remove_contributed_session_presentation_path(@contributed_session, presentation), method: :put, title: 'remove from session', class: :button %>
-       <% end %>
-        <span class="badge pull-right"><%= presentation.parent_event_abbr %></span>
-    </p>
+    <%= link_to presentation, presentation %> 
+    <% if current_user.owns?(presentation) and defined?(actions) and actions.include?(:add) %>
+      <%= link_to icon('plus') + ' add', add_contributed_session_presentation_path(@session, presentation), class: :button, method: :put, title: 'add to session' %> 
+    <% end %>
+    <% if current_user.owns?(presentation) and defined?(actions) and actions.include?(:remove) %>
+      <%= link_to icon('minus') + 'remove', remove_contributed_session_presentation_path(@session, presentation), method: :put, title: 'remove from session', class: :button %>
+    <% end %>
+    <span class="badge pull-right"><%= presentation.parent_event_abbr %></span>
   </div>
 <% else %>
   <div class="panel panel-default">
@@ -23,14 +24,16 @@
       </dl>
       <% if presentation.session and ! defined?(short) %>  
         (in <%= t presentation.session.class %> "<%= link_to presentation.session, presentation.session %>"
-        organized by <%= presentation.session.organizers.map(&:to_s).join(', ') %>)
+        <%= organized_by(presentation.session) %>) 
       <% end %>
     </div><!-- body -->
     <% if current_user.owns?(presentation) and ! defined?(short)%>  
       <div class="panel-footer">
-        <% if @contributed_session %>  
-          <%= link_to icon('plus') + ' add', add_contributed_session_presentation_path(@contributed_session, presentation), class: :button, method: :put, title: 'add to session' %> 
-          <%= link_to icon('minus') + 'remove', remove_contributed_session_presentation_path(@contributed_session, presentation), method: :put, title: 'remove from session', class: :button %>
+        <% if current_user.owns?(presentation) and defined?(actions) and actions.include?(:add) %>
+          <%= link_to icon('plus') + ' add', add_contributed_session_presentation_path(@session, presentation), class: :button, method: :put, title: 'add to session' %> 
+        <% end %>
+        <% if current_user.owns?(presentation) and defined?(actions) and actions.include?(:remove) %>
+          <%= link_to icon('minus') + 'remove', remove_contributed_session_presentation_path(@session, presentation), method: :put, title: 'remove from session', class: :button %>
         <% end %>
         <%= link_to icon('pencil') + " edit", edit_presentation_path(presentation), class: :button %>  
         <%= link_to icon('plus')   + " add author", new_presentation_author_path(presentation), class: :button %>

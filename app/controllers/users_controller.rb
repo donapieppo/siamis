@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   private 
 
   def user_params
-    params[:user].permit(:name, :surname, :email, :affiliation, :address, :country, :siag, :siam, :student)
+    params[:user].permit(:salutation, :name, :surname, :email, :affiliation, :address, :country, :siag, :siam, :student)
   end
 
   def set_minisymosium_and_minitutorial
