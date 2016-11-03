@@ -1,0 +1,21 @@
+<p>Pre-registration deadline – <strong><%= l Rails.configuration.pre_registration_date, format: :long %></strong>.
+
+<table class="table table-striped table-condensed">
+<tr>
+<th></th>
+<th>Pre-registration <br/><small>(before <%= l Rails.configuration.pre_registration_date + 1.day %>)</small></td>
+<th>On-site registration <br/><small>(after <%= l Rails.configuration.pre_registration_date %>)</small></td>
+</tr>
+<% Fee.prices.each do |name, amounts| %>  
+  <tr>
+  <th><%= I18n.t name %></th>
+  <td><%= amounts[0] %> &euro;</td>
+  <td><%= amounts[1] %> &euro;</td>
+  </tr>
+<% end %>
+</table>
+<ul>
+  <li>IEEE SPS and ASA Imaging Science Section members are eligible to register at the SIAM Member rate</li>
+  <li>STUDENTS must show a current student id upon checking in at the Siam registration desk.</li>
+</ul>
+
