@@ -11,9 +11,10 @@ gem 'therubyracer', platforms: :ruby
 gem 'pretender', '~> 0.2'
 gem 'savon'
 
-gem 'omniauth'
-gem 'omniauth-google-oauth2'  
-gem 'omniauth-facebook'
+#gem 'omniauth'
+#gem 'omniauth-google-oauth2'  
+#gem 'omniauth-facebook'
+gem 'devise'
 
 gem 'simple_form'
 gem 'country_select'
