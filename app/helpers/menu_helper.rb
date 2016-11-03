@@ -1,17 +1,17 @@
 module MenuHelper
 
   def login_link
-    link_to 'sign-in / register', login_path
+    link_to 'sign-in / register', new_user_session_path
   end
 
   def logout_link
-    link_to icon('sign-out'), logout_path, title: 'sign-out'
+    link_to icon('sign-out'), destroy_user_session_path, title: 'sign-out'
   end
 
   def logged_user
     if current_user
-      content_tag(:li, class: 'login-name navbar-text') do
-        current_user.name 
+      content_tag(:li, class: 'login-name') do
+        link_to current_user.name, edit_user_path(current_user)
       end + 
       content_tag(:li, class: 'logout_link') do 
         logout_link
