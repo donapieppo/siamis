@@ -1,5 +1,4 @@
 class AuthorsController < ApplicationController
-  before_action :force_sso_user
   before_action :set_presentation, only: [:new, :create]
   before_action :set_author_and_check_permission, only: [:make_speaker, :destroy]
 

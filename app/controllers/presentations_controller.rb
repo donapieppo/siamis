@@ -1,5 +1,4 @@
 class PresentationsController < ApplicationController
-  before_action :force_sso_user
   before_action :set_minisymosium_and_minitutorial_and_check_permission, only: [:new, :create]
   before_action :set_presentation_and_check_permission, only: [:edit, :update, :add, :remove]
 
@@ -17,10 +16,10 @@ class PresentationsController < ApplicationController
   end
 
   def create
-    @presentation = @what ? @what.presentations.new(presentation_params) : Presentation.new(presentation_params)
+    @presentation = @conference_session ? @conference_session.presentations.new(presentation_params) : Presentation.new(presentation_params)
     if @presentation.save
       # we are not authors
-      if @what 
+      if @conference_session 
         redirect_to new_presentation_author_path(@presentation)
       # we are authors
       else
@@ -71,8 +70,8 @@ class PresentationsController < ApplicationController
   def set_minisymosium_and_minitutorial_and_check_permission
     @minisymposium = Minisymposium.find(params[:minisymposium_id]) if params[:minisymposium_id]
     @minitutorial  = Minitutorial.find(params[:minitutorial_id]) if params[:minitutorial_id]
-    @what = @minisymposium || @minitutorial
-    current_user.owns!(@what) if @what
+    @conference_session = @minisymposium || @minitutorial
+    current_user.owns!(@conference_session) if @conference_session
   end
 
   def set_presentation_and_check_permission

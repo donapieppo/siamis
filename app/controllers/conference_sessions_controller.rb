@@ -1,5 +1,7 @@
+# not directly used but, for example, MinisymposiaController < ApplicationController 
+# defines conference_session_params
 class ConferenceSessionsController < ApplicationController
-  before_action :force_sso_user, except: :index
+  skip_before_action :authenticate_user!, only: :index
   before_action :set_conference_session_and_check_permission, only: [:edit, :update]
 
   def index
@@ -15,7 +17,7 @@ class ConferenceSessionsController < ApplicationController
 
   def update
     if @conference_session.update_attributes(conference_session_params)
-      redirect_to @conference_session, notice: 'The conference_session has been updated.'
+      redirect_to @conference_session, notice: 'The session has been updated.'
     else
       render action: :edit
     end

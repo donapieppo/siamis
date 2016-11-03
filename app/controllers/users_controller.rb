@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :force_sso_user
   before_action :set_user_and_check_permission, only: [:edit, :update]
 
   def show
