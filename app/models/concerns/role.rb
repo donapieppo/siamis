@@ -24,13 +24,24 @@ module Role
       end
       self.user_id = _user.id 
     else
-      _user = User.new(email:       self.email, 
-                       name:        self.name, 
-                       surname:     self.surname, 
-                       affiliation: self.affiliation,
-                       address:     self.address)
-      if _user.save
-        self.user_id = _user.id 
+      if self.name.blank? 
+        self.errors.add(:name, "Please enter the name of the user") if self.name.blank?
+      elsif self.surname.blank? 
+        self.errors.add(:surname, "Please enter the surname of the user")
+      elsif self.affiliation.blank?
+        self.errors.add(:affiliation, "Please enter the affiliation of the user")
+      else
+        generated_password = Devise.friendly_token.first(10)
+        _user = User.new(email:       self.email, 
+                         password:    generated_password,
+                         name:        self.name, 
+                         surname:     self.surname, 
+                         affiliation: self.affiliation,
+                         address:     self.address)
+        if _user.save
+          RegistrationMailer.welcome(_user, generated_password, self).deliver
+          self.user_id = _user.id 
+        end
       end
     end
   end

@@ -2,9 +2,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, 
          :registerable,
          :recoverable, 
-         :rememberable, 
          :trackable, 
-         :validatable
+         :validatable,
+         :confirmable
+         # :rememberable, 
 
   has_many :admins
   has_many :organizers
@@ -14,11 +15,11 @@ class User < ApplicationRecord
   has_many :presentations, through: :authors
   has_many :ratings
   has_many :payments
-  has_one  :registration
+  has_one  :conference_registration
 
   validates :email,   uniqueness: true
-  validates :name,    presence: true
-  validates :surname, presence: true
+  #validates :name,    presence: true
+  #validates :surname, presence: true
 
   def to_s
     "#{self.cn} (#{self.affiliation})"

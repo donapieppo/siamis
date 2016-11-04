@@ -26,17 +26,23 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "city"
   end
 
+  create_table "conference_registrations", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id",    unsigned: true
+    t.integer  "payment_id", unsigned: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["user_id"], name: "user_id", using: :btree
+  end
+
   create_table "conference_sessions", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "type",        limit: 18
     t.integer  "number"
     t.string   "name"
     t.text     "description", limit: 65535
     t.boolean  "accepted"
-    t.integer  "room_id",                   unsigned: true
     t.integer  "chair_id",                  unsigned: true
     t.datetime "start"
     t.index ["chair_id"], name: "chair_id", using: :btree
-    t.index ["room_id"], name: "room_id", using: :btree
   end
 
   create_table "organizers", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -85,14 +91,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.index ["user_id"], name: "user_id", using: :btree
   end
 
-  create_table "registrations", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id",    unsigned: true
-    t.integer  "payment_id", unsigned: true
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["user_id"], name: "user_id", using: :btree
-  end
-
   create_table "rooms", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string  "name"
     t.integer "capacity"
@@ -114,7 +112,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "surname"
     t.string   "email"
     t.string   "affiliation"
-    t.text     "address",                limit: 65535
+    t.string   "address"
     t.string   "country"
     t.text     "biography",              limit: 65535
     t.boolean  "siag"
@@ -123,6 +121,10 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "encrypted_password"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.integer  "sign_in_count",                        default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"

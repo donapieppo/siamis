@@ -4,6 +4,7 @@ class Organizer < ApplicationRecord
   belongs_to :user
   belongs_to :minisymposium, foreign_key: :conference_session_id, optional: true
   belongs_to :minitutorial,  foreign_key: :conference_session_id, optional: true
+  belongs_to :conference_session, foreign_key: :conference_session_id, optional: true
 
   before_validation :set_or_create_user_from_email
 
