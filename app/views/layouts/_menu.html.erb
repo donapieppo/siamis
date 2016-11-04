@@ -19,12 +19,12 @@
         <li><%= link_to fwicon('circle') + ' Poster Sessions', poster_sessions_path %></li>
         <li><%= link_to fwicon('circle') + ' Contributed Presentations', contributed_sessions_path %></li>
       <% end %>
-      <li><%= link_to fwicon('file') + ' Submissions', submissions_path %></li>
       <% if current_user %>  
-        <% if @registration %>  
-          <li><%= link_to fwicon('circle') + ' Your Registration', registration_path(@registration) %></li>
+        <li><%= link_to fwicon('file') + ' Submissions', submissions_path %></li>
+        <% if @conference_registration %>  
+          <li><%= link_to fwicon('circle') + ' Your Registration', conference_registration_path(@conference_registration) %></li>
         <% else %>
-          <li><%= link_to fwicon('credit-card') + ' Register', new_registration_path %></li>
+          <li><%= link_to fwicon('credit-card') + ' Register', new_conference_registration_path %></li>
         <% end %>
       <% end %>
       <%= logged_user %>

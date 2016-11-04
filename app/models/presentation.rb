@@ -16,7 +16,7 @@ class Presentation < ApplicationRecord
   end
 
   def umbrella
-    self.conference_session ? self.conference_session.class : ContributedConferenceSession
+    self.conference_session ? self.conference_session.class : ContributedSession
   end
 
   def parent_event_abbr
@@ -25,11 +25,11 @@ class Presentation < ApplicationRecord
       'MS'
     when Minitutorial
       'MT'
-    when PosterConferenceSession
+    when PosterSession
       'PP'
     # ContributedConferenceSession
     else
-      'CP'
+      self.poster ? 'PP' : 'CP'
     end
   end
 

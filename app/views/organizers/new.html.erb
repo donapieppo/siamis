@@ -1,8 +1,8 @@
 <h1>New Organizer</h1>
 
-<h3><%= @what %></h3>
+<h3><%= @conference_session %></h3>
 
-<%= horizontal_form_for [@what, @organizer] do |organizer| %>  
+<%= simple_form_for [@conference_session, @organizer] do |organizer| %>  
   <%= organizer.dm_error_notification %>  
 
   <% uncorrect_email = (@organizer.email.blank? or @organizer.errors[:email].any?) %> 

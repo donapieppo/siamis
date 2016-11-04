@@ -1,8 +1,8 @@
-<%= title @session %>
+<%= title @conference_session %>
 
 <h2>Select date and location</h2>
 
-<%= horizontal_form_for [@session, @schedule] do |schedule| %>  
+<%= simple_form_for [@conference_session, @schedule] do |schedule| %>  
   <%= schedule.input :start_day,  as: :schedule_day %>  
   <%= schedule.input :start_hour, as: :schedule_hour %>  
   <%= schedule.association :room, include_blank: false %>  

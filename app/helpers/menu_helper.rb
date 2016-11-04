@@ -5,13 +5,13 @@ module MenuHelper
   end
 
   def logout_link
-    link_to icon('sign-out'), destroy_user_session_path, title: 'sign-out'
+    link_to icon('sign-out'), destroy_user_session_path, title: 'sign-out', method: :delete
   end
 
   def logged_user
     if current_user
       content_tag(:li, class: 'login-name') do
-        link_to current_user.name, edit_user_path(current_user)
+        link_to current_user.cn, edit_user_path(current_user)
       end + 
       content_tag(:li, class: 'logout_link') do 
         logout_link

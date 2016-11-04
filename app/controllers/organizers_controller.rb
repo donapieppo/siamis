@@ -7,7 +7,6 @@ class OrganizersController < RolesController
 
   def create
     @organizer = Organizer.new(roles_params)
-    
     if @organizer.save
       redirect_to @conference_session, notice: 'OK'
     else

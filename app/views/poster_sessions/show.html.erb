@@ -1,10 +1,10 @@
-<%= title(@session) %>  
+<%= title(@conference_session) %>  
 
-<p><%= @session.schedule %></p>
+<p><%= @conference_session.schedule %></p>
 
-<% if current_user_owns?(@session) %>  
-  <%= link_to icon('pencil')  + ' edit', [:edit, @session], class: :button %>  
-  <%= link_to icon('clock-o') + ' schedule', new_session_schedule_path(@session), class: :button %>  
+<% if current_user_owns?(@conference_session) %>  
+  <%= link_to icon('pencil')  + ' edit', [:edit, @conference_session], class: :button %>  
+  <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(@conference_session), class: :button %>  
 <% end %>
 
 <h2>Presentations</h2>

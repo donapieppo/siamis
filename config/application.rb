@@ -20,7 +20,7 @@ module Siamis
 
     config.impersonate_admins = ['pietro.donatini@unibo.it']
 
-    routes.default_url_options[:host]     = 'tester'
+    routes.default_url_options[:host]     = 'tester.dm.unibo.it'
     routes.default_url_options[:protocol] = 'https'
 
     config.pre_registration_date = Date.parse('12/03/2018')

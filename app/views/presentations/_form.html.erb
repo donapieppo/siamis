@@ -1,6 +1,7 @@
-<%= horizontal_form_for [@what, @presentation] do |presentation| %>  
+<%= simple_form_for [@conference_session, @presentation] do |presentation| %>  
   <%= presentation.input :name %>  
   <%= presentation.input :abstract %>  
+  <%= presentation.input :poster, as: :hidden %>  
   <%= presentation.submit %>  
 <% end %>
 

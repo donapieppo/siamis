@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user_and_check_permission, only: [:edit, :update]
+  skip_before_action :check_user_fields, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
@@ -31,7 +32,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      redirect_to new_registration_path
+      redirect_to new_conference_registration_path
     else
       redirect_to root_path
     end
@@ -59,6 +60,5 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user == current_user or current_user.master_of_universe? or raise NOACCESS
   end
-
 end
 

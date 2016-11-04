@@ -1,31 +1,8 @@
-<%= title(@session) %>  
+<%# <%= title(@conference_session) %1> %>  
 
-<%= render @session %>  
+<%= render @conference_session, with_presentations: true %>  
 
-
-<h2>Presentations</h2>
-
-<%= render @presentations, short: true %>  
-
-<% if current_user.committee_organizer? %>  
-  <h2>Ratings from commission</h2>
-  <ul class="list-group">
-    <% @session.ratings.each do |rating| %>  
-      <li class="list-group-item"><%= rating.user %> <%= rating_stars(rating.score) %> (<%= rating.notes %>) </li>
-    <% end %>
-  </ul>
-  <p class="centered">
-  <% if rating = current_user.ratings.where(minisymposium: @minisymposium).first %>  
-    you rated <strong><%= rating.score %>/5 </strong> this Minisymposium
-    <br/> <%= link_to_delete 'delete your rating', ratings_path(rating) %>  
-<% else %>
-  <%= link_to icon('star') + " Rate this Minisymposium".html_safe, new_minisymposium_rating_path(@session), class: :big_button %>  
+<% if rating = current_user.ratings.where(minisymposium: @minisymposium).first %>  
+  you rated <strong><%= rating.score %>/5 </strong> this Minisymposium
+  <br/> <%= link_to_delete 'delete your rating', ratings_path(rating) %>  
 <% end %>
-  </p>
-<% end %>
-
-<% if current_user.organizer?(@session) %>  
-<% end %>
-
-
-

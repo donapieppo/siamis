@@ -13,8 +13,17 @@ en:
   Submissions: Submissions
   Plenaries: Invited Plenaries
   Logins: Access
-  Registrations: Registration
+  ConferenceRegistrations: Registration
   Payments: Payment
+  Users: User
+
+  # payments
+  siag_member: Siag member
+  siam_member: Siam member
+  speaker_or_organizer: Speaker of organizer
+  non_member:  Non member
+  one_day:     On day
+  student:     Student
 
   activerecord:
     models:

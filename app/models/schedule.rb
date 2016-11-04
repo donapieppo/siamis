@@ -7,7 +7,6 @@ class Schedule < ApplicationRecord
   end
 
   def start_day
-    #self.start - Rails.configuration.start_date
     self.start
   end
 

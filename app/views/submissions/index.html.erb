@@ -1,9 +1,7 @@
 <h1>Submissions</h1>
 
-<% if current_user %>  
-  <%= render @presentations %>  
-  <%= render @minisymposia %>  
-<% end %>
+<%= render @presentations %>  
+<%= render @minisymposia, with_presentations: true %>  
 
 <p class="centered">
 <%= link_to 'Submit Minisymposium Proposal', new_minisymposium_path, class: :big_button %>  

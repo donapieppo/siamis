@@ -1,29 +1,45 @@
-<% if defined?(one_line) %>  
+<% if defined?(one_line) and one_line %>  
   <div>
     <%= link_to minisymposium, minisymposium %> 
   </div>
 <% else %>
-  <div class="panel panel-default">
+  <div class="minisymposium_panel">
     <div class="panel-heading">
-      <p><%= link_to minisymposium, minisymposium %></p>
+      <p>
+      <%= link_to minisymposium, minisymposium %> <span class="badge pull-right">MS</span>
+      </p>
     </div><!-- heading -->
     <div class="panel-body">
       <p><em><%= minisymposium.description %></em></p>
-      <ul>
+      <dl class="dl-horizontal">
+        <dt>Organizers</dt>
         <% minisymposium.organizers.includes(:user).each do |organizer| %>  
-          <li>
-            Organizer: <%= show_user(organizer.user) %>
-        </li>
-      <% end %>
-      </ul>
+          <dd><%= show_user(organizer.user) %></dd>
+        <% end %>
+        <% if defined?(with_presentations) and with_presentations %>  
+          <dt>Presentations:</dt>
+          <% minisymposium.presentations.each do |presentation| %>
+            <dd><%= link_to presentation, presentation %> </dd>
+          <% end %>
+        <% end %>
+        <% if current_user_owns?(minisymposium) and ! defined?(short)%>
+          <dt>Ratings</dt>
+          <% minisymposium.ratings.each do |rating| %>  
+            <dd><%= rating.user %> <%= rating_stars(rating.score) %> (<%= rating.notes %>)</dd>
+          <% end %>
+        <% end %>
+      </dl>
     </div><!-- body -->
-    <% if current_user.owns?(minisymposium) and ! defined?(short)%>  
+    <% if current_user_owns?(minisymposium) and ! defined?(short)%>  
       <div class="panel-footer">
-        <%= link_to icon('pencil') + " edit", edit_minisymposium_path(minisymposium), class: :button %>  
+        <%= link_to icon('pencil') + ' edit', edit_minisymposium_path(minisymposium), class: :button %>  
+        <%= link_to icon('user')   + ' add Organizer', new_minisymposium_organizer_path(minisymposium), class: :button %>  
+        <%= link_to icon('file-audio-o') + ' add Presentation', new_minisymposium_presentation_path(minisymposium), class: :button %>  
         <%= link_to icon('trash')  + " delete", minisymposium_path(minisymposium), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'}, class: :button %>
-    <%= link_to icon('user') + ' add Organizer', new_minisymposium_organizer_path(minisymposium), class: :button %>  
-    <%= link_to icon('file-audio-o') + ' add Presentation', new_minisymposium_presentation_path(minisymposium), class: :button %>  
-    <%= link_to icon('clock-o') + ' schedule', new_session_schedule_path(minisymposium), class: :button %>  
+        <% if user_committee_organizer? %>  
+          <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(minisymposium), class: :button %>  
+          <%= link_to icon('star')    + ' rate', new_minisymposium_rating_path(@conference_session), class: :button %>  
+        <% end %>
       </div><!-- footer -->
     <% end %>
   </div>

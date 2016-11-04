@@ -8,7 +8,6 @@ class AuthorsController < ApplicationController
 
   def create
     @author = @presentation.authors.new(author_params)
-    
     if @author.save
       redirect_to @presentation, notice: 'OK'
     else
@@ -22,7 +21,7 @@ class AuthorsController < ApplicationController
   end
 
   def make_speaker
-    @author.is_speaker
+    @author.is_speaker!
     redirect_to [:edit, @author.presentation]
   end
 

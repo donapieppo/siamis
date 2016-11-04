@@ -1,7 +1,10 @@
+# only for logged user
+# wiew all only throuh sessions
 class PresentationsController < ApplicationController
   before_action :set_minisymosium_and_minitutorial_and_check_permission, only: [:new, :create]
   before_action :set_presentation_and_check_permission, only: [:edit, :update, :add, :remove]
 
+  # like submissions (think, fixme)
   def index
     @current_user_presentations = current_user.presentations.includes(authors: :user, conference_session: [organizers: :user]).all
   end
@@ -12,7 +15,7 @@ class PresentationsController < ApplicationController
   end
 
   def new
-    @presentation = Presentation.new
+    @presentation = Presentation.new(poster: params[:poster])
   end
 
   def create
@@ -35,15 +38,15 @@ class PresentationsController < ApplicationController
   end
 
   def add
-    @contributed_conference_session = ContributedConferenceSession.find(params[:contributed_conference_session_id])
-    @contributed_conference_session.presentations << @presentation
-    redirect_to @contributed_conference_session
+    @contributed_session = ContributedSession.find(params[:contributed_session_id])
+    @contributed_session.presentations << @presentation
+    redirect_to @contributed_session
   end
 
   def remove
-    @contributed_conference_session = ContributedConferenceSession.find(params[:contributed_conference_session_id])
+    @contributed_session = ContributedSession.find(params[:contributed_session_id])
     @presentation.update_attribute(:conference_session_id, nil)
-    redirect_to @contributed_conference_session
+    redirect_to @contributed_session
   end
 
   def update
@@ -64,7 +67,7 @@ class PresentationsController < ApplicationController
   private
 
   def presentation_params
-    params[:presentation].permit(:name, :abstract)
+    params[:presentation].permit(:name, :abstract, :poster)
   end
 
   def set_minisymosium_and_minitutorial_and_check_permission

@@ -2,7 +2,7 @@
 
 <div><%= @rating.about_string %></div>
 
-<%= horizontal_form_for [@rating.about, @rating] do |rating| %>  
+<%= simple_form_for [@rating.about, @rating] do |rating| %>  
   <%= rating.input :score, collection: (0..5), as: :radio_buttons %>  
   <%= rating.input :notes %>  
   <%= rating.submit %>  

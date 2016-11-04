@@ -105,11 +105,13 @@ module ApplicationHelper
   end
 
   def user_modal_link(user)
+    return "" unless user
     cn = (current_user == user) ? user.cn.upcase : user.cn
     link_to cn, user_path(user), remote: true 
   end
 
   def show_user(user)
+    return unless user
     user_modal_link(user) + " (" + user.affiliation + ")"
   end
 
@@ -118,21 +120,23 @@ module ApplicationHelper
     (rating..4).map{|i| "<span>☆</span>"}.join.html_safe
   end
 
-  def session_parent_list_link(conference_session)
+  def conference_session_parent_list_link(conference_session)
     name = I18n.t(conference_session.class.to_s.pluralize)
     link_to name, Rails.application.routes.path_for(controller: conference_session.class.to_s.pluralize.tableize, action: :index)
   end
 
   def breadcrumbs
+    controller.class.to_s =~ /Devise/ and return 
     content_tag 'ol', class: "breadcrumb" do 
       content_tag('li', link_to('Home', root_path)) +
       if @conference_session
-        content_tag('li', session_parent_list_link(@conference_session)) +
+        content_tag('li', conference_session_parent_list_link(@conference_session)) +
         (@conference_session.new_record? ? '' : content_tag('li', link_to(@conference_session, @conference_session)))
       elsif @presentation and @presentation.conference_session
-        content_tag('li', session_parent_list_link(@presentation.session)) +
+        content_tag('li', conference_session_parent_list_link(@presentation.conference_session)) +
         content_tag('li', link_to(@presentation.conference_session, @presentation.conference_session))
-      elsif controller.controller_name == 'impersonations'
+      elsif controller.controller_name == 'impersonations' or controller.controller_name == 'users'
+        content_tag('li', current_user ? current_user.cn : '')
       else
         content_tag('li', link_to(I18n.t(controller.controller_name.camelize), controller: controller.controller_name, action: :index))
       end 

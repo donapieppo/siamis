@@ -1,7 +1,7 @@
-<h1>Submit new Presentation</h1>
+<h1>Submit new <%= @presentation.poster ? 'Poster' : 'Presentation' %></h1>
 
-<% if @what %>  
-  <h2>For <em><%= @what %></em></h2>
+<% if @conference_session %>  
+  <h2>For <em><%= @conference_session %></em></h2>
 <% end %>
 
 <%= render partial: 'form' %>  

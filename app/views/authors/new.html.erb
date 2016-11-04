@@ -2,7 +2,7 @@
 
 <h2>Add new author</h2>
 
-<%= horizontal_form_for [@presentation, @author] do |author| %>  
+<%= simple_form_for [@presentation, @author] do |author| %>  
   <%= author.dm_error_notification %>  
 
   <% uncorrect_email = (@author.email.blank? or @author.errors[:email].any?) %> 
@@ -12,9 +12,9 @@
   <% unless uncorrect_email or @author.errors[:email].any? %> 
     <p>There is no user with the mail < <%= @author.email %> >.
        Please submit all the info</p>
-    <%= author.input :name %>  
-    <%= author.input :surname %>  
-    <%= author.input :affiliation %>  
+    <%= author.input :name, required: true %>  
+    <%= author.input :surname, required: true %>  
+    <%= author.input :affiliation, required: true %>  
   <% end %>
   <%= author.submit %>  
 <% end %>

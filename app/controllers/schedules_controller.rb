@@ -1,4 +1,5 @@
 class SchedulesController < ApplicationController
+  before_action :user_committee_organizer!
   before_action :set_conference_session
 
   def new
@@ -19,7 +20,7 @@ class SchedulesController < ApplicationController
   private
 
   def set_conference_session
-    conference_session_id = params[:conference_session_id] || params[:contributed_conference_session_id] || params[:minisymposium_id] || params[:minitutorial_id]
+    conference_session_id = params[:conference_session_id] || params[:contributed_session_id] || params[:minisymposium_id] || params[:minitutorial_id]
     @conference_session  = ConferenceSession.find(conference_session_id)
   end
 
@@ -28,7 +29,8 @@ class SchedulesController < ApplicationController
     start_day  = params[:schedule].delete(:start_day)
     start_hour, start_min = params[:schedule].delete(:start_hour).split(':')
     start = (Rails.configuration.start_date + start_day.to_i.days).to_datetime
-    params[:schedule][:start] = start.change(hour: start_hour.to_i, min: start_min.to_i)
+    # FIXME with time zone!!!!!!!!!! -2
+    params[:schedule][:start] = start.change(hour: start_hour.to_i - 2 , min: start_min.to_i)
     params[:schedule].permit(:start, :room_id)
   end
 end
