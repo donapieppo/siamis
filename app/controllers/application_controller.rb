@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user_owns?, :current_user_owns!, :true_user_can_impersonate?, :user_committee_organizer?
 
-  before_action :log_current_user, :authenticate_user!, :registration
+  before_action :authenticate_user!, :log_current_user, :check_user_fields, :check_registration
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   impersonates :user
 
@@ -12,15 +13,15 @@ class ApplicationController < ActionController::Base
     logger.info("Current user: #{current_user.email}")
   end
 
-  def registration
+  def check_registration
     current_user or return true
-    @registration ||= current_user.registration
+    @conference_registration ||= current_user.conference_registration
   end
 
-  def redirect_unsigned_user
-    if ! user_signed_in?
-      redirect_to root_path, alert: "Si prega di loggarsi per accedere alla pagina richiesta."
-      return
+  def check_user_fields
+    current_user or return true
+    if current_user.name.blank? or current_user.surname.blank?
+      redirect_to edit_user_path(current_user)
     end
   end
 
@@ -59,4 +60,9 @@ class ApplicationController < ActionController::Base
     @conference_session = @minisymposium || @minitutorial || @presentation
   end
 
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :surname, :affiliation])
+  end
 end
