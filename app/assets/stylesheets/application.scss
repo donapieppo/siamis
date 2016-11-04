@@ -4,6 +4,10 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+$minisymposium_color: #779d9b;
+$minitutorial_color: #c87977;
+$contributed_session_color: #82a3b7;
+
 h1 {
   font-size: 2em;
   letter-spacing: .2em;
@@ -12,7 +16,8 @@ h1 {
   color: darkblue;
 }
 h2 {
-  font-size: 1.8rem;
+  font-size: 2rem;
+  color: darkblue;
 }
 
 .home-header {
@@ -44,6 +49,7 @@ h2 {
 }
 .big_pay_button {
   @extend .big_button;
+  @extend .btn-primary;
   input {
     font-size: 1.5em;
   }
@@ -87,10 +93,36 @@ input[type="submit"] {
   @extend .session_in_title;
 }
 
-li { list-style-type: none; }
+ul li { list-style-type: none; }
 
 .session-description {
   @extend .well;
   margin-left: 20%;
   text-align: right;
 }
+
+.session_panel {
+  @extend .panel;
+  @extend .panel-default;
+  .panel-heading {
+    color: #fff;
+    font-weight: bold;
+    background-color: $minisymposium_color;
+    a {
+      color: #fff;
+    }
+  }
+}
+.minisymposium_panel {
+  @extend .session_panel;
+  .panel-heading { background-color: $minisymposium_color; }
+}
+.contributed_session_panel {
+  @extend .session_panel;
+  .panel-heading { background-color: $contributed_session_color; }
+}
+.presentation_panel {
+  @extend .session_panel;
+  .panel-heading { background-color: $contributed_session_color; }
+}
+
