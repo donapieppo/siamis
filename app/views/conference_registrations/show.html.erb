@@ -1,0 +1,10 @@
+<h1>Your registration</h1>
+
+<h3>Your data</h3>
+<%= render current_user %>  
+
+<h3>Payments</h3>
+
+You have paid <%= @payment.amount %> &euro; in date <%= l @payment.created_at %>  
+
+
