@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_owns?, :current_user_owns!, :true_user_can_impersonate?, :user_committee_organizer?
 
   before_action :authenticate_user!, :log_current_user, :check_user_fields, :check_registration
-  before_action :configure_permitted_parameters, if: :devise_controller?
 
   impersonates :user
 
@@ -60,9 +59,4 @@ class ApplicationController < ActionController::Base
     @conference_session = @minisymposium || @minitutorial || @presentation
   end
 
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :surname, :affiliation])
-  end
 end
