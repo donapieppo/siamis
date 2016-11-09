@@ -15,22 +15,6 @@
 
   <h2>You are author in the following presentations:</h2>
   <%= render current_user.presentations.at_minisymposium %>  
-
-  <% if user_committee_organizer? %>  
-    <h2>All Minisymposia</h2>
-    <ul class="list-group">
-      <% Minisymposium.find_each do |minisymposium| %>  
-        <li class="list-group-item">
-          <%= link_to minisymposium, minisymposium_path(minisymposium) %> 
-          <ul>
-            <% minisymposium.ratings.each do |rating| %>  
-              <li><%= rating.user %>  <%= rating_stars(rating.score) %></li>
-            <% end %>
-          </ul>
-        </li>
-      <% end %> 
-    </ul>
-  <% end %>
 <% else %>
   <p class="alert alert-warning">Please <%= login_link %> to access sumbmissions.</p>
 <% end %>
