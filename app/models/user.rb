@@ -59,7 +59,7 @@ class User < ApplicationRecord
   end
 
   def in_scientific_committee?
-    SCIENTIFIC_COMMITTEE.include?(self.email)
+    (SCIENTIFIC_COMMITTEE + COCHAIRS).include?(self.email)
   end
 
   # minisymposium
@@ -79,6 +79,14 @@ class User < ApplicationRecord
   def can_register?
     # FIXME mettere date
     ! self.payments.verified.any?
+  end
+
+  def self.scientific_commettee
+    SCIENTIFIC_COMMITTEE.map{|email| User.where(email: email).first}
+  end
+
+  def self.cochairs
+    COCHAIRS.map{|email| User.where(email: email).first}
   end
 
 end
