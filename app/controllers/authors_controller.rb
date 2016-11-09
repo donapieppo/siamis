@@ -16,7 +16,12 @@ class AuthorsController < ApplicationController
   end
 
   def destroy
-    @author.destroy
+    # FIXME not to destroy yourself
+    if @author.user == current_user
+      flash error: 'You can not delete yourself from authors of this presentation.'
+    else
+      @author.destroy
+    end
     redirect_to @author.presentation, notice: 'OK'
   end
 
