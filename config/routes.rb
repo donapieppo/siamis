@@ -34,6 +34,9 @@ Rails.application.routes.draw do
   end
   resources :plenaries
   resources :schedules
+  namespace :admin do
+    resources :conference_sessions 
+  end
   resources :conference_sessions do 
     resources :schedules
   end
