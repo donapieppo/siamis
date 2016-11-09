@@ -16,6 +16,10 @@ en:
   ConferenceRegistrations: Registration
   Payments: Payment
   Users: User
+  Organizers: Organizers
+  Authors: Authors
+  Rooms: Rooms
+  ConferenceSessions: Sessions
 
   # payments
   siag_member: Siag member
@@ -55,7 +59,9 @@ en:
         student: STUDENTS MUST SHOW A CURRENT STUDENT ID UPON CHECKING IN AT THE SIAM REGISTRATION DESK.
     placeholders:
       organizer:
-        email: name.surnname@example.com
+        email: name.surname@example.com
+      author:
+        email: name.surname@example.com
 
   helpers:
     submit:
@@ -75,3 +81,5 @@ en:
     formats:
       schedule: '%A %d %B %Y'
 
+  credit_cards: Registration fees can be paid by credit card (Mastercard, Visa, American Express).
+  bank_security: Clicking on the button below you are automatically redirected to the Bank's payment server (Unicredit bank).  So we actually never know your Credit Card number.  All information exchanged with the system are encrypted using the SSL protocol and can not be intercepted or altered.

@@ -1,11 +1,13 @@
-<h1>Payment</h1>
+<%= title_with_conference('Payment') %>  
 
-<p class="centered">
-I, <%= current_user.to_s %>, want to register to the meeting SIAM Conference on Imaging Science (IS18)
+<p><%= t(:credit_cards) %></p>
+<p><%= t(:bank_security) %></p>
+
+<div class="centered">
 <%= form_tag payments_path do %>  
   <input type="submit" value="PAY <%= @price_to_pay_and_reason[0] %> &euro; for Registration" />
-  <br/>(<%= @price_to_pay_and_reason[1] %>)
+  <br/>(<%= @price_to_pay_and_reason[1] %>. <%= link_to 'Change your data', edit_user_path(current_user) %>)
 <% end %>
-</p>
+</div>
 
 
