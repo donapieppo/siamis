@@ -38,15 +38,15 @@ class PresentationsController < ApplicationController
   end
 
   def add
-    @contributed_session = ContributedSession.find(params[:contributed_session_id])
-    @contributed_session.presentations << @presentation
-    redirect_to @contributed_session
+    @conference_session = ConferenceSession.find(params[:conference_session_id])
+    @conference_session.presentations << @presentation
+    redirect_to @conference_session
   end
 
   def remove
-    @contributed_session = ContributedSession.find(params[:contributed_session_id])
+    @conference_session = ConferenceSession.find(params[:conference_session_id])
     @presentation.update_attribute(:conference_session_id, nil)
-    redirect_to @contributed_session
+    redirect_to @conference_session
   end
 
   def update
@@ -70,6 +70,8 @@ class PresentationsController < ApplicationController
     params[:presentation].permit(:name, :abstract, :poster)
   end
 
+  # A presentation can be created relative to a minitutorial or minisymosium
+  # Otherwise is submitted by author and then Commettee assign it to PosterSession o ContributedSession
   def set_minisymosium_and_minitutorial_and_check_permission
     @minisymposium = Minisymposium.find(params[:minisymposium_id]) if params[:minisymposium_id]
     @minitutorial  = Minitutorial.find(params[:minitutorial_id]) if params[:minitutorial_id]
