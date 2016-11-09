@@ -26,7 +26,7 @@
             <dd><%= link_to presentation, presentation %> </dd>
           <% end %>
         <% end %>
-        <% if user_committee_organizer? and ! defined?(short)%>
+        <% if user_in_scientific_commettee? and ! defined?(short)%>
           <dt>Ratings</dt>
           <% minisymposium.ratings.each do |rating| %>  
             <dd><%= rating.user %> <%= rating_stars(rating.score) %> (<%= rating.notes %>)</dd>
@@ -41,9 +41,11 @@
         <%= link_to icon('user')   + ' add Organizer', new_minisymposium_organizer_path(minisymposium), class: :button %>  
         <%= link_to icon('file-audio-o') + ' add Presentation', new_minisymposium_presentation_path(minisymposium), class: :button %>  
         <%= link_to icon('trash')  + " delete", minisymposium_path(minisymposium), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'}, class: :button %>
-        <% if user_committee_organizer? %>  
-          <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(minisymposium), class: :button %>  
+        <% if user_in_scientific_commettee? %>  
           <%= link_to icon('star')    + ' rate', new_minisymposium_rating_path(@conference_session), class: :button %>  
+        <% end %>
+        <% if user_in_organizer_commettee? %>  
+          <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(minisymposium), class: :button %>  
         <% end %>
       </div><!-- footer -->
     <% end %>

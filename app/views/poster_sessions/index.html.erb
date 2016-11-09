@@ -12,7 +12,7 @@
   <% end %>
 </ul>
 
-<% if user_committee_organizer? %>  
+<% if user_in_organizer_commettee? %>  
   <p class="centered">
     <%= link_to 'Create Poster Session', new_poster_session_path, class: :big_button %>  
   </p>

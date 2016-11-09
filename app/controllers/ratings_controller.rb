@@ -1,5 +1,5 @@
 class RatingsController < ApplicationController
-  before_action :user_committee_organizer!
+  before_action :user_in_scientific_commettee!
   before_action :set_minisymosium_and_minitutorial_and_presentation
 
   def index

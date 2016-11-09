@@ -35,7 +35,7 @@ class User < ApplicationRecord
 
   def owns?(what)
     self.master_of_universe? and return true
-    self.committee_organizer? and return true
+    self.in_organizer_commettee? and return true
     case what
     when Minisymposium, Minitutorial
       self.organizer?(what)
@@ -54,8 +54,12 @@ class User < ApplicationRecord
     MASTERS_OF_UNIVERSE.include?(self.email)
   end
 
-  def committee_organizer?
+  def in_organizer_commettee?
     ORGANIZER_COMMITTEE.include?(self.email)
+  end
+
+  def in_scientific_committee?
+    SCIENTIFIC_COMMITTEE.include?(self.email)
   end
 
   # minisymposium
@@ -65,7 +69,7 @@ class User < ApplicationRecord
   end
 
   def speaker_or_organizer?
-    self.presentations.any? or self.organizers.any? or self.committee_organizer?
+    self.presentations.any? or self.organizers.any? or self.in_organizer_commettee?
   end
 
   def fee

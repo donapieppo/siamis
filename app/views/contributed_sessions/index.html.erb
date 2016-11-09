@@ -9,7 +9,7 @@
   <% end %>
 </ul>
 
-<% if user_committee_organizer? %>  
+<% if user_in_organizer_commettee? %>  
   <p class="centered">
     <%= link_to 'Create Contributed Session', new_contributed_session_path, class: :big_button %>  
   </p>

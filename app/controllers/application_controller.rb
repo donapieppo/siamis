@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :current_user_owns?, :current_user_owns!, :true_user_can_impersonate?, :user_committee_organizer?
+  helper_method :current_user_owns?, :current_user_owns!, :true_user_can_impersonate?, :user_in_organizer_commettee?, :user_in_scientific_commettee?
 
   before_action :authenticate_user!, :log_current_user, :check_user_fields, :check_registration
 
@@ -18,9 +18,8 @@ class ApplicationController < ActionController::Base
   end
 
   def check_user_fields
-    current_user or return true
-    if current_user.name.blank? or current_user.surname.blank?
-      redirect_to edit_user_path(current_user), notice: 'Please update your data'
+    if current_user and current_user.name.blank? or current_user.surname.blank?
+      redirect_to edit_user_path(current_user), notice: 'Please update your personal data.'
     end
   end
 
@@ -32,12 +31,20 @@ class ApplicationController < ActionController::Base
     user_master_of_universe? or raise NO_ACCESS
   end
 
-  def user_committee_organizer?
-    current_user and current_user.committee_organizer?
+  def user_in_organizer_commettee?
+    current_user and current_user.in_organizer_commettee?
   end
 
-  def user_committee_organizer!
-    user_committee_organizer? or raise NO_ACCESS
+  def user_in_organizer_commettee!
+    user_in_organizer_commettee? or raise NO_ACCESS
+  end
+
+  def user_in_scientific_commettee?
+    current_user and current_user.in_scientific_committee?
+  end
+
+  def user_in_scientific_commettee!
+    user_in_scientific_commettee? or raise NO_ACCESS
   end
 
   def current_user_owns?(what)

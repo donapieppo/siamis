@@ -12,6 +12,6 @@
 <% end %>
 </ul>
 
-<% if user_committee_organizer? %>
+<% if user_in_scientific_commettee? %>
   <%= link_to 'Create a Minitutorial Session', new_minitutorial_path, class: :button %>  
 <% end %>

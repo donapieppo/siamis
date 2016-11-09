@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :user_committee_organizer!
+  before_action :user_in_organizer_commettee!
   before_action :set_room, only: [:edit, :update, :destroy]
 
   def index

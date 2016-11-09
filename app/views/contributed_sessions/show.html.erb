@@ -10,7 +10,7 @@
 <h2>Presentations</h2>
 <%= render @presentations, one_line: true, actions: [:remove] %>  
 
-<% if user_committee_organizer? %>  
+<% if user_in_organizer_commettee? %>  
   <h2>Presentations to add</h2>
   <%= render Presentation.unassigned.all, one_line: true, actions: [:add] %>
 <% end %>

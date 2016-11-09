@@ -18,3 +18,13 @@
     </li>
   <% end %> 
 </ul>
+
+<h2>All presentations</h2>
+
+  <p class="alert alert-success">Since you are in committee organization, here are all the presentations in siam-is18:</p>
+
+  <ul class="list-group">
+  <% Presentation.find_each do |presentation| %>  
+    <li class="list-group-item"><%= link_to presentation, presentation %> <span class="badge pull-right"><%= presentation.parent_event_abbr %></span></li>
+  <% end %>
+  </ul>

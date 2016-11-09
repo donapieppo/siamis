@@ -21,7 +21,7 @@
       <% end %>
       <% if current_user %>  
         <li><%= link_to fwicon('file') + ' Submissions', submissions_path %></li>
-        <% if user_committee_organizer? %>  
+        <% if user_in_organizer_commettee? or user_in_scientific_commettee? %>  
           <%= dropdown_menu fwicon('gavel') + ' Admin' do %>
             <li><%= link_to fwicon('gavel') + ' Rooms', rooms_path %></li>
             <li><%= link_to fwicon('gavel') + ' Sessions', admin_conference_sessions_path %></li>
