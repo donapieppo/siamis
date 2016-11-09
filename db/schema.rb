@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.boolean  "siag"
     t.boolean  "siam"
     t.boolean  "student"
+    t.string   "web_page"
     t.string   "encrypted_password"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
