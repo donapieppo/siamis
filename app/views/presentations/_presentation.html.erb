@@ -4,10 +4,10 @@
   <div>
     <%= link_to presentation, presentation %> <%= 'POSTER' if presentation.poster %>  
     <% if owner and defined?(actions) and actions.include?(:add) %>
-      <%= link_to icon('plus') + ' add', add_contributed_session_presentation_path(@conference_session, presentation), class: :button, method: :put, title: 'add to session' %> 
+      <%= link_to icon('plus') + ' add', add_conference_session_presentation_path(@conference_session, presentation), class: :button, method: :put, title: 'add to session' %> 
     <% end %>
     <% if owner and defined?(actions) and actions.include?(:remove) %>
-      <%= link_to icon('minus') + 'remove', remove_contributed_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session', class: :button %>
+      <%= link_to icon('minus') + 'remove', remove_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session', class: :button %>
     <% end %>
     <span class="badge pull-right"><%= presentation.parent_event_abbr %></span>
   </div>
@@ -38,10 +38,10 @@
     <% if owner and ! defined?(short)%>  
       <div class="panel-footer">
         <% if defined?(actions) and actions.include?(:add) %>
-          <%= link_to icon('plus') + ' add', add_contributed_session_presentation_path(@conference_session, presentation), class: :button, method: :put, title: 'add to session' %> 
+          <%= link_to icon('plus') + ' add', add_conference_session_presentation_path(@conference_session, presentation), class: :button, method: :put, title: 'add to session' %> 
         <% end %>
         <% if defined?(actions) and actions.include?(:remove) %>
-          <%= link_to icon('minus') + 'remove', remove_contributed_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session', class: :button %>
+          <%= link_to icon('minus') + 'remove', remove_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session', class: :button %>
         <% end %>
         <%= link_to icon('pencil') + " edit", edit_presentation_path(presentation), class: :button %>  
         <%= link_to icon('plus')   + " add author", new_presentation_author_path(presentation), class: :button %>
