@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
+  before_action :user_in_organizer_commettee!, only: [:index]
   before_action :set_user_and_check_permission, only: [:edit, :update]
   skip_before_action :check_user_fields, only: [:edit, :update]
+
+  def index
+  end
 
   def show
     @user = User.find(params[:id])
