@@ -21,10 +21,15 @@
       <% end %>
       <% if current_user %>  
         <li><%= link_to fwicon('file') + ' Submissions', submissions_path %></li>
-        <% if user_in_organizer_commettee? or user_in_scientific_commettee? %>  
-          <%= dropdown_menu fwicon('gavel') + ' Admin' do %>
-            <li><%= link_to fwicon('gavel') + ' Rooms', rooms_path %></li>
+        <% if user_in_scientific_commettee? %>  
+          <%= dropdown_menu fwicon('gavel') + ' Commettee' do %>
             <li><%= link_to fwicon('gavel') + ' Sessions', admin_conference_sessions_path %></li>
+          <% end %>
+        <% end %>
+        <% if user_in_organizer_commettee? %>  
+          <%= dropdown_menu fwicon('magic') + ' Admin' do %>
+            <li><%= link_to fwicon('building-o') + ' Rooms', rooms_path %></li>
+            <li><%= link_to fwicon('users') + ' Users', users_path %></li>
           <% end %>
         <% end %>
         <% unless @conference_registration %>  
