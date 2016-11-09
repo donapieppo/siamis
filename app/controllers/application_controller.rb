@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_user_fields
-    if current_user and current_user.name.blank? or current_user.surname.blank?
+    if current_user and (current_user.name.blank? or current_user.surname.blank?)
       redirect_to edit_user_path(current_user), notice: 'Please update your personal data.'
     end
   end
