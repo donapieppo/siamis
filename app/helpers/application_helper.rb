@@ -144,20 +144,21 @@ module ApplicationHelper
   end
 
   def title(what)
-    content_tag(:div, class: 'title row') do
-      content_tag(:div, class: 'col-md-2') do 
-        content_tag(:div, class: what.class.to_s) do 
-          I18n.t(what.class.to_s)
-        end 
-      end + 
-      content_tag(:div, class: 'col-md-10') do
-        content_tag(:h1, what.to_s)
-      end
+    content_tag(:div, class: 'title') do 
+      content_tag(:span, class: what.class.to_s) do 
+        I18n.t(what.class.to_s)
+      end + what.to_s
     end
   end
 
   def organized_by(conference_session)
     organizers_string = conference_session.organizers.map(&:to_s).join(', ')
     organizers_string.blank? ? "" : "organized by #{organizers_string}"
+  end
+
+  def title_with_conference(what = '')
+    content_tag(:h1) do 
+      html_escape(what) + '<br/><small>Siam-is18 June 5-8, 2018 Bologna - Italy</small>'.html_safe
+    end
   end
 end
