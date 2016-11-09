@@ -6,8 +6,8 @@ class ConferenceRegistrationsController < ApplicationController
   end
 
   def show
-    @registrtion = current_user.registration
-    @payment = @registration.payment
+    @conference_registration = current_user.conference_registration
+    @payment = @conference_registration.payment
   end
 
   def check

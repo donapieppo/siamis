@@ -1,10 +1,16 @@
-<h1>Your registration</h1>
+<%= title_with_conference('Your are registered at') %>  
 
-<h3>Your data</h3>
-<%= render current_user %>  
+<div class="row">
+  <div class="col-md-6">
+    <h3>Payments</h3>
+    You have paid <%= @payment.amount %> &euro; in date <%= l @payment.created_at %>  
+</div>
+<div class="col-md-6">
+  <h3>Your data</h3>
+  <%= render current_user %>  
+  <%= link_to 'modify', edit_user_path(current_user), class: :button %>  
+</div>
+</div>
 
-<h3>Payments</h3>
-
-You have paid <%= @payment.amount %> &euro; in date <%= l @payment.created_at %>  
 
 
