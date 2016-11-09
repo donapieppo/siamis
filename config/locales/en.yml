@@ -20,6 +20,7 @@ en:
   Authors: Authors
   Rooms: Rooms
   ConferenceSessions: Sessions
+  Plenary: Plenary Invited
 
   # payments
   siag_member: Siag member
@@ -57,6 +58,8 @@ en:
       user:
         siam: IEEE SPS and ASA Imaging Science Section members are eligible to register at the SIAM Member rate.
         student: STUDENTS MUST SHOW A CURRENT STUDENT ID UPON CHECKING IN AT THE SIAM REGISTRATION DESK.
+      presentation: 
+        abstract: Brief abstract not to exceed 75 words
     placeholders:
       organizer:
         email: name.surname@example.com
