@@ -11,7 +11,7 @@ class RolesController < ApplicationController
 
   def roles_params
     p = (params[:author] || params[:organizer])
-    if what = @minisymposium || @minitutorial || @presentation
+    if what = @minisymposium || @minitutorial || @presentation || @plenary
       p[:conference_session_id] = what.id
     end
     p.permit(:email, :name, :surname, :affiliation, :address, :conference_session_id)
