@@ -1,4 +1,13 @@
-<h1>Submit new <%= @presentation.poster ? 'Poster' : 'Presentation' %>
+<%= title_with_conference("Submit #{@presentation.poster ? 'poster' : 'presentation'} for") %>
+
+<div class="alert alert-notice">
+  Contributed presentations in lecture or poster format are invited in all areas consistent with the conference themes. A <strong>lecture</strong> format is generally a 15-minute oral presentation with an additional 5 minutes for discussion. Talk lengths will be determined by the co-chairs at the close of submissions. A <strong>poster</strong> format involves the use of non-electronic visual aids for mounting on a 4’ x 8’ poster board. A poster session is two hours long. Each contributor, either for a lecture or a poster, must submit a title and a brief abstract not to exceed 75 words. 
+</div>
+
+<% if @presentation.poster %>  
+  <%= link_to 'How to Prepare a Poster', 'https://www.siam.org/meetings/guidelines/poster.php' %>  
+<% end %>
+
 <% if @conference_session %>  
   <br/><small>For <em><%= @conference_session %></small>
 <% end %>
