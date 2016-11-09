@@ -1,4 +1,11 @@
 class RoomsController < ApplicationController
+  before_action :user_committee_organizer!
+  before_action :set_room, only: [:edit, :update, :destroy]
+
+  def index
+    @rooms = Room.includes(:building)
+  end
+
   def new
     @room = Room.new
   end
@@ -6,10 +13,26 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     if @room.save
-      redirect_to root_path, notice: 'OK'
+      redirect_to rooms_path, notice: 'The room has been created.'
     else
       render action: :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @room.update_attributes(room_params)
+      redirect_to rooms_path, notice: 'The room has been updated.'
+    else
+      render action: :edit
+    end
+  end
+
+  def destroy
+    @room.delete
+    redirect_to rooms_path
   end
 
   private
@@ -17,4 +40,9 @@ class RoomsController < ApplicationController
   def room_params
     params[:room].permit(:name, :capacity, :building_id)
   end
+
+  def set_room
+    @room = Room.find(params[:id])
+  end
 end
+
