@@ -18,6 +18,10 @@ Rails.application.routes.draw do
     resources :ratings
     resources :schedules
   end
+  resources :plenaries do
+    resources :organizers
+    resources :schedules
+  end
   resources :contributed_sessions do
     resources :schedules
     resources :presentations do 
@@ -32,7 +36,6 @@ Rails.application.routes.draw do
       put 'remove', on: :member
     end
   end
-  resources :plenaries
   resources :schedules
   namespace :admin do
     resources :conference_sessions 

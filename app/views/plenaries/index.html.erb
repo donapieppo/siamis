@@ -1,1 +1,7 @@
 <h1>Invited Plenaries</h1>
+
+<%- Plenary.find_each do |plenary| %>  
+  <%= render plenary %>    
+<% end %>
+
+<%= link_to('Add Plenary', new_plenary_path, class: :button) if user_in_organizer_commettee? %>  
