@@ -24,10 +24,6 @@ Rails.application.routes.draw do
   end
   resources :contributed_sessions do
     resources :schedules
-    resources :presentations do 
-      put 'add', on: :member
-      put 'remove', on: :member
-    end
   end
   resources :poster_sessions do
     resources :schedules
@@ -42,6 +38,10 @@ Rails.application.routes.draw do
   end
   resources :conference_sessions do 
     resources :schedules
+    resources :presentations do 
+      put 'add', on: :member
+      put 'remove', on: :member
+    end
   end
   resources :presentations do 
     resources :authors
