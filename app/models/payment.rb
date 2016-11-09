@@ -1,6 +1,6 @@
 class Payment < ApplicationRecord
   belongs_to :user
-  has_one :registration
+  has_one :conference_registration
 
   validates :user_id, presence: true
 
@@ -27,9 +27,10 @@ class Payment < ApplicationRecord
 
   def verify
     if res = Unicredit.new(self).verify
+      logger.info("verify RES: #{res.inspect}")
       self.update_attribute(:verified, true)
       # FIXME 
-      self.user.registration = Registration.new(payment: self)
+      self.user.conference_registration = ConferenceRegistration.new(payment: self)
     end
     res
   end
