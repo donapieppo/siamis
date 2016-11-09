@@ -90,6 +90,9 @@ input[type="submit"] {
 .PosterSession {
   @extend .session_in_title;
 }
+.Plenary {
+  @extend .session_in_title;
+}
 .Presentation {
   @extend .session_in_title;
 }
