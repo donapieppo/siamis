@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_master_of_universe!
-    user_master_of_universe? or raise NO_ACCESS
+    user_master_of_universe? or raise NoAccess
   end
 
   def user_in_organizer_commettee?
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_in_organizer_commettee!
-    user_in_organizer_commettee? or raise NO_ACCESS
+    user_in_organizer_commettee? or raise NoAccess
   end
 
   def user_in_scientific_commettee?
@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_in_scientific_commettee!
-    user_in_scientific_commettee? or raise NO_ACCESS
+    user_in_scientific_commettee? or raise NoAccess
   end
 
   def current_user_owns?(what)
@@ -63,7 +63,8 @@ class ApplicationController < ActionController::Base
     @minisymposium = Minisymposium.find(params[:minisymposium_id]) if params[:minisymposium_id]
     @minitutorial  = Minitutorial.find(params[:minitutorial_id])   if params[:minitutorial_id]
     @presentation  = Presentation.find(params[:presentation_id])   if params[:presentation_id]
-    @conference_session = @minisymposium || @minitutorial || @presentation
+    @plenary       = Plenary.find(params[:plenary_id])        if params[:plenary_id]
+    @conference_session = @minisymposium || @minitutorial || @presentation || @plenary
   end
 
 end
