@@ -1,9 +1,7 @@
-<h1>New Organizer</h1>
-
-<h3><%= @conference_session %></h3>
+<h1>Add organizer <br/><small>to <%= @conference_session %></small></h1>
 
 <%= simple_form_for [@conference_session, @organizer] do |organizer| %>  
-  <%= organizer.dm_error_notification %>  
+  <%= organizer.error_notification %>  
 
   <% uncorrect_email = (@organizer.email.blank? or @organizer.errors[:email].any?) %> 
 
@@ -12,11 +10,11 @@
   <% unless uncorrect_email or @organizer.errors[:email].any? %> 
     <p>There is no user with the mail < <%= @organizer.email %> >.
        Please submit all the info</p>
-    <%= organizer.input :name %>  
-    <%= organizer.input :surname %>  
-    <%= organizer.input :affiliation %>  
+    <%= organizer.input :name, required: true %>  
+    <%= organizer.input :surname, required: true %>  
+    <%= organizer.input :affiliation, required: true %>  
   <% end %>
-  <%= organizer.submit %>  
+  <%= organizer.submit 'Add Organizer' %>  
 <% end %>
 
 

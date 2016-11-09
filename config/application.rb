@@ -26,6 +26,6 @@ module Siamis
     config.pre_registration_date = Date.parse('12/03/2018')
     config.start_date = Date.parse('05/08/2018')
     config.number_of_days = 3
-    config.message_footer = "Siam-is18 test application"
+    config.message_footer = "Siam-is18 June 5-8, 2018 Bologna - Italy"
   end
 end

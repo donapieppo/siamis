@@ -12,6 +12,6 @@
 <%= simple_form_for @conference_session do |conference_session| %>  
   <%= conference_session.input :name %>  
   <%= conference_session.input :description %>  
-  <%= conference_session.submit  %>  
+  <%= conference_session.submit %> - <%= link_to_back root_path %>
 <% end %>
 

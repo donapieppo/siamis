@@ -1,9 +1,10 @@
-<%= title(@presentation) %>  
-
-<h2>Add new author</h2>
+<h1>
+  Add author<br/>
+  <small>to <%= @presentation %></small>
+</h1>
 
 <%= simple_form_for [@presentation, @author] do |author| %>  
-  <%= author.dm_error_notification %>  
+  <%= author.error_notification %>  
 
   <% uncorrect_email = (@author.email.blank? or @author.errors[:email].any?) %> 
 
@@ -16,7 +17,7 @@
     <%= author.input :surname, required: true %>  
     <%= author.input :affiliation, required: true %>  
   <% end %>
-  <%= author.submit %>  
+  <%= author.submit 'Add Author' %>  
 <% end %>
 
 

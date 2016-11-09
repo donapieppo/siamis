@@ -1,16 +1,21 @@
-<h1>Submissions</h1>
-
-<%= render @presentations %>  
-<%= render @minisymposia, with_presentations: true %>  
+<%= title_with_conference('Call for Papers') %>
 
 <p class="centered">
-<%= link_to 'Submit Minisymposium Proposal', new_minisymposium_path, class: :big_button %>  
+  <%= link_to 'Submit <strong>Minisymposium</strong> Proposal'.html_safe, new_minisymposium_path, class: :big_button %>  
 </p>
 
 <p class="centered">
-<%= link_to 'Submit Presentation Proposal', new_presentation_path, class: :big_button %>  
+  <%= link_to 'Submit <strong>Presentation</strong> Proposal'.html_safe, new_presentation_path, class: :big_button %>  
 </p>
 
 <p class="centered">
-<%= link_to 'Submit Poster Proposal', new_presentation_path(poster: true), class: :big_button %>  
+  <%= link_to 'Submit <strong>Poster</strong> Proposal'.html_safe, new_presentation_path(poster: true), class: :big_button %>  
 </p>
+
+<%- if @presentations.any? or @minisymposia.any? %>
+  <hr/>
+  <h2>Your submissions</h2>
+  <%= render @presentations %>  
+  <%= render @minisymposia, with_presentations: true %>  
+<% end %>
+

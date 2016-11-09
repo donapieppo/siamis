@@ -1,10 +1,12 @@
+<% owner = current_user_owns?(presentation) %>  
+
 <% if defined?(one_line) %>  
   <div>
     <%= link_to presentation, presentation %> <%= 'POSTER' if presentation.poster %>  
-    <% if current_user.owns?(presentation) and defined?(actions) and actions.include?(:add) %>
+    <% if owner and defined?(actions) and actions.include?(:add) %>
       <%= link_to icon('plus') + ' add', add_contributed_session_presentation_path(@conference_session, presentation), class: :button, method: :put, title: 'add to session' %> 
     <% end %>
-    <% if current_user.owns?(presentation) and defined?(actions) and actions.include?(:remove) %>
+    <% if owner and defined?(actions) and actions.include?(:remove) %>
       <%= link_to icon('minus') + 'remove', remove_contributed_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session', class: :button %>
     <% end %>
     <span class="badge pull-right"><%= presentation.parent_event_abbr %></span>
@@ -12,14 +14,19 @@
 <% else %>
   <div class="presentation_panel">
     <div class="panel-heading">
-     <p><%= link_to presentation, presentation %> <span class="badge pull-right"><%= presentation.parent_event_abbr %></span></p>
+     <%= link_to presentation, presentation %> <span class="badge pull-right"><%= presentation.parent_event_abbr %></span>
     </div><!-- heading -->
+
     <div class="panel-body">
       <p><%= presentation.abstract %> </p>
       <dl class="dl-horizontal">
         <dt>Authors:</dt>
         <% presentation.authors.each do |author| %>  
-          <dd><%= show_user(author.user) %> <%= icon(:microphone) if author.speak %>  </dd>
+          <dd>
+          <%= show_user(author.user) %> 
+          <%= icon(:microphone) if author.speak %>
+          <%= link_to_delete author_path(author) if owner %>  
+          </dd>
         <% end %>
       </dl>
       <% if presentation.conference_session and ! defined?(short) %>  
@@ -27,12 +34,13 @@
         <%= organized_by(presentation.conference_session) %>) 
       <% end %>
     </div><!-- body -->
-    <% if current_user.owns?(presentation) and ! defined?(short)%>  
+
+    <% if owner and ! defined?(short)%>  
       <div class="panel-footer">
-        <% if current_user.owns?(presentation) and defined?(actions) and actions.include?(:add) %>
+        <% if defined?(actions) and actions.include?(:add) %>
           <%= link_to icon('plus') + ' add', add_contributed_session_presentation_path(@conference_session, presentation), class: :button, method: :put, title: 'add to session' %> 
         <% end %>
-        <% if current_user.owns?(presentation) and defined?(actions) and actions.include?(:remove) %>
+        <% if defined?(actions) and actions.include?(:remove) %>
           <%= link_to icon('minus') + 'remove', remove_contributed_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session', class: :button %>
         <% end %>
         <%= link_to icon('pencil') + " edit", edit_presentation_path(presentation), class: :button %>  

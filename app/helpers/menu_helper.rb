@@ -11,7 +11,7 @@ module MenuHelper
   def logged_user
     if current_user
       content_tag(:li, class: 'login-name') do
-        link_to current_user.cn, edit_user_path(current_user)
+        link_to current_user.cn, @conference_registration ? conference_registration_path(@conference_registration) :edit_user_path(current_user)
       end + 
       content_tag(:li, class: 'logout_link') do 
         logout_link

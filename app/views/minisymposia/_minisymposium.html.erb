@@ -1,3 +1,5 @@
+<% owner = current_user_owns?(minisymposium) %>  
+
 <% if defined?(one_line) and one_line %>  
   <div>
     <%= link_to minisymposium, minisymposium %> 
@@ -5,16 +7,18 @@
 <% else %>
   <div class="minisymposium_panel">
     <div class="panel-heading">
-      <p>
       <%= link_to minisymposium, minisymposium %> <span class="badge pull-right">MS</span>
-      </p>
     </div><!-- heading -->
+
     <div class="panel-body">
       <p><em><%= minisymposium.description %></em></p>
       <dl class="dl-horizontal">
         <dt>Organizers</dt>
         <% minisymposium.organizers.includes(:user).each do |organizer| %>  
-          <dd><%= show_user(organizer.user) %></dd>
+          <dd>
+            <%= show_user(organizer.user) %>
+            <%= link_to_delete organizer_path(organizer) if owner %>  
+          </dd>
         <% end %>
         <% if defined?(with_presentations) and with_presentations %>  
           <dt>Presentations:</dt>
@@ -22,7 +26,7 @@
             <dd><%= link_to presentation, presentation %> </dd>
           <% end %>
         <% end %>
-        <% if current_user_owns?(minisymposium) and ! defined?(short)%>
+        <% if user_committee_organizer? and ! defined?(short)%>
           <dt>Ratings</dt>
           <% minisymposium.ratings.each do |rating| %>  
             <dd><%= rating.user %> <%= rating_stars(rating.score) %> (<%= rating.notes %>)</dd>
@@ -30,7 +34,8 @@
         <% end %>
       </dl>
     </div><!-- body -->
-    <% if current_user_owns?(minisymposium) and ! defined?(short)%>  
+
+    <% if owner and ! defined?(short)%>  
       <div class="panel-footer">
         <%= link_to icon('pencil') + ' edit', edit_minisymposium_path(minisymposium), class: :button %>  
         <%= link_to icon('user')   + ' add Organizer', new_minisymposium_organizer_path(minisymposium), class: :button %>  

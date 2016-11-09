@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
   def create
     if params[:email] and @user = User.find(email: params[:email])
-      @user.errors[:email] = 'already used.'
+      @user.errors[:email] = 'User with this email is already registered.'
     elsif @user = User.create(user_params)
       redirect_to root_path, notice: "The user #{@user.to_s} has been added."
     else
@@ -32,9 +32,9 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      redirect_to new_conference_registration_path
+      redirect_to root_path, notice: 'Your account has been updated.'
     else
-      redirect_to root_path
+      render action: :edit
     end
   end
 

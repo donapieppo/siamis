@@ -1,7 +1,7 @@
 module LinkHelper
 
   def link_to_back url
-    link_to 'indietro', url
+    link_to 'back', url
   end
 
   alias back_link_to :link_to_back
@@ -20,7 +20,7 @@ module LinkHelper
   end
 
   def link_to_edit(name = "", url)
-    link_to icon('pencil') + " " + name, url, title: "Modify", class: :button
+    link_to icon('pencil') + " " + name, url, title: "Modify"
   end
 
   def link_to_edit2(name = "", url)

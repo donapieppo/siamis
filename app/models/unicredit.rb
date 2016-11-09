@@ -77,7 +77,7 @@ class Unicredit
       Rails.logger.info("Unicredit error in :rc with res=#{res.inspect}")
       return false
     end
-    true
+    res
   end
 
   # check for errors and returns payment_id, redirect_url
