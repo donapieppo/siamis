@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Siam Is-18">
-    <meta name="Description" content="SIAM Conference on IMAGING SCIENCE. 5-8 June 2018.">
+    <meta name="Description" content="SIAM Conference on IMAGING SCIENCE. 5-8 June 2018. Bologna - Italy">
     <title>Siam-IS18</title>
 
     <%= stylesheet_link_tag    "application", media: "all" %>
@@ -18,14 +18,20 @@
     <%= render partial: 'layouts/menu' %>
     <%= render partial: 'layouts/header' if @home_header %>  
 
-    <div class="container">
       <%= bootstrap_flash %>
       <%= bootstrap_modal_div %>
       <%= privacy_alert %>
-      <%= breadcrumbs unless @home_header %>  
+      <div class="container">
+        <%= breadcrumbs unless @home_header %>  
+      </div>
 
-      <%= yield %>
-    </div>
+      <% if @home_header %>  
+        <%= yield %>
+      <% else %>
+        <div class="container">
+          <%= yield %>
+        </div>
+      <% end %>
 
     <%= render partial: 'layouts/footer' %>  
   </body>

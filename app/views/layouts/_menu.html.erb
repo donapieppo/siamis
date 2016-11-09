@@ -1,5 +1,5 @@
 <header class="navbar navbar-default" role="banner">
-<div class="container">
+<div class="container-fluid">
   <div class="navbar-header">
     <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar-collapse">
       <span class="sr-only">Toggle navigation</span>
@@ -21,10 +21,14 @@
       <% end %>
       <% if current_user %>  
         <li><%= link_to fwicon('file') + ' Submissions', submissions_path %></li>
-        <% if @conference_registration %>  
-          <li><%= link_to fwicon('circle') + ' Your Registration', conference_registration_path(@conference_registration) %></li>
-        <% else %>
-          <li><%= link_to fwicon('credit-card') + ' Register', new_conference_registration_path %></li>
+        <% if user_committee_organizer? %>  
+          <%= dropdown_menu fwicon('gavel') + ' Admin' do %>
+            <li><%= link_to fwicon('gavel') + ' Rooms', rooms_path %></li>
+            <li><%= link_to fwicon('gavel') + ' Sessions', admin_conference_sessions_path %></li>
+          <% end %>
+        <% end %>
+        <% unless @conference_registration %>  
+          <li><%= link_to fwicon('credit-card') + ' Registration', new_conference_registration_path %></li>
         <% end %>
       <% end %>
       <%= logged_user %>

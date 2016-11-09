@@ -1,11 +1,22 @@
-<hr/>
 <div id="footer" role="navigation">
-<div class="container" style="text-align: center">
-  Contacts: <%= mail_to 'Fiorella Sgallari', 'fiorella.sgallari@unibo.it' %>, 
-            <%= mail_to 'Serena Morigi', 'serena.morigi@unibo.it' %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h3>SIAM Conference<br/>on IMAGING SCIENCE<br/><small>June 5-8, 2018</small></h3>
+      <p>Bologna - Italy</p>
+    </div>
+    <div class="col-md-4">
+      <%= image_tag 'three.png' %>  
+    </div>
+    <div class="col-md-4">
+      <h2>Contacts:</h2>
+      <p><%= big_icon('envelope') %> <%= mail_to 'Fiorella Sgallari', 'fiorella.sgallari@unibo.it' %></p>
+      <p><%= big_icon('envelope') %> <%= mail_to 'Serena Morigi', 'serena.morigi@unibo.it' %></p>
 
-  <p>&copy;2016 - <%= link_to 'Privacy', privacy_path %></p>
-  <p><%= raw stop_impersonation_link %> <%= raw start_impersonation_link %></p>
+      <p>&copy;2016 - <%= link_to 'Privacy', privacy_path %></p>
+      <p><%= raw stop_impersonation_link %> <%= raw start_impersonation_link %></p>
+    </div>
+  </div>
 </div>
 </div>
 
