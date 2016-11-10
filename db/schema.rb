@@ -12,14 +12,6 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
-  create_table "authors", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "user_id",         null: false, unsigned: true
-    t.integer "presentation_id",              unsigned: true
-    t.boolean "speak"
-    t.index ["presentation_id"], name: "presentation_id", using: :btree
-    t.index ["user_id"], name: "user_id", using: :btree
-  end
-
   create_table "buildings", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "address"
@@ -43,13 +35,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "chair_id",                  unsigned: true
     t.datetime "start"
     t.index ["chair_id"], name: "chair_id", using: :btree
-  end
-
-  create_table "organizers", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "user_id",               null: false, unsigned: true
-    t.integer "conference_session_id",              unsigned: true
-    t.index ["conference_session_id"], name: "conference_session_id", using: :btree
-    t.index ["user_id"], name: "user_id", using: :btree
   end
 
   create_table "parts", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -88,6 +73,17 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "score"
     t.text    "notes",                 limit: 65535
     t.index ["conference_session_id"], name: "conference_session_id", using: :btree
+    t.index ["user_id"], name: "user_id", using: :btree
+  end
+
+  create_table "roles", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string  "type",                  limit: 9
+    t.integer "user_id",                         null: false, unsigned: true
+    t.integer "conference_session_id",                        unsigned: true
+    t.integer "presentation_id",                              unsigned: true
+    t.boolean "speak"
+    t.index ["conference_session_id"], name: "conference_session_id", using: :btree
+    t.index ["presentation_id"], name: "presentation_id", using: :btree
     t.index ["user_id"], name: "user_id", using: :btree
   end
 
@@ -132,6 +128,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "updated_at"
+    t.index ["email"], name: "email", using: :btree
   end
 
 end

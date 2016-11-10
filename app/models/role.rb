@@ -1,9 +1,18 @@
-module Role
-  extend ActiveSupport::Concern
+class Role < ApplicationRecord
+  belongs_to :user
+  
+  attr_accessor :email, :name, :surname, :affiliation, :address
 
-  included do
-    # same as user
-    attr_accessor :email, :name, :surname, :affiliation, :address
+  before_validation :set_or_create_user_from_email
+
+  def to_s
+    self.user.to_s
+  end
+
+  before_validation :set_or_create_user_from_email
+
+  def to_s
+    self.user.to_s
   end
 
   private
