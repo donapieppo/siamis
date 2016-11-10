@@ -1,17 +1,17 @@
-<h1>Administration</h1>
+<h1>Scientific Commettee</h1>
 
-<h2>All Minisymposia</h2>
+<h2>Minisymposia</h2>
 <ul class="list-group">
   <% @minisymposia.find_each do |minisymposium| %>  
     <li class="list-group-item">
       <%= link_to minisymposium, minisymposium_path(minisymposium) %> 
       <ul>
-        <% rated = nil %>  
+        <% rated_by_me = nil %>  
         <% minisymposium.ratings.each do |rating| %>  
           <li><%= rating.user %> <%= rating_stars(rating.score) %></li>
-          <%- rated = true if rating.user == current_user %>  
+          <%- rated_by_me = true if rating.user == current_user %>  
         <% end %>
-        <% unless rated %>  
+        <% unless rated_by_me %>  
           <li><%= link_to icon('star') + ' rate', new_minisymposium_rating_path(minisymposium), class: 'button' %></li>
         <% end %>
       </ul>
@@ -19,10 +19,7 @@
   <% end %> 
 </ul>
 
-<h2>All presentations</h2>
-
-  <p class="alert alert-success">Since you are in committee organization, here are all the presentations in siam-is18:</p>
-
+<h2>Presentations</h2>
   <ul class="list-group">
   <% Presentation.find_each do |presentation| %>  
     <li class="list-group-item"><%= link_to presentation, presentation %> <span class="badge pull-right"><%= presentation.parent_event_abbr %></span></li>

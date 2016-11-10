@@ -3,10 +3,10 @@
 <% if defined?(one_line) %>  
   <div>
     <%= link_to presentation, presentation %> <%= 'POSTER' if presentation.poster %>  
-    <% if owner and defined?(actions) and actions.include?(:add) %>
+    <% if defined?(actions) and actions.include?(:add) and owner %>
       <%= link_to icon('plus') + ' add', add_conference_session_presentation_path(@conference_session, presentation), class: :button, method: :put, title: 'add to session' %> 
     <% end %>
-    <% if owner and defined?(actions) and actions.include?(:remove) %>
+    <% if defined?(actions) and actions.include?(:remove) and owner %>
       <%= link_to icon('minus') + 'remove', remove_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session', class: :button %>
     <% end %>
     <span class="badge pull-right"><%= presentation.parent_event_abbr %></span>
@@ -18,7 +18,7 @@
     </div><!-- heading -->
 
     <div class="panel-body">
-      <p><%= presentation.abstract %> </p>
+      <p><%= presentation.abstract %></p>
       <dl class="dl-horizontal">
         <dt>Authors:</dt>
         <% presentation.authors.each do |author| %>  
@@ -29,9 +29,8 @@
           </dd>
         <% end %>
       </dl>
-      <% if presentation.conference_session and ! defined?(short) %>  
-        (in <%= t presentation.conference_session.class %> "<%= link_to presentation.conference_session, presentation.conference_session %>"
-        <%= organized_by(presentation.conference_session) %>) 
+      <% if ! defined?(short) and presentation.conference_session %>  
+        This presentation is part of <%= t presentation.conference_session.class %> <em>"<%= link_to presentation.conference_session, presentation.conference_session %>"</em> <%= organized_by(presentation.conference_session) %>) 
       <% end %>
     </div><!-- body -->
 

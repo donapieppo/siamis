@@ -30,6 +30,10 @@ h2 {
   @extend .centered;
   font-size: 2rem;
 }
+h3 {
+  @extend .centered;
+  font-size: 1.8rem;
+}
 
 .button {
   @extend .btn;
@@ -129,4 +133,5 @@ ul li { list-style-type: none; }
 #footer {
   padding-top: 30px;
   background-color: $footer_color;
+  text-align: center;
 }

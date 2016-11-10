@@ -1,5 +1,3 @@
-<%# <%= title(@conference_session) %1> %>  
-
 <%= render @conference_session, with_presentations: true %>  
 
 <% if rating = current_user.ratings.where(minisymposium: @minisymposium).first %>  

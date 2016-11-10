@@ -1,7 +1,7 @@
 # not directly used but, for example, MinisymposiaController < ApplicationController 
 # defines conference_session_params
 class ConferenceSessionsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_conference_session_and_check_permission, only: [:edit, :update]
 
   def index

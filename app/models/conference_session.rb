@@ -12,6 +12,10 @@ class ConferenceSession < ApplicationRecord
   def duration 
     DURATION
   end
+
+  def is_a_minisymposium?
+    self.class == Minisymposium
+  end
 end
 
 

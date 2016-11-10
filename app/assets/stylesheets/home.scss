@@ -51,10 +51,13 @@
     height: 200px;
     width:  300px;
     margin-bottom: 20px;
+    img {
+      @extend .img-circle;
+    }
   }
   .text {
     margin: auto;
-    background-color: $venue_text_color;
+    // background-color: $venue_text_color;
     height: 200px;
     width:  300px;
     margin-bottom: 20px;

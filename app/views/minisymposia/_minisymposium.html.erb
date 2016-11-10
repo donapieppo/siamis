@@ -35,12 +35,14 @@
       </dl>
     </div><!-- body -->
 
-    <% if owner and ! defined?(short)%>  
+    <% if ! defined?(short) %>  
       <div class="panel-footer">
-        <%= link_to icon('pencil') + ' edit', edit_minisymposium_path(minisymposium), class: :button %>  
-        <%= link_to icon('user')   + ' add Organizer', new_minisymposium_organizer_path(minisymposium), class: :button %>  
-        <%= link_to icon('file-audio-o') + ' add Presentation', new_minisymposium_presentation_path(minisymposium), class: :button %>  
-        <%= link_to icon('trash')  + " delete", minisymposium_path(minisymposium), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'}, class: :button %>
+        <% if owner  %>  
+          <%= link_to icon('pencil') + ' edit', edit_minisymposium_path(minisymposium), class: :button %>  
+          <%= link_to icon('user')   + ' add Organizer', new_minisymposium_organizer_path(minisymposium), class: :button %>  
+          <%= link_to icon('file-audio-o') + ' add Presentation', new_minisymposium_presentation_path(minisymposium), class: :button %>  
+          <%= link_to icon('trash')  + " delete", minisymposium_path(minisymposium), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'}, class: :button %>
+        <% end %>
         <% if user_in_scientific_commettee? %>  
           <%= link_to icon('star')    + ' rate', new_minisymposium_rating_path(@conference_session), class: :button %>  
         <% end %>

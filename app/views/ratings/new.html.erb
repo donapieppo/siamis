@@ -1,9 +1,9 @@
-<h1>Give Rating</h1>
+<h1>Rate</h1>
 
-<div><%= @rating.about_string %></div>
+<p>Give your rate to "<%= @rating.about.name %>"</div>
 
 <%= simple_form_for [@rating.about, @rating] do |rating| %>  
-  <%= rating.input :score, collection: (0..5), as: :radio_buttons %>  
+  <%= rating.input :score, collection: (0..5) %>  
   <%= rating.input :notes %>  
   <%= rating.submit %>  
 <% end %>

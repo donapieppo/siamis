@@ -1,9 +1,15 @@
 <h2><%= plenary.name %> </h2>
-
-<p>Chair: <%= plenary.organizers.map(&:to_s).join(', ') %></p>
+<h3><%= plenary.schedule %></h3>
 
 <div class="well">
   <%= plenary.description %>  
   <%= link_to_edit [:edit, plenary] if user_in_organizer_commettee? %>  
 </div>
 
+<p>Chair: <%= plenary.organizers.map(&:to_s).join(', ') %></p>
+
+<% if user_in_organizer_commettee? %>  
+  <%= link_to_edit2 'Edit', [:edit, plenary] %>  
+  <%= link_to icon(:cog) + ' Add Chair', new_plenary_organizer_path(plenary), class: :button %>  
+  <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(plenary), class: :button %>  
+<% end %>
