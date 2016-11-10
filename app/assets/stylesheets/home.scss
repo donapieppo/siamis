@@ -1,5 +1,3 @@
-$photo_color: #b06123;
-
 .home-header {
   background: url(asset-path('piazza_maggiore.jpg')) no-repeat center top;
   height: 576px;
@@ -29,10 +27,8 @@ $photo_color: #b06123;
 
 #conference_themes {
   @extend .home_content_div;
-  h2 {
-    color: #fff;
-  }
-  background-color: $photo_color;
+  h2 { color: #fff; }
+  background-color: $home_second_color;
   color: #fff;
 }
 
@@ -44,12 +40,12 @@ $photo_color: #b06123;
   @extend .home_content_div;
 }
 
-#about_bologna {
+#venue {
   @extend .home_content_div;
   h2 {
     color: #fff;
   }
-  background-color: $photo_color;
+  background-color: $home_second_color;
   .image {
     margin: auto;
     height: 200px;
@@ -58,7 +54,7 @@ $photo_color: #b06123;
   }
   .text {
     margin: auto;
-    background-color: #fff;
+    background-color: $venue_text_color;
     height: 200px;
     width:  300px;
     margin-bottom: 20px;
