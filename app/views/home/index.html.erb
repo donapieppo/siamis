@@ -35,12 +35,13 @@
 
       <dl class="dl-horizontal">
         <dt>Co-chairs: </dt>
-        <dd><%= mail_to 'omar@ices.utexas.edu', 'Omar Ghattas' %> - The University of Texas at Austin, USA</dd>
-        <dd><%= mail_to 'fiorella.sgallari@unibo.it', 'Fiorella Sgallari' %> - University of Bologna, Italy</dd>
+        <% User.cochairs.each do |user| %>  
+          <dd><%= link_to user.cn, user.web_page, target: "_blank" %> (<%= user.affiliation %>)</dd>
+        <% end %>
         <dt>Scientific Committee: </dt>
-        <dd><%= mail_to 'fiorella.sgallari@unibo.it', 'Fiorella Sgallari' %></dd>
-        <dd><%= mail_to 'serena.morigi@unibo.it', 'Serena Morigi' %></dd>
-        <dd><%= mail_to 'giovanni.dore@unibo.it', 'Giovanni Dore' %></dd>
+        <% User.scientific_commettee.each do |user| %>  
+          <dd><%= link_to user.cn, user.web_page, target: "_blank" %> (<%= user.affiliation %>)</dd>
+        <% end %>
       </dl>
     </div>
 
@@ -66,7 +67,7 @@
   </div>
 </div>
 
-<div id="about_bologna">
+<div id="venue">
   <div class="container">
     <h2>Venue - Bologna</h2>
     <div class="row">
