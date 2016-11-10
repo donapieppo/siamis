@@ -14,7 +14,7 @@ class RatingsController < ApplicationController
     @rating = @conference_session.ratings.where(user: current_user).first || @conference_session.ratings.new(user: current_user)
     @rating.user = current_user
     if @rating.update_attributes(rating_params)
-      redirect_to admin_conference_sessions_path
+      redirect_to commettee_conference_sessions_path
     else
       render action: :new
     end

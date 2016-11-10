@@ -5,9 +5,22 @@ require 'rails/all'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-
-MASTERS_OF_UNIVERSE = ['pietro.donatini@unibo.it']
-ORGANIZER_COMMITTEE = ['fiorella.sgallari@unibo.it', 'serena.morigi@unibo.it']
+MASTERS_OF_UNIVERSE  = ['pietro.donatini@unibo.it', 'valeria.montesi3@unibo.it', 'm.ghedini@unibo.it']
+COCHAIRS             = ['fiorella.sgallari@unibo.it', 
+                        'omar@ices.utexas.edu']
+SCIENTIFIC_COMMITTEE = ['marcelo.bertalmio@upf.edu',
+                        'jmchung@vt.edu',
+                        'pcha@dtu.dk',
+                        'j.kaipio@auckland.ac.nz',
+                        'eric.miller@tufts.edu',
+                        'nikolova@cmla.ens-cachan.fr',
+                        'ronny.ramlau@ricam.oeaw.ac.at',
+                        'cbs31@cam.ac.uk',
+                        'steidl@mathematik.uni-kl.de',
+                        'tai@mi.uib.no',
+                        'waller@berkeley.edu',
+                        'brendt@lanl.gov']
+ORGANIZER_COMMITTEE  = ['m.ghedini@unibo.it']
 
 module Siamis
   class Application < Rails::Application

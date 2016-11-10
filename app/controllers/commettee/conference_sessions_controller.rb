@@ -1,4 +1,4 @@
-class Admin::ConferenceSessionsController < ApplicationController
+class Commettee::ConferenceSessionsController < ApplicationController
   before_action :user_in_scientific_commettee!
 
   def index

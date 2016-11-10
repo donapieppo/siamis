@@ -7,7 +7,6 @@ class User < ApplicationRecord
          :confirmable
          # :rememberable, 
 
-  has_many :admins
   has_many :organizers
   has_many :minisymposia,  through: :organizers
   has_many :minitutorials, through: :organizers

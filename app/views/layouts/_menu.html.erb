@@ -23,7 +23,7 @@
         <li><%= link_to fwicon('file') + ' Submissions', submissions_path %></li>
         <% if user_in_scientific_commettee? %>  
           <%= dropdown_menu fwicon('gavel') + ' Commettee' do %>
-            <li><%= link_to fwicon('gavel') + ' Sessions', admin_conference_sessions_path %></li>
+            <li><%= link_to fwicon('gavel') + ' Sessions', commettee_conference_sessions_path %></li>
           <% end %>
         <% end %>
         <% if user_in_organizer_commettee? %>  
