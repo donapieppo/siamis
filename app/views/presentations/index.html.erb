@@ -1,15 +1,15 @@
 <h1>Presentations</h1>
 
-<% if @current_user_presentations.any? %>  
-  <h2>You are author in the following presentations:</h2>
-  <% @current_user_presentations.each do |presentation| %>  
+<% if @presentations.any? %>  
+  <h2><% @user %> is author in the following presentations:</h2>
+  <% @presentations.each do |presentation| %>  
     <%= render presentation %> 
   <% end %>
 <% else %>
-  <p class='alert alert-warning'>You are author in no presentations for Siam-is18.</p>
+  <p class='alert alert-warning'><%= @user %> is author in no presentations for Siam-is18.</p>
 <% end %>
 
 <p class="centered">
-<%= link_to 'Submit Presentation Proposal', new_presentation_path, class: :big_button %>  
+  <%= link_to 'Submit Presentation Proposal', new_presentation_path, class: :big_button %>  
 </p>
 

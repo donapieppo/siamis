@@ -1,0 +1,12 @@
+<h1>Registered users</h1>
+
+<ul>
+  <% User.find_each do |user| %>  
+    <li>
+      <%= link_to user.cn, user_presentations_path(user) %> 
+      <em><small><%= user.affiliation %></small></em> 
+      <%= link_to_edit [:edit, user] %>
+    </li>
+  <% end %>
+</ul>
+

@@ -6,7 +6,12 @@ class PresentationsController < ApplicationController
 
   # like submissions (think, fixme)
   def index
-    @current_user_presentations = current_user.presentations.includes(authors: :user, conference_session: [organizers: :user]).all
+    if params[:user_id] and user_in_organizer_commettee?
+      @user = User.find(params[:user_id])
+    else
+      @user = current_user
+    end
+    @presentations = @user.presentations.includes(authors: :user, conference_session: [organizers: :user]).all
   end
 
   def show
