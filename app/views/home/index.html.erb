@@ -67,6 +67,22 @@
   </div>
 </div>
 
+<div id="plenaries">
+  <div class="container">
+    <h2>Invited Plenary Speakers</h2>
+    <div class="row">
+      <%= Plenary.includes(schedule: :room).find_each do |plenary| %>  
+        <div class="plenary col-md-4">
+          <div class="plenary-when"><%= plenary.schedule ? l(plenary.schedule.start) : 'to be defined' %></div>
+          <div class="plenary-title"><%= plenary.name %></div>
+          <div class="plenary-speaker"><%= plenary.speaker %></div>
+          <div class="plenary-where"><%= plenary.schedule.room if plenary.schedule %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <div id="venue">
   <div class="container">
     <h2>Venue - Bologna</h2>
@@ -84,11 +100,10 @@
       <div class="col-md-4">
         <h3>Bologna</h3>
         <div class="image"><%= image_tag 'piazza_verdi.jpg', width: 300 %></div>
-        <p><%= link_to icon('external-link') + ' Bologna welcome', 'http://www.bolognawelcome.com/en' %></p>
+        <p>You can find informations about Bologna in <br/><%= link_to icon('external-link') + ' Bologna welcome', 'http://www.bolognawelcome.com/en' %></p>
       </div>
     </div>
   </div>
 </div>
-
 
 
