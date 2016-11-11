@@ -40,17 +40,32 @@
   @extend .home_content_div;
 }
 
+#plenaries {
+  @extend .home_content_div;
+  background-color: $home_second_color;
+  color: #fff;
+  text-align: center;
+  .plenary {
+    margin-bottom: 20px;
+    .plenary-when {
+      font-style: italic;
+    }
+    .plenary-where {
+      font-size: 80%;
+    }
+    .plenary-title {
+      font-weight: bold;
+    }
+    .plenary-speaker {
+    }
+  }
+}
 #venue {
   @extend .home_content_div;
-  h2 {
-    color: #fff;
-  }
-  background-color: $home_second_color;
   .image {
-    margin: auto;
+    margin: 0 auto;
     height: 200px;
     width:  300px;
-    margin-bottom: 20px;
     img {
       @extend .img-circle;
     }
