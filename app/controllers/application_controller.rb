@@ -59,12 +59,8 @@ class ApplicationController < ActionController::Base
     true_user and Rails.configuration.impersonate_admins and Rails.configuration.impersonate_admins.include?(true_user.email)
   end
 
-  def set_minisymosium_and_minitutorial_and_presentation
-    @minisymposium = Minisymposium.find(params[:minisymposium_id]) if params[:minisymposium_id]
-    @minitutorial  = Minitutorial.find(params[:minitutorial_id])   if params[:minitutorial_id]
-    @presentation  = Presentation.find(params[:presentation_id])   if params[:presentation_id]
-    @plenary       = Plenary.find(params[:plenary_id])        if params[:plenary_id]
-    @conference_session = @minisymposium || @minitutorial || @presentation || @plenary
+  def set_conference_session
+    param_id = params[:minisymposium_id] || params[:minitutorial_id] || params[:plenary_id]
+    @conference_session = ConferenceSession.find(param_id)
   end
-
 end
