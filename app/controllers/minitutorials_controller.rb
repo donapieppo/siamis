@@ -1,4 +1,6 @@
 class MinitutorialsController < ConferenceSessionsController
+  before_action :user_in_organizer_commettee!
+
   def new
     @conference_session = Minitutorial.new
   end
@@ -6,7 +8,6 @@ class MinitutorialsController < ConferenceSessionsController
   def create 
     @conference_session = Minitutorial.new(conference_session_params)
     if @conference_session.save 
-      @conference_session.organizers.create!(user: current_user)
       redirect_to @conference_session, notice: 'The conference_session has been created.'
     else
       render action: :new

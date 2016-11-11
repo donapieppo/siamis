@@ -1,0 +1,28 @@
+<h2><%= minitutorial.name %> </h2>
+<h3><%= minitutorial.schedule %></h3>
+
+<div class="well">
+  <%= minitutorial.description %>  
+  <%= link_to_edit [:edit, minitutorial] if user_in_organizer_commettee? %>  
+</div>
+
+<p>Chair: <%= minitutorial.chairs.first %></p>
+
+<p>
+  <%= minitutorial.schedule %>  
+</p>
+
+<h2>Presentations</h2>
+
+<%= render @presentations, short: true %>  
+
+<% if user_in_organizer_commettee? %>  
+  <%= link_to_edit2 'Edit', [:edit, minitutorial] %>  
+  <%= link_to icon(:cog) + ' Add Chair', new_minitutorial_chair_path(minitutorial), class: :button %>  
+  <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(minitutorial), class: :button %>  
+<% end %>
+
+
+
+
+
