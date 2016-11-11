@@ -17,6 +17,16 @@ class Role < ApplicationRecord
 
   private
 
+  def validate_if_has_already_same_role
+   if self.is_a?(Organizer) and self.conference_session_id 
+     self.errors.add(:email, "User is already organizer of this #{self.conference_session.class}") if Organizer.where(user_id: _user.id, conference_session_id: self.conference_session_id).any?
+   elsif self.is_a?(Chair) and self.conference_session_id
+     self.errors.add(:email, "User is already chair of this #{self.conference_session.class}") if Chair.where(user_id: _user.id, conference_session_id: self.conference_session_id).any?
+   elsif self.is_a?(Author) and self.presentation_id 
+     self.errors.add(:email, "User is already author of this #{self.presentation.class}") if Author.where(user_id: _user.id, presentation_id: self.presentation_id).any?
+   end
+  end
+
   # for Organizer
   # for Author
   def set_or_create_user_from_email
@@ -26,21 +36,14 @@ class Role < ApplicationRecord
     if self.email.blank?
       self.errors.add(:email, 'Please enter email address')  
     elsif _user = User.where(email: self.email).first 
-      if self.is_a?(Organizer) and self.conference_session_id and self.class.where(user_id: _user.id, conference_session_id: self.conference_session_id).any? 
-        self.errors.add(:email, "User is already organizer of this #{self.conference_session.class}")
-      elsif self.is_a?(Author) and self.presentation_id and self.class.where(user_id: _user.id, presentation_id: self.presentation_id).any?
-        self.errors.add(:email, "User is already author of this #{self.presentation.class}")
-      end
       self.user_id = _user.id 
+      validate_if_has_already_same_role
     else
-      if self.name.blank? 
-        self.errors.add(:name, "Please enter the name of the user") 
-      elsif self.surname.blank? 
-        self.errors.add(:surname, "Please enter the surname of the user")
-      elsif self.affiliation.blank?
-        self.errors.add(:affiliation, "Please enter the affiliation of the user")
-      else
-        generated_password = Devise.friendly_token.first(10)
+      self.name.blank?        and self.errors.add(:name, "Please enter the name of the user.") 
+      self.surname.blank?     and self.errors.add(:surname, "Please enter the surname of the user.")
+      self.affiliation.blank? and self.errors.add(:affiliation, "Please enter the affiliation of the user.")
+      if self.errors.empty?
+        generated_password = Devise.friendly_token.first(6)
         _user = User.new(email:        self.email, 
                          password:     generated_password,
                          name:         self.name, 
