@@ -1,5 +1,5 @@
 class MinitutorialsController < ConferenceSessionsController
-  before_action :user_in_organizer_commettee!
+  before_action :user_in_organizer_commettee!, except: [:index, :show]
 
   def new
     @conference_session = Minitutorial.new
