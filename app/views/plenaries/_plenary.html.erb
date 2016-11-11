@@ -1,15 +1,22 @@
-<h2><%= plenary.name %> </h2>
-<h3><%= plenary.schedule %></h3>
-
-<div class="well">
+<div class="panel panel-default">
+<div class="panel-heading">
+  <h2>
+    <%= plenary.presentation.name %><br/>
+    <small><%= plenary.schedule %></small>
+  </h2>
+  <h3><%= plenary.speaker %></h3>
+  <p>Chair: <%= plenary.chairs.map(&:to_s).join(', ') %></p>
+</div>
+<div class="panel-body">
   <%= plenary.description %>  
   <%= link_to_edit [:edit, plenary] if user_in_organizer_commettee? %>  
 </div>
-
-<p>Chair: <%= plenary.organizers.map(&:to_s).join(', ') %></p>
-
-<% if user_in_organizer_commettee? %>  
-  <%= link_to_edit2 'Edit', [:edit, plenary] %>  
-  <%= link_to icon(:cog) + ' Add Chair', new_plenary_organizer_path(plenary), class: :button %>  
-  <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(plenary), class: :button %>  
-<% end %>
+<div class="panel-footer">
+  <% if user_in_organizer_commettee? %>  
+    <%= link_to_edit2 'Edit', [:edit, plenary] %>  
+    <%= link_to icon('plus')    + ' add author', new_presentation_author_path(plenary.presentation), class: :button %>
+    <%= link_to icon(:cog)      + ' add Chair',  new_plenary_chair_path(plenary), class: :button %>  
+    <%= link_to icon('clock-o') + ' schedule',   new_conference_session_schedule_path(plenary), class: :button %>  
+  <% end %>
+</div>
+</div>
