@@ -1,6 +1,6 @@
 class RatingsController < ApplicationController
   before_action :user_in_scientific_commettee!
-  before_action :set_minisymosium_and_minitutorial_and_presentation
+  before_action :set_conference_session
 
   def index
     @ratings = @conference_session.ratings.includes(:user, :minitutorial, :minisymposium, :presentation).all

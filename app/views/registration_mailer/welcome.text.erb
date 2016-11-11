@@ -2,17 +2,19 @@ Dear <%= @user.cn %>
 
   you have been registered to 
   
-       SIAM Conference
-            on
-       IMAGING SCIENCE
+  SIAM Conference
+        on
+  IMAGING SCIENCE
 
-that will be held in 
-Bologna (Italy) on June 5-8, 2018
-as <%= @for_what.class %> of the <%= @for_what.class == Author ? 'Presentation' : 'Minisymposium' %>
+that will be held in Bologna (Italy) 
+on June 5-8, 2018
 
-<%= @for_what.class == Author ? @for_what.presentation : @for_what.minisymposium %>  
+as <%= @for_what.class %> of the <%= @relative_to.class %>
+"<%= @relative_to %>".
 
-You can log in the Siam Web Page
+If you want to complete your registration or
+make other submissions, please log in the 
+Siam Web Page
 
 <%= root_url %> 
 
@@ -20,9 +22,6 @@ with the following credentials:
 
 user: <%= @user.email %>  
 password: <%= @password %>  
-
-if you want to complete your registration
-or make other submissions.
 
 Thanks.
 

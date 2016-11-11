@@ -15,13 +15,12 @@ Rails.application.routes.draw do
     resources :schedules
   end
   resources :minitutorials do
-    resources :organizers 
     resources :presentations
-    resources :ratings
+    resources :chairs
     resources :schedules
   end
   resources :plenaries do
-    resources :organizers
+    resources :chairs
     resources :schedules
   end
   resources :contributed_sessions do

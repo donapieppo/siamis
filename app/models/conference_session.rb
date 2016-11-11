@@ -1,6 +1,6 @@
 class ConferenceSession < ApplicationRecord
   has_many :organizers, dependent: :destroy
-  has_one  :chair, class_name: User, foreign_key: :chair_id
+  has_many :chairs
   has_many :presentations # FIXME dependent FIXME minitutorial
   has_many :ratings, dependent: :destroy
   has_one  :schedule

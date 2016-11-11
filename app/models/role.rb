@@ -19,11 +19,11 @@ class Role < ApplicationRecord
 
   def validate_if_has_already_same_role
    if self.is_a?(Organizer) and self.conference_session_id 
-     self.errors.add(:email, "User is already organizer of this #{self.conference_session.class}") if Organizer.where(user_id: _user.id, conference_session_id: self.conference_session_id).any?
+     self.errors.add(:email, "User is already organizer of this #{self.conference_session.class}") if Organizer.where(user_id: self.user_id, conference_session_id: self.conference_session_id).any?
    elsif self.is_a?(Chair) and self.conference_session_id
-     self.errors.add(:email, "User is already chair of this #{self.conference_session.class}") if Chair.where(user_id: _user.id, conference_session_id: self.conference_session_id).any?
+     self.errors.add(:email, "User is already chair of this #{self.conference_session.class}") if Chair.where(user_id: self.user_id, conference_session_id: self.conference_session_id).any?
    elsif self.is_a?(Author) and self.presentation_id 
-     self.errors.add(:email, "User is already author of this #{self.presentation.class}") if Author.where(user_id: _user.id, presentation_id: self.presentation_id).any?
+     self.errors.add(:email, "User is already author of this #{self.presentation.class}") if Author.where(user_id: self.user_id, presentation_id: self.presentation_id).any?
    end
   end
 

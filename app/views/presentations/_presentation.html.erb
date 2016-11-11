@@ -30,7 +30,7 @@
         <% end %>
       </dl>
       <% if ! defined?(short) and presentation.conference_session %>  
-        This presentation is part of <%= t presentation.conference_session.class %> <em>"<%= link_to presentation.conference_session, presentation.conference_session %>"</em> <%= organized_by(presentation.conference_session) %>) 
+        This presentation is part of <%= t presentation.conference_session.class %> <em>"<%= link_to presentation.conference_session, presentation.conference_session %>"</em> <br/><small><%= organized_by(presentation.conference_session) %></small>. 
       <% end %>
     </div><!-- body -->
 
