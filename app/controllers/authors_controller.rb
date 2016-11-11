@@ -1,4 +1,4 @@
-class AuthorsController < ApplicationController
+class AuthorsController < RolesController
   before_action :set_presentation, only: [:new, :create]
   before_action :set_author_and_check_permission, only: [:make_speaker, :destroy]
 
@@ -8,7 +8,7 @@ class AuthorsController < ApplicationController
   end
 
   def create
-    @role = @presentation.authors.new(author_params)
+    @role = @presentation.authors.new(role_params)
     if @role.save
       redirect_to @presentation, notice: 'OK'
     else
@@ -32,10 +32,6 @@ class AuthorsController < ApplicationController
   end
 
   private
-
-  def author_params
-    params[:author].permit(:email, :name, :surname, :affiliation, :address)
-  end
 
   def set_presentation
     @presentation  = Presentation.find(params[:presentation_id]) 

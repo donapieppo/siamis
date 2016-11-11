@@ -1,5 +1,5 @@
 class OrganizersController < RolesController
-  before_action :set_minisymosium_and_minitutorial_and_presentation, only: [:new, :create]
+  before_action :set_conference_session, only: [:new, :create]
 
   def new
     @role = Organizer.new
@@ -7,7 +7,7 @@ class OrganizersController < RolesController
   end
 
   def create
-    @role = Organizer.new(roles_params)
+    @role = @conference_session.organizers.new(roles_params)
     if @role.save
       redirect_to @conference_session, notice: 'OK'
     else
