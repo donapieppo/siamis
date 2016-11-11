@@ -1,0 +1,23 @@
+<h1>
+Add <%= @role.class %><br/>
+<small>to <%= @conference_session || @presentation%></small>
+</h1>
+
+<%= simple_form_for [@conference_session || @presentation, @role] do |role| %>  
+  <%= role.error_notification %>  
+
+  <% uncorrect_email = (@role.email.blank? or @role.errors[:email].any?) %> 
+
+  <%= role.input :email, readonly: ! uncorrect_email %>  
+
+  <% unless uncorrect_email or @role.errors[:email].any? %> 
+    <p>There is no user with the mail < <%= @role.email %> >.
+       Please submit all the info</p>
+    <%= role.input :name, required: true %>  
+    <%= role.input :surname, required: true %>  
+    <%= role.input :affiliation, required: true %>  
+  <% end %>
+  <%= role.submit 'Add' %>  
+<% end %>
+
+

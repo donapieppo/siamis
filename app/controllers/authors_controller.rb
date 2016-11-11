@@ -3,12 +3,13 @@ class AuthorsController < ApplicationController
   before_action :set_author_and_check_permission, only: [:make_speaker, :destroy]
 
   def new
-    @author = Author.new
+    @role = Author.new
+    render 'roles/new'
   end
 
   def create
-    @author = @presentation.authors.new(author_params)
-    if @author.save
+    @role = @presentation.authors.new(author_params)
+    if @role.save
       redirect_to @presentation, notice: 'OK'
     else
       render action: :new
