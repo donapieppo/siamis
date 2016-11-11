@@ -9,7 +9,7 @@ class RolesController < ApplicationController
 
   private 
 
-  def roles_params
+  def role_params
     par = params[:author] || params[:organizer] || params[:chair]
     par.permit(:email, :name, :surname, :affiliation, :address)
   end

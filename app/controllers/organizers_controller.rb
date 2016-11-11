@@ -7,7 +7,7 @@ class OrganizersController < RolesController
   end
 
   def create
-    @role = @conference_session.organizers.new(roles_params)
+    @role = @conference_session.organizers.new(role_params)
     if @role.save
       redirect_to @conference_session, notice: 'OK'
     else
