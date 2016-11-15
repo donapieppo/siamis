@@ -128,10 +128,25 @@ ul li { list-style-type: none; }
   @extend .session_panel;
   .panel-heading { background-color: $contributed_session_color; }
 }
-
+.plenary_panel {
+  @extend .session_panel;
+  .panel-heading { background-color: $plenary_color; }
+}
+.minitutorial_panel {
+  @extend .session_panel;
+  .panel-heading { background-color: $minitutorial_color; }
+}
+.poster_session_panel {
+  @extend .session_panel;
+  .panel-heading { background-color: $minitutorial_color; }
+}
 #footer {
   margin-top: 30px;
   padding-top: 30px;
   background-color: $footer_color;
   text-align: center;
+}
+
+.breadcrumb {
+  background-color: #fff;
 }
