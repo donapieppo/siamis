@@ -1,17 +1,13 @@
 <h1>Minitutorials</h1>
 
-<p>Multiple minitutorials will be organized for presentation during the conference.</p>
-<p>Additional details will be posted as they become available.</p>
-
-<ul class='list-group'>
-<% Minitutorial.find_each do |minitutorial| %>  
-  <li class='list-group-item'>
-    <%= link_to minitutorial, minitutorial %>
-    <span class="pull-right"><%= minitutorial.schedule %></span>
-  </li>
+<% if @minitutorials.empty? %>  
+  <p>Multiple minitutorials will be organized for presentation during the conference.</p>
+  <p>Additional details will be posted as they become available.</p>
 <% end %>
-</ul>
 
 <% if user_in_organizer_commettee? %>
-  <%= link_to 'Create a Minitutorial Session', new_minitutorial_path, class: :button %>  
+  <p class="centered"><%= link_to 'Create a Minitutorial Session', new_minitutorial_path, class: :big_button %></p>
 <% end %>
+
+<%= render @minitutorials %>  
+

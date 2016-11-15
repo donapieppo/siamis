@@ -1,16 +1,31 @@
-<%= title_with_conference('Call for Papers') %>
+<%= title_with_conference('Submissions') %>
 
-<p class="centered">
-  <%= link_to 'Submit <strong>Minisymposium</strong> Proposal'.html_safe, new_minisymposium_path, class: :big_button %>  
-</p>
+<p>SIAM requests that individuals limit themselves to giving one talk. (This does not apply to invited plenary speakers). The co-chairs of the organizing committee may make exceptions to this request. All submissions are subject to review and final approval by the co-chairs.</p>
 
-<p class="centered">
-  <%= link_to 'Submit <strong>Presentation</strong> Proposal'.html_safe, new_presentation_path, class: :big_button %>  
+<div class="row">  
+  <div class="col-md-3">
+    <strong>Deadline Dates:</strong><br/><small>(Central European Time)</small>
+  </div>
+  <div class="col-md-9">
+<p>
+<%= l Rails.configuration.deadlines[:minisymposium_proposal] %>: Minisymposium Proposal Submissions<br/>
+<%= l Rails.configuration.deadlines[:presentation_proposal] %>: Contributed Lecture, Poster and Minisymposium Presentation Abstracts<br/>
+February 1, 2018: SIAG/FME Conference Paper Prize Deadline
 </p>
+  </div>
+</div>
 
-<p class="centered">
-  <%= link_to 'Submit <strong>Poster</strong> Proposal'.html_safe, new_presentation_path(poster: true), class: :big_button %>  
-</p>
+<p>You are invited to contribute a presentation for this conference in one of the following formats: </p>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= render partial: 'minisymposium_proposal' %>  
+  </div>
+
+  <div class="col-md-6">
+    <%= render partial: 'presentation_proposal' %>  
+  </div>
+</div>
 
 <%- if @presentations.any? or @minisymposia.any? %>
   <hr/>

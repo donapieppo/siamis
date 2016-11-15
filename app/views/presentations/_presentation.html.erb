@@ -2,13 +2,7 @@
 
 <% if defined?(one_line) %>  
   <div>
-    <%= link_to presentation, presentation %> <%= 'POSTER' if presentation.poster %>  
-    <% if defined?(actions) and actions.include?(:add) and owner %>
-      <%= link_to icon('plus') + ' add', add_conference_session_presentation_path(@conference_session, presentation), class: :button, method: :put, title: 'add to session' %> 
-    <% end %>
-    <% if defined?(actions) and actions.include?(:remove) and owner %>
-      <%= link_to icon('minus') + 'remove', remove_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session', class: :button %>
-    <% end %>
+    <%= link_to presentation, presentation %>
     <span class="badge pull-right"><%= presentation.parent_event_abbr %></span>
   </div>
 <% else %>
@@ -30,18 +24,21 @@
         <% end %>
       </dl>
       <% if ! defined?(short) and presentation.conference_session %>  
-        This presentation is part of <%= t presentation.conference_session.class %> <em>"<%= link_to presentation.conference_session, presentation.conference_session %>"</em> <br/><small><%= organized_by(presentation.conference_session) %></small>. 
+        This presentation is part of <%= t presentation.conference_session.class %> <em>"<%= link_to presentation.conference_session, presentation.conference_session %>"</em>. 
+        <% if presentation.conference_session.is_a?(Minisymposium) %>
+          <br/><small><%= organized_by(presentation.conference_session) %></small>. 
+        <% end %>
       <% end %>
     </div><!-- body -->
 
     <% if owner and ! defined?(short)%>  
       <div class="panel-footer">
-        <% if defined?(actions) and actions.include?(:add) %>
-          <%= link_to icon('plus') + ' add', add_conference_session_presentation_path(@conference_session, presentation), class: :button, method: :put, title: 'add to session' %> 
-        <% end %>
-        <% if defined?(actions) and actions.include?(:remove) %>
-          <%= link_to icon('minus') + 'remove', remove_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session', class: :button %>
-        <% end %>
+        <%# <% if defined?(actions) and actions.include?(:add) %1> %>
+        <%#   <%= link_to icon('plus') + ' add', add_conference_session_presentation_path(@conference_session, presentation), class: :button, method: :put, title: 'add to session' %1> %> 
+        <%# <% end %1> %>
+        <%# <% if defined?(actions) and actions.include?(:remove) %1> %>
+        <%#   <%= link_to icon('minus') + 'remove', remove_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session', class: :button %1> %>
+        <%# <% end %1> %>
         <%= link_to icon('pencil') + " edit", edit_presentation_path(presentation), class: :button %>  
         <%= link_to icon('plus')   + " add author", new_presentation_author_path(presentation), class: :button %>
         <%= link_to icon('trash')  + " delete", presentation_path(presentation), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'}, class: :button %>

@@ -41,7 +41,7 @@
           <%= link_to icon('pencil') + ' edit', edit_minisymposium_path(minisymposium), class: :button %>  
           <%= link_to icon('user')   + ' add Organizer', new_minisymposium_organizer_path(minisymposium), class: :button %>  
           <%= link_to icon('file-audio-o') + ' add Presentation', new_minisymposium_presentation_path(minisymposium), class: :button %>  
-          <%= link_to icon('trash')  + " delete", minisymposium_path(minisymposium), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'}, class: :button %>
+          <%= link_to icon('trash')  + ' delete', minisymposium_path(minisymposium), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'}, class: :button %>
         <% end %>
         <% if user_in_scientific_commettee? %>  
           <%= link_to icon('star')    + ' rate', new_minisymposium_rating_path(@conference_session), class: :button %>  
@@ -49,6 +49,7 @@
         <% if user_in_organizer_commettee? %>  
           <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(minisymposium), class: :button %>  
         <% end %>
+        &nbsp; <span class="pull-right"><%= minisymposium.schedule || 'schedule to be decided' %></span>
       </div><!-- footer -->
     <% end %>
   </div>

@@ -1,15 +1,2 @@
-<%= title(@conference_session) %>  
-
-<p><%= @conference_session.schedule %></p>
-
-<% if current_user_owns?(@conference_session) %>  
-  <%= link_to icon('pencil')  + ' edit', [:edit, @conference_session], class: :button %>  
-  <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(@conference_session), class: :button %>  
-<% end %>
-
-<h2>Presentations</h2>
-<%= render @presentations, one_line: true, actions: [:remove] %>  
-
-<h2>Presentations to add</h2>
-<%= render Presentation.unassigned.all, one_line: true, actions: [:add] %>
+<%= render @conference_session %>  
 

@@ -1,27 +1,22 @@
-<h2><%= minitutorial.name %> </h2>
-<h3><%= minitutorial.schedule %></h3>
-
-<div class="well">
-  <%= minitutorial.description %>  
-  <%= link_to_edit [:edit, minitutorial] if user_in_organizer_commettee? %>  
+<div class="minitutorial_panel">
+<div class="panel-heading">
+  <h2>
+    <%= minitutorial.name %><br/>
+    <small><%= minitutorial.schedule %></small>
+  </h2>
+  <h3><%= minitutorial.speakers %></h3>
+  <p>Chair: <%= minitutorial.chairs.map(&:to_s).join(', ') %></p>
 </div>
-
-<p>Chair: <%= minitutorial.chairs.first %></p>
-
-<p>
-  <%= minitutorial.schedule %>  
-</p>
-
-<h2>Presentations</h2>
-
-<%= render @presentations, short: true %>  
-
+<div class="panel-body">
+  <%= minitutorial.description %>  
+</div>
 <% if user_in_organizer_commettee? %>  
-  <%= link_to_edit2 'Edit', [:edit, minitutorial] %>  
-  <%= link_to icon(:cog) + ' Add Chair', new_minitutorial_chair_path(minitutorial), class: :button %>  
-  <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(minitutorial), class: :button %>  
+  <div class="panel-footer">
+    <%= link_to_edit2 'Edit', [:edit, minitutorial] %>  
+    <%= link_to icon('clock-o') + ' schedule',   new_conference_session_schedule_path(minitutorial), class: :button %>  
+  </div>
 <% end %>
-
+</div>
 
 
 

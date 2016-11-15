@@ -8,7 +8,7 @@
 <% end %>
 
 <h2>Presentations</h2>
-<%= render @presentations, one_line: true, actions: [:remove] %>  
+<%= render @conference_session.presentations.includes(authors: :user), one_line: true, actions: [:remove] %>  
 
 <% if user_in_organizer_commettee? %>  
   <h2>Presentations to add</h2>

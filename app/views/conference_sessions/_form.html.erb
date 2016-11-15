@@ -1,0 +1,25 @@
+<div class="row">
+<div class="col-md-8">
+  <%= simple_form_for @conference_session do |conference_session| %>  
+    <%= conference_session.input :name %>  
+    <%= conference_session.input :description %>  
+    <%= conference_session.submit %> - <%= link_to_back root_path %>
+  <% end %>
+</div>
+
+<div class="col-md-4">
+  <dl>
+    <dt>Authors</dt>
+    <% @conference_session.presentation.authors.each do |author| %>  
+      <dd><%= author %> </dd>
+    <% end %>
+    <dd><%= link_to icon('plus') + ' add author', new_presentation_author_path(@conference_session.presentation), class: :button %></dd>
+    <dt>Chairs</dt>
+    <% @conference_session.chairs.each do |chair| %>  
+      <dd><%= chair %></dd>
+    <% end %>
+    <dd><%= link_to icon(:plus)   + ' add Chair',  new_plenary_chair_path(@conference_session), class: :button %>  </dd>
+  </dl>
+</div>
+</div>
+

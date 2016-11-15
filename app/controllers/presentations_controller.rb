@@ -1,7 +1,7 @@
 # only for logged user
 # wiew all only throuh sessions
 class PresentationsController < ApplicationController
-  before_action :set_minisymosium_and_minitutorial_and_check_permission, only: [:new, :create]
+  before_action :set_conference_session_and_check_permission, only: [:new, :create]
   before_action :set_presentation_and_check_permission, only: [:edit, :update, :add, :remove]
 
   # like submissions (think, fixme)
@@ -16,7 +16,9 @@ class PresentationsController < ApplicationController
 
   def show
     @presentation = Presentation.find(params[:id])
-    @authors = @presentation.authors.includes(:user)
+    if @presentation.lonely_in_session?
+      redirect_to @presentation.conference_session and return
+    end
   end
 
   def new
@@ -31,7 +33,7 @@ class PresentationsController < ApplicationController
         redirect_to new_presentation_author_path(@presentation)
       # we are authors
       else
-        @presentation.users << current_user
+        @presentation.authors.create(user: current_user)
         redirect_to @presentation
       end
     else
@@ -40,18 +42,22 @@ class PresentationsController < ApplicationController
   end
 
   def edit
+    if @presentation.conference_session and (@presentation.conference_session.is_a?(Minitutorial) or @presentation.conference_session.is_a?(Plenary))
+      redirect_to [:edit, @presentation.conference_session] 
+      return
+    end
   end
 
   def add
     @conference_session = ConferenceSession.find(params[:conference_session_id])
     @conference_session.presentations << @presentation
-    redirect_to @conference_session
+    redirect_to manage_presentations_conference_session_path(@conference_session)
   end
 
   def remove
     @conference_session = ConferenceSession.find(params[:conference_session_id])
     @presentation.update_attribute(:conference_session_id, nil)
-    redirect_to @conference_session
+    redirect_to manage_presentations_conference_session_path(@conference_session)
   end
 
   def update
@@ -77,10 +83,9 @@ class PresentationsController < ApplicationController
 
   # A presentation can be created relative to a minitutorial or minisymosium
   # Otherwise is submitted by author and then Commettee assign it to PosterSession o ContributedSession
-  def set_minisymosium_and_minitutorial_and_check_permission
-    @minisymposium = Minisymposium.find(params[:minisymposium_id]) if params[:minisymposium_id]
-    @minitutorial  = Minitutorial.find(params[:minitutorial_id]) if params[:minitutorial_id]
-    @conference_session = @minisymposium || @minitutorial
+  def set_conference_session_and_check_permission
+    @conference_session = Minisymposium.find(params[:minisymposium_id]) if params[:minisymposium_id]
+    @conference_session = Minitutorial.find(params[:minitutorial_id])   if params[:minitutorial_id]
     current_user.owns!(@conference_session) if @conference_session
   end
 

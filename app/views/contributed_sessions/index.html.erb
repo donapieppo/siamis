@@ -1,5 +1,9 @@
 <h1>Contributed Presentations</h1>
 
+<% if user_in_organizer_commettee? %>  
+  <p class="centered"><%= link_to 'Create Contributed Session', new_contributed_session_path, class: :big_button %></p>
+<% end %>
+
 <ul class="list-group">
   <% ContributedSession.includes(:schedule).find_each do |contributed_session| %>  
     <li class="list-group-item">
@@ -9,8 +13,3 @@
   <% end %>
 </ul>
 
-<% if user_in_organizer_commettee? %>  
-  <p class="centered">
-    <%= link_to 'Create Contributed Session', new_contributed_session_path, class: :big_button %>  
-  </p>
-<% end %>

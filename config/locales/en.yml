@@ -77,11 +77,12 @@ en:
       short:   ! '%d %b %H:%M'
       date_picker: ! "%d/%m/%Y"
       datetime_picker: "%d/%m/%Y %H:%M"
-      with_day_name: '%A %d %B %Y ore %H:%M'
+      with_day_name: '%A %d %B %Y hour %H:%M'
       schedule_day:  '%d'
 
   date:
     formats:
+      default:  '%B %d, %Y'
       schedule: '%A %d %B %Y'
 
   credit_cards: Registration fees can be paid by credit card (Mastercard, Visa, American Express).
