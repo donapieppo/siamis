@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     resources :conference_sessions 
   end
   resources :conference_sessions do 
+    get :manage_presentations, on: :member
     resources :schedules
     resources :presentations do 
       put 'add', on: :member

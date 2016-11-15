@@ -2,14 +2,13 @@
 # defines conference_session_params
 class ConferenceSessionsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_conference_session_and_check_permission, only: [:edit, :update]
+  before_action :set_conference_session_and_check_permission, only: [:edit, :update, :manage_presentations]
 
   def index
   end
 
   def show
-    @conference_session = ConferenceSession.includes(organizers: :user).find(params[:id])
-    @presentations = @conference_session.presentations.includes(authors: :user).all
+    @conference_session = ConferenceSession.includes(schedule: :room, organizers: :user).find(params[:id])
   end
 
   def edit
@@ -21,6 +20,9 @@ class ConferenceSessionsController < ApplicationController
     else
       render action: :edit
     end
+  end
+
+  def manage_presentations
   end
 
   private
