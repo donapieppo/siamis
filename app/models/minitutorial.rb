@@ -1,17 +1,25 @@
+# ConferenceSession has many presentations.
+# Minitutorial ans Plenary only one
+#
+# It could be eitherway: or minitutorial has a name (and description)
+# or the presentation has a name. 
+# Since you create the minitutorial first we stay with 
+# minitutorial with a name. So:
+#
+# Minitutorial: name
+#               description
+#               chairs
+# Presentation: authors (speaker)
+#
 class Minitutorial < ConferenceSession
-  DURATION = 20
+  DURATION = 120
 
-  # can have no name
-  def to_s
-    if self.name.blank?
-      self.presentations.first.to_s || "Minitutorial"
-    else
-      self.name
-    end
-  end
+  has_one :presentation, foreign_key: :conference_session_id, dependent: :destroy
 
-  def description_or_abstract
-    self.description || self.presentations.first.try(:abstract) || "Minitutorial"
+  after_create :create_the_presentation
+
+  def speakers
+    self.presentation.authors.map(&:to_s).join(', ')
   end
 end
 

@@ -1,19 +1,12 @@
-# In general many presnetations
-# In Siam is18 only one so we getr data from it
+# see Minitutorial notes
 class Plenary < ConferenceSession
-  after_create :add_relative_presentation
+  DURATION = 45
 
-  def presentation
-    @presentation ||= presentations.first
-  end
+  has_one :presentation, foreign_key: :conference_session_id, dependent: :destroy
 
-  def speaker
-    self.presentation.authors.first
-  end
+  after_create :create_the_presentation
 
-  private
-
-  def add_relative_presentation
-    @presentation = self.presentations.create(name: self.name)
+  def speakers
+    self.presentation.authors.map(&:to_s).join(', ')
   end
 end
