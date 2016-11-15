@@ -35,14 +35,15 @@ class User < ApplicationRecord
   def owns?(what)
     self.master_of_universe? and return true
     self.in_organizer_commettee? and return true
+
     case what
     when Minisymposium, Minitutorial
       self.organizer?(what)
     when Presentation
-      if [Minitutorial, Minisymposium].include?(what.conference_session.class)
-        self.organizer?(what.conference_session)
+      if what.conference_session.class == Minisymposium
+        self.organizer?(what.conference_session) or self.author?(what)
       else
-        what.user_ids.include?(self.id)
+        self.author?(what)
       end
     else
       false
@@ -65,6 +66,11 @@ class User < ApplicationRecord
   # minitutorial
   def organizer?(what)
     what.organizers.where(user_id: self.id).any?
+  end
+
+  def author?(presentation)
+    presentation.is_a?(Presentation) or return false
+    presentation.authors.map(&:user_id).include?(self.id)
   end
 
   def speaker_or_organizer?

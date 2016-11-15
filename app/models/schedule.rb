@@ -3,7 +3,7 @@ class Schedule < ApplicationRecord
   belongs_to :room
 
   def to_s
-    "#{I18n.l self.start} in #{self.room}"
+    "#{I18n.l(self.start, format: :with_day_name)} in #{self.room}"
   end
 
   def start_day

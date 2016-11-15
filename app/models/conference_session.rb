@@ -1,7 +1,6 @@
 class ConferenceSession < ApplicationRecord
   has_many :organizers, dependent: :destroy
   has_many :chairs
-  has_many :presentations # FIXME dependent FIXME minitutorial
   has_many :ratings, dependent: :destroy
   has_one  :schedule
 
@@ -15,6 +14,15 @@ class ConferenceSession < ApplicationRecord
 
   def is_a_minisymposium?
     self.class == Minisymposium
+  end
+
+  private
+
+  def create_the_presentation
+    self.create_presentation
+    # @presentation = self.presentations.first || self.presentations.new
+    # @presentation.name = self.name
+    # @presentation.save
   end
 end
 
