@@ -31,7 +31,7 @@ module Siamis
     config.i18n.default_locale = :en
     config.active_record.time_zone_aware_types = [:datetime, :time]
 
-    config.impersonate_admins = ['pietro.donatini@unibo.it']
+    config.impersonate_admins = ['pietro.donatini@unibo.it', 'm.ghedini@unibo.it']
 
     routes.default_url_options[:host]     = 'tester.dm.unibo.it'
     routes.default_url_options[:protocol] = 'https'
@@ -40,5 +40,9 @@ module Siamis
     config.start_date = Date.parse('05/06/2018')
     config.number_of_days = 3
     config.message_footer = "Siam-is18 June 5-8, 2018 Bologna - Italy"
+
+    # Deadlines
+    config.deadlines = { minisymposium_proposal: Date.parse('18/09/2017'),
+                         presentation_proposal:  Date.parse('18/10/2017')}
   end
 end
