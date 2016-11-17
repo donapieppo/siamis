@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate_user!, only: :show
+  skip_before_action :check_user_fields, only: [:edit, :update]
+
   before_action :user_in_organizer_commettee!, only: [:index]
   before_action :set_user_and_check_permission, only: [:edit, :update]
-  skip_before_action :check_user_fields, only: [:edit, :update]
 
   def index
   end
