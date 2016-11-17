@@ -1,6 +1,7 @@
 # only for logged user
 # wiew all only throuh sessions
 class PresentationsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :show
   before_action :set_conference_session_and_check_permission, only: [:new, :create]
   before_action :set_presentation_and_check_permission, only: [:edit, :update, :add, :remove]
 
