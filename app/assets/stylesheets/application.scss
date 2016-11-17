@@ -108,23 +108,15 @@ ul li { list-style-type: none; }
   @extend .panel;
   @extend .panel-default;
   .panel-heading {
-    color: #fff;
     font-weight: bold;
-    background-color: $minisymposium_color;
-    a {
-      color: #fff;
-    }
   }
+
 }
 .minisymposium_panel {
   @extend .session_panel;
   .panel-heading { background-color: $minisymposium_color; }
 }
 .contributed_session_panel {
-  @extend .session_panel;
-  .panel-heading { background-color: $contributed_session_color; }
-}
-.presentation_panel {
   @extend .session_panel;
   .panel-heading { background-color: $contributed_session_color; }
 }
@@ -139,6 +131,11 @@ ul li { list-style-type: none; }
 .poster_session_panel {
   @extend .session_panel;
   .panel-heading { background-color: $minitutorial_color; }
+}
+
+.presentation_panel {
+  @extend .panel;
+  @extend .panel-default;
 }
 #footer {
   margin-top: 30px;
