@@ -5,4 +5,7 @@ class HomeController < ApplicationController
     @home_header    = true
   end
 
+  def contacts
+  end
+
 end
