@@ -104,38 +104,43 @@ ul li { list-style-type: none; }
   text-align: right;
 }
 
-.session_panel {
+.siam_panel {
   @extend .panel;
   @extend .panel-default;
   .panel-heading {
     font-weight: bold;
+    h2 {
+      text-transform: uppercase;
+    }
   }
 
 }
 .minisymposium_panel {
-  @extend .session_panel;
+  @extend .siam_panel;
   .panel-heading { background-color: $minisymposium_color; }
 }
 .contributed_session_panel {
-  @extend .session_panel;
+  @extend .siam_panel;
   .panel-heading { background-color: $contributed_session_color; }
 }
 .plenary_panel {
-  @extend .session_panel;
+  @extend .siam_panel;
   .panel-heading { background-color: $plenary_color; }
 }
 .minitutorial_panel {
-  @extend .session_panel;
+  @extend .siam_panel;
   .panel-heading { background-color: $minitutorial_color; }
 }
 .poster_session_panel {
-  @extend .session_panel;
+  @extend .siam_panel;
   .panel-heading { background-color: $minitutorial_color; }
 }
 
 .presentation_panel {
-  @extend .panel;
-  @extend .panel-default;
+  @extend .siam_panel;
+  .panel-heading { 
+    background-color: $presentation_color; 
+  }
 }
 #footer {
   margin-top: 30px;
