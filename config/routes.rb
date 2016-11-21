@@ -66,7 +66,8 @@ Rails.application.routes.draw do
   get 'submissions',                 to: 'submissions#index', as: :submissions
   get 'logins/no_access',            to: 'logins#no_access',  as: :no_access
 
-  get 'privacy', to: 'home#privacy', as: :privacy
+  get 'privacy',  to: 'home#privacy', as: :privacy
+  get 'contacts', to: 'home#contacts', as: :contacts
 
   get 'who_impersonate',    to: 'impersonations#who_impersonate',    as: :who_impersonate
   get 'impersonate/:id',    to: 'impersonations#impersonate',        as: :impersonate
