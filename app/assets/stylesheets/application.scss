@@ -133,7 +133,7 @@ ul li { list-style-type: none; }
 }
 .poster_session_panel {
   @extend .siam_panel;
-  .panel-heading { background-color: $minitutorial_color; }
+  .panel-heading { background-color: $poster_session_color; }
 }
 
 .presentation_panel {
@@ -150,5 +150,5 @@ ul li { list-style-type: none; }
 }
 
 .breadcrumb {
-  background-color: #fff;
+  // background-color: #fff;
 }
