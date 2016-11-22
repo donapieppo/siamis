@@ -1,4 +1,9 @@
 class PosterSessionsController < ConferenceSessionsController
+
+  def index
+    @poster_sessions = PosterSession.includes(:schedule).all
+  end
+
   def new
     @conference_session = PosterSession.new
   end

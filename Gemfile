@@ -16,6 +16,8 @@ gem 'savon'
 #gem 'omniauth-facebook'
 gem 'devise'
 
+gem 'timecop'
+
 gem 'simple_form'
 gem 'country_select'
 

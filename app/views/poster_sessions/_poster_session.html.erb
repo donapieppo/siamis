@@ -5,7 +5,7 @@
 <div class="panel-body">
   <%= poster_session.description %>  
   <dl class="dl-horizontal">
-    <dt>Presentations</dt>
+    <dt>Presentations:</dt>
     <% poster_session.presentations.includes(authors: :user).each do |presentation| %>  
       <dd><%= render presentation, one_line: true %></dd>
     <% end %>

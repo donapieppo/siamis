@@ -1,23 +1,27 @@
-<h1>Manage presentations in<br/><%= @conference_session %></h1>
+<h1><%= @conference_session %></h1>
 
-<p>Current presentations</p>
-<ul>
-<% @conference_session.presentations.each do |presentation| %>  
-  <li>
-    <%= presentation %>  
-    <%= link_to icon('minus') + 'remove', remove_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session', class: :button %>
-  </li>
-<% end %>
-</ul>
+<div class="row">
+  <div class="col-md-6">
+    <h2>Current presentations:</h2>
+    <ul>
+      <% @conference_session.presentations.each do |presentation| %>  
+        <li>
+          <%= presentation %>  
+          <%= link_to icon('minus') + 'remove', remove_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
-<p>Other presentations to add:</p>
-
-<ul>
-  <% Presentation.unassigned.each do |presentation| %>  
-    <li>
-    <%= presentation %>  
-    <%= link_to icon('plus') + ' add', add_conference_session_presentation_path(@conference_session, presentation), class: :button, method: :put, title: 'add to session' %> 
-    </li>
-  <% end %>
-</ul>
-
+  <div class="col-md-6">
+    <h2>Other presentations to add:</h2>
+    <ul>
+      <% Presentation.unassigned.each do |presentation| %>  
+        <li>
+          <%= presentation %>  
+          <%= link_to icon('plus') + ' add', add_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'add to session' %> 
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
