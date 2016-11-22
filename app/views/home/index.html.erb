@@ -31,7 +31,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6" id="committees">
-      <h2>Committees</h2>
+      <h2>Organizing Committee</h2>
 
       <dl class="dl-horizontal">
         <dt>Co-chairs: </dt>
@@ -63,6 +63,10 @@
         <dt>June 2018</dt>
         <dd>SIAM IS18 Conference</dd>
       </dl>
+
+      <h2>Submissions</h2>
+      <p>[...]</p>
+      <p>To submit a paper please <%=  login_link %></p>
     </div>
   </div>
 </div>
@@ -85,22 +89,24 @@
 
 <div id="venue">
   <div class="container">
-    <h2>Venue - Bologna</h2>
+    <h2>Local Information & Travel</h2>
     <div class="row">
-      <div class="col-md-4">
-        <h3>Plenary Talks</h3>
-        <div class="image"><%= image_tag 'santa_lucia.jpg', width: 300 %> </div>
-        <p>Plenary Talks will take place in <br/><strong>Aula Magna Santa Lucia</strong>.</p>
-      </div>
-      <div class="col-md-4">
-        <h3>Concurrent sessions</h3>
-        <div class="image"><%= image_tag 'aula_belmeloro.jpg', width: 300 %></div>
-        <p>Concurrent sessions will take place in <br/><strong>Complesso Belmeloro</strong>.</p>
-      </div>
       <div class="col-md-4">
         <h3>Bologna</h3>
         <div class="image"><%= image_tag 'piazza_verdi.jpg', width: 300 %></div>
         <p>You can find informations about Bologna in <br/><%= link_to icon('external-link') + ' Bologna welcome', 'http://www.bolognawelcome.com/en' %></p>
+      </div>
+      <div class="col-md-4">
+        <h3>Plenary Talks</h3>
+        <div class="image"><%= image_tag 'santa_lucia.jpg', width: 300 %> </div>
+        <p>Plenary Talks will take place in <br/>
+        <strong><%= link_to 'Aula Magna Santa Lucia', bologna_path(anchor: 'aula_magna') %></strong>.</p>
+      </div>
+      <div class="col-md-4">
+        <h3>Concurrent sessions</h3>
+        <div class="image"><%= image_tag 'aula_belmeloro.jpg', width: 300 %></div>
+        <p>Concurrent sessions will take place in <br/>
+        <strong><%= link_to 'Complesso Belmeloro', bologna_path(anchor: 'belmeloro') %></strong>.</p>
       </div>
     </div>
   </div>
