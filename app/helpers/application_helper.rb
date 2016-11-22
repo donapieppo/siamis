@@ -127,6 +127,7 @@ module ApplicationHelper
 
   def breadcrumbs
     controller.class.to_s =~ /Devise/ and return 
+    controller.controller_name == 'home' and return 
     content_tag 'ol', class: "breadcrumb" do 
       content_tag('li', link_to('Home', root_path)) +
       if @conference_session
