@@ -1,0 +1,28 @@
+<div class="<%= conference_session.is_a?(Plenary) ? 'plenary' : 'minitutorial' %>_panel">
+<div class="panel-heading">
+  <h2>
+    <%= conference_session.name %><br/>
+  </h2>
+  <h3><%= conference_session.speakers %></h3>
+  <p class="schedule"><%= conference_session.schedule %></p>
+</div>
+<div class="panel-body">
+  <em><%= conference_session.description %></em>
+</div>
+<div class="panel-footer">
+  <% if user_in_organizer_commettee? %>  
+    <div class="panel-footer">
+      <%= link_to_edit2 'Edit', [:edit, conference_session] %>  
+      <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(conference_session), class: :button %>  
+    </div>
+  <% else %>
+    &nbsp;
+  <% end %>
+  <span class="pull-right">Chair: <%= conference_session.chairs.map(&:to_s).join(', ') %></span>
+</div>
+</div>
+
+
+
+
+
