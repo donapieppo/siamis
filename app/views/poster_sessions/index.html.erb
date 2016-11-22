@@ -3,17 +3,11 @@
 <p>Multiple poster sessions will be organized for presentation during the conference.</p>
 <p>Additional details will be posted as they become available.</p>
 
-<ul class="list-group">
-  <% PosterSession.includes(:schedule).find_each do |poster_session| %>  
-    <li class="list-group-item">
-       <%= link_to poster_session, poster_session %>
-       <span class="pull-right"><%= poster_session.schedule %></span>
-    </li>
-  <% end %>
-</ul>
-
 <% if user_in_organizer_commettee? %>  
   <p class="centered"><%= link_to 'Create Poster Session', new_poster_session_path, class: :big_button %></p>
 <% end %>
+
+<%= render @poster_sessions %>
+
 
 
