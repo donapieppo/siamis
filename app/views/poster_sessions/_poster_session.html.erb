@@ -14,9 +14,9 @@
 <div class="panel-footer">
   <% if current_user_owns?(poster_session) %>  
     <%= link_to icon('pencil')  + ' edit', [:edit, poster_session], class: :button %>  
-    <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(poster_session), class: :button %>  
   <% end %>
   <% if user_in_organizer_commettee? %>  
+    <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(poster_session), class: :button %>  
     <%= link_to icon('pencil')  + ' manage presentations', manage_presentations_conference_session_path(poster_session), class: :button %>  
   <% end %>
   &nbsp; <span class="pull-right"><%= poster_session.schedule || 'schedule to be decided' %></span>
