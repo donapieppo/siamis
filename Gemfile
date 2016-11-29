@@ -16,8 +16,6 @@ gem 'savon'
 #gem 'omniauth-facebook'
 gem 'devise'
 
-gem 'timecop'
-
 gem 'simple_form'
 gem 'country_select'
 
@@ -38,7 +36,8 @@ group :development, :test do
   # gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl'
-  gem "factory_girl_rails"
+  gem 'factory_girl_rails'
+  gem 'timecop'
 end
 
 group :development do
