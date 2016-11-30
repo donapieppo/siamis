@@ -79,7 +79,7 @@ en:
       short:   ! '%d %b %H:%M'
       date_picker: ! "%d/%m/%Y"
       datetime_picker: "%d/%m/%Y %H:%M"
-      with_day_name: '%A %d %B %Y hour %H:%M'
+      with_day_name: '%A %d %B %Y at %H:%M'
       schedule_day:  '%d'
 
   date:

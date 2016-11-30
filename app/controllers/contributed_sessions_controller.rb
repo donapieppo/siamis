@@ -1,4 +1,5 @@
 class ContributedSessionsController < ConferenceSessionsController
+
   def new
     @conference_session = ContributedSession.new
   end

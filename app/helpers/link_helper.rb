@@ -6,8 +6,8 @@ module LinkHelper
 
   alias back_link_to :link_to_back
 
-  def link_to_delete(name = "", url)
-    link_to icon('trash') + " " + name, url, method: :delete, title: 'delete', data: {confirm: 'Are you sure?'} 
+  def link_to_delete(name = "", url, button: false)
+    link_to icon('trash-o') + " " + name, url, method: :delete, title: 'elimina', data: {confirm: 'Siete sicuri di voler cancellare?'}, class: (button ? 'button' : '')
   end
 
   def link_to_download(url)

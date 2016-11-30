@@ -1,4 +1,5 @@
 <% owner = current_user_owns?(minisymposium) %>  
+<% presentations = minisymposium.presentations.all %>  
 
 <% if defined?(one_line) and one_line %>  
   <div>
@@ -13,7 +14,7 @@
     <div class="panel-body">
       <p><em><%= minisymposium.description %></em></p>
       <dl class="dl-horizontal">
-        <dt>Organizers</dt>
+        <dt>Organizers:</dt>
         <% minisymposium.organizers.includes(:user).each do |organizer| %>  
           <dd>
             <%= show_user(organizer.user) %>
@@ -22,25 +23,31 @@
         <% end %>
         <% if defined?(with_presentations) and with_presentations %>  
           <dt>Presentations:</dt>
-          <% minisymposium.presentations.each do |presentation| %>
+          <% presentations.each do |presentation| %>
             <dd><%= link_to presentation, presentation %> </dd>
           <% end %>
+          <%= content_tag(:dd, icon('warning') + ' Please add presentations.') if presentations.size < 4 %>  
         <% end %>
         <% if user_in_scientific_commettee? and ! defined?(short)%>
-          <dt>Ratings</dt>
+          <dt>Ratings:</dt>
           <% minisymposium.ratings.each do |rating| %>  
             <dd><%= rating.user %> <%= rating_stars(rating.score) %> (<%= rating.notes %>)</dd>
           <% end %>
         <% end %>
       </dl>
+      <% if presentations.size < 4 %>  
+        <p class="alert alert-warning">A minisymposium generally consists of <strong>four</strong> 25-minute presentations, with an additional five minutes for discussion after each presentation.</p>
+      <% end %>
     </div><!-- body -->
 
     <% if ! defined?(short) %>  
       <div class="panel-footer">
         <% if owner  %>  
           <%= link_to icon('pencil') + ' edit', edit_minisymposium_path(minisymposium), class: :button %>  
-          <%= link_to icon('user')   + ' add Organizer', new_minisymposium_organizer_path(minisymposium), class: :button %>  
-          <%= link_to icon('file-audio-o') + ' add Presentation', new_minisymposium_presentation_path(minisymposium), class: :button %>  
+          <%= link_to icon('user')   + ' add organizer', new_minisymposium_organizer_path(minisymposium), class: :button %>  
+          <% if presentations.size < 4 %>  
+            <%= link_to icon('file-audio-o') + ' add presentation', new_minisymposium_presentation_path(minisymposium), class: 'btn btn-warning' %>  
+          <% end %>
           <%= link_to icon('trash')  + ' delete', minisymposium_path(minisymposium), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'}, class: :button %>
         <% end %>
         <% if user_in_scientific_commettee? %>  

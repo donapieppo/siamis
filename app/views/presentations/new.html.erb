@@ -2,7 +2,7 @@
 
 <div class="alert alert-info">
   <% if @conference_session and @conference_session.is_a_minisymposium? %>  
-    <p> You are submitting a presentation for the Minisymposium: "<em><%= @conference_session %></em>".</p>
+    <p> You are submitting a presentation for the Minisymposium: <strong>"<em><%= @conference_session %></em>"</strong>.</p>
     <p><%= t :minisymposium_presentation_duration %></p>
   <% else %>
     Contributed presentations in lecture or poster format are invited in all areas consistent with the conference themes.<br/>

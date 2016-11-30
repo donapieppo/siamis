@@ -6,3 +6,9 @@
   <dd><%= mail_to user.email, user.email %></dd>
 </dl>
 
+<% if current_user and user == current_user %>  
+  <p class="centered">
+  <%= link_to_edit2 'modify', edit_user_path(current_user) %>  
+  </p>
+<% end %>
+

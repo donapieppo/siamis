@@ -12,7 +12,7 @@ class PlenariesController < ConferenceSessionsController
   def create 
     @conference_session = Plenary.new(conference_session_params)
     if @conference_session.save 
-      redirect_to @conference_session, notice: 'The Plenary Invited Session has been created.'
+      redirect_to [:edit, @conference_session], notice: 'The Plenary Invited Session has been created.'
     else
       render action: :new
     end

@@ -2,7 +2,7 @@
 # defines conference_session_params
 class ConferenceSessionsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_conference_session_and_check_permission, only: [:edit, :update, :manage_presentations]
+  before_action :set_conference_session_and_check_permission, only: [:edit, :update, :manage_presentations, :destroy]
 
   def index
   end
@@ -23,6 +23,12 @@ class ConferenceSessionsController < ApplicationController
   end
 
   def manage_presentations
+  end
+
+  # TODO
+  def destroy
+    @conference_session.delete
+    redirect_to root_path # FIXME
   end
 
   private
