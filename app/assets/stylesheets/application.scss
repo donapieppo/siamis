@@ -4,10 +4,12 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "home";
+// @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic');
 
 body {
+  // font-family: 'Roboto', sans-serif;
   font-family: 'Roboto Condensed', sans-serif;
-  font-size: 16px;
   // background: url(asset-path('esagono.svg')) no-repeat center top ;
 }
 .centered {
@@ -152,3 +154,21 @@ ul li { list-style-type: none; }
 .breadcrumb {
   // background-color: #fff;
 }
+
+.minisymposium_submission {
+  a {
+    @extend .btn;
+    @extend .btn-lg;
+    @extend .btn-primary;
+    background-color: $minisymposium_color;
+  }
+}
+.presentation_proposal_submission {
+  a {
+    @extend .btn;
+    @extend .btn-lg;
+    @extend .btn-primary;
+    background-color: $presentation_color;
+  }
+}
+
