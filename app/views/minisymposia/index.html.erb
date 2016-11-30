@@ -6,16 +6,4 @@
 
 <p>To ensure balance, SIAM prefers a single individual does not organize more than one minisymposium, however, organizers can submit up to four parts per minisymposium. In addition, SIAM discourages minisymposia in which most of the speakers or co-authors come from the same institution. Additionally, SIAM requests speakers submit only one lecture presentation for the conference, either a minisymposium or contributed lecture. Poster submissions are not restricted.</p>
 
-<p><strong>Deadline</strong> for submission of <em>minisymposium proposals</em>: October 2017.</p>
-<p><strong>Deadline</strong> for submission of <em>minisymposium speaker abstracts</em>: November 2017.</p>
-
-<% if current_user %>  
-  <h2>Your are organizer in the following minisymposia:</h2>
-  <%= render current_user.minisymposia, with_presentations: true %>  
-
-  <h2>You are author in the following presentations:</h2>
-  <%= render current_user.presentations.at_minisymposium %>  
-<% else %>
-  <p class="alert alert-warning">Please <%= login_link %> to access sumbmissions.</p>
-<% end %>
-
+<%= render partial: 'deadlines/minisymposium' %>  

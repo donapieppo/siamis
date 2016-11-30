@@ -4,6 +4,7 @@ class PresentationsController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   before_action :set_conference_session_and_check_permission, only: [:new, :create]
   before_action :set_presentation_and_check_permission, only: [:edit, :update, :add, :remove]
+  before_action :check_deadline!, only: [:new, :create]
 
   # like submissions (think, fixme)
   def index
@@ -95,5 +96,8 @@ class PresentationsController < ApplicationController
     current_user.owns!(@presentation)
   end
 
+  def check_deadline!
+    Deadline.can_propose?(:presentation) or raise ProposalClose
+  end
 end
 
