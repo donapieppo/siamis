@@ -11,10 +11,9 @@
 </div>
 <div class="panel-footer">
   <% if user_in_organizer_commettee? %>  
-    <div class="panel-footer">
       <%= link_to_edit2 'Edit', [:edit, conference_session] %>  
       <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(conference_session), class: :button %>  
-    </div>
+      <%= link_to_delete 'delete', conference_session_path(conference_session), button: true %>  
   <% else %>
     &nbsp;
   <% end %>

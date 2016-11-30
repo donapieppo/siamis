@@ -1,0 +1,13 @@
+<dl>
+  <dt>Authors</dt>
+  <% @conference_session.presentation.authors.each do |author| %>  
+    <dd><%= author %> </dd>
+  <% end %>
+  <dd><%= link_to icon('plus') + ' add author', new_presentation_author_path(@conference_session.presentation), class: :button %></dd>
+  <dt>Chairs</dt>
+  <% @conference_session.chairs.each do |chair| %>  
+    <dd><%= chair %></dd>
+  <% end %>
+  <dd><%= link_to icon(:plus)   + ' add Chair',  new_plenary_chair_path(@conference_session), class: :button %>  </dd>
+</dl>
+
