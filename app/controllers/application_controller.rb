@@ -3,9 +3,16 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user_owns?, :current_user_owns!, :true_user_can_impersonate?, :user_in_organizer_commettee?, :user_in_scientific_commettee?
 
-  before_action :authenticate_user!, :log_current_user, :check_user_fields, :check_registration
+  before_action :change_date, :authenticate_user!, :log_current_user, :check_user_fields, :check_registration
 
   impersonates :user
+
+  def change_date
+    if Rails.env.development?
+      new_time = Time.local(2017, 8, 1, 12, 0, 0)
+      Timecop.travel(new_time)
+    end
+  end
 
   def log_current_user
     current_user or return true
