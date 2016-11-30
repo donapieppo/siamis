@@ -1,7 +1,7 @@
 <%= title_with_conference('Registration for') %>  
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h2>Registration Fees</h2>
@@ -9,30 +9,27 @@
       <div class="panel-body">
         <%= render 'payments/list' %>  
       </div>
+      <div class="panel-footer">
+        <ul>
+          <li>IEEE SPS and ASA Imaging Science Section members are eligible to register at the SIAM Member rate</li>
+          <li>STUDENTS must show a current student id upon checking in at the Siam registration desk.</li>
+        </ul>
+        <h2>Conference Registration Fee Includes:</h2>
+
+        <ol>
+          <li>Admission to all technical sessions</li>
+          <li>Business Meeting (open to SIAG/IS members)</li>
+          <li>Coffee breaks daily</li>
+          <li>Room set-ups and audio/visual equipment</li>
+          <li>Welcome Reception and Poster Session</li>
+        </ol>
+      </div><!-- footer -->
     </div>
   </div>
-  <div class="col-md-4">
-    <h2>Conference Registration Fee Includes:</h2>
-
-    <ol>
-      <li>Admission to all technical sessions</li>
-      <li>Business Meeting (open to SIAG/IS members)</li>
-      <li>Coffee breaks daily</li>
-      <li>Room set-ups and audio/visual equipment</li>
-      <li>Welcome Reception and Poster Session</li>
-    </ol>
-  </div>
-</div>
-
-<p class="alert alert-warning">If you do not join SIAM before you register, SIAM allows attendees who pay the non-member rate to apply the difference between it and the member rate toward buying an individual membership.  We will continue to offer this option and expand the offer to those who pay the non-member minisymposia organizer or speaker rate. </p>
-
-<div class="row">
   <div class="col-md-6">
-    <h2><%= icon :eye %>  Check your data!</h2>
+    <h2><%= big_icon :eye %>Check your data!</h2>
     <%= render current_user %>  
-    <%= link_to_edit2 'modify', edit_user_path(current_user) %>  
-  </div>
-  <div class="col-md-6">
+
     <h2>Payment</h2>
     <p class="centered">
     <% if current_user.can_register? %>  
@@ -44,4 +41,6 @@
     </p>
   </div>
 </div>
+
+<p class="alert alert-warning">If you do not join SIAM before you register, SIAM allows attendees who pay the non-member rate to apply the difference between it and the member rate toward buying an individual membership.  We will continue to offer this option and expand the offer to those who pay the non-member minisymposia organizer or speaker rate. </p>
 
