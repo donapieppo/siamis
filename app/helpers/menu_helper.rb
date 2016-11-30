@@ -1,11 +1,17 @@
 module MenuHelper
 
   def login_link
-    link_to 'sign-in / register', new_user_session_path
+    link_to 'Sign-in / Register', new_user_session_path
   end
 
   def logout_link
     link_to icon('sign-out'), destroy_user_session_path, title: 'sign-out', method: :delete
+  end
+
+  def menu_link(icon, name, url)
+    content_tag :li do
+      link_to fwicon(icon) + ' ' + name, url
+    end
   end
 
   def logged_user
