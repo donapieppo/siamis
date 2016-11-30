@@ -1,0 +1,14 @@
+<p class="alert alert-warning">
+<% if Deadline.before_proposal? %>  
+  Proposals submission forms will be availabe from 
+  <strong><%= l(Deadline.minisymposium_proposal_start, format: :long) %></strong>.
+<% elsif Deadline.can_propose?(:minisymposium)  %>
+  <strong>Deadline</strong> for submission of <em>minisymposium proposals</em>: <%= l(Deadline.minisymposium_proposal_end) %> <br/>
+  <strong>Deadline</strong> for submission of <em>minisymposium speaker abstracts</em>: <%= l(Deadline.minisymposium_abstract_end) %>.<br/>
+  <% unless current_user %>  
+    In order to submit a <em>minisymposium proposals</em>, please <%= login_link %>.
+  <% end %>
+<% else %>
+  Please note that the deadline for sending proposals has been expired on <%= l(Deadline.minisymposium_proposal_end) %>.
+<% end %>
+</p>

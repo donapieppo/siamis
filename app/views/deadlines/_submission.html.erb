@@ -1,0 +1,21 @@
+<% if Deadline.before_proposal? %>  
+  <p>Proposals submission forms will be availabe from 
+  <strong><%= l(Deadline.minisymposium_proposal_start, format: :long) %></strong>.
+  </p>
+<% elsif Deadline.can_propose?(:minisymposium)  %>
+  <div class="row">  
+    <div class="col-md-3">
+      <strong>Deadline Dates:</strong><br/><small>(Central European Time)</small>
+    </div>
+    <div class="col-md-9">
+      <p>
+      <%= l Deadline.minisymposium_proposal_end %>: Minisymposium Proposal Submissions<br/>
+      <%= l Deadline.presentation_proposal_end %>: Contributed Lecture, Poster and Minisymposium Presentation Abstracts<br/>
+      February 1, 2018: SIAG/FME Conference Paper Prize Deadline
+      </p>
+    </div>
+  </div>
+<% else %>
+  Please note that the deadline for sending proposals has been expired on <%= l(Deadline.minisymposium_proposal_end) %>.
+<% end %>
+

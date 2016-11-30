@@ -5,7 +5,9 @@ require 'rails/all'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-MASTERS_OF_UNIVERSE  = ['pietro.donatini@unibo.it', 'valeria.montesi3@unibo.it', 'm.ghedini@unibo.it']
+MASTERS_OF_UNIVERSE  = ['pietro.donatini@unibo.it', 
+                        'valeria.montesi3@unibo.it', 
+                        'm.ghedini@unibo.it']
 COCHAIRS             = ['fiorella.sgallari@unibo.it', 
                         'omar@ices.utexas.edu']
 SCIENTIFIC_COMMITTEE = ['marcelo.bertalmio@upf.edu',
@@ -20,7 +22,7 @@ SCIENTIFIC_COMMITTEE = ['marcelo.bertalmio@upf.edu',
                         'tai@mi.uib.no',
                         'waller@berkeley.edu',
                         'brendt@lanl.gov']
-ORGANIZER_COMMITTEE  = ['m.ghedini@unibo.it']
+ORGANIZER_COMMITTEE  = ['francesca.incensi3@unibo.it']
 
 module Siamis
   class Application < Rails::Application
@@ -36,13 +38,17 @@ module Siamis
     routes.default_url_options[:host]     = 'tester.dm.unibo.it'
     routes.default_url_options[:protocol] = 'https'
 
-    config.pre_registration_date = Date.parse('12/03/2018')
-    config.start_date = Date.parse('05/06/2018')
+    # general dates
+    config.conference_start_date = Date.parse('05/06/2018')
     config.number_of_days = 3
-    config.message_footer = "Siam-is18 June 5-8, 2018 Bologna - Italy"
 
     # Deadlines
-    config.deadlines = { minisymposium_proposal: Date.parse('18/09/2017'),
-                         presentation_proposal:  Date.parse('18/10/2017')}
+    config.deadlines = { pre_registration:       '12/03/2018', # after prices are higher
+                         minisymposium_proposal: ['15/07/2017', '18/09/2017'],
+                         minisymposium_abstract: ['25/09/2017', '25/10/2017'],
+                         presentation_proposal:  ['15/07/2017', '18/10/2017'] }
+
+    config.message_footer = "Siam-is18 June 5-8, 2018 Bologna - Italy"
+
   end
 end
