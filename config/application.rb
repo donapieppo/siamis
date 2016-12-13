@@ -5,24 +5,14 @@ require 'rails/all'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-MASTERS_OF_UNIVERSE  = ['pietro.donatini@unibo.it', 
-                        'valeria.montesi3@unibo.it', 
-                        'm.ghedini@unibo.it']
-COCHAIRS             = ['fiorella.sgallari@unibo.it', 
-                        'omar@ices.utexas.edu']
-SCIENTIFIC_COMMITTEE = ['marcelo.bertalmio@upf.edu',
-                        'jmchung@vt.edu',
-                        'pcha@dtu.dk',
-                        'j.kaipio@auckland.ac.nz',
-                        'eric.miller@tufts.edu',
-                        'nikolova@cmla.ens-cachan.fr',
-                        'ronny.ramlau@ricam.oeaw.ac.at',
-                        'cbs31@cam.ac.uk',
-                        'steidl@mathematik.uni-kl.de',
-                        'tai@mi.uib.no',
-                        'waller@berkeley.edu',
-                        'brendt@lanl.gov']
-ORGANIZER_COMMITTEE  = ['francesca.incensi3@unibo.it']
+
+MASTERS_OF_UNIVERSE  = ['name.surname@example.com', 
+                        'name.surname2@example.com']
+COCHAIRS             = ['name.surname3@example.com',
+                        'name.surname4@example.com']
+SCIENTIFIC_COMMITTEE = ['name.surname5@example.com',
+                        'name.surname6@example.com']
+ORGANIZER_COMMITTEE  = ['name.surname7@unibo.it']
 
 module Siamis
   class Application < Rails::Application
@@ -33,9 +23,9 @@ module Siamis
     config.i18n.default_locale = :en
     config.active_record.time_zone_aware_types = [:datetime, :time]
 
-    config.impersonate_admins = ['pietro.donatini@unibo.it', 'm.ghedini@unibo.it']
+    config.impersonate_admins = ['name.surname@example.com']
 
-    routes.default_url_options[:host]     = 'tester.dm.unibo.it'
+    routes.default_url_options[:host]     = 'tester.example.com'
     routes.default_url_options[:protocol] = 'https'
 
     # general dates
@@ -48,7 +38,6 @@ module Siamis
                          minisymposium_abstract: ['25/09/2017', '25/10/2017'],
                          presentation_proposal:  ['15/07/2017', '18/10/2017'] }
 
-    config.message_footer = "Siam-is18 June 5-8, 2018 Bologna - Italy"
-
+    config.message_footer = "Conference name June 5-8, 2018 Example - Italy"
   end
 end
