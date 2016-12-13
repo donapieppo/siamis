@@ -9,12 +9,6 @@ class Role < ApplicationRecord
     self.user.to_s
   end
 
-  before_validation :set_or_create_user_from_email
-
-  def to_s
-    self.user.to_s
-  end
-
   private
 
   def validate_if_has_already_same_role
