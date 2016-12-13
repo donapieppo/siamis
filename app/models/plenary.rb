@@ -9,4 +9,9 @@ class Plenary < ConferenceSession
   def speakers
     self.presentation.authors.map(&:to_s).join(', ')
   end
+
+  # assume the first :-)
+  def speaker
+    self.presentation.authors.first
+  end
 end
