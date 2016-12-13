@@ -19,7 +19,7 @@ class Minitutorial < ConferenceSession
   after_create :create_the_presentation
 
   def speakers
-    self.presentation.authors.map(&:to_s).join(', ')
+    self.presentation.authors_to_s
   end
 end
 

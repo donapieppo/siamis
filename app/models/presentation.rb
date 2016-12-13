@@ -11,6 +11,8 @@ class Presentation < ApplicationRecord
   scope :at_minitutorial,  -> { left_outer_joins(:conference_session).where.not(conference_session_id: nil).where('conference_sessions.type = "Minitutorial"').references(:conference_session) }
 
   scope :unassigned,       -> { where(conference_session_id: nil) }
+  scope :poster,           -> { where.not(poster: nil) }
+  scope :not_poster,       -> { where(poster: nil) }
 
   def to_s
     self.name || self.conference_session.to_s
@@ -40,6 +42,10 @@ class Presentation < ApplicationRecord
 
   def speaker
     self.authors.where(speak: true).first
+  end
+
+  def authors_to_s
+    self.authors.map(&:to_s).join(', ')
   end
 end
 
