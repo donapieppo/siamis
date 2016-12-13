@@ -5,6 +5,13 @@
 <% end %>
 
 <% @plenaries.each do |plenary| %>  
-  <%= render plenary %>    
+  <% if asset_exist?(plenary.speaker.photo_asset) %>  
+    <%= image_tag plenary.speaker.photo_asset, style: 'float: left; margin: 10px 20px;' %>  
+  <% end %>
+  <h2><%= plenary.schedule %> </h2>
+  <h2><%= plenary.speaker %></h2>
+  <h3><%= plenary.name %></h3>
+  <p><strong>Chair:</strong> <%= plenary.chairs.map(&:to_s).join(', ') %></p>
+  <p><em><%= plenary.description %></em></p>
 <% end %>
 
