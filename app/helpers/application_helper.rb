@@ -162,4 +162,12 @@ module ApplicationHelper
       html_escape(what) + '<br/><small>Siam-is18 June 5-8, 2018 Bologna - Italy</small>'.html_safe
     end
   end
+
+  def asset_exist?(path)
+    if Rails.configuration.assets.compile
+      Rails.application.precompiled_assets.include? path
+    else
+      Rails.application.assets_manifest.assets[path].present?
+    end
+  end
 end
