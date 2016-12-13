@@ -1,5 +1,7 @@
 class Role < ApplicationRecord
   belongs_to :user
+  belongs_to :presentation, optional: true
+  belongs_to :conference_session, optional: true
   
   attr_accessor :email, :name, :surname, :affiliation, :address
 
@@ -12,13 +14,20 @@ class Role < ApplicationRecord
   private
 
   def validate_if_has_already_same_role
-   if self.is_a?(Organizer) and self.conference_session_id 
-     self.errors.add(:email, "User is already organizer of this #{self.conference_session.class}") if Organizer.where(user_id: self.user_id, conference_session_id: self.conference_session_id).any?
-   elsif self.is_a?(Chair) and self.conference_session_id
-     self.errors.add(:email, "User is already chair of this #{self.conference_session.class}") if Chair.where(user_id: self.user_id, conference_session_id: self.conference_session_id).any?
-   elsif self.is_a?(Author) and self.presentation_id 
-     self.errors.add(:email, "User is already author of this #{self.presentation.class}") if Author.where(user_id: self.user_id, presentation_id: self.presentation_id).any?
-   end
+    case self
+    when Organizer
+      if self.conference_session and self.conference_session.organizers.where(user_id: self.user_id).any?
+        self.errors.add(:email, "User is already organizer of this #{self.conference_session.class}") 
+      end
+    when Chair
+      if self.conference_session and self.conference_session.chairs.where(user_id: self.user_id).any?
+        self.errors.add(:email, "User is already chair of this #{self.conference_session.class}") 
+      end
+    when Author
+      if self.presentation and self.presentation.authors.where(user_id: self.user_id).any?
+        self.errors.add(:email, "User is already author of this #{self.presentation.class}") 
+      end
+    end
   end
 
   # for Organizer
