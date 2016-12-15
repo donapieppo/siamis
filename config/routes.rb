@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :presentations
     resources :ratings
     resources :schedules
+    put 'accept', on: :member
+    put 'refuse', on: :member
   end
   resources :minitutorials do
     resources :presentations
@@ -23,23 +25,22 @@ Rails.application.routes.draw do
     resources :chairs
     resources :schedules
   end
-  resources :contributed_sessions do
-    resources :schedules
-  end
-  resources :poster_sessions do
-    resources :schedules
-    resources :presentations do 
-      put 'add', on: :member
-      put 'remove', on: :member
-    end
-  end
+  resources :contributed_sessions
+  resources :poster_sessions
+  # resources :contributed_sessions do
+  #   resources :schedules
+  # end
+  # resources :poster_sessions do
+  #   resources :schedules
+  #   resources :presentations do 
+  #     put 'add', on: :member
+  #     put 'remove', on: :member
+  #   end
+  # end
   resources :schedules
-  namespace :commettee do
-    resources :conference_sessions 
-  end
   resources :conference_sessions do 
-    get :manage_presentations, on: :member
     resources :schedules
+    get :manage_presentations, on: :member
     resources :presentations do 
       put 'add', on: :member
       put 'remove', on: :member
@@ -48,6 +49,8 @@ Rails.application.routes.draw do
   resources :presentations do 
     resources :authors
     resources :ratings
+    put 'accept', on: :member
+    put 'refuse', on: :member
   end
 
   resources :payments do
