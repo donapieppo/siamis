@@ -51,10 +51,11 @@
           <%= link_to icon('trash')  + ' delete', minisymposium_path(minisymposium), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'}, class: :button %>
         <% end %>
         <% if user_in_scientific_commettee? %>  
-          <%= link_to icon('star')    + ' rate', new_minisymposium_rating_path(@conference_session), class: :button %>  
+          <%= link_to icon('star')    + ' rate', new_minisymposium_rating_path(minisymposium), class: :button %>  
         <% end %>
         <% if user_in_organizer_commettee? %>  
           <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(minisymposium), class: :button %>  
+          <%= link_to icon('check') + ' accept', accept_minisymposium_path(minisymposium), method: :put, class: :button %>  
         <% end %>
         &nbsp; <span class="pull-right"><%= minisymposium.schedule || 'schedule to be decided' %></span>
       </div><!-- footer -->
