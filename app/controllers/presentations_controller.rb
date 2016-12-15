@@ -3,8 +3,9 @@
 class PresentationsController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   before_action :set_conference_session_and_check_permission, only: [:new, :create]
-  before_action :set_presentation_and_check_permission, only: [:edit, :update, :add, :remove]
+  before_action :set_presentation_and_check_permission, only: [:edit, :update, :add, :remove, :accept]
   before_action :check_deadline!, only: [:new, :create]
+  before_action :user_in_organizer_commettee!, only: [:accept]
 
   # like submissions (think, fixme)
   def index
@@ -75,6 +76,11 @@ class PresentationsController < ApplicationController
     current_user.owns!(@presentation) or raise NOACCESS
     @presentation.delete
     redirect_to presentations_path
+  end
+
+  def accept
+    @presentation.accept!
+    redirect_to admin_submissions_path
   end
 
   private
