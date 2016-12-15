@@ -14,6 +14,10 @@ class Presentation < ApplicationRecord
   scope :poster,           -> { where.not(poster: nil) }
   scope :not_poster,       -> { where(poster: nil) }
 
+  scope :submitted,        -> { unassigned.where(accepted: nil) }
+
+  validates :name, presence: true
+
   def to_s
     self.name || self.conference_session.to_s
   end
@@ -46,6 +50,10 @@ class Presentation < ApplicationRecord
 
   def authors_to_s
     self.authors.map(&:to_s).join(', ')
+  end
+
+  def accept!
+    self.update_attribute(:accepted, true)
   end
 end
 

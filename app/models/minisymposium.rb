@@ -8,6 +8,10 @@ class Minisymposium < ConferenceSession
   def presentations_complete
     self.presentations.size >= 4
   end
+
+  def accept!
+    self.update_attribute(:accepted, true)
+  end
 end
 
 
