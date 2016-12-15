@@ -1,5 +1,6 @@
 class MinisymposiaController < ConferenceSessionsController
   before_action :check_deadline!, only: [:new, :create]
+  before_action :user_in_organizer_commettee!, only: [:accept]
 
   def new
     @conference_session = Minisymposium.new
@@ -13,6 +14,11 @@ class MinisymposiaController < ConferenceSessionsController
     else
       render action: :new
     end
+  end
+
+  def accept
+    Minisymposium.find(params[:id]).accept!
+    redirect_to admin_submissions_path
   end
 
   private
