@@ -1,7 +1,6 @@
 class Rating < ApplicationRecord
   belongs_to :user
   belongs_to :minisymposium, foreign_key: :conference_session_id, optional: true
-  belongs_to :minitutorial,  foreign_key: :conference_session_id, optional: true
   belongs_to :presentation,  optional: true
 
   def to_s
@@ -9,7 +8,7 @@ class Rating < ApplicationRecord
   end
 
   def about
-    self.minitutorial || self.minisymposium || self.presentation
+    self.minisymposium || self.presentation
   end
 
   def about_string
@@ -21,6 +20,14 @@ class Rating < ApplicationRecord
     else
       ""
     end
+  end
+
+  def self.get_unrated_minisymposium(user)
+    Minisymposium.where.not(id: user.ratings.map(&:conference_session_id)).first
+  end
+
+  def self.get_unrated_presentation(user)
+    Presentation.unassigned.where.not(id: user.ratings.map(&:presentation_id)).first
   end
 
 end
