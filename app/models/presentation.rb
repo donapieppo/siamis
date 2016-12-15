@@ -1,7 +1,7 @@
 class Presentation < ApplicationRecord
   has_many :authors, dependent: :destroy
   # has_many :users, through: :authors
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
   belongs_to :conference_session, optional: true
   belongs_to :minisymposium, foreign_key: :conference_session_id, optional: true
   belongs_to :minitutorial,  foreign_key: :conference_session_id, optional: true
@@ -55,5 +55,6 @@ class Presentation < ApplicationRecord
   def accept!
     self.update_attribute(:accepted, true)
   end
+
 end
 
