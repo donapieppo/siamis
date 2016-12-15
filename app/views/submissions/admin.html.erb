@@ -1,21 +1,11 @@
 <h1>Submissions</h1>
 
-<h2>Contributed Presentations</h2>
+<h2>Minisymposia</h2>
+<%= render Minisymposium.all, one_line: true %>     
 
-<ul>
-<% Presentation.unassigned.not_poster.each do |presentation| %>  
-  <li>
-    <em><%= presentation.authors_to_s %></em>  <%= presentation %>
-  </li>
-<% end %>
-</ul>
+<h2>Contributed Presentations</h2>
+<%= render partial: 'approvals', locals: {what: Presentation.not_poster} %>  
 
 <h2>Poster Presentations</h2>
-<ul>
-<% Presentation.unassigned.poster.each do |presentation| %>  
-  <li>
-    <em><%= presentation.authors_to_s %></em>  <%= presentation %>
-  </li>
-<% end %>
-</ul>
+<%= render partial: 'approvals', locals: {what: Presentation.poster} %>  
 

@@ -1,20 +1,24 @@
 class RatingsController < ApplicationController
   before_action :user_in_scientific_commettee!
-  before_action :set_conference_session
+  before_action :set_what, except: :index
 
   def index
-    @ratings = @conference_session.ratings.includes(:user, :minitutorial, :minisymposium, :presentation).all
+    if params[:minisymposia]
+      @list = Minisymposium.includes(:organizers).all
+    else
+      @list = Presentation.includes(:authors).submitted
+    end
   end
 
   def new
-    @rating = @conference_session.ratings.where(user: current_user).first || @conference_session.ratings.new(user: current_user)
+    @rating = @what.ratings.where(user: current_user).first || @what.ratings.new(user: current_user)
   end
 
   def update
-    @rating = @conference_session.ratings.where(user: current_user).first || @conference_session.ratings.new(user: current_user)
+    @rating = @what.ratings.where(user: current_user).first || @what.ratings.new(user: current_user)
     @rating.user = current_user
     if @rating.update_attributes(rating_params)
-      redirect_to commettee_conference_sessions_path
+      redirect_to ratings_path
     else
       render action: :new
     end
@@ -28,6 +32,10 @@ class RatingsController < ApplicationController
   end
 
   private
+
+  def set_what
+    @what = params[:minisymposium_id] ? Minisymposium.find(params[:minisymposium_id]) : Presentation.find(params[:presentation_id])
+  end
 
   def rating_params
     params[:rating].permit(:score, :notes)
