@@ -2,6 +2,8 @@
   <% [:name, :surname, :affiliation, :address, :country, :siag, :siam, :student].each do |field| %>  
     <%= dl_field(user, field) %>  
   <% end %>
+  <dt>Home Page</dt>
+  <dd><%= link_to user.web_page, user.web_page %></dd>
   <dt>Contact</dt>
   <dd><%= mail_to user.email, user.email %></dd>
 </dl>
