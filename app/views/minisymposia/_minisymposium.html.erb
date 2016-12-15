@@ -7,12 +7,17 @@
   </div>
 <% else %>
   <div class="minisymposium_panel">
+
     <div class="panel-heading">
-      <%= link_to minisymposium, minisymposium %> <span class="badge pull-right">MS</span>
+      <h3 class="panel-title">
+        <%= link_to minisymposium, minisymposium %>
+        <span class="badge pull-right">MS</span>
+      </h3>
     </div><!-- heading -->
 
     <div class="panel-body">
       <p><em><%= minisymposium.description %></em></p>
+
       <dl class="dl-horizontal">
         <dt>Organizers:</dt>
         <% minisymposium.organizers.includes(:user).each do |organizer| %>  
@@ -28,12 +33,8 @@
           <% end %>
           <%= content_tag(:dd, icon('warning') + ' Please add presentations.') if presentations.size < 4 %>  
         <% end %>
-        <% if user_in_scientific_commettee? and ! defined?(short)%>
-          <dt>Ratings:</dt>
-          <% minisymposium.ratings.each do |rating| %>  
-            <dd><%= rating.user %> <%= rating_stars(rating.score) %> (<%= rating.notes %>)</dd>
-          <% end %>
-        <% end %>
+
+        <%= render(partial: 'ratings/dl_list', locals: { what: minisymposium }) unless defined?(short) %>  
       </dl>
       <% if presentations.size < 4 %>  
         <p class="alert alert-warning">A minisymposium generally consists of <strong>four</strong> 25-minute presentations, with an additional five minutes for discussion after each presentation.</p>
@@ -51,7 +52,7 @@
           <%= link_to icon('trash')  + ' delete', minisymposium_path(minisymposium), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'}, class: :button %>
         <% end %>
         <% if user_in_scientific_commettee? %>  
-          <%= link_to icon('star')    + ' rate', new_minisymposium_rating_path(minisymposium), class: :button %>  
+          <%= link_to icon('star')    + ' rate', new_minisymposium_rating_path(minisymposium), class: :button, remote: true %>  
         <% end %>
         <% if user_in_organizer_commettee? %>  
           <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(minisymposium), class: :button %>  

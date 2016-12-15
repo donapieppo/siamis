@@ -1,6 +1,8 @@
 <%= render @conference_session, with_presentations: true %>  
 
-<% if rating = current_user.ratings.where(minisymposium: @minisymposium).first %>  
-  you rated <strong><%= rating.score %>/5 </strong> this Minisymposium
-  <br/> <%= link_to_delete 'delete your rating', ratings_path(rating) %>  
+<% if rating = current_user.ratings.where(minisymposium: @conference_session).first %>  
+  You rated <strong><%= rating.score %>/5 </strong> this Minisymposium.
 <% end %>
+
+<%= link_to_next_rating(Rating.get_unrated_minisymposium(current_user)) %>
+

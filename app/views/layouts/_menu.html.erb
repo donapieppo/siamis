@@ -16,14 +16,15 @@
         <%= menu_link 'circle', 'Plenary Sessions', plenaries_path %>  
         <%= menu_link 'circle', 'Minitutorials', minitutorials_path %>
         <%= menu_link 'circle', 'Minisymposia', minisymposia_path %>
-        <%= menu_link 'circle', 'Poster Sessions', poster_sessions_path %>
         <%= menu_link 'circle', 'Contributed Presentations', contributed_sessions_path %>
+        <%= menu_link 'circle', 'Poster Sessions', poster_sessions_path %>
       <% end %>
       <% if current_user %>  
         <%= menu_link 'file', 'Submissions', submissions_path %>
         <% if user_in_scientific_commettee? %>  
           <%= dropdown_menu fwicon('gavel') + ' Commettee' do %>
-            <%= menu_link 'gavel', 'Sessions', commettee_conference_sessions_path %>
+            <%= menu_link 'star', 'Minisymposia ratings', ratings_path(minisymposia: 1) %>
+            <%= menu_link 'star', 'Submissions ratings', ratings_path %>
           <% end %>
         <% end %>
         <% if user_in_organizer_commettee? %>  

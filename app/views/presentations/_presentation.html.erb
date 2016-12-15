@@ -8,11 +8,22 @@
 <% else %>
   <div class="presentation_panel">
     <div class="panel-heading">
-     <%= presentation %> <span class="badge pull-right"><%= presentation.parent_event_abbr %></span>
+      <h3 class="panel-title">
+        <%= link_to presentation, presentation %>
+        <span class="badge pull-right"><%= presentation.parent_event_abbr %></span>
+      </h3>
     </div><!-- heading -->
 
     <div class="panel-body">
       <p><%= presentation.abstract %></p>
+      <% if ! defined?(short) and presentation.conference_session %>  
+        <p>
+        This presentation is part of <%= t presentation.conference_session.class %> <em>"<%= link_to presentation.conference_session, presentation.conference_session %>"</em>. 
+        <% if presentation.conference_session.is_a?(Minisymposium) %>
+          <br/><small><%= organized_by(presentation.conference_session) %></small>. 
+        <% end %>
+        </p>
+      <% end %>
       <dl class="dl-horizontal">
         <dt>Authors:</dt>
         <% presentation.authors.each do |author| %>  
@@ -22,22 +33,24 @@
           <%= link_to_delete author_path(author) if owner %>  
           </dd>
         <% end %>
+
+        <%= render(partial: 'ratings/dl_list', locals: { what: presentation }) unless defined?(short) %>  
       </dl>
-      <% if ! defined?(short) and presentation.conference_session %>  
-        This presentation is part of <%= t presentation.conference_session.class %> <em>"<%= link_to presentation.conference_session, presentation.conference_session %>"</em>. 
-        <% if presentation.conference_session.is_a?(Minisymposium) %>
-          <br/><small><%= organized_by(presentation.conference_session) %></small>. 
-        <% end %>
-      <% end %>
+
     </div><!-- body -->
 
-    <% if owner and ! defined?(short)%>  
+    <% if ! defined?(short)%>  
       <div class="panel-footer">
-        <%= link_to icon('pencil') + " edit", edit_presentation_path(presentation), class: :button %>  
-        <%= link_to icon('plus')   + " add author", new_presentation_author_path(presentation), class: :button %>
-        <%= link_to icon('trash')  + " delete", presentation_path(presentation), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'}, class: :button %>
-        <% if presentation.conference_session %>  
-          <%= link_to icon('pencil') + " edit #{presentation.conference_session.class}", presentation.conference_session, class: :button %>  
+        <% if owner %>  
+          <%= link_to icon('pencil') + " edit", edit_presentation_path(presentation), class: :button %>  
+          <%= link_to icon('plus')   + " add author", new_presentation_author_path(presentation), class: :button %>
+          <%= link_to icon('trash')  + " delete", presentation_path(presentation), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'}, class: :button %>
+          <% if presentation.conference_session %>  
+            <%= link_to icon('pencil') + " edit #{presentation.conference_session.class}", presentation.conference_session, class: :button %>  
+          <% end %>
+        <% end %>
+        <% if user_in_scientific_commettee? %>  
+          <%= link_to icon('star') + ' rate', new_presentation_rating_path(presentation), class: :button, remote: true %>  
         <% end %>
       </div><!-- footer -->
     <% end %>

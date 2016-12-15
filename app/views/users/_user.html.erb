@@ -3,7 +3,7 @@
     <%= dl_field(user, field) %>  
   <% end %>
   <dt>Home Page</dt>
-  <dd><%= link_to user.web_page, user.web_page %></dd>
+  <dd><%= link_to(user.web_page, user.web_page) unless user.web_page.blank? %></dd>
   <dt>Contact</dt>
   <dd><%= mail_to user.email, user.email %></dd>
 </dl>

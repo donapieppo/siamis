@@ -1,0 +1,13 @@
+<div style="display: flex; width: 100%; flex-flow: row wrap;">
+  <% what.each do |presentation| %>  
+    <div style="border: 1px solid #ccc; padding: 20px; width: 45%">
+      <p><%= link_to presentation, presentation_path(presentation) %></p>
+      <%= users_list(presentation) %> 
+      <p> 
+      <%= link_to('accept', accept_presentation_path(presentation), method: :put, class: :button) unless presentation.accepted %> 
+      <%= link_to('refuse', refuse_presentation_path(presentation), method: :put, class: :button) if presentation.accepted %> 
+      </p>
+    </div>
+  <% end %>
+</div>
+

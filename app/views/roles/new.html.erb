@@ -11,8 +11,7 @@ New <%= @role.class %><br/>
   <%= role.input :email, readonly: ! uncorrect_email %>  
 
   <% unless uncorrect_email or @role.errors[:email].any? %> 
-    <p>There is no user with the mail < <%= @role.email %> >.
-       Please submit all the info</p>
+    <p>There is no user with the mail <<%= @role.email %>>. Please submit all the info.</p>
     <%= role.input :name, required: true %>  
     <%= role.input :surname, required: true %>  
     <%= role.input :affiliation, required: true %>  
