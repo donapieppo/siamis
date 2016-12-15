@@ -18,7 +18,7 @@ class RatingsController < ApplicationController
     @rating = @what.ratings.where(user: current_user).first || @what.ratings.new(user: current_user)
     @rating.user = current_user
     if @rating.update_attributes(rating_params)
-      redirect_to ratings_path
+      redirect_to @what
     else
       render action: :new
     end

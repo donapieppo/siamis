@@ -5,18 +5,23 @@
 
 <div class="list-group">
   <% @list.each do |submission| %>  
+    <% url = params[:minisymposia] ? new_minisymposium_rating_path(submission) : new_presentation_rating_path(submission) %>  
     <div class="list-group-item">
       <%= link_to submission, submission %> 
-      <em><%= users_list(submission) %> </em>
+      <em> by: <%= users_list(submission) %></em>
       <ul>
         <% rated_by_me = nil %>  
         <% submission.ratings.each do |rating| %>  
-          <li><%= rating.user %> <%= rating_stars(rating.score) %> <em>(<%= rating.notes %>)</em>  </li>
           <%- rated_by_me = true if rating.user == current_user %>  
+          <li>
+            <%= rating_stars(rating.score) %> 
+            <%= rating.user %> 
+            <em>(<%= rating.notes %>)</em>  
+            <%= link_to_edit url if rated_by_me %>  
+          </li>
         <% end %>
         <% unless rated_by_me %>  
-          <% url = params[:minisymposia] ? new_minisymposium_rating_path(submission) : new_presentation_rating_path(submission) %>  
-          <li><%= link_to icon('star') + ' rate', url, class: 'button' %></li>
+          <li><%= link_to icon('star') + ' rate', url, class: 'button', remote: true %></li>
         <% end %>
       </ul>
     </div>

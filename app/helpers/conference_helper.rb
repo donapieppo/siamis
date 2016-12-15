@@ -12,7 +12,11 @@ module ConferenceHelper
   end
 
   def rating_stars(rating)
-    (1..rating).map{|i| "<span>★</span>"}.join.html_safe +
+    # can be nil if new rating
+    return unless rating
+    color = "red"   if rating < 3
+    color = "green" if rating > 3
+    (1..rating).map{|i| "<span style=\"color: #{color}\">★</span>"}.join.html_safe +
     (rating..4).map{|i| "<span>☆</span>"}.join.html_safe
   end
 
@@ -60,11 +64,32 @@ module ConferenceHelper
   end
 
   def users_list(what)
+    what.send(what.is_a?(Minisymposium) ? :organizers : :authors).map(&:to_s).join(', ')
+  end
+
+  def ul_users_list(what)
     content_tag(:ul) do
       what.send(what.is_a?(Minisymposium) ? :organizers : :authors).each do |author|
         concat content_tag(:li, author.user.web_page ? link_to(author.user.to_s, author.user.web_page) : author.user.to_s)
       end
     end  
   end
+
+  def next_to_rate(what)
+    case what
+    when Minisymposium
+      Minisymposium.unrated.first
+    when Presentation
+      Presentation.unrated.first
+    end
+  end
+
+  def link_to_next_rating(what)
+    user_in_scientific_commettee? or return ""
+    content_tag(:p, class: 'centered') do
+      what ? link_to('next to rate', what, class: :button) : 'You have rated all minisymposia'
+    end
+  end
+
 end
 

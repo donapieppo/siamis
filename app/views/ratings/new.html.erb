@@ -1,11 +1,3 @@
 <h1>Please Rate this <%= @rating.about.class %></h1>
 
-<%= simple_form_for [@rating.about, @rating] do |rating| %>  
-  <%= rating.input :score, collection: (0..5) %>  
-  <%= rating.input :notes %>  
-  <%= rating.submit "Save" %>  
-<% end %>
-
-<%= render @rating.about, short: true %>
-
-
+<%= render partial: 'form' %>  
