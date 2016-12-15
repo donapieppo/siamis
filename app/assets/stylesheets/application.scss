@@ -4,13 +4,10 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "home";
-// @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic');
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic');
 
 body {
-  // font-family: 'Roboto', sans-serif;
   font-family: 'Roboto Condensed', sans-serif;
-  // background: url(asset-path('esagono.svg')) no-repeat center top ;
 }
 .centered {
   margin-left:  auto; 
@@ -19,21 +16,16 @@ body {
 }
 h1 {
   @extend .centered;
-  font-size: 2em;
-  letter-spacing: .2em;
-  // text-transform: uppercase;
-  //text-shadow: 1px 2px 0 rgba(0,0,0,0.1);
   width: 100%;
   text-align: center;
-  margin-bottom: 30px;
+  // text-transform: uppercase;
+  // text-shadow: 1px 2px 0 rgba(0,0,0,0.1);
 }
 h2 {
   @extend .centered;
-  font-size: 2rem;
 }
 h3 {
   @extend .centered;
-  font-size: 1.8rem;
 }
 
 .button {
@@ -63,87 +55,79 @@ input[type="submit"] {
   margin-bottom: 10px;
 }
 
-.card-presentation .card-title {
-  font-size: 18px;
-}
-.title {
-  font-size: 1.2em;
-  margin-bottom: 30px;
-}
-.session_in_title {
-  border: 3px solid #ccc;
-  border-radius: 5px;
-  text-align: center;
-  padding: 12px 24px;
-  margin-right: 30px;
-  vertical-align: middle;
-  color: green;
-}
-.Minisymposium {
-  @extend .session_in_title;
-}
-.Minitutorial {
-  @extend .session_in_title;
-}
-.ContributedSession {
-  @extend .session_in_title;
-}
-.PosterSession {
-  @extend .session_in_title;
-}
-.Plenary {
-  @extend .session_in_title;
-}
-.Presentation {
-  @extend .session_in_title;
-}
+// .title {
+//   font-size: 1.2em;
+//   margin-bottom: 30px;
+// }
+
+// .session_in_title {
+//   border: 3px solid #ccc;
+//   border-radius: 5px;
+//   text-align: center;
+//   padding: 12px 24px;
+//   margin-right: 30px;
+//   vertical-align: middle;
+//   color: green;
+// }
+// .Minisymposium {
+//   @extend .session_in_title;
+// }
+// .Minitutorial {
+//   @extend .session_in_title;
+// }
+// .ContributedSession {
+//   @extend .session_in_title;
+// }
+// .PosterSession {
+//   @extend .session_in_title;
+// }
+// .Plenary {
+//   @extend .session_in_title;
+// }
+// .Presentation {
+//   @extend .session_in_title;
+// }
 
 ul li { list-style-type: none; }
 
-.session-description {
-  @extend .well;
-  margin-left: 20%;
-  text-align: right;
-}
-
 .siam_panel {
   @extend .panel;
-  @extend .panel-default;
+  @extend .panel-primary;
   .panel-heading {
     font-weight: bold;
     h2 {
       text-transform: uppercase;
     }
   }
-
 }
 .minisymposium_panel {
   @extend .siam_panel;
-  .panel-heading { background-color: $minisymposium_color; }
+  // .panel-heading { background-color: $minisymposium_color; }
 }
 .contributed_session_panel {
   @extend .siam_panel;
-  .panel-heading { background-color: $contributed_session_color; }
-}
-.plenary_panel {
-  @extend .siam_panel;
-  .panel-heading { background-color: $plenary_color; }
+  // .panel-heading { background-color: $contributed_session_color; }
 }
 .minitutorial_panel {
   @extend .siam_panel;
-  .panel-heading { background-color: $minitutorial_color; }
+  // .panel-heading { background-color: $minitutorial_color; }
+}
+.presentation_panel {
+  @extend .siam_panel;
+  // .panel-heading { background-color: $presentation_color; }
 }
 .poster_session_panel {
   @extend .siam_panel;
-  .panel-heading { background-color: $poster_session_color; }
+  //.panel-heading { background-color: $poster_session_color; }
 }
 
-.presentation_panel {
-  @extend .siam_panel;
-  .panel-heading { 
-    background-color: $presentation_color; 
-  }
+.plenary {
+  img {
+    width: 200px; 
+    margin: 30px;
+  } 
 }
+
 #footer {
   margin-top: 30px;
   padding-top: 30px;
