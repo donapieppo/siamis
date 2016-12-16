@@ -64,7 +64,9 @@ module ConferenceHelper
   end
 
   def users_list(what)
-    what.send(what.is_a?(Minisymposium) ? :organizers : :authors).map(&:to_s).join(', ')
+    what.send(what.is_a?(Minisymposium) ? :organizers : :authors).map {|author|
+      h(author.user.cn) + " " + content_tag(:em, "(#{h(author.user.affiliation)})")
+    }.join(', ').html_safe
   end
 
   def ul_users_list(what)
