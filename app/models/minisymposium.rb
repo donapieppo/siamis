@@ -5,6 +5,9 @@ class Minisymposium < ConferenceSession
 
   validates :name, presence: true, uniqueness: true
 
+  scope :submitted, -> { where(accepted: nil) }
+  scope :accepted,  -> { where(accepted: true) }
+
   def presentations_complete
     self.presentations.size >= 4
   end

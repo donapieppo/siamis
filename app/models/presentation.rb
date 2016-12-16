@@ -15,6 +15,7 @@ class Presentation < ApplicationRecord
   scope :not_poster,       -> { where(poster: nil) }
 
   scope :submitted,        -> { unassigned.where(accepted: nil) }
+  scope :accepted,         -> { where(accepted: true) }
 
   validates :name, presence: true
 
