@@ -18,7 +18,7 @@ class MinisymposiaController < ConferenceSessionsController
 
   def accept
     Minisymposium.find(params[:id]).accept!
-    redirect_to admin_submissions_path
+    redirect_to submissions_path
   end
 
   private

@@ -80,7 +80,7 @@ class PresentationsController < ApplicationController
 
   def accept
     @presentation.accept!
-    redirect_to admin_submissions_path
+    redirect_to submissions_path
   end
 
   private
