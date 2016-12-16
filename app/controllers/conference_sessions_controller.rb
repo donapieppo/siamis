@@ -23,6 +23,15 @@ class ConferenceSessionsController < ApplicationController
   end
 
   def manage_presentations
+    @actual_presentations = @conference_session.presentations
+    @available_presentations = case @conference_session
+                               when PosterSession
+                                 Presentation.unassigned.poster
+                               when ContributedSession
+                                 Presentation.unassigned.not_poster
+                               else
+                                 []
+                               end
   end
 
   # TODO
