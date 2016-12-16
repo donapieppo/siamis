@@ -64,7 +64,7 @@ class UsersController < ApplicationController
 
   def set_user_and_check_permission
     @user = User.find(params[:id])
-    @user == current_user or current_user.master_of_universe? or raise NOACCESS
+    @user == current_user or user_in_organizer_commettee? or raise NOACCESS
   end
 end
 
