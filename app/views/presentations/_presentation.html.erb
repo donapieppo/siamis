@@ -2,7 +2,8 @@
 
 <% if defined?(one_line) %>  
   <div>
-    <%= link_to presentation, presentation %>
+    <%= link_to presentation, presentation %><br/>
+    <%= users_list(presentation) %>  
     <span class="badge pull-right"><%= presentation.parent_event_abbr %></span>
   </div>
 <% else %>
