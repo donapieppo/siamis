@@ -91,5 +91,22 @@ module ConferenceHelper
     end
   end
 
+  def organizer_commette_actions(what)
+    if user_in_organizer_commettee?  
+      link_to_edit2('Edit', [:edit, what]) + " " +
+      link_to(icon('clock-o') + ' schedule', new_conference_session_schedule_path(what), class: :button) + " " +
+      link_to_delete('delete', conference_session_path(what), button: true)
+    else 
+      "&nbsp;".html_safe
+    end 
+  end
+
+  def ul_list(what)
+    content_tag(:ul, class: 'list-group') do
+      what.each do |x|
+        concat(content_tag(:li, class: 'list-group-item') { link_to(x, x) })
+      end
+    end
+  end
 end
 
