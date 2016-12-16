@@ -18,7 +18,7 @@
       <p><%= presentation.abstract %></p>
       <% if ! defined?(short) and presentation.conference_session %>  
         <p>
-        This presentation is part of <%= t presentation.conference_session.class %> <em>"<%= link_to presentation.conference_session, presentation.conference_session %>"</em>. 
+        This presentation is part of <strong><%= t presentation.conference_session.class %></strong><em> "<%= link_to presentation.conference_session, presentation.conference_session %>"</em>. 
         <% if presentation.conference_session.is_a?(Minisymposium) %>
           <br/><small><%= organized_by(presentation.conference_session) %></small>. 
         <% end %>
@@ -36,7 +36,6 @@
 
         <%= render(partial: 'ratings/dl_list', locals: { what: presentation }) unless defined?(short) %>  
       </dl>
-
     </div><!-- body -->
 
     <% if ! defined?(short)%>  
@@ -51,6 +50,9 @@
         <% end %>
         <% if user_in_scientific_commettee? %>  
           <%= link_to icon('star') + ' rate', new_presentation_rating_path(presentation), class: :button, remote: true %>  
+        <% end %>
+        <% if user_in_organizer_commettee? %>  
+          <%= link_to icon('check') + ' accept', accept_presentation_path(presentation), method: :put, class: :button %>  
         <% end %>
       </div><!-- footer -->
     <% end %>

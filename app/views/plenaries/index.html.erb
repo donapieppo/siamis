@@ -16,6 +16,7 @@
     <h3><%= plenary.name %></h3>
     <p><strong>Chair:</strong> <%= plenary.chairs.map(&:to_s).join(', ') %></p>
     <p><em><%= plenary.description %></em></p>
+    <%= organizer_commette_actions(plenary) %>  
   </div>
 <% end %>
 

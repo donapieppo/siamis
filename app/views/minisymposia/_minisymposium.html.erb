@@ -31,12 +31,12 @@
           <% presentations.each do |presentation| %>
             <dd><%= link_to presentation, presentation %> </dd>
           <% end %>
-          <%= content_tag(:dd, icon('warning') + ' Please add presentations.') if presentations.size < 4 %>  
+          <%= content_tag(:dd, icon('warning') + ' Please add presentations.') if (owner and presentations.size < 4) %>  
         <% end %>
 
         <%= render(partial: 'ratings/dl_list', locals: { what: minisymposium }) unless defined?(short) %>  
       </dl>
-      <% if presentations.size < 4 %>  
+      <% if owner and presentations.size < 4 %>  
         <p class="alert alert-warning">A minisymposium generally consists of <strong>four</strong> 25-minute presentations, with an additional five minutes for discussion after each presentation.</p>
       <% end %>
     </div><!-- body -->
@@ -49,10 +49,10 @@
           <% if presentations.size < 4 %>  
             <%= link_to icon('file-audio-o') + ' add presentation', new_minisymposium_presentation_path(minisymposium), class: 'btn btn-warning' %>  
           <% end %>
-          <%= link_to icon('trash')  + ' delete', minisymposium_path(minisymposium), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'}, class: :button %>
+          <%= link_to icon('trash') + ' delete', minisymposium_path(minisymposium), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'}, class: :button %>
         <% end %>
         <% if user_in_scientific_commettee? %>  
-          <%= link_to icon('star')    + ' rate', new_minisymposium_rating_path(minisymposium), class: :button, remote: true %>  
+          <%= link_to icon('star') + ' rate', new_minisymposium_rating_path(minisymposium), class: :button, remote: true %>  
         <% end %>
         <% if user_in_organizer_commettee? %>  
           <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(minisymposium), class: :button %>  

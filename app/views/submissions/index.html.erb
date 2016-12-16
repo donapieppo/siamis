@@ -1,28 +1,22 @@
 <%= title_with_conference('Submissions') %>
 
-<p>SIAM requests that individuals limit themselves to giving one talk. (This does not apply to invited plenary speakers). The co-chairs of the organizing committee may make exceptions to this request.</p>
-<p>All submissions are subject to review and final approval by the co-chairs.</p>
+<% if user_in_organizer_commettee? %>  
+  <h2>Minisymposia</h2>
+  <%= ul_list(@minisymposia) %>  
 
-<%= render partial: 'deadlines/submission' %>  
+  <h2>Presentations</h2>
+  <%= ul_list(@presentations) %>
 
-<% if Deadline.can_propose?(:Minisymposium) or Deadline.can_propose?(:presentation) %>  
-  <p>You are invited to contribute a presentation for this conference in one of the following formats: </p>
+  <h2>Posters</h2>
+  <%= ul_list(@posters) %>
 
-  <div class="row">
-    <div class="col-md-6">
-      <%= render partial: 'minisymposium_proposal' if Deadline.can_propose?(:minisymposium) %>  
-    </div>
-
-    <div class="col-md-6">
-      <%= render partial: 'presentation_proposal'  if Deadline.can_propose?(:presentation) %>  
-    </div>
-  </div>
-<% end %>
-
-<% if @user_presentations.any? or @user_minisymposia.any? %>
+<% else %>
+  <%= render partial: 'description' %>  
   <hr/>
-  <h2>Your submissions</h2>
-  <%= render @user_presentations %>  
-  <%= render @user_minisymposia, with_presentations: true %>  
+  <% if @presentations.any? or @minisymposia.any? %>
+    <h2>Your submissions</h2>
+    <%= render @presentations %>  
+    <%= render @minisymposia, with_presentations: true %>  
+  <% end %>
 <% end %>
 

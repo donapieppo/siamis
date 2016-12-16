@@ -19,8 +19,8 @@ module LinkHelper
     link_to icon('search') + " " + name, url, title: "Show details"
   end
 
-  def link_to_edit(name = "", url)
-    link_to icon('pencil') + " " + name, url, title: "Modify"
+  def link_to_edit(name = "", url, button: false)
+    link_to icon('pencil') + " " + name, url, title: "Modify", class: (button ? 'button' : '')
   end
 
   def link_to_edit2(name = "", url)
