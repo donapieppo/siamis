@@ -104,6 +104,10 @@ ul li { list-style-type: none; }
   @extend .siam_panel;
   // .panel-heading { background-color: $minisymposium_color; }
 }
+.conference_session_panel {
+  @extend .siam_panel;
+  // .panel-heading { background-color: $contributed_session_color; }
+}
 .contributed_session_panel {
   @extend .siam_panel;
   // .panel-heading { background-color: $contributed_session_color; }
