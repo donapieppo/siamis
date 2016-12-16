@@ -1,23 +1,17 @@
 <div class="<%= conference_session.is_a?(Plenary) ? 'plenary' : 'minitutorial' %>_panel">
 <div class="panel-heading">
-  <h2>
+  <h3 class="panel-title">
     <%= conference_session.name %>
-  </h2>
-  <h3><%= conference_session.speakers %></h3>
-  <p class="schedule"><%= conference_session.schedule %></p>
+  </h3>
 </div>
 <div class="panel-body">
-  <em><%= conference_session.description %></em>
+  <p><%= conference_session.speakers %></p>
+  <p><em><%= conference_session.description %></em></p>
+  <p><strong>Chair:</strong> <%= conference_session.chairs.map(&:to_s).join(', ') %></p>
 </div>
 <div class="panel-footer">
-  <% if user_in_organizer_commettee? %>  
-      <%= link_to_edit2 'Edit', [:edit, conference_session] %>  
-      <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(conference_session), class: :button %>  
-      <%= link_to_delete 'delete', conference_session_path(conference_session), button: true %>  
-  <% else %>
-    &nbsp;
-  <% end %>
-  <span class="pull-right"><strong>Chair:</strong> <%= conference_session.chairs.map(&:to_s).join(', ') %></span>
+  <%= organizer_commette_actions(conference_session) %>  
+  &nbsp; <span class="pull-right"><%= conference_session.schedule || 'schedule to be decided' %></span>
 </div>
 </div>
 
