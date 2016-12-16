@@ -20,7 +20,6 @@
         <%= menu_link 'circle', 'Poster Sessions', poster_sessions_path %>
       <% end %>
       <% if current_user %>  
-        <%= menu_link 'file', 'Submissions', submissions_path %>
         <% if user_in_scientific_commettee? %>  
           <%= dropdown_menu fwicon('gavel') + ' Commettee' do %>
             <%= menu_link 'star', 'Minisymposia ratings', ratings_path(minisymposia: 1) %>
@@ -31,8 +30,10 @@
           <%= dropdown_menu fwicon('magic') + ' Admin' do %>
             <%= menu_link 'building-o', 'Rooms', rooms_path %>
             <%= menu_link 'users', 'Users', users_path %>
-            <%= menu_link 'users', 'Submissions', admin_submissions_path %>
+            <%= menu_link 'file', 'Submissions', submissions_path %>
           <% end %>
+        <% else %>
+          <%= menu_link 'file', 'Submissions', submissions_path %>
         <% end %>
         <% unless @conference_registration %>  
           <%= menu_link 'credit-card', 'Registration', new_conference_registration_path %>
