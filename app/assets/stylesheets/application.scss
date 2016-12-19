@@ -159,4 +159,8 @@ ul li { list-style-type: none; }
     background-color: $presentation_color;
   }
 }
-
+.footer-actions {
+  a {
+    @extend .button;
+  }
+}
