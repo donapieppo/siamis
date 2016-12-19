@@ -5,11 +5,11 @@
   </h3>
 </div>
 <div class="panel-body">
-  <p><%= conference_session.speakers %></p>
+  <p><strong>Speaker</strong>: <%= conference_session.speakers %></p>
   <p><em><%= conference_session.description %></em></p>
   <p><strong>Chair:</strong> <%= conference_session.chairs.map(&:to_s).join(', ') %></p>
 </div>
-<div class="panel-footer">
+<div class="panel-footer footer-actions">
   <%= organizer_commette_actions(conference_session) %>  
   &nbsp; <span class="pull-right"><%= conference_session.schedule || 'schedule to be decided' %></span>
 </div>

@@ -40,21 +40,22 @@
     </div><!-- body -->
 
     <% if ! defined?(short)%>  
-      <div class="panel-footer">
+      <div class="panel-footer footer-actions">
         <% if owner %>  
-          <%= link_to icon('pencil') + " edit", edit_presentation_path(presentation), class: :button %>  
-          <%= link_to icon('plus')   + " add author", new_presentation_author_path(presentation), class: :button %>
-          <%= link_to icon('trash')  + " delete", presentation_path(presentation), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'}, class: :button %>
+          <%= link_to icon('pencil') + " edit", edit_presentation_path(presentation) %>  
+          <%= link_to icon('plus')   + " add author", new_presentation_author_path(presentation) %>
+          <%= link_to icon('trash')  + " delete", presentation_path(presentation), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'} %>
           <% if presentation.conference_session %>  
-            <%= link_to icon('pencil') + " edit #{presentation.conference_session.class}", presentation.conference_session, class: :button %>  
+            <%= link_to icon('pencil') + " edit #{presentation.conference_session.class}", presentation.conference_session %>  
           <% end %>
         <% end %>
         <% if user_in_scientific_commettee? %>  
-          <%= link_to icon('star') + ' rate', new_presentation_rating_path(presentation), class: :button, remote: true %>  
+          <%= link_to icon('star') + ' rate', new_presentation_rating_path(presentation), remote: true %>  
         <% end %>
         <% if user_in_organizer_commettee? %>  
-          <%= link_to icon('check') + ' accept', accept_presentation_path(presentation), method: :put, class: :button %>  
+          <%= link_to icon('check') + ' accept', accept_presentation_path(presentation), method: :put %>  
         <% end %>
+        &nbsp; <span class="pull-right"><%= presentation.schedule || 'schedule to be decided' %></span>
       </div><!-- footer -->
     <% end %>
   </div>

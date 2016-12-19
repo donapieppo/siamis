@@ -42,21 +42,21 @@
     </div><!-- body -->
 
     <% if ! defined?(short) %>  
-      <div class="panel-footer">
+      <div class="panel-footer footer-actions">
         <% if owner  %>  
-          <%= link_to icon('pencil') + ' edit', edit_minisymposium_path(minisymposium), class: :button %>  
-          <%= link_to icon('user')   + ' add organizer', new_minisymposium_organizer_path(minisymposium), class: :button %>  
+          <%= link_to icon('pencil') + ' edit', edit_minisymposium_path(minisymposium) %>  
+          <%= link_to icon('user')   + ' add organizer', new_minisymposium_organizer_path(minisymposium) %>  
           <% if presentations.size < 4 %>  
-            <%= link_to icon('file-audio-o') + ' add presentation', new_minisymposium_presentation_path(minisymposium), class: 'btn btn-warning' %>  
+            <%= link_to icon('file-audio-o') + ' add presentation', new_minisymposium_presentation_path(minisymposium) %>  
           <% end %>
-          <%= link_to icon('trash') + ' delete', minisymposium_path(minisymposium), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'}, class: :button %>
+          <%= link_to icon('trash') + ' delete', minisymposium_path(minisymposium), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'} %>
         <% end %>
         <% if user_in_scientific_commettee? %>  
-          <%= link_to icon('star') + ' rate', new_minisymposium_rating_path(minisymposium), class: :button, remote: true %>  
+          <%= link_to icon('star') + ' rate', new_minisymposium_rating_path(minisymposium), remote: true %>  
         <% end %>
         <% if user_in_organizer_commettee? %>  
-          <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(minisymposium), class: :button %>  
-          <%= link_to icon('check') + ' accept', accept_minisymposium_path(minisymposium), method: :put, class: :button %>  
+          <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(minisymposium) %>  
+          <%= link_to icon('check') + ' accept', accept_minisymposium_path(minisymposium), method: :put %>  
         <% end %>
         &nbsp; <span class="pull-right"><%= minisymposium.schedule || 'schedule to be decided' %></span>
       </div><!-- footer -->
