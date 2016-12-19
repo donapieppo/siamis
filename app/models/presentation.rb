@@ -39,7 +39,6 @@ class Presentation < ApplicationRecord
       'MT'
     when PosterSession
       'PP'
-    # ContributedConferenceSession
     else
       self.poster ? 'PP' : 'CP'
     end
@@ -55,6 +54,14 @@ class Presentation < ApplicationRecord
 
   def accept!
     self.update_attribute(:accepted, true)
+  end
+
+  def schedule
+    if self.conference_session and self.conference_session.schedule
+      self.conference_session.schedule
+    else
+      'schedule to be decided'
+    end    
   end
 
 end
