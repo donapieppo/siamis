@@ -34,9 +34,9 @@
           <% end %>
         <% else %>
           <%= menu_link 'file', 'Submissions', submissions_path %>
-        <% end %>
-        <% unless @conference_registration %>  
-          <%= menu_link 'credit-card', 'Registration', new_conference_registration_path %>
+          <% unless @conference_registration %>  
+            <%= menu_link 'credit-card', 'Registration', new_conference_registration_path %>
+          <% end %>
         <% end %>
       <% end %>
       <%= logged_user %>

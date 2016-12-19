@@ -1,17 +1,21 @@
-<p>Pre-registration deadline – <strong><%= l Deadline.pre_registration, format: :long %></strong>.
+<% if Deadline.can_register? %>  
+  <p>Pre-registration deadline – <strong><%= l Deadline.pre_registration_end, format: :long %></strong>.
+<% else %>
+  <p class="alert alert-warning">Registrations start at <strong><%= l Deadline.pre_registration_start %></strong>.</p>
+<% end %>
 
 <table class="table table-striped table-condensed">
-<tr>
-<th></th>
-<th>Pre-registration <br/><small>(before <%= l Deadline.pre_registration + 1.day %>)</small></td>
-<th>On-site registration <br/><small>(after <%= l Deadline.pre_registration %>)</small></td>
-</tr>
-<% Fee.prices.each do |name, amounts| %>  
   <tr>
-  <th><%= I18n.t name %></th>
-  <td><%= amounts[0] %> &euro;</td>
-  <td><%= amounts[1] %> &euro;</td>
+    <th></th>
+    <th>Pre-registration <br/><small>(before <%= l Deadline.pre_registration_end + 1.day %>)</small></td>
+    <th>On-site registration <br/><small>(after <%= l Deadline.pre_registration_end %>)</small></td>
   </tr>
-<% end %>
+  <% Fee.prices.each do |name, amounts| %>  
+    <tr>
+      <th><%= I18n.t name %></th>
+      <td><%= amounts[0] %> &euro;</td>
+      <td><%= amounts[1] %> &euro;</td>
+    </tr>
+  <% end %>
 </table>
 

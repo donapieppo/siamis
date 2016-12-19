@@ -83,7 +83,7 @@ class User < ApplicationRecord
 
   def can_register?
     # FIXME mettere date
-    ! self.payments.verified.any?
+    Deadline.can_register? and self.payments.verified.empty?
   end
 
   def self.scientific_commettee

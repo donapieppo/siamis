@@ -10,7 +10,7 @@ class Fee
   def initialize(user)
     @user = user
     # 0, 1 in array
-    @array_number = (Date.today <= Deadline.pre_registration) ? 0 : 1
+    @array_number = (Date.today <= Deadline.pre_registration_end) ? 0 : 1
   end
 
   def price_to_pay_and_reason

@@ -30,15 +30,15 @@
     <h2><%= big_icon :eye %>Check your data!</h2>
     <%= render current_user %>  
 
-    <h2>Payment</h2>
-    <p class="centered">
     <% if current_user.can_register? %>  
+      <h2>Payment</h2>
+      <p class="centered">
       <%= link_to new_payment_path, class: "big_pay_button" do %>  
         PAY <br/><strong><%= @price_to_pay_and_reason[0] %> &euro;</strong><br/> for Registration
         <br/><small>(<%= @price_to_pay_and_reason[1] %>)</small>
       <% end %>
+      </p>
     <% end %>
-    </p>
   </div>
 </div>
 
