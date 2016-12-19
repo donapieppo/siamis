@@ -58,7 +58,7 @@
           <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(minisymposium) %>  
           <%= link_to icon('check') + ' accept', accept_minisymposium_path(minisymposium), method: :put %>  
         <% end %>
-        &nbsp; <span class="pull-right"><%= minisymposium.schedule || 'schedule to be decided' %></span>
+        <%= schedule(minisymposium) %>  
       </div><!-- footer -->
     <% end %>
   </div>

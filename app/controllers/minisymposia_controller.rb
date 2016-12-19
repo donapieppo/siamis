@@ -2,6 +2,10 @@ class MinisymposiaController < ConferenceSessionsController
   before_action :check_deadline!, only: [:new, :create]
   before_action :user_in_organizer_commettee!, only: [:accept]
 
+  def index
+    @minisymposia = Minisymposium.accepted
+  end
+
   def new
     @conference_session = Minisymposium.new
   end
