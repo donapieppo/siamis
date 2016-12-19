@@ -110,5 +110,10 @@ module ConferenceHelper
       end
     end
   end
+
+  def schedule(what)
+    "&nbsp;".html_safe +
+     content_tag(:span, what.schedule || 'schedule to be decided', class: "pull-right")
+  end
 end
 

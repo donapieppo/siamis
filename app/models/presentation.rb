@@ -59,8 +59,6 @@ class Presentation < ApplicationRecord
   def schedule
     if self.conference_session and self.conference_session.schedule
       self.conference_session.schedule
-    else
-      'schedule to be decided'
     end    
   end
 

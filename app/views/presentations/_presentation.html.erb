@@ -55,7 +55,7 @@
         <% if user_in_organizer_commettee? %>  
           <%= link_to icon('check') + ' accept', accept_presentation_path(presentation), method: :put %>  
         <% end %>
-        &nbsp; <span class="pull-right"><%= presentation.schedule || 'schedule to be decided' %></span>
+        <%= schedule(presentation) %>  
       </div><!-- footer -->
     <% end %>
   </div>
