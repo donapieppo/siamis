@@ -25,8 +25,12 @@ Rails.application.routes.draw do
     resources :chairs
     resources :schedules
   end
-  resources :contributed_sessions
-  resources :poster_sessions
+  resources :contributed_sessions do
+    resources :schedules
+  end
+  resources :poster_sessions do 
+    resources :schedules
+  end
   # resources :contributed_sessions do
   #   resources :schedules
   # end
