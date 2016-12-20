@@ -19,7 +19,7 @@ class ConferenceSession < ApplicationRecord
   private
 
   def create_the_presentation
-    self.create_presentation
+    self.create_presentation(name: self.name)
     # @presentation = self.presentations.first || self.presentations.new
     # @presentation.name = self.name
     # @presentation.save
