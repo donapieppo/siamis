@@ -11,5 +11,10 @@
     </dd>
     <% sum += rating.score; num += 1 %>  
   <% end %>
-  <dd><%= num %> votes on <%= SCIENTIFIC_COMMITTEE.count %> scientific commettee components with average: <%= sum/num %></dd>
+  <dd>
+    <%= num %> votes on <%= SCIENTIFIC_COMMITTEE.count %> scientific commettee components.
+    <% if num > 0 %>
+      Average: <%= sum/num %>
+    <% end %>
+  </dd>
 <% end %>
