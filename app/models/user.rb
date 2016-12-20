@@ -8,6 +8,7 @@ class User < ApplicationRecord
          # :rememberable, 
 
   has_many :organizers
+  has_many :conference_sessions,  through: :organizers
   has_many :minisymposia,  through: :organizers
   has_many :minitutorials, through: :organizers
   has_many :authors
