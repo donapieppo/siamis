@@ -31,12 +31,16 @@
           <% presentations.each do |presentation| %>
             <dd><%= link_to presentation, presentation %> </dd>
           <% end %>
-          <%= content_tag(:dd, icon('warning') + ' Please add presentations.') if (owner and presentations.size < 4) %>  
+          <% if (! minisymposium.accepted) and owner and presentations.size < 4 %>
+            <%= content_tag(:dd, icon('warning') + ' Please add presentations.') %>  
+          <% end %>
         <% end %>
 
-        <%= render(partial: 'ratings/dl_list', locals: { what: minisymposium }) unless defined?(short) %>  
+        <% unless (minisymposium.accepted or defined?(short)) %>  
+          <%= render(partial: 'ratings/dl_list', locals: { what: minisymposium }) %>  
+        <% end %>
       </dl>
-      <% if owner and presentations.size < 4 %>  
+      <% if (! minisymposium.accepted) and owner and presentations.size < 4 %>  
         <p class="alert alert-warning">A minisymposium generally consists of <strong>four</strong> 25-minute presentations, with an additional five minutes for discussion after each presentation.</p>
       <% end %>
     </div><!-- body -->
