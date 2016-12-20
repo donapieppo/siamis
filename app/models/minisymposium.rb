@@ -15,6 +15,10 @@ class Minisymposium < ConferenceSession
   def accept!
     self.update_attribute(:accepted, true)
   end
+
+  def code
+    "MS#{self.number}" if self.number
+  end
 end
 
 

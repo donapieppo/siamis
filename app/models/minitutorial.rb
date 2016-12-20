@@ -19,7 +19,11 @@ class Minitutorial < ConferenceSession
   after_create :create_the_presentation
 
   def speakers
-    self.presentation.authors_to_s
+    self.presentation and self.presentation.authors_to_s
+  end
+
+  def code
+    "MT#{self.number}" if self.number
   end
 end
 

@@ -14,4 +14,8 @@ class Plenary < ConferenceSession
   def speaker
     self.presentation.authors.first
   end
+
+  def code
+    "IP#{self.number}" if self.number
+  end
 end
