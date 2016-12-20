@@ -1,16 +1,22 @@
 <dl class="dl-horizontal">
-  <% [:name, :surname, :affiliation, :address, :country, :siag, :siam, :student].each do |field| %>  
-    <%= dl_field(user, field) %>  
-  <% end %>
-  <dt>Home Page</dt>
-  <dd><%= link_to(user.web_page, user.web_page) unless user.web_page.blank? %></dd>
-  <dt>Contact</dt>
-  <dd><%= mail_to user.email, user.email %></dd>
+<% [:name, :surname, :affiliation, :address, :country, :siag, :siam, :student].each do |field| %>  
+  <%= dl_field(user, field) %>  
+<% end %>
+<dt>Home Page</dt>
+<dd><%= link_to(user.web_page, user.web_page) unless user.web_page.blank? %></dd>
+<dt>Contact</dt>
+<dd><%= mail_to user.email, user.email %></dd>
 </dl>
 
-<% user.conference_sessions.each do |conference_session| %>  
-  <%= conference_session.class %> : <%= conference_session %>
-<% end %>
+<ul>
+  <% user.conference_sessions.each do |conference_session| %>  
+    <li>Organizer in: <%= link_to conference_session, conference_session %></li>
+  <% end %>
+
+  <% user.presentations.each do |presentation| %>  
+    <li>Author in: <%= link_to presentation, presentation %></li>
+  <% end %>
+</ul>
 
 <% if current_user and user == current_user %>  
   <p class="centered">
