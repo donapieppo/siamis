@@ -3,7 +3,7 @@
 
 <% if defined?(one_line) and one_line %>  
   <div>
-    <%= link_to minisymposium, minisymposium %> 
+    <%= minisymposium.code %> <%= link_to minisymposium, minisymposium %> 
   </div>
 <% else %>
   <div class="minisymposium_panel">
@@ -11,7 +11,7 @@
     <div class="panel-heading">
       <h3 class="panel-title">
         <%= link_to minisymposium, minisymposium %>
-        <span class="badge pull-right">MS</span>
+        <span class="badge pull-right"><%= minisymposium.code %></span>
       </h3>
     </div><!-- heading -->
 
