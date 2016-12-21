@@ -6,6 +6,6 @@ class PosterSession < ConferenceSession
   validates :name, presence: true, uniqueness: true
 
   def code
-    "PP#{self.number}" if self.number
+    "PP" + (self.number).to_s
   end
 end

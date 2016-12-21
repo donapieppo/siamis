@@ -6,6 +6,6 @@ class ContributedSession < ConferenceSession
   validates :name, presence: true, uniqueness: true
 
   def code
-    "CP#{self.number}" if self.number
+    "CP" + (self.number).to_s
   end
 end

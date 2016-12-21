@@ -23,7 +23,7 @@ class Minitutorial < ConferenceSession
   end
 
   def code
-    "MT#{self.number}" if self.number
+    "MT" + (self.number).to_s
   end
 end
 

@@ -17,7 +17,7 @@ class Minisymposium < ConferenceSession
   end
 
   def code
-    "MS#{self.number}" if self.number
+    "MS" + (self.number).to_s
   end
 end
 

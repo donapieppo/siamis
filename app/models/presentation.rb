@@ -32,16 +32,7 @@ class Presentation < ApplicationRecord
   end
 
   def parent_event_abbr
-    case conference_session
-    when Minisymposium
-      'MS'
-    when Minitutorial
-      'MT'
-    when PosterSession
-      'PP'
-    else
-      self.poster ? 'PP' : 'CP'
-    end
+    conference_session.code if conference_session
   end
 
   def speaker
