@@ -65,8 +65,12 @@
       </dl>
 
       <h2>Submissions</h2>
-      <p>[...]</p>
-      <p>To submit a paper please <%=  login_link %></p>
+      <% if current_user %>  
+        <p>Submission starts [....]
+
+      <% else %>
+        <p>To submit a paper please <%= login_link %></p>
+      <% end %>
     </div>
   </div>
 </div>
@@ -112,4 +116,14 @@
   </div>
 </div>
 
-
+<%= javascript_tag do  %>  
+$('.scrollto').on('click', function(event) {
+  var target = $(this.getAttribute('href'));
+  if( target.length ) {
+    event.preventDefault();
+    $('html, body').stop().animate({
+      scrollTop: target.offset().top
+    }, 1000);
+  }
+});
+<% end %>
