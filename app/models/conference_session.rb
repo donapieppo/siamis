@@ -16,6 +16,18 @@ class ConferenceSession < ApplicationRecord
     self.class == Minisymposium
   end
 
+  def accept!
+    self.update_attribute(:accepted, true)
+  end
+
+  def refuse!
+    self.update_attribute(:accepted, false)
+  end
+
+  def accepted?
+    self.accepted and self.accepted == true
+  end
+
   private
 
   def create_the_presentation

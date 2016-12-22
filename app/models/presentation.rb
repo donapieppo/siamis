@@ -47,6 +47,14 @@ class Presentation < ApplicationRecord
     self.update_attribute(:accepted, true)
   end
 
+  def refuse!
+    self.update_attribute(:accepted, false)
+  end
+
+  def accepted?
+    self.accepted and self.accepted == true
+  end
+
   def schedule
     if self.conference_session and self.conference_session.schedule
       self.conference_session.schedule
