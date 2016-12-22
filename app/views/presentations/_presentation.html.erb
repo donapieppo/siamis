@@ -9,28 +9,25 @@
 <% else %>
   <div class="presentation_panel">
     <div class="panel-heading">
-      <h3 class="panel-title">
+      <h3>
         <%= link_to presentation, presentation %>
         <span class="badge pull-right"><%= presentation.parent_event_abbr %></span>
       </h3>
     </div><!-- heading -->
 
     <div class="panel-body">
-      <p><%= presentation.abstract %></p>
+      <p><em><%= presentation.abstract %></em></p>
+
       <% if ! defined?(short) and presentation.conference_session %>  
-        <p>
-        This presentation is part of <strong><%= t presentation.conference_session.class %></strong><em> "<%= link_to presentation.conference_session, presentation.conference_session %>"</em>. 
-        <% if presentation.conference_session.is_a?(Minisymposium) %>
-          <br/><small><%= organized_by(presentation.conference_session) %></small>. 
-        <% end %>
-        </p>
+        <%= presentation_parent(presentation) %>  
       <% end %>
+
       <dl class="dl-horizontal">
         <dt>Authors:</dt>
         <% presentation.authors.each do |author| %>  
           <dd>
           <%= show_user(author.user) %> 
-          <%= icon(:microphone) if author.speak %>
+          <%= icon(:microphone) if presentation.authors.size == 1 or author.speak %>
           <%= link_to_delete author_path(author) if owner %>  
           </dd>
         <% end %>

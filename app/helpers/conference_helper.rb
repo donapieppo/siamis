@@ -64,14 +64,14 @@ module ConferenceHelper
   end
 
   def users_list(what)
-    what.send(what.is_a?(Minisymposium) ? :organizers : :authors).map {|author|
+    what.send(what.is_a?(Minisymposium) ? :organizers : :authors).includes(:user).order('users.surname').map {|author|
       h(author.user.cn) + " " + content_tag(:em, "(#{h(author.user.affiliation)})")
     }.join(', ').html_safe
   end
 
   def ul_users_list(what)
     content_tag(:ul) do
-      what.send(what.is_a?(Minisymposium) ? :organizers : :authors).each do |author|
+      what.send(what.is_a?(Minisymposium) ? :organizers : :authors).includes(:user).order('users.surname').each do |author|
         concat content_tag(:li, author.user.web_page ? link_to(author.user.to_s, author.user.web_page) : author.user.to_s)
       end
     end  
@@ -83,6 +83,13 @@ module ConferenceHelper
       Minisymposium.unrated.first
     when Presentation
       Presentation.unrated.first
+    end
+  end
+
+  def link_to_next_approval(what)
+    user_in_organizer_commettee? or return ""
+    content_tag(:p, class: 'centered') do
+      what ? link_to('next to accept', what, class: :button) : ''
     end
   end
 

@@ -1,5 +1,5 @@
 <% owner = current_user_owns?(minisymposium) %>  
-<% presentations = minisymposium.presentations.all %>  
+<% presentations = minisymposium.presentations.order(:number).all %>  
 
 <% if defined?(one_line) and one_line %>  
   <div>
@@ -8,19 +8,14 @@
 <% else %>
   <div class="minisymposium_panel">
 
-    <div class="panel-heading">
-      <h3 class="panel-title">
-        <%= link_to minisymposium, minisymposium %>
-        <span class="badge pull-right"><%= minisymposium.code %></span>
-      </h3>
-    </div><!-- heading -->
+    <%= session_heading(minisymposium) %>  
 
     <div class="panel-body">
       <p><em><%= minisymposium.description %></em></p>
 
       <dl class="dl-horizontal">
         <dt>Organizers:</dt>
-        <% minisymposium.organizers.includes(:user).each do |organizer| %>  
+        <% minisymposium.organizers.includes(:user).order('users.surname').each do |organizer| %>  
           <dd>
             <%= show_user(organizer.user) %>
             <%= link_to_delete organizer_path(organizer) if owner %>  
@@ -29,7 +24,15 @@
         <% if defined?(with_presentations) and with_presentations %>  
           <dt>Presentations:</dt>
           <% presentations.each do |presentation| %>
-            <dd><%= link_to presentation, presentation %> </dd>
+            <dd>
+              <%= link_to presentation, presentation %>
+              <% if user_in_organizer_commettee? %>
+                <span class="pull-right">
+                   <%= icon('arrow-circle-up') %>
+                   <%= icon('arrow-circle-down') %>
+                </span>   
+              <% end %>
+            </dd>
           <% end %>
           <% if (! minisymposium.accepted) and owner and presentations.size < 4 %>
             <%= content_tag(:dd, icon('warning') + ' Please add presentations.') %>  
@@ -45,25 +48,27 @@
       <% end %>
     </div><!-- body -->
 
-    <% if ! defined?(short) %>  
-      <div class="panel-footer footer-actions">
-        <% if owner  %>  
-          <%= link_to icon('pencil') + ' edit', edit_minisymposium_path(minisymposium) %>  
-          <%= link_to icon('user')   + ' add organizer', new_minisymposium_organizer_path(minisymposium) %>  
-          <% if presentations.size < 4 %>  
-            <%= link_to icon('file-audio-o') + ' add presentation', new_minisymposium_presentation_path(minisymposium) %>  
-          <% end %>
-          <%= link_to icon('trash') + ' delete', minisymposium_path(minisymposium), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'} %>
+    <div class="panel-footer footer-actions">
+      <% if owner  %>  
+        <%= link_to icon('pencil') + ' edit', edit_minisymposium_path(minisymposium) %>  
+        <%= link_to icon('user')   + ' add organizer', new_minisymposium_organizer_path(minisymposium) %>  
+        <% if presentations.size < 4 %>  
+          <%= link_to icon('file-audio-o') + ' add presentation', new_minisymposium_presentation_path(minisymposium) %>  
         <% end %>
-        <% if user_in_scientific_commettee? %>  
-          <%= link_to icon('star') + ' rate', new_minisymposium_rating_path(minisymposium), remote: true %>  
-        <% end %>
-        <% if user_in_organizer_commettee? %>  
-          <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(minisymposium) %>  
+        <%= link_to icon('trash') + ' delete', minisymposium_path(minisymposium), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'} %>
+      <% end %>
+      <% if user_in_scientific_commettee? %>  
+        <%= link_to icon('star') + ' rate', new_minisymposium_rating_path(minisymposium), remote: true %>  
+      <% end %>
+      <% if user_in_organizer_commettee? %>  
+        <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(minisymposium) %>  
+        <% if minisymposium.accepted? %>  
+          <%= link_to icon('circle-o') + ' refuse', refuse_minisymposium_path(minisymposium), method: :put %>  
+        <% else %>
           <%= link_to icon('check') + ' accept', accept_minisymposium_path(minisymposium), method: :put %>  
         <% end %>
-        <%= schedule(minisymposium) %>  
-      </div><!-- footer -->
-    <% end %>
+      <% end %>
+      <%= schedule(minisymposium) %>  
+    </div><!-- footer -->
   </div>
 <% end %>

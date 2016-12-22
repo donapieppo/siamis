@@ -4,12 +4,14 @@
 
 <h2>Authors:</h2>
 
-<ul> 
+<ul class="list-group"> 
   <% @presentation.authors.each do |author| %>  
-    <li>
+    <li class="list-group-item">
       <%= author.user %> <%= "(speaker)" if author.speak %>  
-      <%= link_to icon('microphone'), make_speaker_author_path(author), method: :put, title: 'set as speaker' %>
-      <%= link_to_delete author_path(author) %>
+      <span class="pull-right">
+        <%= link_to icon('microphone'), make_speaker_author_path(author), method: :put, title: 'set as speaker' %>
+        <%= link_to_delete author_path(author) %>
+      </span>
     </li>
   <% end %>
 </ul>

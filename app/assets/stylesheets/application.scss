@@ -95,7 +95,8 @@ ul li { list-style-type: none; }
   @extend .panel-primary;
   .panel-heading {
     font-weight: bold;
-    h2 {
+    h3 {
+      @extend .panel-title;
       text-transform: uppercase;
     }
   }
