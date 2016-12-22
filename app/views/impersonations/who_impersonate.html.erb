@@ -1,4 +1,10 @@
 <ul>
+  <% @main_users.each do |user| %>
+    <li><%= user.surname %> <%= user.name %> (<%= link_to user.email || "no mail", impersonate_path(user) %>)</li>
+  <% end %>
+</ul>
+
+<ul>
   <% @users.each do |user| %>
     <li><%= user.surname %> <%= user.name %> (<%= link_to user.email || "no mail", impersonate_path(user) %>)</li>
   <% end %>
