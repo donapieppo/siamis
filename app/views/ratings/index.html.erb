@@ -20,9 +20,9 @@
             <%= link_to_edit url if rated_by_me %>  
           </li>
         <% end %>
-        <% unless rated_by_me %>  
-          <li><%= link_to icon('star') + ' rate', url, class: 'button', remote: true %></li>
-        <% end %>
+        <%# <% unless rated_by_me %1> %>  
+        <%#   <li><%= link_to icon('star') + ' rate', url, class: 'button', remote: true %1></li> %>
+        <%# <% end %1> %>
       </ul>
     </div>
   <% end %> 
