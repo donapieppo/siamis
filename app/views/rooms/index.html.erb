@@ -1,8 +1,8 @@
 <h1>Rooms</h1>
 
-<ul>
-  <%- @rooms.each do |room| %>  
-    <li><%= room %> <%= link_to_edit edit_room_path(room) %> <%= link_to_delete room_path(room) %>  </li>
+<ul class="list-group">
+  <% @rooms.each do |room| %>  
+    <li class="list-group-item"><%= room %> - <%= room.capacity %> seats <span class="pull-right"><%= link_to_edit edit_room_path(room) %> <%= link_to_delete room_path(room) %></span></li>
   <% end %>
 </ul>
 
