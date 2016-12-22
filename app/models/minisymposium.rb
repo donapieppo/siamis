@@ -12,10 +12,6 @@ class Minisymposium < ConferenceSession
     self.presentations.size >= 4
   end
 
-  def accept!
-    self.update_attribute(:accepted, true)
-  end
-
   def code
     "MS" + (self.number).to_s
   end
