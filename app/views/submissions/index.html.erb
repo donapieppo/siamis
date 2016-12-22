@@ -1,13 +1,11 @@
-<%= title_with_conference('Submissions') %>
-
 <% if user_in_organizer_commettee? %>  
-  <h2>Minisymposia</h2>
+  <h2>Minisymposia: <%= @minisymposia.count %>  </h2>
   <%= ul_list(@minisymposia) %>  
 
-  <h2>Presentations</h2>
+  <h2>Presentations: <%= @presentations.count %>  </h2>
   <%= ul_list(@presentations) %>
 
-  <h2>Posters</h2>
+  <h2>Posters: <%= @posters.count %>  </h2>
   <%= ul_list(@posters) %>
 
 <% else %>
