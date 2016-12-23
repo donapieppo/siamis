@@ -4,5 +4,5 @@
   <p class="centered"><%= link_to 'Create Contributed Session', new_contributed_session_path, class: :big_button %></p>
 <% end %>
 
-<%= render ContributedSession.includes(:schedule).order(:number).all %>  
+<%= render ContributedSession.includes(:schedule).all %>  
 

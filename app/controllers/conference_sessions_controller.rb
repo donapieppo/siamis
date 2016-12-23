@@ -23,7 +23,7 @@ class ConferenceSessionsController < ApplicationController
   end
 
   def manage_presentations
-    @actual_presentations = @conference_session.presentations
+    @actual_presentations = @conference_session.presentations.order(:number)
     @available_presentations = case @conference_session
                                when PosterSession
                                  Presentation.unassigned.poster
