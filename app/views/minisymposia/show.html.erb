@@ -6,5 +6,7 @@
   <% end %>
 
   <%= link_to_next_rating(Rating.get_unrated_minisymposium(current_user)) %>
+<% elsif user_in_organizer_commettee? %>  
+  <%= link_to_next_approval(Minisymposium.submitted.where.not(id: @conference_session.id).first) %>
 <% end %>
 
