@@ -1,13 +1,16 @@
-<h1><%= @conference_session %></h1>
-
-<h2>Current presentations:</h2>
+<p class="alert alert-success">Current presentations in "<%= @conference_session.name %>":</p>
 <ul class="list-group">
   <% @actual_presentations.each do |presentation| %>  
     <li class="list-group-item">
+      <%= form_for presentation, url: set_number_presentation_path(presentation), method: :put, remote: true, class: 'pull-left' do |f| %>  
+        <%= f.select(:number, (1..@actual_presentations.count)) %>
+    <% end %>
+
       <%= link_to presentation, presentation %>  
-      <span class="pull-right">
+
+      <div class="pull-right">
         <%= link_to icon('minus-circle') + ' remove', remove_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session' %>
-      </span>
+      </div>
     </li>
   <% end %>
 </ul>
@@ -23,3 +26,11 @@
     </li>
   <% end %>
 </ul>
+
+<%= javascript_tag do %>  
+  $(document).ready(function(){
+  $("select").change(function() {
+      $(this).parent("form").submit();
+    })
+  });
+<% end %>

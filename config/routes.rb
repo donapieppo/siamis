@@ -53,8 +53,9 @@ Rails.application.routes.draw do
   resources :presentations do 
     resources :authors
     resources :ratings
-    put 'accept', on: :member
-    put 'refuse', on: :member
+    put 'set_number', on: :member
+    put 'accept',     on: :member
+    put 'refuse',     on: :member
   end
 
   resources :payments do

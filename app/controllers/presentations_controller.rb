@@ -3,7 +3,7 @@
 class PresentationsController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   before_action :set_conference_session_and_check_permission, only: [:new, :create]
-  before_action :set_presentation_and_check_permission, only: [:edit, :update, :add, :remove, :accept]
+  before_action :set_presentation_and_check_permission, only: [:edit, :update, :set_number, :add, :remove, :accept]
   before_action :check_deadline!, only: [:new, :create]
   before_action :user_in_organizer_commettee!, only: [:accept]
 
@@ -69,6 +69,10 @@ class PresentationsController < ApplicationController
     else
       render action: :edit
     end
+  end
+
+  def set_number
+    @presentation.update_attribute(:number, params[:presentation][:number])
   end
 
   def destroy
