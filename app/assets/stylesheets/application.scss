@@ -94,10 +94,9 @@ ul li { list-style-type: none; }
   @extend .panel;
   @extend .panel-primary;
   .panel-heading {
-    font-weight: bold;
     h3 {
-      @extend .panel-title;
       text-transform: uppercase;
+      @extend .panel-title;
     }
   }
 }
