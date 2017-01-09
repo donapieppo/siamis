@@ -26,12 +26,6 @@
           <% presentations.each do |presentation| %>
             <dd>
               <%= link_to presentation, presentation %>
-              <% if user_in_organizer_commettee? %>
-                <span class="pull-right">
-                   <%= icon('arrow-circle-up') %>
-                   <%= icon('arrow-circle-down') %>
-                </span>   
-              <% end %>
             </dd>
           <% end %>
           <% if (! minisymposium.accepted) and owner and presentations.size < 4 %>
@@ -63,6 +57,7 @@
       <% if user_in_organizer_commettee? %>  
         <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(minisymposium) %>  
         <% if minisymposium.accepted? %>  
+          <%= link_to icon('list')    + ' manage presentations', manage_presentations_conference_session_path(minisymposium) %>  
           <%= link_to icon('circle-o') + ' refuse', refuse_minisymposium_path(minisymposium), method: :put %>  
         <% else %>
           <%= link_to icon('check') + ' accept', accept_minisymposium_path(minisymposium), method: :put %>  
