@@ -8,10 +8,10 @@
 <% @plenaries.each do |plenary| %>  
   <% i += 1 %>  
   <div class="plenary">
-    <% if asset_exist?(plenary.speaker.photo_asset) %>  
+    <% if plenary.speaker and asset_exist?(plenary.speaker.photo_asset) %>  
       <%= image_tag plenary.speaker.photo_asset, style: "float: #{ i.odd? ? 'left' : 'right' }" %>  
     <% end %>
-    <h2><%= l plenary.schedule.start_day %> </h2>
+    <h2><%= l(plenary.schedule.start_day) if plenary.schedule %> </h2>
     <h2><%= plenary.speaker %></h2>
     <h3><%= plenary.name %></h3>
     <p><strong>Chair:</strong> <%= plenary.chairs.map(&:to_s).join(', ') %></p>
