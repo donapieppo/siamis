@@ -1,25 +1,28 @@
 class ConferenceSession < ApplicationRecord
   has_many :organizers, dependent: :destroy
-  has_many :chairs
+  has_many :chairs, dependent: :destroy
   has_many :ratings, dependent: :destroy
-  has_one  :schedule
+  has_one  :schedule, dependent: :destroy
 
   def to_s
     self.name
   end
 
   def duration 
-    DURATION
+    Rails.configuration.durations[self.class.to_s.to_sym]
   end
 
   def is_a_minisymposium?
     self.class == Minisymposium
   end
 
+  # only Minisymposium
   def accept!
     self.update_attribute(:accepted, true)
+    notify_acceptance
   end
 
+  # only Minisymposium
   def refuse!
     self.update_attribute(:accepted, false)
   end
@@ -32,11 +35,7 @@ class ConferenceSession < ApplicationRecord
 
   def create_the_presentation
     self.create_presentation(name: self.name)
-    # @presentation = self.presentations.first || self.presentations.new
-    # @presentation.name = self.name
-    # @presentation.save
   end
+
 end
-
-
 
