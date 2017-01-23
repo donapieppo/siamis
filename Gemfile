@@ -15,6 +15,7 @@ gem 'savon'
 #gem 'omniauth-google-oauth2'  
 #gem 'omniauth-facebook'
 gem 'devise'
+gem "recaptcha", require: "recaptcha/rails"
 
 gem 'simple_form'
 gem 'country_select'
