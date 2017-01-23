@@ -1,7 +1,7 @@
 <%= simple_form_for @user do |user| %>  
   <%= user.input :email, disabled: true %>  
-  <%= user.input :name %>  
-  <%= user.input :surname %>  
+  <%= user.input :name, required: true %>  
+  <%= user.input :surname, required: true %>  
   <%= user.input :salutation %>  
   <%= user.input :affiliation %>  
   <%= user.input :country %>  
@@ -11,6 +11,6 @@
   <%= user.input :siam %>  
   <%= user.input :siag %>  
   <%= user.input :student %>  
-  <%= user.submit 'Submit'%>  
+  <%= user.submit 'Save'%>  
 <% end %>
 
