@@ -122,5 +122,19 @@ module ConferenceHelper
     "&nbsp;".html_safe +
      content_tag(:span, what.schedule || 'schedule to be decided', class: "pull-right")
   end
+
+  def user_roles(user)
+    res = []
+    user.authors.each do |author|
+      res << "<strong>Author</strong> of the presentation <em>'#{h author.presentation.to_s}'</em>"
+    end
+    user.organizers.each do |organizer|
+      res << "<strong>Organizer</strong> in the session <em>'#{h organizer.conference_session.to_s}'</em>"
+    end
+    user.chairs.each do |chair|
+      res << "<strong>Chair</strong> in the session <em>'#{h chair.conference_session.to_s}'</em>"
+    end
+    res
+  end
 end
 
