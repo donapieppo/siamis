@@ -12,8 +12,6 @@
 # Presentation: authors (speaker)
 #
 class Minitutorial < ConferenceSession
-  DURATION = 120
-
   has_one :presentation, foreign_key: :conference_session_id, dependent: :destroy
 
   after_create :create_the_presentation
