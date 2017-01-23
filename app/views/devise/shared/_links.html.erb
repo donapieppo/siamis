@@ -1,9 +1,17 @@
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <p><%= link_to icon('user-plus') + " Create a new account", new_registration_path(resource_name), class: :button %></p>
+  <div class="alert alert-warning">
+    <p>If you are <strong>not registered yet</strong>, in order to submit minisymposia, presentations or posters 
+    you have to create a new account.</p>
+    <div class="new-account-button"><%= link_to big_icon('user-plus') + " Create a new account", new_registration_path(resource_name), class: :button %></div>
+  </div>
 <% end -%>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <p><%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %></p>
+  <div class="alert alert-warning">
+    <p>If you have registered, but didn't receive confirmation instructions
+    <%= link_to "Resend confirmation instructions", new_confirmation_path(resource_name), class: :button %>
+    </p>
+  </div>
 <% end -%>
 
 

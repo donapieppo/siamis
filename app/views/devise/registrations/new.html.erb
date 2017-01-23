@@ -1,29 +1,44 @@
 <div class="row">
 <div class="col-md-6">
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <div class="panel panel-default">
+  <div class="panel panel-info">
     <div class="panel-heading">
-      <h2>Sign Up</h2>
+      <h2>Register new account</h2>
     </div>
     <div class="panel-body">
-      <%= f.error_notification %>
+      <% unless resource.errors.details[:email].empty? %>  
+        <div class="alert alert-danger">
+        <% resource.errors.details[:email].each do |error| %>
+          <% if error[:error] == :taken and u = User.where(email: error[:value]).first %>  
+            <%= u %> is registered as <br/>
+            <%= raw user_roles(u).join(', ') %><br/>
+            <script type="text/javascript">
+              window.location.href="<%= new_user_password_path(e: u.email) %>"  
+            </script>script>
+            <% break %>  
+          <% end %>
+        <% end %>
+        </div>
+      <% end %>
 
-      <%= f.input :email, required: true, autofocus: true, hint: 'Please use your istitutional mail address.'  %>
+      <%= f.input :email, required: true, autofocus: true, hint: 'Please use your istitutional mail address.' %>
       <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum." if @minimum_password_length) + " Please use a different password than the one in your email."  %>
       <%= f.input :password_confirmation, required: true %>
+      <%= recaptcha_tags %>
+      <%= f.submit "Sign up" %> - <%= link_to_back new_user_session_path %>
     </div>
     <div class="panel-footer">
-      <%= f.submit "Sign up" %> - <%= link_to_back new_user_session_path %>
+      <p>
+        <strong>Privacy Statement:</strong>
+        <em>The names and email addresses entered in this conference site will be used exclusively for the stated purposes of this conference and will not be made available for any other purpose or to any other party.</em>
+      </p>
     </div>
   </div>
 <% end %>
 </div>
 <div class="col-md-6">
-<h2>Privacy Statement</h2>
-
-<p class="alert alert-info">The names and email addresses entered in this conference site will be used exclusively for the stated purposes of this conference and will not be made available for any other purpose or to any other party.</p>
-
-<p>After creating the account an e-mail will be sent by no-reply@dm.unibo.it to the e-mail address you provided, with a password to access the system. If you don't receive it within 5 minutes, please make sure it didn't get by mistake into your junk or spam folders.</p>
-
+  <p class="alert alert-info">
+  After creating the account an <strong>e-mail</strong> will be sent by no-reply@dm.unibo.it to the e-mail address you provided, with a password to access the system. If you don't receive it within 5 minutes, please make sure it didn't get by mistake into your junk or spam folders.
+  </p>
 </div>
 </div>
