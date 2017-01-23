@@ -1,22 +1,36 @@
 <h1>Invited Plenaries</h1>
 
-<% if user_in_organizer_commettee? %>
-  <p class="centered"><%= link_to 'Create new Plenary', new_plenary_path, class: :big_button %></p>
-<% end %>
-
 <% i = 0 %>  
+
+<% number_of_cols = 3 %>  
 <% @plenaries.each do |plenary| %>  
+  <% if (i % number_of_cols) == 0 %>
+    <div class="row">
+  <% end %>
   <% i += 1 %>  
-  <div class="plenary">
-    <% if plenary.speaker and asset_exist?(plenary.speaker.photo_asset) %>  
-      <%= image_tag plenary.speaker.photo_asset, style: "float: #{ i.odd? ? 'left' : 'right' }" %>  
-    <% end %>
-    <h2><%= l(plenary.schedule.start_day) if plenary.schedule %> </h2>
+  <div class="plenary col-md-<%= 12 / number_of_cols %>">
+    <h2>
+      <%= plenary.schedule ? l(plenary.schedule.start_day) : "To be defined" %> 
+    </h2>
     <h2><%= plenary.speaker %></h2>
+    <div>
+    <% if plenary.speaker and asset_exist?(plenary.speaker.photo_asset) %>  
+      <%= image_tag plenary.speaker.photo_asset %>
+    <% else %>
+      <%= icon('user-circle', size: 180) %>
+    <% end %>
+    </div>
     <h3><%= plenary.name %></h3>
     <p><strong>Chair:</strong> <%= plenary.chairs.map(&:to_s).join(', ') %></p>
     <p><em><%= plenary.description %></em></p>
     <%= organizer_commette_actions(plenary) %>  
   </div>
+  <% if (i % number_of_cols) == 0 %>
+    </div>
+  <% end %>
+<% end %>
+
+<% if user_in_organizer_commettee? %>
+  <p class="centered"><%= link_to 'Create new Plenary', new_plenary_path, class: :big_button %></p>
 <% end %>
 
