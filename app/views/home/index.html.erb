@@ -45,32 +45,38 @@
       </dl>
     </div>
 
-    <div class="col-md-6" id="important_dates">
+    <div class="col-md-6" id="submissions">
+      <h2>Submissions</h2>
+
+      <% if Deadline.before_proposal? %>  
+        Submissions will start <%= l(Deadline.minisymposium_proposal_start)%>
+      <% else %>
+        <% if current_user %>  
+          <%= link_to 'go to submissions', submissions_path %>  
+        <% else %>
+          <p>To submit a paper please <%= login_link %></p>
+        <% end %>
+      <% end %>
+
       <h2>Important Dates</h2>
-
       <dl class="dl-horizontal">
-        <dt>September 2017</dt>
-        <dd>Minitutorial proposals</dd>
-        <dd>Minisymposium proposals</dd>
+        <dt><%= l(Deadline.minisymposium_proposal_start, format: :deadline)%></dt>
+        <dd>
+          Minisymposium proposals
+          <%= link_to(icon('arrow-circle-right'), submissions_path) if Deadline.can_propose?(:minisymposium) %>  
+        </dd>
 
-        <dt>October 2017</dt>
+        <dt><%= l(Deadline.presentation_proposal_start, format: :deadline)%></dt>
         <dd>Abstracts for contributed and minisymposium speakers</dd>
         <dd>Abstracts for posters</dd>
 
-        <dt>February 2018</dt>
+        <dt><%= l(Deadline.pre_registration_start, format: :deadline)%></dt>
         <dd>Pre-registration</dd>
 
-        <dt>June 2018</dt>
+        <dt>2018 - June, 5</dt>
         <dd>SIAM IS18 Conference</dd>
       </dl>
 
-      <h2>Submissions</h2>
-      <% if current_user %>  
-        <p>Submission starts [....]
-
-      <% else %>
-        <p>To submit a paper please <%= login_link %></p>
-      <% end %>
     </div>
   </div>
 </div>
