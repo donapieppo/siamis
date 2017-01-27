@@ -12,6 +12,7 @@
 
   <nav class="collapse navbar-collapse" id="bs-navbar-collapse">
     <ul class="nav navbar-nav navbar-right">
+      <%= menu_link 'home', 'Home', root_path %>
       <%= dropdown_menu fwicon('users') + ' Program' do  %>  
         <%= menu_link 'circle', 'Plenary Sessions', plenaries_path %>  
         <%= menu_link 'circle', 'Minitutorials', minitutorials_path %>
