@@ -14,7 +14,7 @@ class MinisymposiaController < ConferenceSessionsController
     @conference_session = Minisymposium.new(conference_session_params)
     if @conference_session.save 
       @conference_session.organizers.create!(user: current_user)
-      redirect_to @conference_session, notice: 'The minisymposium has been created. Please add presentations.'
+      redirect_to @conference_session, notice: I18.t(:minisymposium_created)
     else
       render action: :new
     end
