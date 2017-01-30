@@ -1,13 +1,21 @@
-<%= title_with_conference('Payment') %>  
-
-<p><%= t(:credit_cards) %></p>
-<p><%= t(:bank_security) %></p>
-
-<div class="centered">
-<%= form_tag payments_path do %>  
-  <input type="submit" value="PAY <%= @price_to_pay_and_reason[0] %> &euro; for Registration" />
-  <br/>(<%= @price_to_pay_and_reason[1] %>. <%= link_to 'Change your data', edit_user_path(current_user) %>)
-<% end %>
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h1>Payment</h1> 
+    </div>
+    <div class="panel-body">
+      <p><%= t(:credit_cards) %></p>
+      <p><%= t(:bank_security) %></p>
+      <div class="centered">
+        <%= form_tag payments_path do %>  
+          <input type="submit" value="PAY <%= @price_to_pay_and_reason[0] %> &euro; for Registration" /> <br/>
+          (<%= @price_to_pay_and_reason[1] %>. <%= link_to 'Change your data', edit_user_path(current_user) %>)
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 
