@@ -1,1 +1,16 @@
-<h1>
+<h1>Conference Registrations</h1>
+
+<table class="table">
+  <% @conference_registrations.each do |conference_registration| %>  
+    <tr>
+      <th><%= conference_registration.user.cn %></th>
+      <td><%= conference_registration.user.affiliation %></td>
+      <td><%= conference_registration.payment.amount %> &euro;</td>
+      <td><%= conference_registration.payment.payment_id %></td>
+      <td><%= conference_registration.payment.shop_id %></td>
+      <td><%= conference_registration.payment.verified %></td>
+      <td><%= l conference_registration.payment.created_at %></td>
+    </tr>
+  <% end %>
+</table>
+

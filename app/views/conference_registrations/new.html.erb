@@ -4,7 +4,7 @@
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h2>Registration Fees</h2>
+        <h2><%= big_icon :euro %> Registration Fees</h2>
       </div>
       <div class="panel-body">
         <%= render 'payments/list' %>  
@@ -27,8 +27,14 @@
     </div>
   </div>
   <div class="col-md-6">
-    <h2><%= big_icon :eye %>Check your data!</h2>
-    <%= render current_user %>  
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2><%= big_icon :user %> Check your data!</h2>
+      </div>
+      <div class="panel-body">
+        <%= render current_user %>  
+      </div>
+    </div>
 
     <% if current_user.can_register? %>  
       <h2>Payment</h2>
