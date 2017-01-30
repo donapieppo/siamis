@@ -7,8 +7,9 @@ class User < ApplicationRecord
          :confirmable
          # :rememberable, 
 
-  has_many :organizers
   has_many :conference_sessions,  through: :organizers
+  has_many :organizers
+  has_many :chairs
   has_many :minisymposia,  through: :organizers
   has_many :minitutorials, through: :organizers
   has_many :authors
@@ -17,9 +18,7 @@ class User < ApplicationRecord
   has_many :payments
   has_one  :conference_registration
 
-  validates :email,   uniqueness: true
-  #validates :name,    presence: true
-  #validates :surname, presence: true
+  validates :email, uniqueness: { message: "The email is already registred." }
 
   def to_s
     "#{self.cn} (#{self.affiliation})"
@@ -95,5 +94,25 @@ class User < ApplicationRecord
     COCHAIRS.map{|email| User.where(email: email).first}
   end
 
+  # FIXME
+  def activate_and_notify
+    self.confirmed? and return
+    generated_password = Devise.friendly_token.first(Rails.configuration.new_password_lenght)
+    self.password = generated_password
+    if self.save
+      RegistrationMailer.welcome(self, generated_password).deliver
+    end
+    self.confirm
+  end 
+
+  def self.safe_fields
+    [:name, :surname, :affiliation, :country]
+  end
+
+  def self.all_fields
+    self.safe_fields + [:address, :siag, :siam, :student]
+  end
+
 end
+
 

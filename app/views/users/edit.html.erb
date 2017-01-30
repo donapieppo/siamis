@@ -1,5 +1,15 @@
-<h1>Your Registration Data</h1>
-
-<%= render partial: 'form' %>  
-
-<%= link_to "Change your password", edit_user_registration_path %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h2><%= big_icon(:user) %>  Your Registration Data</h2>
+        </div>
+        <div class="panel-body">
+          <%= render partial: 'form' %>  
+        </div>
+        <div class="panel-footer" style="text-align: right">
+          <%= link_to "Change your password", edit_user_registration_path, class: :button %>
+        </div>
+      </div>
+  </div>
+</div>

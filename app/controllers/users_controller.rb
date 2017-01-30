@@ -10,11 +10,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @fields = [:name, :surname, :affiliation, :country]
+    @fields = User.safe_fields
     @show_email = false
 
     if user_in_organizer_commettee? or user_in_scientific_commettee?
-      @fields += [:address, :siag, :siam, :student]
+      @fields = User.all_fields
       @show_email = true
     end
   end
