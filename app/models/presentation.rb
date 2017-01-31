@@ -35,6 +35,10 @@ class Presentation < ApplicationRecord
     conference_session.code if conference_session
   end
 
+  def code 
+    conference_session ? conference_session.code : '-'
+  end
+
   def speaker
     self.authors.where(speak: true).first
   end
@@ -45,6 +49,7 @@ class Presentation < ApplicationRecord
 
   def accept!
     self.update_attribute(:accepted, true)
+    self.notify_acceptance
   end
 
   def refuse!
@@ -61,5 +66,11 @@ class Presentation < ApplicationRecord
     end    
   end
 
+  def notify_acceptance
+    self.authors.each do |author|
+      author.notify_acceptance(self)
+    end
+  end
 end
+
 
