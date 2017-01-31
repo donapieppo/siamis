@@ -41,8 +41,16 @@ class Deadline
       @@presentation_proposal_end
     end
 
-    def before_proposal?
-      Date.today < @@minisymposium_proposal_start
+    def first_proposal_start
+      @@minisymposium_proposal_start
+    end
+
+    def last_proposal_end
+      @@presentation_proposal_end
+    end
+
+    def before_first_proposal?
+      Date.today < first_proposal_start
     end
 
     def can_register?
@@ -58,6 +66,13 @@ class Deadline
         Date.today.between?(@@presentation_proposal_start, @@presentation_proposal_end)
       end
     end
+
+    # all expired
+    def expired?
+      today = Date.today
+      today > minisymposium_proposal_end and today > minisymposium_abstract_end and today > presentation_proposal_end
+    end
+
   end
 
 end
