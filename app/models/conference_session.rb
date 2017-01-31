@@ -19,7 +19,6 @@ class ConferenceSession < ApplicationRecord
   # only Minisymposium
   def accept!
     self.update_attribute(:accepted, true)
-    notify_acceptance
   end
 
   # only Minisymposium
