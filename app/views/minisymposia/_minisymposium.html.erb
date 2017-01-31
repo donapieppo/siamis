@@ -51,7 +51,7 @@
         <% end %>
         <%= link_to icon('trash') + ' delete', minisymposium_path(minisymposium), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'} %>
       <% end %>
-      <% if user_in_scientific_commettee? %>  
+      <% if (! minisymposium.accepted) and user_in_scientific_commettee? %>  
         <%= link_to icon('star') + ' rate', new_minisymposium_rating_path(minisymposium), remote: true %>  
       <% end %>
       <% if user_in_organizer_commettee? %>  
