@@ -1,5 +1,9 @@
-<p>Welcome <%= @email %>!</p>
+<p>Hello <%= @email %>,</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>Congratulations, you are now registered to Siam-is18 conference web site.</p>
+
+<p>In order to activate your new account you have to confirm your account email through the link below:</p>
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+
