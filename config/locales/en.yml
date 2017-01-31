@@ -62,7 +62,7 @@ en:
         siam: IEEE SPS and ASA Imaging Science Section members are eligible to register at the SIAM Member rate.
         student: STUDENTS MUST SHOW A CURRENT STUDENT ID UPON CHECKING IN AT THE SIAM REGISTRATION DESK.
       presentation: 
-        abstract: Brief abstract not to exceed 75 words
+        abstract: Brief abstract not to exceed 75 words.
     placeholders:
       organizer:
         email: name.surname@example.com
@@ -82,6 +82,7 @@ en:
       datetime_picker: "%d/%m/%Y %H:%M"
       with_day_name: '%A %d %B %Y at %H:%M'
       schedule_day:  '%d'
+      schedule: '%A %d %B %Y at %H:%M'
 
   date:
     formats:
