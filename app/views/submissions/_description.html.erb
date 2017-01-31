@@ -1,21 +1,8 @@
+<h1>Submissions</h1>
+
 <p>SIAM requests that individuals limit themselves to giving <strong>one talk</strong> (this does not apply to invited plenary speakers).<br/>
 The co-chairs of the organizing committee may make exceptions to this request.</p>
 
 <p>All submissions are subject to <strong>review</strong> and <strong>final approval</strong> by the co-chairs.</p>
 
-<%= render partial: 'deadlines/submission' %>  
-
-<% if Deadline.can_propose?(:minisymposium) or Deadline.can_propose?(:presentation) %>  
-  <p>You are invited to contribute a presentation for this conference in one of the following formats: </p>
-
-  <div class="row">
-    <div class="col-md-6">
-      <%= render partial: 'minisymposium_proposal' %>  
-    </div>
-
-    <div class="col-md-6">
-      <%= render partial: 'presentation_proposal' %>  
-    </div>
-  </div>
-<% end %>
 
