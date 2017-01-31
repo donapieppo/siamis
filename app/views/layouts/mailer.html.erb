@@ -3,11 +3,33 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
-      /* Email styles need to be inline */
+      body {
+        font-family: sans-serif;
+        font-size: 12px;
+      }
+      h1 {
+        font-size: 16px;
+        color: #F67938;
+      }
+      h2 {
+        font-size: 14px;
+        color: #F67938;
+      }
     </style>
   </head>
 
   <body>
+    <div style="text-align: center">
+      <center>
+        <%= image_tag 'logo.png', style: "width: 150px" %>  
+        <h1>SIAM Conference<br/>on<br/>IMAGING SCIENCE</h1>
+        <h2>June 5-8, 2018 Bologna - Italy</h2>
+      </center>
+    </div>
+
     <%= yield %>
+
+    ----------------------------------------------
+      Siam-is18 [June 5-8, 2018 Bologna - Italy]
   </body>
 </html>
