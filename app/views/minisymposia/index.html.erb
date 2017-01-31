@@ -8,4 +8,6 @@
 
 <%= render partial: 'deadlines/minisymposium' %>  
 
-<%= ul_list(@minisymposia) %>
+<% unless Deadline.can_propose?(:minisymposium) %>  
+  <%= ul_list(@minisymposia) %>
+<% end %>
