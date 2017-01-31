@@ -49,7 +49,6 @@ class Presentation < ApplicationRecord
 
   def accept!
     self.update_attribute(:accepted, true)
-    self.notify_acceptance
   end
 
   def refuse!
