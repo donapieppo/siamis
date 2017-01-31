@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "name"
     t.text    "abstract",              limit: 65535
     t.integer "conference_session_id",               unsigned: true
+    t.integer "number"
     t.boolean "poster"
     t.boolean "accepted"
     t.index ["conference_session_id"], name: "conference_session_id", using: :btree
@@ -127,6 +128,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.datetime "notified_at"
     t.datetime "updated_at"
     t.index ["email"], name: "email", using: :btree
   end
