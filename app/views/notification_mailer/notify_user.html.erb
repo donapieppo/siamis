@@ -1,0 +1,34 @@
+<p>Dear <%= @user.cn %>,</p>
+
+<p>you are registered in Siam-is18 web site as </p>
+
+<dl>
+  <% @minisymposia.each do |minisymposia| %>  
+    <dt>ORGANIZER in:</dt>
+    <dd>
+    "<%= minisymposia %>"
+    <% if (other_organizers = minisymposia.organizers.where.not(user_id: @user.id).all).size > 0 %>  
+      <br/>with <%= other_organizers.map(&:user).join(' - ') %>
+  <% end %>
+    </dd>
+  <% end %>
+  <% @presentations.each do |presentation| %>  
+    <dt>AUTHOR in:</dt>
+    <dd>
+    "<%= presentation %>" 
+    <% if (other_authors = presentation.authors.where.not(user_id: @user.id).all).size > 0 %>
+      <br/>with <%= other_authors.map(&:user).join(' - ') %>
+    <% end %>
+    </dd>
+  <% end %>
+</dl>
+
+<p>
+You can access <%= link_to 'Siam-is18 web site', root_url %>
+with the following credentials:
+</p>
+
+<p>Username: <%= @user.email %></p>
+<p>Password: <%= @password %></p>
+
+

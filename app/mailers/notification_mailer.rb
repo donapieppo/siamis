@@ -1,7 +1,10 @@
 class NotificationMailer < ApplicationMailer
-  def welcome_email(user)
-    @user = user
-    @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+  def notify_user(user, password, presentations, minisymposia)
+    @user          = user
+    @password      = password
+    @presentations = presentations
+    @minisymposia  = minisymposia
+
+    mail(to: @user.email, subject: 'Presentation accepted for Siam-is18')
   end
 end
