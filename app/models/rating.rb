@@ -23,7 +23,7 @@ class Rating < ApplicationRecord
   end
 
   def self.get_unrated_minisymposium(user)
-    Minisymposium.where.not(id: user.ratings.map(&:conference_session_id)).first
+    Minisymposium.where(accepted: false).where.not(id: user.ratings.map(&:conference_session_id)).first
   end
 
   def self.get_unrated_presentation(user)
