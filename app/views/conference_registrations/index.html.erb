@@ -1,6 +1,14 @@
 <h1>Conference Registrations</h1>
 
 <table class="table">
+  <tr>
+    <th colspan="2">User</th>
+    <th>amount</th>
+    <th>payment id</th>
+    <th>identification</th>
+    <th>verified</th>
+    <th>date</th>
+  </tr>
   <% @conference_registrations.each do |conference_registration| %>  
     <tr>
       <th><%= conference_registration.user.cn %></th>
