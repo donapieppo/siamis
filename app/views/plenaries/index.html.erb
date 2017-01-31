@@ -1,34 +1,27 @@
 <h1>Invited Plenaries</h1>
 
-<% i = 0 %>  
-
-<% number_of_cols = 3 %>  
-<% @plenaries.each do |plenary| %>  
-  <% if (i % number_of_cols) == 0 %>
-    <div class="row">
-  <% end %>
-  <% i += 1 %>  
-  <div class="plenary col-md-<%= 12 / number_of_cols %>">
-    <h2>
-      <%= plenary.schedule ? l(plenary.schedule.start_day) : "To be defined" %> 
-    </h2>
-    <h2><%= plenary.speaker %></h2>
-    <div>
-    <% if plenary.speaker and asset_exist?(plenary.speaker.photo_asset) %>  
-      <%= image_tag plenary.speaker.photo_asset %>
-    <% else %>
-      <%= icon('user-circle', size: 180) %>
-    <% end %>
-    </div>
-    <h3><%= plenary.name %></h3>
-    <p><strong>Chair:</strong> <%= plenary.chairs.map(&:to_s).join(', ') %></p>
-    <p><em><%= plenary.description %></em></p>
-    <%= organizer_commette_actions(plenary) %>  
-  </div>
-  <% if (i % number_of_cols) == 0 %>
+<div class="plenaries">
+  <% @plenaries.each do |plenary| %>  
+    <div class="row plenary">
+      <div class="plenary_speaker col-md-4">
+        <% if plenary.speaker and asset_exist?(plenary.speaker.photo_asset) %>  
+          <%= image_tag plenary.speaker.photo_asset %>  
+        <% end %>
+        <p><%= plenary.speaker.user.cn %><br/><small><%= plenary.speaker.user.affiliation %></small></p>
+      </div>
+      <div class="plenary_body col-md-8">
+        <div class="plenary_schedule">
+          <%= icon('calendar') %> <%= raw l(plenary.schedule.start_day, format: :schedule) if plenary.schedule %> <br/>
+          <%= icon('map-marker') %> <%= raw plenary.schedule.room %>
+        </div>
+        <div class="plenary_title"><h2><%= plenary.name %></h2></div>
+        <p class="plenary_abstract"><%= plenary.description %></p>
+        <p><strong>Chair:</strong> <%= plenary.chairs.map(&:to_s).join(', ') %></p>
+        <%= organizer_commette_actions(plenary) %>  
+      </div>
     </div>
   <% end %>
-<% end %>
+</div>
 
 <% if user_in_organizer_commettee? %>
   <p class="centered"><%= link_to 'Create new Plenary', new_plenary_path, class: :big_button %></p>

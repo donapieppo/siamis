@@ -6,6 +6,8 @@
 // $navbar-default-link-active-color: #242943;
 // $panel-bg: #242943;
 
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic');
+
 $navbar-height: 65px;
 $font-size-base: 16px;
 //$navbar-default-bg: #fff;
@@ -27,5 +29,7 @@ $contributed_session_color: #8d82c4;
 $presentation_color:        #8ea9e8;
 
 $photo_color: #b06123;
-$footer_color: #ddd4bc;
+$footer_color: #F67938;
+$footer_text_color: #000;
 
+$title_color: $footer_color;

@@ -4,7 +4,7 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "home";
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic');
+@import "plenary";
 
 body {
   font-family: 'Roboto Condensed', sans-serif;
@@ -125,18 +125,15 @@ ul li { list-style-type: none; }
   //.panel-heading { background-color: $poster_session_color; }
 }
 
-.plenary {
-  img {
-    width: 200px; 
-    margin: 30px;
-  } 
-}
-
 #footer {
   margin-top: 30px;
   padding-top: 30px;
   background-color: $footer_color;
+  color: $footer_text_color;
   text-align: center;
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
+  background-image: -webkit-radial-gradient(50% 50%, circle, #F67938 29%, #EF4734 120%);
 }
 
 .breadcrumb {
