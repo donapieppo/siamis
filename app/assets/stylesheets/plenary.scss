@@ -1,0 +1,43 @@
+.plenaries {
+}
+
+.plenary {
+  border: 2px solid #ccc;
+  &:nth-child(even) {
+    .plenary_speaker {
+      background-color: #eee;
+    }
+  }
+  &:nth-child(odd) {
+  }
+  padding: 0px;
+  margin-top: 10px;
+  img {
+     width: 200px; 
+     margin: 30px;
+   } 
+  .plenary_speaker {
+    padding: 10px;
+    text-align: center;
+  }
+  .plenary_body {
+    padding: 10px;
+  }
+  .plenary_schedule {
+    font-size: 120%;
+    text-align: left;
+    margin-left: 10%;
+  }
+  .plenary_title {
+    text-align: left;
+    margin-left: 10%;
+    h2 {
+      font-size: 20px;
+      color: $title_color;
+    }
+  }
+  .plenary_abstract {
+    font-style: italic;
+  }
+}
+
