@@ -94,15 +94,14 @@ class User < ApplicationRecord
     COCHAIRS.map{|email| User.where(email: email).first}
   end
 
-  # FIXME
-  def activate_and_notify
+  def activate_and_set_password
     self.confirmed? and return
     generated_password = Devise.friendly_token.first(Rails.configuration.new_password_lenght)
     self.password = generated_password
-    if self.save
-      RegistrationMailer.welcome(self, generated_password).deliver
+    if self.save 
+      self.confirm
+      return generated_password
     end
-    self.confirm
   end 
 
   def self.safe_fields
