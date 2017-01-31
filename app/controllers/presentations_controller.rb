@@ -107,7 +107,9 @@ class PresentationsController < ApplicationController
   end
 
   def check_deadline!
-    Deadline.can_propose?(:presentation) or raise ProposalClose
+    # FIXME
+    # if conference_session can always add presentations
+    @conference_session or Deadline.can_propose?(:presentation) or raise ProposalClose
   end
 end
 
