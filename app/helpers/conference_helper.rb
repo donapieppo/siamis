@@ -30,6 +30,7 @@ module ConferenceHelper
     controller.controller_name == 'home' and return 
     controller.controller_name == 'users' and return 
     controller.controller_name == 'registrations' and return 
+    controller.controller_name == 'passwords' and return 
     content_tag 'ol', class: "breadcrumb" do 
       content_tag('li', link_to('Home', root_path)) +
       if @conference_session

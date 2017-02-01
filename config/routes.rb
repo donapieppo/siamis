@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # thanx to https://github.com/plataformatec/devise/wiki/How-To:-Use-Recaptcha-with-Devise
-  devise_for :users, controllers: { registrations: 'registrations' }
+  devise_for :users, controllers: { registrations: 'registrations', passwords: 'passwords' }
 
   root to: 'home#index'
 
