@@ -7,10 +7,18 @@ namespace :siamis do
         presentations = user.presentations.accepted.all
         minisymposia  = user.minisymposia.accepted.all
         (presentations.size + minisymposia.size) > 0 or next
-        puts "notify #{user}"
+
+        puts user.cn
         puts presentations.inspect
         puts minisymposia.inspect
-        STDIN.gets 
+
+        password = user.activate_and_set_password
+
+        if password and NotificationMailer.notify_user(user, password, presentations, minisymposia).deliver
+          user.update_attribute(:notified_at, Time.now)
+          exit 0
+        end
+
       end
     end
   end
