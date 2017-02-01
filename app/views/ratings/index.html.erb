@@ -1,14 +1,17 @@
 <h1>
-  <%= @minisymposia ? 'Minisymposia' : 'Submissions' %> Ratings <br/>
-  <small>by Scientific Commettee</small>
+<%= @minisymposia ? 'Minisymposia' : 'Submissions' %> Ratings 
+<small>(Scientific Commettee)</small>
 </h1>
 
 <div class="list-group">
   <% @list.each do |submission| %>  
     <% url = params[:minisymposia] ? new_minisymposium_rating_path(submission) : new_presentation_rating_path(submission) %>  
     <div class="list-group-item">
-      <%= link_to submission, submission %> 
-      <em> by: <%= users_list(submission) %></em>
+      (<%= submission.code %>)  <%= link_to submission, submission %> 
+    <em> by: <%= users_list(submission) %></em>
+    <% if submission.accepted %>  
+      <p><span class="label label-success"><%= icon(:check) %>  Accepted</span></p>
+    <% else %>  
       <ul>
         <% rated_by_me = nil %>  
         <% submission.ratings.each do |rating| %>  
@@ -21,9 +24,10 @@
           </li>
         <% end %>
         <%# <% unless rated_by_me %1> %>  
-        <%#   <li><%= link_to icon('star') + ' rate', url, class: 'button', remote: true %1></li> %>
-        <%# <% end %1> %>
-      </ul>
+          <%#   <li><%= link_to icon('star') + ' rate', url, class: 'button', remote: true %1></li> %>
+          <%# <% end %1> %>
+    </ul>
+  <% end %>
     </div>
   <% end %> 
 </div>
