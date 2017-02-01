@@ -46,20 +46,18 @@ class Role < ApplicationRecord
       self.surname.blank?     and self.errors.add(:surname, "Please enter the surname of the user.")
       self.affiliation.blank? and self.errors.add(:affiliation, "Please enter the affiliation of the user.")
       if self.errors.empty?
-        generated_password = Devise.friendly_token.first(6)
         _user = User.new(email:        self.email, 
-                         password:     generated_password,
+                         password:     Devise.friendly_token.first(16), # FIXME 
                          name:         self.name, 
                          surname:      self.surname, 
                          affiliation:  self.affiliation,
-                         address:      self.address, 
-                         confirmed_at: Time.now)
+                         address:      self.address) # confirmed_at: Time.now)
         if _user.save
-          RegistrationMailer.welcome(_user, generated_password, self).deliver
           self.user_id = _user.id 
+        else
+          Rails.logger.info("set_or_create_user_from_email errors: #{_user.errors.inspect}")
         end
       end
     end
   end
-
 end
