@@ -9,4 +9,8 @@ class PasswordsController < Devise::PasswordsController
       respond_with_navigational(resource) { render :new }
     end 
   end
+
+  def after_sending_reset_password_instructions_path_for(resource_name)
+    root_path
+  end
 end
