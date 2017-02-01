@@ -7,6 +7,16 @@
         font-family: sans-serif;
         font-size: 12px;
       }
+      .header {
+        margin: auto;
+        width: 600px;
+        padding: 20px;
+        text-align: center;
+        background-color: #ddd;
+        border-top: 2px solid #000;
+        border-left: 2px solid #000;
+        border-right: 2px solid #000;
+      }
       h1 {
         font-size: 16px;
         color: #F67938;
@@ -15,21 +25,37 @@
         font-size: 14px;
         color: #F67938;
       }
+      .container {
+        margin: auto;
+        width: 600px;
+        padding: 20px;
+        border-left: 2px solid #000;
+        border-right: 2px solid #000;
+        border-bottom: 2px solid #000;
+      }
+      .footer {
+        text-align: center;
+        color: #F67938;
+      }
     </style>
   </head>
 
   <body>
-    <div style="text-align: center">
+    <div class="header">
       <center>
         <%= image_tag 'logo.png', style: "width: 150px" %>  
         <h1>SIAM Conference<br/>on<br/>IMAGING SCIENCE</h1>
         <h2>June 5-8, 2018 Bologna - Italy</h2>
       </center>
     </div>
-
-    <%= yield %>
-
-    ----------------------------------------------
-      Siam-is18 [June 5-8, 2018 Bologna - Italy]
+    <div class="container">
+      <%= yield %>
+      <hr/>
+      <div class="footer">
+        <p>Siam-is18</p>
+        <p>June 5-8</p>
+        <p>[2018 Bologna - Italy]</p>
+      </div>
+    </div>
   </body>
 </html>
