@@ -48,7 +48,7 @@
     <div class="col-md-6" id="submissions">
       <h2>Submissions</h2>
 
-      <% if Deadline.before_proposal? %>  
+      <% if Deadline.before_first_proposal? %>  
         Submissions will start <%= l(Deadline.minisymposium_proposal_start)%>
       <% else %>
         <% if current_user %>  
@@ -86,7 +86,7 @@
     <h2>Invited Plenary Speakers</h2>
     <div class="row">
       <%= Plenary.includes(schedule: :room).find_each do |plenary| %>  
-        <div class="plenary col-md-4">
+        <div class="home-plenary col-md-4">
           <div class="plenary-when"><%= plenary.schedule ? l(plenary.schedule.start) : 'to be defined' %></div>
           <div class="plenary-title"><%= plenary.name %></div>
           <div class="plenary-speaker"><%= plenary.speakers %></div>
