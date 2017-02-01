@@ -22,9 +22,18 @@
       <% end %>
 
       <%= f.input :email, required: true, autofocus: true, hint: 'Please use your istitutional mail address.' %>
-      <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum." if @minimum_password_length) + " Please use a different password than the one in your email."  %>
+      <%= f.input :password, required: true, hint: "#{@minimum_password_length} characters minimum. Please use a different password than the one in your email." %>
       <%= f.input :password_confirmation, required: true %>
+
+      <div class="form-group">
+      <div class="col-sm-9 col-sm-offset-3">
+        <p class="alert alert-danger">
+          <%= flash[:recaptcha_error] %>
+        </p>
       <%= recaptcha_tags %>
+      </div>
+      </div>
+
       <%= f.submit "Sign up" %> - <%= link_to_back new_user_session_path %>
     </div>
     <div class="panel-footer">
