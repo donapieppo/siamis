@@ -90,7 +90,7 @@ class PresentationsController < ApplicationController
   private
 
   def presentation_params
-    params[:presentation].permit(:name, :abstract, :poster)
+    params[:presentation].permit(:name, :abstract, :poster, :speaker_id)
   end
 
   # A presentation can be created relative to a minitutorial or minisymosium

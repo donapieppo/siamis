@@ -1,7 +1,7 @@
-<h1>Presentations</h1>
+<h1><%= @user.cn %> presentations</h1>
 
 <% if @presentations.any? %>  
-  <h2><%= @user %> is author in the following presentations:</h2>
+  <p><%= @user %> is author in the following presentations:</p>
   <% @presentations.each do |presentation| %>  
     <%= render presentation %> 
   <% end %>
