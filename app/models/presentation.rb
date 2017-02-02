@@ -40,7 +40,21 @@ class Presentation < ApplicationRecord
   end
 
   def speaker
-    self.authors.where(speak: true).first
+    self.authors.where(speak: true).first || self.authors.first
+  end
+
+  def speaker=(_author)
+    self.authors.each do |a|
+      a.update_attribute(:speak, a == _author)
+    end
+  end
+
+  def speaker_id
+    self.speaker.id
+  end
+
+  def speaker_id=(i)
+    self.speaker = Author.find(i)
   end
 
   def authors_to_s
