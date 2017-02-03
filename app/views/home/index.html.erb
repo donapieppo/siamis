@@ -33,30 +33,38 @@
     <div class="col-md-6" id="committees">
       <h2>Organizing Committee</h2>
 
-      <dl class="dl-horizontal">
-        <dt>Co-chairs: </dt>
-        <% User.cochairs.each do |user| %>  
-          <dd><%= link_to user.cn, user.web_page, target: "_blank" %> (<%= user.affiliation %>)</dd>
-        <% end %>
-        <dt>Scientific Committee: </dt>
-        <% User.scientific_commettee.each do |user| %>  
-          <dd><%= link_to user.cn, user.web_page, target: "_blank" %> (<%= user.affiliation %>)</dd>
-        <% end %>
-      </dl>
+      <% cache 'home_organizing_commettee' do %>
+        <dl class="dl-horizontal">
+          <dt>Co-chairs: </dt>
+          <% User.cochairs.each do |user| %>  
+            <dd><%= link_to user.cn, user.web_page, target: "_blank" %> (<%= user.affiliation %>)</dd>
+          <% end %>
+          <dt>Scientific Committee: </dt>
+          <% User.scientific_commettee.each do |user| %>  
+            <dd><%= link_to user.cn, user.web_page, target: "_blank" %> (<%= user.affiliation %>)</dd>
+          <% end %>
+        </dl>
+      <% end %>
     </div>
 
     <div class="col-md-6" id="submissions">
       <h2>Submissions</h2>
 
+      <p>
+        SIAM requests that individuals limit themselves to giving one talk (this does not apply to invited plenary speakers).<br/>
+        All submissions are subject to review and final approval by the co-chairs.
+      </p>
+      <p>
       <% if Deadline.before_first_proposal? %>  
-        Submissions will start <%= l(Deadline.minisymposium_proposal_start)%>
+        Submissions will start <%= l(Deadline.minisymposium_proposal_start)%>.
       <% else %>
         <% if current_user %>  
-          <%= link_to 'go to submissions', submissions_path %>  
+          Please visit <%= link_to 'submission page', submissions_path %>.
         <% else %>
           <p>To submit a paper please <%= login_link %></p>
         <% end %>
       <% end %>
+      </p>
 
       <h2>Important Dates</h2>
       <dl class="dl-horizontal">
@@ -85,7 +93,7 @@
   <div class="container">
     <h2>Invited Plenary Speakers</h2>
     <div class="row">
-      <%= Plenary.includes(schedule: :room).find_each do |plenary| %>  
+      <%= Plenary.includes(presentation: :authors, schedule: :room).find_each do |plenary| %>  
         <div class="home-plenary col-md-4">
           <div class="plenary-when"><%= plenary.schedule ? l(plenary.schedule.start) : 'to be defined' %></div>
           <div class="plenary-title"><%= plenary.name %></div>
