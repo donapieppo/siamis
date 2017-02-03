@@ -35,11 +35,11 @@ class Payment < ApplicationRecord
     res
   end
 
-  private
-
   def user_abbr
     (self.user.name[0] + self.user.surname[0]).downcase
   end
+
+  private
 
   def create_seed_and_shop_id
     self.seed = SecureRandom.hex(8)
