@@ -2,15 +2,19 @@
 // $text-color: #fff;
 // $link-color: #eee;
 // $navbar-default-color: #242943;
-// $navbar-default-link-color: #242943;
+// $navbar-default-link-coloir: #242943;
 // $navbar-default-link-active-color: #242943;
 // $panel-bg: #242943;
+
+$color_1: #F67938;
+$color_2: #6799a3;
+$color_3: #888;
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic');
 
 $navbar-height: 65px;
 $font-size-base: 16px;
-//$navbar-default-bg: #fff;
+//$navbar-default-bg: $color_2;
 
 //$body-bg: #fcfcfc;
 //$grid-float-breakpoint: 1024px;
