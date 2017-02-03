@@ -4,9 +4,9 @@ class RatingsController < ApplicationController
 
   def index
     if params[:minisymposia]
-      @list = Minisymposium.includes(:organizers).all
+      @list = Minisymposium.includes(organizers: :role).all
     else
-      @list = Presentation.includes(:authors).submitted
+      @list = Presentation.includes(authors: :role).submitted
     end
   end
 
