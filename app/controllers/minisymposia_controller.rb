@@ -2,8 +2,9 @@ class MinisymposiaController < ConferenceSessionsController
   before_action :check_deadline!, only: [:new, :create]
   before_action :user_in_organizer_commettee!, only: [:accept]
 
+  # wait till end of proposals to show accepted Minisymposia
   def index
-    @minisymposia = Minisymposium.accepted
+    @minisymposia = Deadline.can_propose?(:minisymposium) ? [] : Minisymposium.accepted
   end
 
   def new
@@ -14,7 +15,7 @@ class MinisymposiaController < ConferenceSessionsController
     @conference_session = Minisymposium.new(conference_session_params)
     if @conference_session.save 
       @conference_session.organizers.create!(user: current_user)
-      redirect_to @conference_session, notice: I18.t(:minisymposium_created)
+      redirect_to @conference_session, notice: I18n.t(:minisymposium_created)
     else
       render action: :new
     end
