@@ -41,9 +41,9 @@ class User < ApplicationRecord
       self.organizer?(what)
     when Presentation
       if what.conference_session.class == Minisymposium
-        self.organizer?(what.conference_session) or self.author?(what)
+        self.organizer?(what.conference_session) or self.speaker?(what)
       else
-        self.author?(what)
+        self.speaker?(what)
       end
     else
       false
@@ -73,6 +73,14 @@ class User < ApplicationRecord
     presentation.authors.map(&:user_id).include?(self.id)
   end
 
+  # FIXME
+  def speaker?(presentation)
+    _authors = presentation.authors
+    _authors.size == 1 and return true
+    _authors.where(speak: true).first == self
+  end
+
+  # FIXME
   def speaker_or_organizer?
     self.presentations.any? or self.organizers.any? or self.in_organizer_commettee?
   end
@@ -87,11 +95,11 @@ class User < ApplicationRecord
   end
 
   def self.scientific_commettee
-    SCIENTIFIC_COMMITTEE.map{|email| User.where(email: email).first}
+    @@cochairs ||= COCHAIRS.map{|email| User.where(email: email).first}
   end
 
   def self.cochairs
-    COCHAIRS.map{|email| User.where(email: email).first}
+    @@scientific_commettee ||= SCIENTIFIC_COMMITTEE.map{|email| User.where(email: email).first}
   end
 
   def activate_and_set_password
