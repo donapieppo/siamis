@@ -1,6 +1,6 @@
-<%= title @conference_session %>
-
 <h2>Select date and location</h2>
+
+<p><%= link_to @conference_session, @conference_session %></p>
 
 <%= simple_form_for [@conference_session, @schedule] do |schedule| %>  
   <%= schedule.input :start_day,  as: :schedule_day %>  
