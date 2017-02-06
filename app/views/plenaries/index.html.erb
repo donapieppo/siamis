@@ -6,6 +6,8 @@
       <div class="plenary_speaker col-md-4">
         <% if plenary.speaker and asset_exist?(plenary.speaker.photo_asset) %>  
           <%= image_tag plenary.speaker.photo_asset %>  
+        <% else %>
+          <i class="fa fa-user-circle" style="font-size: 160px; margin: 20px;" aria-hidden="true"></i>
         <% end %>
         <p><%= plenary.speaker.user.cn %><br/><small><%= plenary.speaker.user.affiliation %></small></p>
       </div>
