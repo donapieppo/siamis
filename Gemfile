@@ -11,30 +11,19 @@ gem 'therubyracer', platforms: :ruby
 gem 'pretender', '~> 0.2'
 gem 'savon'
 
-#gem 'omniauth'
-#gem 'omniauth-google-oauth2'  
-#gem 'omniauth-facebook'
 gem 'devise'
 gem "recaptcha", require: "recaptcha/rails"
 
 gem 'simple_form'
 gem 'country_select'
 
-#gem 'materialize-sass'
-#gem 'material_icons'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 
-#gem 'momentjs-rails', '>= 2.9.0'
-#gem 'bootstrap3-datetimepicker-rails', '~>4.0.0'
-
 gem 'jquery-rails'
-# gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  # gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl'
   gem 'factory_girl_rails'
@@ -43,7 +32,7 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console'
+  # gem 'web-console'
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
