@@ -14,18 +14,16 @@ body {
   margin-right: auto; 
   text-align:   center;
 }
-h1 {
+h1, h2, h3, h4 {
   @extend .centered;
+  font-weight: 300;
+}
+
+h1 {
   width: 100%;
   text-align: center;
   // text-transform: uppercase;
   // text-shadow: 1px 2px 0 rgba(0,0,0,0.1);
-}
-h2 {
-  @extend .centered;
-}
-h3 {
-  @extend .centered;
 }
 
 .button {
@@ -128,16 +126,20 @@ ul li { list-style-type: none; }
 #footer {
   margin-top: 30px;
   padding-top: 30px;
-  background-color: $footer_color;
-  color: $footer_text_color;
   text-align: center;
   border-top: 1px solid #ccc;
   margin-top: 20px;
-  background-image: -webkit-radial-gradient(50% 50%, circle, #F67938 29%, #EF4734 120%);
+  color: $footer_text_color;
+  // background-image: -webkit-radial-gradient(50% 50%, circle, #fff 29%, #EF4734 120%);
+  // background-image: radial-gradient( circle at 50% 50%, #fff 29%, #EF4734 120%);
 }
 
 .breadcrumb {
-  // background-color: #fff;
+  background-color: #fff;
+  font-weight: 300;
+  a {
+    color: $color_2;
+  }
 }
 
 .minisymposium_submission {
