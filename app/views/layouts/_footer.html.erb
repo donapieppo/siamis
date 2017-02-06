@@ -2,27 +2,25 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-      <h3>SIAM Conference<br/>on IMAGING SCIENCE<br/><small>June 5-8, 2018</small></h3>
+      <h3>SIAM Conference<br/>on<br/> IMAGING SCIENCE<br/><small>June 5-8, 2018</small></h3>
       <p>Bologna - Italy</p>
-
       <p>&copy;2016 - <%= link_to 'Privacy', privacy_path %></p>
-      <p><%= raw stop_impersonation_link %> <%= raw start_impersonation_link %></p>
     </div>
     <div class="col-md-4">
       <%= image_tag 'three.png' %>
-      <p><%= link_to 'Society for Industrial and Applied Mathematics', 'https://www.siam.org/' %> </p>
+      <p><%= link_to 'Society for Industrial and Applied Mathematics', 'https://www.siam.org/' %></p>
+      <p><%= raw stop_impersonation_link %> <%= raw start_impersonation_link %></p>
     </div>
     <div class="col-md-4">
       <h2>Contacts:</h2>
       <p>Department of Mathematics</p>
       <p>Piazza di Porta San Donato, 5<br/>
-      40126 - Bologna <br/>
-      Italy</p>
-      <p><%= icon('envelope') %> 
-         <%= mail_to 'Fiorella Sgallari', 'fiorella.sgallari@unibo.it' %>,
-         <%= mail_to 'Serena Morigi', 'serena.morigi@unibo.it' %>
+      40126 - Bologna - Italy</p>
+      <p>
+        <%= icon('envelope-o') %> 
+        <%= mail_to 'Fiorella Sgallari', 'fiorella.sgallari@unibo.it' %>,
+        <%= mail_to 'Serena Morigi', 'serena.morigi@unibo.it' %>
       </p>
-
     </div>
   </div>
 </div>
