@@ -1,0 +1,152 @@
+Use `siamis`;
+
+CREATE TABLE `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `salutation` varchar(20) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `surname` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `affiliation` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `country` varchar(255) default NULL,
+  `biography` text DEFAULT NULL,
+  `siag` bool,
+  `siam` bool,
+  `student` bool,
+  `web_page` varchar(255) default NULL,
+  `encrypted_password` varchar(255) DEFAULT NULL,
+  `reset_password_token` varchar(255) DEFAULT NULL,
+  `reset_password_sent_at` datetime,
+  `confirmation_token` varchar(255) DEFAULT NULL,
+  `confirmed_at` datetime, 
+  `confirmation_sent_at` datetime, 
+  `unconfirmed_email` varchar(255) DEFAULT NULL,
+  `sign_in_count` int(10) DEFAULT 0,
+  `current_sign_in_at` datetime,
+  `last_sign_in_at` datetime,
+  `current_sign_in_ip` varchar(255),
+  `last_sign_in_ip` varchar(255),
+  `notified_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `email` (`email`)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Minisymposium
+-- Minitutorial
+-- Plenary
+-- Poster
+-- Contributed
+CREATE TABLE `conference_sessions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `type` ENUM('Minisymposium', 'Minitutorial', 'Plenary', 'PosterSession', 'ContributedSession'),
+  `number` int(2),
+  `name` varchar(255),
+  `description` text, 
+  `accepted` bool,
+  `chair_id` int(10) unsigned,
+  `start` datetime,
+  PRIMARY KEY (`id`),
+  KEY `chair_id` (`chair_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+          
+CREATE TABLE `presentations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255),
+  `abstract` text,
+  `conference_session_id` int(10) unsigned DEFAULT NULL,
+  `number` int(2),
+  `poster` bool DEFAULT NULL, 
+  `accepted` bool,
+  PRIMARY KEY (`id`), 
+  KEY `conference_session_id` (`conference_session_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `roles` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `type` ENUM('Organizer', 'Author', 'Chair'),
+  `user_id` int(10) unsigned NOT NULL,
+  `conference_session_id` int(10) unsigned DEFAULT NULL,
+  `presentation_id` int(10) unsigned DEFAULT NULL,
+  `speak` bool,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `conference_session_id` (`conference_session_id`),
+  KEY `presentation_id` (`presentation_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ratings` (
+  `id`           int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id`      int(10) unsigned NOT NULL,
+  `conference_session_id`  int(10) unsigned DEFAULT NULL,
+  `presentation_id`        int(10) unsigned DEFAULT NULL,
+  `score`        int(3),
+  `notes`        text,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `conference_session_id` (`conference_session_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `buildings` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255),
+  `address` varchar(255),
+  `city` varchar(255),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `rooms` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255),
+  `capacity` int(3) DEFAULT NULL,
+  `building_id` int(10) unsigned,
+  PRIMARY KEY (`id`),
+  KEY `building_id` (`building_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `schedules` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `conference_session_id` int(10) unsigned,
+  `room_id`    int(10) unsigned,
+  `start`      datetime,
+  PRIMARY KEY (`id`),
+  KEY `room_id` (`room_id`),
+  KEY `conference_session_id` (`conference_session_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `payments` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned,
+  `seed` varchar(32),
+  `shop_id` varchar(255),
+  `payment_id` varchar(40),
+  `shopuserref` varchar(255),
+  `shopusername` varchar(255),
+  `amount` int(5),
+  `verified` bool, 
+  `created_at` datetime,
+  `updated_at` datetime,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `conference_registrations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned,
+  `payment_id` int(10) unsigned, 
+  `created_at` datetime,
+  `updated_at` datetime,
+   PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `parts` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `num` int(2) unsigned NOT NULL,
+  `conference_session_id` int(10) unsigned,
+  PRIMARY KEY (`id`),
+  KEY `conference_session_id` (`conference_session_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
