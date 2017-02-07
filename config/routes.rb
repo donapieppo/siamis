@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :users do
+    post :admin_create, on: :collection # skip devise registration
     resources :presentations
   end
   resources :authors do
