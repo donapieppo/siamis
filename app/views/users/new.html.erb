@@ -1,3 +1,27 @@
-<h1>New User</h1>
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h2><%= big_icon(:user) %> New user</h2>
+    </div>
+    <div class="panel-body">
+      <%= simple_form_for @user, url: :admin_create_users  do |user| %>  
+        <%= user.input :email %>  
+        <%= user.input :name, required: true %>  
+        <%= user.input :surname, required: true %>  
+        <%= user.input :salutation %>  
+        <%= user.input :affiliation %>  
+        <%= user.input :country %>  
+        <%= user.input :address %>  
+        <%= user.input :biography %>  
+        <%= user.input :web_page, as: :url %>  
+        <%= user.input :siam %>  
+        <%= user.input :siag %>  
+        <%= user.input :student %>  
+        <%= user.submit 'Save'%>  
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
 
-<%= render partial: 'form' %>  
