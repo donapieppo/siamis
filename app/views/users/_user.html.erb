@@ -3,7 +3,7 @@
 <% end %>
     
 <dl class="dl-horizontal">
-  <% @fields.each do |field| %>  
+  <% (@fields || User.safe_fields).each do |field| %>  
     <%= dl_field(user, field) %>  
   <% end %>
   <dt>Home Page</dt>
