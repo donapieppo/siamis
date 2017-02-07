@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   skip_before_action :check_user_fields, only: [:edit, :update]
 
-  before_action :user_in_organizer_commettee!, only: [:index, :new, :create, :after_admin_create]
+  before_action :user_in_organizer_commettee!, only: [:index, :new, :create, :admin_notify_new]
   before_action :set_user_and_check_permission, only: [:edit, :update]
 
   def index
@@ -32,6 +32,12 @@ class UsersController < ApplicationController
     else
       render action: :new
     end
+  end
+
+  def admin_notify_new
+    @user = User.find(params[:id])
+    @p    = params[:p]
+    redirect_to users_path, notice: 'The email has been sent'
   end
 
   def edit

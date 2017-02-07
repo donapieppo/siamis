@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :users do
     post :admin_create, on: :collection # skip devise registration
+    post :admin_notify_new, on: :member
     resources :presentations
   end
   resources :authors do
