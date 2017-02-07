@@ -34,8 +34,8 @@
         border-bottom: 2px solid #000;
       }
       .footer {
+        margin: 20px;
         text-align: center;
-        color: #F67938;
       }
     </style>
   </head>
@@ -43,7 +43,7 @@
   <body>
     <div class="header">
       <center>
-        <%= image_tag 'logo.png', style: "width: 150px" %>  
+        <%= link_to image_tag('logo.png', style: "width: 150px"), root_url %>  
         <h1>SIAM Conference<br/>on<br/>IMAGING SCIENCE</h1>
         <h2>June 5-8, 2018 Bologna - Italy</h2>
       </center>
@@ -52,7 +52,9 @@
       <%= yield %>
       <hr/>
       <div class="footer">
-        <p>Siam-is18</p>
+        <p>
+        <%= link_to 'Siam-is18', root_url %>
+        </p>
         <p>June 5-8</p>
         <p>[2018 Bologna - Italy]</p>
       </div>
