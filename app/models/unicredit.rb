@@ -14,13 +14,22 @@ class Unicredit
     @payment = payment
   end
 
+  # TODO using Fee
+  def check_amount_range(x)
+    true
+  end
+
+  # amount in euro
+  # unicredit asks cents
   def ask(amount, description)
+    check_amount_range(amount)
+
     request = { tid: TID,
                 shopID: @payment.shop_id,
                 ShopUserRef: 'pietro.donatini@unibo.it',
                 ShopUserName: 'Pietro Donatini', 
                 TrType: 'AUTH',
-                Amount: amount,
+                Amount: amount * 100,
                 CurrencyCode: 'EUR', 
                 LangID: 'EN',
                 NotifyURL: Rails.application.routes.url_helpers.verify_payment_url(@payment),
