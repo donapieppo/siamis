@@ -1,5 +1,5 @@
 class Deadline
-  @@_deadlines = Hash.new({})
+  @@_deadlines = Hash.new {|hash, key| hash[key] = {}}
 
   @@_deadlines[:pre_registration][:start]       = Date.parse(Rails.configuration.deadlines[:pre_registration][0])
   @@_deadlines[:pre_registration][:end]         = Date.parse(Rails.configuration.deadlines[:pre_registration][1])
