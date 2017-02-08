@@ -9,7 +9,7 @@
   <%= ul_list(@posters) %>
 <% else %>
   <%= render partial: 'description' %>  
-  <%= render partial: 'deadlines/submission' %>  
+  <%= render partial: 'deadlines/presentation_submission' %>  
   <%= render partial: 'forms' %>  
   <hr/>
   <% if @presentations.any? or @minisymposia.any? %>
