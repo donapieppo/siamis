@@ -1,6 +1,6 @@
 <% if Deadline.before_presentation_proposal? %>  
   <p class="alert alert-warning">
-    Proposals submission forms or presentation / poster will be availabe from 
+    Presentation / poster proposals submission forms will be availabe from 
     <strong><%= l(Deadline.presentation_proposal_start, format: :long) %></strong>.
   </p>
 <% elsif Deadline.can_propose?(:presentation) %>
