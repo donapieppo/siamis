@@ -56,7 +56,7 @@
       </p>
       <p>
       <% if Deadline.before_first_proposal? %>  
-        Submissions will start <%= l(Deadline.minisymposium_proposal_start)%>.
+        <strong>Submissions will start <%= l(Deadline.minisymposium_proposal_start)%></strong>.
       <% else %>
         <% if current_user %>  
           Please visit <%= link_to 'submission page', submissions_path %>.
@@ -67,23 +67,8 @@
       </p>
 
       <h2>Important Dates</h2>
-      <dl class="dl-horizontal">
-        <dt><%= l(Deadline.minisymposium_proposal_start, format: :deadline)%></dt>
-        <dd>
-          Minisymposium proposals
-          <%= link_to(icon('arrow-circle-right'), submissions_path) if Deadline.can_propose?(:minisymposium) %>  
-        </dd>
 
-        <dt><%= l(Deadline.presentation_proposal_start, format: :deadline)%></dt>
-        <dd>Abstracts for contributed and minisymposium speakers</dd>
-        <dd>Abstracts for posters</dd>
-
-        <dt><%= l(Deadline.pre_registration_start, format: :deadline)%></dt>
-        <dd>Pre-registration</dd>
-
-        <dt>2018 - June, 5</dt>
-        <dd>SIAM IS18 Conference</dd>
-      </dl>
+      <%= render 'deadlines/index' %>  
 
     </div>
   </div>

@@ -7,5 +7,7 @@
   <p class="centered"><%= link_to 'Create Poster Session', new_poster_session_path, class: :big_button %></p>
 <% end %>
 
+<%= render partial: 'deadlines/presentation_submission' %>  
+
 <%= render @poster_sessions %>
 

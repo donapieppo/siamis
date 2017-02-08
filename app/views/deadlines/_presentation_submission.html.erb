@@ -1,0 +1,29 @@
+<% if Deadline.before_presentation_proposal? %>  
+  <p class="alert alert-warning">
+    Proposals submission forms or presentation / poster will be availabe from 
+    <strong><%= l(Deadline.presentation_proposal_start, format: :long) %></strong>.
+  </p>
+<% elsif Deadline.can_propose?(:presentation) %>
+  <p class="alert alert-success">
+  <strong>Deadline</strong> for submission of <em>presentation / poster proposals</em>: <%= l(Deadline.presentation_proposal_end) %> <br/>
+  </p>
+  <% if current_user %>  
+    <% unless user_in_organizer_commettee? %>
+      <%= link_to 'submissions page', submissions_path, class: :button %>  
+    <% end %>
+  <% else %>
+    In order to submit a <em>presentation / poster proposals</em>, please <%= login_link %>.
+  <% end %>
+<% else %>
+  <p class="alert alert-warning">
+  Please note that the deadline for sending proposals has been expired on <%= l(Deadline.presentation_proposal_end) %>.
+  </p>
+<% end %>
+
+
+      <%# <dt><%= l Deadline.minisymposium_proposal_start %1> - <%= l Deadline.minisymposium_proposal_end %1>:</dt> %>
+      <%# <dd>Minisymposium Proposal Submissions</dd> %>
+      <%# <dt><%= l Deadline.presentation_proposal_start %1> - <%= l Deadline.presentation_proposal_end %1>:</dt> %>
+      <%# <dd> Contributed Lecture, Poster and Minisymposium Presentation Abstracts</dd> %>
+      <%# <dt>February 1, 2018:</dt> %>
+      <%# <dd> SIAG/FME Conference Paper Prize Deadline</dd> %>
