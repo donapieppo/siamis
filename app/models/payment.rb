@@ -19,7 +19,7 @@ class Payment < ApplicationRecord
   def start_pay
     self.new_record? and return nil
     @unicredit = Unicredit.new(self)
-    payment_id, redirect_url = @unicredit.ask(100, description)
+    payment_id, redirect_url = @unicredit.ask(self.amount, description)
     self.payment_id = payment_id
     self.save!
     @redirect_url = redirect_url
