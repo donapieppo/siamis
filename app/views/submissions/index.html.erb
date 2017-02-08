@@ -8,14 +8,16 @@
   <h2>Posters: <small>(<%= @posters.count %> to accept/refuse)</small> </h2>
   <%= ul_list(@posters) %>
 <% else %>
-  <%= render partial: 'description' %>  
-  <%= render partial: 'deadlines/presentation_submission' %>  
-  <%= render partial: 'forms' %>  
-  <hr/>
   <% if @presentations.any? or @minisymposia.any? %>
     <h2>Your submissions</h2>
     <%= render @presentations %>  
     <%= render @minisymposia, with_presentations: true %>  
+    <hr/>
   <% end %>
+
+  <%= render partial: 'description' %>  
+  <%= render partial: 'deadlines/minisymposium_submission' %>  
+  <%= render partial: 'deadlines/presentation_submission' %>  
+  <%= render partial: 'forms' %>  
 <% end %>
 
