@@ -6,9 +6,15 @@
 .plenary {
   &:nth-child(even) {
     border: 2px solid $color_1;
+    .plenary_schedule {
+      color: $color_2;
+    }
   }
   &:nth-child(odd) {
     border: 2px solid $color_2;
+    .plenary_schedule {
+      color: $color_1;
+    }
   }
   border: 2px solid #ccc;
   padding: 0px;
