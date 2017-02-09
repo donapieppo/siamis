@@ -2,7 +2,7 @@
 # defines conference_session_params
 class ConferenceSessionsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_conference_session_and_check_permission, only: [:edit, :update, :manage_presentations, :destroy]
+  before_action :set_conference_session_and_check_permission, only: [:edit, :update, :manage_presentations, :ordering, :destroy]
 
   def index
   end
@@ -32,6 +32,13 @@ class ConferenceSessionsController < ApplicationController
                                else
                                  []
                                end
+  end
+
+  def ordering
+    params[:order].each do |presentation_id, num|
+      Presentation.find(presentation_id.to_i).update_attribute(:number, num)
+    end
+    redirect_to manage_presentations_conference_session_path(@conference_session)
   end
 
   # TODO

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     put 'accept', on: :member
     put 'refuse', on: :member
   end
+  resources :chairs
   resources :minitutorials do
     resources :presentations
     resources :chairs
@@ -30,9 +31,11 @@ Rails.application.routes.draw do
     resources :schedules
   end
   resources :contributed_sessions do
+    resources :chairs
     resources :schedules
   end
   resources :poster_sessions do 
+    resources :chairs
     resources :schedules
   end
   # resources :contributed_sessions do
@@ -49,6 +52,7 @@ Rails.application.routes.draw do
   resources :conference_sessions do 
     resources :schedules
     get :manage_presentations, on: :member
+    post 'ordering', on: :member
     resources :presentations do 
       put 'add', on: :member
       put 'remove', on: :member
@@ -57,9 +61,8 @@ Rails.application.routes.draw do
   resources :presentations do 
     resources :authors
     resources :ratings
-    put 'set_number', on: :member
-    put 'accept',     on: :member
-    put 'refuse',     on: :member
+    put 'accept',   on: :member
+    put 'refuse',   on: :member
   end
 
   resources :payments do

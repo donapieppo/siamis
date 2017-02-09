@@ -1,19 +1,24 @@
 <p class="alert alert-success">Current presentations in "<%= @conference_session.name %>":</p>
-<ul class="list-group">
-  <% @actual_presentations.each do |presentation| %>  
-    <li class="list-group-item">
-      <%= form_for presentation, url: set_number_presentation_path(presentation), method: :put, remote: true, class: 'pull-left' do |f| %>  
-        <%= f.select(:number, (1..@actual_presentations.count)) %>
+
+<%= form_tag ordering_conference_session_path(@conference_session) do |f| %>  
+  <% many = 1..@actual_presentations.count %>  
+  <ul class="list-group">
+    <% @actual_presentations.each do |presentation| %>  
+      <li class="list-group-item">
+        <div class="pull-left" style="margin-right: 20px">
+          <%= select_tag "order[#{presentation.id}]", options_for_select(many, presentation.number) %>
+        </div>
+
+        <%= link_to presentation, presentation %>  
+
+        <div class="pull-right">
+          <%= link_to icon('minus-circle') + ' remove', remove_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session' %>
+        </div>
+      </li>
     <% end %>
-
-      <%= link_to presentation, presentation %>  
-
-      <div class="pull-right">
-        <%= link_to icon('minus-circle') + ' remove', remove_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session' %>
-      </div>
-    </li>
-  <% end %>
-</ul>
+  </ul>
+  <%= submit_tag 'Save order' %>  
+<% end %>
 
 <h2>Presentations to add:</h2>
 <ul class="list-group">
@@ -30,7 +35,7 @@
 <%= javascript_tag do %>  
   $(document).ready(function(){
   $("select").change(function() {
-      $(this).parent("form").submit();
-    })
+  $(this).parent("form").submit();
+  })
   });
 <% end %>
