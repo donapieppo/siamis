@@ -1,0 +1,8 @@
+<dl>
+  <dt>Chairs</dt>
+  <% @conference_session.chairs.each do |chair| %>  
+    <dd><%= chair %> <%= link_to_delete chair_path(chair) %>  </dd>
+  <% end %>
+  <dd><%= link_to icon(:plus)   + ' add Chair',  new_plenary_chair_path(@conference_session), class: :button %>  </dd>
+</dl>
+
