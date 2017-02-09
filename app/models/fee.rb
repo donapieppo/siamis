@@ -1,11 +1,11 @@
 class Fee
 
-  Prices = { siag_member:          [435, 535],
-             siam_member:          [445, 545],
-             speaker_or_organizer: [510, 610],
-             non_member:           [575, 675],
-             one_day:              [290, 340],
-             student:              [115, 130 ] }
+  Prices = { siag_member:          [400, 500],
+             siam_member:          [410, 510],
+             speaker_or_organizer: [480, 580],
+             non_member:           [520, 620],
+             one_day:              [250, 300],
+             student:              [100, 120] }
 
   def initialize(user)
     @user = user
