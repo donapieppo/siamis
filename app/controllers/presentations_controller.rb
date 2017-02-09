@@ -71,10 +71,6 @@ class PresentationsController < ApplicationController
     end
   end
 
-  def set_number
-    @presentation.update_attribute(:number, params[:presentation][:number])
-  end
-
   def destroy
     @presentation = Presentation.find(params[:id])
     current_user.owns!(@presentation) or raise NOACCESS
