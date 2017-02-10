@@ -32,9 +32,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "name"
     t.text     "description", limit: 65535
     t.boolean  "accepted"
-    t.integer  "chair_id",                  unsigned: true
     t.datetime "start"
-    t.index ["chair_id"], name: "chair_id", using: :btree
   end
 
   create_table "parts", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

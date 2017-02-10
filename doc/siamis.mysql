@@ -45,7 +45,7 @@ CREATE TABLE `conference_sessions` (
   `description` text, 
   `accepted` bool,
   `start` datetime,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
           
 CREATE TABLE `presentations` (
