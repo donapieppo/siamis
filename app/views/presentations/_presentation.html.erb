@@ -1,5 +1,3 @@
-<% owner = current_user_owns?(presentation) %>  
-
 <% if defined?(one_line) %>  
   <div>
     <%= link_to presentation, presentation %><br/>
@@ -28,7 +26,7 @@
           <dd>
           <%= show_role(author) %> 
           <%= icon(:microphone) if presentation.authors.size == 1 or author.speak %>
-          <%= link_to_delete author_path(author) if owner %>  
+          <%= link_to_delete author_path(author) if current_user_owns?(presentation) %>  
           </dd>
         <% end %>
 
@@ -38,14 +36,7 @@
 
     <% if ! defined?(short)%>  
       <div class="panel-footer footer-actions">
-        <% if owner %>  
-          <%= link_to icon('pencil') + " edit", edit_presentation_path(presentation) %>  
-          <%= link_to icon('plus')   + " add author", new_presentation_author_path(presentation) %>
-          <%= link_to icon('trash')  + " delete", presentation_path(presentation), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'} %>
-          <% if presentation.conference_session %>  
-            <%= link_to icon('pencil') + " edit #{presentation.conference_session.class}", presentation.conference_session %>  
-          <% end %>
-        <% end %>
+        <%= panel_actions(presentation) %>  
         <% if user_in_scientific_commettee? %>  
           <%= link_to icon('star') + ' rate', new_presentation_rating_path(presentation), remote: true %>  
         <% end %>
