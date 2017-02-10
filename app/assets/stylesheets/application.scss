@@ -98,6 +98,9 @@ ul li { list-style-type: none; }
     }
   }
 }
+.plenary_panel {
+  @extend .siam_panel;
+}
 .minisymposium_panel {
   @extend .siam_panel;
   // .panel-heading { background-color: $minisymposium_color; }
