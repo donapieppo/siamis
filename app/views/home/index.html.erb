@@ -82,7 +82,7 @@
         <div class="home-plenary col-md-4">
           <div class="plenary-when"><%= plenary.schedule ? l(plenary.schedule.start) : 'to be defined' %></div>
           <div class="plenary-title"><%= plenary.name %></div>
-          <div class="plenary-speaker"><%= plenary.speakers %></div>
+          <div class="plenary-speaker"><%= show_roles(plenary.authors) %></div>
           <div class="plenary-where"><%= plenary.schedule.room if plenary.schedule %></div>
         </div>
       <% end %>

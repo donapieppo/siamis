@@ -26,7 +26,7 @@
         <dt>Authors:</dt>
         <% presentation.authors.each do |author| %>  
           <dd>
-          <%= show_user(author.user) %> 
+          <%= show_role(author) %> 
           <%= icon(:microphone) if presentation.authors.size == 1 or author.speak %>
           <%= link_to_delete author_path(author) if owner %>  
           </dd>
