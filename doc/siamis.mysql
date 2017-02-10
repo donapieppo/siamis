@@ -35,8 +35,8 @@ CREATE TABLE `users` (
 -- Minisymposium
 -- Minitutorial
 -- Plenary
--- Poster
--- Contributed
+-- PosterSession
+-- ContributedSession
 CREATE TABLE `conference_sessions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `type` ENUM('Minisymposium', 'Minitutorial', 'Plenary', 'PosterSession', 'ContributedSession'),
