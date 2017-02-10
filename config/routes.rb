@@ -51,6 +51,8 @@ Rails.application.routes.draw do
   resources :schedules
   resources :conference_sessions do 
     resources :schedules
+    resources :organizers
+    resources :chairs
     get :manage_presentations, on: :member
     post 'ordering', on: :member
     resources :presentations do 
