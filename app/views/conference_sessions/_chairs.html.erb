@@ -1,8 +1,8 @@
 <dl class="dl-horizontal">
   <dt>Chairs</dt>
-  <% @conference_session.chairs.each do |chair| %>  
-    <dd><%= chair %> <%= link_to_delete chair_path(chair) %>  </dd>
+  <% @conference_session.organizers.each do |organizer| %>  
+    <dd><%= organizer %> <%= link_to_delete organizer_path(organizer) %>  </dd>
   <% end %>
-  <dd><%= link_to icon(:plus)   + ' add Chair',  new_plenary_chair_path(@conference_session), class: :button %>  </dd>
+  <dd><%= link_to icon(:plus)   + ' add Chair',  new_plenary_organizer_path(@conference_session), class: :button %>  </dd>
 </dl>
 

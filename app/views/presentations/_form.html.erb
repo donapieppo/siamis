@@ -2,7 +2,7 @@
   <%= presentation.input :name %>  
   <%= presentation.input :abstract %>  
   <%= presentation.input :poster, as: :hidden %>  
-  <% if (authors = @presentation.authors).size > 1 %>  
+  <% if (authors = @presentation.authors).size > 0 %>  
     <%= presentation.input :speaker_id, collection: authors, label_method: lambda {|a| a.user.cn}, include_blank: false %>
   <% end %>
   <%= presentation.submit 'Submit' %> - <%= link_to_back presentations_path %>  

@@ -1,6 +1,5 @@
 class ConferenceSession < ApplicationRecord
   has_many :organizers, dependent: :destroy
-  has_many :chairs, dependent: :destroy
   has_many :ratings, dependent: :destroy
   has_one  :schedule, dependent: :destroy
 

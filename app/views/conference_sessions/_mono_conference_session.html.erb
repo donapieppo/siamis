@@ -7,7 +7,7 @@
 <div class="panel-body">
   <p><strong>Speaker</strong>: <%= show_roles(conference_session.authors) %></p>
   <p><em><%= conference_session.description %></em></p>
-  <p><strong>Chair:</strong> <%= show_roles(conference_session.chairs) %></p>
+  <p><strong>Chair:</strong> <%= show_roles(conference_session.organizers) %></p>
 </div>
 <div class="panel-footer footer-actions">
   <%= panel_actions(conference_session) %>  

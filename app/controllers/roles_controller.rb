@@ -1,3 +1,4 @@
+# see subclasses authors/organizers
 class RolesController < ApplicationController
 
   def destroy
@@ -10,7 +11,7 @@ class RolesController < ApplicationController
   private 
 
   def role_params
-    par = params[:author] || params[:organizer] || params[:chair]
+    par = params[:author] || params[:organizer] 
     par.permit(:email, :name, :surname, :affiliation, :address)
   end
 

@@ -13,6 +13,7 @@ class Minisymposium < ConferenceSession
   def code
     "MS" + (self.number).to_s
   end
+
 end
 
 

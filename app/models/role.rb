@@ -19,10 +19,6 @@ class Role < ApplicationRecord
       if self.conference_session and self.conference_session.organizers.where(user_id: self.user_id).any?
         self.errors.add(:email, "User is already organizer of this #{self.conference_session.class}") 
       end
-    when Chair
-      if self.conference_session and self.conference_session.chairs.where(user_id: self.user_id).any?
-        self.errors.add(:email, "User is already chair of this #{self.conference_session.class}") 
-      end
     when Author
       if self.presentation and self.presentation.authors.where(user_id: self.user_id).any?
         self.errors.add(:email, "User is already author of this #{self.presentation.class}") 

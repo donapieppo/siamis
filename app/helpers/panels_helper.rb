@@ -23,16 +23,14 @@ module PanelsHelper
 
   # what = presentation or minisymposium
   def panel_actions(what)
-    return "&nbsp;".html_safe unless (current_user_owns?(what) or user_in_organizer_commettee?)
+    return " &nbsp;".html_safe unless (current_user_owns?(what) or user_in_organizer_commettee?)
 
     link_to(icon('pencil') + ' edit', [:edit, what], class: :button) + " " +
 
     # plenary, minitutorial
-    if what.respond_to?(:chairs) and what.is_a?(Plenary)
-      link_to(icon('plus') + ' add chair', [:new, what, :chair], class: :button) 
-    end + " " +
-
-    if what.respond_to?(:organizers) 
+    if what.respond_to?(:chairs) 
+      link_to(icon('plus') + ' add chair', [:new, what, :organizer], class: :button) 
+    elsif what.respond_to?(:organizers)
       link_to icon('plus') + ' add organizer', [:new, what, :organizer], class: :button
     end + " " +
 

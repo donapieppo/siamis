@@ -26,7 +26,7 @@
         </div>
         <div class="plenary_title"><h2><%= plenary.name %></h2></div>
         <p class="plenary_abstract"><%= plenary.description %></p>
-        <p><strong>Chair:</strong> <%= show_roles(plenary.chairs, editable: user_in_organizer_commettee?) %></p>
+        <p><strong>Chair:</strong> <%= show_roles(plenary.organizers, editable: user_in_organizer_commettee?) %></p>
 
         <%= panel_actions(plenary) %>  
       </div>

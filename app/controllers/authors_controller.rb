@@ -8,7 +8,9 @@ class AuthorsController < RolesController
   end
 
   def create
+    first = @presentation.authors.empty?
     @role = @presentation.authors.new(role_params)
+    @role.speak = first
     if @role.save
       redirect_to @presentation, notice: 'OK'
     else

@@ -236,9 +236,9 @@ notify_user	app/mailers/notification_mailer.rb	/^  def notify_user(user, passwor
 ordering	app/controllers/conference_sessions_controller.rb	/^  def ordering$/;"	f
 organized_by	app/helpers/conference_helper.rb	/^  def organized_by(conference_session)$/;"	f	class:ConferenceHelper
 organizer?	app/models/user.rb	/^  def organizer?(what)$/;"	f	class:User
-organizer_commette_actions	app/helpers/conference_helper.rb	/^  def organizer_commette_actions(what)$/;"	f	class:ConferenceHelper
 owns!	app/models/user.rb	/^  def owns!(what)$/;"	f	class:User
 owns?	app/models/user.rb	/^  def owns?(what)$/;"	f	class:User
+panel_actions	app/helpers/panels_helper.rb	/^  def panel_actions(what)$/;"	f	class:PanelsHelper
 parent_event_abbr	app/models/presentation.rb	/^  def parent_event_abbr$/;"	f	class:Presentation
 parse_ask_response	app/models/unicredit.rb	/^  def parse_ask_response(response)$/;"	f	class:Unicredit
 parse_verify_response	app/models/unicredit.rb	/^  def parse_verify_response(response)$/;"	f	class:Unicredit

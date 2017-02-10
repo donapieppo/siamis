@@ -48,7 +48,6 @@
         <%= link_to icon('star') + ' rate', new_minisymposium_rating_path(minisymposium), remote: true %>  
       <% end %>
       <% if user_in_organizer_commettee? %>  
-        <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(minisymposium) %>  
         <% if minisymposium.accepted? %>  
           <%= link_to icon('list')    + ' manage presentations', manage_presentations_conference_session_path(minisymposium) %>  
           <%= link_to icon('circle-o') + ' refuse', refuse_minisymposium_path(minisymposium), method: :put %>  

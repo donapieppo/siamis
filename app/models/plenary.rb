@@ -16,4 +16,6 @@ class Plenary < ConferenceSession
   def code
     "IP#{self.number}" if self.number
   end
+
+  alias chairs organizers
 end

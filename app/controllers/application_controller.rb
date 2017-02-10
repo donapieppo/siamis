@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def change_date
     if Rails.env.development?
-      new_time = Time.local(2017, 8, 1, 12, 0, 0)
+      new_time = Time.local(2017, 9, 27, 12, 0, 0)
       Timecop.travel(new_time)
     end
   end

@@ -9,7 +9,6 @@ class User < ApplicationRecord
 
   has_many :conference_sessions,  through: :organizers
   has_many :organizers
-  has_many :chairs
   has_many :minisymposia,  through: :organizers
   has_many :minitutorials, through: :organizers
   has_many :authors
@@ -25,7 +24,7 @@ class User < ApplicationRecord
   end
 
   def cn
-    "#{self.name} #{self.surname}"
+    "#{self.salutation unless self.salutation.blank?} #{self.name} #{self.surname}"
   end
 
   def owns!(what)
@@ -40,11 +39,7 @@ class User < ApplicationRecord
     when Minisymposium, Minitutorial
       self.organizer?(what)
     when Presentation
-      if what.conference_session.class == Minisymposium
-        self.organizer?(what.conference_session) or self.speaker?(what)
-      else
-        self.speaker?(what)
-      end
+      self.speaker?(what) or self.owns?(what.conference_session)
     else
       false
     end
@@ -75,9 +70,7 @@ class User < ApplicationRecord
 
   # FIXME
   def speaker?(presentation)
-    _authors = presentation.authors
-    _authors.size == 1 and return true
-    _authors.where(speak: true).first == self
+    presentation.authors.where(speak: true).where(user_id: self.id).any?
   end
 
   # FIXME

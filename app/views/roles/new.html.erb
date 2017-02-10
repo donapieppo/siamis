@@ -1,8 +1,6 @@
-<h1>
-Add <%= @role.class %><br/>
-<small>to <%= @conference_session || @presentation%></small>
-</h1>
+<h1>New <%= @role.class %></h1>
 
+<p><%= @conference_session || @presentation%></p>
 <%= simple_form_for [@conference_session || @presentation, @role] do |role| %>  
   <%= role.error_notification %>  
 

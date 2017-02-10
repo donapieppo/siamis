@@ -28,6 +28,7 @@ class PresentationsController < ApplicationController
     @presentation = Presentation.new(poster: params[:poster])
   end
 
+  # if not in organizer_commettee you are the author
   def create
     @presentation = @conference_session ? @conference_session.presentations.new(presentation_params) : Presentation.new(presentation_params)
     if @presentation.save
@@ -36,7 +37,7 @@ class PresentationsController < ApplicationController
         redirect_to new_presentation_author_path(@presentation)
       # we are authors
       else
-        @presentation.authors.create(user: current_user)
+        @presentation.authors.create(user: current_user, speak: true) unless user_in_organizer_commettee?
         redirect_to @presentation
       end
     else

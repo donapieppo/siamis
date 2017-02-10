@@ -62,7 +62,7 @@ CREATE TABLE `presentations` (
 
 CREATE TABLE `roles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `type` ENUM('Organizer', 'Author', 'Chair'),
+  `type` ENUM('Organizer', 'Author'),
   `user_id` int(10) unsigned NOT NULL,
   `conference_session_id` int(10) unsigned DEFAULT NULL,
   `presentation_id` int(10) unsigned DEFAULT NULL,

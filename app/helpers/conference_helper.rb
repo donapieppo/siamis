@@ -134,9 +134,6 @@ module ConferenceHelper
     user.organizers.each do |organizer|
       res << "<strong>Organizer</strong> in the session <em>'#{h organizer.conference_session.to_s}'</em>"
     end
-    user.chairs.each do |chair|
-      res << "<strong>Chair</strong> in the session <em>'#{h chair.conference_session.to_s}'</em>"
-    end
     res
   end
 end

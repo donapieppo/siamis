@@ -8,7 +8,6 @@
 #
 # Minitutorial: name
 #               description
-#               chairs
 # Presentation: authors (speaker)
 #
 class Minitutorial < ConferenceSession
