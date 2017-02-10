@@ -16,8 +16,8 @@ class Minitutorial < ConferenceSession
 
   after_create :create_the_presentation
 
-  def speakers
-    self.presentation and self.presentation.authors_to_s
+  def authors
+    self.presentation and self.presentation.authors
   end
 
   def code

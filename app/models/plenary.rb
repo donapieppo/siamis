@@ -4,13 +4,13 @@ class Plenary < ConferenceSession
 
   after_create :create_the_presentation
 
-  def speakers
-    self.presentation.authors.map(&:to_s).join(', ')
+  def authors
+    self.presentation.authors
   end
 
   # assume the first :-)
   def speaker
-    self.presentation.authors.first
+    self.authors.first
   end
 
   def code
