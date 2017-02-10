@@ -44,10 +44,8 @@ CREATE TABLE `conference_sessions` (
   `name` varchar(255),
   `description` text, 
   `accepted` bool,
-  `chair_id` int(10) unsigned,
   `start` datetime,
   PRIMARY KEY (`id`),
-  KEY `chair_id` (`chair_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
           
 CREATE TABLE `presentations` (
