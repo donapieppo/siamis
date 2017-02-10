@@ -112,21 +112,6 @@ module ConferenceHelper
     end
   end
 
-  def organizer_commette_actions(what)
-    if user_in_organizer_commettee?  
-      link_to_edit2('Edit', [:edit, what]) + " " +
-      if what.respond_to?(:chairs) 
-        link_to(icon('plus') + ' add chair', [:new, what, :chair], class: :button) 
-      end + " " +
-      if what.respond_to?(:authors) 
-        link_to(icon('plus') + ' add author', [:new, what.respond_to?(:presentation) ? what.presentation : what, :author], class: :button) 
-      end + " " +
-      link_to(icon('clock-o') + ' schedule', new_conference_session_schedule_path(what), class: :button) + " " +
-      link_to_delete('delete', conference_session_path(what), button: true)
-    else 
-      "&nbsp;".html_safe
-    end 
-  end
 
   def ul_list(what)
     content_tag(:ul, class: 'list-group') do
