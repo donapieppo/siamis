@@ -1,6 +1,20 @@
 <h1>Minisymposium</h1>
 
-<%= render partial: 'form' %>  
+<div>
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="active"><a href="#main" aria-controls="home" role="tab" data-toggle="tab">Details</a></li>
+  <li role="presentation"><a href="#organizers" aria-controls="organizers" role="tab" data-toggle="tab">Organizers</a></li>
+</ul>
+
+<div class="tab-content" style="margin-top: 20px;">
+  <div role="tabpanel" class="tab-pane active" id="main">
+    <%= render partial: 'form' %>  
+  </div>
+  <div role="tabpanel" class="tab-pane" id="organizers">
+    <%= render partial: 'conference_sessions/organizers' %>  
+  </div>
+</div>
+</div>
 
 
 

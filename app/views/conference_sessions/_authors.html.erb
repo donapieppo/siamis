@@ -1,4 +1,4 @@
-<dl>
+<dl class="dl-horizontal">
   <dt>Authors</dt>
   <% @conference_session.presentation.authors.each do |author| %>  
     <dd><%= author %> <%= link_to_delete author_path(author) %>  </dd>

@@ -17,7 +17,7 @@
         <dt>Organizers:</dt>
         <% minisymposium.organizers.includes(:user).order('users.surname').each do |organizer| %>  
           <dd>
-            <%= show_user(organizer.user) %>
+            <%= show_role(organizer) %>
             <%= link_to_delete organizer_path(organizer) if owner %>  
           </dd>
         <% end %>
@@ -46,9 +46,7 @@
       <% if owner  %>  
         <%= link_to icon('pencil') + ' edit', edit_minisymposium_path(minisymposium) %>  
         <%= link_to icon('user')   + ' add organizer', new_minisymposium_organizer_path(minisymposium) %>  
-        <% if presentations.size < 4 %>  
-          <%= link_to icon('file-audio-o') + ' add presentation', new_minisymposium_presentation_path(minisymposium) %>  
-        <% end %>
+        <%= link_to icon('file-audio-o') + ' add presentation', new_minisymposium_presentation_path(minisymposium) %>  
         <%= link_to icon('trash') + ' delete', minisymposium_path(minisymposium), method: :delete, title: 'delete', data: {confirm: 'Are you sure?'} %>
       <% end %>
       <% if (! minisymposium.accepted) and user_in_scientific_commettee? %>  

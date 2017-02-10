@@ -9,8 +9,8 @@
   <p class='alert alert-warning'><%= @user %> is author in no presentations for Siam-is18.</p>
 <% end %>
 
-<% if Deadline.can_propose?(:presenation) %>  
-<p class="centered">
+<% if Deadline.can_propose?(:presentation) %>  
+  <p class="centered">
   <%= link_to 'Submit Presentation Proposal', new_presentation_path, class: :big_button %>  
-</p>
+  </p>
 <% end %>

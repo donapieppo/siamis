@@ -1,3 +1,20 @@
-<%= render partial: 'conference_sessions/form' %>  
-<%= render partial: 'conference_sessions/authors_and_chairs' %>  
+<div>
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="active"><a href="#main" aria-controls="home" role="tab" data-toggle="tab">Details</a></li>
+  <li role="presentation"><a href="#authors" aria-controls="authors" role="tab" data-toggle="tab">Authors</a></li>
+  <li role="presentation"><a href="#chairs" aria-controls="chairs" role="tab" data-toggle="tab">Chairs</a></li>
+</ul>
+
+<div class="tab-content" style="margin-top: 20px;">
+  <div role="tabpanel" class="tab-pane active" id="main">
+    <%= render partial: 'conference_sessions/form' %>  
+  </div>
+  <div role="tabpanel" class="tab-pane" id="authors">
+    <%= render partial: 'conference_sessions/authors' %>  
+  </div>
+  <div role="tabpanel" class="tab-pane" id="chairs">
+    <%= render partial: 'conference_sessions/chairs' %>  
+  </div>
+</div>
+</div>
 
