@@ -3,12 +3,21 @@ module ConferenceHelper
   def user_modal_link(user)
     return "" unless user
     cn = (current_user == user) ? user.cn.upcase : user.cn
-    link_to cn, user_path(user), remote: true 
+    link_to h(cn), user_path(user), remote: true 
   end
 
-  def show_user(user)
-    return unless user
-    user_modal_link(user) + " (" + user.affiliation + ")"
+  def show_role(role, editable: false)
+    return unless role
+    raw user_modal_link(role.user) + 
+        " (" + h(role.user.affiliation) + ") " +
+        (editable ? link_to_delete(role) : "")
+  end
+
+  # html_safe becouse of h() before
+  def show_roles(roles, editable: false)
+    roles.map do |role|
+      show_role(role, editable: editable)
+    end.join(', ').html_safe
   end
 
   def rating_stars(rating)
@@ -92,7 +101,7 @@ module ConferenceHelper
   def link_to_next_approval(what)
     user_in_organizer_commettee? or return ""
     content_tag(:p, class: 'centered') do
-      what ? link_to('next to accept', what, class: :button) : ''
+      what ? link_to('next', what, class: :button) : ''
     end
   end
 
@@ -106,6 +115,12 @@ module ConferenceHelper
   def organizer_commette_actions(what)
     if user_in_organizer_commettee?  
       link_to_edit2('Edit', [:edit, what]) + " " +
+      if what.respond_to?(:chairs) 
+        link_to(icon('plus') + ' add chair', [:new, what, :chair], class: :button) 
+      end + " " +
+      if what.respond_to?(:authors) 
+        link_to(icon('plus') + ' add author', [:new, what.respond_to?(:presentation) ? what.presentation : what, :author], class: :button) 
+      end + " " +
       link_to(icon('clock-o') + ' schedule', new_conference_session_schedule_path(what), class: :button) + " " +
       link_to_delete('delete', conference_session_path(what), button: true)
     else 
