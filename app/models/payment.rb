@@ -36,7 +36,7 @@ class Payment < ApplicationRecord
   end
 
   def user_abbr
-    ("u{self.user.id}" + self.user.name[0] + self.user.surname[0]).downcase
+    ("u#{self.user.id}" + self.user.name[0] + self.user.surname[0]).downcase
   end
 
   private
