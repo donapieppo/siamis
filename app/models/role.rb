@@ -28,6 +28,7 @@ class Role < ApplicationRecord
 
   # for Organizer
   # for Author
+  # SKIP_CONFIRMATION!
   def set_or_create_user_from_email
     self.user_id and return true
 
@@ -48,6 +49,8 @@ class Role < ApplicationRecord
                          surname:      self.surname, 
                          affiliation:  self.affiliation,
                          address:      self.address) # confirmed_at: Time.now)
+        # create by other user, not by anonymous 
+        _user.skip_confirmation!
         if _user.save
           self.user_id = _user.id 
         else
