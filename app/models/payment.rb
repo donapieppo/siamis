@@ -36,13 +36,13 @@ class Payment < ApplicationRecord
   end
 
   def user_abbr
-    (self.user.name[0] + self.user.surname[0]).downcase
+    ('u' + 'self.user.id' + self.user.name[0] + self.user.surname[0]).downcase
   end
 
   private
 
   def create_seed_and_shop_id
-    self.seed = SecureRandom.hex(8)
+    self.seed = SecureRandom.hex(4)
     self.shop_id = "Siam-#{self.id}-#{self.user_abbr}-#{self.seed}"
     self.save
   end
