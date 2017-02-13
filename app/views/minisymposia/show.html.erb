@@ -1,4 +1,4 @@
-<%= render @conference_session, with_presentations: true %>  
+<%= render @conference_session %>  
 
 <% if user_in_scientific_commettee? %>  
   <% if rating = current_user.ratings.where(minisymposium: @conference_session).first %>  

@@ -21,16 +21,14 @@
             <%= link_to_delete organizer_path(organizer) if owner %>  
           </dd>
         <% end %>
-        <% if defined?(with_presentations) and with_presentations %>  
-          <dt>Presentations:</dt>
-          <% presentations.each do |presentation| %>
-            <dd>
-              <%= link_to presentation, presentation %>
-            </dd>
-          <% end %>
-          <% if (! minisymposium.accepted) and owner and presentations.size < 4 %>
-            <%= content_tag(:dd, icon('warning') + ' Please add presentations.') %>  
-          <% end %>
+        <dt>Presentations:</dt>
+        <% presentations.each do |presentation| %>
+          <dd>
+          <%= link_to presentation, presentation %>
+          </dd>
+        <% end %>
+        <% if (! minisymposium.accepted) and owner and presentations.size < 4 %>
+          <%= content_tag(:dd, icon('warning') + ' Please add presentations.') %>  
         <% end %>
 
         <% unless (minisymposium.accepted or defined?(short)) %>  
