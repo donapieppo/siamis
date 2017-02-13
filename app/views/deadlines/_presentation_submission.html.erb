@@ -1,6 +1,6 @@
 <% if Deadline.before_presentation_proposal? %>  
   <p class="alert alert-warning">
-    Presentation / poster proposals submission forms will be availabe from 
+    Presentation / poster proposals submission forms will be availabe from</br>
     <strong><%= l(Deadline.presentation_proposal_start, format: :long) %></strong>.
   </p>
 <% elsif Deadline.can_propose?(:presentation) %>
@@ -8,7 +8,7 @@
   <strong>Deadline</strong> for submission of <em>presentation / poster proposals</em>: <%= l(Deadline.presentation_proposal_end) %> <br/>
   </p>
   <% if current_user %>  
-    <% unless user_in_organizer_commettee? %>
+    <% unless controller.controller_name == 'submissions' or user_in_organizer_commettee? %>
       <%= link_to 'submissions page', submissions_path, class: :button %>  
     <% end %>
   <% else %>

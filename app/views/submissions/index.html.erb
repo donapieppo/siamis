@@ -11,13 +11,26 @@
   <% if @presentations.any? or @minisymposia.any? %>
     <h2>Your submissions</h2>
     <%= render @presentations %>  
-    <%= render @minisymposia, with_presentations: true %>  
+    <%= render @minisymposia %>  
     <hr/>
   <% end %>
 
   <%= render partial: 'description' %>  
-  <%= render partial: 'deadlines/minisymposium_submission' %>  
-  <%= render partial: 'deadlines/presentation_submission' %>  
-  <%= render partial: 'forms' %>  
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= render partial: 'deadlines/minisymposium_submission' %>  
+      <% if Deadline.can_propose?(:minisymposium) %>  
+        <%= render partial: 'minisymposium_proposal' %>  
+      <% end %>
+    </div>
+    <div class="col-md-6">
+      <%= render partial: 'deadlines/presentation_submission' %>  
+      <% if Deadline.can_propose?(:presentation) %>  
+        <%= render partial: 'presentation_proposal' %>  
+      <% end %>
+    </div>
+  </div>
 <% end %>
+
 

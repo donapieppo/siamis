@@ -1,7 +1,7 @@
 <% if Deadline.before_minisymposium_proposal? %>  
   <p class="alert alert-warning">
-  Minisymposium proposals submission forms will be availabe from 
-  <strong><%= l(Deadline.minisymposium_proposal_start, format: :long) %></strong>.
+    Minisymposium proposals submission forms will be availabe from <br/>
+    <strong><%= l(Deadline.minisymposium_proposal_start, format: :long) %></strong>.
   </p>
 <% elsif Deadline.can_propose?(:minisymposium)  %>
   <p class="alert alert-success">
@@ -17,6 +17,6 @@
   <% end %>
 <% else %>
   <p class="alert alert-warning">
-  Please note that the deadline for sending proposals has been expired on <%= l(Deadline.minisymposium_proposal_end) %>.
+  Please note that the deadline for sending <em>minisymposium proposals</em> has been <strong>expired</strong> on <%= l(Deadline.minisymposium_proposal_end) %>.
   </p>
 <% end %>
