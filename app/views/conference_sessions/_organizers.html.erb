@@ -1,0 +1,9 @@
+<dl class="dl-horizontal">
+  <dt>Organizers</dt>
+  <% @conference_session.organizers.each do |organizer| %>  
+    <dd><%= organizer %> <%= link_to_delete organizer_path(organizer) %>  </dd>
+  <% end %>
+  <dd><%= link_to icon(:plus) + ' add organizer', new_conference_session_organizer_path(@conference_session), class: :button %></dd>
+</dl>
+
+
