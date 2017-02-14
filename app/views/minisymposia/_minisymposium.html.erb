@@ -1,59 +1,44 @@
 <% owner = current_user_owns?(minisymposium) %>  
 <% presentations = minisymposium.presentations.order(:number).all %>  
 
-<% if defined?(one_line) and one_line %>  
-  <div>
-    <%= minisymposium.code %> <%= link_to minisymposium, minisymposium %> 
-  </div>
-<% else %>
-  <div class="minisymposium_panel">
+<div class="minisymposium_panel">
 
-    <%= session_heading(minisymposium) %>  
+  <%= panel_heading(minisymposium) %>  
 
-    <div class="panel-body">
-      <p><em><%= minisymposium.description %></em></p>
+  <div class="panel-body">
+    <p><em><%= minisymposium.description %></em></p>
 
-      <dl class="dl-horizontal">
-        <dt>Organizers:</dt>
-        <% minisymposium.organizers.includes(:user).order('users.surname').each do |organizer| %>  
-          <dd>
-            <%= show_role(organizer) %>
-            <%= link_to_delete organizer_path(organizer) if owner %>  
-          </dd>
-        <% end %>
-        <dt>Presentations:</dt>
-        <% presentations.each do |presentation| %>
-          <dd>
-          <%= link_to presentation, presentation %>
-          </dd>
-        <% end %>
-        <% if (! minisymposium.accepted) and owner and presentations.size < 4 %>
-          <%= content_tag(:dd, icon('warning') + ' Please add presentations.') %>  
-        <% end %>
-
-        <% unless (minisymposium.accepted or defined?(short)) %>  
-          <%= render(partial: 'ratings/dl_list', locals: { what: minisymposium }) %>  
-        <% end %>
-      </dl>
-      <% if (! minisymposium.accepted) and owner and presentations.size < 4 %>  
-        <p class="alert alert-warning">A minisymposium generally consists of <strong>four</strong> 25-minute presentations, with an additional five minutes for discussion after each presentation.</p>
+    <dl class="dl-horizontal">
+      <dt>Organizers:</dt>
+      <% minisymposium.organizers.includes(:user).order('users.surname').each do |organizer| %>  
+        <dd>
+        <%= show_role(organizer) %>
+        <%= link_to_delete organizer_path(organizer) if owner %>  
+        </dd>
       <% end %>
-    </div><!-- body -->
+    </dl>
 
-    <div class="panel-footer footer-actions">
-      <%= panel_actions(minisymposium) %>  
-      <% if (! minisymposium.accepted) and user_in_scientific_commettee? %>  
-        <%= link_to icon('star') + ' rate', new_minisymposium_rating_path(minisymposium), remote: true %>  
+    <dl class="dl-horizontal">
+      <dt>Presentations:</dt>
+      <% presentations.each do |presentation| %>
+        <dd>
+        <%= link_to presentation, presentation %>
+        </dd>
       <% end %>
-      <% if user_in_organizer_commettee? %>  
-        <% if minisymposium.accepted? %>  
-          <%= link_to icon('list')    + ' manage presentations', manage_presentations_conference_session_path(minisymposium) %>  
-          <%= link_to icon('circle-o') + ' refuse', refuse_minisymposium_path(minisymposium), method: :put %>  
-        <% else %>
-          <%= link_to icon('check') + ' accept', accept_minisymposium_path(minisymposium), method: :put %>  
-        <% end %>
+      <% if (! minisymposium.accepted) and owner and presentations.size < 4 %>
+        <%= content_tag(:dd, icon('warning') + ' Please add presentations.') %>  
       <% end %>
-      <%= schedule(minisymposium) %>  
-    </div><!-- footer -->
-  </div>
-<% end %>
+    </dl>
+
+    <%= render(partial: 'ratings/dl_list', locals: { what: minisymposium }) %>  
+
+    <% if (! minisymposium.accepted) and owner and presentations.size < 4 %>  
+      <p class="alert alert-warning">A minisymposium generally consists of <strong>four</strong> 25-minute presentations, with an additional five minutes for discussion after each presentation.</p>
+    <% end %>
+  </div><!-- body -->
+
+  <div class="panel-footer footer-actions">
+    <%= panel_actions(minisymposium) %>  
+    <%= schedule(minisymposium) %>  
+  </div><!-- footer -->
+</div>

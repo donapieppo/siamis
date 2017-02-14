@@ -1,26 +1,27 @@
 <%# Create and edited by organizer commettee only (see minisymposium for complex session) %> 
 
 <div class="conference_session_panel">
-<div class="panel-heading">
-  <%= session_heading(conference_session) %>  
-</div>
-<div class="panel-body">
-  <em><%= conference_session.description %></em>
-  <dl class="dl-horizontal">
-    <dt>Presentations:</dt>
-    <% conference_session.presentations.includes(authors: :user).order(:number).each do |presentation| %>  
-      <dd><%= render presentation, one_line: true, with_authors: true %></dd>
+  
+  <%= panel_heading(conference_session) %>  
+
+  <div class="panel-body">
+    <em><%= conference_session.description %></em>
+    <dl class="dl-horizontal">
+      <dt>Presentations:</dt>
+      <% conference_session.presentations.includes(authors: :user).order(:number).each do |presentation| %>  
+        <dd><%= link_to presentation, presentation %></dd>
+      <% end %>
+    </dl>
+  </div>
+
+  <div class="panel-footer footer-actions">
+    <% if user_in_organizer_commettee? %>  
+      <%= link_to icon('pencil')  + ' edit', [:edit, conference_session] %>  
+      <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(conference_session) %>  
+      <%= link_to icon('list')    + ' manage presentations', manage_presentations_conference_session_path(conference_session) %>  
     <% end %>
-  </dl>
-</div>
-<div class="panel-footer footer-actions">
-  <% if user_in_organizer_commettee? %>  
-    <%= link_to icon('pencil')  + ' edit', [:edit, conference_session] %>  
-    <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(conference_session) %>  
-    <%= link_to icon('list')    + ' manage presentations', manage_presentations_conference_session_path(conference_session) %>  
-  <% end %>
-  &nbsp; <span class="pull-right"><%= conference_session.schedule || 'schedule to be decided' %></span>
-</div>
+    &nbsp; <span class="pull-right"><%= conference_session.schedule || 'schedule to be decided' %></span>
+  </div>
 </div>
 
 

@@ -1,50 +1,28 @@
-<% if defined?(one_line) %>  
-  <div>
-    <%= link_to presentation, presentation %><br/>
-    <%= users_list(presentation) %>  
-    <span class="badge pull-right"><%= presentation.parent_event_abbr %></span>
-  </div>
-<% else %>
-  <div class="presentation_panel">
-    <div class="panel-heading">
-      <h3>
-        <%= link_to presentation, presentation %>
-        <span class="badge pull-right"><%= presentation.parent_event_abbr %></span>
-      </h3>
-    </div><!-- heading -->
+<div class="presentation_panel">
 
-    <div class="panel-body">
-      <p><em><%= presentation.abstract %></em></p>
+<%= panel_heading(presentation) %>  
 
-      <% if ! defined?(short) and presentation.conference_session %>  
-        <%= presentation_parent(presentation) %>  
-      <% end %>
+<div class="panel-body">
+  <p><em><%= presentation.abstract %></em></p>
 
-      <dl class="dl-horizontal">
-        <dt>Authors:</dt>
-        <% presentation.authors.each do |author| %>  
-          <dd>
-          <%= show_role(author) %> 
-          <%= icon(:microphone) if presentation.authors.size == 1 or author.speak %>
-          <%= link_to_delete author_path(author) if current_user_owns?(presentation) %>  
-          </dd>
-        <% end %>
+  <%= presentation_parent(presentation) %>  
 
-        <%= render(partial: 'ratings/dl_list', locals: { what: presentation }) unless defined?(short) %>  
-      </dl>
-    </div><!-- body -->
-
-    <% if ! defined?(short)%>  
-      <div class="panel-footer footer-actions">
-        <%= panel_actions(presentation) %>  
-        <% if user_in_scientific_commettee? %>  
-          <%= link_to icon('star') + ' rate', new_presentation_rating_path(presentation), remote: true %>  
-        <% end %>
-        <% if user_in_organizer_commettee? %>  
-          <%= link_to icon('check') + ' accept', accept_presentation_path(presentation), method: :put %>  
-        <% end %>
-        <%= schedule(presentation) %>  
-      </div><!-- footer -->
+  <dl class="dl-horizontal">
+    <dt>Authors:</dt>
+    <% presentation.authors.each do |author| %>  
+      <dd>
+      <%= show_role(author) %> 
+      <%= icon(:microphone) if author.speak %>
+      <%= link_to_delete author_path(author) if current_user_owns?(presentation) %>  
+      </dd>
     <% end %>
-  </div>
-<% end %>
+  </dl>
+
+  <%= render partial: 'ratings/dl_list', locals: { what: presentation } %>  
+</div><!-- body -->
+
+<div class="panel-footer footer-actions">
+  <%= panel_actions(presentation) %>  
+  <%= schedule(presentation) %>  
+</div><!-- footer -->
+</div>

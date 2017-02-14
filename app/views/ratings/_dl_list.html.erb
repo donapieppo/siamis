@@ -1,20 +1,26 @@
 <% sum = 0.to_f %> 
 <% num = 0 %>  
 <% if user_in_scientific_commettee? or user_in_organizer_commettee? %>
-  <dt>Ratings:</dt>
-  <% what.ratings.each do |rating| %>  
-    <% rating.score or next %>  
-    <dd style="<%= 'font-weight: bold' if (rating.user == current_user) %>">
-    <%= rating_stars(rating.score) %> 
-    <%= rating.user %> 
-    <em>(<%= rating.notes %>)</em>  
-    </dd>
-    <% sum += rating.score; num += 1 %>  
-  <% end %>
-  <dd>
-    <%= num %> votes on <%= SCIENTIFIC_COMMITTEE.count %> scientific commettee components.
-    <% if num > 0 %>
-      Average: <%= sum/num %>
+  <% if what.accepted %>  
+    <p class="alert alert-info">This <%= what.class_name %> has been accepted.</p>
+  <% else %>
+    <dl class="dl-horizontal">
+      <dt>Ratings:</dt>
+      <% what.ratings.each do |rating| %>  
+        <% rating.score or next %>  
+        <dd style="<%= 'font-weight: bold' if (rating.user == current_user) %>">
+        <%= rating_stars(rating.score) %> 
+        <%= rating.user %> 
+        <em>(<%= rating.notes %>)</em>  
+        </dd>
+        <% sum += rating.score; num += 1 %>  
+      <% end %>
+      <dd>
+      <%= num %> votes on <%= SCIENTIFIC_COMMITTEE.count %> scientific commettee components.
+      <% if num > 0 %>
+        Average: <%= sum/num %>
     <% end %>
-  </dd>
+      </dd>
+    </dl>
+  <% end %>
 <% end %>
