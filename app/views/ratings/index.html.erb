@@ -15,12 +15,12 @@
       <ul>
         <% rated_by_me = nil %>  
         <% submission.ratings.each do |rating| %>  
-          <%- rated_by_me = true if rating.user == current_user %>  
+          <%- rated_by_me = (rating.user == current_user) %>  
           <li>
             <%= rating_stars(rating.score) %> 
             <%= rating.user %> 
             <em>(<%= rating.notes %>)</em>  
-            <%= link_to_edit url if rated_by_me %>  
+            <%= link_to_edit(url) if rated_by_me %>  
           </li>
         <% end %>
         <%# <% unless rated_by_me %1> %>  
