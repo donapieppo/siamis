@@ -142,5 +142,11 @@ module ConferenceHelper
       link_to icon('chevron-up', size: '28'), '#top'
     end
   end
+
+  # plenary_panel
+  # minitutorial_panel
+  def conference_session_panel_class(conference_session)
+     conference_session.class.to_s.downcase + "_panel"
+  end
 end
 

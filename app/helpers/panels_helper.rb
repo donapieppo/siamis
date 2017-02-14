@@ -1,6 +1,6 @@
 module PanelsHelper
 
-  def session_heading(what)
+  def panel_heading(what)
     content_tag(:div, class: 'panel-heading') do
       content_tag(:h3) do
         link_to(what, what) +
@@ -10,6 +10,7 @@ module PanelsHelper
   end
 
   def presentation_parent(presentation)
+    presentation.conference_session or return ""
     content_tag(:p) do
       concat "This presentation is part of " 
       concat content_tag(:strong, h(t(presentation.conference_session.class)) + " ") 
@@ -21,38 +22,60 @@ module PanelsHelper
     end
   end
 
-  # what = presentation or minisymposium
-  def panel_actions(what)
-    return " &nbsp;".html_safe unless (current_user_owns?(what) or user_in_organizer_commettee?)
+  def owner_actions(what)
+    return unless current_user_owns?(what)
 
-    link_to(icon('pencil') + ' edit', [:edit, what], class: :button) + " " +
-
+    concat(link_to icon('pencil') + ' edit', [:edit, what], class: :button)
+      
     # plenary, minitutorial
     if what.respond_to?(:chairs) 
-      link_to(icon('plus') + ' add chair', [:new, what, :organizer], class: :button) 
+      concat(link_to icon('plus') + ' add chair', [:new, what, :organizer], class: :button)
     elsif what.respond_to?(:organizers)
-      link_to icon('plus') + ' add organizer', [:new, what, :organizer], class: :button
-    end + " " +
+      concat(link_to icon('plus') + ' add organizer', [:new, what, :organizer], class: :button)
+    end 
 
     if what.respond_to?(:authors) 
-      link_to icon('plus') + ' add author', [:new, what.respond_to?(:presentation) ? what.presentation : what, :author], class: :button 
-    end + " " +
+      concat(link_to icon('plus') + ' add author', [:new, what.respond_to?(:presentation) ? what.presentation : what, :author], class: :button)
+    end 
 
     if what.respond_to?(:presentations)
-      link_to icon('file-audio-o') + ' add presentation', [:new, what, :presentation], class: :button
-    end + " " +
+      concat(link_to icon('file-audio-o') + ' add presentation', [:new, what, :presentation], class: :button)
+    end 
 
-    link_to_delete('delete', what, button: true) + " " +
+    concat(link_to_delete('delete', what, button: true))
 
     if what.try(:conference_session)   
-       link_to icon('reply') + " back to #{what.conference_session.class}", what.conference_session
-    end + " " +
+      concat(link_to icon('reply') + " back to #{what.conference_session.class}", what.conference_session)
+    end 
 
-    if user_in_organizer_commettee? and ! what.is_a?(Presentation)
-      link_to(icon('clock-o') + ' schedule', new_conference_session_schedule_path(what), class: :button) 
-    end + " " +
+  end
 
-    " "
+  def organizer_commettee_actions(what)
+    return unless user_in_organizer_commettee?
+
+    unless what.is_a?(Presentation)
+      concat(link_to(icon('clock-o') + ' schedule', new_conference_session_schedule_path(what), class: :button))
+    end 
+
+    if minisymposium.accepted?
+      concat(link_to icon('list')     + ' manage presentations', [:manage_presentations, what])
+      concat(link_to icon('circle-o') + ' refuse',               [:refuse, what], method: :put)
+    else 
+      concat(link_to icon('check') + ' accept', [:accept, what], method: :put)
+    end 
+  end
+
+  def scientific_commettee_actions(what)
+    if user_in_scientific_commettee? and !(what.accepted)
+      concat(link_to icon('star') + ' rate', [:new, what, :rating], remote: true)
+    end 
+  end
+
+  # what = presentation or minisymposium
+  def panel_actions(what)
+    owner_actions(what) 
+    scientific_commettee_actions(what) 
+    organizer_commettee_actions(what)
   end
 end
 
