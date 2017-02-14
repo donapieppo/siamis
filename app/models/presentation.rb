@@ -36,6 +36,10 @@ class Presentation < ApplicationRecord
     conference_session.code if conference_session
   end
 
+  def parent_class
+    conference_session.class_name if conference_session
+  end
+
   def code 
     conference_session ? conference_session.code : '-'
   end
