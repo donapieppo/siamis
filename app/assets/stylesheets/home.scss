@@ -36,15 +36,21 @@
   padding-bottom: 15px;
 }
 
+.home_section:nth-child(odd) {
+  background-color: $home_second_color;
+  h2 { color: #fff; }
+  color: #fff;
+}
+.home_section:nth-child(even) {
+  background-color: #fff;
+}
+
 #preliminary_announcement {
   @extend .home_content_div;
 }
 
 #conference_themes {
   @extend .home_content_div;
-  h2 { color: #fff; }
-  background-color: $home_second_color;
-  color: #fff;
 }
 
 #committees {
@@ -57,8 +63,6 @@
 
 #plenaries {
   @extend .home_content_div;
-  background-color: $home_second_color;
-  color: #fff;
   text-align: center;
   .home-plenary {
     margin-bottom: 20px;

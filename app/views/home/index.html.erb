@@ -1,20 +1,21 @@
-<div id="preliminary_announcement">
-<div class="container">
-  <h2>Preliminary Announcement</h2>
+<div class="home_section">
+  <div class="container" id="preliminary_announcement">
+    <h2>Preliminary Announcement</h2>
 
-  <p> The SIAM Activity Group on Imaging Science (SIAG/IS) and the Bologna Committee for IS Conference 2018 (BCIS18) organize the biennial SIAM Conference on Imaging Science, one of the world’s largest, most influential biennial event in imaging science and mathematical aspects in imaging. Four days of research results, educational sessions, highligthing the community’s latest research achievements, and commercial exhibits displaying the industry's current software and services.
-  </p>
+    <p> The SIAM Activity Group on Imaging Science (SIAG/IS) and the Bologna Committee for IS Conference 2018 (BCIS18) organize the biennial SIAM Conference on Imaging Science, one of the world’s largest, most influential biennial event in imaging science and mathematical aspects in imaging. Four days of research results, educational sessions, highligthing the community’s latest research achievements, and commercial exhibits displaying the industry's current software and services.
+    </p>
 
-  <p> The SIAM Conference on Imaging Science, for the first time in Europe, brings together scientists and engineers with an interest in the mathematical and computational aspects of imaging.</p>
+    <p> The SIAM Conference on Imaging Science, for the first time in Europe, brings together scientists and engineers with an interest in the mathematical and computational aspects of imaging.</p>
 
-  <p> The reconstruction, enhancement, segmentation, analysis, registration, compression, representation, and tracking of two and three dimensional images are vital to many areas of science, medicine, and engineering. As a result, increasingly sophisticated mathematical, statistical, and computational methods are being employed in these research areas, which may be referred to as “imaging science”. These techniques include transform and orthogonal series methods, nonlinear optimization, numerical linear algebra, integral equations, partial differential equations, Bayesian and other statistical inverse estimation methods, operator theory, differential geometry, information theory, interpolation and approximation, inverse problems, computer graphics and vision, stochastic processes, and others.</p>
+    <p> The reconstruction, enhancement, segmentation, analysis, registration, compression, representation, and tracking of two and three dimensional images are vital to many areas of science, medicine, and engineering. As a result, increasingly sophisticated mathematical, statistical, and computational methods are being employed in these research areas, which may be referred to as “imaging science”. These techniques include transform and orthogonal series methods, nonlinear optimization, numerical linear algebra, integral equations, partial differential equations, Bayesian and other statistical inverse estimation methods, operator theory, differential geometry, information theory, interpolation and approximation, inverse problems, computer graphics and vision, stochastic processes, and others.</p>
 
-  <p>The SIAG/IS awards the SIAG/IS Best Paper Prize to the authors of the best paper on mathematical and computational aspects of imaging, awards the SIAG/IS Early Career Prize to an outstanding early career researcher in the field of imaging science, and maintains a wiki, a member directory, and an electronic mailing list.</p>
-</div>
-</div>
+    <p>The SIAG/IS awards the SIAG/IS Best Paper Prize to the authors of the best paper on mathematical and computational aspects of imaging, awards the SIAG/IS Early Career Prize to an outstanding early career researcher in the field of imaging science, and maintains a wiki, a member directory, and an electronic mailing list.</p>
+  </div>
+  <%= link_to_top %>  
+</div><!-- home_section -->
 
-<div id="conference_themes">
-  <div class="container">
+<div class="home_section">
+  <div class="container" id="conference_themes">
     <h2>Conference Themes</h2>
 
     <p>The reconstruction, enhancement, segmentation, analysis, registration, compression, representation,
@@ -26,72 +27,80 @@
     estimation methods, operator theory, differential geometry, information theory, interpolation and
     approximation, inverse problems, computer graphics and vision, stochastic processes, and others.</p>
   </div>
-</div>
+  <%= link_to_top %>  
+</div><!-- home_section -->
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-6" id="committees">
-      <h2>Organizing Committee</h2>
+<div class="home_section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6" id="committees">
+        <h2>Organizing Committee</h2>
 
-      <% cache 'home_organizing_commettee' do %>
-        <dl class="dl-horizontal">
-          <dt>Co-chairs: </dt>
-          <% User.cochairs.each do |user| %>  
-            <dd><%= link_to user.cn, user.web_page, target: "_blank" %> (<%= user.affiliation %>)</dd>
-          <% end %>
-          <dt>Scientific Committee: </dt>
-          <% User.scientific_commettee.each do |user| %>  
-            <dd><%= link_to user.cn, user.web_page, target: "_blank" %> (<%= user.affiliation %>)</dd>
-          <% end %>
-        </dl>
-      <% end %>
-    </div>
+        <% cache 'home_organizing_commettee' do %>
+          <dl class="dl-horizontal">
+            <dt>Co-chairs: </dt>
+            <% User.cochairs.each do |user| %>  
+              <dd><%= link_to user.cn, user.web_page, target: "_blank" %> (<%= user.affiliation %>)</dd>
+            <% end %>
+            <dt>Scientific Committee: </dt>
+            <% User.scientific_commettee.each do |user| %>  
+              <dd><%= link_to user.cn, user.web_page, target: "_blank" %> (<%= user.affiliation %>)</dd>
+            <% end %>
+          </dl>
+        <% end %>
+      </div>
 
-    <div class="col-md-6" id="submissions">
-      <h2>Submissions</h2>
+      <div class="col-md-6" id="submissions">
+        <h2>Submissions</h2>
 
-      <p>
+        <p>
         SIAM requests that individuals limit themselves to giving one talk (this does not apply to invited plenary speakers).<br/>
         All submissions are subject to review and final approval by the co-chairs.
-      </p>
-      <p>
-      <% if Deadline.before_first_proposal? %>  
-        <strong>Submissions will start <%= l(Deadline.minisymposium_proposal_start)%></strong>.
-      <% else %>
-        <% if current_user %>  
-          Please visit <%= link_to 'submission page', submissions_path %>.
+        </p>
+        <p>
+        <% if Deadline.before_first_proposal? %>  
+          <strong>Submissions will start <%= l(Deadline.minisymposium_proposal_start)%></strong>.
         <% else %>
-          <p>To submit a paper please <%= login_link %></p>
+          <% if current_user %>  
+            Please visit <%= link_to 'submission page', submissions_path %>.
+          <% else %>
+            <p>To submit a paper please <%= login_link %></p>
+          <% end %>
         <% end %>
-      <% end %>
-      </p>
+        </p>
 
-      <h2>Important Dates</h2>
+        <h2>Important Dates</h2>
 
-      <%= render 'deadlines/index' %>  
+        <%= render 'deadlines/index' %>  
 
+      </div>
     </div>
   </div>
-</div>
+  <%= link_to_top %>  
+</div><!-- home_section -->
 
-<div id="plenaries">
-  <div class="container">
+<div class="home_section">
+  <div class="container" id="plenaries">
     <h2>Invited Plenary Speakers</h2>
     <div class="row">
       <%= Plenary.includes(presentation: :authors, schedule: :room).find_each do |plenary| %>  
+        <% speaker = plenary.authors.first.user %>  
         <div class="home-plenary col-md-4">
           <div class="plenary-when"><%= plenary.schedule ? l(plenary.schedule.start) : 'to be defined' %></div>
           <div class="plenary-title"><%= plenary.name %></div>
-          <div class="plenary-speaker"><%= show_roles(plenary.authors) %></div>
+          <div class="plenary-speaker"><%= link_to speaker.cn, user_path(speaker), remote: true %><br/>
+            <small>(<%= speaker.affiliation %>)</small></div>
           <div class="plenary-where"><%= plenary.schedule.room if plenary.schedule %></div>
         </div>
       <% end %>
     </div>
   </div>
+  <%= link_to_top %>  
 </div>
 
-<div id="venue">
-  <div class="container">
+
+<div class="home_section">
+  <div class="container" id="venue">
     <h2>Venue & Hospitality</h2>
     <div class="row">
       <div class="col-md-4">
@@ -116,13 +125,13 @@
 </div>
 
 <%= javascript_tag do  %>  
-$('.scrollto').on('click', function(event) {
+  $('.scrollto').on('click', function(event) {
   var target = $(this.getAttribute('href'));
   if( target.length ) {
-    event.preventDefault();
-    $('html, body').stop().animate({
-      scrollTop: target.offset().top
-    }, 1000);
+  event.preventDefault();
+  $('html, body').stop().animate({
+  scrollTop: target.offset().top
+  }, 1000);
   }
-});
+  });
 <% end %>
