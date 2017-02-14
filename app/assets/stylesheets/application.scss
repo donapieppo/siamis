@@ -170,3 +170,17 @@ ul li { list-style-type: none; }
 .new-account-button {
   margin: 10px 20px;
 }
+
+#aula_magna {
+  .description {
+    background-color: $color_1;
+  }
+  padding: 20px;
+}
+
+#belmeloro {
+  .description {
+    background-color: $color_2;
+  }
+  padding: 20px;
+}
