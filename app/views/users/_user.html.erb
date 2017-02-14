@@ -14,19 +14,31 @@
   <% end %>
 </dl>
 
-<ul>
-  <% user.conference_sessions.each do |conference_session| %>  
-    <li>Organizer in: <%= link_to conference_session, conference_session %></li>
-  <% end %>
-
-  <% user.presentations.each do |presentation| %>  
-    <li>Author in: <%= link_to presentation, presentation %></li>
-  <% end %>
-</ul>
-
 <% if current_user and user == current_user %>  
   <p class="centered">
   <%= link_to_edit2 'modify', edit_user_path(current_user) %>  
   </p>
 <% end %>
+
+<ul>
+  <% if defined?(@user_conference_sessions) and @user_conference_sessions.any? %>  
+    <h3>Organizer in</h3>
+    <% @user_conference_sessions.each do |conference_session| %>  
+      <li>
+        <span class="badge pull-right"><%= conference_session.class_name %></span> 
+        "<%= link_to conference_session, conference_session %>"
+      </li>
+    <% end %>
+  <% end %>
+
+  <% if defined?(@user_presentations) and @user_presentations.any? %>  
+    <h3>Author in</h3>
+    <% @user_presentations.each do |presentation| %>  
+      <li>
+        <span class="badge pull-right"><%= presentation.parent_class %></span> 
+        "<%= link_to presentation, presentation %>"
+      </li>
+    <% end %>
+  <% end %>
+</ul>
 
