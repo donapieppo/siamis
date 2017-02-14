@@ -3,12 +3,13 @@ class ConferenceRegistrationsController < ApplicationController
 
   def index
     @conference_registrations = ConferenceRegistration.includes(:user, :payment)
+    # volendo @payments = Payment.includes(:user)
   end
 
   def new
-    @me  = current_user
+    @me     = current_user
     @fields = User.all_fields
-    @fee = Fee.new(@me)
+    @fee    = Fee.new(@me)
     @price_to_pay_and_reason = @fee.price_to_pay_and_reason
   end
 
