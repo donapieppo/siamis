@@ -29,6 +29,10 @@ class ConferenceSession < ApplicationRecord
     self.accepted and self.accepted == true
   end
 
+  def class_name
+    I18n.t(self.class)
+  end
+
   private
 
   def create_the_presentation
