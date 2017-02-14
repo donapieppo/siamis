@@ -14,7 +14,8 @@ class Plenary < ConferenceSession
   end
 
   def code
-    "IP#{self.number}" if self.number
+    num = self.number || "-"
+    "IP#{num}" 
   end
 
   alias chairs organizers
