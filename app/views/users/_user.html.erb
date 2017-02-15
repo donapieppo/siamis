@@ -24,6 +24,7 @@
   <% if defined?(@user_conference_sessions) and @user_conference_sessions.any? %>  
     <h3>Organizer in</h3>
     <% @user_conference_sessions.each do |conference_session| %>  
+      <% conference_session.accepted? or user_in_organizer_commettee? or next %>  
       <li>
         <span class="badge pull-right"><%= conference_session.class_name %></span> 
         "<%= link_to conference_session, conference_session %>"
@@ -34,6 +35,7 @@
   <% if defined?(@user_presentations) and @user_presentations.any? %>  
     <h3>Author in</h3>
     <% @user_presentations.each do |presentation| %>  
+      <% presentation.accepted? or user_in_organizer_commettee? or next %>  
       <li>
         <span class="badge pull-right"><%= presentation.parent_class %></span> 
         "<%= link_to presentation, presentation %>"
