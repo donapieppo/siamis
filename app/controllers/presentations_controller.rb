@@ -3,7 +3,7 @@
 class PresentationsController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   before_action :set_conference_session_and_check_permission, only: [:new, :create]
-  before_action :set_presentation_and_check_permission, only: [:edit, :update, :set_number, :add, :remove, :accept]
+  before_action :set_presentation_and_check_permission, only: [:edit, :update, :destroy, :set_number, :add, :remove, :accept, :refuse]
   before_action :check_deadline!, only: [:new, :create]
   before_action :user_in_organizer_commettee!, only: [:accept]
 
@@ -73,14 +73,18 @@ class PresentationsController < ApplicationController
   end
 
   def destroy
-    @presentation = Presentation.find(params[:id])
-    current_user.owns!(@presentation) or raise NOACCESS
     @presentation.delete
     redirect_to presentations_path
   end
 
   def accept
     @presentation.accept!
+    redirect_to submissions_path
+  end
+
+  # FiXME for now is just unaccept.
+  def refuse
+    @presentation.refuse!
     redirect_to submissions_path
   end
 
@@ -96,6 +100,7 @@ class PresentationsController < ApplicationController
     @conference_session = Minisymposium.find(params[:minisymposium_id]) if params[:minisymposium_id]
     @conference_session = Minitutorial.find(params[:minitutorial_id])   if params[:minitutorial_id]
     @conference_session = ContributedSession.find(params[:contributed_session_id]) if params[:contributed_session_id]
+    @conference_session = PosterSession.find(params[:poster_session_id]) if params[:poster_session_id]
     current_user.owns!(@conference_session) if @conference_session
   end
 
@@ -107,7 +112,7 @@ class PresentationsController < ApplicationController
   def check_deadline!
     # FIXME
     # if conference_session can always add presentations
-    @conference_session or Deadline.can_propose?(:presentation) or raise ProposalClose
+    @conference_session or Deadline.can_propose?(:presentation) or user_in_organizer_commettee? or raise ProposalClose
   end
 end
 
