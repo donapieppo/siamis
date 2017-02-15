@@ -4,8 +4,13 @@ class RolesController < ApplicationController
   def destroy
     @role = Role.find(params[:id])
     current_user.owns!(@role)
-    @role.destroy
-    redirect_to @role.conference_session, notice: 'OK'
+    # can't delete yourself
+    if @role.user == current_user
+      redirect_to @role.relative_to, alert: 'It is not possible to delete yourself. Please contact organizing commettee'
+    else
+      @role.destroy
+      redirect_to @role.relative_to, notice: 'OK'
+    end
   end
 
   private 
