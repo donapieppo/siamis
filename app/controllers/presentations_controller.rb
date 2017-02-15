@@ -95,6 +95,7 @@ class PresentationsController < ApplicationController
   def set_conference_session_and_check_permission
     @conference_session = Minisymposium.find(params[:minisymposium_id]) if params[:minisymposium_id]
     @conference_session = Minitutorial.find(params[:minitutorial_id])   if params[:minitutorial_id]
+    @conference_session = ContributedSession.find(params[:contributed_session_id]) if params[:contributed_session_id]
     current_user.owns!(@conference_session) if @conference_session
   end
 
