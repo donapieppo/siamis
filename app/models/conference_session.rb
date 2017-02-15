@@ -30,7 +30,7 @@ class ConferenceSession < ApplicationRecord
   end
 
   def class_name
-    I18n.t(self.class)
+    I18n.t(self.class.to_s)
   end
 
   def ratable?
