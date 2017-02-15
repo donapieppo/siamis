@@ -23,7 +23,7 @@ module PanelsHelper
   end
 
   def owner_actions(what)
-    return unless current_user_owns?(what)
+    return "" unless current_user_owns?(what)
 
     capture do 
       concat(link_to icon('pencil') + ' edit', [:edit, what], class: :button)
@@ -48,11 +48,12 @@ module PanelsHelper
       if conference_session = what.try(:conference_session)   
         concat(link_to icon('reply') + " back to #{conference_session.class}", conference_session)
       end 
+      ""
     end
   end
 
   def organizer_commettee_actions(what)
-    return unless user_in_organizer_commettee?
+    return "" unless user_in_organizer_commettee?
 
     capture do 
       if what.is_a?(ConferenceSession)
@@ -70,6 +71,8 @@ module PanelsHelper
           concat(link_to icon('check') + ' accept',    [:accept, what], method: :put)
         end
       end
+
+      ""
     end
   end
 
@@ -78,6 +81,7 @@ module PanelsHelper
       if user_in_scientific_commettee? and what.ratable?
         concat(link_to icon('star') + ' rate', [:new, what, :rating], remote: true)
       end 
+      ""
     end
   end
 
