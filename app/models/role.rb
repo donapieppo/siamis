@@ -11,6 +11,10 @@ class Role < ApplicationRecord
     self.user.to_s
   end
 
+  def relative_to
+    self.conference_session || self.presentation
+  end
+
   private
 
   def validate_if_has_already_same_role
