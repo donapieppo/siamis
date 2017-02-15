@@ -93,6 +93,10 @@ class Presentation < ApplicationRecord
   def ratable?
     ! self.accepted
   end
+
+  def class_name
+    I18n.t(self.class.to_s)
+  end
 end
 
 
