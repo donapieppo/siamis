@@ -4,7 +4,7 @@ module PanelsHelper
     content_tag(:div, class: 'panel-heading') do
       content_tag(:h3) do
         link_to(what, what) +
-        content_tag(:span, what.code, class: 'badge pull-right')
+        content_tag(:span, what.code, class: 'panel-header-code')
       end
     end
   end

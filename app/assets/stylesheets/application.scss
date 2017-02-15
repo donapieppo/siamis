@@ -119,6 +119,12 @@ ul li { list-style-type: none; }
   //.panel-heading { background-color: $poster_session_color; }
 }
 
+.panel-header-code {
+  @extend .badge;
+  @extend .pull-right;
+  font-size: 110%;
+}
+
 #footer {
   margin-top: 30px;
   padding-top: 30px;
