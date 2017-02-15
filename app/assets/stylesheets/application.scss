@@ -83,7 +83,7 @@ ul li { list-style-type: none; }
 
 .siam_panel {
   @extend .panel;
-  @extend .panel-primary;
+  @extend .panel-info;
   .panel-heading {
     h3 {
       text-transform: uppercase;
