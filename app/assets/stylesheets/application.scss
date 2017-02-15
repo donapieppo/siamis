@@ -85,6 +85,7 @@ ul li { list-style-type: none; }
   @extend .panel;
   @extend .panel-info;
   .panel-heading {
+    padding: 40px;
     h3 {
       text-transform: uppercase;
       @extend .panel-title;
@@ -122,7 +123,7 @@ ul li { list-style-type: none; }
 .panel-header-code {
   @extend .badge;
   @extend .pull-right;
-  font-size: 110%;
+  font-size: 100%;
 }
 
 #footer {
