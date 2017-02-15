@@ -55,19 +55,19 @@ module PanelsHelper
     return unless user_in_organizer_commettee?
 
     capture do 
-      unless what.is_a?(Presentation)
-        concat(link_to icon('clock-o') + ' schedule', [:new, what, :schedule], class: :button)
+      if what.is_a?(ConferenceSession)
+        concat(link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(what), class: :button)
       end 
 
       if what.is_a?(ConferenceSession)
-        concat(link_to icon('list') + ' manage presentations', [:manage_presentations, what])
+        concat(link_to icon('list') + ' manage presentations', manage_presentations_conference_session_path(what))
       end
 
       if what.is_a?(Presentation) or what.is_a?(Minisymposium)
         if what.accepted
-          concat(link_to icon('circle-o') + ' refuse',               [:refuse, what], method: :put)
+          concat(link_to icon('circle-o') + ' refuse', [:refuse, what], method: :put)
         else 
-          concat(link_to icon('check') + ' accept', [:accept, what], method: :put)
+          concat(link_to icon('check') + ' accept',    [:accept, what], method: :put)
         end
       end
     end
