@@ -6,4 +6,8 @@ class ContributedSession < ConferenceSession
   def code
     "CP" + (self.number).to_s
   end
+
+  def accepted?
+    true
+  end
 end

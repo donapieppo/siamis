@@ -18,5 +18,9 @@ class Plenary < ConferenceSession
     "IP#{num}" 
   end
 
+  def accepted?
+    true
+  end
+
   alias chairs organizers
 end
