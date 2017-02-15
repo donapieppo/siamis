@@ -3,7 +3,9 @@
 <div class="row">
   <div class="col-md-6">
     <h3>Payments</h3>
-    <p class="alert alert-success">You have paid <%= @payment.amount %> &euro; in date <%= l @payment.created_at %>.</p>
+    <% if @payment %>  
+      <p class="alert alert-success">You have paid <%= @payment.amount %> &euro; on <%= l @payment.created_at %>.</p>
+    <% end %>
 </div>
 
 <div class="col-md-6">
