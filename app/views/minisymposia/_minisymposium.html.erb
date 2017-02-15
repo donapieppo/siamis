@@ -13,7 +13,7 @@
       <% minisymposium.organizers.includes(:user).order('users.surname').each do |organizer| %>  
         <dd>
         <%= show_role(organizer) %>
-        <%= link_to_delete organizer_path(organizer) if owner %>  
+        <%= link_to_delete organizer_path(organizer) if (owner and organizer.user != current_user) %>  
         </dd>
       <% end %>
     </dl>
