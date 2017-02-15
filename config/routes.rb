@@ -9,9 +9,44 @@ Rails.application.routes.draw do
     post :admin_notify_new, on: :member
     resources :presentations
   end
+
   resources :authors do
     put :make_speaker, on: :member
   end
+
+  # generic
+  resources :conference_sessions do 
+    get  :manage_presentations, on: :member
+    post :ordering, on: :member
+    resources :schedules
+    resources :organizers
+    resources :presentations do 
+      put :add, on: :member
+      put :remove, on: :member
+    end
+  end
+
+  # one presentation session
+  resources :minitutorials do
+    resources :organizers
+    resources :schedules
+  end
+
+  # one presentation session
+  resources :plenaries do
+    resources :organizers
+    resources :schedules
+  end
+
+  # many presentations
+  resources :contributed_sessions do
+    resources :organizers
+    resources :schedules
+    resources :presentations
+  end
+
+  # many presentations
+  # accept and refuse
   resources :minisymposia do
     resources :organizers 
     resources :presentations
@@ -20,36 +55,8 @@ Rails.application.routes.draw do
     put 'accept', on: :member
     put 'refuse', on: :member
   end
-  resources :minitutorials do
-    resources :presentations
-    resources :organizers
-    resources :schedules
-  end
-  resources :plenaries do
-    resources :organizers
-    resources :schedules
-  end
-  resources :contributed_sessions do
-    resources :organizers
-    resources :schedules
-    resources :presentations
-  end
+
   resources :poster_sessions do 
-    resources :organizers
-    resources :schedules
-  end
-  # resources :contributed_sessions do
-  #   resources :schedules
-  # end
-  # resources :poster_sessions do
-  #   resources :schedules
-  #   resources :presentations do 
-  #     put 'add', on: :member
-  #     put 'remove', on: :member
-  #   end
-  # end
-  resources :schedules
-  resources :conference_sessions do 
     resources :schedules
     resources :organizers
     get :manage_presentations, on: :member
@@ -59,6 +66,9 @@ Rails.application.routes.draw do
       put 'remove', on: :member
     end
   end
+
+  resources :schedules
+
   resources :presentations do 
     resources :authors
     resources :ratings
