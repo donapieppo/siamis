@@ -36,13 +36,10 @@
   padding-bottom: 15px;
 }
 
-.home_section:nth-child(odd) {
+.home_section:nth-child(even) {
   background-color: $home_second_color;
   h2 { color: #fff; }
   color: #fff;
-}
-.home_section:nth-child(even) {
-  background-color: #fff;
 }
 
 #preliminary_announcement {
