@@ -40,6 +40,8 @@ class User < ApplicationRecord
       self.organizer?(what)
     when Presentation
       self.speaker?(what) or self.owns?(what.conference_session)
+    when Role
+      self.owns?(what.conference_session || what.presentation)
     else
       false
     end
