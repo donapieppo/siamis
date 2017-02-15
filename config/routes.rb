@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :contributed_sessions do
     resources :organizers
     resources :schedules
+    resources :presentations
   end
   resources :poster_sessions do 
     resources :organizers
