@@ -5,14 +5,11 @@
 </p>
 
 <ul class="list-group">
-  <% User.find_each do |user| %>  
+  <% @users.each do |user| %>  
     <li class="list-group-item">
-      <strong><%= user.cn %></strong>
-      <em><small><%= user.affiliation %></small></em> 
-      <%= mail_to user.email %>  
+      <strong><%= link_to user.cn, user, remote: true %></strong>
       <span class="pull-right">
-        <%= link_to_edit [:edit, user] %>
-        <%= link_to icon('file'), user_presentations_path(user), title: 'show prentations' %> 
+        <em><small><%= user.affiliation %></small></em> 
       </span>
     </li>
   <% end %>

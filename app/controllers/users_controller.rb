@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   before_action :set_user_and_check_permission, only: [:edit, :update]
 
   def index
+    @users = User.order(:surname, :name)
   end
 
   def show
