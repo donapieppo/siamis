@@ -15,12 +15,8 @@
   </div>
 
   <div class="panel-footer footer-actions">
-    <% if user_in_organizer_commettee? %>  
-      <%= link_to icon('pencil')  + ' edit', [:edit, conference_session] %>  
-      <%= link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(conference_session) %>  
-      <%= link_to icon('list')    + ' manage presentations', manage_presentations_conference_session_path(conference_session) %>  
-    <% end %>
-    &nbsp; <span class="pull-right"><%= conference_session.schedule || 'schedule to be decided' %></span>
+    <%= panel_actions(conference_session) %>  
+    <%= schedule(conference_session) %>  
   </div>
 </div>
 

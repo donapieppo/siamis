@@ -2,7 +2,7 @@
 <% num = 0 %>  
 <% if user_in_scientific_commettee? or user_in_organizer_commettee? %>
   <% if what.accepted %>  
-    <p class="alert alert-info">This <%= what.class_name %> has been accepted.</p>
+    <p class="alert alert-success">This <%= what.class_name %> has been accepted.</p>
   <% else %>
     <dl class="dl-horizontal">
       <dt>Ratings:</dt>
@@ -19,7 +19,7 @@
       <%= num %> votes on <%= SCIENTIFIC_COMMITTEE.count %> scientific commettee components.
       <% if num > 0 %>
         Average: <%= sum/num %>
-    <% end %>
+      <% end %>
       </dd>
     </dl>
   <% end %>

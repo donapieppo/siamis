@@ -48,8 +48,8 @@ module ApplicationHelper
 
       Array(message).each do |msg|
         text = content_tag(:div,
-                           content_tag(:button, raw("&times;"), :class => "close", "data-dismiss" => "alert") +
-                           msg, :class => "alert fade in alert-#{type}")
+                           content_tag(:button, raw("&times;"), class: "close", "data-dismiss" => "alert") +
+                           msg, class: "alert fade in alert-#{type}")
         flash_messages << text if msg
       end
     end

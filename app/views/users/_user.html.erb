@@ -14,9 +14,9 @@
   <% end %>
 </dl>
 
-<% if current_user and user == current_user %>  
+<% if current_user and (user == current_user or user_in_organizer_commettee?) %>  
   <p class="centered">
-  <%= link_to_edit2 'modify', edit_user_path(current_user) %>  
+  <%= link_to_edit2 'modify', [:edit, user] %>  
   </p>
 <% end %>
 

@@ -25,12 +25,13 @@ module PanelsHelper
   def owner_actions(what)
     return unless current_user_owns?(what)
 
+    capture do 
     concat(link_to icon('pencil') + ' edit', [:edit, what], class: :button)
       
     # plenary, minitutorial
     if what.respond_to?(:chairs) 
       concat(link_to icon('plus') + ' add chair', [:new, what, :organizer], class: :button)
-    elsif what.respond_to?(:organizers)
+    elsif what.is_a?(Minisymposium)
       concat(link_to icon('plus') + ' add organizer', [:new, what, :organizer], class: :button)
     end 
 
@@ -44,31 +45,37 @@ module PanelsHelper
 
     concat(link_to_delete('delete', what, button: true))
 
-    if what.try(:conference_session)   
-      concat(link_to icon('reply') + " back to #{what.conference_session.class}", what.conference_session)
+    if conference_session = what.try(:conference_session)   
+      concat(link_to icon('reply') + " back to #{conference_session.class}", conference_session)
     end 
-
+    end
   end
 
   def organizer_commettee_actions(what)
     return unless user_in_organizer_commettee?
 
+    capture do 
     unless what.is_a?(Presentation)
-      concat(link_to(icon('clock-o') + ' schedule', new_conference_session_schedule_path(what), class: :button))
+      concat(link_to icon('clock-o') + ' schedule', [:new, what, :schedule], class: :button)
     end 
 
-    if minisymposium.accepted?
-      concat(link_to icon('list')     + ' manage presentations', [:manage_presentations, what])
-      concat(link_to icon('circle-o') + ' refuse',               [:refuse, what], method: :put)
-    else 
-      concat(link_to icon('check') + ' accept', [:accept, what], method: :put)
-    end 
+    if what.is_a?(Presentation) or what.is_a?(Minisymposium)
+      if what.accepted
+        concat(link_to icon('list')     + ' manage presentations', [:manage_presentations, what])
+        concat(link_to icon('circle-o') + ' refuse',               [:refuse, what], method: :put)
+      else 
+        concat(link_to icon('check') + ' accept', [:accept, what], method: :put)
+      end
+    end
+    end
   end
 
   def scientific_commettee_actions(what)
-    if user_in_scientific_commettee? and !(what.accepted)
+    capture do 
+    if user_in_scientific_commettee? and what.ratable?
       concat(link_to icon('star') + ' rate', [:new, what, :rating], remote: true)
     end 
+    end
   end
 
   # what = presentation or minisymposium
@@ -77,5 +84,6 @@ module PanelsHelper
     scientific_commettee_actions(what) 
     organizer_commettee_actions(what)
   end
+
 end
 
