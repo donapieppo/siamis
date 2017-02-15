@@ -139,7 +139,7 @@ module ConferenceHelper
 
   def link_to_top
     content_tag :div, style: 'text-align: right; margin-right: 10px' do
-      link_to icon('chevron-up', size: '28'), '#top'
+      link_to icon('chevron-circle-up', size: '28'), '#top', class: 'link_to_top'
     end
   end
 
