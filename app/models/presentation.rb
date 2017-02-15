@@ -89,6 +89,10 @@ class Presentation < ApplicationRecord
       author.notify_acceptance(self)
     end
   end
+
+  def ratable?
+    ! self.accepted
+  end
 end
 
 

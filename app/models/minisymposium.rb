@@ -14,6 +14,9 @@ class Minisymposium < ConferenceSession
     "MS" + (self.number).to_s
   end
 
+  def ratable?
+    ! self.accepted
+  end
 end
 
 

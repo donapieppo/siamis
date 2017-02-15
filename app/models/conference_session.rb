@@ -33,6 +33,10 @@ class ConferenceSession < ApplicationRecord
     I18n.t(self.class)
   end
 
+  def ratable?
+    false
+  end
+
   private
 
   def create_the_presentation
