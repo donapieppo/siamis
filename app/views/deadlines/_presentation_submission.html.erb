@@ -9,10 +9,10 @@
   </p>
   <% if current_user %>  
     <% unless controller.controller_name == 'submissions' or user_in_organizer_commettee? %>
-      <%= link_to 'submissions page', submissions_path, class: :button %>  
+      <p><%= link_to 'submissions page', submissions_path, class: :button %></p>
     <% end %>
   <% else %>
-    In order to submit a <em>presentation / poster proposals</em>, please <%= login_link %>.
+    <p>In order to submit a <em>presentation / poster proposals</em>, please <%= login_link %>.</p>
   <% end %>
 <% else %>
   <p class="alert alert-warning">
