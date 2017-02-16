@@ -1,5 +1,6 @@
 class Presentation < ApplicationRecord
   has_many :authors, dependent: :destroy
+  has_many :roles
   # has_many :users, through: :authors
   has_many :ratings, dependent: :destroy
   belongs_to :conference_session, optional: true
