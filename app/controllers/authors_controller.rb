@@ -18,6 +18,7 @@ class AuthorsController < RolesController
     end
   end
 
+  # FIXME who's speaker??
   def destroy
     # FIXME not to destroy yourself
     if @author.user == current_user
@@ -29,7 +30,7 @@ class AuthorsController < RolesController
   end
 
   def make_speaker
-    @author.is_speaker!
+    @author.speaker!
     redirect_to [:edit, @author.presentation]
   end
 
