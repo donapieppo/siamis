@@ -1,8 +1,8 @@
 <%= render @conference_session %>  
 
 <% if user_in_scientific_commettee? %>  
-  <% if rating = current_user.ratings.where(minisymposium: @conference_session).first %>  
-    You rated <strong><%= rating.score %>/5 </strong> this Minisymposium.
+  <% if ! @conference_session.accepted? and rating = current_user.ratings.where(minisymposium: @conference_session).first %>  
+    You rated <strong><%= rating.score %>/<%= Rating.excellence %> </strong> this Minisymposium.
   <% end %>
 
   <%= link_to_next_rating(Rating.get_unrated_minisymposium(current_user)) %>
