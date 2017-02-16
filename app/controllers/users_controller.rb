@@ -13,8 +13,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @fields = User.safe_fields
     @show_email = false
-    @user_conference_sessions = @user.conference_sessions
-    @user_presentations       = @user.presentations.includes(:conference_session)
+    @user_conference_sessions = @user.conference_sessions.to_a
+    @user_presentations       = @user.presentations.includes(:conference_session).to_a
+
+    # only accepted unless for organizer
+    unless user_in_organizer_commettee? or user_in_scientific_commettee?
+      @user_conference_sessions.select!{|x| x.accepted?}
+      @user_presentations.select!{|x| x.accepted?}
+    end
 
     if user_in_organizer_commettee? or user_in_scientific_commettee?
       @fields = User.all_fields
