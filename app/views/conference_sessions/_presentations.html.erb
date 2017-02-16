@@ -1,0 +1,12 @@
+<ul class="list-group">
+  <% conference_sessions.order('schedules.start, name').each do |conference_session| %>
+    <li class="list-group-item">
+      <%= link_to conference_session, conference_session %> 
+      <% if conference_session.schedule %>  
+        <span class="pull-right"><%= conference_session.schedule %></span>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+
