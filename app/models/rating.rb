@@ -11,19 +11,23 @@ class Rating < ApplicationRecord
     self.minisymposium || self.presentation
   end
 
-  def about_string
-    case what = about
-    when Minitutorial, Minisymposium
-      "#{what} (#{what.organizers.map(&:user).join(', ')})"
-    when Presentation
-      "#{what} (#{what.authors.map(&:to_s).join(', ')})"
-    else
-      ""
-    end
+  # def about_string
+  #   case what = about
+  #   when Minitutorial, Minisymposium
+  #     "#{what} (#{what.organizers.map(&:user).join(', ')})"
+  #   when Presentation
+  #     "#{what} (#{what.authors.map(&:to_s).join(', ')})"
+  #   else
+  #     ""
+  #   end
+  # end
+
+  def self.excellence
+    5
   end
 
   def self.get_unrated_minisymposium(user)
-    Minisymposium.where(accepted: false).where.not(id: user.ratings.map(&:conference_session_id)).first
+    Minisymposium.where(accepted: nil).where.not(id: user.ratings.map(&:conference_session_id)).first
   end
 
   def self.get_unrated_presentation(user)
