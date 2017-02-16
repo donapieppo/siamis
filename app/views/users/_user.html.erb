@@ -1,7 +1,7 @@
 <% if user.in_scientific_committee? %>  
   <p class="alert alert-warning">Member of Scientific Commettee.</p>
 <% end %>
-    
+
 <dl class="dl-horizontal">
   <% (@fields || User.safe_fields).each do |field| %>  
     <%= dl_field(user, field) %>  
@@ -20,27 +20,27 @@
   </p>
 <% end %>
 
-<ul>
-  <% if defined?(@user_conference_sessions) and @user_conference_sessions.any? %>  
-    <h3>Organizer in</h3>
+<% if defined?(@user_conference_sessions) and @user_conference_sessions.any? %>  
+  <h4>Organizer in</h4>
+  <ul class="list-group">
     <% @user_conference_sessions.each do |conference_session| %>  
-      <% conference_session.accepted? or user_in_organizer_commettee? or next %>  
-      <li>
+      <li class="list-group-item">
         <span class="badge pull-right"><%= conference_session.class_name %></span> 
         "<%= link_to conference_session, conference_session %>"
       </li>
     <% end %>
-  <% end %>
+  </ul>
+<% end %>
 
-  <% if defined?(@user_presentations) and @user_presentations.any? %>  
-    <h3>Author in</h3>
+<% if defined?(@user_presentations) and @user_presentations.any? %>  
+  <h4>Author in</h4>
+  <ul class="list-group">
     <% @user_presentations.each do |presentation| %>  
-      <% presentation.accepted? or user_in_organizer_commettee? or next %>  
-      <li>
+      <li class="list-group-item">
         <span class="badge pull-right"><%= presentation.parent_class %></span> 
         "<%= link_to presentation, presentation %>"
       </li>
     <% end %>
-  <% end %>
-</ul>
+  </ul>
+<% end %>
 
