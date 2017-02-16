@@ -35,7 +35,7 @@
             <%= menu_link 'euro', 'Registrations', conference_registrations_path %>
           <% end %>
         <% else %>
-          <%= menu_link 'file', 'Submissions', submissions_path %>
+          <%= menu_link 'inbox', 'Submissions', submissions_path %>
           <% unless @conference_registration %>  
             <%= menu_link 'credit-card', 'Registration', new_conference_registration_path %>
           <% end %>
