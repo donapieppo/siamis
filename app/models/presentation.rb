@@ -75,13 +75,12 @@ class Presentation < ApplicationRecord
   end
 
   def accepted?
-    self.accepted and self.accepted == true
+    (self.accepted and self.accepted == true) or 
+    (self.conference_session and self.conference_session.accepted?)
   end
 
   def schedule
-    if self.conference_session and self.conference_session.schedule
-      self.conference_session.schedule
-    end    
+    self.conference_session and self.conference_session.schedule
   end
 
   def notify_acceptance
@@ -91,7 +90,7 @@ class Presentation < ApplicationRecord
   end
 
   def ratable?
-    ! self.accepted
+    ! (self.conference_session or self.accepted)
   end
 
   def class_name

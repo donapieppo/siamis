@@ -15,7 +15,7 @@ class Minisymposium < ConferenceSession
   end
 
   def ratable?
-    ! self.accepted
+    true
   end
 end
 

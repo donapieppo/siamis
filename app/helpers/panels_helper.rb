@@ -23,7 +23,7 @@ module PanelsHelper
   end
 
   def owner_actions(what)
-    return "" unless current_user_owns?(what)
+    return "".html_safe unless current_user_owns?(what)
 
     capture do 
       concat(link_to icon('pencil') + ' edit', [:edit, what], class: :button)
@@ -48,12 +48,12 @@ module PanelsHelper
       if conference_session = what.try(:conference_session)   
         concat(link_to icon('reply') + " back to #{conference_session.class}", conference_session)
       end 
-      ""
+      "".html_safe
     end
   end
 
   def organizer_commettee_actions(what)
-    return "" unless user_in_organizer_commettee?
+    return "".html_safe unless user_in_organizer_commettee?
 
     capture do 
       if what.is_a?(ConferenceSession)
@@ -64,24 +64,25 @@ module PanelsHelper
         concat(link_to icon('list') + ' manage presentations', manage_presentations_conference_session_path(what))
       end
 
-      if what.is_a?(Presentation) or what.is_a?(Minisymposium)
-        if what.accepted
+      if what.ratable?
+        if what.accepted?
           concat(link_to icon('circle-o') + ' refuse', [:refuse, what], method: :put)
         else 
           concat(link_to icon('check') + ' accept',    [:accept, what], method: :put)
         end
       end
 
-      ""
+      "".html_safe
     end
   end
 
   def scientific_commettee_actions(what)
     capture do 
-      if user_in_scientific_commettee? and what.ratable?
+      if user_in_scientific_commettee? and what.ratable? and ! what.accepted?
         concat(link_to icon('star') + ' rate', [:new, what, :rating], remote: true)
       end 
-      ""
+
+      "".html_safe
     end
   end
 

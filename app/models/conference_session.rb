@@ -7,12 +7,13 @@ class ConferenceSession < ApplicationRecord
     self.name
   end
 
-  def duration 
-    Rails.configuration.durations[self.class.to_s.to_sym]
+  # Minisymposium, Plenary, Contributed Session
+  def class_name
+    I18n.t(self.class.to_s)
   end
 
-  def is_a_minisymposium?
-    self.class == Minisymposium
+  def duration 
+    Rails.configuration.durations[self.class.to_s.to_sym]
   end
 
   # only Minisymposium
@@ -27,10 +28,6 @@ class ConferenceSession < ApplicationRecord
 
   def accepted?
     self.accepted and self.accepted == true
-  end
-
-  def class_name
-    I18n.t(self.class.to_s)
   end
 
   def ratable?
