@@ -13,13 +13,14 @@ class Fee
     @array_number = (Date.today <= Deadline.pre_registration_end) ? 0 : 1
   end
 
+  # FIXME order inverse of payments
   def price_to_pay_and_reason
-    if @user.siag
+    if @user.student
+      [Prices[:student][@array_number], "you are registered as a student"]
+    elsif @user.siag
       [Prices[:siag_member][@array_number], "you are registered as a siag member"]
     elsif @user.siam
       [Prices[:siam_member][@array_number], "you are registered as a siam member"]
-    elsif @user.student
-      [Prices[:student][@array_number], "you are registered as a student"]
     elsif @user.speaker_or_organizer?
       [Prices[:speaker_or_organizer][@array_number], "you are a non-member mini speaker or organizer"]
     else
