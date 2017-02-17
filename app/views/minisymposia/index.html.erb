@@ -8,5 +8,5 @@
 
 <%= render partial: 'deadlines/minisymposium_submission' %>  
 
-<%= render partial: 'conference_sessions/presentations', locals: {conference_sessions: Minisymposium.includes(:schedule)} %>  
+<%= render partial: 'conference_sessions/presentations', locals: {conference_sessions: @minisymposia} %>  
 
