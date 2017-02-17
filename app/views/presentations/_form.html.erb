@@ -8,3 +8,16 @@
   <%= presentation.submit 'Submit' %> - <%= link_to_back presentations_path %>  
 <% end %>
 
+<%= javascript_tag do %>  
+  var update_wcount = function() {
+    var words = $.trim($('#presentation_abstract').val()).split(' ').length;
+    $('#wcount').html(words);
+  };
+
+  $('#presentation_abstract').keyup( function() {
+    update_wcount();
+  });
+
+  update_wcount();
+<% end %>
+
