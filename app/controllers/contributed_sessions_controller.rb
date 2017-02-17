@@ -1,5 +1,10 @@
 class ContributedSessionsController < ConferenceSessionsController
 
+  # wait till end of proposals to show accepted Minisymposia
+  def index
+    @contributed_sessions = ContributedSession.includes(:schedule)
+  end
+
   def new
     @conference_session = ContributedSession.new
   end
