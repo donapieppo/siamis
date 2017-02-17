@@ -6,6 +6,12 @@
 @import "home";
 @import "plenary";
 
+// bootstrap horizontal bug 
+// config/initializers/simple_form_bootstrap.rb
+input.boolean {
+  width: auto;
+  //height: auto;
+}
 body {
   font-family: 'Roboto Condensed', sans-serif;
 }
