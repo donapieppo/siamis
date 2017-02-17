@@ -12,7 +12,7 @@ class Payment < ApplicationRecord
   scope :verified, -> { where(verified: true) }
 
   def description
-    "Siam-IS18 registration: #{user.to_s} <#{user.email}>"
+    "Siam-IS18 registration: #{user.surname}, #{user.name[0]}. <#{user.email}>"[0..98]
   end
 
   # AFTER_CREATE???
