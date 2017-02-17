@@ -57,7 +57,7 @@ en:
     hints:
       minisymposium: 
         title: Describe the subject of your minisymposium as accurately and specifically as possible in not more than ten words.
-        description: Describe your minisymposium in not more than 100 words. 
+        description: Describe your minisymposium in not more than 100 words. <em>Using <span id="wcount"></span> words</em>.
       user:
         siam: IEEE SPS and ASA Imaging Science Section members are eligible to register at the SIAM Member rate.
         student: STUDENTS MUST SHOW A CURRENT STUDENT ID UPON CHECKING IN AT THE SIAM REGISTRATION DESK.
