@@ -9,15 +9,9 @@
 <% end %>
 
 <%= javascript_tag do %>  
-  var update_wcount = function() {
-    var words = $.trim($('#presentation_abstract').val()).split(' ').length;
-    $('#wcount').html(words);
-  };
-
   $('#presentation_abstract').keyup( function() {
-    update_wcount();
+    update_wcount($(this));
   });
-
-  update_wcount();
+  update_wcount($('#presentation_abstract'));
 <% end %>
 

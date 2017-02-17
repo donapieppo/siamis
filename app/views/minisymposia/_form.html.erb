@@ -20,3 +20,9 @@ See <%= link_to 'Guidelines for Preparing a Minisymposium Proposal', 'https://ww
   <%= conference_session.submit %> - <%= link_to_back root_path %>
 <% end %>
 
+<%= javascript_tag do %>  
+  $('#minisymposium_description').keyup( function() {
+    update_wcount($(this));
+  });
+  update_wcount($('#minisymposium_description'));
+<% end %>
