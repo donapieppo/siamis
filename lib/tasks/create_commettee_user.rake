@@ -10,7 +10,7 @@ namespace :siamis do
       print "Give surname: "
       surname = STDIN.gets.chomp
       
-      u = User.new(name: name, surname: surname, email: email) 
+      u = User.new(name: name, surname: surname, email: email, confirmed_at: Time.now) 
       u.save(validate: false)
     end
   end
