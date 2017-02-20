@@ -89,11 +89,11 @@ class User < ApplicationRecord
     Deadline.can_register? and self.payments.verified.empty?
   end
 
-  def self.scientific_commettee
+  def self.cochairs
     @@cochairs ||= COCHAIRS.map{|email| User.where(email: email).first}
   end
 
-  def self.cochairs
+  def self.scientific_commettee
     @@scientific_commettee ||= SCIENTIFIC_COMMITTEE.map{|email| User.where(email: email).first}
   end
 
