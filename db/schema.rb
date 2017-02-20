@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "conference_registrations", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id",    unsigned: true
-    t.integer  "payment_id", unsigned: true
+    t.integer  "user_id",                unsigned: true
+    t.integer  "payment_id",             unsigned: true
+    t.string   "single_day", limit: 100
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["user_id"], name: "user_id", using: :btree
