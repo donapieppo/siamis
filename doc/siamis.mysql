@@ -132,6 +132,7 @@ CREATE TABLE `conference_registrations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned,
   `payment_id` int(10) unsigned, 
+  `single_day` varchar(100), 
   `created_at` datetime,
   `updated_at` datetime,
    PRIMARY KEY (`id`),
