@@ -7,10 +7,13 @@ class ConferenceRegistrationsController < ApplicationController
   end
 
   def new
-    @me     = current_user
     @fields = User.all_fields
-    @fee    = Fee.new(@me)
+
+    @fee = Fee.new(current_user)
     @price_to_pay_and_reason = @fee.price_to_pay_and_reason
+
+    @single_day_fee = Fee.new(current_user, single_day: true)
+    @single_day_price_to_pay_and_reason = @single_day_fee.price_to_pay_and_reason
   end
 
   def show

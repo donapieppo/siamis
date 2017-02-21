@@ -9,6 +9,12 @@
       <p><%= t(:bank_security) %></p>
       <div class="centered">
         <%= form_tag payments_path do %>  
+          <% if @single_day %>  
+            <p>
+            <label>Choose day</label><br/>
+              <%= select("payment", "single_day", Schedule.days_array_for_select, {include_blank: false}) %>
+            </p>
+          <% end %> 
           <input type="submit" value="PAY <%= @price_to_pay_and_reason[0] %> &euro; for Registration" /> <br/>
           (<%= @price_to_pay_and_reason[1] %>. <%= link_to 'Change your data', edit_user_path(current_user) %>)
         <% end %>

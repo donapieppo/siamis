@@ -1,5 +1,7 @@
 <h1>Conference Registrations</h1>
 
+<% tot = 0 %>  
+
 <table class="table table-striped table-condensed">
   <tr>
     <th colspan="2">User</th>
@@ -8,17 +10,24 @@
     <th>identification</th>
     <th>verified</th>
     <th>date</th>
+    <th>Notes</th>
   </tr>
   <% @conference_registrations.each do |conference_registration| %>  
     <tr>
       <th><%= conference_registration.user.cn %></th>
       <td><%= conference_registration.user.affiliation %></td>
       <td><%= conference_registration.payment.amount %> &euro;</td>
+      <% tot += conference_registration.payment.amount %>  
       <td><%= conference_registration.payment.payment_id %></td>
       <td><%= conference_registration.payment.shop_id %></td>
       <td><%= conference_registration.payment.verified %></td>
       <td><%= l conference_registration.payment.created_at %></td>
+      <td>
+        <%= l(conference_registration.payment.single_day, format: :day) if conference_registration.payment.single_day %>  
+        <%= 'student' if conference_registration.payment.student %>  
+      </td>
     </tr>
   <% end %>
 </table>
 
+<p>Total: <%= tot %> &euro;</p>
