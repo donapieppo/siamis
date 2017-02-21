@@ -30,7 +30,8 @@ en:
   siam_member: Siam member
   speaker_or_organizer: Speaker of organizer
   non_member:  Non member
-  single_day:     One day
+  single_day_member:  One day for members
+  single_day:  One day
   student:     Student
 
   activerecord:
