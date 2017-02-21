@@ -6,6 +6,8 @@ class Payment < ApplicationRecord
 
   attr_accessor :redirect_url
 
+  before_create :copy_user_data
+
   after_create :create_seed_and_shop_id,
                :start_pay
 
@@ -15,7 +17,6 @@ class Payment < ApplicationRecord
     "Siam-IS18 registration: #{user.surname}, #{user.name[0]}. <#{user.email}>"[0..98]
   end
 
-  # AFTER_CREATE???
   def start_pay
     self.new_record? and return nil
     @unicredit = Unicredit.new(self)
@@ -30,7 +31,7 @@ class Payment < ApplicationRecord
       logger.info("verify RES: #{res.inspect}")
       self.update_attribute(:verified, true)
       # FIXME 
-      self.user.conference_registration = ConferenceRegistration.new(payment: self)
+      self.user.conference_registration = ConferenceRegistration.new(payment: self, single_day: self.single_day)
     end
     res
   end
@@ -40,6 +41,13 @@ class Payment < ApplicationRecord
   end
 
   private
+
+  # in case we let change user change data that changes fee
+  def copy_user_data
+    self.siam    = self.user.siam
+    self.siag    = self.user.siag
+    self.student = self.user.student
+  end
 
   def create_seed_and_shop_id
     self.seed = SecureRandom.hex(4)
