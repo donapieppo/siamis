@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       put :add, on: :member
       put :remove, on: :member
     end
+    get :interested, on: :member # would be better put but sometimes browser gives me problem with it
   end
 
   # one presentation session
@@ -74,6 +75,7 @@ Rails.application.routes.draw do
     resources :ratings
     put 'accept',   on: :member
     put 'refuse',   on: :member
+    get :interested, on: :member # would be better put but sometimes browser gives me problem with it
   end
 
   resources :payments do
@@ -84,6 +86,7 @@ Rails.application.routes.draw do
   resources :organizers
   resources :ratings
   resources :rooms
+  resources :interests
 
   resources :conference_registrations do 
     get :check, on: :collection, as: :check

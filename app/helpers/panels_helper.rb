@@ -22,6 +22,18 @@ module PanelsHelper
     end
   end
 
+  def common_actions(what)
+    return "&nbsp;".html_safe if user_in_organizer_commettee?
+
+    actual = current_user.interested_in?(what) ? "not" : ""
+    case what
+    when Minisymposium, ConferenceSession
+      link_to icon('eye') + " I'm #{actual} interested", interested_conference_session_path(what), class: :button
+    when Presentation, PosterSession
+      link_to icon('eye') + " I'm #{actual} interested", interested_presentation_path(what), class: :button
+    end
+  end
+
   def owner_actions(what)
     return "&nbsp;".html_safe unless current_user_owns?(what)
 
@@ -60,7 +72,7 @@ module PanelsHelper
         concat(link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(what), class: :button)
       end 
 
-      if what.is_a?(ConferenceSession)
+      if what.is_a?(ContributedSession) or what.is_a?(PosterSession)
         concat(link_to icon('list') + ' manage presentations', manage_presentations_conference_session_path(what))
       end
 
@@ -88,6 +100,7 @@ module PanelsHelper
 
   # what = presentation or minisymposium
   def panel_actions(what)
+    common_actions(what) +
     owner_actions(what) +
     scientific_commettee_actions(what) +
     organizer_commettee_actions(what)
