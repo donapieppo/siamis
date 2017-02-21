@@ -5,22 +5,19 @@
 
 .plenary {
   &:nth-child(even) {
-    border: 2px solid $color_1;
-    .plenary_schedule {
-      color: $color_2;
+    .plenary_body {
+      // background-color: $color_2;
     }
   }
   &:nth-child(odd) {
-    border: 2px solid $color_2;
-    .plenary_schedule {
-      color: $color_1;
+    .plenary_body {
+      // background-color: $color_1;
     }
   }
   border: 2px solid #ccc;
   padding: 0px;
   margin-top: 10px;
   margin-bottom: 2px;
-  margin-top: 0;
   img {
      width: 200px; 
      margin: 30px;
@@ -48,6 +45,8 @@
     text-align: justify;
     text-justify: inter-word;
     margin-right: 20px;
+  }
+  .plenary_actions {
   }
 }
 
