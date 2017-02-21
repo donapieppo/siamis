@@ -4,11 +4,14 @@ class Fee
              siam_member:          [410, 510],
              speaker_or_organizer: [480, 580],
              non_member:           [520, 620],
-             one_day:              [250, 300],
+             single_day_member:    [200, 250],
+             single_day:           [250, 300],
              student:              [100, 120] }
 
-  def initialize(user)
+  # single_day: true/false
+  def initialize(user, single_day: nil)
     @user = user
+    @single_day = single_day
     # 0, 1 in array
     @array_number = (Date.today <= Deadline.pre_registration_end) ? 0 : 1
   end
@@ -17,6 +20,12 @@ class Fee
   def price_to_pay_and_reason
     if @user.student
       [Prices[:student][@array_number], "you are registered as a student"]
+    elsif @single_day
+      if @user.siag or @user.siam
+        [Prices[:single_day_member][@array_number], "one day registration for member"]
+      else
+        [Prices[:single_day][@array_number], "one day registration"]
+      end
     elsif @user.siag
       [Prices[:siag_member][@array_number], "you are registered as a siag member"]
     elsif @user.siam
