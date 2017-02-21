@@ -3,6 +3,7 @@
 class ConferenceSessionsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_conference_session_and_check_permission, only: [:edit, :update, :manage_presentations, :ordering, :destroy]
+  before_action :set_conference_session, only: :interested
 
   def index
   end
@@ -47,10 +48,19 @@ class ConferenceSessionsController < ApplicationController
     redirect_to root_path # FIXME
   end
 
+  def interested
+    actual = Interest.modify!(current_user, @conference_session)
+    redirect_to @conference_session, notice: (actual ? "You are interested to attend the session" : "You are no more interested to attend the session")
+  end
+
   private
 
-  def set_conference_session_and_check_permission
+  def set_conference_session
     @conference_session = ConferenceSession.find(params[:id])
+  end
+
+  def set_conference_session_and_check_permission
+    set_conference_session
     current_user.owns!(@conference_session)
   end
 end

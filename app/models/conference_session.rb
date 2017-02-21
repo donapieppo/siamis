@@ -2,6 +2,7 @@ class ConferenceSession < ApplicationRecord
   has_many :organizers, dependent: :destroy
   has_many :roles
   has_many :ratings, dependent: :destroy
+  has_many :interests, dependent: :destroy
   has_one  :schedule, dependent: :destroy
 
   def to_s

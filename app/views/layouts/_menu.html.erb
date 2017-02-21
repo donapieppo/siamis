@@ -19,6 +19,8 @@
         <%= menu_link 'users',     'Minisymposia', minisymposia_path %>
         <%= menu_link 'users',     'Contributed Presentations', contributed_sessions_path %>
         <%= menu_link 'picture-o', 'Poster Sessions', poster_sessions_path %>
+        <li class="divider"></li>
+        <%= menu_link 'map-o',     'MY PROGRAM', interests_path %>  
       <% end %>
       <% if current_user %>  
         <% if user_in_scientific_commettee? %>  

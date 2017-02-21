@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :presentations, through: :authors
   has_many :ratings
   has_many :payments
+  has_many :interests, dependent: :destroy
   has_one  :conference_registration
 
   validates :email, uniqueness: { message: "The email is already registred." }
@@ -113,6 +114,10 @@ class User < ApplicationRecord
 
   def self.all_fields
     self.safe_fields + [:address, :siag, :siam, :student]
+  end
+
+  def interested_in?(what)
+    what.interests.where(user_id: self.id).any?
   end
 
 end
