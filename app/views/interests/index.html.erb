@@ -1,0 +1,7 @@
+<h1>Personal program</h1>
+
+<ul>
+<% @interests.each do |interest| %>  
+  <li><%= link_to interest.on, interest.on %></li>
+<% end %>
+</ul>
