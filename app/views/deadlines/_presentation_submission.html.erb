@@ -5,14 +5,13 @@
   </p>
 <% elsif Deadline.can_propose?(:presentation) %>
   <p class="alert alert-success">
-  <strong>Deadline</strong> for submission of <em>presentation / poster proposals</em>: <%= l(Deadline.presentation_proposal_end) %> <br/>
-  </p>
+  <strong>Deadline</strong> for submission of <em>presentation / poster proposals</em>: <%= l(Deadline.presentation_proposal_end) %>.
   <% if current_user %>  
     <% unless controller.controller_name == 'submissions' or user_in_organizer_commettee? %>
-      <p><%= link_to 'submissions page', submissions_path, class: :button %></p>
+      <br/><%= link_to 'Go to submissions page', submissions_path %>.
     <% end %>
   <% else %>
-    <p>In order to submit a <em>presentation / poster proposals</em>, please <%= login_link %>.</p>
+    <br/>In order to submit a <em>presentation / poster proposals</em>, please <%= login_link %>.
   <% end %>
 <% else %>
   <p class="alert alert-warning">
