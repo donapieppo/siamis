@@ -30,7 +30,7 @@ en:
   siam_member: Siam member
   speaker_or_organizer: Speaker of organizer
   non_member:  Non member
-  one_day:     One day
+  single_day:     One day
   student:     Student
 
   activerecord:
@@ -90,6 +90,7 @@ en:
       default:  '%B %d, %Y'
       schedule: '%A %d %B %Y'
       deadline: '%b %d, %Y'
+      day: '%A'
 
   credit_cards: Registration fees can be paid by credit card (Mastercard, Visa, American Express).
   bank_security: Clicking on the button below you are automatically redirected to the Bank's payment server (Unicredit bank).  So we actually never know your Credit Card number.  All information exchanged with the system are encrypted using the SSL protocol and can not be intercepted or altered.
