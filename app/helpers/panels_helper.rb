@@ -100,6 +100,8 @@ module PanelsHelper
 
   # what = presentation or minisymposium
   def panel_actions(what)
+    return "&nbsp;".html_safe unless current_user
+
     common_actions(what) +
     owner_actions(what) +
     scientific_commettee_actions(what) +
