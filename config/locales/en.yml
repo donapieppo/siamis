@@ -84,8 +84,10 @@ en:
       date_picker: ! "%d/%m/%Y"
       datetime_picker: "%d/%m/%Y %H:%M"
       with_day_name: '%A %d %B %Y at %H:%M'
+      day:  '%A %d %B'
       schedule_day:  '%d'
       schedule: '%A %d %B %Y at %H:%M'
+      hour: '%H:%M'
 
   date:
     formats:

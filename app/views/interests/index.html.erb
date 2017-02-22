@@ -1,7 +1,21 @@
-<h1>Personal program</h1>
-
-<ul>
-<% @interests.each do |interest| %>  
-  <li><%= link_to interest.on, interest.on %></li>
+<% if @interests.empty? %>  
+  <p class="alert alert-info">
+    It is possble to express interest in presentations and conference sessions in order to create a personal program.
+    In every session / presentation you will find a button to add 
+  </p>
 <% end %>
-</ul>
+
+<% @interests.each_key do |schedule| %>  
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3><%= schedule ? I18n.l(schedule.start, format: :day) : "Schedule not defined" %></h3>
+    </div>
+    <div class="panel-body">
+  <% @interests[schedule].each do |what| %>  
+    <ul>
+      <li><span style="font-size: 150%; font-weight: 300;"><%= l(schedule.start, format: :hour) if schedule %></span>  <%= link_to what, what %> <span class="pull-right"><%= schedule.room if schedule %></span></li>
+    </ul>
+  <% end %>
+    </div>
+  </div>
+<% end %>

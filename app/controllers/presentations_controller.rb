@@ -4,7 +4,6 @@ class PresentationsController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   before_action :set_conference_session_and_check_permission, only: [:new, :create]
   before_action :set_presentation_and_check_permission, only: [:edit, :update, :destroy, :set_number, :add, :remove, :accept, :refuse]
-  before_action :set_presentation, only: :interested
   before_action :check_deadline!, only: [:new, :create]
   before_action :user_in_organizer_commettee!, only: [:accept]
 
@@ -87,11 +86,6 @@ class PresentationsController < ApplicationController
   def refuse
     @presentation.refuse!
     redirect_to submissions_path
-  end
-
-  def interested
-    actual = Interest.modify!(current_user, @presentation)
-    redirect_to @presentation, notice: (actual ? "You are interested to attend the presentation" : "You are no more interested to attend the session")
   end
 
   private

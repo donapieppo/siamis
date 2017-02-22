@@ -27,10 +27,10 @@ module PanelsHelper
 
     actual = current_user.interested_in?(what) ? "not" : ""
     case what
-    when Minisymposium, ConferenceSession
-      link_to icon('eye') + " I'm #{actual} interested", interested_conference_session_path(what), class: :button
-    when Presentation, PosterSession
-      link_to icon('eye') + " I'm #{actual} interested", interested_presentation_path(what), class: :button
+    when Minisymposium, ConferenceSession, PosterSession
+      link_to icon('eye') + " I'm #{actual} interested", toggle_conference_session_interests_path(what), method: :post, class: :button
+    when Presentation
+      link_to icon('eye') + " I'm #{actual} interested", toggle_presentation_interests_path(what), method: :post, class: :button
     end
   end
 

@@ -20,11 +20,13 @@ Rails.application.routes.draw do
     post :ordering, on: :member
     resources :schedules
     resources :organizers
+    resources :interests do
+      post :toggle, on: :collection
+    end
     resources :presentations do 
       put :add, on: :member
       put :remove, on: :member
     end
-    get :interested, on: :member # would be better put but sometimes browser gives me problem with it
   end
 
   # one presentation session
@@ -73,9 +75,11 @@ Rails.application.routes.draw do
   resources :presentations do 
     resources :authors
     resources :ratings
+    resources :interests do
+      post :toggle, on: :collection
+    end
     put 'accept',   on: :member
     put 'refuse',   on: :member
-    get :interested, on: :member # would be better put but sometimes browser gives me problem with it
   end
 
   resources :payments do
