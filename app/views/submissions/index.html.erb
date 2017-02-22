@@ -1,11 +1,11 @@
 <% if user_in_organizer_commettee? %>  
-  <h2>Minisymposia: <small>(<%= @minisymposia.count %> to accept/refuse)</small> </h2>
+  <h2>Minisymposia</h2>
   <%= ul_list(@minisymposia) %>  
 
-  <h2>Presentations: <small>(<%= @presentations.count %> to accept/refuse)</small> </h2>
+  <h2>Presentations</h2>
   <%= ul_list(@presentations) %>
 
-  <h2>Posters: <small>(<%= @posters.count %> to accept/refuse)</small> </h2>
+  <h2>Posters</h2>
   <%= ul_list(@posters) %>
 <% else %>
   <% if @presentations.any? or @minisymposia.any? %>
