@@ -1,12 +1,12 @@
 <% if user_in_organizer_commettee? %>  
   <h2>Minisymposia</h2>
-  <%= ul_list(@minisymposia) %>  
+  <%= ul_list_with_acceptance(@minisymposia) %>  
 
   <h2>Presentations</h2>
-  <%= ul_list(@presentations) %>
+  <%= ul_list_with_acceptance(@presentations) %>
 
   <h2>Posters</h2>
-  <%= ul_list(@posters) %>
+  <%= ul_list_with_acceptance(@posters) %>
 <% else %>
   <% if @presentations.any? or @minisymposia.any? %>
     <h2>Your submissions</h2>

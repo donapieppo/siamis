@@ -110,17 +110,15 @@ module ConferenceHelper
     end
   end
 
-
-  def ul_list(what)
+  def ul_list_with_acceptance(what)
     content_tag(:ul, class: 'list-group') do
       what.each do |x|
-        concat(content_tag(:li, class: 'list-group-item') { link_to(x, x) })
+        concat(content_tag(:li, class: 'list-group-item') { icon(x.accepted ? :check : "square-o") + link_to(x, x) })
       end
     end
   end
 
   def schedule(what)
-    "&nbsp;".html_safe +
      content_tag(:span, what.schedule || 'schedule to be decided', class: "pull-right")
   end
 
