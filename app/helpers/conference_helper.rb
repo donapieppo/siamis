@@ -56,11 +56,9 @@ module ConferenceHelper
     end
   end
 
-  def title(what)
-    content_tag(:div, class: 'title') do 
-      content_tag(:span, class: what.class.to_s) do 
-        I18n.t(what.class.to_s)
-      end + what.to_s
+  def title(what, icon = nil)
+    content_tag :h1 do
+      icon(icon, size: 41) + "&nbsp;".html_safe + what 
     end
   end
 
