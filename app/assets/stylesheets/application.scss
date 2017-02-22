@@ -56,45 +56,13 @@ input[type="submit"] {
   margin-bottom: 10px;
 }
 
-// .title {
-//   font-size: 1.2em;
-//   margin-bottom: 30px;
-// }
-
-// .session_in_title {
-//   border: 3px solid #ccc;
-//   border-radius: 5px;
-//   text-align: center;
-//   padding: 12px 24px;
-//   margin-right: 30px;
-//   vertical-align: middle;
-//   color: green;
-// }
-// .Minisymposium {
-//   @extend .session_in_title;
-// }
-// .Minitutorial {
-//   @extend .session_in_title;
-// }
-// .ContributedSession {
-//   @extend .session_in_title;
-// }
-// .PosterSession {
-//   @extend .session_in_title;
-// }
-// .Plenary {
-//   @extend .session_in_title;
-// }
-// .Presentation {
-//   @extend .session_in_title;
-// }
-
 ul li { list-style-type: none; }
 
 .siam_panel {
   @extend .panel;
   @extend .panel-info;
   .panel-heading {
+    color: #fff;
     padding: 40px;
     h3 {
       text-transform: uppercase;
@@ -107,27 +75,27 @@ ul li { list-style-type: none; }
 }
 .minisymposium_panel {
   @extend .siam_panel;
-  // .panel-heading { background-color: $minisymposium_color; }
+  .panel-heading { background-color: $minisymposium_color; }
 }
 .conference_session_panel {
   @extend .siam_panel;
-  // .panel-heading { background-color: $contributed_session_color; }
+  .panel-heading { background-color: $contributed_session_color; }
 }
 .contributed_session_panel {
   @extend .siam_panel;
-  // .panel-heading { background-color: $contributed_session_color; }
+  .panel-heading { background-color: $contributed_session_color; }
 }
 .minitutorial_panel {
   @extend .siam_panel;
-  // .panel-heading { background-color: $minitutorial_color; }
-}
-.presentation_panel {
-  @extend .siam_panel;
-  // .panel-heading { background-color: $presentation_color; }
+  .panel-heading { background-color: $minitutorial_color; }
 }
 .poster_session_panel {
   @extend .siam_panel;
-  //.panel-heading { background-color: $poster_session_color; }
+  .panel-heading { background-color: $poster_session_color; }
+}
+.presentation_panel {
+  @extend .siam_panel;
+  .panel-heading { background-color: $presentation_color; }
 }
 
 .panel-header-code {
