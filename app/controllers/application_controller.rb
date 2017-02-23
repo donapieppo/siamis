@@ -10,15 +10,19 @@ class ApplicationController < ActionController::Base
   impersonates :user
 
   def change_date
-    if Rails.env.development?
-      new_time = Time.local(2017, 9, 27, 12, 0, 0)
+    #if Rails.env.development?
+      new_time = Time.local(2017, 8, 27, 12, 0, 0)
       Timecop.travel(new_time)
-    end
+    #end
   end
 
   def log_current_user
     current_user or return true
-    logger.info("Current user: #{current_user.email}")
+    if current_user != true_user
+      logger.info("#{true_user.upn} IMPERSONATING #{current_user.upn}")
+    else
+      logger.info("Current user: #{current_user.upn}")
+    end
   end
 
   def check_registration
