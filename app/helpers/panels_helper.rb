@@ -58,7 +58,7 @@ module PanelsHelper
       concat(link_to_delete('delete', what, button: true))
 
       if conference_session = what.try(:conference_session)   
-        concat(link_to icon('reply') + " back to #{conference_session.class}", conference_session)
+        concat(link_to icon('reply') + " back to #{I18n.t conference_session.class}", conference_session)
       end 
       "&nbsp;".html_safe
     end
