@@ -19,9 +19,9 @@ class ApplicationController < ActionController::Base
   def log_current_user
     current_user or return true
     if current_user != true_user
-      logger.info("#{true_user.upn} IMPERSONATING #{current_user.upn}")
+      logger.info("#{true_user.email} IMPERSONATING #{current_user.email}")
     else
-      logger.info("Current user: #{current_user.upn}")
+      logger.info("Current user: #{current_user.email}")
     end
   end
 
