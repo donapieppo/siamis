@@ -135,7 +135,7 @@ ul li { list-style-type: none; }
     @extend .btn;
     @extend .btn-lg;
     @extend .btn-primary;
-    background-color: $minisymposium_color;
+    // background-color: $minisymposium_color;
   }
 }
 .presentation_proposal_submission {
@@ -143,7 +143,7 @@ ul li { list-style-type: none; }
     @extend .btn;
     @extend .btn-lg;
     @extend .btn-primary;
-    background-color: $presentation_color;
+    // background-color: $presentation_color;
   }
 }
 .footer-actions {
@@ -175,10 +175,10 @@ ul li { list-style-type: none; }
   font-weight: bold;
   width: 75%;
   margin: 40px auto;
-  background-color: $color_2;
-  color: #fff;
   padding: 40px;
   text-align: center;
+  @extend .alert;
+  @extend .alert-info;
 }
 
 
