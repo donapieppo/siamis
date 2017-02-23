@@ -56,8 +56,8 @@ module ConferenceHelper
     end
   end
 
-  def title(what, icon = nil)
-    content_tag :h1 do
+  def program_title(what, icon = nil)
+    content_tag :h1, class: 'program' do
       icon(icon, size: 41) + "&nbsp;".html_safe + what 
     end
   end

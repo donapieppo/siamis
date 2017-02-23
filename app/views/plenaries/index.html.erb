@@ -1,4 +1,4 @@
-<h1>Invited Plenaries</h1>
+<%= program_title('Invited Plenaries', 'user') %>  
 
 <% if user_in_organizer_commettee? %>
   <p class="centered"><%= link_to 'Create new Plenary', new_plenary_path, class: :big_button %></p>

@@ -1,7 +1,4 @@
-<%= title('Poster Sessions', 'picture-o') %>  
-
-<p>Multiple poster sessions will be organized for presentation during the conference.</p>
-<p>Additional details will be posted as they become available.</p>
+<%= program_title('Poster Sessions', 'picture-o') %>  
 
 <% if user_in_organizer_commettee? %>  
   <p class="centered"><%= link_to 'Create Poster Session', new_poster_session_path, class: :big_button %></p>

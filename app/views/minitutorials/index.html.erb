@@ -1,8 +1,10 @@
-<%= title('Minitutorials', 'wrench') %>  
+<%= program_title('Minitutorials', 'wrench') %>  
 
 <% if @minitutorials.empty? %>  
-  <p>Multiple minitutorials will be organized for presentation during the conference.</p>
-  <p>Additional details will be posted as they become available.</p>
+  <div class="future_magic">
+    <p>Multiple minitutorials will be organized for presentation during the conference.</p>
+    <p>Additional details will be posted as they become available.</p>
+  </div>
 <% end %>
 
 <% if user_in_organizer_commettee? %>
