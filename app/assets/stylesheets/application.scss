@@ -28,6 +28,13 @@ h1, h2, h3, h4 {
   @extend .centered;
   font-weight: 300;
 }
+h1.program {
+  font-size: 42px;
+  font-weight: 300;
+  line-height: 72px;
+  letter-spacing: 25px;
+  margin-bottom: 36px;
+}
 
 .button {
   @extend .btn;
@@ -162,3 +169,17 @@ ul li { list-style-type: none; }
   }
   padding: 20px;
 }
+
+.future_magic {
+  font-size: 18px;
+  font-weight: bold;
+  width: 75%;
+  margin: 40px auto;
+  background-color: $color_2;
+  color: #fff;
+  padding: 40px;
+  text-align: center;
+}
+
+
+
