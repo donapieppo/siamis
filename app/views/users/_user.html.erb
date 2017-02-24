@@ -16,8 +16,11 @@
 
 <% if current_user and (user == current_user or user_in_organizer_commettee?) %>  
   <p class="centered">
-  <%= link_to_edit2 'modify', [:edit, user] %>  
+    <%= link_to_edit2 'modify', [:edit, user] %>  
   </p>
+  <% if @conference_registration %>  
+    The user is <strong>registered</strong>.
+  <% end %>
 <% end %>
 
 <% if defined?(@user_conference_sessions) and @user_conference_sessions.any? %>  

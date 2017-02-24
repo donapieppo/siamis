@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_action :set_user_and_check_permission, only: [:edit, :update]
 
   def index
-    @users = User.order(:surname, :name)
+    @users = User.includes(:conference_registration).order(:surname, :name)
   end
 
   def show
@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     @show_email = false
     @user_conference_sessions = @user.conference_sessions.to_a
     @user_presentations       = @user.presentations.includes(:conference_session).to_a
+    @conference_registration  = @user.conference_registration
 
     # only accepted unless for organizer
     unless user_in_organizer_commettee? or user_in_scientific_commettee?

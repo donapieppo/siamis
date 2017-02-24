@@ -8,6 +8,7 @@
   <% @users.each do |user| %>  
     <li class="list-group-item">
       <strong><%= link_to user.cn, user, remote: true %></strong>
+      <%= '(*)' if user.conference_registration %>  
       <span class="pull-right">
         <em><small><%= user.affiliation %></small></em> 
       </span>
