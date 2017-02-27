@@ -37,9 +37,9 @@
 }
 
 .home_section:nth-child(even) {
-  background-color: $home_second_color;
-  h2 { color: #fff; }
-  color: #fff;
+  background-color: $home_second_bg_color;
+  color: $home_second_font_color;
+  h2 { color: $home_second_font_color; }
 }
 
 #preliminary_announcement {
