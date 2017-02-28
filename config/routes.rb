@@ -101,7 +101,7 @@ Rails.application.routes.draw do
 
   get 'privacy',  to: 'home#privacy',  as: :privacy
   get 'contacts', to: 'home#contacts', as: :contacts
-  get 'bologna',  to: 'home#bologna',  as: :bologna
+  get 'venue',    to: 'home#venue',    as: :venue
 
   get 'who_impersonate',    to: 'impersonations#who_impersonate',    as: :who_impersonate
   get 'impersonate/:id',    to: 'impersonations#impersonate',        as: :impersonate
