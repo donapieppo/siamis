@@ -60,6 +60,10 @@ class User < ApplicationRecord
     (SCIENTIFIC_COMMITTEE + COCHAIRS).include?(self.email)
   end
 
+  def in_local_committee?
+    (LOCAL_COMMITTEE).include?(self.email)
+  end
+
   # minisymposium
   # minitutorial
   def organizer?(what)
@@ -96,6 +100,10 @@ class User < ApplicationRecord
 
   def self.scientific_commettee
     @@scientific_commettee ||= SCIENTIFIC_COMMITTEE.map{|email| User.where(email: email).first}
+  end
+
+  def self.local_commettee
+    @@local_commettee ||= LOCAL_COMMITTEE.map{|email| User.where(email: email).first}
   end
 
   def activate_and_set_password
