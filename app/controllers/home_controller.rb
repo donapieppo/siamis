@@ -8,7 +8,7 @@ class HomeController < ApplicationController
   def contacts
   end
 
-  def bologna
+  def venue
   end
 
 end
