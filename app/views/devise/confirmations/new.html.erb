@@ -4,21 +4,28 @@
     <div class="panel panel-info">
       <div class="panel-heading">
         <h2>Resend confirmation instructions</h2>
+        <h3>
+          This is a test page. Your account should be already confirmed.
+        </h3>
+        <p>
+          If you need to create a password please follow this
+          <%= link_to 'link', new_user_password_path %>.  
+        </p>
       </div>
-      <div class="panel-body">
-        <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-          <%= f.error_notification %>
-          <%= f.full_error :confirmation_token %>
-
-          <div class="form-inputs">
-            <%= f.input :email, required: true, autofocus: true %>
-          </div>
-
-          <div class="form-actions">
-            <%= f.button :submit, "Resend confirmation instructions" %>
-          </div>
-        <% end %>
-      </div>
+      <!-- <div class="panel&#45;body"> -->
+      <!--   <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %> -->
+      <!--     <%= f.error_notification %> -->
+      <!--     <%= f.full_error :confirmation_token %> -->
+      <!--  -->
+      <!--     <div class="form&#45;inputs"> -->
+      <!--       <%= f.input :email, required: true, autofocus: true %> -->
+      <!--     </div> -->
+      <!--  -->
+      <!--     <div class="form&#45;actions"> -->
+      <!--       <%= f.button :submit, "Resend confirmation instructions" %> -->
+      <!--     </div> -->
+      <!--   <% end %> -->
+      <!-- </div> -->
     </div><!-- panel -->
   <% end %>
 
