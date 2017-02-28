@@ -33,30 +33,33 @@
 
 <div class="home_section">
   <div class="container" id="committees">
-    <h2>Organizing Committee</h2>
+    <h2>Scientific Committee</h2>
     <div class="row">
-      <div class="col-md-6">
-
-        <% cache 'home_organizing_commettee' do %>
-          <dl class="dl-horizontal">
-            <dt>Co-chairs: </dt>
+      <% cache 'home_organizing_commettee' do %>
+        <div class="col-md-6">
+          <h4>Co-chairs: </h4>
+          <ul>
             <% User.cochairs.each do |user| %>  
-              <dd><%= link_to user.cn, user.web_page, target: "_blank" %> (<%= user.affiliation %>)</dd>
+              <li><%= link_to user.cn, user.web_page, target: "_blank" %> <small>(<%= user.affiliation %>)</small></li>
             <% end %>
-            <dt>Scientific Committee: </dt>
+          </ul>
+
+          <h4>Members: </h4>
+          <ul>
             <% User.scientific_commettee.each do |user| %>  
-              <dd><%= link_to user.cn, user.web_page, target: "_blank" %> (<%= user.affiliation %>)</dd>
+              <li><%= link_to user.cn, user.web_page, target: "_blank" %> <small>(<%= user.affiliation %>)</small></li>
             <% end %>
-          </dl>
-        <% end %>
-      </div>
-      <div class="col-md-6">
-        <dl class="dl-horizontal">
-          <dt>Local Committee</dt>
-          <dd>....</dd>
-          <dd>...</dd>
-        </dl>
-      </div>
+          </ul>
+        </div><!-- first column -->
+        <div class="col-md-6">
+          <h4>Local Organizing Committee:</h4>
+          <ul>
+            <% User.local_commettee.each do |user| %>  
+              <li><%= link_to user.cn, user.web_page, target: "_blank" %> <small>(<%= user.affiliation %>)</small></li>
+            <% end %>
+          </ul>
+        </div><!-- second column -->
+      <% end %>
     </div>
   </div>
   <%= link_to_top %>  
@@ -79,6 +82,11 @@
         <p>
         A minisymposium generally consists of four 25-minute presentations, with an additional five minutes for discussion after each presentation.  To ensure balance, SIAM prefers a single individual not be the (co)organizer of more than one minisymposium, however, organizers can submit up to two (2) parts per minisymposium, allowing up to eight (8) speakers. In addition, SIAM discourages minisymposia in which most of the speakers or co-authors come from the same institution.
         </p>
+        <p>
+        Minisymposia submission will be available 
+        from <%= l Deadline.minisymposium_proposal_start %>
+        to <%= l Deadline.minisymposium_proposal_end %>.
+        </p>
       </div>
       <div class="col-md-6">
         <h4>Contributed Presentations in Lecture or Poster Format</h4>
@@ -89,6 +97,11 @@
         <p>Contributed presentations in lecture or poster format are invited in all areas consistent with the conference themes. A lecture format is generally a 15-minute oral presentation with an additional 5 minutes for discussion. Talk lengths will be determined by the co-chairs at the close of submissions.</p>
 
         <p>A poster format involves the use of non-electronic visual aids for mounting on a 4’ x 6’ or 4’ x 8’ poster board. A poster session is two hours long. Each contributor, either for a lecture or a poster, must submit a title and a brief abstract not to exceed 1500 characters, including spaces. </p>
+        <p>
+        Contributed Presentation submission will be available 
+        from <%= l Deadline.presentation_proposal_start %>
+        to  <%= l Deadline.presentation_proposal_end %>.
+        </p>
       </div>
     </div>
 
@@ -148,13 +161,13 @@
         <h3>Plenary Talks</h3>
         <div class="image"><%= image_tag 'santa_lucia.jpg', width: 300 %> </div>
         <p>Plenary Talks will take place in <br/>
-        <strong><%= link_to 'Aula Magna Santa Lucia', bologna_path(anchor: 'aula_magna') %></strong>.</p>
+        <strong><%= link_to 'Aula Magna Santa Lucia', venue_path(anchor: 'aula_magna') %></strong>.</p>
       </div>
       <div class="col-md-4">
         <h3>Concurrent sessions</h3>
         <div class="image"><%= image_tag 'aula_belmeloro.jpg', width: 300 %></div>
         <p>Concurrent sessions will take place in <br/>
-        <strong><%= link_to 'Complesso Belmeloro', bologna_path(anchor: 'belmeloro') %></strong>.</p>
+        <strong><%= link_to 'Complesso Belmeloro', venue_path(anchor: 'belmeloro') %></strong>.</p>
       </div>
     </div>
   </div>
