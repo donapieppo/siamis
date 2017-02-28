@@ -5,6 +5,7 @@ COCHAIRS             = ['name.surname3@example.com',
 SCIENTIFIC_COMMITTEE = ['name.surname5@example.com',
                         'name.surname6@example.com']
 ORGANIZER_COMMITTEE  = ['name.surname7@unibo.it']
+LOCAL_COMMITTEE      = ['name.surname8@unibo.it']
 
 module Siamis
   class Application < Rails::Application
