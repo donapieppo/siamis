@@ -1,31 +1,37 @@
 .home_header {
-  background-image: -webkit-radial-gradient(50% 50%, circle, #F67938 29%, #EF4734 120%);
-  background-image: radial-gradient( circle at 50% 50%, #F67938 29%, #EF4734 120%);
+  // only color background
+  //background-image: -webkit-radial-gradient(50% 50%, circle, #F67938 29%, #EF4734 120%);
+  //background-image: radial-gradient( circle at 50% 50%, #F67938 29%, #EF4734 120%);
 
   margin-top: -22px;
   text-align: center;
 
-  .home_header_logo {
-    margin-top: 30px;
-  }
-
   background: url(asset-path('bg_bologna_1.jpg')) no-repeat center top;
   height: 600px;
   background-size: cover;
-  padding-top: 30px;
+  padding-top: 60px;
 
-  div#title_container {
-    background-color: rgba(0, 0, 0, 0.3);
-    margin: 30px auto 0 auto;
-    padding: 20px;
-  }
   h1.home_header_title {
+    padding: 20px 10px;
+    border: 1px solid $home_second_bg_color;
+    max-width: 750px;
+    background-color: rgba(0, 0, 0, 0.30);
     text-align: center; 
+    color: #fff; 
+    font-weight: bold; 
+    font-size: 48px; 
+    letter-spacing: 6px;
+    font-weight: bold;
+    letter-spacing: .1em;
+    line-height: 1.5em;
+    margin-top: 60px;
+    margin-bottom: 60px;
     .home_header_title-date {
-      margin-top: 30px;
-      text-align: right;
-      font-size: 70%;
+      line-height: 1em;
+      margin-top: 20px;
       text-transform: capitalize;
+      text-align: right;
+      font-size: 32px;
     }
   }
 }
