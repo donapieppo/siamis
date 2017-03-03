@@ -1,13 +1,15 @@
 <div class="home_header">  
-<div class="container">
-  <div class="home_header_logo">
-    <%= image_tag 'logo.png' %>
+<div class="home_header_logo">
+  <%= image_tag 'logo.png' %>
+</div>
+<div id="title_container">
+  <div class="container">
+    <h1 class="home_header_title" style="color: #fff; font-weight: 700;">
+      TEST PAGE for <br/>
+      SIAM Conference <br/>on <br/>IMAGING SCIENCE<br/>
+      <div class="home_header_title-date">June 5-8, 2018 Bologna - Italy</div>
+    </h1>
   </div>
-  <h1 class="home_header_title">
-    TEST PAGE for <br/>
-    SIAM Conference <br/>on <br/>IMAGING SCIENCE<br/>
-    <small>June 5-8, 2018 Bologna - Italy</small>
-  </h1>
 </div>
 </div>
 <nav class="navbar navbar-default">
@@ -27,7 +29,7 @@
         <li><%= link_to "Committees", '#committees', class: "scrollto" %></li>
         <li><%= link_to "Submissions", '#submissions', class: "scrollto" %></li>
         <li><%= link_to "Important Dates", '#important_dates', class: "scrollto" %></li>
-        <li><%= link_to "Invited Plenary", '#plenaries', class: "scrollto" %></li>
+        <li><%= link_to "Invited Presentations", '#plenaries', class: "scrollto" %></li>
         <li><%= link_to "Venue & Hospitality", '#venue', class: "scrollto" %></li>
       </ul>
     </div>
