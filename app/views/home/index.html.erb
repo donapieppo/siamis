@@ -131,7 +131,7 @@
 
 <div class="home_section">
   <div class="container" id="plenaries">
-    <h2>Invited Plenary Speakers</h2>
+    <h2>Invited Presentations</h2>
     <div class="row">
       <%= Plenary.includes(presentation: :authors, schedule: :room).find_each do |plenary| %>  
         <% speaker = plenary.authors.first.user %>  
