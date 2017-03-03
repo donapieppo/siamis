@@ -17,7 +17,7 @@
       </li>
     <% end %>
   </ul>
-  <%= submit_tag 'Save order' %>  
+  <%= submit_tag 'Save order' %> - <%= link_to_back @conference_session %>  
 <% end %>
 
 <h2>Presentations to add:</h2>
@@ -34,8 +34,8 @@
 
 <%= javascript_tag do %>  
   $(document).ready(function(){
-  $("select").change(function() {
-  $(this).parent("form").submit();
-  })
+    $("select").change(function() {
+      $(this).parent("form").submit();
+    })
   });
 <% end %>
