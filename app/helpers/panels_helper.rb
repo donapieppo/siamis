@@ -28,9 +28,9 @@ module PanelsHelper
     actual = current_user.interested_in?(what) ? "not" : ""
     case what
     when Minisymposium, ConferenceSession, PosterSession
-      link_to icon('eye') + " I'm #{actual} interested", toggle_conference_session_interests_path(what), method: :post, class: :button
+      link_to icon('eye') + " I'm #{actual} interested", toggle_conference_session_interests_path(what), method: :post
     when Presentation
-      link_to icon('eye') + " I'm #{actual} interested", toggle_presentation_interests_path(what), method: :post, class: :button
+      link_to icon('eye') + " I'm #{actual} interested", toggle_presentation_interests_path(what), method: :post 
     end
   end
 
@@ -38,24 +38,25 @@ module PanelsHelper
     return "&nbsp;".html_safe unless current_user_owns?(what)
 
     capture do 
-      concat(link_to icon('pencil') + ' edit', [:edit, what], class: :button)
+      concat(link_to icon('pencil') + ' edit', [:edit, what])
 
       # plenary, minitutorial
       if what.respond_to?(:chairs) 
-        concat(link_to icon('plus') + ' add chair', [:new, what, :organizer], class: :button)
+        concat(link_to icon('plus') + ' add chair', [:new, what, :organizer])
       elsif what.is_a?(Minisymposium)
-        concat(link_to icon('plus') + ' add organizer', [:new, what, :organizer], class: :button)
+        concat(link_to icon('plus') + ' add organizer', [:new, what, :organizer])
       end 
 
       if what.respond_to?(:authors) 
-        concat(link_to icon('plus') + ' add author', [:new, what.respond_to?(:presentation) ? what.presentation : what, :author], class: :button)
+        concat(link_to icon('plus') + ' add author', [:new, what.respond_to?(:presentation) ? what.presentation : what, :author])
       end 
 
       if what.respond_to?(:presentations)
-        concat(link_to icon('file-audio-o') + ' add presentation', [:new, what, :presentation], class: :button)
+        concat(link_to icon('file-audio-o') + ' add presentation', [:new, what, :presentation])
+        concat(link_to icon('sort')         + ' ordering', manage_presentations_conference_session_path(what))
       end 
 
-      concat(link_to_delete('delete', what, button: true))
+      concat(link_to_delete('delete', what))
 
       if conference_session = what.try(:conference_session)   
         concat(link_to icon('reply') + " back to #{I18n.t conference_session.class}", conference_session)
@@ -69,7 +70,7 @@ module PanelsHelper
 
     capture do 
       if what.is_a?(ConferenceSession)
-        concat(link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(what), class: :button)
+        concat(link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(what))
       end 
 
       if what.is_a?(ContributedSession) or what.is_a?(PosterSession)
