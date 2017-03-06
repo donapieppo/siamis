@@ -24,14 +24,16 @@ class ConferenceSessionsController < ApplicationController
 
   def manage_presentations
     @actual_presentations = @conference_session.presentations.order(:number)
-    @available_presentations = case @conference_session
-                               when PosterSession
-                                 Presentation.unassigned.poster
-                               when ContributedSession
-                                 Presentation.unassigned.not_poster
-                               else
-                                 []
-                               end
+    if user_in_organizer_commettee?
+      @available_presentations = case @conference_session
+                                 when PosterSession
+                                   Presentation.unassigned.poster
+                                 when ContributedSession
+                                   Presentation.unassigned.not_poster
+                                 else
+                                   []
+                                 end
+    end
   end
 
   def ordering
