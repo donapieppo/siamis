@@ -100,3 +100,4 @@ en:
   bank_security: Clicking on the button below you are automatically redirected to the Bank's payment server (Unicredit bank).  So we actually never know your Credit Card number.  All information exchanged with the system are encrypted using the SSL protocol and can not be intercepted or altered.
   minisymposium_presentation_duration: The presentation will last 25-minute with an additional five minutes for discussion.
   minisymposium_created: The Minisymposium has been created. Please add presentations.
+  minisymposium_presentation_number_warning: A minisymposium generally consists of <strong>four</strong> 25-minute presentations, with an additional five minutes for discussion after each presentation.
