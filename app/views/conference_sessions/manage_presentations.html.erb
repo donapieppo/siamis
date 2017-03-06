@@ -20,17 +20,19 @@
   <%= submit_tag 'Save order' %> - <%= link_to_back @conference_session %>  
 <% end %>
 
-<h2>Presentations to add:</h2>
-<ul class="list-group">
-  <% @available_presentations.each do |presentation| %>  
-    <li class="list-group-item">
-      <%= link_to presentation, presentation %>  
-      <span class="pull-right">
-        <%= link_to icon('plus-circle') + ' add', add_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'add to session' %> 
-      </span>
-    </li>
-  <% end %>
-</ul>
+<% if user_in_organizer_commettee? %>  
+  <h2>Presentations to add:</h2>
+  <ul class="list-group">
+    <% @available_presentations.each do |presentation| %>  
+      <li class="list-group-item">
+        <%= link_to presentation, presentation %>  
+        <span class="pull-right">
+          <%= link_to icon('plus-circle') + ' add', add_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'add to session' %> 
+        </span>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 
 <%= javascript_tag do %>  
   $(document).ready(function(){
