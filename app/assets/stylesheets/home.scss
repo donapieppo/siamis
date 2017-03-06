@@ -4,34 +4,43 @@
   //background-image: radial-gradient( circle at 50% 50%, #F67938 29%, #EF4734 120%);
 
   margin-top: -22px;
-  text-align: center;
-
-  background: url(asset-path('bg_bologna_1.jpg')) no-repeat center top;
   height: 600px;
-  background-size: cover;
   padding-top: 60px;
 
+  background: url(asset-path('bg_bologna_1.jpg')) no-repeat center top;
+  background-size: cover;
+
   h1.home_header_title {
+    span {
+      background-color: rgba(255, 255, 255, 0.60);
+      text-shadow: 1px 1px 0 white;
+    }
     padding: 20px 10px;
-    border: 1px solid $home_second_bg_color;
     max-width: 750px;
-    background-color: rgba(0, 0, 0, 0.30);
     text-align: center; 
-    color: #fff; 
+    // font
+    color: #333; 
     font-weight: bold; 
     font-size: 48px; 
-    letter-spacing: 6px;
-    font-weight: bold;
     letter-spacing: .1em;
-    line-height: 1.5em;
-    margin-top: 60px;
-    margin-bottom: 60px;
+    line-height: 1.3em;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
     .home_header_title-date {
-      line-height: 1em;
+      line-height: 2em;
       margin-top: 20px;
       text-transform: capitalize;
       text-align: right;
       font-size: 32px;
+    }
+    @media (min-width: $screen-md-min) { 
+      span {
+        padding: 10px;
+      }
+      line-height: 2.0em;
+    margin-top: 60px;
+    margin-bottom: 60px;
     }
   }
 }
@@ -97,3 +106,9 @@
   }
   text-align: center;
 }
+
+
+
+
+
+
