@@ -2,7 +2,7 @@
     owner         = current_user_owns?(minisymposium)
     presentations = minisymposium.presentations.order(:number).all
     organizers    = minisymposium.organizers.includes(:user).order('users.surname').all 
-    missing_presentations = (! minisymposium.accepted) and owner and (presentations.size < 4)
+    missing_presentations = ((! minisymposium.accepted) and owner and (presentations.size < 4))
 %>  
 
 <div class="minisymposium_panel">
