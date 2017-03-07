@@ -73,8 +73,9 @@ class PresentationsController < ApplicationController
   end
 
   def destroy
+    conference_session = @presentation.conference_session
     @presentation.delete
-    redirect_to presentations_path
+    redirect_to (conference_session ? conference_session : presentations_path)
   end
 
   def accept
