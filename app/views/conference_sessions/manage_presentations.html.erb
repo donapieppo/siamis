@@ -20,7 +20,7 @@
   <%= submit_tag 'Save order' %> - <%= link_to_back @conference_session %>  
 <% end %>
 
-<% if user_in_organizer_commettee? %>  
+<% if user_in_organizer_commettee? and @available_presentations.any? %>  
   <h2>Presentations to add:</h2>
   <ul class="list-group">
     <% @available_presentations.each do |presentation| %>  
