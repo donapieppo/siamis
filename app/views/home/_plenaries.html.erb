@@ -1,0 +1,14 @@
+<h2>Invited Presentations</h2>
+<div class="row">
+  <%= Plenary.includes(presentation: :authors, schedule: :room).find_each do |plenary| %>  
+    <% speaker = plenary.authors.first.user %>  
+    <div class="home-plenary col-md-4">
+      <div class="plenary-when"><%= plenary.schedule ? l(plenary.schedule.start) : 'to be defined' %></div>
+      <div class="plenary-title"><%= plenary.name %></div>
+      <div class="plenary-speaker"><%= link_to speaker.cn, user_path(speaker), remote: true %><br/>
+        <small>(<%= speaker.affiliation %>)</small></div>
+      <div class="plenary-where"><%= plenary.schedule.room if plenary.schedule %></div>
+    </div>
+  <% end %>
+</div>
+

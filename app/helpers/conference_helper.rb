@@ -144,5 +144,14 @@ module ConferenceHelper
   def conference_session_panel_class(conference_session)
      conference_session.class.to_s.downcase + "_panel"
   end
+
+  def home_section(id)
+    content_tag(:div, class: 'home_section') do
+      content_tag(:div, class: 'container', id: id) do
+        render partial: id
+      end + link_to_top
+    end 
+  end
+
 end
 
