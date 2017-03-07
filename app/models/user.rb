@@ -95,15 +95,15 @@ class User < ApplicationRecord
   end
 
   def self.cochairs
-    @@cochairs ||= COCHAIRS.map{|email| User.where(email: email).first}
+    @@cochairs ||= User.where(email: COCHAIRS).order('surname, name')
   end
 
   def self.scientific_commettee
-    @@scientific_commettee ||= SCIENTIFIC_COMMITTEE.map{|email| User.where(email: email).first}
+    @@scientific_commettee ||= User.where(email: SCIENTIFIC_COMMITTEE).order('surname, name')
   end
 
   def self.local_commettee
-    @@local_commettee ||= LOCAL_COMMITTEE.map{|email| User.where(email: email).first}
+    @@local_commettee ||= User.where(email: LOCAL_COMMITTEE).order('surname, name')
   end
 
   def activate_and_set_password
