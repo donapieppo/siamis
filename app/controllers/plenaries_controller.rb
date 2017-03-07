@@ -12,7 +12,7 @@ class PlenariesController < ConferenceSessionsController
   def create 
     @conference_session = Plenary.new(conference_session_params)
     if @conference_session.save 
-      redirect_to new_presentation_author_path(@conference_session.presentation), notice: 'The Plenary Invited Session has been created. Please provide authors and chairs.'
+      redirect_to new_presentation_author_path(@conference_session.presentation), notice: 'The Plenary Session has been created. Please provide authors and chairs.'
     else
       render action: :new
     end
