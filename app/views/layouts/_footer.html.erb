@@ -4,13 +4,13 @@
     <div class="col-md-4">
       <h3>SIAM Conference<br/>on<br/> IMAGING SCIENCE<br/><small>June 5-8, 2018</small></h3>
       <p>Bologna - Italy</p>
-      <p>&copy;2016 - <%= link_to 'Privacy', privacy_path %></p>
+      <p>&copy; Unibo 2016 - <%= link_to 'Privacy', privacy_path %></p>
     </div>
     <div class="col-md-4">
-      <%= image_tag 'three.png' %>
+      <p><%= image_tag 'three.png' %></p>
       <p><%= link_to 'Society for Industrial and Applied Mathematics', 'https://www.siam.org/' %></p>
       <p><%= raw stop_impersonation_link %> <%= raw start_impersonation_link %></p>
-      <p>Cover image from <%= link_to 'Pedro', 'https://www.flickr.com/photos/pedrocaetano/32312256655' %>  
+      <p>Cover image from <%= link_to 'Pedro', 'https://www.flickr.com/photos/pedrocaetano/32312256655' %> <%= link_to icon('creative-commons'), 'https://creativecommons.org/licenses/by/2.0' %></p>
     </div>
     <div class="col-md-4">
       <h2>Contacts:</h2>
@@ -18,9 +18,9 @@
       <p>Piazza di Porta San Donato, 5<br/>
       40126 - Bologna - Italy</p>
       <p>
-        <%= icon('envelope-o') %> 
-        <%= mail_to 'Fiorella Sgallari', 'fiorella.sgallari@unibo.it' %>,
-        <%= mail_to 'Serena Morigi', 'serena.morigi@unibo.it' %>
+      <%= icon('envelope-o') %> 
+      <%= mail_to 'Fiorella Sgallari', 'fiorella.sgallari@unibo.it' %>,
+      <%= mail_to 'Serena Morigi', 'serena.morigi@unibo.it' %>
       </p>
     </div>
   </div>
