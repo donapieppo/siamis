@@ -53,7 +53,7 @@ module PanelsHelper
 
       if what.respond_to?(:presentations)
         concat(link_to icon('file-audio-o') + ' add presentation', [:new, what, :presentation])
-        concat(link_to icon('sort')         + ' ordering', manage_presentations_conference_session_path(what))
+        concat(link_to icon('list') + ' manage presentations', manage_presentations_conference_session_path(what))
       end 
 
       concat(link_to_delete('delete', what))
@@ -72,10 +72,6 @@ module PanelsHelper
       if what.is_a?(ConferenceSession)
         concat(link_to icon('clock-o') + ' schedule', new_conference_session_schedule_path(what))
       end 
-
-      if what.is_a?(ContributedSession) or what.is_a?(PosterSession)
-        concat(link_to icon('list') + ' manage presentations', manage_presentations_conference_session_path(what))
-      end
 
       if what.ratable?
         if what.accepted?
