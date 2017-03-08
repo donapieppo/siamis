@@ -52,15 +52,17 @@ class PresentationsController < ApplicationController
     end
   end
 
+  # only Organizer Commettee
   def add
     @conference_session = ConferenceSession.find(params[:conference_session_id])
-    @conference_session.presentations << @presentation
+    (@conference_session.presentations << @presentation) if user_in_organizer_commettee?
     redirect_to manage_presentations_conference_session_path(@conference_session)
   end
 
+  # only Organizer Commettee (or else the presentation is orphaned)
   def remove
     @conference_session = ConferenceSession.find(params[:conference_session_id])
-    @presentation.update_attribute(:conference_session_id, nil)
+    (@presentation.update_attribute(:conference_session_id, nil)) if user_in_organizer_commettee?
     redirect_to manage_presentations_conference_session_path(@conference_session)
   end
 
@@ -80,13 +82,13 @@ class PresentationsController < ApplicationController
 
   def accept
     @presentation.accept!
-    redirect_to submissions_path
+    redirect_to submissions_path((@presentation.poster ? :poster : :contributed) => 1), notice: 'The presentation has been accepted.'
   end
 
   # FiXME for now is just unaccept.
   def refuse
     @presentation.refuse!
-    redirect_to submissions_path
+    redirect_to submissions_path((@presentation.poster ? :poster : :contributed) => 1), notice: 'The presentation has been unaccepted.'
   end
 
   private
