@@ -22,11 +22,11 @@ class AuthorsController < RolesController
   def destroy
     # FIXME not to destroy yourself
     if @author.user == current_user
-      flash error: 'You can not delete yourself from authors of this presentation.'
+      flash[:error] = 'You can not delete yourself from authors of this presentation.'
     else
-      @author.destroy
+      @author.destroy and flash[:notice] = 'The author has been removed.'
     end
-    redirect_to @author.presentation, notice: 'OK'
+    redirect_to @author.presentation
   end
 
   def make_speaker
