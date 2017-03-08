@@ -1,12 +1,18 @@
 <% if user_in_organizer_commettee? %>  
-  <h2>Minisymposia</h2>
-  <%= ul_list_with_acceptance(@minisymposia) %>  
+  <% if @minisymposia.any? %>  
+    <h2>Minisymposia</h2>
+    <%= ul_list_with_acceptance(@minisymposia) %>  
+  <% end %>
 
-  <h2>Presentations</h2>
-  <%= ul_list_with_acceptance(@presentations) %>
+  <% if @presentations.any? %>  
+    <h2>Presentations</h2>
+    <%= ul_list_with_acceptance(@presentations) %>
+  <% end %>
 
-  <h2>Posters</h2>
-  <%= ul_list_with_acceptance(@posters) %>
+  <% if @posters.any? %>  
+    <h2>Posters</h2>
+    <%= ul_list_with_acceptance(@posters) %>
+  <% end %>
 <% else %>
   <% if @presentations.any? or @minisymposia.any? %>
     <h2>Your submissions</h2>
