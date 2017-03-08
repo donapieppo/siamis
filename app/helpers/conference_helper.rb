@@ -97,14 +97,14 @@ module ConferenceHelper
   end
 
   def link_to_next_approval(what)
-    user_in_organizer_commettee? or return ""
+    user_in_organizer_committee? or return ""
     content_tag(:p, class: 'centered') do
       what ? link_to('next', what, class: :button) : ''
     end
   end
 
   def link_to_next_rating(what)
-    user_in_scientific_commettee? or return ""
+    user_in_scientific_committee? or return ""
     content_tag(:p, class: 'centered') do
       what ? link_to('next to rate', what, class: :button) : 'You have rated all minisymposia'
     end

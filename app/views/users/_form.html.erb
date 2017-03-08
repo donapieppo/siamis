@@ -1,5 +1,5 @@
 <%= simple_form_for @user do |user| %>  
-  <%= user.input :email, disabled: ( ! (@user.new_record? and user_in_organizer_commettee?)) %>  
+  <%= user.input :email, disabled: ( ! (@user.new_record? and user_in_organizer_committee?)) %>  
   <%= user.input :name, required: true %>  
   <%= user.input :surname, required: true %>  
   <%= user.input :salutation %>  

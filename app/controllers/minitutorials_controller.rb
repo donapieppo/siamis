@@ -1,5 +1,5 @@
 class MinitutorialsController < ConferenceSessionsController
-  before_action :user_in_organizer_commettee!, except: [:index, :show]
+  before_action :user_in_organizer_committee!, except: [:index, :show]
 
   def index 
     @minitutorials = Minitutorial.includes(:schedule, presentation: [authors: :user], organizers: :user)

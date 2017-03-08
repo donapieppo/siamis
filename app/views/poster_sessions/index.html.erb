@@ -1,6 +1,6 @@
 <%= program_title('Poster Sessions', 'picture-o') %>  
 
-<% if user_in_organizer_commettee? %>  
+<% if user_in_organizer_committee? %>  
   <p class="centered"><%= link_to 'Create Poster Session', new_poster_session_path, class: :big_button %></p>
 <% end %>
 

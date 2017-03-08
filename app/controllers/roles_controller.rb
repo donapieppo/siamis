@@ -6,7 +6,7 @@ class RolesController < ApplicationController
     current_user.owns!(@role)
     # can't delete yourself
     if @role.user == current_user
-      redirect_to @role.relative_to, alert: 'It is not possible to delete yourself. Please contact organizing commettee'
+      redirect_to @role.relative_to, alert: 'It is not possible to delete yourself. Please contact organizing committee.'
     else
       @role.destroy
       redirect_to @role.relative_to, notice: 'OK'

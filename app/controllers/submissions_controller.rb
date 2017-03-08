@@ -1,6 +1,6 @@
 class SubmissionsController < ApplicationController
   def index
-    if user_in_organizer_commettee?
+    if user_in_organizer_committee?
       @minisymposia  = params[:minisymposium] ? Minisymposium.includes(ratings: :user, organizers: :user).all : []
       @presentations = params[:contributed] ? Presentation.unassigned.includes(ratings: :user, authors: :user).not_poster.all : []
       @posters       = params[:poster] ? Presentation.unassigned.includes(ratings: :user, authors: :user).poster.all : []

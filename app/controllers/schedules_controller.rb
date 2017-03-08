@@ -1,5 +1,5 @@
 class SchedulesController < ApplicationController
-  before_action :user_in_organizer_commettee!
+  before_action :user_in_organizer_committee!
   before_action :set_conference_session
 
   def new

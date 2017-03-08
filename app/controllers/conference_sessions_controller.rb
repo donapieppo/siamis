@@ -24,7 +24,7 @@ class ConferenceSessionsController < ApplicationController
 
   def manage_presentations
     @actual_presentations = @conference_session.presentations.order(:number)
-    if user_in_organizer_commettee?
+    if user_in_organizer_committee?
       @available_presentations = case @conference_session
                                  when PosterSession
                                    Presentation.unassigned.poster

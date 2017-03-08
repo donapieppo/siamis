@@ -1,6 +1,6 @@
 <%= render @presentation %>
 
-<% if user_in_scientific_commettee? %>  
+<% if user_in_scientific_committee? %>  
   <%= link_to_next_rating(Rating.get_unrated_presentation(current_user)) %>
 <% end %>
 

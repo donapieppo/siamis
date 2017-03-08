@@ -34,7 +34,7 @@ class User < ApplicationRecord
 
   def owns?(what)
     self.master_of_universe? and return true
-    self.in_organizer_commettee? and return true
+    self.in_organizer_committee? and return true
 
     case what
     when Minisymposium, Minitutorial
@@ -52,7 +52,7 @@ class User < ApplicationRecord
     MASTERS_OF_UNIVERSE.include?(self.email)
   end
 
-  def in_organizer_commettee?
+  def in_organizer_committee?
     ORGANIZER_COMMITTEE.include?(self.email)
   end
 
@@ -82,7 +82,7 @@ class User < ApplicationRecord
 
   # FIXME
   def speaker_or_organizer?
-    self.presentations.any? or self.organizers.any? or self.in_organizer_commettee?
+    self.presentations.any? or self.organizers.any? or self.in_organizer_committee?
   end
 
   def fee
@@ -98,12 +98,12 @@ class User < ApplicationRecord
     @@cochairs ||= User.where(email: COCHAIRS).order('surname, name')
   end
 
-  def self.scientific_commettee
-    @@scientific_commettee ||= User.where(email: SCIENTIFIC_COMMITTEE).order('surname, name')
+  def self.scientific_committee
+    @@scientific_committee ||= User.where(email: SCIENTIFIC_COMMITTEE).order('surname, name')
   end
 
-  def self.local_commettee
-    @@local_commettee ||= User.where(email: LOCAL_COMMITTEE).order('surname, name')
+  def self.local_committee
+    @@local_committee ||= User.where(email: LOCAL_COMMITTEE).order('surname, name')
   end
 
   def activate_and_set_password

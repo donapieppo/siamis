@@ -1,6 +1,6 @@
 class MinisymposiaController < ConferenceSessionsController
   before_action :check_deadline!, only: [:new, :create]
-  before_action :user_in_organizer_commettee!, only: [:accept]
+  before_action :user_in_organizer_committee!, only: [:accept]
 
   # wait till end of proposals to show accepted Minisymposia
   def index

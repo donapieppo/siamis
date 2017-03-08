@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   include UserHelper
 
-  # helper_method :current_user_owns?, :current_user_owns!, :true_user_can_impersonate?, :user_in_organizer_commettee?, :user_in_scientific_commettee?
+  # helper_method :current_user_owns?, :current_user_owns!, :true_user_can_impersonate?, :user_in_organizer_committee?, :user_in_scientific_committee?
 
   before_action :change_date, :authenticate_user!, :log_current_user, :check_user_fields, :check_registration
 

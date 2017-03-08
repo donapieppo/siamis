@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   skip_before_action :check_user_fields, only: [:edit, :update]
 
-  before_action :user_in_organizer_commettee!, only: [:index, :new, :admin_create, :admin_notify_new]
+  before_action :user_in_organizer_committee!, only: [:index, :new, :admin_create, :admin_notify_new]
   before_action :set_user_and_check_permission, only: [:edit, :update]
 
   def index
@@ -18,12 +18,12 @@ class UsersController < ApplicationController
     @conference_registration  = @user.conference_registration
 
     # only accepted unless for organizer
-    unless user_in_organizer_commettee? or user_in_scientific_commettee?
+    unless user_in_organizer_committee? or user_in_scientific_committee?
       @user_conference_sessions.select!{|x| x.accepted?}
       @user_presentations.select!{|x| x.accepted?}
     end
 
-    if user_in_organizer_commettee? or user_in_scientific_commettee?
+    if user_in_organizer_committee? or user_in_scientific_committee?
       @fields = User.all_fields
       @show_email = true
     end
@@ -71,7 +71,7 @@ class UsersController < ApplicationController
 
   def user_params
     permitted = [:salutation, :name, :surname, :affiliation, :address, :country, :biography, :siag, :siam, :student, :web_page]
-    permitted += [:email] if user_in_organizer_commettee?
+    permitted += [:email] if user_in_organizer_committee?
     params[:user].permit(permitted)
   end
 
@@ -82,7 +82,7 @@ class UsersController < ApplicationController
 
   def set_user_and_check_permission
     @user = User.find(params[:id])
-    @user == current_user or user_in_organizer_commettee? or raise NOACCESS
+    @user == current_user or user_in_organizer_committee? or raise NOACCESS
   end
 end
 

@@ -15,20 +15,20 @@ module UserHelper
     user_master_of_universe? or raise NoAccess
   end
 
-  def user_in_organizer_commettee?
-    current_user and current_user.in_organizer_commettee?
+  def user_in_organizer_committee?
+    current_user and current_user.in_organizer_committee?
   end
 
-  def user_in_organizer_commettee!
-    user_in_organizer_commettee? or raise NoAccess
+  def user_in_organizer_committee!
+    user_in_organizer_committee? or raise NoAccess
   end
 
-  def user_in_scientific_commettee?
+  def user_in_scientific_committee?
     current_user and current_user.in_scientific_committee?
   end
 
-  def user_in_scientific_commettee!
-    user_in_scientific_commettee? or raise NoAccess
+  def user_in_scientific_committee!
+    user_in_scientific_committee? or raise NoAccess
   end
 
   def true_user_can_impersonate?

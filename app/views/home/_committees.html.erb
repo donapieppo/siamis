@@ -1,6 +1,6 @@
 <h2>Scientific Committee</h2>
 <div class="row">
-  <% cache 'home_organizing_commettee' do %>
+  <% cache 'home_organizing_committee' do %>
     <div class="col-md-6">
       <h4>Co-chairs: </h4>
       <ul>
@@ -11,7 +11,7 @@
 
       <h4>Members: </h4>
       <ul>
-        <% User.scientific_commettee.each do |user| %>  
+        <% User.scientific_committee.each do |user| %>  
           <li><%= link_to user.cn, user.web_page, target: "_blank" %> <small>(<%= user.affiliation %>)</small></li>
         <% end %>
       </ul>
@@ -19,7 +19,7 @@
     <div class="col-md-6">
       <h4>Local Organizing Committee:</h4>
       <ul>
-        <% User.local_commettee.each do |user| %>  
+        <% User.local_committee.each do |user| %>  
           <li><%= link_to user.cn, user.web_page, target: "_blank" %> <small>(<%= user.affiliation %>)</small></li>
         <% end %>
       </ul>

@@ -1,4 +1,4 @@
-<%# Create and edited by organizer commettee only (see minisymposium for complex session) %> 
+<%# Create and edited by organizer committee only (see minisymposium for complex session) %> 
 
 <% presentations = conference_session.presentations.includes(authors: :user).order(:number).all %>  
 

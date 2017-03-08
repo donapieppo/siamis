@@ -23,7 +23,7 @@ module PanelsHelper
   end
 
   def common_actions(what)
-    return "&nbsp;".html_safe if user_in_organizer_commettee?
+    return "&nbsp;".html_safe if user_in_organizer_committee?
 
     actual = current_user.interested_in?(what) ? "not" : ""
     case what
@@ -65,8 +65,8 @@ module PanelsHelper
     end
   end
 
-  def organizer_commettee_actions(what)
-    return "&nbsp;".html_safe unless user_in_organizer_commettee?
+  def organizer_committee_actions(what)
+    return "&nbsp;".html_safe unless user_in_organizer_committee?
 
     capture do 
       if what.is_a?(ConferenceSession)
@@ -85,9 +85,9 @@ module PanelsHelper
     end
   end
 
-  def scientific_commettee_actions(what)
+  def scientific_committee_actions(what)
     capture do 
-      if user_in_scientific_commettee? and what.ratable? and ! what.accepted?
+      if user_in_scientific_committee? and what.ratable? and ! what.accepted?
         concat(link_to icon('star') + ' rate', [:new, what, :rating], remote: true)
       end 
 
@@ -101,8 +101,8 @@ module PanelsHelper
 
     common_actions(what) +
     owner_actions(what) +
-    scientific_commettee_actions(what) +
-    organizer_commettee_actions(what)
+    scientific_committee_actions(what) +
+    organizer_committee_actions(what)
   end
 
 end

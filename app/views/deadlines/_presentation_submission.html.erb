@@ -7,7 +7,7 @@
   <p class="alert alert-success">
   <strong>Deadline</strong> for submission of <em>presentation / poster proposals</em>: <%= l(Deadline.presentation_proposal_end) %>.
   <% if current_user %>  
-    <% unless controller.controller_name == 'submissions' or user_in_organizer_commettee? %>
+    <% unless controller.controller_name == 'submissions' or user_in_organizer_committee? %>
       <br/><%= link_to 'Go to submissions page', submissions_path %>.
     <% end %>
   <% else %>

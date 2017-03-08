@@ -19,21 +19,21 @@
         <%= menu_link 'users',     'Minisymposia', minisymposia_path %>
         <%= menu_link 'users',     'Contributed Presentations', contributed_sessions_path %>
         <%= menu_link 'picture-o', 'Poster Sessions', poster_sessions_path %>
-        <% if current_user and ! user_in_organizer_commettee? %>  
+        <% if current_user and ! user_in_organizer_committee? %>  
           <li class="divider"></li>
           <%= menu_link 'map-o',     'MY PROGRAM', interests_path %>  
         <% end %>
       <% end %>
       <% if current_user %>  
-        <% if user_in_scientific_commettee? %>  
+        <% if user_in_scientific_committee? %>  
           <%= dropdown_menu fwicon('gavel') + ' Commettee' do %>
             <%= menu_link 'star', 'Minisymposia ratings', ratings_path(minisymposia: 1) %>
             <%= menu_link 'star', 'Submissions ratings', ratings_path %>
           <% end %>
         <% end %>
-        <% if user_in_organizer_commettee? %>  
+        <% if user_in_organizer_committee? %>  
           <%= dropdown_menu fwicon('magic') + ' Admin' do %>
-            <%= menu_link 'file', 'Ministymposium submissions', submissions_path(minisymposium: 1) %>
+            <%= menu_link 'file', 'Minisymposium submissions', submissions_path(minisymposium: 1) %>
             <%= menu_link 'file', 'Contributed session submissions', submissions_path(contributed: 1) %>
             <%= menu_link 'file', 'Poster session submissions', submissions_path(poster: 1) %>
             <li class="divider"></li>

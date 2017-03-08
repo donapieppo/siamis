@@ -1,7 +1,7 @@
 <% what.ratable? or return %>  
 <% sum = 0.to_f %> 
 <% num = 0 %>  
-<% if user_in_scientific_commettee? or user_in_organizer_commettee? %>
+<% if user_in_scientific_committee? or user_in_organizer_committee? %>
   <% if what.accepted %>  
     <p class="alert alert-success">This <%= what.class_name %> has been accepted.</p>
   <% else %>
@@ -17,7 +17,7 @@
         <% sum += rating.score; num += 1 %>  
       <% end %>
       <dd>
-      <%= num %> votes on <%= SCIENTIFIC_COMMITTEE.count %> scientific commettee components.
+      <%= num %> votes on <%= SCIENTIFIC_COMMITTEE.count %> scientific committee components.
       <% if num > 0 %>
         Average: <%= sum/num %>
       <% end %>

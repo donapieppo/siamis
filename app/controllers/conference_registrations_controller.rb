@@ -1,5 +1,5 @@
 class ConferenceRegistrationsController < ApplicationController
-  before_action :user_in_organizer_commettee!, only: [:index]
+  before_action :user_in_organizer_committee!, only: [:index]
 
   def index
     @conference_registrations = ConferenceRegistration.includes(:user, :payment)

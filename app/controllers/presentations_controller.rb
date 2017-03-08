@@ -5,11 +5,11 @@ class PresentationsController < ApplicationController
   before_action :set_conference_session_and_check_permission, only: [:new, :create]
   before_action :set_presentation_and_check_permission, only: [:edit, :update, :destroy, :set_number, :add, :remove, :accept, :refuse]
   before_action :check_deadline!, only: [:new, :create]
-  before_action :user_in_organizer_commettee!, only: [:accept]
+  before_action :user_in_organizer_committee!, only: [:accept]
 
   # like submissions (think, fixme)
   def index
-    if params[:user_id] and user_in_organizer_commettee?
+    if params[:user_id] and user_in_organizer_committee?
       @user = User.find(params[:user_id])
     else
       @user = current_user
@@ -28,7 +28,7 @@ class PresentationsController < ApplicationController
     @presentation = Presentation.new(poster: params[:poster])
   end
 
-  # if not in organizer_commettee you are the author
+  # if not in organizer_committee you are the author
   def create
     @presentation = @conference_session ? @conference_session.presentations.new(presentation_params) : Presentation.new(presentation_params)
     if @presentation.save
@@ -37,7 +37,7 @@ class PresentationsController < ApplicationController
         redirect_to new_presentation_author_path(@presentation)
       # we are authors
       else
-        @presentation.authors.create(user: current_user, speak: true) unless user_in_organizer_commettee?
+        @presentation.authors.create(user: current_user, speak: true) unless user_in_organizer_committee?
         redirect_to @presentation
       end
     else
@@ -55,14 +55,14 @@ class PresentationsController < ApplicationController
   # only Organizer Commettee
   def add
     @conference_session = ConferenceSession.find(params[:conference_session_id])
-    (@conference_session.presentations << @presentation) if user_in_organizer_commettee?
+    (@conference_session.presentations << @presentation) if user_in_organizer_committee?
     redirect_to manage_presentations_conference_session_path(@conference_session)
   end
 
   # only Organizer Commettee (or else the presentation is orphaned)
   def remove
     @conference_session = ConferenceSession.find(params[:conference_session_id])
-    (@presentation.update_attribute(:conference_session_id, nil)) if user_in_organizer_commettee?
+    (@presentation.update_attribute(:conference_session_id, nil)) if user_in_organizer_committee?
     redirect_to manage_presentations_conference_session_path(@conference_session)
   end
 
@@ -119,7 +119,7 @@ class PresentationsController < ApplicationController
   def check_deadline!
     # FIXME
     # if conference_session can always add presentations
-    @conference_session or Deadline.can_propose?(:presentation) or user_in_organizer_commettee? or raise ProposalClose
+    @conference_session or Deadline.can_propose?(:presentation) or user_in_organizer_committee? or raise ProposalClose
   end
 end
 

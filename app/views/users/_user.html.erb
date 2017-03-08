@@ -14,7 +14,7 @@
   <% end %>
 </dl>
 
-<% if current_user and (user == current_user or user_in_organizer_commettee?) %>  
+<% if current_user and (user == current_user or user_in_organizer_committee?) %>  
   <p class="centered">
     <%= link_to_edit2 'modify', [:edit, user] %>  
   </p>

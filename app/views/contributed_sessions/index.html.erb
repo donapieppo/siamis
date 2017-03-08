@@ -1,6 +1,6 @@
 <%= program_title('Contributed Presentations', 'users') %>  
 
-<% if user_in_organizer_commettee? %>  
+<% if user_in_organizer_committee? %>  
   <p class="centered"><%= link_to 'Create Contributed Session', new_contributed_session_path, class: :big_button %></p>
 <% end %>
 

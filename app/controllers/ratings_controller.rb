@@ -1,5 +1,5 @@
 class RatingsController < ApplicationController
-  before_action :user_in_scientific_commettee!
+  before_action :user_in_scientific_committee!
   before_action :set_what, except: :index
 
   def index
