@@ -52,14 +52,14 @@ class PresentationsController < ApplicationController
     end
   end
 
-  # only Organizer Commettee
+  # only Organizer Committee
   def add
     @conference_session = ConferenceSession.find(params[:conference_session_id])
     (@conference_session.presentations << @presentation) if user_in_organizer_committee?
     redirect_to manage_presentations_conference_session_path(@conference_session)
   end
 
-  # only Organizer Commettee (or else the presentation is orphaned)
+  # only Organizer Committee (or else the presentation is orphaned)
   def remove
     @conference_session = ConferenceSession.find(params[:conference_session_id])
     (@presentation.update_attribute(:conference_session_id, nil)) if user_in_organizer_committee?
@@ -102,7 +102,7 @@ class PresentationsController < ApplicationController
   end
 
   # A presentation can be created relative to a minitutorial or minisymosium
-  # Otherwise is submitted by author and then Commettee assign it to PosterSession o ContributedSession
+  # Otherwise is submitted by author and then Committee assign it to PosterSession o ContributedSession
   def set_conference_session_and_check_permission
     @conference_session = Minisymposium.find(params[:minisymposium_id]) if params[:minisymposium_id]
     @conference_session = Minitutorial.find(params[:minitutorial_id])   if params[:minitutorial_id]

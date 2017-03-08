@@ -26,7 +26,7 @@
       <% end %>
       <% if current_user %>  
         <% if user_in_scientific_committee? %>  
-          <%= dropdown_menu fwicon('gavel') + ' Commettee' do %>
+          <%= dropdown_menu fwicon('gavel') + ' Committee' do %>
             <%= menu_link 'star', 'Minisymposia ratings', ratings_path(minisymposia: 1) %>
             <%= menu_link 'star', 'Submissions ratings', ratings_path %>
           <% end %>
