@@ -13,7 +13,7 @@
       <dd>
       <%= show_role(author) %> 
       <%= icon(:microphone) if author.speak %>
-      <%= link_to_delete author_path(author) if current_user_owns?(presentation) %>  
+      <%= link_to_delete author_path(author) if (current_user_owns?(presentation) and current_user != author.user) %>  
       </dd>
     <% end %>
   </dl>
