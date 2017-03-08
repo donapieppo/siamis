@@ -22,20 +22,14 @@
       <% end %>
     </dl>
 
-    <dl class="dl-horizontal">
-      <dt>Presentations:</dt>
-      <% presentations.each do |presentation| %>
-        <dd><%= link_to presentation, presentation %></dd>
-      <% end %>
-      <% if missing_presentations %>
-        <%= content_tag(:dd, icon('warning') + ' Please add presentations.') %>  
-      <% end %>
-    </dl>
+    <%= dl_presentations(presentations) %>  
 
     <%= render(partial: 'ratings/dl_list', locals: { what: minisymposium }) %>  
 
     <% if missing_presentations %>  
-      <p class="alert alert-warning"><%= t(:minisymposium_presentation_number_warning).html_safe %></p>
+      <p class="alert alert-warning">
+      <%= icon('warning') %><%= t(:minisymposium_presentation_number_warning).html_safe %><br/>
+      Please add presentations.</p> 
     <% end %>
   </div><!-- body -->
 
