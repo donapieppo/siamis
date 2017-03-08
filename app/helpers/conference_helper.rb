@@ -8,9 +8,9 @@ module ConferenceHelper
 
   def show_role(role, editable: false)
     return unless role
-    raw user_modal_link(role.user) + 
-        " (" + h(role.user.affiliation) + ") " +
-        (editable ? link_to_delete(role) : "")
+    user_modal_link(role.user) + 
+    " (<small>".html_safe + h(role.user.affiliation) + "</small>) ".html_safe +
+    (editable ? link_to_delete(role) : "")
   end
 
   # html_safe becouse of h() before
@@ -153,5 +153,13 @@ module ConferenceHelper
     end 
   end
 
+  def dl_presentations(presentations)
+    content_tag(:dl, class: "dl-horizontal") do
+      concat content_tag(:dt, "Presentations:") 
+      presentations.each do |presentation| 
+        concat content_tag(:dd, link_to(presentation, presentation) + " <span class='pull-right'>#{show_role(presentation.speaker)}</small>".html_safe)
+      end
+    end
+  end
 end
 
