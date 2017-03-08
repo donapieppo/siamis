@@ -157,7 +157,7 @@ module ConferenceHelper
     content_tag(:dl, class: "dl-horizontal") do
       concat content_tag(:dt, "Presentations:") 
       presentations.each do |presentation| 
-        concat content_tag(:dd, link_to(presentation, presentation) + " <span class='pull-right'>#{show_role(presentation.speaker)}</small>".html_safe)
+        concat(content_tag(:dd, link_to(presentation, presentation) + " <span class='pull-right'>#{show_role(presentation.speaker)}</span>".html_safe))
       end
     end
   end
