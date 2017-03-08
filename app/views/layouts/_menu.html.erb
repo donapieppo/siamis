@@ -33,7 +33,10 @@
         <% end %>
         <% if user_in_organizer_commettee? %>  
           <%= dropdown_menu fwicon('magic') + ' Admin' do %>
-            <%= menu_link 'file', 'Submissions', submissions_path %>
+            <%= menu_link 'file', 'Ministymposium submissions', submissions_path(minisymposium: 1) %>
+            <%= menu_link 'file', 'Contributed session submissions', submissions_path(contributed: 1) %>
+            <%= menu_link 'file', 'Poster session submissions', submissions_path(poster: 1) %>
+            <li class="divider"></li>
             <%= menu_link 'building-o', 'Rooms', rooms_path %>
             <%= menu_link 'users', 'Users', users_path %>
             <%= menu_link 'euro', 'Registrations', conference_registrations_path %>
