@@ -13,5 +13,9 @@
     update_wcount($(this));
   });
   update_wcount($('#presentation_abstract'));
+
+  $('#presentation_speaker_id').change( function() {
+    alert("Important: Remember that only the speaker has the possibility to edit. Are you sure you want to change it?");
+  });
 <% end %>
 
