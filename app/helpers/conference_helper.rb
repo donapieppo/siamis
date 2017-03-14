@@ -62,11 +62,6 @@ module ConferenceHelper
     end
   end
 
-  def organized_by(conference_session)
-    organizers_string = conference_session.organizers.map(&:to_s).join(', ')
-    organizers_string.blank? ? "" : "organized by #{organizers_string}"
-  end
-
   def title_with_conference(what = '')
     content_tag(:h1) do 
       html_escape(what) + '<br/><small>Siam-is18 June 5-8, 2018 Bologna - Italy</small>'.html_safe
