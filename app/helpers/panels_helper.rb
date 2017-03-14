@@ -3,8 +3,7 @@ module PanelsHelper
   def panel_heading(what)
     content_tag(:div, class: 'panel-heading') do
       content_tag(:h3) do
-        link_to(what, what) +
-        content_tag(:span, what.code, class: 'panel-header-code')
+        h(what.to_s) + content_tag(:span, what.code, class: 'panel-header-code')
       end
     end
   end
@@ -17,7 +16,7 @@ module PanelsHelper
       concat content_tag(:em, link_to(presentation.conference_session, presentation.conference_session)) 
       concat "<br/>".html_safe 
       if presentation.conference_session.is_a?(Minisymposium) 
-        concat content_tag(:small, organized_by(presentation.conference_session)) + "."
+        concat content_tag(:small, "organized by: ".html_safe + show_roles(presentation.conference_session.organizers)) + "."
       end
     end
   end
