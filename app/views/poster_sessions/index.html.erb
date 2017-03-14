@@ -6,5 +6,5 @@
 
 <%= render partial: 'deadlines/presentation_submission' %>  
 
-<%= render partial: 'conference_sessions/presentations', locals: {conference_sessions: PosterSession.includes(:schedule)} %>  
+<%= render partial: 'conference_sessions/condensed_list', locals: {conference_sessions: PosterSession.includes(:schedule)} %>  
 
