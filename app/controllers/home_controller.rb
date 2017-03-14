@@ -11,4 +11,6 @@ class HomeController < ApplicationController
   def venue
   end
 
+  def privacy
+  end
 end
