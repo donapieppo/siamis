@@ -4,7 +4,7 @@ class MinisymposiaController < ConferenceSessionsController
 
   # wait till end of proposals to show accepted Minisymposia
   def index
-    @minisymposia = Minisymposium.includes(:schedule).accepted
+    @minisymposia = Minisymposium.includes([organizers: :user], :schedule).accepted
   end
 
   def new
