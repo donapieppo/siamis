@@ -173,5 +173,11 @@ ul li { list-style-type: none; }
   @extend .alert-info;
 }
 
+div.left-code {
+  margin: 10px;
+  width: 6ex;
+  font-weight: bold;
+  float: left;
+}
 
 
