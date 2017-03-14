@@ -9,8 +9,7 @@ class Author < Role
 
   def photo_asset
     unless self.user.email.blank?
-      image_base_name = self.user.email.gsub(/@.*/, '').gsub(/[^0-9A-Za-z.\-]/, '_')
-      "speakers/#{image_base_name}.jpg"
+      "speakers/#{self.user.email}.jpg"
     end
   end
 end
