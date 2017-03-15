@@ -4,5 +4,11 @@
   <%= link_to 'New Hotel', new_hotel_path, class: :button %>  
 </p>
 
-<%= render @hotels %>  
+<div class="row">
+  <% Hotel.order(:name).each do |hotel| %>  
+    <div class="col-md-6">
+      <%= render hotel %>  
+    </div>
+  <% end %>
+</div>
 
