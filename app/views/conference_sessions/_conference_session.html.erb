@@ -1,6 +1,9 @@
 <%# Create and edited by organizer committee only (see minisymposium for complex session) %> 
-
-<% presentations = conference_session.presentations.includes(authors: :user).order(:number).all %>  
+<% 
+    owner         = current_user_owns?(conference_session)
+    presentations = conference_session.presentations.includes(authors: :user).order(:number).all
+    organizers    = conference_session.organizers.includes(:user).order('users.surname').all 
+%>  
 
 <div class="conference_session_panel">
   
@@ -8,6 +11,16 @@
 
   <div class="panel-body">
     <em><%= conference_session.description %></em>
+
+    <dl class="dl-horizontal">
+      <dt>Organizers:</dt>
+      <% conference_session.organizers.each do |organizer| %>  
+        <dd>
+        <%= show_role(organizer) %>
+        <%= link_to_delete organizer_path(organizer) if (owner and organizer.user != current_user) %>  
+        </dd>
+      <% end %>
+    </dl>
 
     <%= dl_presentations(presentations) %>  
   </div>
