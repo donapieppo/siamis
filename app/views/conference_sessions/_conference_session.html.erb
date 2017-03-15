@@ -13,7 +13,7 @@
     <em><%= conference_session.description %></em>
 
     <dl class="dl-horizontal">
-      <dt>Organizers:</dt>
+      <dt><%= conference_session.organizers_label %>:</dt>
       <% conference_session.organizers.each do |organizer| %>  
         <dd>
         <%= show_role(organizer) %>

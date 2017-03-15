@@ -1,8 +1,8 @@
 <h1>Hotels</h1>
 
-<p class="centered">
-  <%= link_to 'New Hotel', new_hotel_path, class: :button %>  
-</p>
+<% if user_in_organizer_committee? %>  
+  <p class="centered"><%= link_to 'New Hotel', new_hotel_path, class: :button %></p>
+<% end %>
 
 <div class="row">
   <% Hotel.order(:name).each do |hotel| %>  
