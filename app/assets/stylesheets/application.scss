@@ -180,4 +180,7 @@ div.left-code {
   float: left;
 }
 
-
+div.hotel-panel {
+  @extend .panel;
+  @extend .panel-default;
+}
