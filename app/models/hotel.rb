@@ -5,7 +5,8 @@ class Hotel < ApplicationRecord
   end
 
   def asset_image
-   'hotels/' + ['hotel-savoia.jpg', 'savoia-hotel-country.jpg', 'campluscollege.jpg'][self.id - 1] 
+    return "" if self.image.blank?
+   'hotels/' + self.image 
   end
 
 end
