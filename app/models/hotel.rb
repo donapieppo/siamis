@@ -4,7 +4,7 @@ class Hotel < ApplicationRecord
     self.name
   end
 
-  def image
+  def asset_image
    'hotels/' + ['hotel-savoia.jpg', 'savoia-hotel-country.jpg', 'campluscollege.jpg'][self.id - 1] 
   end
 
