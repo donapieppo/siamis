@@ -25,6 +25,7 @@ en:
   Provacy: Privacy
   Ratings: Ratings
   Interests: My Program
+  Hotels: Hotels
 
   # payments
   siag_member: Siag member
@@ -54,6 +55,14 @@ en:
         siag: SIAG/IS Member
         siam: SIAM Member
         student: Student
+      hotel:
+        singleprice: Single 
+        dusprice:    Double single use
+        doubleprice: Double 
+        bb:          Bed and breakfast
+        tax:         Tax to add
+        address:     Address
+        web_page:    Web Page
 
   simple_form:
     hints:
@@ -67,10 +76,15 @@ en:
         abstract: Brief abstract not to exceed 75 words. <em>Using <span id="wcount"></span> words</em>.
         speaker_id: Choose the speaker among the authors. Only the speaker can edit title and abstract.
     placeholders:
+      user: 
+        web_page: http://
+        affiliation: University of Bologna
       organizer:
         email: name.surname@example.com
       author:
         email: name.surname@example.com
+      hotel:
+        web_page: http://
 
   helpers:
     submit:
