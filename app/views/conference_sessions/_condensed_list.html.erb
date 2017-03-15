@@ -4,7 +4,7 @@
     <div class="left-code"><%= conference_session.code %></div>
     <div>
       <%= link_to conference_session, conference_session %><br/>
-      <small><%= show_roles(conference_session.organizers) %></small> 
+      <small><%= conference_session.organizers_label %>:  <%= show_roles(conference_session.organizers) %></small> 
       <% if conference_session.schedule %>  
         <br/><%= conference_session.schedule %>
     <% end %>
