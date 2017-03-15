@@ -96,6 +96,8 @@ Rails.application.routes.draw do
     get :check, on: :collection, as: :check
   end
 
+  resources :hotels
+
   get 'submissions',                 to: 'submissions#index', as: :submissions
   get 'logins/no_access',            to: 'logins#no_access',  as: :no_access
 
