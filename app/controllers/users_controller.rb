@@ -70,7 +70,7 @@ class UsersController < ApplicationController
   private 
 
   def user_params
-    permitted = [:salutation, :name, :surname, :affiliation, :address, :country, :biography, :siag, :siam, :student, :web_page]
+    permitted = [:salutation, :name, :surname, :affiliation, :address, :country, :biography, :siag, :siam, :student, :web_page, :dietary, :banquet_tickets, :visible]
     permitted += [:email] if user_in_organizer_committee?
     params[:user].permit(permitted)
   end

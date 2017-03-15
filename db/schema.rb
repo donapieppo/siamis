@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "web_page"
     t.text     "dietary",                limit: 65535
     t.integer  "banquet_tickets"
+    t.boolean  "visible"
     t.string   "encrypted_password"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

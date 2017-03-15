@@ -55,6 +55,9 @@ en:
         siag: SIAG/IS Member
         siam: SIAM Member
         student: Student
+        visible: Show in Siam-is18 page
+        dietary: Dietary 
+        banquet_tickets: Number of banquet tickets
       hotel:
         singleprice: Single 
         dusprice:    Double single use
@@ -75,6 +78,10 @@ en:
       presentation: 
         abstract: Brief abstract not to exceed 75 words. <em>Using <span id="wcount"></span> words</em>.
         speaker_id: Choose the speaker among the authors. Only the speaker can edit title and abstract.
+      user:
+        visible: Check to be included on the list of participants on the Siam-is18 web site.
+        dietary: Dietary restrictions and food allergies.
+        banquet_tickets: A formal banquet will be held on Thursday, June 8th. Each ticket costs 60 EURO.
     placeholders:
       user: 
         web_page: http://
