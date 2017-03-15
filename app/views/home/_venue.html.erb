@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-md-4">
     <h3>Bologna</h3>
-    <div class="image"><%= image_tag 'piazza_verdi.jpg', width: 300 %></div>
+    <div class="image"><%= image_tag('piazza_verdi.jpg', width: 300) %></div>
     <p>You can find informations about Bologna in <br/><%= link_to icon('external-link') + ' Bologna welcome', 'http://www.bolognawelcome.com/en' %></p>
   </div>
   <div class="col-md-4">
@@ -16,5 +16,13 @@
     <div class="image"><%= image_tag 'aula_belmeloro.jpg', width: 300 %></div>
     <p>Concurrent sessions will take place in <br/>
     <strong><%= link_to 'Complesso Belmeloro', venue_path(anchor: 'belmeloro') %></strong>.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h3>Accomodation</h3>
+    <div class="image"><%= image_tag 'hotel_savoia.jpg', width: 300 %></div>
+  <p>Preferred rates with a number of accommodation sites have been negotiated for the Congress. Please mention the Siam-is 2018 when reserving your room.</p>
+    <strong><%= link_to 'Hotels', venue_path(anchor: 'accomodation') %></strong>.</p>
   </div>
 </div>
