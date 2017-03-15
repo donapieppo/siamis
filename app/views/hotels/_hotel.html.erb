@@ -7,6 +7,7 @@
 
   <dl class="dl-horizontal">
     <% [:singleprice, :dusprice, :doubleprice].each do |price_type| %>  
+      <% hotel.send(price_type) or next %>  
       <dt><%= t I18n.t('activerecord.attributes.hotel.' + price_type.to_s)  %></dt>
       <dd>
       <%= hotel.send(price_type) %> € 
