@@ -38,6 +38,19 @@ ActiveRecord::Schema.define(version: 0) do
     t.index ["chair_id"], name: "chair_id", using: :btree
   end
 
+  create_table "hotels", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string  "name"
+    t.text    "description", limit: 65535
+    t.string  "address"
+    t.integer "singleprice"
+    t.integer "dusprice"
+    t.integer "doubleprice"
+    t.boolean "bb"
+    t.boolean "tax"
+    t.string  "web_page"
+    t.string  "image"
+  end
+
   create_table "interests", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id",               unsigned: true
     t.integer "conference_session_id", unsigned: true
@@ -130,6 +143,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.boolean  "siam"
     t.boolean  "student"
     t.string   "web_page"
+    t.text     "dietary",                limit: 65535
+    t.integer  "banquet_tickets"
     t.string   "encrypted_password"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
