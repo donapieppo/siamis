@@ -1,0 +1,13 @@
+<%= simple_form_for @hotel do |hotel| %>  
+  <%= hotel.input :name %>  
+  <%= hotel.input :description, input_html: {rows: 2} %>  
+  <%= hotel.input :address %>  
+  <%= hotel.input :web_page %>  
+  <%= hotel.input :singleprice %>  
+  <%= hotel.input :dusprice %>  
+  <%= hotel.input :doubleprice %>  
+  <%= hotel.input :bb %>  
+  <%= hotel.input :tax %>  
+  <%= hotel.submit %> - <%= link_to_back @hotel %>
+<% end %>
+
