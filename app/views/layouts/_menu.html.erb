@@ -21,7 +21,9 @@
         <%= menu_link 'picture-o', 'Poster Sessions', poster_sessions_path %>
         <% if current_user and ! user_in_organizer_committee? %>  
           <li class="divider"></li>
-          <%= menu_link 'map-o',     'MY PROGRAM', interests_path %>  
+          <%= menu_link 'map-o',   'Partecipant List', partecipants_path %>  
+          <li class="divider"></li>
+          <%= menu_link 'map-o',   'MY PROGRAM', interests_path %>  
         <% end %>
       <% end %>
       <% if current_user %>  

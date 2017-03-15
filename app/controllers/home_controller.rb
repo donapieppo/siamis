@@ -13,4 +13,8 @@ class HomeController < ApplicationController
 
   def privacy
   end
+
+  def partecipants
+    @partecipants = User.all
+  end
 end
