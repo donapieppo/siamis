@@ -17,6 +17,10 @@ class Minisymposium < ConferenceSession
   def ratable?
     true
   end
+
+  def organizers_label
+    "Organizers"
+  end
 end
 
 

@@ -36,6 +36,10 @@ class ConferenceSession < ApplicationRecord
     false
   end
 
+  def organizers_label
+    "Chairs"
+  end
+
   private
 
   def create_the_presentation
