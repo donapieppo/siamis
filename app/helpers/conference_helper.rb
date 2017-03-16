@@ -64,7 +64,7 @@ module ConferenceHelper
 
   def title_with_conference(what = '')
     content_tag(:h1) do 
-      html_escape(what) + '<br/><small>Siam-is18 June 5-8, 2018 Bologna - Italy</small>'.html_safe
+      html_escape(what) + '<br/><small>SIAM-IS18 June 5-8, 2018 Bologna - Italy</small>'.html_safe
     end
   end
 

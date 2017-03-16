@@ -14,7 +14,7 @@ class Payment < ApplicationRecord
   scope :verified, -> { where(verified: true) }
 
   def description
-    "Siam-IS18 registration: #{user.surname}, #{user.name[0]}. <#{user.email}>"[0..98]
+    "SIAM-IS18 registration: #{user.surname}, #{user.name[0]}. <#{user.email}>"[0..98]
   end
 
   def start_pay
@@ -51,7 +51,7 @@ class Payment < ApplicationRecord
 
   def create_seed_and_shop_id
     self.seed = SecureRandom.hex(4)
-    self.shop_id = "Siam-#{self.id}-#{self.user_abbr}-#{self.seed}"
+    self.shop_id = "SIAM-#{self.id}-#{self.user_abbr}-#{self.seed}"
     self.save
   end
 end

@@ -28,8 +28,8 @@ en:
   Hotels: Hotels
 
   # payments
-  siag_member: Siag member
-  siam_member: Siam member
+  siag_member: SIAG member
+  siam_member: SIAM member
   speaker_or_organizer: Speaker or organizer
   non_member:  Non member
   single_day_member:  One day for members
@@ -79,7 +79,7 @@ en:
         abstract: Brief abstract not to exceed 75 words. <em>Using <span id="wcount"></span> words</em>.
         speaker_id: Choose the speaker among the authors. Only the speaker can edit title and abstract.
       user:
-        visible: Check to be included on the list of participants on the Siam-is18 web site.
+        visible: Check to be included on the list of participants on the SIAM-IS18 web site.
         dietary: Dietary restrictions and food allergies.
         banquet_tickets: A formal banquet will be held on Thursday, June 8th. Each ticket costs 60 EURO.
     placeholders:
@@ -108,6 +108,7 @@ en:
       day:  '%A %d %B'
       schedule_day:  '%d'
       schedule: '%A %d %B %Y at %H:%M'
+      schedule_day_and_hour: '%A %d at %H:%M'
       hour: '%H:%M'
 
   date:

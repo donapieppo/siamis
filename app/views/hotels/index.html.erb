@@ -1,8 +1,10 @@
-<h1>Hotels</h1>
+<h1>Accomodation</h1>
 
 <% if user_in_organizer_committee? %>  
   <p class="centered"><%= link_to 'New Hotel', new_hotel_path, class: :button %></p>
 <% end %>
+
+<p>Preferred rates with a number of accommodation sites have been negotiated for the Congress. Please mention the SIAM-IS 2018 when reserving your room.</p>
 
 <div class="row">
   <% Hotel.order(:name).each do |hotel| %>  
