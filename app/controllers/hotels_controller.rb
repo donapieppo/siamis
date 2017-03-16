@@ -1,5 +1,5 @@
 class HotelsController < ApplicationController
-  before_action :user_in_organizer_committee!
+  before_action :user_in_organizer_committee!, except: :index
   before_action :set_hotel, only: [:edit, :update, :destroy]
 
   def index
