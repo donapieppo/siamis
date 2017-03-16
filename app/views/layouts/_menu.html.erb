@@ -20,7 +20,7 @@
         <%= menu_link 'users',     'Contributed Presentations', contributed_sessions_path %>
         <%= menu_link 'picture-o', 'Poster Sessions', poster_sessions_path %>
         <li class="divider"></li>
-        <%= menu_link 'map-o',   'Partecipant List', partecipants_path %>  
+        <%= menu_link 'map-o',   'Participant List', participants_path %>  
         <% if current_user and ! user_in_organizer_committee? %>  
           <li class="divider"></li>
           <%= menu_link 'map-o',   'MY PROGRAM', interests_path %>  
