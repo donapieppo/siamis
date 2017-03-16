@@ -37,7 +37,8 @@ module PanelsHelper
     return "&nbsp;".html_safe unless current_user_owns?(what)
 
     capture do 
-      concat(link_to icon('pencil') + ' edit', [:edit, what])
+      t = (what.is_a?(Presentation) and what.authors.size > 1) ? ' edit or modify speaker' : ' edit'
+      concat(link_to icon('pencil') + t, [:edit, what])
 
       # plenary, minitutorial
       if what.respond_to?(:chairs) 
