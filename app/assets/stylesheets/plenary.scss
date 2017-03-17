@@ -4,6 +4,7 @@
 }
 
 .plenary {
+  @extend .row;
   &:nth-child(even) {
     .plenary_body {
       // background-color: $color_2;
@@ -15,18 +16,20 @@
     }
   }
   border: 2px solid #ccc;
-  padding: 0px;
   margin-top: 10px;
   margin-bottom: 2px;
+  background-color: $home_second_bg_color;
   img {
      width: 200px; 
      margin: 30px;
    } 
   .plenary_speaker {
+    @include make-md-column(4);
     padding: 10px;
     text-align: center;
   }
   .plenary_body {
+    @include make-md-column(8);
     padding: 10px;
   }
   .plenary_schedule {

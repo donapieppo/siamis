@@ -47,7 +47,8 @@
 
 .home_content_div {
   h2 {
-    font-size: 2em;
+    text-align: left;
+    margin-left: 25%;
     padding-bottom: 15px;
   }
   padding-top: 15px;
@@ -73,6 +74,10 @@
 }
 
 #submissions {
+  @extend .home_content_div;
+}
+
+#important_dates {
   @extend .home_content_div;
 }
 
@@ -107,6 +112,9 @@
   text-align: center;
 }
 
+#sponsors {
+  @extend .home_content_div;
+}
 
 
 
