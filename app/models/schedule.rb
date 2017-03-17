@@ -21,14 +21,18 @@ class Schedule < ApplicationRecord
   end
 
   def self.conference_days_array
-    (0...Rails.configuration.number_of_days).map do |i|
-      Rails.configuration.conference_start_date + i.days
-    end
+    Rails.configuration.conference_start_date ... (Rails.configuration.conference_start_date + Rails.configuration.number_of_days.days)
   end
 
   def self.days_array_for_select
-    (0...Rails.configuration.number_of_days).map do |i|
-      [I18n.l(Rails.configuration.conference_start_date + i.days, format: :schedule ), i]
+    self.conference_days_array.map.with_index do |day, i|
+      [I18n.l(day, format: :schedule ), i]
     end
+  end
+
+  def self.day_program(day)
+    ConferenceSession.includes(:schedule)
+                     .where('DAYOFMONTH(schedules.start) = ?', day.strftime('%F'))
+                     .order('schedules.start')
   end
 end
