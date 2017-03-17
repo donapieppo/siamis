@@ -1,4 +1,5 @@
-<h2>Invited Presentations</h2>
+<%= home_program_title("Invited Presentations", 'diamond') %>  
+
 <div class="row">
   <%= Plenary.includes(presentation: :authors, schedule: :room).find_each do |plenary| %>  
     <% speaker = plenary.authors.first.user %>  

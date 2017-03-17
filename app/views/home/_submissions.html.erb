@@ -1,4 +1,4 @@
-<h2>Submissions</h2>
+<%= home_program_title("Submissions", 'envelope-o') %>  
 
 <p>
 SIAM requests that individuals limit themselves to giving one talk (this does not apply to invited plenary speakers).<br/>
@@ -38,7 +38,9 @@ All submissions are subject to review and final approval by the co-chairs.
   <% if current_user %>  
     Please visit <%= link_to 'submission page', submissions_path %>.
   <% else %>
-    <p>To submit a contribution please <%= login_link %></p>
+    <p class="centered">
+      <%= link_to 'To submit a contribution please<br/>Sign-in / Register'.html_safe, new_user_session_path, class: :big_button %>
+    </p>
   <% end %>
 <% end %>
 </p>
