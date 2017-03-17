@@ -36,8 +36,9 @@ class ConferenceSession < ApplicationRecord
     false
   end
 
+  # Chair (singular) for all except minisymposia where are organizers (plural)
   def organizers_label
-    "Chairs"
+    "Chair"
   end
 
   private
