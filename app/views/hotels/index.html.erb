@@ -6,11 +6,22 @@
 
 <p>Preferred rates with a number of accommodation sites have been negotiated for the Congress. Please mention the SIAM-IS 2018 when reserving your room.</p>
 
-<div class="row">
-  <% Hotel.order(:name).each do |hotel| %>  
-    <div class="col-md-6">
-      <%= render hotel %>  
-    </div>
+<% open_row = true %>  
+<% Hotel.order(:name).each do |hotel| %>  
+  <% if open_row %>
+    <div class="row">
   <% end %>
-</div>
+  <div class="col-md-6">
+    <%= render hotel %>  
+  </div>
+  <% unless open_row %>
+    </div><!-- row -->
+  <% end %>
+  <% open_row = ! open_row %>  
+<% end %>
+
+<% if open_row %>
+  </div><!-- row -->
+<% end %>
+
 
