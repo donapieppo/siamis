@@ -1,9 +1,13 @@
 <div class="hotel-panel">
 <div class="panel-heading" style='height: 300px; background: url(<%= image_path(hotel.asset_image) %>) no-repeat center top; background-size: cover;'>
-  <h3 style="background-color: rgb(255,255,255,0.7); padding: 20px 0;"><%= link_to hotel.name, hotel.web_page, target: :new %></h3>
+  <h3 style="background-color: rgb(255,255,255,0.7); padding: 20px 0;">
+    <%= link_to hotel.name, hotel.web_page, target: :new %>
+  </h3>
 </div>
 <div class="panel-body">
-  <h4><%= hotel.description %></h4>
+  <p><%= hotel.address %> </p>
+
+  <h4><i><%= hotel.description %></i></h4>
 
   <dl class="dl-horizontal">
     <% [:singleprice, :dusprice, :doubleprice].each do |price_type| %>  
