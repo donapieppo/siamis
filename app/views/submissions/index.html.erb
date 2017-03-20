@@ -1,17 +1,17 @@
 <% if user_in_organizer_committee? %>  
   <% if @minisymposia.any? %>  
     <h2>Minisymposia</h2>
-    <%= ul_list_with_acceptance(@minisymposia) %>  
+    <%= render partial: 'conference_sessions/condensed_list', locals: {conference_sessions: @minisymposia} %>  
   <% end %>
 
-  <% if @presentations.any? %>  
-    <h2>Presentations</h2>
-    <%= ul_list_with_acceptance(@presentations) %>
+  <% if @unassigned_presentations.any? %>  
+    <h2>Presentations <small>(unassigned)</small></h2>
+    <%= render partial: 'presentations/condensed_list', locals: {presentations: @unassigned_presentations} %>  
   <% end %>
 
   <% if @posters.any? %>  
     <h2>Posters</h2>
-    <%= ul_list_with_acceptance(@posters) %>
+    <%= render partial: 'presentations/condensed_list', locals: {presentations: @posters} %>  
   <% end %>
 <% else %>
   <% if @presentations.any? or @minisymposia.any? %>
