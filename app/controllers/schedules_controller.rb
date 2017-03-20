@@ -1,6 +1,9 @@
 class SchedulesController < ApplicationController
-  before_action :user_in_organizer_committee!
-  before_action :set_conference_session
+  before_action :user_in_organizer_committee!, except: :index
+  before_action :set_conference_session, only: [:new, :create, :update]
+
+  def index
+  end
 
   def new
     @schedule = @conference_session.schedule || @conference_session.build_schedule
