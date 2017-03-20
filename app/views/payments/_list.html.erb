@@ -13,7 +13,11 @@
   </tr>
   <% Fee.prices.each do |name, amounts| %>  
     <tr>
-      <th><%= I18n.t name %></th>
+      <th>
+        <%= I18n.t name %>
+        <%= '*'  if name == :siam_member %>  
+        <%= '**' if name == :student %>  
+      </th>
       <td><%= amounts[0] %> &euro;</td>
       <td><%= amounts[1] %> &euro;</td>
     </tr>
