@@ -82,7 +82,7 @@ class User < ApplicationRecord
 
   # FIXME
   def speaker_or_organizer?
-    self.presentations.any? or self.organizers.any? or self.in_organizer_committee?
+    self.presentations.accepted.any? or self.organizers.any? or self.in_organizer_committee?
   end
 
   def fee
