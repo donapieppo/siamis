@@ -14,7 +14,7 @@ class HotelsController < ApplicationController
   def create
     @hotel = Hotel.new(hotel_params)
     if @hotel.save
-      redirect_to venue_path, notice: 'OK'
+      redirect_to hotels_path, notice: 'OK'
     else
       render action: :new
     end
@@ -22,7 +22,7 @@ class HotelsController < ApplicationController
 
   def update
     if @hotel.update_attributes(hotel_params)
-      redirect_to venue_path, notice: 'OK'
+      redirect_to hotels_path, notice: 'OK'
     else
       render action: :edit
     end
