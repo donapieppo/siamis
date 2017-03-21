@@ -15,6 +15,6 @@ class HomeController < ApplicationController
   end
 
   def participants
-    @participants = User.all
+    @participants = User.partecipants.order('surname, name')
   end
 end

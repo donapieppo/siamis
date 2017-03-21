@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :confirmable
          # :rememberable, 
 
+  has_many :roles
   has_many :conference_sessions,  through: :organizers
   has_many :organizers
   has_many :minisymposia,  through: :organizers
@@ -128,6 +129,11 @@ class User < ApplicationRecord
     what.interests.where(user_id: self.id).any?
   end
 
+  def self.partecipants
+    active_ids  = Role.select(:user_id).map(&:user_id)
+    visible_ids = User.where(visible: true).ids
+    User.where(id: (active_ids + visible_ids).uniq)
+  end
 end
 
 

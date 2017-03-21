@@ -1,3 +1,11 @@
 <h1>Participants</h1>
 
-[...]
+<% initial = nil %>
+<dl class='dl-horizontal'>
+  <% @participants.each do |user| %> 
+    <% if initial != (initial = user.surname[0]) %>  
+      <dt><%= initial %></dt>
+    <% end %>
+  <dd><%= user_modal_link(user) %> <small>(<%= user.affiliation %>)</small></dd>
+<% end %>
+</dl>
