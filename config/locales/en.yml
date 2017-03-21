@@ -58,7 +58,7 @@ en:
         student: Student
         visible: Show in Siam-is18 page
         dietary: Dietary 
-        banquet_tickets: Number of banquet tickets
+        banquet_tickets: Number of extra banquet tickets
       hotel:
         singleprice: Single 
         dusprice:    Double single use
@@ -82,7 +82,7 @@ en:
       user:
         visible: Check to be included on the list of participants on the SIAM-IS18 web site.
         dietary: Dietary restrictions and food allergies.
-        banquet_tickets: A formal banquet will be held on Thursday, June 8th. Each ticket costs 60 EURO.
+        banquet_tickets: A formal banquet will be held on Wednesday, June 6th. Each ticket costs 60 EURO. 
     placeholders:
       user: 
         web_page: http://
@@ -118,6 +118,7 @@ en:
       schedule: '%A %d %B %Y'
       deadline: '%b %d, %Y'
       day: '%A'
+      schedule_day_and_hour: '%A %d at %H:%M'
 
   credit_cards: Registration fees can be paid by credit card (Mastercard, Visa, American Express).
   bank_security: Clicking on the button below you are automatically redirected to the Bank's payment server (Unicredit bank).  So we actually never know your Credit Card number.  All information exchanged with the system are encrypted using the SSL protocol and can not be intercepted or altered.
