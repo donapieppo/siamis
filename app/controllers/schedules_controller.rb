@@ -3,6 +3,7 @@ class SchedulesController < ApplicationController
   before_action :set_conference_session, only: [:new, :create, :update]
 
   def index
+    @days = params[:day] ? [Date.parse(params[:day])] : Schedule.conference_days_array 
   end
 
   def new
