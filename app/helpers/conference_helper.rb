@@ -156,5 +156,18 @@ module ConferenceHelper
       end
     end
   end
+
+  def conference_session_color(cs)
+    case cs
+    when Minisymposium
+      'orange'
+    when PosterSession
+      'lightblue'
+    when ContributedSession
+      'lightgreen'
+    when Plenary
+      'yellow'
+    end
+  end
 end
 
