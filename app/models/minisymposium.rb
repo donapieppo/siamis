@@ -21,6 +21,10 @@ class Minisymposium < ConferenceSession
   def organizers_label
     "Organizers"
   end
+
+  def accepted?
+    self.accepted
+  end
 end
 
 
