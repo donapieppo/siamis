@@ -28,10 +28,10 @@ class SchedulesController < ApplicationController
   end
 
   def schedule_params
-    # "start_day"=>"2", "start_hour"=>"09:15", "room_id"=>"1"
-    start_day  = params[:schedule].delete(:start_day)
+    # "start_day_number"=>"2", "start_hour"=>"09:15", "room_id"=>"1"
+    start_day_number = params[:schedule].delete(:start_day_number)
     start_hour, start_min = params[:schedule].delete(:start_hour).split(':')
-    start = (Rails.configuration.conference_start_date + start_day.to_i.days).to_datetime
+    start = (Rails.configuration.conference_start_date + start_day_number.to_i.days).to_datetime
     # FIXME with time zone!!!!!!!!!! -2
     params[:schedule][:start] = start.change(hour: start_hour.to_i - 2 , min: start_min.to_i)
     params[:schedule].permit(:start, :room_id)

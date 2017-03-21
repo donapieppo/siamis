@@ -6,8 +6,12 @@ class Schedule < ApplicationRecord
     "#{I18n.l(self.start, format: :with_day_name)} in #{self.room}"
   end
 
+  def start_day_number
+    (self.start.to_date - Rails.configuration.conference_start_date).to_i
+  end
+
   def start_day
-    self.start
+    self.start.to_date
   end
 
   def start_hour
@@ -32,7 +36,18 @@ class Schedule < ApplicationRecord
 
   def self.day_program(day)
     ConferenceSession.includes(:schedule)
-                     .where('DAYOFMONTH(schedules.start) = ?', day.strftime('%F'))
+                     .where('DATE_FORMAT(schedules.start, "%Y-%m-%d") = ?', day.strftime("%F"))
                      .order('schedules.start')
+  end
+
+  # res["08:00"] = [ session1, session2 ]
+  def self.day_program_hour_hash(day)
+    res = Hash.new
+    self.day_program(day).each do |conference_session|
+      hour = conference_session.schedule.start.strftime("%H:%S")
+      res[hour] ||= Array.new
+      res[hour] << conference_session
+    end
+    res
   end
 end

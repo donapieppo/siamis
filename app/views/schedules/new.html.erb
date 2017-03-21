@@ -5,7 +5,9 @@
 </p>
 
 <%= simple_form_for [@conference_session, @schedule] do |schedule| %>  
-  <%= schedule.input :start_day,  as: :schedule_day %>  
+  <%# <%= raise @schedule.start_day_number.inspect %>  
+  <%# <%= raise Schedule.days_array_for_select.inspect %>  
+  <%= schedule.input :start_day_number, as: :schedule_day %>  
   <%= schedule.input :start_hour, as: :schedule_hour %>  
   <%= schedule.association :room, include_blank: false %>  
   <%= schedule.submit %>  
