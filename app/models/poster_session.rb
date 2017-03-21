@@ -6,4 +6,8 @@ class PosterSession < ConferenceSession
   def code
     "PP" + (self.number).to_s
   end
+
+  def accepted?
+    true
+  end
 end
