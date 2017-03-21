@@ -7,11 +7,13 @@ class Schedule < ApplicationRecord
   end
 
   def start_day_number
-    (self.start.to_date - Rails.configuration.conference_start_date).to_i
+    if self.start
+      (self.start.to_date - Rails.configuration.conference_start_date).to_i
+    end
   end
 
   def start_day
-    self.start.to_date
+    self.start.to_date if self.start
   end
 
   def start_hour
