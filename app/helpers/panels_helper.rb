@@ -52,8 +52,9 @@ module PanelsHelper
       end 
 
       if what.respond_to?(:presentations)
-        concat(link_to icon('file-audio-o') + ' add presentation', [:new, what, :presentation])
-        concat(link_to icon('list') + ' manage presentations', manage_presentations_conference_session_path(what))
+        presentation_label = what.is_a?(PosterSession) ? 'poster' : 'presentation'
+        concat(link_to icon('file-audio-o') + " add #{presentation_label}", [:new, what, :presentation])
+        concat(link_to icon('list') + " manage #{presentation_label}s", manage_presentations_conference_session_path(what))
       end 
 
       concat(link_to_delete('delete', what))
