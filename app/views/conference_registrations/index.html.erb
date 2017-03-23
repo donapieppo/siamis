@@ -1,4 +1,4 @@
-<h1>Conference Registrations</h1>
+<%= program_title('Conference Registrations', 'euro') %>  
 
 <% tot = 0 %>  
 
@@ -14,7 +14,7 @@
   </tr>
   <% @conference_registrations.each do |conference_registration| %>  
     <tr>
-      <th><%= conference_registration.user.cn %></th>
+      <th><%= user_modal_link(conference_registration.user) %></th>
       <td><%= conference_registration.user.affiliation %></td>
       <td><%= conference_registration.payment.amount %> &euro;</td>
       <% tot += conference_registration.payment.amount %>  
