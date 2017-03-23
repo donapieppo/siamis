@@ -4,6 +4,7 @@ class ConferenceSession < ApplicationRecord
   has_many :ratings, dependent: :destroy
   has_many :interests, dependent: :destroy
   has_one  :schedule, dependent: :destroy
+  has_many :presentations
 
   def to_s
     self.name
