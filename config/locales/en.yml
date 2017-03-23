@@ -118,6 +118,7 @@ en:
       schedule: '%A %d %B %Y'
       deadline: '%b %d, %Y'
       day: '%A'
+      menu: '%d %B - %A'
       schedule_day_and_hour: '%A %d at %H:%M'
 
   credit_cards: Registration fees can be paid by credit card (Mastercard, Visa, American Express).
