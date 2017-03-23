@@ -4,47 +4,52 @@
   //background-image: radial-gradient( circle at 50% 50%, #F67938 29%, #EF4734 120%);
 
   margin-top: -22px;
-  height: 600px;
-  padding-top: 60px;
+  height: 650px;
 
-  background: url(asset-path('bg_pedro.jpg')) no-repeat center top;
-  background-size: cover;
-
-  h1.home_header_title {
-    span {
-      background-color: rgba(255, 255, 255, 0.50);
-      text-shadow: 1px 1px 0 white;
-    }
-    padding: 20px 10px;
-    max-width: 750px;
-    text-align: center; 
-    // font
-    color: #333; 
-    font-weight: bold; 
-    font-size: 48px; 
-    letter-spacing: .1em;
-    line-height: 1.3em;
-
-    margin-top: 20px;
-    margin-bottom: 20px;
-    .home_header_title-date {
-      line-height: 2em;
-      margin-top: 20px;
-      text-transform: capitalize;
-      text-align: center;
-      font-size: 28px;
-    }
-    @media (min-width: $screen-md-min) { 
-      span {
-        padding: 10px;
-      }
-      line-height: 2.0em;
-    margin-top: 60px;
-    margin-bottom: 60px;
+  #homeCarousel {
+    .item {
+      background-repeat: no-repeat;
+      background-position: center;
+      background-position: top;
+      background-size: cover; 
+      height: 650px;
     }
   }
 }
 
+h1.home_header_title {
+  span {
+    background-color: rgba(255, 255, 255, 0.50);
+    text-shadow: 1px 1px 0 white;
+  }
+  padding: 20px 10px;
+  max-width: 750px;
+  text-align: center; 
+  color: #333; 
+  font-weight: bold; 
+  font-size: 48px; 
+  letter-spacing: .1em;
+  line-height: 1.3em;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+  .home_header_title-date {
+    line-height: 2em;
+    margin-top: 20px;
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 28px;
+  }
+  @media (min-width: $screen-md-min) { 
+    font-size: 42px;
+    span {
+      padding: 10px;
+    }
+    line-height: 2.0em;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+}
 .home_content_div {
   h2 {
     text-align: left;
@@ -74,6 +79,10 @@
 }
 
 #submissions {
+  @extend .home_content_div;
+}
+
+#registration {
   @extend .home_content_div;
 }
 
