@@ -3,7 +3,10 @@ class SchedulesController < ApplicationController
   before_action :set_conference_session, only: [:new, :create, :update]
 
   def index
-    @days = params[:day] ? [Date.parse(params[:day])] : Schedule.conference_days_array 
+    day_num = params[:day].to_i || 0
+    (day_num < 0 or day_num > 5) and day_num = 0
+    @day = Schedule.conference_day(day_num) 
+    @room = params[:room_id] ? Room.find(params[:room_id]) : nil
   end
 
   def new
