@@ -1,42 +1,59 @@
-<% if user_in_organizer_committee? %>  
-  <% if @minisymposia.any? %>  
+<% if current_user and user_in_organizer_committee? %>  
+  <% if @minisymposia %>  
     <h2>Minisymposia</h2>
     <%= render partial: 'conference_sessions/condensed_list', locals: {conference_sessions: @minisymposia} %>  
   <% end %>
 
-  <% if @unassigned_presentations.any? %>  
+  <% if @unassigned_presentations %>  
     <h2>Presentations <small>(unassigned)</small></h2>
     <%= render partial: 'presentations/condensed_list', locals: {presentations: @unassigned_presentations} %>  
   <% end %>
 
-  <% if @posters.any? %>  
-    <h2>Posters</h2>
+  <% if @posters %>  
+    <h2>Posters <small>(unassigned)</small></h2>
     <%= render partial: 'presentations/condensed_list', locals: {presentations: @posters} %>  
   <% end %>
-<% else %>
+<% elsif current_user %>
   <% if @presentations.any? or @minisymposia.any? %>
     <h2>Your submissions</h2>
     <%= render @presentations %>  
     <%= render @minisymposia %>  
     <hr/>
   <% end %>
-
-  <%= render partial: 'description' %>  
-
-  <div class="row">
-    <div class="col-md-6">
-      <%= render partial: 'deadlines/minisymposium_submission' %>  
-      <% if Deadline.can_propose?(:minisymposium) %>  
-        <%= render partial: 'minisymposium_proposal' %>  
-      <% end %>
-    </div>
-    <div class="col-md-6">
-      <%= render partial: 'deadlines/presentation_submission' %>  
-      <% if Deadline.can_propose?(:presentation) %>  
-        <%= render partial: 'presentation_proposal' %>  
-      <% end %>
-    </div>
-  </div>
 <% end %>
+
+<%= render partial: 'description' %>  
+
+<div class="row">
+  <div class="col-md-6">
+    <h4>Minisymposia</h4>
+    <p>
+    A minisymposium generally consists of four 25-minute presentations, with an additional five minutes for discussion after each presentation.  To ensure balance, SIAM prefers a single individual not be the (co)organizer of more than one minisymposium, however, organizers can submit up to two (2) parts per minisymposium, allowing up to eight (8) speakers. In addition, SIAM discourages minisymposia in which most of the speakers or co-authors come from the same institution.
+    </p>
+    <p>
+    Minisymposia submission will be available 
+    from <%= l Deadline.minisymposium_proposal_start %> to <%= l Deadline.minisymposium_proposal_end %>.
+    </p>
+    <%= render partial: 'deadlines/minisymposium_submission' %>  
+    <% if current_user and Deadline.can_propose?(:minisymposium) %>  
+      <%= render partial: 'minisymposium_proposal' %>  
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <h4>Contributed Presentations in Lecture or Poster Format</h4>
+    <p>Contributed presentations in lecture or poster format are invited in all areas consistent with the conference themes. A lecture format is generally a 15-minute oral presentation with an additional 5 minutes for discussion. Talk lengths will be determined by the co-chairs at the close of submissions.</p>
+
+    <p>A poster format involves the use of non-electronic visual aids for mounting on a 4’ x 6’ or 4’ x 8’ poster board. A poster session is two hours long.</p>
+    <p>
+    Contributed Presentation submission will be available 
+    from <%= l Deadline.presentation_proposal_start %>
+  to  <%= l Deadline.presentation_proposal_end %>.
+    </p>
+    <%= render partial: 'deadlines/presentation_submission' %>  
+    <% if current_user and Deadline.can_propose?(:presentation) %>  
+      <%= render partial: 'presentation_proposal' %>  
+    <% end %>
+  </div>
+</div>
 
 
