@@ -32,15 +32,14 @@ All submissions are subject to review and final approval by the co-chairs.
   </div>
 </div>
 
+<p class="centered">
 <% if Deadline.before_first_proposal? %>  
   <strong>Submissions will start <%= l(Deadline.minisymposium_proposal_start)%></strong>.
 <% else %>
   <% if current_user %>  
     Please visit <%= link_to 'submission page', submissions_path %>.
   <% else %>
-    <p class="centered">
-      <%= link_to 'To submit a contribution please<br/>Sign-in / Register'.html_safe, new_user_session_path, class: :big_button %>
-    </p>
+    <%= link_to 'To submit a contribution please<br/>Sign-in / Register'.html_safe, new_user_session_path, class: :big_button %>
   <% end %>
 <% end %>
 </p>
