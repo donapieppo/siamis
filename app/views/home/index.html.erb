@@ -1,29 +1,30 @@
+<%= render partial: 'menu' %>  
+
 <div>
-
-<%= home_section('preliminary_announcement') %>  
-<%= home_section('conference_themes') %>  
-<%= home_section('committees') %>  
-<%= home_section('submissions') %>  
-<%= home_section('important_dates') %>  
-<%= home_section('plenaries') %>  
-<%= home_section('venue') %>  
-<%= home_section('sponsors') %>  
-
+  <%= home_section('preliminary_announcement') %>  
+  <%= home_section('conference_themes') %>  
+  <%= home_section('committees') %>  
+  <%= home_section('submissions') %>  
+  <%= home_section('important_dates') %>  
+  <%= home_section('plenaries') %>  
+  <%= home_section('venue') %>  
+  <%= home_section('sponsors') %>  
 </div>
 
 <%= javascript_tag do  %>  
   $('.scrollto').on('click', function(event) {
-  var target = $(this.getAttribute('href'));
-  if( target.length ) {
-  event.preventDefault();
-  $('html, body').stop().animate({
-  scrollTop: target.offset().top
-  }, 1000);
-  }
-  });
+    var target = $(this.getAttribute('href'));
+    if( target.length ) {
+      event.preventDefault();
+      $('html, body').stop().animate({
+        scrollTop: target.offset().top
+      }, 1000);
+    }
+    });
+
   $('.link_to_top').on('click', function(event) {
-  $('html, body').stop().animate({
-  scrollTop: 0
-  }, 1000);
+    $('html, body').stop().animate({
+      scrollTop: 0
+    }, 1000);
   });
 <% end %>
