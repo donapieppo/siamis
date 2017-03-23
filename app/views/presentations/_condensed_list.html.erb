@@ -1,0 +1,21 @@
+<ul class="list-group">
+<% presentations.order('name').each do |presentation| %>
+  <li class="list-group-item">
+    <div class="left-code">
+      <%= presentation.code %>
+    </div>
+    <div>
+      <%= link_to presentation, presentation %><br/>
+      <small><%= show_roles(presentation.authors) %></small> 
+    </div>
+    <% if presentation.conference_session %>  
+      <div style="text-align: right">
+        <%= link_to presentation.conference_session, presentation.conference_session %>
+      </div>
+    <% end %>
+  </li>
+<% end %>
+</ul>
+
+
+
