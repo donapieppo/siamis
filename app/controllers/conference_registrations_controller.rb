@@ -1,4 +1,5 @@
 class ConferenceRegistrationsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :new
   before_action :user_in_organizer_committee!, only: [:index]
 
   def index
@@ -7,13 +8,15 @@ class ConferenceRegistrationsController < ApplicationController
   end
 
   def new
-    @fields = User.all_fields
+    if current_user 
+      @fields = User.all_fields
 
-    @fee = Fee.new(current_user)
-    @price_to_pay_and_reason = @fee.price_to_pay_and_reason
+      @fee = Fee.new(current_user)
+      @price_to_pay_and_reason = @fee.price_to_pay_and_reason
 
-    @single_day_fee = Fee.new(current_user, single_day: true)
-    @single_day_price_to_pay_and_reason = @single_day_fee.price_to_pay_and_reason
+      @single_day_fee = Fee.new(current_user, single_day: true)
+      @single_day_price_to_pay_and_reason = @single_day_fee.price_to_pay_and_reason
+    end
   end
 
   def show
