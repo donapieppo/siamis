@@ -36,19 +36,28 @@ class Schedule < ApplicationRecord
     end
   end
 
+  # Sessions
   def self.day_program(day)
-    ConferenceSession.includes(:schedule)
+    ConferenceSession.includes(presentations: [authors: :user], schedule: [room: :building])
                      .where('DATE_FORMAT(schedules.start, "%Y-%m-%d") = ?', day.strftime("%F"))
                      .order('schedules.start')
   end
 
-  # res["08:00"] = [ session1, session2 ]
+  # res["08:00"] = [ presentation1, presentation2 ]
   def self.day_program_hour_hash(day)
     res = Hash.new
     self.day_program(day).each do |conference_session|
-      hour = conference_session.schedule.start.strftime("%H:%S")
-      res[hour] ||= Array.new
-      res[hour] << conference_session
+      hour = conference_session.schedule.start
+      conference_session.presentations.each do |presentation|
+        hour = hour + conference_session.duration.minutes
+        hour_str = hour.strftime("%H:%M")
+        res[hour_str] ||= Array.new
+        res[hour_str] << { presentation: presentation,
+                           speaker: presentation.speaker.user,
+                           conference_session: presentation.conference_session,
+                           end: (hour + conference_session.duration.minutes).strftime("%H:%M")
+        }
+      end
     end
     res
   end

@@ -13,13 +13,13 @@
     <div class="collapse navbar-collapse" id="scheduler_navbar">
       <ul class="nav navbar-nav">
         <%= dropdown_menu fwicon('calendar') + ' Days' do %>
-          <% Schedule.conference_days_array.each do |day| %>  
-            <li><%= link_to day, '' %></li>
+          <% Schedule.conference_days_array.each_with_index do |day, i| %>  
+            <li><%= link_to l(day, format: :menu), schedules_path(day: i) %></li>
           <% end %>
         <% end %>
         <%= dropdown_menu fwicon('building') + ' Rooms' do %>
           <% Room.find_each do |room| %>  
-            <li><%= link_to room, '' %></li>
+            <li><%= link_to room, schedules_path(room_id: room.id) %></li>
           <% end %>
         <% end %>
       </ul>
@@ -27,18 +27,21 @@
   </div>
 </nav>
 
-<% Schedule.conference_days_array.each do |day|%>  
-  <p style='font-weight: bold'><%= day %></p>
-  <% Schedule.day_program_hour_hash(day).each do |hour, conference_sessions| %>  
-    <dl class="dl-horizontal">
-      <dt><%= hour %></dt>
-      <% conference_sessions.each do |cs| %>
-        <dd style="border-top: 1px solid <%= conference_session_color(cs) %>">
-        <span style="background-color: <%= conference_session_color(cs) %>"><%= cs.code %></span>
-          <%= link_to cs, cs %> - <%= cs.schedule.room %> (<%= cs.duration %> min)
-        </dd>
-      <% end %>
-    </dl>
-  <% end %>
-  <%# <%= render partial: 'conference_sessions/condensed_list', locals: {conference_sessions: Schedule.day_program(day)} %>  
+<% schedules = @room ? Schedule.where(room: @room) : Schedule %>  
+<% schedules = schedules.day_program_hour_hash(@day) %>  
+
+<p style='font-weight: bold'><%= l(@day, format: :schedule) %></p>
+
+<% schedules.each do |hour, presentations| %>  
+  <dl class="dl-horizontal">
+    <dt><%= hour %></dt>
+    <% presentations.each do |presentation_hash| %>
+      <dd style="border-bottom: 2px solid <%= conference_session_color(presentation_hash[:conference_session]) %>; ">
+      <span class="badge"><%= presentation_hash[:conference_session].code %></span>
+      <%= link_to presentation_hash[:presentation], conference_session_path(presentation_hash[:conference_session]), remote: true %> (until <%= presentation_hash[:end] %>)<br/>
+      <%= link_to user_modal_link presentation_hash[:speaker] %>  
+      <span class="pull-right"><%= presentation_hash[:conference_session].schedule.room %> </span>
+      </dd>
+    <% end %>
+  </dl>
 <% end %>
