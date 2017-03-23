@@ -29,6 +29,7 @@ DeadlineHelper	app/helpers/deadline_helper.rb	/^module DeadlineHelper$/;"	m
 ErrorResponse	app/models/unicredit.rb	/^  class ErrorResponse  < RuntimeError; end$/;"	c	class:Unicredit
 Fee	app/models/fee.rb	/^class Fee$/;"	c
 HomeController	app/controllers/home_controller.rb	/^class HomeController < ApplicationController$/;"	c
+HomeHelper	app/helpers/home_helper.rb	/^module HomeHelper$/;"	m
 Hotel	app/models/hotel.rb	/^class Hotel < ApplicationRecord$/;"	c
 HotelsController	app/controllers/hotels_controller.rb	/^class HotelsController < ApplicationController$/;"	c
 ImpersonationsController	app/controllers/impersonations_controller.rb	/^class ImpersonationsController < ApplicationController$/;"	c
@@ -131,6 +132,7 @@ code	app/models/presentation.rb	/^  def code $/;"	f	class:Presentation
 common_actions	app/helpers/actions_helper.rb	/^  def common_actions(what)$/;"	f	class:ActionsHelper
 conference_day	app/models/schedule.rb	/^  def self.conference_day(num)$/;"	F	class:Schedule
 conference_days_array	app/models/schedule.rb	/^  def self.conference_days_array$/;"	F	class:Schedule
+conference_home_title	app/helpers/home_helper.rb	/^  def conference_home_title$/;"	f	class:HomeHelper
 conference_session_color	app/helpers/conference_helper.rb	/^  def conference_session_color(cs)$/;"	f
 conference_session_panel_class	app/helpers/conference_helper.rb	/^  def conference_session_panel_class(conference_session)$/;"	f	class:ConferenceHelper
 conference_session_params	app/controllers/contributed_sessions_controller.rb	/^  def conference_session_params$/;"	f	class:ContributedSessionsController
@@ -186,8 +188,8 @@ fwicon	app/helpers/application_helper.rb	/^  def fwicon(name, options = { text: 
 get_signature	app/models/unicredit.rb	/^  def get_signature(hash, keys) $/;"	f	class:Unicredit
 get_unrated_minisymposium	app/models/rating.rb	/^  def self.get_unrated_minisymposium(user)$/;"	F	class:Rating
 get_unrated_presentation	app/models/rating.rb	/^  def self.get_unrated_presentation(user)$/;"	F	class:Rating
-home_program_title	app/helpers/conference_helper.rb	/^  def home_program_title(what, icon = nil)$/;"	f	class:ConferenceHelper
-home_section	app/helpers/conference_helper.rb	/^  def home_section(id)$/;"	f	class:ConferenceHelper
+home_program_title	app/helpers/home_helper.rb	/^  def home_program_title(what, icon = nil)$/;"	f	class:HomeHelper
+home_section	app/helpers/home_helper.rb	/^  def home_section(id)$/;"	f	class:HomeHelper
 hotel_params	app/controllers/hotels_controller.rb	/^  def hotel_params$/;"	f	class:HotelsController
 icon	app/helpers/application_helper.rb	/^  def icon(name, options = { text: "", size: "18" })$/;"	f	class:ApplicationHelper
 impersonate	app/controllers/impersonations_controller.rb	/^  def impersonate$/;"	f	class:ImpersonationsController
