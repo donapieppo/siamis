@@ -62,14 +62,6 @@ module ConferenceHelper
     end
   end
 
-  def home_program_title(what, icon = nil)
-    %Q%
-    <h2><span class="fa-stack fa-lg">
-      <i class="fa fa-square-o fa-stack-2x" style="color: #dc8550;"></i>
-      <i class="fa fa-#{icon} fa-stack-1x"></i>
-    </span>#{what}</h2>%.html_safe
-  end
-
   def title_with_conference(what = '')
     content_tag(:h1) do 
       html_escape(what) + '<br/><small>SIAM-IS18 June 5-8, 2018 Bologna - Italy</small>'.html_safe
@@ -140,14 +132,6 @@ module ConferenceHelper
      conference_session.class.to_s.downcase + "_panel"
   end
 
-  def home_section(id)
-    content_tag(:div, class: 'home_section') do
-      content_tag(:div, class: 'container', id: id) do
-        render partial: id
-      end + link_to_top
-    end 
-  end
-
   def dl_presentations(presentations)
     content_tag(:dl, class: "dl-horizontal") do
       concat content_tag(:dt, "Presentations:") 
@@ -169,5 +153,6 @@ module ConferenceHelper
       'yellow'
     end
   end
+
 end
 
