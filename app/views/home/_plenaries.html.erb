@@ -1,4 +1,4 @@
-<%= home_program_title("Invited Presentations", 'diamond') %>  
+<%= home_program_title("Invited Presentations", 'microphone') %>  
 
 <div class="row">
   <%= Plenary.includes(presentation: :authors, schedule: :room).find_each do |plenary| %>  
