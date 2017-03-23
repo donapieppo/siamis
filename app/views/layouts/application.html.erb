@@ -20,23 +20,25 @@
   </head>
   <body>
     <%= render partial: 'layouts/menu' %>
-    <%= render partial: 'layouts/header' if @home_header %>  
+    <%= render partial: 'home/header' if @home_header %>  
 
-      <%= bootstrap_flash %>
-      <%= bootstrap_modal_div %>
-      <%= privacy_alert %>
+    <%= bootstrap_flash %>
+    <%= bootstrap_modal_div %>
+    <%= privacy_alert %>
+
+    <% unless @home_header %>  
+      <div class="container"><%= breadcrumbs %></div>
+    <% end %>
+
+    <% if @home_header %>  
+      <%= yield %>
+    <% else %>
       <div class="container">
-        <%= breadcrumbs unless @home_header %>  
-      </div>
-
-      <% if @home_header %>  
         <%= yield %>
-      <% else %>
-        <div class="container">
-          <%= yield %>
-        </div>
-      <% end %>
+      </div>
+    <% end %>
 
+    <%= link_to image_tag('logo.png', height: 80, style: 'position: absolute; top: 0; left: 0; border: 0;'), root_path, class: 'navbar-brand' %>  
     <%= render partial: 'layouts/footer' %>  
   </body>
 </html>
