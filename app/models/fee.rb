@@ -4,7 +4,6 @@ class Fee
              siam_member:          [410, 510],
              speaker_or_organizer: [480, 580],
              non_member:           [520, 620],
-             single_day_member:    [200, 250],
              single_day:           [250, 300],
              student:              [100, 120] }
 
@@ -21,11 +20,7 @@ class Fee
     if @user.student
       [Prices[:student][@array_number], "you are registered as a student"]
     elsif @single_day
-      if @user.siag or @user.siam
-        [Prices[:single_day_member][@array_number], "one day registration for member"]
-      else
-        [Prices[:single_day][@array_number], "one day registration"]
-      end
+      [Prices[:single_day][@array_number], "one day registration"]
     elsif @user.siag
       [Prices[:siag_member][@array_number], "you are registered as a siag member"]
     elsif @user.siam
