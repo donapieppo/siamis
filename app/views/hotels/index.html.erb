@@ -4,23 +4,26 @@
   <p class="centered"><%= link_to 'New Hotel', new_hotel_path, class: :button %></p>
 <% end %>
 
-<p>Preferred rates with a number of accommodation sites have been negotiated for the Congress. Please mention the SIAM-IS 2018 when reserving your room.</p>
+<p class="alert alert-info">
+  Preferred rates with a number of accommodation sites have been negotiated for the Congress. <br/>
+  Please mention the SIAM-IS 2018 when reserving your room.
+</p>
 
-<% open_row = true %>  
+<% new_row = true %>  
 <% Hotel.order(:name).each do |hotel| %>  
-  <% if open_row %>
+  <% if new_row %>
     <div class="row">
   <% end %>
   <div class="col-md-6">
     <%= render hotel %>  
   </div>
-  <% unless open_row %>
+  <% unless new_row %>
     </div><!-- row -->
   <% end %>
-  <% open_row = ! open_row %>  
+  <% new_row = ! new_row %>  
 <% end %>
 
-<% if open_row %>
+<% if ! new_row %>
   </div><!-- row -->
 <% end %>
 
