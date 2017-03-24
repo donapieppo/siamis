@@ -42,6 +42,9 @@
             PAY <br/><strong><%= @single_day_price_to_pay_and_reason[0] %> &euro;</strong><br/> for One Day Registration
           <% end %>
           </p>
+          <hr/>
+          <p>The registration includes the social dinner (Wednesday, June 6th). <br/>
+             In case you want to invite other people you (the cost of the dinner is 65,00 euros per person) please select the number of guests in <%= link_to 'your personal data page', edit_user_path(current_user) %>. 
         </div>
       </div>
     <% end %>

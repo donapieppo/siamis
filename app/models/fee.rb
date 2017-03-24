@@ -17,7 +17,7 @@ class Fee
 
   # FIXME order inverse of payments
   def price_to_pay_and_reason
-    if @user.student
+    res = if @user.student
       [Prices[:student][@array_number], "you are registered as a student"]
     elsif @single_day
       [Prices[:single_day][@array_number], "one day registration"]
@@ -30,6 +30,10 @@ class Fee
     else
       [Prices[:non_member][@array_number], "since you are a non-member and with no presentations"]
     end
+    if (tickets = @user.banquet_tickets.to_i) > 0
+      res = [res[0].to_i + tickets * 65, res[1].html_safe + ".<br/>#{tickets} extra banquet tickets included".html_safe ]
+    end
+    res
   end
 
   def price_to_pay
