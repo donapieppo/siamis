@@ -5,9 +5,9 @@
   </h3>
 </div>
 <div class="panel-body">
-  <p><%= hotel.address %> </p>
+  <p><%= icon('map-marker') %>  <%= hotel.address %></p>
 
-  <h4><i><%= hotel.description %></i></h4>
+  <p><i><%= hotel.description %></i></p>
 
   <dl class="dl-horizontal">
     <% [:singleprice, :dusprice, :doubleprice].each do |price_type| %>  
