@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_one  :conference_registration
 
   validates :email, uniqueness: { message: "The email is already registred." }
+  validates :banquet_tickets, numericality: { greater_than_or_equal_to: 0 }
 
   def to_s
     "#{self.cn} (#{self.affiliation})"
