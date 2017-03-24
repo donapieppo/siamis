@@ -9,22 +9,26 @@
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
-    <div class="item active" style="background-image: url(<%= image_url('bg_red.jpg')%>)">
+    <div class="item active" style="background-image: url(<%= image_url('bg/bg_red.jpg')%>)">
       &nbsp;
     </div>
 
-    <div class="item" style="background-image: url(<%= image_url('bg_pedro.jpg')%>)">
+    <div class="item" style="background-image: url(<%= image_url('bg/bg_pedro.jpg')%>)">
       &nbsp;
     </div>
 
-    <div class="item" style="background-image: url(<%= image_url('bg_wikipedia.jpg')%>)">
+    <div class="item" style="background-image: url(<%= image_url('bg/bg_wikipedia.jpg')%>)">
+      &nbsp;
+    </div>
+
+    <div class="item" style="background: url(<%= image_url('bg/bg_nettuno.jpg')%>) top left">
       &nbsp;
     </div>
   </div>
 
 </div>
 
-<div class="container" style="position: absolute; top: 75px; width: 100%">
+<div class="container" id="home_header_container">
   <!-- Left and right controls -->
   <a class="left carousel-control" href="#homeCarousel" role="button" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
