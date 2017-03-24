@@ -9,22 +9,23 @@
   Please mention the SIAM-IS 2018 when reserving your room.
 </p>
 
-<% new_row = true %>  
+<% column = 0 %>  
 <% Hotel.order(:name).each do |hotel| %>  
-  <% if new_row %>
+  <% if column == 0 %>
     <div class="row">
   <% end %>
-  <div class="col-md-6">
+  <div class="col-md-4">
     <%= render hotel %>  
   </div>
-  <% unless new_row %>
+  <% if column == 2 %>
     </div><!-- row -->
   <% end %>
-  <% new_row = ! new_row %>  
+  <% column = (column + 1) % 3 %>  
 <% end %>
 
-<% if ! new_row %>
+<% if column == 0 %>
   </div><!-- row -->
 <% end %>
 
 
+<iframe src="https://www.google.com/maps/d/embed?mid=15Dgh5CwsVas1_0aZNPID33hsfq4" width="100%" height="480"></iframe>

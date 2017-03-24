@@ -9,22 +9,24 @@
 
   <p><i><%= hotel.description %></i></p>
 
-  <dl class="dl-horizontal">
+  <table class="table table-condensed">
     <% [:singleprice, :dusprice, :doubleprice].each do |price_type| %>  
       <% hotel.send(price_type) or next %>  
-      <dt><%= t I18n.t('activerecord.attributes.hotel.' + price_type.to_s)  %></dt>
-      <dd>
-      <%= hotel.send(price_type) %> € 
-      <%= hotel.bb ? '(bed and breakfast)' : '' %>
-      <%= hotel.tax ? ' + tax' : '' %>
-      </dd>
+      <tr>
+        <th><%= t I18n.t('activerecord.attributes.hotel.' + price_type.to_s)  %></th>
+        <td>
+          <%= hotel.send(price_type) %> € 
+          <%= hotel.bb ? '(bb)' : '' %>
+          <%= hotel.tax ? ' + tax' : '' %>
+        </td>
+      </tr>
     <% end %>
-  </dl>
+  </table>
 </div>
-<div class="panel-footer">
-  <% if user_in_organizer_committee? %>  
+<% if user_in_organizer_committee? %>  
+  <div class="panel-footer">
     <p class="centered"><%= link_to_edit [:edit, hotel] %></p>
-  <% end %>
-</div>
+  </div>
+<% end %>
 </div>
 
