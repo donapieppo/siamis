@@ -40,11 +40,17 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "hotels", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string  "name"
-    t.text    "description", limit: 65535
+    t.text    "description",        limit: 65535
     t.string  "address"
     t.integer "singleprice"
+    t.integer "singleprice_deluxe"
     t.integer "dusprice"
+    t.integer "dusprice_deluxe"
     t.integer "doubleprice"
+    t.integer "doubleprice_deluxe"
+    t.integer "suiteprice"
+    t.integer "juniorsuiteprice"
+    t.integer "apartment"
     t.boolean "bb"
     t.boolean "tax"
     t.string  "web_page"
