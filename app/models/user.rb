@@ -20,7 +20,7 @@ class User < ApplicationRecord
   has_one  :conference_registration
 
   validates :email, uniqueness: { message: "The email is already registred." }
-  validates :banquet_tickets, numericality: { greater_than_or_equal_to: 0 }
+  validates :banquet_tickets, numericality: { greater_than_or_equal_to: 0, allow_nil: true }
 
   def to_s
     "#{self.cn} (#{self.affiliation})"
@@ -119,7 +119,7 @@ class User < ApplicationRecord
   end 
 
   def self.safe_fields
-    [:name, :surname, :affiliation, :country]
+    [:name, :surname, :affiliation, :country, :biography]
   end
 
   def self.all_fields
