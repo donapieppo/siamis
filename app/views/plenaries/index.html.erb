@@ -18,7 +18,10 @@
           <p><small><%= plenary.speaker.user.affiliation %></small></p>
         <% end %>
         <div style="position: absolute; top: -20px; left: -20px; background-color: #eee; width: 120px;">
-          <%= icon('calendar') %><br/> <%= raw l(plenary.schedule.start, format: :schedule_day_and_hour) %> <br/>
+          <% if plenary.schedule %>  
+            <%= icon('calendar') %><br/> 
+            <%= raw l(plenary.schedule.start, format: :schedule_day_and_hour) %> 
+          <% end %>
         </div>
       </div>
 
