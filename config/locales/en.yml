@@ -61,8 +61,14 @@ en:
         banquet_tickets: Number of extra banquet tickets
       hotel:
         singleprice: Single 
-        dusprice:    Double single use
-        doubleprice: Double 
+        singleprice_deluxe: Single Deluxe
+        dusprice:           Double Single Use
+        dusprice_deluxe:    Double Single Use Deluxe
+        doubleprice:        Double 
+        doubleprice_deluxe: Double Deluxe
+        suiteprice:         Suite
+        juniorsuiteprice:   Junior Suite
+        apartment:          Apartment
         bb:          Bed and breakfast
         tax:         Tax to add
         address:     Address
