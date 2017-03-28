@@ -1,32 +1,17 @@
-.plenaries {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
 .plenary {
   @extend .row;
-  &:nth-child(even) {
-    .plenary_body {
-      // background-color: $color_2;
-    }
-  }
-  &:nth-child(odd) {
-    .plenary_body {
-      // background-color: $color_1;
-    }
-  }
   border: 2px solid #ccc;
   margin-top: 10px;
   margin-bottom: 2px;
-  background-color: $home_second_bg_color;
-  img {
-     width: 200px; 
-     margin: 30px;
-   } 
+  // background-color: $home_second_bg_color;
   .plenary_speaker {
     @include make-md-column(4);
     padding: 10px;
     text-align: center;
+    img {
+       width: 200px; 
+       margin: 30px;
+    } 
   }
   .plenary_body {
     @include make-md-column(8);
