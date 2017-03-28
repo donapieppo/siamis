@@ -1,10 +1,13 @@
 <%= home_program_title("Invited Presentations", 'microphone') %>  
 
+<h3>Plenary Sessions</h3>
 <div class="row">
-  <%= Plenary.includes(presentation: :authors, schedule: :room).find_each do |plenary| %>  
+  <%= Plenary.includes(presentation: [authors: :user], schedule: :room).find_each do |plenary| %>  
     <% speaker = plenary.authors.first.user %>  
     <div class="home-plenary col-md-4">
-      <div class="plenary-when"><%= plenary.schedule ? l(plenary.schedule.start) : 'to be defined' %></div>
+      <% if plenary.schedule %>  
+        <div class="plenary-when"><%= l(plenary.schedule.start) %></div>
+      <% end %>
       <div class="plenary-title"><%= plenary.name %></div>
       <div class="plenary-speaker"><%= link_to speaker.cn, user_path(speaker), remote: true %><br/>
         <small>(<%= speaker.affiliation %>)</small></div>
@@ -12,4 +15,28 @@
     </div>
   <% end %>
 </div>
+
+<p>
+<%= link_to '[ more on Plenary Sessions ]', plenaries_path %>
+</p>
+
+<h3>Minitutorials</h3>
+<div class="row">
+  <%= Minitutorial.includes(presentation: [authors: :user], schedule: :room).find_each do |plenary| %>  
+    <% speaker = plenary.authors.first.user %>  
+    <div class="home-plenary col-md-4">
+      <% if plenary.schedule %>  
+        <div class="plenary-when"><%= l(plenary.schedule.start) %></div>
+      <% end %>
+      <div class="plenary-title"><%= plenary.name %></div>
+      <div class="plenary-speaker"><%= link_to speaker.cn, user_path(speaker), remote: true %><br/>
+        <small>(<%= speaker.affiliation %>)</small></div>
+      <div class="plenary-where"><%= plenary.schedule.room if plenary.schedule %></div>
+    </div>
+  <% end %>
+</div>
+
+<p>
+<%= link_to '[ more on Minitutorials ]', minitutorials_path %>
+</p>
 
