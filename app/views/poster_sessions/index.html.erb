@@ -4,6 +4,8 @@
   <p class="centered"><%= link_to 'Create Poster Session', new_poster_session_path, class: :big_button %></p>
 <% end %>
 
+<%= render partial: 'contributed_sessions/description' %>  
+
 <%= render partial: 'deadlines/presentation_submission' %>  
 
 <%= render partial: 'conference_sessions/condensed_list', locals: {conference_sessions: PosterSession.includes(:schedule)} %>  

@@ -22,38 +22,36 @@
   <% end %>
 <% end %>
 
-<%= render partial: 'description' %>  
+<p>
+  SIAM requests that individuals limit themselves to giving <strong>one talk</strong> 
+  (this does not apply to invited plenary speakers).<br/>
+  The co-chairs of the organizing committee may make exceptions to this request.
+</p>
 
-<div class="row">
-  <div class="col-md-6">
-    <h4>Minisymposia</h4>
-    <p>
-    A minisymposium generally consists of four 25-minute presentations, with an additional five minutes for discussion after each presentation.  To ensure balance, SIAM prefers a single individual not be the (co)organizer of more than one minisymposium, however, organizers can submit up to two (2) parts per minisymposium, allowing up to eight (8) speakers. In addition, SIAM discourages minisymposia in which most of the speakers or co-authors come from the same institution.
-    </p>
-    <p>
-    Minisymposia submission will be available 
-    from <%= l Deadline.minisymposium_proposal_start %> to <%= l Deadline.minisymposium_proposal_end %>.
-    </p>
-    <%= render partial: 'deadlines/minisymposium_submission' %>  
-    <% if current_user and Deadline.can_propose?(:minisymposium) %>  
-      <%= render partial: 'minisymposium_proposal' %>  
-    <% end %>
-  </div>
-  <div class="col-md-6">
-    <h4>Contributed Presentations in Lecture or Poster Format</h4>
-    <p>Contributed presentations in lecture or poster format are invited in all areas consistent with the conference themes. A lecture format is generally a 15-minute oral presentation with an additional 5 minutes for discussion. Talk lengths will be determined by the co-chairs at the close of submissions.</p>
+<p>
+  All submissions are subject to <strong>review</strong> and 
+  <strong>final approval</strong> by the co-chairs.
+</p>
 
-    <p>A poster format involves the use of non-electronic visual aids for mounting on a 4’ x 6’ or 4’ x 8’ poster board. A poster session is two hours long.</p>
-    <p>
-    Contributed Presentation submission will be available 
-    from <%= l Deadline.presentation_proposal_start %>
-  to  <%= l Deadline.presentation_proposal_end %>.
-    </p>
-    <%= render partial: 'deadlines/presentation_submission' %>  
-    <% if current_user and Deadline.can_propose?(:presentation) %>  
-      <%= render partial: 'presentation_proposal' %>  
-    <% end %>
-  </div>
-</div>
+<p>
+You are invited to contribute a presentation for this conference in one of the following formats:
+</p>
+
+
+<h2>Minisymposia</h2>
+
+<%= render partial: 'minisymposia/description' %>  
+<%= render partial: 'deadlines/minisymposium_submission' %>  
+<% if current_user and Deadline.can_propose?(:minisymposium) %>  
+  <%= render partial: 'minisymposium_proposal' %>  
+<% end %>
+
+<h2>Contributed Presentations<br/><small>in Lecture or Poster Format</small></h2>
+
+<%= render partial: 'contributed_sessions/description' %>
+<%= render partial: 'deadlines/presentation_submission' %>  
+<% if current_user and Deadline.can_propose?(:presentation) %>  
+  <%= render partial: 'presentation_proposal' %>  
+<% end %>
 
 

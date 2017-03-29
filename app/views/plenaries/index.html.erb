@@ -1,56 +1,8 @@
 <%= program_title('Plenary Sessions', 'user') %>  
 
-<%= render @plenaries %>  
-
 <% if user_in_organizer_committee? %>
   <p class="centered"><%= link_to 'Create new Plenary', new_plenary_path, class: :big_button %></p>
 <% end %>
 
-<div class="plenaries">
-  <% @plenaries.each do |plenary| %>  
-    <div class="plenary">
-      <div class="plenary_speaker" style="position: relative";>
-        <% if plenary.speaker %>
-          <% if asset_exist?(plenary.speaker.photo_asset) %>  
-            <%= image_tag plenary.speaker.photo_asset %>  
-          <% else %>
-            <i class="fa fa-user-circle" style="font-size: 160px; margin: 20px;" aria-hidden="true"></i>
-          <% end %>
-          <p><%= user_modal_link(plenary.speaker.user) %></p>
-          <p><small><%= plenary.speaker.user.affiliation %></small></p>
-        <% end %>
-
-        <% if plenary.schedule %>  
-          <div style="position: absolute; top: -20px; left: -20px; background-color: #eee; width: 120px;">
-            <%= icon('calendar') %><br/> 
-            <%= raw l(plenary.schedule.start, format: :schedule_day_and_hour) %> 
-          </div>
-        <% end %>
-      </div>
-
-      <div class="plenary_body">
-        <div class="plenary_schedule">
-          <% if plenary.schedule %>  
-            <%= icon('calendar') %> <%= raw l(plenary.schedule.start_day, format: :schedule) %> <br/>
-            <%= icon('map-marker') %> <%= raw plenary.schedule.room %>
-          <% end %>
-        </div>
-
-        <div class="plenary_title"><h2><%= plenary.name %></h2></div>
-        <p class="plenary_abstract">
-          <% if plenary.description.blank? %>  
-            <%= plenary.speaker.user.biography if plenary.speaker %>
-          <% else %>
-            <%= plenary.description %>
-          <% end %>
-        </p>
-        <p><strong>Chair:</strong> <%= show_roles(plenary.organizers, editable: user_in_organizer_committee?) %></p>
-
-        <div class="footer-actions">
-          <%= panel_actions(plenary) %>  
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
+<%= render @plenaries %>  
 
