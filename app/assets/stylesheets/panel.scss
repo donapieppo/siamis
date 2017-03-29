@@ -1,0 +1,47 @@
+.siam_panel {
+  @extend .panel;
+  @extend .panel-info;
+  .panel-heading {
+    color: #fff;
+    padding: 40px;
+    h3 {
+      text-transform: uppercase;
+      @extend .panel-title;
+    }
+  }
+}
+.plenary_panel {
+  @extend .siam_panel;
+  .panel-heading { background-color: $plenary_color; color: #000; }
+}
+.minisymposium_panel {
+  @extend .siam_panel;
+  .panel-heading { background-color: $minisymposium_color; }
+}
+.conference_session_panel {
+  @extend .siam_panel;
+  .panel-heading { background-color: $contributed_session_color; }
+}
+.contributed_session_panel {
+  @extend .siam_panel;
+  .panel-heading { background-color: $contributed_session_color; }
+}
+.minitutorial_panel {
+  @extend .siam_panel;
+  .panel-heading { background-color: $minitutorial_color; }
+}
+.poster_session_panel {
+  @extend .siam_panel;
+  .panel-heading { background-color: $poster_session_color; }
+}
+.presentation_panel {
+  @extend .siam_panel;
+  .panel-heading { background-color: $presentation_color; }
+}
+
+.panel-header-code {
+  @extend .badge;
+  @extend .pull-right;
+  font-size: 100%;
+}
+
