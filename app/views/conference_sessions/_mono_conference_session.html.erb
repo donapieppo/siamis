@@ -2,15 +2,44 @@
 
 <%= panel_heading(conference_session) %>  
 
-<div class="panel-body">
-  <p><strong>Speaker</strong>: <%= show_roles(conference_session.authors) %></p>
-  <p><em><%= conference_session.description %></em></p>
-  <p><strong><%= conference_session.organizers_label %>:</strong> <%= show_roles(conference_session.organizers) %></p>
-</div>
+<div class="panel-body row">
+  <div class="col-md-4">  
+    <div class="speaker-image" style="text-align: center">
+    <% if conference_session.speaker %>
+      <% if asset_exist?(conference_session.speaker.photo_asset) %>  
+        <%= image_tag conference_session.speaker.photo_asset, width: 250 %>  
+      <% else %>
+        <i class="fa fa-user-circle" style="font-size: 160px; margin: 20px;" aria-hidden="true"></i>
+      <% end %>
+    </div>
+    <p class="centered">
+      <%= user_modal_link(conference_session.speaker.user) %><br/>
+      <small><%= conference_session.speaker.user.affiliation %></small>
+    </p>
+    <% end %>
+  </div>
+
+  <div class="col-md-8">
+    <p>
+    <em>
+      <% if conference_session.description.blank? %>  
+        <%= conference_session.speaker.user.biography if conference_session.speaker %>
+      <% else %>
+        <%= conference_session.description %>
+      <% end %>
+    </em>
+    </p>
+    <p>
+    <strong><%= conference_session.organizers_label %>:</strong> <%= show_roles(conference_session.organizers) %>
+  </p>
+  </div>
+</div><!-- body -->
+
 <div class="panel-footer footer-actions">
   <%= panel_actions(conference_session) %>  
   <%= schedule(conference_session) %>  
 </div>
+
 </div>
 
 

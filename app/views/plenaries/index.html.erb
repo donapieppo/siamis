@@ -1,5 +1,7 @@
 <%= program_title('Plenary Sessions', 'user') %>  
 
+<%= render @plenaries %>  
+
 <% if user_in_organizer_committee? %>
   <p class="centered"><%= link_to 'Create new Plenary', new_plenary_path, class: :big_button %></p>
 <% end %>
