@@ -22,6 +22,12 @@ class Minitutorial < ConferenceSession
   def code
     "MT" + (self.number).to_s
   end
+  
+  # assume the first :-)
+  def speaker
+    self.authors.first
+  end
+
 end
 
 
