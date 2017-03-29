@@ -14,8 +14,7 @@ class Plenary < ConferenceSession
   end
 
   def code
-    num = self.number || "-"
-    "IP#{num}" 
+    "IP#{self.number || ""}" 
   end
 
   def accepted?
