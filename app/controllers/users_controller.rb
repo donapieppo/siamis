@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   skip_before_action :check_user_fields, only: [:edit, :update]
 
-  before_action :user_in_organizer_committee!, only: [:index, :new, :admin_create, :admin_notify_new]
-  before_action :set_user_and_check_permission, only: [:edit, :update]
+  before_action :user_in_organizer_committee!, only: [:index, :new, :destroy, :admin_create, :admin_notify_new]
+  before_action :set_user_and_check_permission, only: [:edit, :update, :destroy]
 
   def index
     @users = User.includes(:conference_registration).order(:surname, :name)
@@ -61,11 +61,14 @@ class UsersController < ApplicationController
     end
   end
 
-  # def check_email
-  #   respond_to do |format|
-  #     format.json { render json: User.where(email: params[:email]).any? }
-  #   end
-  # end
+  def destroy
+    if @user.roles.any?
+      redirect_to users_path, alert: "User has roles in databse. Please delete the user from presentations, chairs, organizing etc etc"
+    else
+      @user.destroy
+      redirect_to users_path, notice: "The user has been deleted."
+    end
+  end
 
   private 
 
