@@ -1,21 +1,25 @@
+<% organizers = conference_session.organizers.all %>  
+<% speaker    = conference_session.speaker %>  
+
 <div class="<%= conference_session_panel_class(conference_session) %>">
 
 <%= panel_heading(conference_session) %>  
 
 <div class="panel-body row">
   <div class="col-md-4">  
-    <div class="speaker-image" style="text-align: center">
-    <% if conference_session.speaker %>
-      <% if asset_exist?(conference_session.speaker.photo_asset) %>  
-        <%= image_tag conference_session.speaker.photo_asset, width: 250 %>  
-      <% else %>
-        <i class="fa fa-user-circle" style="font-size: 160px; margin: 20px;" aria-hidden="true"></i>
-      <% end %>
-    </div>
-    <p class="centered">
-      <%= user_modal_link(conference_session.speaker.user) %><br/>
-      <small><%= conference_session.speaker.user.affiliation %></small>
-    </p>
+    <% if speaker %>
+      <div class="speaker-image" style="text-align: center">
+        <% if asset_exist?(speaker.photo_asset) %>  
+          <%= image_tag speaker.photo_asset, width: 250 %>  
+        <% else %>
+          <i class="fa fa-user-circle" style="font-size: 160px; margin: 20px;" aria-hidden="true"></i>
+        <% end %>
+      </div>
+
+      <p class="speaker-name centered">
+      <%= user_modal_link(speaker.user) %><br/>
+      <small><%= speaker.user.affiliation %></small>
+      </p>
     <% end %>
   </div>
 
@@ -23,15 +27,15 @@
     <p>
     <em>
       <% if conference_session.description.blank? %>  
-        <%= conference_session.speaker.user.biography if conference_session.speaker %>
+        <%= speaker.user.biography if speaker %>
       <% else %>
         <%= conference_session.description %>
       <% end %>
     </em>
     </p>
-    <p>
-    <strong><%= conference_session.organizers_label %>:</strong> <%= show_roles(conference_session.organizers) %>
-  </p>
+    <% if organizers.any? %>  
+    <p><strong><%= conference_session.organizers_label %>:</strong> <%= show_roles(conference_session.organizers) %></p>
+    <% end %>
   </div>
 </div><!-- body -->
 
