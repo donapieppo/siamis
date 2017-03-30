@@ -2,7 +2,7 @@ module PanelsHelper
 
   def panel_heading(what)
     content_tag(:div, class: 'panel-heading') do
-      content_tag(:h3) do
+      content_tag(:h4) do
         h(what.to_s) + content_tag(:span, what.code, class: 'panel-header-code')
       end
     end
