@@ -2,7 +2,7 @@
 
 <h3>Plenary Sessions</h3>
 <div class="row">
-  <%= Plenary.includes(presentation: [authors: :user], schedule: :room).find_each do |plenary| %>  
+  <% @plenaries.each do |plenary| %>  
     <% speaker = plenary.authors.first.user %>  
     <div class="home-plenary col-md-4">
       <% if plenary.schedule %>  
@@ -22,7 +22,7 @@
 
 <h3>Minitutorials</h3>
 <div class="row">
-  <%= Minitutorial.includes(presentation: [authors: :user], schedule: :room).find_each do |plenary| %>  
+  <% @minitutorials.each do |plenary| %>  
     <% speaker = plenary.authors.first.user %>  
     <div class="home-plenary col-md-4">
       <% if plenary.schedule %>  
