@@ -49,6 +49,7 @@ en:
       user:
         name: Name
         surname: Surname
+        salutation: Salutation
         email: E-mail
         affiliation: Affiliation
         address: Address
@@ -87,6 +88,7 @@ en:
         abstract: Brief abstract not to exceed 75 words. <em>Using <span id="wcount"></span> words</em>.
         speaker_id: Choose the speaker among the authors. Only the speaker can edit title and abstract.
       user:
+        salutation: (e.g. Prof., PhD, Jr., Sr., etc.) 
         visible: Check to be included on the list of participants on the SIAM-IS18 web site.
         dietary: Dietary restrictions and food allergies.
         banquet_tickets: A formal banquet will be held on Wednesday, June 6th. Each ticket costs 65 EURO. 
