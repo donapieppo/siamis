@@ -1,17 +1,8 @@
-<div>
-<% if Deadline.registration_open? %>  
-  <p>Pre-registration deadline – <strong><%= l Deadline.pre_registration_end, format: :long %></strong>.</p>
-  <p>All advance registration payments are to be made by credit card.  All fees are quoted in Euros.</p>
-<% else %>
-  <p class="alert alert-warning">Registrations start at <strong><%= l Deadline.pre_registration_start %></strong>.</p>
-<% end %>
-</div>
-
-<table class="table table-condensed">
+<table class="table table-condensed centered" style="max-width: 800px; margin-top: 40px;">
   <tr>
     <th></th>
-    <th>Pre-registration <br/><small>(before <%= l Deadline.pre_registration_end + 1.day %>)</small></td>
-    <th>On-site registration <br/><small>(after <%= l Deadline.pre_registration_end %>)</small></td>
+    <th>Pre-registration <br/><small>(before <%= l Deadline.pre_registration_end + 1.day %>)</small></th>
+    <th>On-site registration <br/><small>(after <%= l Deadline.pre_registration_end %>)</small></th>
   </tr>
   <% Fee.prices.each do |name, amounts| %>  
     <tr>
@@ -25,4 +16,5 @@
     </tr>
   <% end %>
 </table>
+
 

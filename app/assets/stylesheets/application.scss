@@ -31,7 +31,7 @@ h1.program {
 
 .button {
   @extend .btn;
-  @extend .btn-default;
+  @extend .btn-primary;
 }
 .big_button {
   @extend .button;
@@ -137,13 +137,14 @@ div.hotel-panel {
 
 .bg-colored {
   color: #fff;
-  // a { color: #eee; }
 }
 
 .bg-colored:nth-child(even) {
   background-color: $section_second_bg_color;
+  a { color: #eee; }
 }
 .bg-colored:nth-child(odd) {
   background-color: $section_first_bg_color;
+  a { color: #eee; }
 }
   

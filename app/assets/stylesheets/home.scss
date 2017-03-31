@@ -74,6 +74,7 @@ h1.home_header_title {
 .home_section:nth-child(even) {
   background-color: $home_second_bg_color;
   color: $home_second_font_color;
+  a { color: #eee; }
   h2 { color: $home_second_font_color; }
 }
 

@@ -1,23 +1,28 @@
 <p>(*)  SIMAI, IEEE SPS and ASA Imaging Science Section members are eligible to register at the SIAM Member rate.</p>
 <p>(**) Students must show a current student id upon checking in at the SIAM registration desk. Student registration is available for undergraduate and graduate students ONLY. The student rate is not available to post-doctorates.</p>
 
-<h2>Conference Registration Fee Includes:</h2>
+<div class="row">
+  <div class="col-md-6">
+    <h2>Conference Registration Fee Includes:</h2>
 
-<ol>
-  <li>Admission to all technical sessions</li>
-  <li>Business Meeting (open to SIAG/IS members)</li>
-  <li>Social Dinner <small>(The cost of the dinner  is 65.00 euros per not registered person)</small></li>
-  <li>Coffee breaks daily</li>
-  <li>Welcome Lunch and Poster Session</li>
-  <li>Room set-ups and audio/visual equipment</li>
-  <li>Wi-Fi access at the conference</li>
-</ol>
+    <ol>
+      <li>Admission to all technical sessions</li>
+      <li>Business Meeting (open to SIAG/IS members)</li>
+      <li>Social Dinner <small>(The cost of the dinner  is 65.00 euros per not registered person)</small></li>
+      <li>Coffee breaks daily</li>
+      <li>Welcome Lunch and Poster Session</li>
+      <li>Room set-ups and audio/visual equipment</li>
+      <li>Wi-Fi access at the conference</li>
+    </ol>
+  </div>
+  <div class="col-md-6">
+    <h2>Accepted Credit Cards</h2>
+    <p>Visa, Visa Electron, V PAY, Mastercard, Maestro, American Express, Diners.</p>
 
-<h2>Accepted Credit Cards</h2>
-<p>Visa, Visa Electron, V PAY, Mastercard, Maestro, American Express, Diners.</p>
-
-<% unless current_user %>  
-  <p>
-  To register please <%= link_to 'sign in', new_user_session_path, class: :button %>
-  </p>
-<% end %>
+    <% unless current_user %>  
+      <p>
+      To register please <%= link_to 'sign in', new_user_session_path, class: :button %>
+    </p>
+  <% end %>
+  </div>
+</div>

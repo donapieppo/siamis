@@ -5,11 +5,12 @@ module ActionsHelper
     return "&nbsp;".html_safe if current_user and current_user.speaker?(what)
 
     now_icon = current_user.interested_in?(what) ? "star" : "star-o"
+    title    = current_user.interested_in?(what) ? "click if you are no nore interested" : "click to express interest" 
     case what
     when Minisymposium, ConferenceSession, PosterSession
-      link_to icon(now_icon), toggle_conference_session_interests_path(what), method: :post
+      link_to icon(now_icon), toggle_conference_session_interests_path(what), method: :post, title: title
     when Presentation
-      link_to icon(now_icon), toggle_presentation_interests_path(what), method: :post 
+      link_to icon(now_icon), toggle_presentation_interests_path(what), method: :post, title: title 
     end
   end
 

@@ -28,6 +28,10 @@ class Minitutorial < ConferenceSession
     self.authors.first
   end
 
+  def accepted?
+    true
+  end
+
 end
 
 

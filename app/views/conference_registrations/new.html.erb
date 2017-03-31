@@ -1,5 +1,14 @@
 <h1>Registration</h1>
 
+<div class="container">
+  <% if Deadline.registration_open? %>  
+    <p>Pre-registration deadline – <strong><%= l Deadline.pre_registration_end, format: :long %></strong>.</p>
+    <p>All advance registration payments are to be made by credit card.  All fees are quoted in Euros.</p>
+  <% else %>
+    <p class="alert alert-warning">Registrations start at <strong><%= l Deadline.pre_registration_start %></strong>.</p>
+  <% end %>
+</div>
+
 <div class="bg-colored">
   <div class="container">
     <%= render 'payments/list' %>  
@@ -46,8 +55,8 @@
 <% end %>
 
 <div class="container">
-<p class="alert alert-warning">
-If you do not join SIAM before you register, SIAM allows attendees who pay the non-member rate to apply the difference between it and the member rate toward buying an individual membership.  We will continue to offer this option and expand the offer to those who pay the non-member minisymposia organizer or speaker rate. <br/>
-Please visit <%= link_to 'http://www.siam.org/membership', 'http://www.siam.org/membership' %> for information about <strong>joining SIAM</strong>.
-</p>
+  <p class="alert alert-warning">
+  If you do not join SIAM before you register, SIAM allows attendees who pay the non-member rate to apply the difference between it and the member rate toward buying an individual membership.  We will continue to offer this option and expand the offer to those who pay the non-member minisymposia organizer or speaker rate. <br/>
+  Please visit <%= link_to 'http://www.siam.org/membership', 'http://www.siam.org/membership' %> for information about <strong>joining SIAM</strong>.
+  </p>
 </div>
