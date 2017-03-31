@@ -10,6 +10,11 @@ $color_1: #ff7148;
 $color_2: #93b1c6;
 $color_3: #c7d0d5;
 
+$blue: #034563;
+$red:  #E75333;
+
+$section_first_bg_color: $blue;
+$section_second_bg_color: $red;
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic');
 
 $navbar-height: 65px;
@@ -21,8 +26,8 @@ $navbar-default-bg: #fff;
 //$wall-blue: #0f15e5;
 
 $home_second_bg_color: #e9ece5;
-$home_second_bg_color: #ffdc66;
-$home_second_font_color: #000;
+$home_second_bg_color: $blue;
+$home_second_font_color: #fff;
 $venue_text_color: #aee05c;
 
 // sessions

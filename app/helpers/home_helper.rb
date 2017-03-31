@@ -10,7 +10,7 @@ module HomeHelper
   def home_program_title(what, icon = nil)
     %Q%
     <h2><span class="fa-stack fa-lg">
-      <i class="fa fa-square-o fa-stack-2x" style="color: #dc8550;"></i>
+      <i class="fa fa-square-o fa-stack-2x" style="color: #e75333"></i>
       <i class="fa fa-#{icon} fa-stack-1x"></i>
     </span>#{what}</h2>%.html_safe
   end

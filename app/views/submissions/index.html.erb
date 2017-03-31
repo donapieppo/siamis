@@ -1,6 +1,7 @@
+<div class="container">
 <%= program_title('Submissions', 'envelope-o') %>  
 
-<% if current_user and user_in_organizer_committee? %>  
+<% if user_in_organizer_committee? %>  
   <% if @minisymposia %>  
     <h2>Minisymposia</h2>
     <%= render partial: 'conference_sessions/condensed_list', locals: {conference_sessions: @minisymposia} %>  
@@ -17,43 +18,59 @@
   <% end %>
 <% elsif current_user %>
   <% if @presentations.any? or @minisymposia.any? %>
-    <h2>Your submissions</h2>
-    <%= render @presentations %>  
-    <%= render @minisymposia %>  
-    <hr/>
+    <% @presentations.each do |presentation| %>  
+      <% if presentation.in_mono_conference_session? %>  
+        <p>You are speaker in <%= t presentation.parent_class %> (<%= presentation.code %>) <%= presentation %></p>
+      <% else %>
+        <%= render presentation %>  
+      <% end %>
+      <%= render @minisymposia %>  
+    <% end %>
   <% end %>
 <% end %>
+</div>
 
-<p>
+<div class="container">
+  <p>
   SIAM requests that individuals limit themselves to giving <strong>one talk</strong> 
   (this does not apply to invited plenary speakers).<br/>
   The co-chairs of the organizing committee may make exceptions to this request.
-</p>
+  </p>
 
-<p>
+  <p>
   All submissions are subject to <strong>review</strong> and 
   <strong>final approval</strong> by the co-chairs.
-</p>
+  </p>
 
-<p>
-You are invited to contribute a presentation for this conference in one of the following formats:
-</p>
+  <p>
+  You are invited to contribute a presentation for this conference in one of the following formats:
+  </p>
+</div>
 
+<div class="bg-colored">
+  <div class="container">
 
-<h2>Minisymposia</h2>
+    <h2>Minisymposia</h2>
 
-<%= render partial: 'minisymposia/description' %>  
-<%= render partial: 'deadlines/minisymposium_submission' %>  
-<% if current_user and Deadline.can_propose?(:minisymposium) %>  
-  <%= render partial: 'minisymposium_proposal' %>  
-<% end %>
+    <%= render partial: 'minisymposia/description' %>  
+    <%= render partial: 'deadlines/minisymposium_submission' %>  
+    <% if current_user and Deadline.can_propose?(:minisymposium) %>  
+      <%= render partial: 'minisymposium_proposal' %>  
+    <% end %>
+  </div>
+</div>
 
-<h2>Contributed Presentations<br/><small>in Lecture or Poster Format</small></h2>
+<div class="bg-colored">
+  <div class="container">
 
-<%= render partial: 'contributed_sessions/description' %>
-<%= render partial: 'deadlines/presentation_submission' %>  
-<% if current_user and Deadline.can_propose?(:presentation) %>  
-  <%= render partial: 'presentation_proposal' %>  
-<% end %>
+    <h2>Contributed Presentations<br/><small>in Lecture or Poster Format</small></h2>
+
+    <%= render partial: 'contributed_sessions/description' %>
+    <%= render partial: 'deadlines/presentation_submission' %>  
+    <% if current_user and Deadline.can_propose?(:presentation) %>  
+      <%= render partial: 'presentation_proposal' %>  
+    <% end %>
+  </div>
+</div>
 
 

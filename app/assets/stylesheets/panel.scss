@@ -1,17 +1,21 @@
 .siam_panel {
   @extend .panel;
-  @extend .panel-primary;
+  @extend .panel-default;
   .panel-heading {
     text-align: center;
     text-transform: uppercase;
   }
 }
-.plenary_panel {
-  @extend .siam_panel;
-}
-.minitutorial_panel {
-  @extend .siam_panel;
-  .panel-heading { background-color: $minitutorial_color; }
+.plenary_panel, .minitutorial_panel, .mono_conference_session_panel {
+  margin: 30px 0;
+  .speaker_name {
+    text-align: center;
+  }
+  .mono_conference_session_content {
+    font-style: italic;
+    text-align: justify;
+    text-justify: inter-word;
+  }
 }
 
 .minisymposium_panel {

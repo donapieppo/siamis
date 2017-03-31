@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   # helper_method :current_user_owns?, :current_user_owns!, :true_user_can_impersonate?, :user_in_organizer_committee?, :user_in_scientific_committee?
 
-  before_action :change_date, :authenticate_user!, :log_current_user, :check_user_fields, :check_registration
+  before_action :change_date, :authenticate_user!, :log_current_user, :check_user_fields, :set_registration
 
   impersonates :user
 
@@ -25,9 +25,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def check_registration
-    current_user or return true
-    @conference_registration ||= current_user.conference_registration
+  def set_registration
+    (@conference_registration ||= current_user.conference_registration) if current_user
   end
 
   def check_user_fields

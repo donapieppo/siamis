@@ -34,15 +34,26 @@ class User < ApplicationRecord
     self.owns?(what) or raise NoAccess
   end
 
+  # user own 
+  # 1) minisymposium when organizer
+  # 2) presentation when speaker
+  # 3) except for plenaries / minitutorials 
   def owns?(what)
     self.master_of_universe? and return true
     self.in_organizer_committee? and return true
 
     case what
-    when Minisymposium, Minitutorial
+    when Minisymposium
       self.organizer?(what)
+    when Plenary, Minitutorial
+      self.in_organizer_committee?
     when Presentation
-      self.speaker?(what) or self.owns?(what.conference_session)
+      case what.conference_session
+      when Plenary, Minitutorial
+        self.owns?(what.conference_session)
+      else
+        self.speaker?(what)
+      end
     when Role
       self.owns?(what.conference_session || what.presentation)
     else
@@ -64,6 +75,12 @@ class User < ApplicationRecord
 
   def in_local_committee?
     (LOCAL_COMMITTEE).include?(self.email)
+  end
+
+  def no_payment_registration?
+    # Invited speakers, Minitutorial speakers, Prize speakers e Comitato scientifico internazionale (non i locali) 
+    @no_payment_registration ||= (MASTERS_OF_UNIVERSE + ORGANIZER_COMMITTEE + SCIENTIFIC_COMMITTEE + COCHAIRS).include?(self.email) 
+    @no_payment_registration ||= (self.minitutorials.any? || self.minisymposia.any?)
   end
 
   # minisymposium
@@ -92,8 +109,7 @@ class User < ApplicationRecord
   end
 
   def can_register?
-    # FIXME mettere date
-    Deadline.can_register? and self.payments.verified.empty?
+    Deadline.registration_open? and (! self.no_payment_registration) and self.payments.verified.empty? 
   end
 
   def self.cochairs

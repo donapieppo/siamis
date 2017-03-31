@@ -1,14 +1,15 @@
 module ActionsHelper
 
   def common_actions(what)
-    return "&nbsp;".html_safe if user_in_organizer_committee?
+    return "&nbsp;".html_safe if current_user_owns?(what)
+    return "&nbsp;".html_safe if current_user and current_user.speaker?(what)
 
-    actual = current_user.interested_in?(what) ? "not" : ""
+    now_icon = current_user.interested_in?(what) ? "star" : "star-o"
     case what
     when Minisymposium, ConferenceSession, PosterSession
-      link_to icon('eye') + " I'm #{actual} interested", toggle_conference_session_interests_path(what), method: :post
+      link_to icon(now_icon), toggle_conference_session_interests_path(what), method: :post
     when Presentation
-      link_to icon('eye') + " I'm #{actual} interested", toggle_presentation_interests_path(what), method: :post 
+      link_to icon(now_icon), toggle_presentation_interests_path(what), method: :post 
     end
   end
 

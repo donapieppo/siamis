@@ -19,7 +19,7 @@ class PresentationsController < ApplicationController
 
   def show
     @presentation = Presentation.find(params[:id])
-    if @presentation.lonely_in_session?
+    if @presentation.in_mono_conference_session?
       redirect_to @presentation.conference_session and return
     end
   end

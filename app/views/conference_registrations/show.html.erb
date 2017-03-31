@@ -5,18 +5,18 @@
     <h3>Payments</h3>
     <% if @payment %>  
       <p class="alert alert-success">
-        You have paid <%= @payment.amount %> &euro; on <%= l @payment.created_at %>.
+      You have paid <%= @payment.amount %> &euro; on <%= l @payment.created_at %>.
       <% if @conference_registration.single_day %>  
         <br/> You are registered for the day <strong><%= l @conference_registration.single_day %></strong>.
       <% end %>
       </p>
     <% end %>
-</div>
+  </div>
 
-<div class="col-md-6">
-  <h3>Your data</h3>
-  <%= render current_user %>  
-</div>
+  <div class="col-md-6">
+    <h3>Your data</h3>
+    <%= render current_user %>  
+  </div>
 </div>
 
 

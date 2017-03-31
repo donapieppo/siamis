@@ -11,5 +11,12 @@
   <p class="centered"><%= link_to 'Create a Minitutorial Session', new_minitutorial_path, class: :big_button %></p>
 <% end %>
 
-<%= render @minitutorials %>  
+<% @minitutorials.each do |minitutorial| %>  
+  <div class="bg-colored">
+    <div class="container">
+      <%= render minitutorial %>  
+    </div>
+  </div>
+<% end %>
+
 

@@ -30,7 +30,7 @@ class Presentation < ApplicationRecord
     self.conference_session ? self.conference_session.class : ContributedSession
   end
 
-  def lonely_in_session?
+  def in_mono_conference_session?
     self.conference_session.is_a?(Minitutorial) or self.conference_session.is_a?(Plenary)
   end
 

@@ -4,5 +4,11 @@
   <p class="centered"><%= link_to 'Create new Plenary', new_plenary_path, class: :big_button %></p>
 <% end %>
 
-<%= render @plenaries %>  
+<% @plenaries.each do |plenary| %>  
+  <div class="bg-colored">
+    <div class="container">
+      <%= render plenary %>  
+    </div>
+  </div>
+<% end %>
 

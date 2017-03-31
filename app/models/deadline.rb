@@ -73,8 +73,7 @@ class Deadline
       Date.today < first_proposal_start
     end
 
-    # until? FIXME 
-    def can_register?
+    def registration_open?
       t = Date.today
       (t >= pre_registration_start) and (t < Rails.configuration.conference_start_date)
     end

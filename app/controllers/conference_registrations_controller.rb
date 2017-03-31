@@ -8,6 +8,7 @@ class ConferenceRegistrationsController < ApplicationController
   end
 
   def new
+    @no_container = true
     if current_user 
       @fields = User.all_fields
 

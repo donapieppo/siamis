@@ -2,10 +2,7 @@
 <% speaker    = conference_session.speaker %>  
 
 <div class="<%= conference_session_panel_class(conference_session) %>">
-
-<%= panel_heading(conference_session) %>  
-
-<div class="panel-body row">
+  <div class="row">
   <div class="col-md-4">  
     <% if speaker %>
       <div class="speaker-image" style="text-align: center">
@@ -15,35 +12,36 @@
           <i class="fa fa-user-circle" style="font-size: 160px; margin: 20px;" aria-hidden="true"></i>
         <% end %>
       </div>
-
-      <p class="speaker-name centered">
-      <%= user_modal_link(speaker.user) %><br/>
-      <small><%= speaker.user.affiliation %></small>
-      </p>
+      <div class="speaker_name">
+        <h4><%= user_modal_link(speaker.user) %></h4><br/>
+        <small><%= speaker.user.affiliation %></small>
+      </div>
     <% end %>
   </div>
 
   <div class="col-md-8">
-    <p>
-    <em>
-      <% if conference_session.description.blank? %>  
-        <%= speaker.user.biography if speaker %>
-      <% else %>
-        <%= conference_session.description %>
-      <% end %>
-    </em>
+    <div class="title">
+      <h3><%= conference_session %>  <span class="panel-header-code"><%= conference_session.code %></span></h3>
+    </div>
+
+    <p class="mono_conference_session_content">
+    <% if conference_session.description.blank? %>  
+      <%= speaker.user.biography if speaker %>
+    <% else %>
+      <%= conference_session.description %>
+    <% end %>
     </p>
     <% if organizers.any? %>  
-    <p><strong><%= conference_session.organizers_label %>:</strong> <%= show_roles(conference_session.organizers) %></p>
+      <p><strong><%= conference_session.organizers_label %>:</strong> <%= show_roles(conference_session.organizers) %></p>
     <% end %>
   </div>
-</div><!-- body -->
-
-<div class="panel-footer footer-actions">
-  <%= panel_actions(conference_session) %>  
-  <%= schedule(conference_session) %>  
 </div>
-
+<div class="row">
+  <div class="col-md-8 col-md-offset-4 footer-actions">
+    <%= panel_actions(conference_session) %>  
+    <%= schedule(conference_session) %>  
+  </div>
+</div>
 </div>
 
 

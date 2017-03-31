@@ -27,7 +27,7 @@
       <% end %>
 
       <%= dropdown_menu fwicon('user') + ' ATTENDEES' do  %>  
-        <% unless (current_user and @conference_registration) %>  
+        <% unless @conference_registration %>  
           <%= menu_link 'credit-card', 'Registration', new_conference_registration_path %>
         <% end %>
         <%= menu_link 'envelope-o', 'Submissions', submissions_path %>

@@ -2,6 +2,7 @@ class PlenariesController < ConferenceSessionsController
   before_action :user_in_organizer_committee!, except: [:index, :show]
 
   def index
+    @no_container = true
     @plenaries = Plenary.includes(schedule: :room, presentation: [authors: :user], organizers: :user).order('schedules.start').all
   end
 

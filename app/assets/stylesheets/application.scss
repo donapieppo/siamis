@@ -6,12 +6,6 @@
 @import "home";
 @import "panel";
 
-// bootstrap horizontal bug 
-// config/initializers/simple_form_bootstrap.rb
-input.boolean {
-  width: auto;
-  //height: auto;
-}
 body {
   font-family: 'Roboto Condensed', sans-serif;
 }
@@ -22,7 +16,8 @@ body {
 }
 h1 {
   text-transform: uppercase;
-  // text-shadow: 2px 2px 0 $color_2;
+  color: $red;
+  //text-shadow: 2px 2px 0 $blue;
 }
 h1, h2, h3, h4 {
   @extend .centered;
@@ -63,6 +58,12 @@ input[type="submit"] {
   @extend .col-sm-offset-3;
   margin-bottom: 10px;
 }
+// bootstrap horizontal bug 
+// config/initializers/simple_form_bootstrap.rb
+input.boolean {
+  width: auto;
+  //height: auto;
+}
 
 ul li { list-style-type: none; }
 
@@ -71,9 +72,8 @@ ul li { list-style-type: none; }
   padding-top: 30px;
   text-align: center;
   margin-top: 20px;
-  color: $footer_text_color;
-  // background-image: -webkit-radial-gradient(50% 50%, circle, #fff 29%, #EF4734 120%);
-  // background-image: radial-gradient( circle at 50% 50%, #fff 29%, #EF4734 120%);
+  // color: #fff;
+  // background-color: $red;
 }
 
 .breadcrumb {
@@ -101,19 +101,11 @@ ul li { list-style-type: none; }
   }
 }
 .footer-actions {
-  a {
-    @extend .button;
-  }
+  a { @extend .button; }
 }
 
 .new-account-button {
   margin: 10px 20px;
-}
-
-#aula_magna {
-}
-
-#belmeloro {
 }
 
 .future_magic {
@@ -143,6 +135,15 @@ div.hotel-panel {
   width: 80%;
 }
 
-.carousel-control.right, .carousel-control.left {
-  background-image: none;
+.bg-colored {
+  color: #fff;
+  // a { color: #eee; }
 }
+
+.bg-colored:nth-child(even) {
+  background-color: $section_second_bg_color;
+}
+.bg-colored:nth-child(odd) {
+  background-color: $section_first_bg_color;
+}
+  
