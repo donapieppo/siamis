@@ -91,7 +91,7 @@ en:
         salutation: (e.g. Prof., PhD, Jr., Sr., etc.) 
         visible: Check to be included on the list of participants on the SIAM-IS18 web site.
         dietary: Dietary restrictions and food allergies.
-        banquet_tickets: A formal banquet will be held on Wednesday, June 6th. Each ticket costs 65 EURO. 
+        banquet_tickets: A formal banquet will be held on Wednesday, June 6th. The cost of the dinner is 65 euros per every accompanying guest.
     placeholders:
       user: 
         web_page: http://
