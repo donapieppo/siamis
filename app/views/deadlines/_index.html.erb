@@ -6,21 +6,21 @@
       <%= link_to(icon('arrow-circle-right'), submissions_path) if Deadline.can_propose?(:minisymposium) %>  
     </dd>
 
-    <dt><%= l(Deadline.pre_registration_start, format: :deadline) %></dt>
-    <dd>Pre-registration start.</dd>
-
-    <dt><%= l(Deadline.minisymposium_proposal_end, format: :deadline) %></dt>
-    <dd>Minisymposium proposals deadline.</dd>
-
     <dt><%= l(Deadline.presentation_proposal_start, format: :deadline) %></dt>
     <dd>Call for contributed lectures and posters.</dd>
     <dd>Minisymposium presentation abstracts.</dd>
+
+    <dt><%= l(Deadline.minisymposium_proposal_end, format: :deadline) %></dt>
+    <dd>Minisymposium proposals deadline.</dd>
 
     <dt><%= l(Deadline.presentation_proposal_end, format: :deadline) %></dt>
     <dd>Call for presentations closes.</dd>
 
     <dt><%= l(Deadline.presentation_proposal_end, format: :deadline) %></dt>
     <dd>SIAM Student Travel Award and Post-doc/Early Career Travel Award applications deadline.</dd>
+
+    <dt><%= l(Deadline.pre_registration_start, format: :deadline) %></dt>
+    <dd>Pre-registration start.</dd>
 
     <dt><%= l(Deadline.pre_registration_end, format: :deadline) %></dt>
     <dd>Pre-registration deadline.</dd>
