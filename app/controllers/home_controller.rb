@@ -11,6 +11,7 @@ class HomeController < ApplicationController
   end
 
   def venue
+    @no_container = true
   end
 
   def privacy

@@ -1,20 +1,42 @@
 <%= program_title('Venue', 'university') %>  
 
-<iframe src="https://www.google.com/maps/d/embed?mid=15Dgh5CwsVas1_0aZNPID33hsfq4" width="100%" height="500" ></iframe>
 
-<h2>Bologna</h2>
-<p>Bologna, capital of the Emilia Romagna region, is located in a strategic position in the heart of Italy, midway between Milan and Florence.</p>
+<div class="bg-colored">
+  <div class="container">
+    <h2>Bologna</h2>
+    <p>Bologna, capital of the Emilia Romagna region, is located in a strategic position in the heart of Italy, midway between Milan and Florence.</p>
 
-<p>Home to the <strong>oldest university in the world, University of Bologna,</strong> founded in 1088, Bologna hosts thousands of students who enrich the social and cultural life of the city. Famous for its towers and lengthy porticoes, Bologna has a well-preserved historical centre (one of the largest in Italy).</p>
+    <p>Home to the <strong>oldest university in the world, University of Bologna,</strong> founded in 1088, Bologna hosts thousands of students who enrich the social and cultural life of the city. Famous for its towers and lengthy porticoes, Bologna has a well-preserved historical centre (one of the largest in Italy).</p>
+  </div>
 
-<%= image_tag 'bg/bg_pedro.jpg', style: 'width: 100%' %>
+  <%= image_tag 'bg/bg_pedro.jpg', style: 'width: 100%' %>
+</div>
 
-<h2>Aula Magna Santa Lucia</h2>
-<p><strong>Via de' Chiari, 25, 40124 Bologna</strong></p>
+<div class="bg-colored">
+  <div class="container">
+    <h2>Aula Magna Santa Lucia</h2>
+    <p><strong>Via de' Chiari, 25, 40124 Bologna</strong></p>
 
-<p>On the first day of the Conference <strong>Plenary Sessions</strong> will take place in Aula Magna Santa Lucia.</p>  
+    <p>On the first day of the Conference <strong>Plenary Sessions</strong> will take place in Aula Magna Santa Lucia.</p>  
 
-<h2>Complesso Belmeloro</h2>
-<p><strong>Via Belmeloro, 8, 40126 Bologna</strong></p>
-<p><strong>Concurrent sessions</strong> will take place in Complesso Belmeloro.</p>
 
+    <h2>Complesso Belmeloro</h2>
+    <p><strong>Via Belmeloro, 8, 40126 Bologna</strong></p>
+    <p><strong>Concurrent sessions</strong> will take place in Complesso Belmeloro.</p>
+  </div>
+    <%= image_tag 'bg/bg_nettuno.jpg', style: 'width: 100%' %>
+</div>
+
+<div id="map-container">
+  <iframe src="https://www.google.com/maps/d/embed?mid=15Dgh5CwsVas1_0aZNPID33hsfq4" width="100%" height="500" ></iframe>
+</div>
+<%= javascript_tag do  %>  
+  $('#map-container').css('pointer-events: none');
+  $('#map-container')
+    .click(function(){
+      $(this).find('iframe').css('pointer-events: auto');
+    })
+    .mouseleave(function(){
+      $(this).find('iframe').css('pointer-events: none');
+    });
+<% end %>
