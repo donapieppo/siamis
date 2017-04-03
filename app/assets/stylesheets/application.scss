@@ -16,7 +16,7 @@ body {
 }
 h1 {
   text-transform: uppercase;
-  color: $red;
+  color: $blue;
   //text-shadow: 2px 2px 0 $blue;
 }
 h1, h2, h3, h4 {
@@ -135,10 +135,10 @@ div.hotel-panel {
   width: 80%;
 }
 
+
 .bg-colored {
   color: #fff;
 }
-
 .bg-colored:nth-child(even) {
   background-color: $section_second_bg_color;
   a { color: #eee; }
