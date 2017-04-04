@@ -37,7 +37,6 @@ module ConferenceHelper
   def breadcrumbs
     controller.class.to_s =~ /Devise/ and return 
     controller.controller_name == 'home' and return 
-    controller.controller_name == 'users' and return 
     controller.controller_name == 'registrations' and return 
     controller.controller_name == 'passwords' and return 
     content_tag 'ol', class: "breadcrumb" do 
@@ -122,7 +121,7 @@ module ConferenceHelper
 
   def link_to_top
     content_tag :div, style: 'text-align: right; margin-right: 10px' do
-      link_to icon('chevron-circle-up', size: '28'), '#top', class: 'link_to_top'
+      link_to icon('chevron-circle-up', size: '32'), '#top', class: 'link_to_top'
     end
   end
 
