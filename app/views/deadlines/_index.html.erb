@@ -6,12 +6,12 @@
       <%= link_to(icon('arrow-circle-right'), submissions_path) if Deadline.can_propose?(:minisymposium) %>  
     </dd>
 
+    <dt><%= l(Deadline.minisymposium_proposal_end, format: :deadline) %></dt>
+    <dd>Minisymposium proposals deadline.</dd>
+
     <dt><%= l(Deadline.presentation_proposal_start, format: :deadline) %></dt>
     <dd>Call for contributed lectures and posters.</dd>
     <dd>Minisymposium presentation abstracts.</dd>
-
-    <dt><%= l(Deadline.minisymposium_proposal_end, format: :deadline) %></dt>
-    <dd>Minisymposium proposals deadline.</dd>
 
     <dt><%= l(Deadline.presentation_proposal_end, format: :deadline) %></dt>
     <dd>Contributed lecture, Poster and Minisymposium Presentation Abstracts deadline.</dd>
