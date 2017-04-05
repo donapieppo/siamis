@@ -140,4 +140,9 @@ h1.home_header_title {
   }
 }
 
-
+.home_deadlines {
+  @extend .table;
+  td {
+    text-align: right;
+  }
+}
