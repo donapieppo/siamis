@@ -125,7 +125,7 @@ en:
     formats:
       default:  '%B %d, %Y'
       schedule: '%A %d %B %Y'
-      deadline: '%b %d, %Y'
+      deadline: '%d %B %Y'
       day: '%A'
       menu: '%d %B - %A'
       schedule_day_and_hour: '%A %d at %H:%M'
