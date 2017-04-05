@@ -1,31 +1,35 @@
 <% cache 'home_deadlines' do %>
-  <dl class="dl-horizontal">
-    <dt><%= l(Deadline.minisymposium_proposal_start, format: :deadline) %></dt>
-    <dd>
-      Call for Minisymposium proposals.
-      <%= link_to(icon('arrow-circle-right'), submissions_path) if Deadline.can_propose?(:minisymposium) %>  
-    </dd>
+  <div class="centered">
+  <table class="home_deadlines">
+    <tr>
+      <td><%= l(Deadline.minisymposium_proposal_start, format: :deadline) %></td>
+      <td><%= l(Deadline.minisymposium_proposal_end, format: :deadline) %></td>
+      <th>Minisymposium proposals</th>
+    </tr>
 
-    <dt><%= l(Deadline.minisymposium_proposal_end, format: :deadline) %></dt>
-    <dd>Minisymposium proposals deadline.</dd>
+    <tr>
+      <td><%= l(Deadline.presentation_proposal_start, format: :deadline) %></td>
+      <td><%= l(Deadline.presentation_proposal_end, format: :deadline) %></td>
+      <th>Abstracts for contributed and minisymposium speakers</th>
+    </tr>
 
-    <dt><%= l(Deadline.presentation_proposal_start, format: :deadline) %></dt>
-    <dd>Call for contributed lectures and posters.</dd>
-    <dd>Minisymposium presentation abstracts.</dd>
+    <tr>
+      <td><%= l(Deadline.presentation_proposal_start, format: :deadline) %></td>
+      <td><%= l(Deadline.presentation_proposal_end, format: :deadline) %></td>
+      <th>Abstracts for posters</th>
+    </tr>
 
-    <dt><%= l(Deadline.presentation_proposal_end, format: :deadline) %></dt>
-    <dd>Contributed lecture, Poster and Minisymposium Presentation Abstracts deadline.</dd>
+    <tr>
+      <td></td>
+      <td><%= l(Deadline.pre_registration_end, format: :deadline) %></td>
+      <th>Pre-registration deadline</th>
+    </tr>
 
-    <dt><%= l(Deadline.presentation_proposal_end, format: :deadline) %></dt>
-    <dd>SIAM Student Travel Award and Post-doc/Early Career Travel Award applications deadline.</dd>
-
-    <dt><%= l(Deadline.pre_registration_start, format: :deadline) %></dt>
-    <dd>Pre-registration start.</dd>
-
-    <dt><%= l(Deadline.pre_registration_end, format: :deadline) %></dt>
-    <dd>Pre-registration deadline.</dd>
-
-    <dt><%= l(Deadline.conference_start_date, format: :deadline) %></dt>
-    <dd>SIAM IS18 Conference starts.</dd>
-  </dl>
+    <tr>
+      <td></td>
+      <td><%= l(Deadline.conference_start_date, format: :deadline) %></td>
+      <th>SIAM IS18 Conference</th>
+    </tr>
+  </table>
+  </div>
 <% end %>
