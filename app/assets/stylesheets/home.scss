@@ -2,13 +2,13 @@
 .carousel-control.right, .carousel-control.left {
   background-image: none;
 }
-.home_header {
+#home_header_container {
+  position: relative;
   margin-top: -22px;
   #homeCarousel {
     .item {
       background-repeat: no-repeat;
-      background-position: center;
-      background-position: top;
+      background-position: center top;
       background-size: cover; 
       height: 400px;
       @media (min-width: $screen-lg-min) {  
@@ -16,49 +16,48 @@
       }
     }
   }
-}
-#home_header_container {
-  position: absolute; 
-  top: 0px; 
-  width: 100%; 
-}
-h1.home_header_title {
-  span {
-    background-color: rgba(255, 255, 255, 0.50);
-    text-shadow: 1px 1px 0 white;
-  }
-  max-width: 750px;
-  text-align: center; 
-  color: #333; 
-  font-weight: bold; 
-  letter-spacing: .1em;
-  line-height: 1.3em;
+  #home_header {
+    position: absolute; 
+    top: 0px; 
+    width: 100%; 
 
-  margin-top: 20px;
-  margin-bottom: 20px;
-  .home_header_title-date {
-    line-height: 2em;
-    margin-top: 20px;
-    text-transform: capitalize;
-    text-align: center;
-    font-size: 28px;
-  }
+    h1 {
+      span {
+        background-color: rgba(255, 255, 255, 0.50);
+        text-shadow: 1px 1px 0 #fff;
+      }
+      max-width: 750px;
+      text-align: center; 
+      color: $blue; 
+      font-weight: bold; 
+      letter-spacing: .1em;
+      line-height: 1.3em;
 
-  font-size: 38px; 
-  padding-top: 20px;
-  @media (min-width: $screen-lg-min) { 
-    font-size: 42px;
-    padding-top: 40px;
-    span {
-      padding: 10px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      .home_header_title-date {
+        line-height: 2em;
+        margin-top: 20px;
+        text-transform: capitalize;
+        text-align: center;
+        font-size: 28px;
+      }
+
+      font-size: 38px; 
+      padding-top: 20px;
+      @media (min-width: $screen-lg-min) { 
+        font-size: 42px;
+        padding-top: 40px;
+        span {
+          padding: 10px;
+        }
+        line-height: 2.0em;
+        margin-top: 60px;
+        margin-bottom: 60px;
+      }
     }
-    line-height: 2.0em;
-    margin-top: 60px;
-    margin-bottom: 60px;
   }
 }
-
-
 
 .home_content_div {
   h2 {

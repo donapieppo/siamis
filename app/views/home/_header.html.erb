@@ -1,6 +1,5 @@
-<div style="position: relative" class="home_header">
+<div id="home_header_container">
 <div id="homeCarousel" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#homeCarousel" data-slide-to="1"></li>
@@ -8,28 +7,18 @@
     <li data-target="#homeCarousel" data-slide-to="3"></li>
   </ol>
 
-  <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
-    <div class="item active" style="background: url(<%= image_url('bg/bg_pedro.jpg')%>) center center; background-size: cover;">
-      &nbsp;
-    </div>
+    <div class="item active" style="background: url(<%= image_url('bg/bg_pedro.jpg')%>) center center; background-size: cover;"> &nbsp; </div>
 
-    <div class="item" style="background: url(<%= image_url('bg/bg_nettuno.jpg')%>) top left; background-size: cover;">
-      &nbsp;
-    </div>
+    <div class="item" style="background: url(<%= image_url('bg/bg_nettuno.jpg')%>) top left; background-size: cover;"> &nbsp; </div>
 
-    <div class="item" style="background: url(<%= image_url('bg/bg_torri.jpg')%>) top center; background-size: cover;">
-      &nbsp;
-    </div>
+    <div class="item" style="background: url(<%= image_url('bg/bg_torri.jpg')%>) top center; background-size: cover;"> &nbsp; </div>
 
-    <div class="item" style="background: url(<%= image_url('bg/bg_red.jpg')%>) bottom center; background-size: cover;">
-      &nbsp;
-    </div>
+    <div class="item" style="background: url(<%= image_url('bg/bg_wikipedia.jpg')%>) bottom center; background-size: cover;"> &nbsp; </div>
   </div>
+</div><!-- carousel -->
 
-</div>
-
-<div class="container" id="home_header_container">
+<div class="container" id="home_header">
   <!-- Left and right controls -->
   <a class="left carousel-control" href="#homeCarousel" role="button" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -39,7 +28,7 @@
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-  <h1 class="home_header_title">
+  <h1>
     <span>SIAM Conference on</span> <br/>
     <span>IMAGING SCIENCE</span><br/>
     <div class="home_header_title-date">
@@ -47,6 +36,6 @@
       <span> Bologna - Italy</span>
     </div>
   </h1>
-</div>
-</div>
+</div><!-- home_header_container -->
+</div><!-- home_header --> 
 
