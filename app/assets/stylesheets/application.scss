@@ -16,7 +16,7 @@ body {
 }
 h1 {
   text-transform: uppercase;
-  color: $blue;
+  // color: $blue;
   //text-shadow: 2px 2px 0 $blue;
 }
 h1, h2, h3, h4 {
@@ -24,8 +24,10 @@ h1, h2, h3, h4 {
   font-weight: 300;
 }
 h1.program {
-  //letter-spacing: -2px;
   margin-bottom: 36px;
+  border: 3px solid #000;
+  display: inline-block;
+  padding: .5em;
 }
 
 .button {
@@ -68,11 +70,11 @@ input.boolean {
 ul li { list-style-type: none; }
 
 #footer {
-  padding: 60px 0;
+  padding: 60px 0 30px 0;
   text-align: center;
-  //color: #fff;
-  //a {color: #ccc;}
-  //background-color: #3D4047;
+  // color: #fff;
+  // a {color: #ccc;}
+  // background-color: $footer_color;
 }
 
 .breadcrumb {
@@ -132,18 +134,18 @@ div.hotel-panel {
   width: 80%;
 }
 
-
-.bg-colored {
-  color: #fff;
+.bg-colored, .bg-transparent {
   padding-top: 30px;
   padding-bottom: 30px;
 }
 .bg-colored:nth-child(even) {
   background-color: $section_second_bg_color;
+  color: #fff;
   a { color: #eee; }
 }
 .bg-colored:nth-child(odd) {
   background-color: $section_first_bg_color;
+  color: #fff;
   a { color: #eee; }
 }
   
