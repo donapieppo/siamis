@@ -142,6 +142,7 @@
 
 .home_deadlines {
   @extend .table;
+  max-width: 800px;
   td {
     text-align: right;
   }
