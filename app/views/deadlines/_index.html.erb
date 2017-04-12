@@ -1,6 +1,5 @@
 <% cache 'home_deadlines' do %>
-  <div class="centered">
-  <table class="home_deadlines">
+  <table class="home_deadlines centered">
     <tr>
       <td><%= l(Deadline.minisymposium_proposal_start, format: :deadline) %></td>
       <td><%= l(Deadline.minisymposium_proposal_end, format: :deadline) %></td>
@@ -31,5 +30,4 @@
       <th>SIAM IS18 Conference</th>
     </tr>
   </table>
-  </div>
 <% end %>
