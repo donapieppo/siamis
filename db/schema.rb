@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "name"
     t.string "address"
     t.string "city"
+    t.float  "lat",     limit: 24
+    t.float  "lng",     limit: 24
   end
 
   create_table "conference_registrations", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -55,6 +57,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.boolean "tax"
     t.string  "web_page"
     t.string  "image"
+    t.float   "lat",                limit: 24
+    t.float   "lng",                limit: 24
   end
 
   create_table "interests", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
