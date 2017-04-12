@@ -9,5 +9,9 @@ class Hotel < ApplicationRecord
    'hotels/' + self.image 
   end
 
+  def self.geocodes
+    self.all.map {|hotel| [hotel.lat, hotel.lng, hotel.name, hotel.address, hotel.id]}
+  end
+
 end
 

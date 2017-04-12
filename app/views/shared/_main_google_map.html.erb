@@ -1,0 +1,81 @@
+<div id="map" style="height: 500px; width: 100%"></div>
+<%= javascript_tag do %>  
+  var map; // global
+
+  var belmeloro    = {lat: 44.4954923, lng: 11.3550045};
+  var hotels       = <%= raw Hotel.geocodes.to_json %>;
+  var santa_lucia  = {lat: 44.4899831, lng: 11.3487226};
+
+  var hotel_page_url = '<%= hotels_url %>';
+
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                minZoom: 13,
+                center: belmeloro,
+                scrollwheel: false
+    });
+
+    // BELMELORO
+    var belmelorowindow = new google.maps.InfoWindow({content: 'Main conference site: Complesso Belmeloro'});
+    var belmeloro_marker = new google.maps.Marker({ position: belmeloro,
+                                          map: map, 
+                                          title: '<strong>Main conference site:</strong><br/>Complesso Belmeloro',
+                                          label: {
+                                            fontFamily: 'Fontawesome',
+                                            text: '\uf015',
+                                            fontSize: '32px',
+                                          },
+                                        });
+    google.maps.event.addListener(belmeloro_marker, 'click', function() { belmelorowindow.open(map, belmeloro_marker); });
+
+    // AULA MAGNA
+    var santa_lucia_info = new google.maps.InfoWindow({content: 'First day Plenary Sessions: Aula Magna Santa Lucia'});
+    var santa_lucia_marker = new google.maps.Marker({ position: santa_lucia,
+                                          map: map, 
+                                          title: '<strong>Main conference site:</strong> <br/> Complesso Belmeloro',
+                                          label: {
+                                            fontFamily: 'Fontawesome',
+                                            text: '\uf015',
+                                            fontSize: '32px',
+                                          },
+                                        });
+    google.maps.event.addListener(santa_lucia_marker, 'click', function() { santa_lucia_info.open(map, santa_lucia_marker); });
+
+    // HOTELS
+    var hotel_markers = {};
+    hotels.forEach(function(item, index) {
+      var hotel_id = item[4];
+      var hotel_description = '<strong><a href="' + hotel_page_url + '#hotel_' + hotel_id + '">' + item[2] + '</a></strong>' + '<br/>' + item[3];
+      var hotel_info = new google.maps.InfoWindow({ content: hotel_description });
+
+      hotel_markers[hotel_id] = new google.maps.Marker({ position: {lat: item[0], lng: item[1]}, 
+                                                         map: map, 
+                                                         title: item[2],
+                                                         label: {
+                                                           fontFamily: 'Fontawesome',
+                                                           text: '\uf236'
+                                                         },
+                                                       });
+      google.maps.event.addListener( hotel_markers[hotel_id], 'click', 
+                                     function() { hotel_info.open(map, hotel_markers[hotel_id]); 
+                                                  $(".hotel-panel").css('box-shadow', 'none');
+                                                  $("#hotel_" + hotel_id).css('box-shadow', '10px 10px 5px #888888') 
+                                   });
+    });
+
+    $('.hotel_address_link').click(function(e) {
+      var hotelid = $(this).data('hotelid');
+      google.maps.event.trigger(hotel_markers[hotelid], 'click');
+      map.setCenter(hotel_markers[hotelid].position); 
+      window.location.href = '#map';
+      e.preventDefault();
+    });
+  };
+<% end %>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['SIAMIS_GOOGLE_MAP_API_KEY'] %>&callback=initMap&libraries=places">
+</script>
+
+
