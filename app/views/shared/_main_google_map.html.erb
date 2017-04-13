@@ -3,18 +3,18 @@
   var map; // global
 
   var belmeloro    = {lat: 44.4954923, lng: 11.3550045};
-  var hotels       = <%= raw Hotel.geocodes.to_json %>;
   var santa_lucia  = {lat: 44.4899831, lng: 11.3487226};
+  var hotels       = <%= raw Hotel.geocodes.to_json %>;
 
   var hotel_page_url = '<%= hotels_url %>';
+  var map_options    = { zoom: 15,
+                         minZoom: 13,
+                         center: belmeloro,
+                         scrollwheel: false }
+
 
   function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 15,
-                minZoom: 13,
-                center: belmeloro,
-                scrollwheel: false
-    });
+    map = new google.maps.Map(document.getElementById('map'), map_options);
 
     // BELMELORO
     var belmelorowindow = new google.maps.InfoWindow({content: 'Main conference site: Complesso Belmeloro'});
@@ -24,7 +24,6 @@
                                           label: {
                                             fontFamily: 'Fontawesome',
                                             text: '\uf015',
-                                            fontSize: '32px',
                                           },
                                         });
     google.maps.event.addListener(belmeloro_marker, 'click', function() { belmelorowindow.open(map, belmeloro_marker); });
@@ -37,7 +36,6 @@
                                           label: {
                                             fontFamily: 'Fontawesome',
                                             text: '\uf015',
-                                            fontSize: '32px',
                                           },
                                         });
     google.maps.event.addListener(santa_lucia_marker, 'click', function() { santa_lucia_info.open(map, santa_lucia_marker); });
