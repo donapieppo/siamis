@@ -7,6 +7,12 @@ module HomeHelper
     end 
   end
 
+  def link_to_top
+    content_tag :div, style: 'text-align: right; margin-right: 10px' do
+      link_to icon('angle-up', size: '32'), '#top', class: 'link_to_top'
+    end
+  end
+
   def home_program_title(what, icon = nil)
     %Q%
     <h2><span class="fa-stack fa-lg">

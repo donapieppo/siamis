@@ -121,12 +121,6 @@ module ConferenceHelper
     res
   end
 
-  def link_to_top
-    content_tag :div, style: 'text-align: right; margin-right: 10px' do
-      link_to icon('chevron-up', size: '26'), '#top', class: 'link_to_top'
-    end
-  end
-
   # plenary_panel
   # minitutorial_panel
   def conference_session_panel_class(conference_session)
@@ -152,6 +146,14 @@ module ConferenceHelper
       'lightgreen'
     when Plenary
       'yellow'
+    end
+  end
+
+  def user_photo(user, small: false)
+    if asset_exist?(user.photo_asset)  
+      image_tag(user.photo_asset, width: (small ?  100 : 250), class: 'img-rounded')
+    else
+      '<i class="fa fa-user-circle" style="font-size: 160px; margin: 20px;" aria-hidden="true"></i>'.html_safe
     end
   end
 

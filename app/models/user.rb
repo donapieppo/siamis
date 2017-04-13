@@ -151,6 +151,12 @@ class User < ApplicationRecord
     visible_ids = User.where(visible: true).ids
     User.where(id: (active_ids + visible_ids).uniq)
   end
+
+  def photo_asset
+    unless self.email.blank?
+      "speakers/#{self.email}.jpg"
+    end
+  end
 end
 
 

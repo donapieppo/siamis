@@ -1,4 +1,4 @@
 $('#main-modal').modal('show');
-$(".modal-title").html("<h4><%= escape_javascript(big_icon('user-circle')) %> <%= escape_javascript(@user.cn) %></h4>");
+$(".modal-title").html("<h4><%= escape_javascript(user_photo(@user, small: true)) %> <%= escape_javascript(@user.cn) %></h4>");
 $(".modal-body").html("<%= escape_javascript(render(@user)) %>");
 

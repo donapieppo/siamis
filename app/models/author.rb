@@ -7,9 +7,4 @@ class Author < Role
     end
   end
 
-  def photo_asset
-    unless self.user.email.blank?
-      "speakers/#{self.user.email}.jpg"
-    end
-  end
 end
