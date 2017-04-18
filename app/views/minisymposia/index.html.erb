@@ -1,8 +1,7 @@
 <%= program_title('Minisymposia', 'users') %>  
 
 <%= render partial: 'description' %>  
-
 <%= render partial: 'deadlines/minisymposium_submission' %>  
 
-<%= render partial: 'conference_sessions/condensed_list', locals: {conference_sessions: @minisymposia} %>  
+<%= render @minisymposia, condensed: true %>
 

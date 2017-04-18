@@ -1,29 +1,4 @@
-<h1>
-<%= params[:minisymposia] ? 'Minisymposia' : 'Submissions' %> Ratings 
-<small>(Scientific Committee)</small>
-</h1>
+<h1><%= params[:minisymposia] ? 'Minisymposia' : 'Submissions' %> Ratings</h1>
 
-<div class="list-group">
-  <% @list.each do |submission| %>  
-    <div class="list-group-item">
-      (<%= submission.code %>) <%= link_to submission, submission %> 
-    <em> by: <%= # not use for eager loading users_list(submission) 
-                 submission.roles.map{|r| r.user.cn }.join(', ') %></em>
-    <% if submission.accepted? %>  
-      <p><span class="label label-success"><%= icon(:check) %> Accepted</span></p>
-    <% else %>  
-      <ul>
-        <% submission.ratings.each do |rating| %>  
-          <li>
-            <%= rating_stars(rating.score) %> 
-            <%= rating.user %> 
-            <em>(<%= rating.notes %>)</em>  
-            <%= icon('check') if (rating.user_id == current_user.id) %>  
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
-    </div>
-  <% end %> 
-</div>
+<%= render @list, condensed: true %>  
 

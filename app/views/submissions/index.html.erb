@@ -4,23 +4,24 @@
 <% if user_in_organizer_committee? %>  
   <% if @minisymposia %>  
     <h2>Minisymposia</h2>
-    <%= render partial: 'conference_sessions/condensed_list', locals: {conference_sessions: @minisymposia} %>  
+    <%= render @minisymposia, condensed: true %>
   <% end %>
 
   <% if @unassigned_presentations %>  
     <h2>Presentations <small>(unassigned)</small></h2>
-    <%= render partial: 'presentations/condensed_list', locals: {presentations: @unassigned_presentations} %>  
+    <%= render @unassigned_presentations, condensed: true %>  
   <% end %>
 
   <% if @posters %>  
     <h2>Posters <small>(unassigned)</small></h2>
-    <%= render partial: 'presentations/condensed_list', locals: {presentations: @posters} %>  
+    <%= render @posters, condensed: true %>
   <% end %>
 <% elsif current_user %>
   <% if @presentations.any? or @minisymposia.any? %>
     <% @presentations.each do |presentation| %>  
       <% if presentation.in_mono_conference_session? %>  
-        <p>You are speaker in <%= t presentation.parent_class %> (<%= presentation.code %>) <%= presentation %></p>
+        <p class="alert alert-success">You are speaker in <%= t presentation.parent_class %> (<%= presentation.code %>)
+        <%= link_to presentation, presentation %></p>
       <% else %>
         <%= render presentation %>  
       <% end %>
@@ -49,7 +50,7 @@
   </div>
 </div>
 
-<div class="bg-colored">
+<div class="bg-colored-first">
   <div class="container">
 
     <h2>Minisymposia</h2>
@@ -62,10 +63,10 @@
   </div>
 </div>
 
-<div class="bg-colored">
+<div class="bg-colored-second">
   <div class="container">
 
-    <h2>Contributed Presentations<br/><small>in Lecture or Poster Format</small></h2>
+    <h2>Contributed Presentations</h2>
 
     <%= render partial: 'contributed_sessions/description' %>
     <%= render partial: 'deadlines/presentation_submission' %>  
