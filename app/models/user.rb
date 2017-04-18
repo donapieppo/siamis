@@ -51,6 +51,9 @@ class User < ApplicationRecord
       case what.conference_session
       when Plenary, Minitutorial
         self.owns?(what.conference_session)
+      when Minisymposium
+        # FIXME dependas on date probably
+        self.owns?(what.conference_session)
       else
         self.speaker?(what)
       end
