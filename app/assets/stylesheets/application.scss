@@ -100,7 +100,10 @@ ul li { list-style-type: none; }
   }
 }
 .footer-actions {
-  a { @extend .button; }
+  a { 
+    @extend .button; 
+    margin-right: 2px;
+  }
 }
 
 .future_magic {
@@ -134,14 +137,20 @@ div.hotel-panel {
   padding-top: 30px;
   padding-bottom: 30px;
 }
-.bg-colored:nth-child(even) {
+.bg-colored-first {
+  background-color: $section_first_bg_color;
+  color: #fff;
+  a { color: #eee; }
+}
+.bg-colored-second {
   background-color: $section_second_bg_color;
   color: #fff;
   a { color: #eee; }
 }
+.bg-colored:nth-child(even) {
+  @extend .bg-colored-first;
+}
 .bg-colored:nth-child(odd) {
-  background-color: $section_first_bg_color;
-  color: #fff;
-  a { color: #eee; }
+  @extend .bg-colored-second;
 }
   
