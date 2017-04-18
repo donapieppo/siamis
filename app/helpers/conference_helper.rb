@@ -133,6 +133,10 @@ module ConferenceHelper
       presentations.each do |presentation| 
         concat(content_tag(:dd, link_to(presentation, presentation) + " <span class='pull-right'>#{show_role(presentation.speaker)}</span>".html_safe))
       end
+      # bug butstrap dl-horizontal
+      if presentations.empty?
+        concat(content_tag(:dd, "&nbsp;".html_safe))
+      end
     end
   end
 
