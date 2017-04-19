@@ -1,7 +1,7 @@
 module MenuHelper
 
-  def login_link
-    link_to 'Sign-in / Register', new_user_session_path
+  def login_link(button: false)
+    link_to 'Sign-in / Register', new_user_session_path, class: button ? 'button' : ''
   end
 
   def logout_link
