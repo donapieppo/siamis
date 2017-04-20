@@ -2,7 +2,7 @@ module ActionsHelper
 
   def common_actions(what)
     return "&nbsp;".html_safe if current_user_owns?(what)
-    return "&nbsp;".html_safe if current_user and current_user.speaker?(what)
+    # FIXME return "&nbsp;".html_safe if current_user and current_user.speaker?(what)
 
     now_icon = current_user.interested_in?(what) ? "star" : "star-o"
     title    = current_user.interested_in?(what) ? "click if you are no nore interested" : "click to express interest" 
@@ -18,8 +18,8 @@ module ActionsHelper
     return "&nbsp;".html_safe unless current_user_owns?(what)
 
     capture do 
-      t = (what.is_a?(Presentation) and what.authors.size > 1) ? ' edit or modify speaker' : ' edit'
-      concat(link_to icon('pencil') + t, [:edit, what])
+      txt = (what.is_a?(Presentation) and what.authors.size > 1) ? ' edit or modify speaker' : ' edit'
+      concat(link_to icon('pencil') + txt, [:edit, what])
 
       # plenary, minitutorial
       if what.respond_to?(:chairs) 
