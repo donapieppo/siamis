@@ -5,7 +5,8 @@
   </h3>
 </div>
 <div class="panel-body">
-  <p><%= icon('map-marker') %><%= link_to hotel.address, '#', class: "hotel_address_link", data: {hotelid: hotel.id} %></p>
+  <p><%= link_to icon('external-link') + " web page", hotel.web_page, target: :new %></p>
+  <p><%= link_to icon('map-marker')    + " " + hotel.address, '#', class: "hotel_address_link", data: {hotelid: hotel.id} %></p>
 
   <p><i><%= hotel.description %></i></p>
 
