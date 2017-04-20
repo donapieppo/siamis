@@ -1,1 +1,2 @@
-<%= render 'conference_sessions/conference_session', conference_session: minisymposium, condensed: (defined?(condensed) && condensed) %>  
+<% condensed ||= false %>  
+<%= render 'conference_sessions/conference_session', conference_session: minisymposium, condensed: condensed %>  
