@@ -1,4 +1,4 @@
-<div id="map" style="height: 500px; width: 100%"></div>
+<div id="map" style="height: 650px; width: 100%"></div>
 <%= javascript_tag do %>  
   var map; // global
 
@@ -21,9 +21,12 @@
     var belmeloro_marker = new google.maps.Marker({ position: belmeloro,
                                           map: map, 
                                           title: '<strong>Main conference site:</strong><br/>Complesso Belmeloro',
+                                          icon: 'sailing', 
                                           label: {
                                             fontFamily: 'Fontawesome',
                                             text: '\uf015',
+                                            fontSize: '28px', 
+                                            color: 'blue'
                                           },
                                         });
     google.maps.event.addListener(belmeloro_marker, 'click', function() { belmelorowindow.open(map, belmeloro_marker); });
@@ -33,9 +36,12 @@
     var santa_lucia_marker = new google.maps.Marker({ position: santa_lucia,
                                           map: map, 
                                           title: '<strong>Main conference site:</strong> <br/> Complesso Belmeloro',
+                                          icon: 'sailing', 
                                           label: {
                                             fontFamily: 'Fontawesome',
-                                            text: '\uf015',
+                                            text: '\uf005',
+                                            fontSize: '28px',
+                                            color: 'blue'
                                           },
                                         });
     google.maps.event.addListener(santa_lucia_marker, 'click', function() { santa_lucia_info.open(map, santa_lucia_marker); });
@@ -50,9 +56,12 @@
       hotel_markers[hotel_id] = new google.maps.Marker({ position: {lat: item[0], lng: item[1]}, 
                                                          map: map, 
                                                          title: item[2],
+                                                         icon: 'sailing', 
                                                          label: {
                                                            fontFamily: 'Fontawesome',
-                                                           text: '\uf236'
+                                                           text: '\uf236', 
+                                                           fontSize: '22px', 
+                                                           color: 'purple'
                                                          },
                                                        });
       google.maps.event.addListener( hotel_markers[hotel_id], 'click', 
