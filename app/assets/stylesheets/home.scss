@@ -135,8 +135,20 @@
 
 #sponsors {
   @extend .home_content_div;
+}
+
+.sponsor {
+  @extend .col-md-3;
+  text-align: center;
   h3 {
     font-size: 18px;
+  }
+  div {
+    @extend .centered;
+  }
+  img {
+    @extend .img-responsive;
+    @extend .centered;
   }
 }
 

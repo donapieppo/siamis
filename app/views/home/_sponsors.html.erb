@@ -1,56 +1,25 @@
-<%= home_program_title("Sponsors", 'gift') %>  
+<%= home_program_title('Sponsors', 'gift') %>  
+
+<hr/>
 
 <div class="row">
-  <div class="sponsor col-md-4">
-    <a href="http://www.unibo.it" target="_new">
-      <p class="centered"><%= image_tag 'sponsors/unibo.jpg' %></p>
-      <h3>Alma Mater Studiorum Università di Bologna<br/><small>Department of Mathematics</small>
-      </h3>
-    </a>
-  </div>
-
-  <div class="sponsor col-md-4">
-    <a href="http://www.siam.org" target="_new">
-      <p class="centered"><%= image_tag 'sponsors/siam.png' %></p>
-      <h3>Society for Industrial and Applied Mathematics</h3>
-    </a>
-  </div>
-
-  <div class="sponsor col-md-4">
-    <a href="http://signalprocessingsociety.org" target="_new">
-      <p class="centered"><%= image_tag 'sponsors/ieee.png' %></p>
-      <h3>IEEE Signal processing Society</h3>
-    </a>
-  </div>
+  <div class="sponsor"><h3>Organized by</h3></div>
+  <%= sponsor_div("Department of Mathematics<br/><small>University of Bologna</small>", "http://www.unibo.it", "unibo.jpg") %>  
+  <%= sponsor_div("Society for Industrial and Applied Mathematics", "http://www.siam.org", "siam.png") %>  
+  <%= sponsor_div("IEEE Signal processing Society", "http://signalprocessingsociety.org", "ieee.png") %>  
 </div>
+
+<hr/>
 
 <div class="row">
-  <div class="sponsor col-md-4">
-    <a href="http://www.simai.eu/en" target="_new">
-      <p class="centered"><%= image_tag 'sponsors/simai.png' %></p>
-      <h3>SIMAI <br/> <small>Italian Society for Applied and Industrial Mathemathics</small></h3>
-    </a>
-  </div>
-  <div class="sponsor col-md-4">
-    <a href="https://www.cineca.it" target="_new">
-      <p class="centered"><%= image_tag 'sponsors/cineca.png' %></p>
-      <h3>CINECA</h3>
-    </a>
-  </div>
-  <div class="sponsor col-md-4">
-    <a href="http://www.bper.it" target="_new">
-      <p class="centered"><%= image_tag 'sponsors/bper.png' %></p>
-      <h3>BPER Banca</h3>
-    </a>
-  </div>
+  <div class="sponsor"><h3>Under the patronage of</h3></div>
+  <%= sponsor_div("CINECA", "https://www.cineca.it", "cineca.png") %>  
+  <%= sponsor_div("BPER Banca", "http://www.bper.it", "bper.png") %>  
+  <%= sponsor_div("Accademia delle scienze", "http://www.accademiascienzebologna.it", "accademiascienzebologna.png") %>  
 </div>
 <div class="row">
-  <div class="sponsor col-md-4">
-    <a href="https://www.gamm-ev.de" target="_new">
-      <p class="centered"><%= image_tag 'sponsors/Ohne_Schriftzug.jpg', width: 100 %></p>
-      <h3>Gesellschaft für Angewandte Mathematik und Mechanik e.V.</h3>
-    </a>
-  </div>
-</div>
+  <div class="sponsor">&nbsp;</div>
+  <%= sponsor_div("SIMAI <br/> <small>Italian Society for Applied and Industrial Mathemathics</small>", "http://www.simai.eu/en", "simai.png") %>  
+  <%= sponsor_div("Gesellschaft für Angewandte Mathematik und Mechanik e.V.", "https://www.gamm-ev.de", "Ohne_Schriftzug.jpg") %>  
 </div>
 

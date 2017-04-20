@@ -1,6 +1,9 @@
 .siam_panel {
   @extend .panel;
   @extend .panel-default;
+  .description {
+    font-style: italic;
+  }
   .panel-heading {
     text-align: center;
     text-transform: uppercase;
