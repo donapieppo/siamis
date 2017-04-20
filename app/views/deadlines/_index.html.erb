@@ -3,7 +3,11 @@
     <tr>
       <td><%= l(Deadline.minisymposium_proposal_start, format: :deadline) %></td>
       <td><%= l(Deadline.minisymposium_proposal_end, format: :deadline) %></td>
-      <th>Minisymposium proposals</th>
+      <th>Minisymposium proposals
+        <% if Deadline.can_propose?(:minisymposium) %>
+          &nbsp; <%= link_to icon('hand-o-right'), submissions_path %>
+        <% end %>
+      </th>
     </tr>
 
     <tr>
