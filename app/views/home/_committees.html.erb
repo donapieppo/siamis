@@ -3,14 +3,14 @@
 <div class="row">
   <% cache 'home_organizing_committee' do %>
     <div class="col-md-6">
-      <h4>Co-chairs: </h4>
+      <h4>General Co-Chairs:</h4>
       <ul>
         <% User.cochairs.each do |user| %>  
           <li><%= link_to user.cn, user.web_page, target: "_blank" %> <small>(<%= user.affiliation %>)</small></li>
         <% end %>
       </ul>
 
-      <h4>Members: </h4>
+      <h4>Scientific Committee:</h4>
       <ul>
         <% User.scientific_committee.each do |user| %>  
           <li><%= link_to user.cn, user.web_page, target: "_blank" %> <small>(<%= user.affiliation %>)</small></li>
