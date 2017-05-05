@@ -1,10 +1,12 @@
+<% what = @conference_session || @presentation %>  
+
 <h1>Add <%= @role.class %></h1>
 
 <p class="alert alert-info">
-  Please submit e-mail for <%= @role.class.to_s.downcase %> in "<em><%= @conference_session || @presentation%></em>".
+  Please submit e-mail for <%= @role.class.to_s.downcase %> in "<em><%= what %></em>".
 </p>
 
-<%= simple_form_for [@conference_session || @presentation, @role] do |role| %>  
+<%= simple_form_for [what, @role] do |role| %>  
   <%= role.error_notification %>  
 
   <% uncorrect_email = (@role.email.blank? or @role.errors[:email].any?) %> 
@@ -17,7 +19,7 @@
     <%= role.input :surname, required: true %>  
     <%= role.input :affiliation, required: true %>  
   <% end %>
-  <%= role.submit 'Add' %>  
+  <%= role.submit 'Add' %> - <%= link_to_back what %>  
 <% end %>
 
 
