@@ -20,4 +20,7 @@ class HomeController < ApplicationController
   def participants
     @participants = User.partecipants.order('surname, name')
   end
+
+  def travel_awards
+  end
 end
