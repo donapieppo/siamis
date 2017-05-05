@@ -5,10 +5,6 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 ActionsHelper	app/helpers/actions_helper.rb	/^module ActionsHelper$/;"	m
-ActiveSupport	test/test_helper.rb	/^class ActiveSupport::TestCase$/;"	c
-Application	config/application.rb	/^  class Application < Rails::Application$/;"	c	class:Siamis
-Application	config/initializers/conference.rb	/^  class Application < Rails::Application$/;"	c	class:Siamis
-Application	doc/conference.rb	/^  class Application < Rails::Application$/;"	c	class:Siamis
 ApplicationCable	app/channels/application_cable/channel.rb	/^module ApplicationCable$/;"	m
 ApplicationCable	app/channels/application_cable/connection.rb	/^module ApplicationCable$/;"	m
 ApplicationController	app/controllers/application_controller.rb	/^class ApplicationController < ActionController::Base$/;"	c
@@ -21,6 +17,7 @@ AuthorsController	app/controllers/authors_controller.rb	/^class AuthorsControlle
 Building	app/models/building.rb	/^class Building < ApplicationRecord$/;"	c
 Channel	app/channels/application_cable/channel.rb	/^  class Channel < ActionCable::Channel::Base$/;"	c	class:ApplicationCable
 ConferenceHelper	app/helpers/conference_helper.rb	/^module ConferenceHelper$/;"	m
+ConferencePlaces	app/models/conference_places.rb	/^class ConferencePlaces < ApplicationRecord$/;"	c
 ConferenceRegistration	app/models/conference_registration.rb	/^class ConferenceRegistration < ApplicationRecord$/;"	c
 ConferenceRegistrationsController	app/controllers/conference_registrations_controller.rb	/^class ConferenceRegistrationsController < ApplicationController$/;"	c
 ConferenceSession	app/models/conference_session.rb	/^class ConferenceSession < ApplicationRecord$/;"	c
@@ -30,8 +27,6 @@ ContributedSession	app/models/contributed_session.rb	/^class ContributedSession 
 ContributedSessionsController	app/controllers/contributed_sessions_controller.rb	/^class ContributedSessionsController < ConferenceSessionsController$/;"	c
 Deadline	app/models/deadline.rb	/^class Deadline$/;"	c
 DeadlineHelper	app/helpers/deadline_helper.rb	/^module DeadlineHelper$/;"	m
-DevelopmentMailInterceptor	config/initializers/setup_mail.rb	/^class DevelopmentMailInterceptor  $/;"	c
-DevelopmentMailInterceptor	lib/development_mail_interceptor.rb	/^class DevelopmentMailInterceptor  $/;"	c
 ErrorResponse	app/models/unicredit.rb	/^  class ErrorResponse  < RuntimeError; end$/;"	c	class:Unicredit
 Fee	app/models/fee.rb	/^class Fee$/;"	c
 HomeController	app/controllers/home_controller.rb	/^class HomeController < ApplicationController$/;"	c
@@ -47,10 +42,6 @@ MinisymposiaController	app/controllers/minisymposia_controller.rb	/^class Minisy
 Minisymposium	app/models/minisymposium.rb	/^class Minisymposium < ConferenceSession$/;"	c
 Minitutorial	app/models/minitutorial.rb	/^class Minitutorial < ConferenceSession$/;"	c
 MinitutorialsController	app/controllers/minitutorials_controller.rb	/^class MinitutorialsController < ConferenceSessionsController$/;"	c
-MismatchOrganization	config/initializers/errors.rb	/^class MismatchOrganization < RuntimeError; end$/;"	c
-NoAccess	config/initializers/errors.rb	/^class NoAccess             < RuntimeError; end$/;"	c
-NotAuthorized	config/initializers/errors.rb	/^class NotAuthorized        < RuntimeError; end$/;"	c
-NotOwner	config/initializers/errors.rb	/^class NotOwner             < RuntimeError; end$/;"	c
 NotificationMailer	app/mailers/notification_mailer.rb	/^class NotificationMailer < ApplicationMailer$/;"	c
 Organizer	app/models/organizer.rb	/^class Organizer < Role$/;"	c
 OrganizersController	app/controllers/organizers_controller.rb	/^class OrganizersController < RolesController$/;"	c
@@ -65,7 +56,6 @@ PosterSessionsController	app/controllers/poster_sessions_controller.rb	/^class P
 Presentation	app/models/presentation.rb	/^class Presentation < ApplicationRecord$/;"	c
 PresentationsController	app/controllers/presentations_controller.rb	/^class PresentationsController < ApplicationController$/;"	c
 PrivacyHelper	app/helpers/privacy_helper.rb	/^module PrivacyHelper $/;"	m
-ProposalClose	config/initializers/errors.rb	/^class ProposalClose        < RuntimeError; end$/;"	c
 Rating	app/models/rating.rb	/^class Rating < ApplicationRecord$/;"	c
 RatingsController	app/controllers/ratings_controller.rb	/^class RatingsController < ApplicationController$/;"	c
 RegistrationsController	app/controllers/registrations_controller.rb	/^class RegistrationsController < Devise::RegistrationsController$/;"	c
@@ -78,9 +68,6 @@ ScheduleDayInput	app/inputs/schedule_day_input.rb	/^class ScheduleDayInput < Sim
 ScheduleHourInput	app/inputs/schedule_hour_input.rb	/^class ScheduleHourInput < SimpleForm::Inputs::Base$/;"	c
 SchedulesController	app/controllers/schedules_controller.rb	/^class SchedulesController < ApplicationController$/;"	c
 SiamHelper	app/helpers/siam_helper.rb	/^module SiamHelper$/;"	m
-Siamis	config/application.rb	/^module Siamis$/;"	m
-Siamis	config/initializers/conference.rb	/^module Siamis$/;"	m
-Siamis	doc/conference.rb	/^module Siamis$/;"	m
 SponsorsHelper	app/helpers/sponsors_helper.rb	/^module SponsorsHelper$/;"	m
 SubmissionsController	app/controllers/submissions_controller.rb	/^class SubmissionsController < ApplicationController$/;"	c
 Unicredit	app/models/unicredit.rb	/^class Unicredit$/;"	c
@@ -181,8 +168,6 @@ day_program_hour_hash	app/models/schedule.rb	/^  def self.day_program_hour_hash(
 days_array_for_select	app/models/schedule.rb	/^  def self.days_array_for_select$/;"	F	class:Schedule
 deadline_range	app/helpers/deadline_helper.rb	/^  def deadline_range(what)$/;"	f	class:DeadlineHelper
 deadlines	app/models/deadline.rb	/^    def deadlines$/;"	f	class:Deadline
-delivering_email	config/initializers/setup_mail.rb	/^  def self.delivering_email(message)  $/;"	F	class:DevelopmentMailInterceptor
-delivering_email	lib/development_mail_interceptor.rb	/^  def self.delivering_email(message)  $/;"	F	class:DevelopmentMailInterceptor
 description	app/models/payment.rb	/^  def description$/;"	f	class:Payment
 destroy	app/controllers/authors_controller.rb	/^  def destroy$/;"	f	class:AuthorsController
 destroy	app/controllers/conference_sessions_controller.rb	/^  def destroy$/;"	f
@@ -381,8 +366,6 @@ start_pay	app/models/payment.rb	/^  def start_pay$/;"	f	class:Payment
 stop_impersonating	app/controllers/impersonations_controller.rb	/^  def stop_impersonating$/;"	f	class:ImpersonationsController
 stop_impersonation_link	app/helpers/application_helper.rb	/^  def stop_impersonation_link$/;"	f	class:ApplicationHelper
 support_mail	app/helpers/link_helper.rb	/^  def support_mail$/;"	f	class:LinkHelper
-system!	bin/setup	/^def system!(*args)$/;"	f
-system!	bin/update	/^def system!(*args)$/;"	f
 title_with_conference	app/helpers/conference_helper.rb	/^  def title_with_conference(what = '')$/;"	f	class:ConferenceHelper
 to_s	app/models/building.rb	/^  def to_s$/;"	f	class:Building
 to_s	app/models/conference_registration.rb	/^  def to_s$/;"	f	class:ConferenceRegistration
