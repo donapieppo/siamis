@@ -18,7 +18,7 @@ module ActionsHelper
     return "&nbsp;".html_safe unless current_user_owns?(what)
 
     capture do 
-      txt = (what.is_a?(Presentation) and what.authors.size > 1) ? ' edit or modify speaker' : ' edit'
+      txt = (what.is_a?(Presentation) and what.authors.size > 1) ? ' edit presentation or modify speaker' : ' edit'
       concat(link_to icon('pencil') + txt, [:edit, what])
 
       # plenary, minitutorial
