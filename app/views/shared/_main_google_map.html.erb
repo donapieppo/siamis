@@ -4,7 +4,7 @@
 
   var belmeloro    = {lat: 44.4954923, lng: 11.3550045};
   var santa_lucia  = {lat: 44.4899831, lng: 11.3487226};
-  var hotels       = <%= raw Hotel.geocodes.to_json %>;
+  var places       = <%= raw Hotel.geocodes.to_json %>;
 
   var hotel_page_url = '<%= hotels_url %>';
   var map_options    = { zoom: 15,
@@ -48,7 +48,7 @@
 
     // HOTELS
     var hotel_markers = {};
-    hotels.forEach(function(item, index) {
+    places.forEach(function(item, index) {
       var hotel_id = item[4];
       var hotel_description = '<strong><a href="' + hotel_page_url + '#hotel_' + hotel_id + '">' + item[2] + '</a></strong>' + '<br/>' + item[3];
       var hotel_info = new google.maps.InfoWindow({ content: hotel_description });
@@ -71,10 +71,10 @@
                                    });
     });
 
-    $('.hotel_address_link').click(function(e) {
-      var hotelid = $(this).data('hotelid');
-      google.maps.event.trigger(hotel_markers[hotelid], 'click');
-      map.setCenter(hotel_markers[hotelid].position); 
+    $('.activate_address_link').click(function(e) {
+      var addressid = $(this).data('addressid');
+      google.maps.event.trigger(hotel_markers[addressid], 'click');
+      map.setCenter(hotel_markers[addressid].position); 
       window.location.href = '#map';
       e.preventDefault();
     });
