@@ -3,7 +3,7 @@ class PlenariesController < ConferenceSessionsController
 
   def index
     @no_container = true
-    @plenaries = Plenary.includes(schedule: :room, presentation: [authors: :user], organizers: :user).order('schedules.start').all
+    @plenaries = Plenary.includes(schedule: :room, presentation: [authors: :user], organizers: :user).order('schedules.start, users.surname').all
   end
 
   def new 
