@@ -157,7 +157,7 @@ module ConferenceHelper
     if asset_exist?(user.photo_asset)  
       image_tag(user.photo_asset, width: (small ?  100 : 250), class: 'img-rounded')
     else
-      '<i class="fa fa-user-circle" style="font-size: 160px; margin: 20px;" aria-hidden="true"></i>'.html_safe
+      '<i class="fa fa-user-circle" style="font-size: 80px; margin: 20px;" aria-hidden="true"></i>'.html_safe
     end
   end
 
