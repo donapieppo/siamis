@@ -1,12 +1,14 @@
+<% show_venue ||= false %>  
+
 <div id="map" style="height: 650px; width: 100%"></div>
 <%= javascript_tag do %>  
-  var map; // global
-
   var belmeloro    = {lat: 44.4954923, lng: 11.3550045};
   var santa_lucia  = {lat: 44.4899831, lng: 11.3487226};
   var places       = <%= raw Hotel.geocodes.to_json %>;
 
   var hotel_page_url = '<%= hotels_url %>';
+
+  var map; // global
   var map_options    = { zoom: 15,
                          minZoom: 13,
                          center: belmeloro,
@@ -17,34 +19,39 @@
     map = new google.maps.Map(document.getElementById('map'), map_options);
 
     // BELMELORO
-    var belmelorowindow = new google.maps.InfoWindow({content: 'Main conference site: Complesso Belmeloro'});
+    var belmeloro_info = new google.maps.InfoWindow({content: '<strong>Main conference site</strong><br/>Complesso Belmeloro'});
     var belmeloro_marker = new google.maps.Marker({ position: belmeloro,
                                           map: map, 
-                                          title: '<strong>Main conference site:</strong><br/>Complesso Belmeloro',
+                                          title: 'Main conference site: Complesso Belmeloro',
                                           icon: 'sailing', 
                                           label: {
                                             fontFamily: 'Fontawesome',
                                             text: '\uf015',
-                                            fontSize: '28px', 
-                                            color: 'blue'
+                                            fontSize: '32px', 
+                                            color: '#3F729B'
                                           },
                                         });
-    google.maps.event.addListener(belmeloro_marker, 'click', function() { belmelorowindow.open(map, belmeloro_marker); });
+    google.maps.event.addListener(belmeloro_marker, 'click', function() { belmeloro_info.open(map, belmeloro_marker); });
 
     // AULA MAGNA
-    var santa_lucia_info = new google.maps.InfoWindow({content: 'First day Plenary Sessions: Aula Magna Santa Lucia'});
+    var santa_lucia_info = new google.maps.InfoWindow({content: '<strong>First day Plenary Sessions</strong><br/>Aula Magna Santa Lucia'});
     var santa_lucia_marker = new google.maps.Marker({ position: santa_lucia,
                                           map: map, 
-                                          title: '<strong>Main conference site:</strong> <br/> Complesso Belmeloro',
+                                          title: 'First day Plenary Sessions: Aula Magna Santa Lucia',
                                           icon: 'sailing', 
                                           label: {
                                             fontFamily: 'Fontawesome',
-                                            text: '\uf005',
-                                            fontSize: '28px',
-                                            color: 'blue'
+                                            text: '\uf006',
+                                            fontSize: '32px',
+                                            color: '#E75333'
                                           },
                                         });
     google.maps.event.addListener(santa_lucia_marker, 'click', function() { santa_lucia_info.open(map, santa_lucia_marker); });
+
+    <% if show_venue %>  
+      belmeloro_info.open(map, belmeloro_marker); 
+      santa_lucia_info.open(map, santa_lucia_marker);
+    <% end %>
 
     // HOTELS
     var hotel_markers = {};
@@ -56,7 +63,7 @@
       hotel_markers[hotel_id] = new google.maps.Marker({ position: {lat: item[0], lng: item[1]}, 
                                                          map: map, 
                                                          title: item[2],
-                                                         icon: 'sailing', 
+                                                         icon: 'hidden', 
                                                          label: {
                                                            fontFamily: 'Fontawesome',
                                                            text: '\uf236', 
