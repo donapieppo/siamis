@@ -25,6 +25,14 @@
     <%= dl_presentations(presentations) %>  
 
     <%= render(partial: 'ratings/dl_list', locals: { what: conference_session }) %>  
+
+    <% if missing_presentations %>  
+      <p class="alert alert-warning">
+        <%= icon('warning') %>
+        <%= t(:minisymposium_presentation_number_warning).html_safe %><br/>Please add presentations.
+      </p>
+    <% end %>
+
   </div>
 
   <div class="panel-footer footer-actions">
