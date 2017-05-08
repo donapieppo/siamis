@@ -20,9 +20,9 @@
         <%= menu_link 'picture-o', 'Poster sessions', poster_sessions_path %>
         <li class="divider"></li>
         <%= menu_link 'map-o',   'Participant list', participants_path %>  
+        <%= menu_link 'calendar', 'Program day by day', '#' %>  
         <% if current_user and ! user_in_organizer_committee? %>  
           <li class="divider"></li>
-          <%= menu_link 'calendar', 'Program day by day', '#' %>  
           <%= menu_link 'map-o',    'My program', interests_path %>  
         <% end %>
       <% end %>
