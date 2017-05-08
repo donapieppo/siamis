@@ -1,6 +1,4 @@
-class Minisymposium < ConferenceSession
-  has_many :presentations, foreign_key: :conference_session_id, dependent: :destroy
-
+class Minisymposium < MultipleConferenceSession
   validates :name, presence: true, uniqueness: true
 
   scope :submitted, -> { where(accepted: nil) }
