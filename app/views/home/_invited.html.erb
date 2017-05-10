@@ -1,6 +1,6 @@
 <%= home_program_title("Invited Presentations", 'microphone') %>  
 
-<h3>Plenary Sessions</h3>
+<h3>Plenary Presentations</h3>
 <div class="row">
   <% @plenaries.each do |plenary| %>  
     <% speaker = plenary.authors.first.user %>  
@@ -27,7 +27,7 @@
 </div>
 
 <p>
-<%= link_to '[ more on Plenary Sessions ]', plenaries_path %>
+<%= link_to '[ more on Plenary Presentations ]', plenaries_path %>
 </p>
 
 
