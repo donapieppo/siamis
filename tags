@@ -39,9 +39,11 @@ InterestsController	app/controllers/interests_controller.rb	/^class InterestsCon
 LinkHelper	app/helpers/link_helper.rb	/^module LinkHelper$/;"	m
 MenuHelper	app/helpers/menu_helper.rb	/^module MenuHelper$/;"	m
 MinisymposiaController	app/controllers/minisymposia_controller.rb	/^class MinisymposiaController < ConferenceSessionsController$/;"	c
-Minisymposium	app/models/minisymposium.rb	/^class Minisymposium < ConferenceSession$/;"	c
-Minitutorial	app/models/minitutorial.rb	/^class Minitutorial < ConferenceSession$/;"	c
+Minisymposium	app/models/minisymposium.rb	/^class Minisymposium < MultipleConferenceSession$/;"	c
+Minitutorial	app/models/minitutorial.rb	/^class Minitutorial < MonoConferenceSession$/;"	c
 MinitutorialsController	app/controllers/minitutorials_controller.rb	/^class MinitutorialsController < ConferenceSessionsController$/;"	c
+MonoConferenceSession	app/models/mono_conference_session.rb	/^class MonoConferenceSession < ConferenceSession $/;"	c
+MultipleConferenceSession	app/models/multiple_conference_session.rb	/^class MultipleConferenceSession < ConferenceSession $/;"	c
 NotificationMailer	app/mailers/notification_mailer.rb	/^class NotificationMailer < ApplicationMailer$/;"	c
 Organizer	app/models/organizer.rb	/^class Organizer < Role$/;"	c
 OrganizersController	app/controllers/organizers_controller.rb	/^class OrganizersController < RolesController$/;"	c
@@ -50,7 +52,7 @@ PasswordsController	app/controllers/passwords_controller.rb	/^class PasswordsCon
 Payment	app/models/payment.rb	/^class Payment < ApplicationRecord$/;"	c
 PaymentsController	app/controllers/payments_controller.rb	/^class PaymentsController < ApplicationController$/;"	c
 PlenariesController	app/controllers/plenaries_controller.rb	/^class PlenariesController < ConferenceSessionsController$/;"	c
-Plenary	app/models/plenary.rb	/^class Plenary < ConferenceSession$/;"	c
+Plenary	app/models/plenary.rb	/^class Plenary < MonoConferenceSession$/;"	c
 PosterSession	app/models/poster_session.rb	/^class PosterSession < ConferenceSession$/;"	c
 PosterSessionsController	app/controllers/poster_sessions_controller.rb	/^class PosterSessionsController < ConferenceSessionsController$/;"	c
 Presentation	app/models/presentation.rb	/^class Presentation < ApplicationRecord$/;"	c
@@ -85,8 +87,7 @@ accept!	app/models/presentation.rb	/^  def accept!$/;"	f	class:Presentation
 accepted?	app/models/conference_session.rb	/^  def accepted?$/;"	f	class:ConferenceSession
 accepted?	app/models/contributed_session.rb	/^  def accepted?$/;"	f	class:ContributedSession
 accepted?	app/models/minisymposium.rb	/^  def accepted?$/;"	f	class:Minisymposium
-accepted?	app/models/minitutorial.rb	/^  def accepted?$/;"	f	class:Minitutorial
-accepted?	app/models/plenary.rb	/^  def accepted?$/;"	f	class:Plenary
+accepted?	app/models/mono_conference_session.rb	/^  def accepted?$/;"	f	class:MonoConferenceSession
 accepted?	app/models/poster_session.rb	/^  def accepted?$/;"	f	class:PosterSession
 accepted?	app/models/presentation.rb	/^  def accepted?$/;"	f	class:Presentation
 activate_and_set_password	app/models/user.rb	/^  def activate_and_set_password$/;"	f	class:User
@@ -99,8 +100,7 @@ ask	app/models/unicredit.rb	/^  def ask(amount, description)$/;"	f	class:Unicred
 asset_exist?	app/helpers/application_helper.rb	/^  def asset_exist?(path)$/;"	f	class:ApplicationHelper
 asset_image	app/models/hotel.rb	/^  def asset_image$/;"	f	class:Hotel
 author?	app/models/user.rb	/^  def author?(presentation)$/;"	f	class:User
-authors	app/models/minitutorial.rb	/^  def authors$/;"	f	class:Minitutorial
-authors	app/models/plenary.rb	/^  def authors$/;"	f	class:Plenary
+authors	app/models/mono_conference_session.rb	/^  def authors$/;"	f	class:MonoConferenceSession
 authors_to_s	app/models/presentation.rb	/^  def authors_to_s$/;"	f	class:Presentation
 before_first_proposal?	app/models/deadline.rb	/^    def before_first_proposal?$/;"	f	class:Deadline
 before_minisymposium_proposal?	app/models/deadline.rb	/^    def before_minisymposium_proposal?$/;"	f	class:Deadline
@@ -189,10 +189,10 @@ excellence	app/models/rating.rb	/^  def self.excellence$/;"	F	class:Rating
 fee	app/models/user.rb	/^  def fee$/;"	f	class:User
 first_proposal_start	app/models/deadline.rb	/^    def first_proposal_start$/;"	f	class:Deadline
 fwicon	app/helpers/application_helper.rb	/^  def fwicon(name, options = { text: "", size: "18" })$/;"	f	class:ApplicationHelper
-geocodes	app/models/hotel.rb	/^  def self.geocodes$/;"	F	class:Hotel
 get_signature	app/models/unicredit.rb	/^  def get_signature(hash, keys) $/;"	f	class:Unicredit
 get_unrated_minisymposium	app/models/rating.rb	/^  def self.get_unrated_minisymposium(user)$/;"	F	class:Rating
 get_unrated_presentation	app/models/rating.rb	/^  def self.get_unrated_presentation(user)$/;"	F	class:Rating
+google_map_array	app/models/hotel.rb	/^  def self.google_map_array$/;"	F	class:Hotel
 home_program_title	app/helpers/home_helper.rb	/^  def home_program_title(what, icon = nil)$/;"	f	class:HomeHelper
 home_section	app/helpers/home_helper.rb	/^  def home_section(id)$/;"	f	class:HomeHelper
 hotel_params	app/controllers/hotels_controller.rb	/^  def hotel_params$/;"	f	class:HotelsController
@@ -348,8 +348,7 @@ show	app/controllers/presentations_controller.rb	/^  def show$/;"	f	class:Presen
 show	app/controllers/users_controller.rb	/^  def show$/;"	f	class:UsersController
 show_role	app/helpers/conference_helper.rb	/^  def show_role(role, editable: false)$/;"	f	class:ConferenceHelper
 show_roles	app/helpers/conference_helper.rb	/^  def show_roles(roles, editable: false)$/;"	f	class:ConferenceHelper
-speaker	app/models/minitutorial.rb	/^  def speaker$/;"	f	class:Minitutorial
-speaker	app/models/plenary.rb	/^  def speaker$/;"	f	class:Plenary
+speaker	app/models/mono_conference_session.rb	/^  def speaker$/;"	f	class:MonoConferenceSession
 speaker	app/models/presentation.rb	/^  def speaker$/;"	f	class:Presentation
 speaker!	app/models/author.rb	/^  def speaker!$/;"	f	class:Author
 speaker=	app/models/presentation.rb	/^  def speaker=(_author)$/;"	f	class:Presentation
@@ -365,6 +364,7 @@ start_impersonation_link	app/helpers/application_helper.rb	/^  def start_imperso
 start_pay	app/models/payment.rb	/^  def start_pay$/;"	f	class:Payment
 stop_impersonating	app/controllers/impersonations_controller.rb	/^  def stop_impersonating$/;"	f	class:ImpersonationsController
 stop_impersonation_link	app/helpers/application_helper.rb	/^  def stop_impersonation_link$/;"	f	class:ApplicationHelper
+substringMatcher	app/assets/javascripts/typeahead_search.js	/^var substringMatcher = function(strs) {$/;"	f
 support_mail	app/helpers/link_helper.rb	/^  def support_mail$/;"	f	class:LinkHelper
 title_with_conference	app/helpers/conference_helper.rb	/^  def title_with_conference(what = '')$/;"	f	class:ConferenceHelper
 to_s	app/models/building.rb	/^  def to_s$/;"	f	class:Building
@@ -381,6 +381,8 @@ toggle	app/controllers/interests_controller.rb	/^  def toggle$/;"	f	class:Intere
 tooltip	app/helpers/application_helper.rb	/^  def tooltip(key)$/;"	f	class:ApplicationHelper
 travel_awards	app/controllers/home_controller.rb	/^  def travel_awards$/;"	f	class:HomeController
 true_user_can_impersonate?	app/helpers/user_helper.rb	/^  def true_user_can_impersonate?$/;"	f	class:UserHelper
+typeahead_email_search	app/assets/javascripts/typeahead_search.js	/^var typeahead_email_search = function(emails, css_class) {$/;"	f
+typeahead_emails_init	app/helpers/application_helper.rb	/^  def typeahead_emails_init(css_class)$/;"	f	class:ApplicationHelper
 ul_users_list	app/helpers/conference_helper.rb	/^  def ul_users_list(what)$/;"	f	class:ConferenceHelper
 umbrella	app/models/presentation.rb	/^  def umbrella$/;"	f	class:Presentation
 update	app/controllers/conference_sessions_controller.rb	/^  def update$/;"	f	class:ConferenceSessionsController
