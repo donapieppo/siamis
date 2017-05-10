@@ -13,7 +13,7 @@
     <ul class="nav navbar-nav navbar-right">
       <%= menu_link 'home', 'HOME', root_path %>
       <%= dropdown_menu fwicon('map-o') + ' PROGRAM' do  %>  
-        <%= menu_link 'user',      'Plenary sessions', plenaries_path %>  
+        <%= menu_link 'user',      'Plenary presentations', plenaries_path %>  
         <%= menu_link 'wrench',    'Minitutorials', minitutorials_path %>
         <%= menu_link 'users',     'Minisymposia', minisymposia_path %>
         <%= menu_link 'users',     'Contributed presentations', contributed_sessions_path %>
@@ -27,7 +27,7 @@
         <% end %>
       <% end %>
 
-      <%= dropdown_menu fwicon('user') + ' CONFERENCE INFO' do  %>  
+      <%= dropdown_menu fwicon('user') + ' INFO FOR PARTICIPANTS' do  %>  
         <% unless @conference_registration %>  
           <%= menu_link 'credit-card', 'Registration', new_conference_registration_path %>
         <% end %>
