@@ -14,6 +14,7 @@ class MonoConferenceSession < ConferenceSession
   has_one :presentation, foreign_key: :conference_session_id, dependent: :destroy
 
   after_create :create_the_presentation
+  after_update :update_presentation_name
   
   def authors
     self.presentation and self.presentation.authors
@@ -26,6 +27,16 @@ class MonoConferenceSession < ConferenceSession
 
   def accepted?
     true
+  end
+
+  private
+
+  def create_the_presentation
+    self.create_presentation(name: self.name)
+  end
+
+  def update_presentation_name
+    self.presentation.update_attribute(:name, self.name)
   end
 
 end

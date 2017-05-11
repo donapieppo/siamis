@@ -42,11 +42,5 @@ class ConferenceSession < ApplicationRecord
     "Chair"
   end
 
-  private
-
-  def create_the_presentation
-    self.create_presentation(name: self.name)
-  end
-
 end
 
