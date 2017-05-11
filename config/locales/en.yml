@@ -75,6 +75,9 @@ en:
         tax:         Tax to add
         address:     Address
         web_page:    Web Page
+      schedule:
+        start_day_number: Day
+        start_hour: Hour
 
   simple_form:
     hints:
