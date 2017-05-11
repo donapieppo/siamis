@@ -20,6 +20,8 @@ gem 'country_select'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 
+gem 'twitter-typeahead-rails'
+
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 
