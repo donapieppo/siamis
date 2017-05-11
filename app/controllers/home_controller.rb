@@ -23,4 +23,7 @@ class HomeController < ApplicationController
 
   def travel_awards
   end
+
+  def satellites
+  end
 end
