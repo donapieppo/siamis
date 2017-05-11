@@ -2,48 +2,51 @@
 
 <div id="map" style="height: 650px; width: 100%"></div>
 <%= javascript_tag do %>  
-  var belmeloro    = {lat: 44.4954923, lng: 11.3550045};
-  var santa_lucia  = {lat: 44.4899831, lng: 11.3487226};
-  var places       = <%= raw Hotel.geocodes.to_json %>;
+  var belmeloro    = { position: {lat: 44.4954923, lng: 11.3550045}, html_name: '<strong>Main conference site</strong><br/>Complesso Belmeloro', name: 'Main conference site: Complesso Belmeloro' };
+  var santa_lucia  = { position: {lat: 44.4899831, lng: 11.3487226}, html_name: '<strong>First day Plenary Presentations</strong><br/>Aula Magna Santa Lucia', name: 'First day Plenary Presentations: Aula Magna Santa Lucia' };
+
+  var places       = <%= raw Hotel.google_map_array.to_json %>;
+
+  // places.push({ position: {lat: 44.4954923, lng: 11.3550045}, html_name: '<strong>Main conference site</strong><br/>Complesso Belmeloro', name: 'Main conference site: Complesso Belmeloro' });
+  // places.push({ position: {lat: 44.4899831, lng: 11.3487226}, html_name: '<strong>First day Plenary Presentations</strong><br/>Aula Magna Santa Lucia', name: 'First day Plenary Presentations: Aula Magna Santa Lucia' });
 
   var hotel_page_url = '<%= hotels_url %>';
 
   var map; // global
   var map_options    = { zoom: 15,
                          minZoom: 13,
-                         center: belmeloro,
-                         scrollwheel: false }
+                         center: belmeloro['position'],
+                         scrollwheel: false };
 
 
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), map_options);
 
-    // BELMELORO
-    var belmeloro_info = new google.maps.InfoWindow({content: '<strong>Main conference site</strong><br/>Complesso Belmeloro'});
-    var belmeloro_marker = new google.maps.Marker({ position: belmeloro,
+    var belmeloro_info = new google.maps.InfoWindow({content: belmeloro['html_name']});
+    var belmeloro_marker = new google.maps.Marker({ position: belmeloro['position'],
                                           map: map, 
-                                          title: 'Main conference site: Complesso Belmeloro',
-                                          icon: 'sailing', 
+                                          title: belmeloro['name'],
+                                          icon: '/false_icon.png', 
                                           label: {
                                             fontFamily: 'Fontawesome',
                                             text: '\uf015',
                                             fontSize: '32px', 
-                                            color: '#3F729B'
+                                            color: '#2a2654'
                                           },
                                         });
     google.maps.event.addListener(belmeloro_marker, 'click', function() { belmeloro_info.open(map, belmeloro_marker); });
 
     // AULA MAGNA
-    var santa_lucia_info = new google.maps.InfoWindow({content: '<strong>First day Plenary Sessions</strong><br/>Aula Magna Santa Lucia'});
-    var santa_lucia_marker = new google.maps.Marker({ position: santa_lucia,
+    var santa_lucia_info = new google.maps.InfoWindow({content: santa_lucia['html_name']});
+    var santa_lucia_marker = new google.maps.Marker({ position: santa_lucia['position'],
                                           map: map, 
-                                          title: 'First day Plenary Sessions: Aula Magna Santa Lucia',
-                                          icon: 'sailing', 
+                                          title: santa_lucia['name'],
+                                          icon: '/false_icon.png', 
                                           label: {
                                             fontFamily: 'Fontawesome',
                                             text: '\uf006',
                                             fontSize: '32px',
-                                            color: '#E75333'
+                                            color: '#c73b3b'
                                           },
                                         });
     google.maps.event.addListener(santa_lucia_marker, 'click', function() { santa_lucia_info.open(map, santa_lucia_marker); });
@@ -56,14 +59,14 @@
     // HOTELS
     var hotel_markers = {};
     places.forEach(function(item, index) {
-      var hotel_id = item[4];
-      var hotel_description = '<strong><a href="' + hotel_page_url + '#hotel_' + hotel_id + '">' + item[2] + '</a></strong>' + '<br/>' + item[3];
+      var hotel_id = item['id'];
+      var hotel_description = '<strong><a href="' + hotel_page_url + '#hotel_' + hotel_id + '">' + item['name'] + '</a></strong>' + '<br/>' + item['address'];
       var hotel_info = new google.maps.InfoWindow({ content: hotel_description });
 
-      hotel_markers[hotel_id] = new google.maps.Marker({ position: {lat: item[0], lng: item[1]}, 
+      hotel_markers[hotel_id] = new google.maps.Marker({ position: item['position'], 
                                                          map: map, 
-                                                         title: item[2],
-                                                         icon: 'hidden', 
+                                                         title: item['name'],
+                                                         icon: '/false_icon.png', 
                                                          label: {
                                                            fontFamily: 'Fontawesome',
                                                            text: '\uf236', 
@@ -74,7 +77,7 @@
       google.maps.event.addListener( hotel_markers[hotel_id], 'click', 
                                      function() { hotel_info.open(map, hotel_markers[hotel_id]); 
                                                   $(".hotel-panel").css('box-shadow', 'none');
-                                                  $("#hotel_" + hotel_id).css('box-shadow', '10px 10px 5px #888888') 
+                                                  $("#hotel_" + hotel_id).css('box-shadow', '10px 10px 5px #3F729B');
                                    });
     });
 

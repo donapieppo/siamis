@@ -9,8 +9,11 @@ class Hotel < ApplicationRecord
    'hotels/' + self.image 
   end
 
-  def self.geocodes
-    self.all.map {|hotel| [hotel.lat, hotel.lng, hotel.name, hotel.address, hotel.id]}
+  def self.google_map_array
+    self.all.map {|hotel| { id: hotel.id,
+                            position: {lat: hotel.lat, lng: hotel.lng}, 
+                            name: hotel.name, 
+                            address: hotel.address }}
   end
 
 end
