@@ -111,4 +111,12 @@ module ApplicationHelper
       Rails.application.assets_manifest.assets[path].present?
     end
   end
+
+  def typeahead_emails_init(css_class)
+    emails = User.select(:email).map(&:email).to_json
+    javascript_tag do
+      "typeahead_email_search(#{emails}, '#{css_class}');".html_safe
+    end 
+  end
+
 end

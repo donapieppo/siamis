@@ -11,7 +11,7 @@
 
   <% uncorrect_email = (@role.email.blank? or @role.errors[:email].any?) %> 
 
-  <%= role.input :email, readonly: ! uncorrect_email %>  
+  <%= role.input :email, readonly: (! uncorrect_email), type: "search", input_html: { id: 'role_email' } %> 
 
   <% unless uncorrect_email or @role.errors[:email].any? %> 
     <p>There is no user with the mail <<%= @role.email %>>. Please submit all the info.</p>
@@ -19,7 +19,8 @@
     <%= role.input :surname, required: true %>  
     <%= role.input :affiliation, required: true %>  
   <% end %>
-  <%= role.submit 'Add' %> - <%= link_to_back what %>  
+  <%= role.submit "Add #{@role.class}" %> - <%= link_to_back what %>  
 <% end %>
 
+<%= typeahead_emails_init('role_email') %>  
 
