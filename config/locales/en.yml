@@ -102,6 +102,14 @@ en:
         email: name.surname@example.com
       author:
         email: name.surname@example.com
+      plenary:
+        name: Title to be announced
+      minitutorial:
+        name: Title to be announced
+      minisymposium:
+        name: Title to be announced
+      presentation:
+        name: Title to be announced
       hotel:
         web_page: http://
 
