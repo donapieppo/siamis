@@ -89,10 +89,12 @@ CREATE TABLE `ratings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `buildings` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255),
+  `id`      int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name`    varchar(255),
   `address` varchar(255),
-  `city` varchar(255),
+  `city`    varchar(255),
+  `lat`     float(10,6),
+  `lng`     float(10,6),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -183,6 +185,8 @@ CREATE TABLE `hotels` (
   `tax`         bool,
   `web_page`    varchar(255),
   `image`       varchar(255),
+  `lat`         float(10,6),
+  `lng`         float(10,6),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
