@@ -128,6 +128,16 @@ div.left-code {
 div.hotel-panel {
   @extend .panel;
   @extend .panel-default;
+  .hotel_description {
+    font-size: 13px;
+    font-style: italic;
+  }
+}
+div.hotel-panel_selected {
+  box-shadow: 10px 10px 5px $blue;
+  .hotel_description {   
+    color: $red;
+  }
 }
 
 .modal-dialog {
