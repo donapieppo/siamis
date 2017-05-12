@@ -13,7 +13,7 @@
   </div>
 
   <div style="margin-top: 30px;">
-    <%= image_tag 'bg/bg_pedro.jpg', style: 'width: 100%' %>
+    <%= image_tag 'bologna/11343213415_e691475c26_o.jpg', style: 'width: 100%' %>
   </div>
 </div>
 
@@ -23,21 +23,15 @@
       <div class="col-md-6">
         <h2 id="aula_magna">Aula Magna Santa Lucia</h2>
         <p><strong>Via de' Chiari, 25, 40124 Bologna</strong></p>
+        <p><%= link_to(image_tag('venues/santa_lucia.jpg', width: 300), venue_path(anchor: 'aula_magna')) %></p>
         <p>On the first day of the Conference <strong>Plenary Presentations</strong> will take place in Aula Magna Santa Lucia.</p>  
       </div>
 
       <div class="col-md-6">
         <h2 id="belmeloro">Complesso Belmeloro</h2>
         <p><strong>Via Belmeloro, 8, 40126 Bologna</strong></p>
+        <p><%= link_to(image_tag('venues/aula_belmeloro.jpg', width: 300), venue_path(anchor: 'aula_magna')) %></p>
         <p>Other <strong>Plenary Presentations</strong> and <strong>Concurrent sessions</strong> will take place in Complesso Belmeloro.</p>
-      </div>
-    </div>
-    <div class="row centered">
-      <div class="col-md-6">
-        <%= link_to(image_tag('venues/santa_lucia.jpg', width: 300), venue_path(anchor: 'aula_magna')) %> 
-      </div>
-      <div class="col-md-6">
-        <%= link_to(image_tag('venues/aula_belmeloro.jpg', width: 300), venue_path(anchor: 'aula_magna')) %> 
       </div>
     </div>
   </div>
