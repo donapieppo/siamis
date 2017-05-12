@@ -50,3 +50,8 @@
   color: #000;
 }
 
+.condensed_panel {
+  .panel-heading:hover {
+    cursor: zoom-in;
+  }
+}
