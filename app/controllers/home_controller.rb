@@ -26,4 +26,7 @@ class HomeController < ApplicationController
 
   def satellites
   end
+
+  def credits
+  end
 end

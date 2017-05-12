@@ -107,6 +107,7 @@ Rails.application.routes.draw do
   get 'participants',  to: 'home#participants',  as: :participants
   get 'travel_awards', to: 'home#travel_awards', as: :travel_awards
   get 'satellites',    to: 'home#satellites',    as: :satellites
+  get 'credits',       to: 'home#credits',       as: :credits
 
   get 'who_impersonate',    to: 'impersonations#who_impersonate',    as: :who_impersonate
   get 'impersonate/:id',    to: 'impersonations#impersonate',        as: :impersonate
