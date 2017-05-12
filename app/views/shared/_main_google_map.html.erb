@@ -76,8 +76,8 @@
                                                        });
       google.maps.event.addListener( hotel_markers[hotel_id], 'click', 
                                      function() { hotel_info.open(map, hotel_markers[hotel_id]); 
-                                                  $(".hotel-panel").css('box-shadow', 'none');
-                                                  $("#hotel_" + hotel_id).css('box-shadow', '10px 10px 5px #3F729B');
+                                                  $(".hotel-panel").removeClass('hotel-panel_selected');
+                                                  $("#hotel_" + hotel_id).addClass('hotel-panel_selected');
                                    });
     });
 
