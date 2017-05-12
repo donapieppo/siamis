@@ -1,12 +1,8 @@
-<div class="presentation_proposal_submission">
-<p class="centered">
-  <% if Deadline.can_propose?(:presentation) %>
+<% if current_user and Deadline.can_propose?(:presentation) %>  
+  <div class="presentation_proposal_submission">
+    <p class="centered">
     <%= link_to 'Submit <br/><strong>Presentation Proposal</strong>'.html_safe, new_presentation_path %>
     <%= link_to 'Submit <br/><strong>Poster Proposal</strong>'.html_safe, new_presentation_path(poster: true) %>
-  <% else %>
-    <%= link_to "<strong><s>Presentation Proposal</s></strong><br/>available from #{Deadline.presentation_proposal_start}".html_safe, '', disabled: true %>
-    <%= link_to "<strong><s>Poster Proposal</s></strong><br/>available from #{Deadline.presentation_proposal_start}".html_safe, '', disabled: true %>
-  <% end %>
-</p>
-</div>
-
+    </p>
+  </div>
+<% end %>
