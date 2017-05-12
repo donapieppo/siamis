@@ -89,6 +89,7 @@ Rails.application.routes.draw do
 
   resources :organizers
   resources :ratings
+  resources :buildings
   resources :rooms
   resources :interests
 
