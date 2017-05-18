@@ -4,13 +4,13 @@
 <div class="<%= conference_session_panel_class(conference_session) %>">
   <div class="row">
   <div class="col-md-4">  
-    <% if speaker %>
+    <% conference_session.authors.each do |author| %>
       <div class="speaker-image" style="text-align: center">
-        <%= user_photo(speaker.user) %>  
+        <%= user_photo(author.user) %>  
       </div>
       <div class="speaker_name">
-        <h3><%= user_modal_link(speaker.user) %></h3><br/>
-        <small><%= speaker.user.affiliation %></small>
+        <h3><%= user_modal_link(author.user) %></h3><br/>
+        <small><%= author.user.affiliation %></small>
       </div>
     <% end %>
   </div>
