@@ -12,7 +12,7 @@
 <% end %>
 
 <% @minitutorials.each do |minitutorial| %>  
-  <div class="bg-colored">
+  <div class="bg-colored" id="<%= minitutorial.id %>">
     <div class="container">
       <%= render minitutorial %>  
     </div>
