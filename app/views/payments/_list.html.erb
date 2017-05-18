@@ -1,7 +1,7 @@
 <table class="table table-condensed centered" style="max-width: 700px; margin-top: 40px;">
   <tr>
     <th></th>
-    <th>Pre-registration <br/><small>(before <%= l Deadline.pre_registration_end + 1.day %>)</small></th>
+    <th>Early registration <br/><small>(before <%= l Deadline.pre_registration_end + 1.day %>)</small></th>
     <th>On-site registration <br/><small>(after <%= l Deadline.pre_registration_end %>)</small></th>
   </tr>
   <% Fee.prices.each do |name, amounts| %>  
