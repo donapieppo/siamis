@@ -10,7 +10,8 @@
       <div><%= image_tag 'three.png', class: "img-responsive" %></div>
       <p><%= link_to 'Society for Industrial and Applied Mathematics', 'https://www.siam.org/' %></p>
       <p><%= raw stop_impersonation_link %> <%= raw start_impersonation_link %></p>
-      <p>Photo used under Creative Commons from <%= link_to 'Flickr', 'https://www.flickr.com/photos/pedrocaetano/32312256655' %> <%= link_to icon('creative-commons'), 'https://creativecommons.org/licenses/by/2.0' %></p>
+      <p>Photo used under <%= link_to icon('creative-commons') + ' Creative Commons', 'https://creativecommons.org/licenses/by/2.0' %>. <br/> <%= link_to 'Image infos', credits_path %>.</p>
+
       <p>&copy; Unibo 2016 - <%= link_to 'Privacy', privacy_path %></p>
     </div>
     <div class="col-md-4">
