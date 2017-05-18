@@ -16,13 +16,11 @@
     </ol>
   </div>
   <div class="col-md-6">
-    <h2>Accepted Credit Cards</h2>
+    <h2>Accepted Credit Cards:</h2>
     <p>Visa, Visa Electron, V PAY, Mastercard, Maestro, American Express, Diners.</p>
 
     <% unless current_user %>  
-      <p>
-      To register please <%= link_to 'sign in', new_user_session_path, class: :button %>
-    </p>
-  <% end %>
+      <p>To register please <%= link_to 'sign in', new_user_session_path, class: :button %></p>
+    <% end %>
   </div>
 </div>
