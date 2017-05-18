@@ -4,10 +4,6 @@ class Minisymposium < MultipleConferenceSession
   scope :submitted, -> { where(accepted: nil) }
   scope :accepted,  -> { where(accepted: true) }
 
-  def presentations_complete
-    self.presentations.size >= 4
-  end
-
   def code
     "MS" + (self.number).to_s
   end
