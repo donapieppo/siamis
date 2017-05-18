@@ -14,10 +14,11 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "buildings", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
+    t.text   "description", limit: 65535
     t.string "address"
     t.string "city"
-    t.float  "lat",     limit: 24
-    t.float  "lng",     limit: 24
+    t.float  "lat",         limit: 24
+    t.float  "lng",         limit: 24
   end
 
   create_table "conference_registrations", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

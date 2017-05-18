@@ -91,6 +91,7 @@ CREATE TABLE `ratings` (
 CREATE TABLE `buildings` (
   `id`      int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name`    varchar(255),
+  `description` text,
   `address` varchar(255),
   `city`    varchar(255),
   `lat`     float(10,6),
