@@ -7,3 +7,13 @@
 </ul>
 
 <%= link_to 'New Room', new_room_path, class: :button %>  
+
+<h2>Buildings</h2>
+
+<ul class="list-group">
+  <% Building.find_each do |building| %>  
+    <li class="list-group-item"><%= building %> <span class="pull-right"><%= link_to_edit edit_building_path(building) %> <%= link_to_delete building_path(building) %></span></li>
+  <% end %>
+</ul>
+
+<%= link_to 'New Bulding', new_building_path, class: :button %>  
