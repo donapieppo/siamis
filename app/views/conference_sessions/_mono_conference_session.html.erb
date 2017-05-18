@@ -1,10 +1,12 @@
 <% organizers = conference_session.organizers.all %>  
-<% speaker    = conference_session.speaker %>  
+<% authors    = conference_session.authors.includes(:user).order('users.surname, users.name') %>  
+<% author_separator = '' %>  
 
 <div class="<%= conference_session_panel_class(conference_session) %>">
   <div class="row">
-  <div class="col-md-4">  
-    <% conference_session.authors.each do |author| %>
+  <div class="col-md-4 mono_conference_session_speaker">  
+    <% authors.each do |author| %>
+      <%= author_separator %><% author_separator = '<hr/>'.html_safe %>  
       <div class="speaker-image" style="text-align: center">
         <%= user_photo(author.user) %>  
       </div>
@@ -22,7 +24,9 @@
 
     <p class="mono_conference_session_content">
     <% if conference_session.description.blank? %>  
-      <%= speaker.user.biography if speaker %>
+      <% authors.each do |author| %>  
+        <div><%= author.user.biography %></div>
+      <% end %>
     <% else %>
       <%= conference_session.description %>
     <% end %>
