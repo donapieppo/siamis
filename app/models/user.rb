@@ -7,13 +7,14 @@ class User < ApplicationRecord
          :confirmable
          # :rememberable, 
 
-  has_many :roles
-  has_many :conference_sessions,  through: :organizers
-  has_many :organizers
-  has_many :minisymposia,  through: :organizers
-  has_many :minitutorials, through: :organizers
-  has_many :authors
-  has_many :presentations, through: :authors
+  has_many :roles, dependent: :destroy
+  has_many :authors, dependent: :destroy
+  has_many :organizers, dependent: :destroy
+
+  has_many :conference_sessions, through: :organizers
+  has_many :minisymposia,        through: :organizers
+  has_many :minitutorials,       through: :organizers
+  has_many :presentations,       through: :authors
   has_many :ratings
   has_many :payments
   has_many :interests, dependent: :destroy
