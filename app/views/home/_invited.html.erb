@@ -9,8 +9,12 @@
         <div class="plenary-when"><%= l(plenary.schedule.start) %></div>
       <% end %>
       <div class="plenary-title"><%= link_to plenary.name, plenaries_path(anchor: plenary.id) %></div>
-      <div class="plenary-speaker"><%= speaker.cn %><br/>
-        <small>(<%= speaker.affiliation %>)</small></div>
+      <div class="plenary-speaker">
+        <% plenary.authors.each do |author| %>  
+          <strong><%= author.user.cn %></strong><br/>
+          <small><em>(<%= author.user.affiliation %>)</em></small><br/>
+        <% end %>
+      </div>
       <div class="plenary-where"><%= plenary.schedule.room if plenary.schedule %></div>
     </div>
   <% end %>
@@ -41,8 +45,8 @@
       <div class="plenary-title"><%= link_to plenary.name, minitutorials_path(anchor: plenary.id) %></div>
       <div class="plenary-speaker">
         <% plenary.authors.each do |author| %>  
-          <%= author.user.cn %><br/>
-          <small>(<%= author.user.affiliation %>)</small><br/>
+          <strong><%= author.user.cn %></strong><br/>
+          <small><em>(<%= author.user.affiliation %>)</em></small><br/>
         <% end %>
       </div>
       <div class="plenary-where"><%= plenary.schedule.room if plenary.schedule %></div>
