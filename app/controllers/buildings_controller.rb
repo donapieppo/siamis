@@ -9,7 +9,7 @@ class BuildingsController < ApplicationController
   def create
     @building = Building.new(building_params)
     if @building.save
-      redirect_to buildings_path, notice: 'The building has been created.'
+      redirect_to rooms_path, notice: 'The building has been created.'
     else
       render action: :new
     end
@@ -20,7 +20,7 @@ class BuildingsController < ApplicationController
 
   def update
     if @building.update_attributes(building_params)
-      redirect_to buildings_path, notice: 'The building has been updated.'
+      redirect_to rooms_path, notice: 'The building has been updated.'
     else
       render action: :edit
     end
@@ -28,13 +28,13 @@ class BuildingsController < ApplicationController
 
   def destroy
     @building.delete
-    redirect_to buildings_path
+    redirect_to rooms_path
   end
 
   private
 
   def building_params
-    params[:building].permit(:name, :lat, :lng)
+    params[:building].permit(:name, :description, :lat, :lng)
   end
 
   def set_building
