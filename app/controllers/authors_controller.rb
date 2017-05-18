@@ -30,7 +30,7 @@ class AuthorsController < RolesController
   end
 
   def make_speaker
-    @author.speaker!
+    @author.only_speaker!
     redirect_to [:edit, @author.presentation]
   end
 
