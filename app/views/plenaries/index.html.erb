@@ -5,7 +5,7 @@
 <% end %>
 
 <% @plenaries.each do |plenary| %>  
-  <div class="bg-colored">
+  <div class="bg-colored" id="<%= plenary.id %>">
     <div class="container">
       <%= render plenary %>  
     </div>
