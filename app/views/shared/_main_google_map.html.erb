@@ -1,14 +1,15 @@
 <% show_venue ||= false %>  
 
 <div id="map" style="height: 650px; width: 100%"></div>
+
 <%= javascript_tag do %>  
-  var belmeloro    = { position: {lat: 44.4954923, lng: 11.3550045}, html_name: '<strong>Main conference site</strong><br/>Complesso Belmeloro', name: 'Main conference site: Complesso Belmeloro' };
-  var santa_lucia  = { position: {lat: 44.4899831, lng: 11.3487226}, html_name: '<strong>First day Plenary Presentations</strong><br/>Aula Magna Santa Lucia', name: 'First day Plenary Presentations: Aula Magna Santa Lucia' };
+  var buildings   = <%= raw Building.google_map_array.to_json %>;
+  var hotels      = <%= raw Hotel.google_map_array.to_json %>;
+  var belmeloro   = buildings[0];
+  var santa_lucia = buildings[1];
 
-  var places       = <%= raw Hotel.google_map_array.to_json %>;
-
-  // places.push({ position: {lat: 44.4954923, lng: 11.3550045}, html_name: '<strong>Main conference site</strong><br/>Complesso Belmeloro', name: 'Main conference site: Complesso Belmeloro' });
-  // places.push({ position: {lat: 44.4899831, lng: 11.3487226}, html_name: '<strong>First day Plenary Presentations</strong><br/>Aula Magna Santa Lucia', name: 'First day Plenary Presentations: Aula Magna Santa Lucia' });
+  belmeloro['icon']   = '\uf015';
+  santa_lucia['icon'] = '\uf006';
 
   var hotel_page_url = '<%= hotels_url %>';
 
@@ -18,47 +19,34 @@
                          center: belmeloro['position'],
                          scrollwheel: false };
 
+  function draw_place(map, place, show) {
+    var info   = new google.maps.InfoWindow({content: place['description']});
+    var marker = new google.maps.Marker({position: place['position'],
+                                         map: map, 
+                                         title: place['name'],
+                                         icon: '/false_icon.png', 
+                                         label: {
+                                           fontFamily: 'Fontawesome',
+                                           text: place['icon'],
+                                           fontSize: '32px', 
+                                           color: '#2a2654'
+                                         },
+                                        });
+    google.maps.event.addListener(marker, 'click', function() { info.open(map, marker); });
+    <% if show_venue %>  
+      info.open(map, marker); 
+    <% end %>
+  }
 
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), map_options);
 
-    var belmeloro_info = new google.maps.InfoWindow({content: belmeloro['html_name']});
-    var belmeloro_marker = new google.maps.Marker({ position: belmeloro['position'],
-                                          map: map, 
-                                          title: belmeloro['name'],
-                                          icon: '/false_icon.png', 
-                                          label: {
-                                            fontFamily: 'Fontawesome',
-                                            text: '\uf015',
-                                            fontSize: '32px', 
-                                            color: '#2a2654'
-                                          },
-                                        });
-    google.maps.event.addListener(belmeloro_marker, 'click', function() { belmeloro_info.open(map, belmeloro_marker); });
-
-    // AULA MAGNA
-    var santa_lucia_info = new google.maps.InfoWindow({content: santa_lucia['html_name']});
-    var santa_lucia_marker = new google.maps.Marker({ position: santa_lucia['position'],
-                                          map: map, 
-                                          title: santa_lucia['name'],
-                                          icon: '/false_icon.png', 
-                                          label: {
-                                            fontFamily: 'Fontawesome',
-                                            text: '\uf006',
-                                            fontSize: '32px',
-                                            color: '#c73b3b'
-                                          },
-                                        });
-    google.maps.event.addListener(santa_lucia_marker, 'click', function() { santa_lucia_info.open(map, santa_lucia_marker); });
-
-    <% if show_venue %>  
-      belmeloro_info.open(map, belmeloro_marker); 
-      santa_lucia_info.open(map, santa_lucia_marker);
-    <% end %>
+    draw_place(map, belmeloro);
+    draw_place(map, santa_lucia);
 
     // HOTELS
     var hotel_markers = {};
-    places.forEach(function(item, index) {
+    hotels.forEach(function(item, index) {
       var hotel_id = item['id'];
       var hotel_description = '<strong><a href="' + hotel_page_url + '#hotel_' + hotel_id + '">' + item['name'] + '</a></strong>' + '<br/>' + item['address'];
       var hotel_info = new google.maps.InfoWindow({ content: hotel_description });
