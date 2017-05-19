@@ -46,6 +46,11 @@
           <strong><%= author.user.cn %></strong><br/>
           <small><em>(<%= author.user.affiliation %>)</em></small><br/>
         <% end %>
+        <% if plenary.id == 23 %> 
+          <small>with</small><br/>
+          Carlo de Franchis and Enric Meinhardt-Llopis<br/>
+          <small>(École Normale Supérieure Paris-Saclay)</small>
+        <% end %>
       </div>
       <div class="plenary-where"><%= plenary.schedule.room if plenary.schedule %></div>
     </div>
