@@ -5,7 +5,7 @@
   <% if (authors = @presentation.authors).size > 1 %>  
     <%= presentation.input :speaker_id, collection: authors, label_method: lambda {|a| a.user.cn}, include_blank: false %>
   <% end %>
-  <%= presentation.submit 'Submit' %> - <%= link_to_back presentations_path %>  
+  <%= presentation.submit 'Submit' %> - <%= link_to_back submissions_path %>  
 <% end %>
 
 <%= javascript_tag do %>  
