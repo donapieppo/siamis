@@ -1,24 +1,27 @@
 <%= home_program_title("Invited Presentations", 'microphone') %>  
 
 <h3>Plenary Presentations</h3>
-<div class="row">
-  <% @plenaries.each do |plenary| %>  
-    <% speaker = plenary.authors.first.user %>  
-    <div class="home-plenary col-md-4">
-      <% if plenary.schedule %>  
-        <div class="plenary-when"><%= l(plenary.schedule.start) %></div>
-      <% end %>
-      <div class="plenary-title"><%= link_to plenary.name, plenaries_path(anchor: plenary.id) %></div>
-      <div class="plenary-speaker">
-        <% plenary.authors.each do |author| %>  
-          <strong><%= author.user.cn %></strong><br/>
-          <small><em>(<%= author.user.affiliation %>)</em></small><br/>
+<% @plenaries.find_in_batches(batch_size: 3) do |group| %>  
+  <div class="row">
+    <% group.each do |plenary| %>  
+      <% speaker = plenary.authors.first.user %>  
+      <div class="home-plenary col-md-4">
+        <% if plenary.schedule %>  
+          <div class="plenary-when"><%= l(plenary.schedule.start) %></div>
         <% end %>
+        <div class="plenary-title"><%= link_to plenary.name, plenaries_path(anchor: plenary.id) %></div>
+        <div class="plenary-speaker">
+          <% plenary.authors.each do |author| %>  
+            <strong><%= author.user.cn %></strong><br/>
+            <small><em>(<%= author.user.affiliation %>)</em></small><br/>
+          <% end %>
+        </div>
+        <div class="plenary-where"><%= plenary.schedule.room if plenary.schedule %></div>
       </div>
-      <div class="plenary-where"><%= plenary.schedule.room if plenary.schedule %></div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+<% end %>
+
 <div class="row">
   <div class="home-plenary col-md-6">
     <p><a href="http://www.siam.org/prizes/sponsored/siagis.php">SIAG/Imaging Science<br/><strong>Best Paper Prize Lecture</strong></a></p>
