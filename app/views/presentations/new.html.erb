@@ -2,9 +2,12 @@
 
 <div class="alert alert-info">
   <% if @conference_session and @conference_session.is_a?(Minisymposium) %>  
-    <p> You are submitting a presentation for the Minisymposium: 
-        <strong>"<em><%= @conference_session %></em>"</strong>.</p>
+    <p>
+      You are submitting a presentation for the Minisymposium: 
+      <strong>&ldquo;<em><%= @conference_session %></em>&rdquo;</strong>.
+    </p>
     <p><%= t :minisymposium_presentation_duration %></p>
+    <p>In the next page you will be asked for authors of this presentation.</p> 
   <% else %>
     Contributed presentations in lecture or poster format are invited in all areas consistent with the conference themes.<br/>
     A <strong>lecture</strong> format is generally a 15-minute oral presentation with an additional 5 minutes for discussion. Talk lengths will be determined by the co-chairs at the close of submissions. A <strong>poster</strong> format involves the use of non-electronic visual aids for mounting on a 4’ x 8’ poster board. A poster session is two hours long. Each contributor, either for a lecture or a poster, must submit a title and a brief abstract not to exceed 75 words. 

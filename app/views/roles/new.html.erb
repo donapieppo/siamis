@@ -3,7 +3,8 @@
 <h1>Add <%= @role.class %></h1>
 
 <p class="alert alert-info">
-  Please submit e-mail for <%= @role.class.to_s.downcase %> in "<em><%= what %></em>".
+  Please submit e-mail for <%= @role.class.to_s.downcase %> of &ldquo;<em><%= what %></em>&rdquo;.<br/>
+  If the user is not in registered you will be also asked for name, surname and affiliation.
 </p>
 
 <%= simple_form_for [what, @role] do |role| %>  
@@ -14,7 +15,10 @@
   <%= role.input :email, readonly: (! uncorrect_email), type: "search", input_html: { id: 'role_email' } %> 
 
   <% unless uncorrect_email or @role.errors[:email].any? %> 
-    <p>There is no user with the mail <<%= @role.email %>>. Please submit all the info.</p>
+    <p>
+    We have no information about the user with the mail &ldquo;<em><%= @role.email %></em>&rdquo;.<br/>
+      Please submit the following info:
+    </p>
     <%= role.input :name, required: true %>  
     <%= role.input :surname, required: true %>  
     <%= role.input :affiliation, required: true %>  
