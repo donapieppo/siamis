@@ -12,7 +12,7 @@ class AuthorsController < RolesController
     @role = @presentation.authors.new(role_params)
     @role.speak = first
     if @role.save
-      redirect_to @presentation, notice: 'OK'
+      redirect_to @presentation, notice: 'The author has been saved correctly.'
     else
       render action: :new
     end
