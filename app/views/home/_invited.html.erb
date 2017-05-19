@@ -1,7 +1,7 @@
 <%= home_program_title("Invited Presentations", 'microphone') %>  
 
 <h3>Plenary Presentations</h3>
-<% @plenaries.find_in_batches(batch_size: 3) do |group| %>  
+<% @plenaries.in_batches(of: 3) do |group| %>  
   <div class="row">
     <% group.each do |plenary| %>  
       <% speaker = plenary.authors.first.user %>  
