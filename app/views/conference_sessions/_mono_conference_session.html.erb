@@ -1,19 +1,24 @@
 <% organizers = conference_session.organizers.all %>  
 <% authors    = conference_session.authors.includes(:user).order('users.surname, users.name') %>  
-<% author_separator = '' %>  
 
 <div class="<%= conference_session_panel_class(conference_session) %>">
   <div class="row">
   <div class="col-md-4 mono_conference_session_speaker">  
     <% authors.each do |author| %>
-      <%= author_separator %><% author_separator = '<hr/>'.html_safe %>  
       <div class="speaker-image" style="text-align: center">
         <%= user_photo(author.user) %>  
       </div>
       <div class="speaker_name">
-        <h3><%= user_modal_link(author.user) %></h3><br/>
+        <h3><%= user_modal_link(author.user) %></h3>
         <small><%= author.user.affiliation %></small>
       </div>
+    <% end %>
+    <% if conference_session.id == 23 %> 
+      <hr/>
+      <p class="centered">with</p>
+      <h4>Carlo de Franchis and Enric Meinhardt-Llopis</h4><br/>
+      <p class="centered"><small>(École Normale Supérieure Paris-Saclay)</small></p>
+      </p>
     <% end %>
   </div>
 
