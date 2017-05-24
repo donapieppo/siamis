@@ -4,6 +4,10 @@ class Hotel < ApplicationRecord
     self.name
   end
 
+  def self.price_types
+    [ :singleprice, :singleprice_deluxe, :dusprice, :dusprice_deluxe, :doubleprice, :doubleprice_deluxe, :suiteprice, :juniorsuiteprice, :apartment ]
+  end
+
   def asset_image
     return "" if self.image.blank?
    'hotels/' + self.image 
