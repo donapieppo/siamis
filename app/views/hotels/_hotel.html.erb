@@ -11,7 +11,7 @@
   <p class='hotel_description'><%= hotel.description %></p>
 
   <table class="table table-condensed">
-    <% [:singleprice, :dusprice, :doubleprice].each do |price_type| %>  
+    <% Hotel.price_types.each do |price_type| %>  
       <% hotel.send(price_type) or next %>  
       <tr>
         <th><%= t I18n.t('activerecord.attributes.hotel.' + price_type.to_s)  %></th>
