@@ -22,9 +22,11 @@
     <%= render partial: 'layouts/menu' %>
     <%= render partial: 'home/header' if @home_header %>  
 
-    <%= bootstrap_flash %>
     <%= bootstrap_modal_div %>
-    <%= privacy_alert %>
+    <div class="container">
+      <%= bootstrap_flash %>
+      <%= privacy_alert %>
+    </div>
 
     <% unless @home_header %>  
       <div class="container"><%= breadcrumbs %></div>
