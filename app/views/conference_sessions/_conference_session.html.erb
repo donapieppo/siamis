@@ -2,7 +2,7 @@
   owner         = current_user_owns?(conference_session)
   presentations = conference_session.presentations.includes(authors: :user).order(:number).all
   organizers    = conference_session.organizers.includes(:user).order('users.surname').all 
-  missing_presentations = conference_session.is_a?(Minisymposium) and ((! conference_session.accepted) and owner and (presentations.size < 4))
+  missing_presentations = conference_session.is_a?(Minisymposium) && ((! conference_session.accepted) and owner and (presentations.size < 4))
   condensed ||= false
 %>  
 
