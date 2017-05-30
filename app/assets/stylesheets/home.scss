@@ -106,18 +106,18 @@
   @extend .home_content_div;
   text-align: center;
   .home-plenary {
-    margin-bottom: 20px;
+    .plenary-title {
+      font-weight: bold;
+    }
     .plenary-when {
       font-style: italic;
     }
     .plenary-where {
       font-size: 80%;
     }
-    .plenary-title {
-      font-weight: bold;
-    }
     .plenary-speaker {
     }
+    margin-bottom: 20px;
   }
 }
 #venue {
