@@ -48,6 +48,8 @@ CREATE TABLE `conference_sessions` (
   `description` text, 
   `accepted` bool,
   `start` datetime,
+  `created_at` datetime,
+  `updated_at` datetime,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
           
@@ -59,6 +61,8 @@ CREATE TABLE `presentations` (
   `number` int(2),
   `poster` bool DEFAULT NULL, 
   `accepted` bool,
+  `created_at` datetime,
+  `updated_at` datetime,
   PRIMARY KEY (`id`), 
   KEY `conference_session_id` (`conference_session_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.boolean  "accepted"
     t.integer  "chair_id",                  unsigned: true
     t.datetime "start"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["chair_id"], name: "chair_id", using: :btree
   end
 
@@ -96,12 +98,14 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "presentations", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "name"
-    t.text    "abstract",              limit: 65535
-    t.integer "conference_session_id",               unsigned: true
-    t.integer "number"
-    t.boolean "poster"
-    t.boolean "accepted"
+    t.string   "name"
+    t.text     "abstract",              limit: 65535
+    t.integer  "conference_session_id",               unsigned: true
+    t.integer  "number"
+    t.boolean  "poster"
+    t.boolean  "accepted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["conference_session_id"], name: "conference_session_id", using: :btree
   end
 
