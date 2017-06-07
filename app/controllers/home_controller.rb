@@ -38,4 +38,7 @@ class HomeController < ApplicationController
 
   def visa
   end
+
+  def equipments
+  end
 end

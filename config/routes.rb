@@ -113,6 +113,7 @@ Rails.application.routes.draw do
   get 'prize',           to: 'home#prize',       as: :prize
   get 'child_careprize', to: 'home#child_care',  as: :child_care
   get 'visa',            to: 'home#visa',        as: :visa
+  get 'equipments',      to: 'home#equipments',  as: :equipments
 
   get 'conference_program' , to: 'conference_program#index', as: :conference_program
 
