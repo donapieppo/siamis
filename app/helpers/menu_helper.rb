@@ -8,9 +8,10 @@ module MenuHelper
     link_to icon('sign-out'), destroy_user_session_path, title: 'sign-out', method: :delete
   end
 
-  def menu_link(icon, name, url)
+  def menu_link(icon, name, url, general = nil)
+    cssclass = (@home_header and general) ? "scrollto" : ''
     content_tag :li do
-      link_to fwicon(icon) + ' ' + name, url
+      link_to fwicon(icon) + ' ' + name, url, class: cssclass
     end
   end
 

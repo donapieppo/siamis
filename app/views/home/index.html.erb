@@ -1,4 +1,4 @@
-<%= render partial: 'menu' %>  
+<%# <%= render partial: 'menu' %>  
 
 <div>
   <%= home_section('preliminary_announcement') %>  
@@ -13,11 +13,13 @@
 
 <%= javascript_tag do  %>  
   $('.scrollto').on('click', function(event) {
-    var target = $(this.getAttribute('href'));
-    if( target.length ) {
+    var url = $(this).attr('href');
+    divid = url.substring(url.lastIndexOf('#') + 1);
+
+    if( divid ) {
       event.preventDefault();
       $('html, body').stop().animate({
-        scrollTop: target.offset().top
+        scrollTop: $("#" + divid).offset().top
       }, 1000);
     }
     });
