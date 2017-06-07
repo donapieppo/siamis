@@ -110,6 +110,10 @@ Rails.application.routes.draw do
   get 'satellites',    to: 'home#satellites',    as: :satellites
   get 'credits',       to: 'home#credits',       as: :credits
 
+  get 'prize',           to: 'home#prize',       as: :prize
+  get 'child_careprize', to: 'home#child_care',  as: :child_care
+  get 'visa',            to: 'home#visa',        as: :visa
+
   get 'conference_program' , to: 'conference_program#index', as: :conference_program
 
   get 'who_impersonate',    to: 'impersonations#who_impersonate',    as: :who_impersonate

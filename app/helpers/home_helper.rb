@@ -14,11 +14,13 @@ module HomeHelper
   end
 
   def home_program_title(what, icon = nil)
-    %Q%
-    <h2><span class="fa-stack fa-lg">
-      <i class="fa fa-square-o fa-stack-2x" style="color: #e75333"></i>
-      <i class="fa fa-#{icon} fa-stack-1x"></i>
-    </span>#{what}</h2>%.html_safe
+    %Q|
+    <div class="centered">
+      <span class="fa-stack fa-lg" style="margin-top: 20px; font-size: 60px; border-radius: 50%; border: 3px solid;">
+        <i class="fa fa-#{icon} fa-stack-1x"></i>
+      </span>
+    </div>
+    <h2>#{what}</h2>|.html_safe
   end
 
   def conference_home_title

@@ -11,13 +11,23 @@
 
   <nav class="collapse navbar-collapse" id="bs-navbar-collapse">
     <ul class="nav navbar-nav navbar-right">
-      <%= menu_link 'home', 'HOME', root_path %>
+      <%= dropdown_menu fwicon('home') + ' GENERAL INFORMATIONS' do  %>
+        <%= menu_link 'bullhorn',   "Preliminary Announcement", root_path(anchor: 'preliminary_announcement') %>
+        <%= menu_link 'info',       "Conference Themes", root_path(anchor: 'conference_themes') %>
+        <%= menu_link 'users',      "Committees", root_path(anchor: 'committees') %>
+        <%= menu_link 'calendar',   "Important Dates and Deadlines", root_path(anchor: 'important_dates') %>
+        <%= menu_link 'microphone', "Invited Presentations", root_path(anchor: 'invited') %>
+        <%= menu_link 'hotel',      "Venue & Hospitality", root_path(anchor: 'venue') %>
+        <%= menu_link 'gift',       "Sponsors", root_path(anchor: 'sponsors') %>
+        <%= menu_link 'tv',       "Exibits", root_path(anchor: 'exibits') %>
+      <% end %>
       <%= dropdown_menu fwicon('map-o') + ' PROGRAM' do  %>  
         <%= menu_link 'user',      'Plenary presentations', plenaries_path %>  
         <%= menu_link 'wrench',    'Minitutorials', minitutorials_path %>
         <%= menu_link 'users',     'Minisymposia', minisymposia_path %>
         <%= menu_link 'users',     'Contributed presentations', contributed_sessions_path %>
         <%= menu_link 'picture-o', 'Poster sessions', poster_sessions_path %>
+        <%= menu_link 'trophy',    'Prize Lectures', prize_path %>  
         <li class="divider"></li>
         <%= menu_link 'map-o',   'Participant list', participants_path %>  
         <%= menu_link 'calendar', 'Program day by day', conference_program_path %>  
@@ -34,9 +44,11 @@
           <%= menu_link 'credit-card', 'Registration', new_conference_registration_path %>
         <% end %>
         <%= menu_link 'envelope-o', 'Submissions', submissions_path %>
-        <%= menu_link 'plane', 'Student/Post-doc travel awards', travel_awards_path %>
         <%= menu_link 'university', 'Venue', venue_path %>
         <%= menu_link 'hotel', 'Accommodation', hotels_path %>
+        <%= menu_link 'child', 'Child Care', child_care_path %>
+        <%= menu_link 'file',  'Visa and Letter of Invitation', visa_path %>
+        <%= menu_link 'plane', 'Student/Post-doc travel awards', travel_awards_path %>
       <% end %>
 
       <% if current_user %>  

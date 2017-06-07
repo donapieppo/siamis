@@ -1,26 +1,28 @@
 <p class="alert alert-success">Current presentations in "<%= link_to @conference_session, @conference_session %>":</p>
 
-<%= form_tag ordering_conference_session_path(@conference_session) do |f| %>  
-  <% many = 1..@actual_presentations.count %>  
-  <ul class="list-group">
-    <% @actual_presentations.each do |presentation| %>  
-      <li class="list-group-item">
-        <div class="pull-left" style="margin-right: 20px">
+<% if @actual_presentations.any? %>  
+  <%= form_tag ordering_conference_session_path(@conference_session) do |f| %>  
+    <% many = 1..@actual_presentations.count %>  
+    <ul class="list-group">
+      <% @actual_presentations.each do |presentation| %>  
+        <li class="list-group-item">
+          <div class="pull-left" style="margin-right: 20px">
             <%= link_to icon('minus-circle'), remove_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session' %>
-          <%= select_tag "order[#{presentation.id}]", options_for_select(many, presentation.number) %>
-        </div>
-
-        <%= link_to presentation, presentation %>  
-
-        <% if user_in_organizer_committee? %>  
-          <div class="pull-right">
-            <%= show_role(presentation.speaker) %>
+            <%= select_tag "order[#{presentation.id}]", options_for_select(many, presentation.number) %>
           </div>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-  <%= submit_tag 'Save order' %> - <%= link_to_back @conference_session %>  
+
+          <%= link_to presentation, presentation %>  
+
+          <% if user_in_organizer_committee? %>  
+            <div class="pull-right">
+              <%= show_role(presentation.speaker) %>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <%= submit_tag 'Save order' %> - <%= link_to_back @conference_session %>  
+  <% end %>
 <% end %>
 
 <% if user_in_organizer_committee? and @available_presentations.any? %>  

@@ -61,16 +61,15 @@
 }
 
 .home_content_div {
-  h2 {
-    text-align: left;
-    padding-bottom: 15px;
-    @media (min-width: $screen-md-min) { 
-      margin-left: 20%;
-    }
-  }
+  // h2 {
+  //   text-align: left;
+  //   padding-bottom: 15px;
+  //   @media (min-width: $screen-md-min) { 
+  //     margin-left: 20%;
+  //   }
+  // }
   padding-top: 15px;
   padding-bottom: 15px;
-
 }
 .home_section:nth-child(even) {
   background-color: $home_second_bg_color;
@@ -78,6 +77,10 @@
   a { color: #eee; }
   h2 { color: $home_second_font_color; }
 }
+.home_section .container {
+  max-width: 992px;
+}
+
 #preliminary_announcement {
   @extend .home_content_div;
 }

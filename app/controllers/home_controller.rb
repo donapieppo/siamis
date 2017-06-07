@@ -29,4 +29,13 @@ class HomeController < ApplicationController
 
   def credits
   end
+
+  def prize
+  end
+
+  def child_care
+  end
+
+  def visa
+  end
 end
