@@ -195,5 +195,22 @@ CREATE TABLE `hotels` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `invitation_letters` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned,
+  `passport_name` varchar(255),
+  `birthdate` varchar(255),
+  `passport_origin` varchar(255),
+  `passport_number` varchar(255),
+  `address` varchar(255),
+  `city` varchar(255),
+  `state` varchar(255),
+  `zip` varchar(255),
+  `country` varchar(255),
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 
 
