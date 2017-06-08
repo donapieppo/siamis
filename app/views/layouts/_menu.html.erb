@@ -11,7 +11,7 @@
 
   <nav class="collapse navbar-collapse" id="bs-navbar-collapse">
     <ul class="nav navbar-nav navbar-right">
-      <%= dropdown_menu fwicon('home') + ' GENERAL INFORMATIONS' do  %>
+      <%= dropdown_menu fwicon('home') + ' GENERAL INFORMATION' do  %>
         <%= menu_link 'bullhorn',   "Preliminary Announcement", root_path(anchor: 'preliminary_announcement'), 'general' %>
         <%= menu_link 'info',       "Conference Themes", root_path(anchor: 'conference_themes'), 'general' %>
         <%= menu_link 'users',      "Committees", root_path(anchor: 'committees'), 'general' %>
@@ -19,15 +19,15 @@
         <%= menu_link 'microphone', "Invited Presentations", root_path(anchor: 'invited'), 'general' %>
         <%= menu_link 'hotel',      "Venue & Hospitality", root_path(anchor: 'venue'), 'general' %>
         <%= menu_link 'gift',       "Sponsors", root_path(anchor: 'sponsors'), 'general' %>
-        <%= menu_link 'tv',         "Exibits", root_path(anchor: 'exibits'), 'general' %>
+        <%= menu_link 'tv',         "Exhibits", root_path(anchor: 'exhibits'), 'general' %>
       <% end %>
       <%= dropdown_menu fwicon('map-o') + ' PROGRAM' do  %>  
         <%= menu_link 'user',      'Plenary presentations', plenaries_path %>  
+        <%= menu_link 'trophy',    'Prize Lectures', prize_path %>  
         <%= menu_link 'wrench',    'Minitutorials', minitutorials_path %>
         <%= menu_link 'users',     'Minisymposia', minisymposia_path %>
         <%= menu_link 'users',     'Contributed presentations', contributed_sessions_path %>
         <%= menu_link 'picture-o', 'Poster sessions', poster_sessions_path %>
-        <%= menu_link 'trophy',    'Prize Lectures', prize_path %>  
         <li class="divider"></li>
         <%= menu_link 'map-o',     'Participant list', participants_path %>  
         <%= menu_link 'calendar',  'Program day by day', conference_program_path %>  
