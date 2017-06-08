@@ -9,7 +9,7 @@ module HomeHelper
 
   def link_to_top
     content_tag :div, style: 'text-align: right; margin-right: 10px' do
-      link_to icon('angle-up', size: '32'), '#top', class: 'link_to_top'
+      link_to icon('angle-up', size: '64'), '#top', class: 'link_to_top', style: ''
     end
   end
 
