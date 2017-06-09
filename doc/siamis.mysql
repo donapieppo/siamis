@@ -207,6 +207,8 @@ CREATE TABLE `invitation_letters` (
   `state` varchar(255),
   `zip` varchar(255),
   `country` varchar(255),
+  `created_at` datetime,
+  `updated_at` datetime,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

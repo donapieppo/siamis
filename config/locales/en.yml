@@ -29,6 +29,7 @@ en:
   Hotels: Hotels
   Schedules: Schedule
   ConferenceProgram: Conference Program
+  InvitationLetters: Letters of Invitation
 
   # payments
   siag_member: SIAG member
@@ -42,6 +43,7 @@ en:
   activerecord:
     models:
       address: Address
+      invitation_letter: Letter of Invitation
     attributes:
       minisymposium:
         name: Title

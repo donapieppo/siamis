@@ -1,0 +1,7 @@
+<dl class="dl-horizontal">  
+  <% [:passport_name, :birthdate, :passport_origin, :passport_number, :address, :city, :state, :zip, :country].each do |att| %>
+    <dt><%= t(att) %></dt>
+    <dd><%= invitation_letter.send(att) %>  
+<% end %>
+</dl>
+<%= link_to_edit [:edit, @invitation_letter] %>  

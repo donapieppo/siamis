@@ -1,0 +1,15 @@
+<%= simple_form_for @invitation_letter do |invitation_letter| %>  
+  <%= invitation_letter.error_notification %>
+  <%= invitation_letter.input :passport_name %>
+  <%= invitation_letter.input :birthdate %>
+  <%= invitation_letter.input :passport_origin %>
+  <%= invitation_letter.input :passport_number %>
+  <%= invitation_letter.input :address %>
+  <%= invitation_letter.input :city %>
+  <%= invitation_letter.input :state %>
+  <%= invitation_letter.input :zip %>
+  <%= invitation_letter.input :country %>
+
+  <%= invitation_letter.submit 'submit' %>
+<% end %>
+
