@@ -1,2 +1,41 @@
 <%= program_title('Visa and Letter of Invitation', 'file') %>  
 
+<h2>Visa Information</h2>
+<p>
+The site <%= link_to 'http://vistoperitalia.esteri.it/home/en', 'http://vistoperitalia.esteri.it/home/en' %>, 
+maintained by Directorate General for Italians Abroad and Migration Policies, 
+provides guidance on obtaining the necessary documents. 
+</p>
+
+<h2>Letter of Invitation</h2>
+
+<p> <strong>Confirmed authors</strong> in need of a Letter of Invitation to assist in the visa application process, 
+please fill out the <%= link_to 'Letter of Invitation Request Form', new_invitation_letter_path %>. </p>
+
+<p>Please allow three to four weeks for processing and delivery.</p>
+
+<p>
+If you are <strong>not planning to present</strong> at the conference or are not 
+<strong>yet an accepted author</strong> 
+and need a letter of invitation before acceptance notifications are sent, 
+please fill out the 
+<%= link_to 'Letter of Invitation Request Form', new_invitation_letter_path %> 
+<strong>AND</strong> 
+provide the following information to <%= mail_to_siam %>:
+</p>
+
+<ul>
+  <li><strong>Brief curriculum vita</strong> (including your date of birth and a list of publications over the past 3 years.)</li>
+  <li><strong>Brief statement</strong> why attending this conference would help your research and career.</li>
+  <li><strong>Letter of recommendation.</strong> Have a senior person (e.g. Ph.D. advisor, head of department, president of a mathematical society) write a brief letter of recommendation on appropriate letterhead. This letter is not needed if you have a minimum of twelve entries in MathSciNet. If this is the case please state so and include your “MR Author ID” in your message to <%= mail_to_siam %>.</li>
+</ul>
+
+<% if @invitation_letter %>  
+  <div class="alert alert-info">
+    You have filled the following request on <%= l(@invitation_letter.created_at) %>  :
+    <%= render @invitation_letter %>  
+  </div>
+<% end %>
+
+
+
