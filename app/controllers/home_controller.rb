@@ -37,6 +37,7 @@ class HomeController < ApplicationController
   end
 
   def visa
+    @invitation_letter = current_user ? current_user.invitation_letter : nil
   end
 
   def equipments

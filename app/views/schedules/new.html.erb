@@ -5,6 +5,7 @@
 </p>
 
 <%= simple_form_for [@conference_session, @schedule] do |schedule| %>  
+  <%= schedule.error_notification %>
   <%# <%= raise @schedule.start_day_number.inspect %>  
   <%# <%= raise Schedule.days_array_for_select.inspect %>  
   <%= schedule.input :start_day_number, as: :schedule_day %>  

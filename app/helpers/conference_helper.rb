@@ -161,5 +161,8 @@ module ConferenceHelper
     end
   end
 
+  def mail_to_siam
+    icon('envelope-o')+   mail_to(Rails.configuration.contact_mail, Rails.configuration.contact_mail_name)
+  end
 end
 

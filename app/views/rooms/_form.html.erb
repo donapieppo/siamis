@@ -1,4 +1,5 @@
 <%= simple_form_for @room do |room| %>  
+  <%= room.error_notification %>
   <%= room.input :name %> 
   <%= room.input :capacity %> 
   <%= room.association :building %> 

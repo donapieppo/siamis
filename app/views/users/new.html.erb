@@ -6,6 +6,7 @@
     </div>
     <div class="panel-body">
       <%= simple_form_for @user, url: :admin_create_users  do |user| %>  
+        <%= user.error_notification %>
         <%= user.input :email %>  
         <%= user.input :name, required: true %>  
         <%= user.input :surname, required: true %>  
