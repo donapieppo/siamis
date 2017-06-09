@@ -18,7 +18,9 @@ class User < ApplicationRecord
   has_many :ratings
   has_many :payments
   has_many :interests, dependent: :destroy
+
   has_one  :conference_registration
+  has_one  :invitation_letter
 
   validates :email, uniqueness: { message: "The email is already registred." }
   validates :banquet_tickets, numericality: { greater_than_or_equal_to: 0, allow_nil: true }

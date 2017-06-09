@@ -98,6 +98,7 @@ Rails.application.routes.draw do
   end
 
   resources :hotels
+  resources :invitation_letters
 
   get 'submissions',                 to: 'submissions#index', as: :submissions
   get 'logins/no_access',            to: 'logins#no_access',  as: :no_access
