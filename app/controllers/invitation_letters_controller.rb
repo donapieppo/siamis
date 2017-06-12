@@ -1,4 +1,10 @@
 class InvitationLettersController < ApplicationController
+  before_action :user_in_organizer_committee!, only: :index
+
+  def index
+    @invitation_letters = InvitationLetter.includes(:user)
+
+  end
 
   def new
     @invitation_letter = current_user.invitation_letter || current_user.build_invitation_letter

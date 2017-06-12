@@ -1,0 +1,7 @@
+<h1>Invitation letter requests</h1>
+
+<ul>
+<% @invitation_letters.each do |letter| %>  
+  <li> <%= link_to letter.user, letter.user, remote: :true %> </li>
+<% end %>
+</ul>
