@@ -19,6 +19,7 @@
     <![endif]-->
   </head>
   <body>
+    <%= image_tag('logo.png', height: 70, style: 'z-index: 1050; position: fixed; top: 0; left: 0; border: 0;') %>  
     <%= render partial: 'layouts/menu' %>
     <%= render partial: 'home/header' if @home_header %>  
 
@@ -40,7 +41,6 @@
       </div>
     <% end %>
 
-    <%= link_to image_tag('logo.png', height: 65, style: 'position: absolute; top: 0; left: 0; border: 0;'), root_path, class: 'navbar-brand' %>  
     <%= render partial: 'layouts/footer' %>  
   </body>
 </html>

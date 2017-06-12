@@ -19,7 +19,7 @@
     if( divid ) {
       event.preventDefault();
       $('html, body').stop().animate({
-        scrollTop: $("#" + divid).offset().top
+        scrollTop: ($("#" + divid).offset().top - 70)
       }, 1000);
     }
     });
