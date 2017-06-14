@@ -19,7 +19,7 @@
     <![endif]-->
   </head>
   <body>
-    <%= image_tag('logo.png', height: 70, style: 'z-index: 1050; position: fixed; top: 0; left: 0; border: 0;') %>  
+    <%= link_to image_tag('logo.png', alt: 'logo', id: 'header_logo'), root_path %>  
     <%= render partial: 'layouts/menu' %>
     <%= render partial: 'home/header' if @home_header %>  
 
