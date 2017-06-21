@@ -37,9 +37,7 @@
       <% end %>
 
       <%= dropdown_menu fwicon('user') + ' INFO FOR PARTICIPANTS' do  %>  
-        <% unless @conference_registration %>  
-          <%= menu_link 'credit-card', 'Registration', new_conference_registration_path %>
-        <% end %>
+        <%= menu_link 'credit-card', 'Registration', new_conference_registration_path %>
         <%= menu_link 'envelope-o', 'Submissions', submissions_path %>
         <li class="divider"></li>
         <%= menu_link 'child', 'Child Care', child_care_path %>
