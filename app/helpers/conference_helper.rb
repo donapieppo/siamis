@@ -164,5 +164,14 @@ module ConferenceHelper
   def mail_to_siam
     icon('envelope-o')+   mail_to(Rails.configuration.contact_mail, Rails.configuration.contact_mail_name)
   end
+
+  def html_id(what)
+    case what
+    when ConferenceSession
+      "html_cs_#{what.id}"
+    else
+      "html_id_#{what.id}"
+    end
+  end
 end
 
