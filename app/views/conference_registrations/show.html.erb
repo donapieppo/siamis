@@ -1,9 +1,9 @@
-<%= title_with_conference('Your are registered at') %>  
+<%= program_title('Registration', 'info') %>  
 
 <div class="row">
   <div class="col-md-6">
-    <h3>Payments</h3>
     <% if @payment %>  
+      <h3>Payments</h3>
       <p class="alert alert-success">
       You have paid <%= @payment.amount %> &euro; on <%= l @payment.created_at %>.
       <% if @conference_registration.single_day %>  
