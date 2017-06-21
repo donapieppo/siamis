@@ -19,8 +19,8 @@
     <%= link_to_edit2 'modify', [:edit, user] %>  
     <%= link_to_delete 'delete', user, button: true %>  
   </p>
-  <% if @conference_registration %>  
-    The user is <strong>registered</strong>.
+  <% if @current_user_conference_registration %>  
+    <%= user.cn %> is <strong>registered</strong> to SIAM-IS18.
   <% end %>
 <% end %>
 
