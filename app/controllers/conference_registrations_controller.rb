@@ -4,10 +4,13 @@ class ConferenceRegistrationsController < ApplicationController
 
   def index
     @conference_registrations = ConferenceRegistration.includes(:user, :payment)
-    # volendo @payments = Payment.includes(:user)
   end
 
   def new
+    if @current_user_conference_registration 
+      redirect_to conference_registration_path(@current_user_conference_registration)
+      return
+    end
     @no_container = true
     if current_user 
       @fields = User.all_fields
@@ -21,9 +24,14 @@ class ConferenceRegistrationsController < ApplicationController
   end
 
   def show
+    if user_in_organizer_committee?
+      @conference_registration = ConferenceRegistration.find(params[:id])
+    else
+      @conference_registration = current_user.conference_registration
+    end
+
     @fields = User.all_fields
-    @conference_registration = current_user.conference_registration
-    @payment = @conference_registration.payment
+    @payment = @conference_registration ? @conference_registration.payment : nil
   end
 
   def check
