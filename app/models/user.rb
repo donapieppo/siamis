@@ -83,12 +83,6 @@ class User < ApplicationRecord
     (LOCAL_COMMITTEE).include?(self.email)
   end
 
-  def no_payment_registration?
-    # Invited speakers, Minitutorial speakers, Prize speakers e Comitato scientifico internazionale (non i locali) 
-    @no_payment_registration ||= (MASTERS_OF_UNIVERSE + ORGANIZER_COMMITTEE + SCIENTIFIC_COMMITTEE + COCHAIRS).include?(self.email) 
-    @no_payment_registration ||= (self.minitutorials.any? || self.minisymposia.any?)
-  end
-
   # minisymposium
   # minitutorial
   def organizer?(what)
@@ -115,7 +109,7 @@ class User < ApplicationRecord
   end
 
   def can_register?
-    Deadline.registration_open? and (! self.no_payment_registration) and self.payments.verified.empty? 
+    Deadline.registration_open? and self.payments.verified.empty? 
   end
 
   def self.cochairs

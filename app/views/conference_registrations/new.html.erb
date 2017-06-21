@@ -22,7 +22,11 @@
       <h3><%= big_icon :user %> Check your data!</h3>
       <%= render current_user %>  
 
-      <% if current_user.can_register? %>  
+      <% if @current_user_conference_registration %>
+        <div class="alert alert-success">
+          You are already registerd to the Siam-is 2018 conference.
+        </div>
+      <% elsif current_user.can_register? %>  
         <div class="panel panel-success">
           <div class="panel-heading">
             <h3>Payment</h3>
@@ -45,20 +49,8 @@
             In case you want to invite other people you (the cost of the dinner is 65,00 euros per person) please select the number of guests in <%= link_to 'your personal data page', edit_user_path(current_user) %>. 
           </div>
         </div>
-      <% elsif current_user.no_payment_registration? %>
-        <div class="alert alert-success">
-          You are already registerd to the Siam-is 2018 conference.
-        </div>
       <% end %>
     </div>
   </div>
 <% end %>
 
-<div class="bg-colored">
-<div class="container">
-  <p>
-  <%= icon('info-circle', size: 36) %> &nbsp;
-  Please visit <%= link_to 'http://www.siam.org/membership', 'http://www.siam.org/membership' %> for information about <strong>joining SIAM</strong>.
-  </p>
-</div>
-</div>
