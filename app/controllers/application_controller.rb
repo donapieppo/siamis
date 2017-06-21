@@ -10,10 +10,10 @@ class ApplicationController < ActionController::Base
   impersonates :user
 
   def change_date
-    #if Rails.env.development?
-    #  new_time = Time.local(2017, 9, 27, 12, 0, 0)
-    #  Timecop.travel(new_time)
-    #end
+    if Rails.env.development?
+      new_time = Time.local(2017, 9, 27, 12, 0, 0)
+      Timecop.travel(new_time)
+    end
   end
 
   def log_current_user
@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_registration
-    (@conference_registration ||= current_user.conference_registration) if current_user
+    (@current_user_conference_registration = current_user.conference_registration) if current_user
   end
 
   def check_user_fields
