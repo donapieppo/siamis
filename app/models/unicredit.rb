@@ -27,7 +27,7 @@ class Unicredit
     request = { tid: TID,
                 shopID: @payment.shop_id,
                 ShopUserRef: 'siam-is2018@unibo.it',
-                ShopUserName: 'SIAM IS-18', 
+                ShopUserName: 'SIAM IS', # non numbers....
                 TrType: 'AUTH',
                 Amount: amount * 100,
                 CurrencyCode: 'EUR', 
