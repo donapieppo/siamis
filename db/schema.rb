@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "name"
     t.integer "capacity"
     t.integer "building_id", unsigned: true
+    t.integer "floor"
     t.index ["building_id"], name: "building_id"
   end
 

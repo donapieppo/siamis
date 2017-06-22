@@ -38,7 +38,7 @@ class RoomsController < ApplicationController
   private
 
   def room_params
-    params[:room].permit(:name, :capacity, :building_id)
+    params[:room].permit(:name, :capacity, :building_id, :floor)
   end
 
   def set_room
