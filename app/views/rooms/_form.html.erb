@@ -3,6 +3,6 @@
   <%= room.input :name %> 
   <%= room.input :capacity %> 
   <%= room.association :building %> 
-  <%= room.input :floor, collection: (0..2), include_blank: false %> 
+  <%= room.input :floor, collection: Room.floors, include_blank: false %> 
   <%= room.submit %>  
 <% end %>
