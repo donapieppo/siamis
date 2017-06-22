@@ -28,7 +28,7 @@ class Payment < ApplicationRecord
 
   def verify
     if res = Unicredit.new(self).verify
-      logger.info("verify RES: #{res.inspect}")
+      Rails.logger.info("verify RES: #{res.inspect}")
       self.update_attribute(:verified, true)
       # FIXME 
       self.user.conference_registration = ConferenceRegistration.new(payment: self, single_day: self.single_day)
