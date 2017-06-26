@@ -22,11 +22,11 @@
     <%= link_to image_tag('logo.png', alt: 'logo', id: 'header_logo'), root_path %>  
     <%= render partial: 'layouts/menu' %>
     <%= render partial: 'home/header' if @home_header %>  
+    <%= privacy_alert %>
 
     <%= bootstrap_modal_div %>
     <div class="container">
       <%= bootstrap_flash %>
-      <%= privacy_alert %>
     </div>
 
     <% unless @home_header %>  
