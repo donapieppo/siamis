@@ -165,6 +165,10 @@ module ConferenceHelper
     icon('envelope-o')+   mail_to(Rails.configuration.contact_mail, Rails.configuration.contact_mail_name)
   end
 
+  def commette_name
+    'Bologna Committee for IS Conference 2018 (BCIS18)'
+  end
+
   def html_id(what)
     case what
     when ConferenceSession
