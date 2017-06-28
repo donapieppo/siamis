@@ -1,7 +1,7 @@
 <% organizers = conference_session.organizers.all %>  
 <% authors    = conference_session.authors.includes(:user).order('users.surname, users.name') %>  
 
-<div class="<%= conference_session_panel_class(conference_session) %>">
+<div class="<%= conference_session_panel_class(conference_session) %>" id="<%= html_id(conference_session) %>">
   <div class="row">
   <div class="col-md-4 mono_conference_session_speaker">  
     <% authors.each do |author| %>

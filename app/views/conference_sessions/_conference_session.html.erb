@@ -6,7 +6,7 @@
   condensed ||= false
 %>  
 
-<div class="conference_session_panel <%= 'condensed_panel' if condensed %>">
+<div class="conference_session_panel <%= 'condensed_panel' if condensed %>" id="<%= html_id(conference_session) %>">
   <%= panel_heading(conference_session) %>  
 
   <div class="panel-body">
