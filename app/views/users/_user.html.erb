@@ -1,5 +1,7 @@
 <% if user.in_scientific_committee? %>  
   <p class="alert alert-warning">Member of Scientific Committee.</p>
+<% elsif user.in_local_committee? %>
+  <p class="alert alert-warning">Member of Local Committee.</p>
 <% end %>
 
 <dl class="dl-horizontal">
@@ -16,11 +18,13 @@
 
 <% if current_user and (user == current_user or user_in_organizer_committee?) %>  
   <p class="centered">
-    <%= link_to_edit2 'modify', [:edit, user] %>  
-    <%= link_to_delete 'delete', user, button: true %>  
+    <%= link_to_edit2  'modify', [:edit, user] %>  
+    <%= link_to_delete('delete', user, button: true) if user_in_organizer_committee? %>  
   </p>
-  <% if @current_user_conference_registration %>  
-    <%= user.cn %> is <strong>registered</strong> to SIAM-IS18.
+  <% if user.conference_registration %>  
+    <strong><%= icon :star %> Registered</strong> to SIAM-IS18.
+  <% elsif user_in_organizer_committee? %>
+    <p><%= link_to 'Manual Registration', manual_new_conference_registrations_path(user_id: user.id), class: :button %><p>
   <% end %>
 <% end %>
 
