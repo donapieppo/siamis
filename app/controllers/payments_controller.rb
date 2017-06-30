@@ -2,7 +2,7 @@ class PaymentsController < ApplicationController
 
   def new
     if current_user.payments.verified.any?
-      redirect_to check_registrations_path and return
+      redirect_to check_conference_registrations_path and return
     else
       @single_day = params[:single_day]
       @fee = Fee.new(current_user, single_day: @single_day)
@@ -20,8 +20,11 @@ class PaymentsController < ApplicationController
 
   def verify
     @payment = Payment.find(params[:id])
-    if ! @payment.verify
-      raise NO
+    unless @payment.verified 
+      if ! @payment.verify
+        flash[:error] = 'The payment cound not be verified.'
+        redirect_to root_path
+      end
     end
   end
 
