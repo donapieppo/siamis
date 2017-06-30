@@ -21,36 +21,35 @@
     <div class="container">
       <h3><%= big_icon :user %> Check your data!</h3>
       <%= render current_user %>  
+    </div>
+  </div>
+  <div class="bg-colored">
+    <div class="container">
 
       <% if @current_user_conference_registration %>
         <div class="alert alert-success">
           You are already registerd to the Siam-is 2018 conference.
         </div>
       <% elsif current_user.can_register? %>  
-        <div class="panel panel-success">
-          <div class="panel-heading">
-            <h3>Payment</h3>
-          </div>
-          <div class="panel-body">
-            <p class="centered">
-            <%= link_to new_payment_path, class: "big_pay_button" do %>  
-              PAY <br/><strong><%= @price_to_pay_and_reason[0] %> &euro;</strong><br/> for Registration
-              <br/><small>(<%= @price_to_pay_and_reason[1] %>)</small>
-            <% end %>
-            </p>
-            <p class="centered">
-            or<br/>
-            <%= link_to new_payment_path(single_day: 1), class: "button" do %>  
-              PAY <br/><strong><%= @single_day_price_to_pay_and_reason[0] %> &euro;</strong><br/> for One Day Registration
-            <% end %>
-            </p>
-            <hr/>
-            <p>The registration includes the social dinner (Wednesday, June 6th). <br/>
-            In case you want to invite other people you (the cost of the dinner is 65,00 euros per person) please select the number of guests in <%= link_to 'your personal data page', edit_user_path(current_user) %>. 
-          </div>
-        </div>
-      <% end %>
+        <%= render 'payments/social_dinner_invitation' %>  
+        <h3>Payment</h3>
+        <p class="centered">
+        <%= link_to new_payment_path, class: "big_pay_button" do %>  
+          PAY <br/><strong><%= @price_to_pay_and_reason[0] %> &euro;</strong><br/> for Registration
+          <br/><small>(<%= @price_to_pay_and_reason[1] %>)</small>
+        <% end %>
+        </p>
+
+        <p class="centered">
+        or<br/>
+        <%= link_to new_payment_path(single_day: 1), class: "button" do %>  
+          PAY <br/><strong><%= @single_day_price_to_pay_and_reason[0] %> &euro;</strong><br/> for One Day Registration
+        <% end %>
+        </p>
     </div>
   </div>
+<% end %>
+</div>
+</div>
 <% end %>
 
