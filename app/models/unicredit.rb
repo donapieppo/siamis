@@ -19,8 +19,8 @@ class Unicredit
     true
   end
 
-  # amount in euro
-  # unicredit asks cents
+  # amount in euro but unicredit asks cents
+  # check for errors and returns payment_id, redirect_url
   def ask(amount, description)
     check_amount_range(amount)
 
@@ -49,6 +49,8 @@ class Unicredit
     parse_ask_response(response)
   end
 
+  # return response or false
+  # raise with WrongSignature
   def verify
     request = {
       tid: TID,
@@ -102,7 +104,8 @@ class Unicredit
     return [res[:payment_id], res[:redirect_url]]
   end
 
-  # check for errors and returns payment_id, redirect_url
+  # check for errors and returns response or false
+  # raise with WrongSignature
   # see php getResponseSignature
   def parse_verify_response(response)
     res = response.hash[:envelope][:body][:verify_response][:response]
