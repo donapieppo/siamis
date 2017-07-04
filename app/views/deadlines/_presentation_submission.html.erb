@@ -11,11 +11,11 @@
       <br/><%= link_to 'Go to submissions page', submissions_path %>.
     <% end %>
   <% else %>
-    <br/>In order to submit a <em>presentation / poster proposals</em>, please <%= login_link %>.
+    <br/>In order to submit a <em>presentation / poster proposal</em>, please <%= login_link %>.
   <% end %>
 <% else %>
   <p class="alert alert-warning">
-  Please note that the deadline for sending proposals has expired on <%= l(Deadline.presentation_proposal_end) %>.
+  Please note that the deadline for sending <em>proposals</em> has been <strong>expired</strong> on <%= l(Deadline.presentation_proposal_end) %>.
   </p>
 <% end %>
 

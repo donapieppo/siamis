@@ -9,7 +9,7 @@
       <p><%= link_to 'submission page', submissions_path, class: :button %> </p>
     <% end %>
   <% else %>
-    <p><strong>In order to submit a <em>minisymposium proposals</em>, please <%= login_link button: true %>.</strong></p>
+    <p><strong>In order to submit a <em>minisymposium proposal</em>, please <%= login_link button: true %>.</strong></p>
   <% end %>
   <p class="alert alert-success">
   <strong>Deadline</strong> for submission of <em>minisymposium proposals</em>: <%= l(Deadline.minisymposium_proposal_end) %> <br/>
