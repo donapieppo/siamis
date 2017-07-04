@@ -6,10 +6,10 @@
     <ul class="list-group">
       <% @actual_presentations.each do |presentation| %>  
         <li class="list-group-item">
-          <div class="pull-left" style="margin-right: 20px">
-            <%= link_to icon('minus-circle'), remove_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session' %>
-            <%= select_tag "order[#{presentation.id}]", options_for_select(many, presentation.number) %>
-          </div>
+          <% if user_in_organizer_committee? %>  
+            <%= link_to icon('trash'), remove_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session' %>
+          <% end %>
+          <%= select_tag "order[#{presentation.id}]", options_for_select(many, presentation.number) %>
 
           <%= link_to presentation, presentation %>  
 
