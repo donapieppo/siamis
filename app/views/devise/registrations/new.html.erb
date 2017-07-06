@@ -22,8 +22,10 @@
       <% end %>
 
       <%= f.input :email, required: true, autofocus: true, hint: 'Please use your institutional mail address.' %>
-      <%= f.input :password, required: true, hint: "#{@minimum_password_length} characters minimum. Please use a different password than the one in your email." %>
+      <%= f.input :password, required: true, hint: "#{@minimum_password_length} characters minimum. Please use a <strong>different password</strong> than the one in your email.".html_safe %>
       <%= f.input :password_confirmation, required: true %>
+
+      <%= f.input :privacy_policy, as: :boolean, checked_value: true, unchecked_value: false, required: true, hint: "I agree to BCIS18 #{link_to 'Privacy Policy', privacy_path}".html_safe %>
 
       <div class="form-group">
       <div class="col-sm-9 col-sm-offset-3">
@@ -39,9 +41,10 @@
     <div class="panel-footer">
       <p>
         <strong>Privacy Statement:</strong>
-        <em>The names and email addresses entered in this conference site will be used exclusively for the stated purposes of this conference and will not be made available for any other purpose or to any other party.</em>
+        <em>The names and email addresses entered in this conference site will be used exclusively for the stated purposes of this conference and will be made available only to SIAM (Society for Industrial and Applied Mathematics) whose policy is avalable at <%= link_to 'https://www.siam.org/about/privacypolicy.php', 'https://www.siam.org/about/privacypolicy.php' %>.
+        </em><br/>
+        Please read our <%= link_to 'Privacy Policy', privacy_path %>. 
      </p>
-     <p>By clicking "Sign Up", you agree to our <%= link_to 'Privacy Policy', privacy_path %>.</p>
     </div>
   </div>
 <% end %>

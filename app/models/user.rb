@@ -25,6 +25,8 @@ class User < ApplicationRecord
   validates :email, uniqueness: { message: "The email is already registred." }
   validates :banquet_tickets, numericality: { greater_than_or_equal_to: 0, allow_nil: true }
 
+  attr_accessor :privacy_policy
+
   def to_s
     "#{self.cn} (#{self.affiliation})"
   end
