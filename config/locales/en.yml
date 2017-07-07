@@ -96,14 +96,13 @@ en:
       user:
         siam: IEEE SPS and ASA Imaging Science Section members are eligible to register at the SIAM Member rate.
         student: STUDENTS MUST SHOW A CURRENT STUDENT ID UPON CHECKING IN AT THE SIAM REGISTRATION DESK.
-      presentation: 
-        abstract: Brief abstract not to exceed 75 words. <em>Using <span id="wcount"></span> words</em>.
-        speaker_id: Choose the speaker among the authors. Only the speaker can edit title and abstract.
-      user:
         salutation: (e.g. Prof., PhD, Jr., Sr., etc.) 
         visible: Check to be included on the list of participants on the SIAM-IS18 web site.
         dietary: Dietary restrictions and food allergies.
         banquet_tickets: A formal banquet will be held on Wednesday, June 6th. The cost of the dinner is 65 euros per every accompanying guest.
+      presentation: 
+        abstract: Brief abstract not to exceed 75 words. <em>Using <span id="wcount"></span> words</em>.
+        speaker_id: Choose the speaker among the authors. Only the speaker can edit title and abstract.
       organizer:
         email: Please use the person institutional mail address.
     placeholders:
