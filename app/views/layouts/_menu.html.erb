@@ -17,9 +17,10 @@
         <%= menu_link 'users',      "Committees", root_path(anchor: 'committees'), 'general' %>
         <%= menu_link 'calendar',   "Important Dates and Deadlines", root_path(anchor: 'important_dates'), 'general' %>
         <%= menu_link 'microphone', "Invited Presentations", root_path(anchor: 'invited'), 'general' %>
+        <%= menu_link 'trophy',     "Awards", root_path(anchor: 'awards'), 'general' %>
         <%= menu_link 'hotel',      "Venue & Hospitality", root_path(anchor: 'venue'), 'general' %>
-        <%= menu_link 'gift',       "Sponsors", root_path(anchor: 'sponsors'), 'general' %>
         <%= menu_link 'tv',         "Exhibits", root_path(anchor: 'exhibits'), 'general' %>
+        <%= menu_link 'gift',       "Sponsors", root_path(anchor: 'sponsors'), 'general' %>
       <% end %>
       <%= dropdown_menu fwicon('map-o') + ' PROGRAM' do  %>  
         <%= menu_link 'user',      'Plenary presentations', plenaries_path %>  
