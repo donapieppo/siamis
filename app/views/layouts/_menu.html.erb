@@ -11,44 +11,46 @@
 
   <nav class="collapse navbar-collapse" id="bs-navbar-collapse">
     <ul class="nav navbar-nav navbar-right">
-      <%= dropdown_menu fwicon('home') + ' GENERAL INFORMATION' do  %>
-        <%= menu_link 'bullhorn',   "Preliminary Announcement", root_path(anchor: 'preliminary_announcement'), 'general' %>
-        <%= menu_link 'info',       "Conference Themes", root_path(anchor: 'conference_themes'), 'general' %>
-        <%= menu_link 'users',      "Committees", root_path(anchor: 'committees'), 'general' %>
-        <%= menu_link 'calendar',   "Important Dates and Deadlines", root_path(anchor: 'important_dates'), 'general' %>
-        <%= menu_link 'microphone', "Invited Presentations", root_path(anchor: 'invited'), 'general' %>
-        <%= menu_link 'trophy',     "Awards", root_path(anchor: 'awards'), 'general' %>
-        <%= menu_link 'hotel',      "Venue & Hospitality", root_path(anchor: 'venue'), 'general' %>
-        <%= menu_link 'tv',         "Exhibits", root_path(anchor: 'exhibits'), 'general' %>
-        <%= menu_link 'gift',       "Sponsors", root_path(anchor: 'sponsors'), 'general' %>
-      <% end %>
-      <%= dropdown_menu fwicon('map-o') + ' PROGRAM' do  %>  
-        <%= menu_link 'user',      'Plenary presentations', plenaries_path %>  
-        <%= menu_link 'trophy',    'Prize Lectures', prize_path %>  
-        <%= menu_link 'wrench',    'Minitutorials', minitutorials_path %>
-        <%= menu_link 'users',     'Minisymposia', minisymposia_path %>
-        <%= menu_link 'users',     'Contributed presentations', contributed_sessions_path %>
-        <%= menu_link 'picture-o', 'Poster sessions', poster_sessions_path %>
-        <li class="divider"></li>
-        <%= menu_link 'map-o',     'Participant list', participants_path %>  
-        <%= menu_link 'calendar',  'Program day by day', conference_program_path %>  
-        <li class="divider"></li>
-        <%= menu_link 'handshake-o', 'Satellite events', satellites_path %>
-        <%# <%= menu_link 'map-o',      'My program', interests_path %>  
-      <% end %>
+      <% cache 'common_menu' do %>
+        <%= dropdown_menu fwicon('home') + ' GENERAL INFORMATION' do  %>
+          <%= menu_link 'bullhorn',     'Preliminary Announcement', root_path(anchor: 'preliminary_announcement'), 'general' %>
+          <%= menu_link 'info',         'Conference Themes', root_path(anchor: 'conference_themes'), 'general' %>
+          <%= menu_link 'users',        'Committees', root_path(anchor: 'committees'), 'general' %>
+          <%= menu_link 'calendar',     'Important Dates and Deadlines', root_path(anchor: 'important_dates'), 'general' %>
+          <%= menu_link 'microphone',   'Invited Presentations', root_path(anchor: 'invited'), 'general' %>
+          <%= menu_link 'trophy',       'Awards', root_path(anchor: 'awards'), 'general' %>
+          <%= menu_link 'hotel',        'Venue & Hospitality', root_path(anchor: 'venue'), 'general' %>
+          <%= menu_link 'tv',           'Exhibits', root_path(anchor: 'exhibits'), 'general' %>
+          <%= menu_link 'gift',         'Sponsors', root_path(anchor: 'sponsors'), 'general' %>
+        <% end %>
+        <%= dropdown_menu fwicon('map-o') + ' PROGRAM' do  %>  
+          <%= menu_link 'user',        'Plenary presentations', plenaries_path %>  
+          <%= menu_link 'trophy',      'Prize Lectures', prize_path %>  
+          <%= menu_link 'wrench',      'Minitutorials', minitutorials_path %>
+          <%= menu_link 'users',       'Minisymposia', minisymposia_path %>
+          <%= menu_link 'users',       'Contributed presentations', contributed_sessions_path %>
+          <%= menu_link 'picture-o',   'Poster sessions', poster_sessions_path %>
+          <li class="divider"></li>
+          <%= menu_link 'map-o',       'Participant list', participants_path %>  
+          <%= menu_link 'calendar',    'Program day by day', conference_program_path %>  
+          <li class="divider"></li>
+          <%= menu_link 'handshake-o', 'Satellite events', satellites_path %>
+          <%# <%= menu_link 'map-o',      'My program', interests_path %>  
+        <% end %>
 
-      <%= dropdown_menu fwicon('user') + ' INFO FOR PARTICIPANTS' do  %>  
-        <%= menu_link 'credit-card', 'Registration', new_conference_registration_path %>
-        <%= menu_link 'envelope-o', 'Submissions', submissions_path %>
-        <li class="divider"></li>
-        <%= menu_link 'child', 'Child Care', child_care_path %>
-        <%= menu_link 'file',  'Visa and Letter of Invitation', visa_path %>
-        <%= menu_link 'plane', 'Student/Post-doc travel awards', travel_awards_path %>
-        <%= menu_link 'video-camera', 'Audio-visual Policy ', equipments_path %>
-        <li class="divider"></li>
-        <%= menu_link 'university', 'Venue', venue_path %>
-        <%= menu_link 'hotel', 'Accommodation', hotels_path %>
-      <% end %>
+        <%= dropdown_menu fwicon('user') + ' INFO FOR PARTICIPANTS' do  %>  
+          <%= menu_link 'credit-card',  'Registration', new_conference_registration_path %>
+          <%= menu_link 'envelope-o',   'Submissions', submissions_path %>
+          <li class="divider"></li>
+          <%= menu_link 'child',        'Child Care', child_care_path %>
+          <%= menu_link 'file',         'Visa and Letter of Invitation', visa_path %>
+          <%= menu_link 'plane',        'Student/Post-doc travel awards', travel_awards_path %>
+          <%= menu_link 'video-camera', 'Audio-visual Policy ', equipments_path %>
+          <li class="divider"></li>
+          <%= menu_link 'university',   'Venue', venue_path %>
+          <%= menu_link 'hotel',        'Accommodation', hotels_path %>
+        <% end %>
+      <% end %> <!-- cache common_menu -->
 
       <% if current_user %>  
         <% if user_in_scientific_committee? %>  
