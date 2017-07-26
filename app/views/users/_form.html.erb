@@ -3,6 +3,7 @@
   <%= user.input :email, disabled: ( ! (@user.new_record? and user_in_organizer_committee?)) %>  
   <%= user.input :name, required: true %>  
   <%= user.input :surname, required: true %>  
+  <%= user.input :visible %>  
   <%= user.input :salutation %>  
   <%= user.input :affiliation %>  
   <%= user.input :country %>  
@@ -13,7 +14,6 @@
   <%= user.input :siag %>  
   <%= user.input :student %>  
 
-  <%= user.input :visible %>  
   <%= user.input :dietary %>  
   <%= user.input :banquet_tickets %>  
 
