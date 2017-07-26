@@ -1,15 +1,15 @@
-<%# <%= render partial: 'menu' %>  
-
 <div>
-  <%= home_section('preliminary_announcement') %>  
-  <%= home_section('conference_themes') %>  
-  <%= home_section('committees') %>  
-  <%= home_section('important_dates') %>  
-  <%= home_section('invited') %>  
-  <%= home_section('awards') %>  
-  <%= home_section('venue') %>  
-  <%= home_section('exhibits') %>  
-  <%= home_section('sponsors') %>  
+  <% cache 'home_page_cache' do %>
+    <%= home_section('preliminary_announcement') %>  
+    <%= home_section('conference_themes') %>  
+    <%= home_section('committees') %>  
+    <%= home_section('important_dates') %>  
+    <%= home_section('invited') %>  
+    <%= home_section('awards') %>  
+    <%= home_section('venue') %>  
+    <%= home_section('exhibits') %>  
+    <%= home_section('sponsors') %>  
+  <% end %>
 </div>
 
 <%= javascript_tag do  %>  

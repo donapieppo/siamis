@@ -1,29 +1,27 @@
 <%= home_program_title("Committees", :users) %>  
 
 <div class="row">
-  <% cache 'home_organizing_committee' do %>
-    <div class="col-md-6">
-      <h4>General Co-Chairs:</h4>
-      <ul>
-        <% User.cochairs.each do |user| %>  
-          <li><%= link_to user.cn, user.web_page, target: "_blank" %> <small>(<%= user.affiliation %>)</small></li>
-        <% end %>
-      </ul>
+  <div class="col-md-6">
+    <h4>General Co-Chairs:</h4>
+    <ul>
+      <% User.cochairs.each do |user| %>  
+        <li><%= link_to user.cn, user.web_page, target: "_blank" %> <small>(<%= user.affiliation %>)</small></li>
+      <% end %>
+    </ul>
 
-      <h4>Scientific Committee:</h4>
-      <ul>
-        <% User.scientific_committee.each do |user| %>  
-          <li><%= link_to user.cn, user.web_page, target: "_blank" %> <small>(<%= user.affiliation %>)</small></li>
-        <% end %>
-      </ul>
-    </div><!-- first column -->
-    <div class="col-md-6">
-      <h4>Organizing Committee:</h4>
-      <ul>
-        <% User.local_committee.each do |user| %>  
-          <li><%= link_to user.cn, user.web_page, target: "_blank" %> <small>(<%= user.affiliation %>)</small></li>
-        <% end %>
-      </ul>
-    </div><!-- second column -->
-  <% end %>
+    <h4>Scientific Committee:</h4>
+    <ul>
+      <% User.scientific_committee.each do |user| %>  
+        <li><%= link_to user.cn, user.web_page, target: "_blank" %> <small>(<%= user.affiliation %>)</small></li>
+      <% end %>
+    </ul>
+  </div><!-- first column -->
+  <div class="col-md-6">
+    <h4>Organizing Committee:</h4>
+    <ul>
+      <% User.local_committee.each do |user| %>  
+        <li><%= link_to user.cn, user.web_page, target: "_blank" %> <small>(<%= user.affiliation %>)</small></li>
+      <% end %>
+    </ul>
+  </div><!-- second column -->
 </div>
