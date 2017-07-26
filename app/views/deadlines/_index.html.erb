@@ -1,22 +1,21 @@
 <% cache 'home_deadlines' do %>
   <table class="home_deadlines centered">
     <tr>
+      <td><%= icon('hand-o-right') if Deadline.can_propose?(:minisymposium) %></td>
       <td><%= l(Deadline.minisymposium_proposal_start, format: :deadline) %></td>
       <td><%= l(Deadline.minisymposium_proposal_end, format: :deadline) %></td>
-      <th>Minisymposium proposals
-        <% if Deadline.can_propose?(:minisymposium) %>
-          &nbsp; <%= link_to icon('hand-o-right'), submissions_path %>
-        <% end %>
-      </th>
+      <th><%= link_to 'Minisymposium proposals', submissions_path %></th>
     </tr>
 
     <tr>
+      <td></td>
       <td><%= l(Deadline.presentation_proposal_start, format: :deadline) %></td>
       <td><%= l(Deadline.presentation_proposal_end, format: :deadline) %></td>
       <th>Contributed Lecture and Minisymposium Presentation Abstracts</th>
     </tr>
 
     <tr>
+      <td></td>
       <td><%= l(Deadline.presentation_proposal_start, format: :deadline) %></td>
       <td><%= l(Deadline.presentation_proposal_end, format: :deadline) %></td>
       <th>Poster Abstracts</th>
@@ -24,11 +23,13 @@
 
     <tr>
       <td></td>
+      <td></td>
       <td><%= l(Deadline.pre_registration_end, format: :deadline) %></td>
       <th>Early registration deadline</th>
     </tr>
 
     <tr>
+      <td></td>
       <td><%= l(Deadline.conference_start_date, format: :deadline) %></td>
       <td><%= l(Deadline.conference_start_date + 3.days, format: :deadline) %></td>
       <th>SIAM IS18 Conference</th>
