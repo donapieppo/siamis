@@ -13,21 +13,21 @@
 
   <%= javascript_tag do  %>  
     $('.scrollto').on('click', function(event) {
-    var url = $(this).attr('href');
-    divid = url.substring(url.lastIndexOf('#') + 1);
+      var url = $(this).attr('href');
+      divid = url.substring(url.lastIndexOf('#') + 1);
 
-    if( divid ) {
-    event.preventDefault();
-    $('html, body').stop().animate({
-    scrollTop: ($("#" + divid).offset().top - 70)
-    }, 1000);
-    }
+      if( divid ) {
+        event.preventDefault();
+        $('html, body').stop().animate({
+          scrollTop: ($("#" + divid).offset().top - 70)
+        }, 1000);
+      }
     });
 
     $('.link_to_top').on('click', function(event) {
-    $('html, body').stop().animate({
-    scrollTop: 0
-    }, 1000);
+      $('html, body').stop().animate({
+        scrollTop: 0
+      }, 1000);
     });
   <% end %>
 <% end %>
