@@ -1,5 +1,5 @@
-<div>
-  <% cache 'home_page_cache' do %>
+<% cache 'home_page_cache' do %>
+  <div>
     <%= home_section('preliminary_announcement') %>  
     <%= home_section('conference_themes') %>  
     <%= home_section('committees') %>  
@@ -9,25 +9,25 @@
     <%= home_section('venue') %>  
     <%= home_section('exhibits') %>  
     <%= home_section('sponsors') %>  
-  <% end %>
-</div>
+  </div>
 
-<%= javascript_tag do  %>  
-  $('.scrollto').on('click', function(event) {
+  <%= javascript_tag do  %>  
+    $('.scrollto').on('click', function(event) {
     var url = $(this).attr('href');
     divid = url.substring(url.lastIndexOf('#') + 1);
 
     if( divid ) {
-      event.preventDefault();
-      $('html, body').stop().animate({
-        scrollTop: ($("#" + divid).offset().top - 70)
-      }, 1000);
+    event.preventDefault();
+    $('html, body').stop().animate({
+    scrollTop: ($("#" + divid).offset().top - 70)
+    }, 1000);
     }
     });
 
-  $('.link_to_top').on('click', function(event) {
+    $('.link_to_top').on('click', function(event) {
     $('html, body').stop().animate({
-      scrollTop: 0
+    scrollTop: 0
     }, 1000);
-  });
+    });
+  <% end %>
 <% end %>
