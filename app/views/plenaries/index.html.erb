@@ -4,11 +4,13 @@
   <p class="centered"><%= link_to 'Create new Plenary', new_plenary_path, class: :big_button %></p>
 <% end %>
 
-<% @plenaries.each do |plenary| %>  
-  <div class="bg-colored" id="<%= plenary.id %>">
-    <div class="container">
-      <%= render plenary %>  
+<%= cache_unless current_user, @plenaries do %>
+  <% @plenaries.each do |plenary| %>  
+    <div class="bg-colored" id="<%= plenary.id %>">
+      <div class="container">
+        <%= render plenary %>  
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
 
