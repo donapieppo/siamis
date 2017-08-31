@@ -1,0 +1,27 @@
+<div class="container">
+<% if @minisymposia %>  
+   <%= program_title('Minisymposia Submissions', 'magic') %>  
+
+  <ul class"list-group">
+    <% @minisymposia.each do |minisymposium| %>  
+      <li class="list-group-item">
+        <strong><%= link_to minisymposium.name, minisymposium_path(minisymposium), remote: true %> </strong>
+        <br/>
+        <em><%= show_roles(minisymposium.organizers) %></em>
+        <br/>
+        <small> last update: <%= l minisymposium.updated_at %></small>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @unassigned_presentations %>  
+  <h2>Presentations <small>(unassigned)</small></h2>
+<% end %>
+
+<% if @posters %>  
+  <h2>Posters <small>(unassigned)</small></h2>
+<% end %>
+</div>
+
+

@@ -103,6 +103,7 @@ Rails.application.routes.draw do
   resources :invitation_letters
 
   get 'submissions',                 to: 'submissions#index', as: :submissions
+  get 'submissions/admin',           to: 'submissions#admin', as: :admin_submissions
   get 'logins/no_access',            to: 'logins#no_access',  as: :no_access
 
   get 'privacy',       to: 'home#privacy',       as: :privacy

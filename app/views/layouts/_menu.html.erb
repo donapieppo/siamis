@@ -61,9 +61,9 @@
         <% end %>
         <% if user_in_organizer_committee? %>  
           <%= dropdown_menu fwicon('magic') + ' ADMIN' do %>
-            <%= menu_link 'file', 'Minisymposium submissions', submissions_path(minisymposium: 1) %>
-            <%= menu_link 'file', 'Contributed session submissions', submissions_path(contributed: 1) %>
-            <%= menu_link 'file', 'Poster session submissions', submissions_path(poster: 1) %>
+            <%= menu_link 'file', 'Minisymposium submissions', admin_submissions_path(minisymposium: 1) %>
+            <%= menu_link 'file', 'Contributed session submissions', admin_submissions_path(contributed: 1) %>
+            <%= menu_link 'file', 'Poster session submissions', admin_submissions_path(poster: 1) %>
             <li class="divider"></li>
             <%= menu_link 'building-o', 'Rooms', rooms_path %>
             <%= menu_link 'users', 'Users', users_path %>
