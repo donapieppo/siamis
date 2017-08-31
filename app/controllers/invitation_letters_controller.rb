@@ -1,9 +1,12 @@
 class InvitationLettersController < ApplicationController
-  before_action :user_in_organizer_committee!, only: :index
+  before_action :user_in_organizer_committee!, only: [:index, :show]
 
   def index
     @invitation_letters = InvitationLetter.includes(:user)
+  end
 
+  def show
+    @invitation_letter = InvitationLetter.find(params[:id])
   end
 
   def new

@@ -2,6 +2,6 @@
 
 <ul>
 <% @invitation_letters.each do |letter| %>  
-  <li> <%= link_to letter.user, letter.user, remote: :true %> </li>
+  <li> <%= link_to letter.user, letter %> </li>
 <% end %>
 </ul>

@@ -1,0 +1,9 @@
+<dl class="dl-horizontal">
+<% [:passport_name, :birthdate, :passport_origin, :passport_number, :address, :city, :state, :zip, :country].each do |f| %>
+  <dt><%= t f %></dt>
+  <dd><%= @invitation_letter.send(f) %></dd>
+<% end %>
+<% User.all_fields.each do |field| %>  
+  <%= dl_field(@invitation_letter.user, field) %>  
+<% end %>
+</dl>
