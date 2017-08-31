@@ -32,5 +32,13 @@ module PanelsHelper
     organizer_committee_actions(what)
   end
 
+  def missing_presentations_alert
+    content_tag(:p, class: "alert alert-warning") do
+      icon('warning') + 
+      t(:minisymposium_presentation_number_warning).html_safe +
+      "<br/>Please <strong>add presentations</strong> with the button below.".html_safe
+    end
+  end
+
 end
 

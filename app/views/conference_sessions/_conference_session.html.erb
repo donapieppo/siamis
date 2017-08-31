@@ -16,8 +16,8 @@
       <dt><%= conference_session.organizers_label %>:</dt>
       <% organizers.each do |organizer| %>  
         <dd>
-        <%= show_role(organizer) %>
-        <%= link_to_delete organizer_path(organizer) if (owner and organizer.user != current_user) %>  
+          <%= show_role(organizer) %>
+          <%= link_to_delete organizer_path(organizer) if (owner and organizer.user != current_user) %>  
         </dd>
       <% end %>
     </dl>
@@ -26,13 +26,7 @@
 
     <%= render(partial: 'ratings/dl_list', locals: { what: conference_session }) %>  
 
-    <% if missing_presentations %>  
-      <p class="alert alert-warning">
-        <%= icon('warning') %>
-        <%= t(:minisymposium_presentation_number_warning).html_safe %><br/>Please add presentations with the button below.
-      </p>
-    <% end %>
-
+    <%= missing_presentations_alert if missing_presentations %>  
   </div>
 
   <div class="panel-footer footer-actions">
