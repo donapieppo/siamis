@@ -6,7 +6,7 @@ class InvitationLettersController < ApplicationController
   end
 
   def show
-    @invitation_letter = InvitationLetter.find(params[:id])
+    @invitation_letter = InvitationLetter.includes(:user).find(params[:id])
   end
 
   def new
