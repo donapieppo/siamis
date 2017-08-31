@@ -7,7 +7,9 @@ var update_wcount = function(el) {
 
 $('document').ready(function() {
   $(".condensed_panel .panel-body").hide();
+  $(".condensed_panel .panel-footer").hide();
   $(".condensed_panel .panel-heading").click(function() {
-    $(this).next(".panel-body").toggle();
+    $(this).siblings(".panel-body").toggle();
+    $(this).siblings(".panel-footer").toggle();
   });
 });
