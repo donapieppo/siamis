@@ -115,7 +115,7 @@ Rails.application.routes.draw do
   get 'credits',       to: 'home#credits',       as: :credits
 
   get 'prize',           to: 'home#prize',       as: :prize
-  get 'child_careprize', to: 'home#child_care',  as: :child_care
+  get 'child_care',      to: 'home#child_care',  as: :child_care
   get 'visa',            to: 'home#visa',        as: :visa
   get 'equipments',      to: 'home#equipments',  as: :equipments
 
