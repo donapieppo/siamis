@@ -4,6 +4,7 @@
 <dl class='dl-horizontal'>
   <% @participants.each do |user| %> 
     <% if initial != (initial = user.surname[0].upcase) %>  
+      <dd>&nbsp;</dd>
       <dt><%= initial %></dt>
     <% end %>
   <dd><%= user_modal_link(user) %> <small>(<%= user.affiliation %>)</small></dd>
