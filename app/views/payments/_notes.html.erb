@@ -1,30 +1,18 @@
-<p>(*)  IEEE and GAMM members are eligible to register at the SIAM Member rate.</p>
-<p>(**) Students must show a current student id upon checking in at the SIAM registration desk. Student registration is available for undergraduate and graduate students ONLY. The student rate is not available to post-doctorates.</p>
+<p><strong>Conference Registration Fee Includes:</strong></p>
 
-<div class="row">
-  <div class="col-md-6">
-    <h2>Conference Registration Fee Includes:</h2>
+<ol>
+  <li>Admission to all technical sessions</li>
+  <li>Business Meeting (open to SIAG/IS members)</li>
+  <li>Social Dinner (the cost of the dinner is 65 euros per every accompanying guest)</li>
+  <li>Coffee breaks daily</li>
+  <li>Welcome Lunch and Poster Session</li>
+  <li>Room set-ups and audio/visual equipment</li>
+  <li>Wi-Fi access at the conference</li>
+</ol>
 
-    <ol>
-      <li>Admission to all technical sessions</li>
-      <li>Business Meeting (open to SIAG/IS members)</li>
-      <li>Social Dinner (the cost of the dinner is 65 euros per every accompanying guest)</li>
-      <li>Coffee breaks daily</li>
-      <li>Welcome Lunch and Poster Session</li>
-      <li>Room set-ups and audio/visual equipment</li>
-      <li>Wi-Fi access at the conference</li>
-    </ol>
-  </div>
-  <div class="col-md-6">
-    <h2>Accepted Credit Cards:</h2>
-    <p><%= t(:credit_cards) %>.</p>
+<p><strong>Accepted Credit Cards:</strong></p>
+<p><%= t(:credit_cards) %>.</p>
 
-    <% unless current_user %>  
-      <p>To register please <%= link_to 'sign in', new_user_session_path, class: :button %></p>
-    <% end %>
-  </div>
-</div>
-<p>
-  <%= icon('info-circle', size: 36) %> &nbsp;
-  Please visit <%= link_to 'http://www.siam.org/membership', 'http://www.siam.org/membership' %> for information about <strong>joining SIAM</strong>.
-</p>
+<% unless current_user %>  
+  <p>To register please <%= link_to 'sign in', new_user_session_path, class: :button %></p>
+<% end %>

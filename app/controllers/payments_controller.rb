@@ -11,24 +11,41 @@ class PaymentsController < ApplicationController
   end
 
   # params[:payment][:single_day] is the number of day (from 0)
+  # crea un payment (ovvero si collega con unicredit e prepara un a richiesta. se accettata redirige l'utente al pagamento
+  # di questa richiesta altrimenti mostra l'errore
   def create
-    conference_day = (params[:payment] and params[:payment][:single_day]) ? Schedule.conference_day(params[:payment][:single_day].to_i) : nil
-    @fee = Fee.new(current_user, single_day: conference_day)
-    @payment = current_user.payments.create(amount: @fee.price_to_pay, single_day: conference_day)
-    redirect_to @payment.redirect_url
+    @conference_day = nil
+    if params[:payment] and params[:payment][:single_day]
+      @conference_day = Schedule.conference_day(params[:payment][:single_day].to_i)
+    end
+    @fee = Fee.new(current_user, single_day: @conference_day)
+
+    @payment = current_user.payments.new(amount: @fee.price_to_pay, single_day: @conference_day)
+    @payment.save
+    if @payment.error_code
+      render :error
+    else
+      redirect_to @payment.redirect_url
+    end
   end
 
+  # redirected by Unicredit
+  # :NotifyURL=>"/payments/3/verify"
   def verify
     @payment = Payment.find(params[:id])
     unless @payment.verified 
       if ! @payment.verify
-        flash[:error] = 'The payment cound not be verified.'
-        redirect_to root_path
+        render :error
+        return 
       end
     end
   end
 
+  # used by unicredit in case of error
+  # :ErrorURL=>"/payments/3/error"
   def error
+    @payment = Payment.find_by_id(params[:id])
+    @rc = params[:rc] || 'Unknown error'
   end
 
 end

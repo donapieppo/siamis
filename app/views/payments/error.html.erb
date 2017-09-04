@@ -1,1 +1,14 @@
-Error
+<%= program_title('Error in payment', 'warning') %>  
+
+<p class="alert alert-danger">
+We are sorry but your payment could not be verified.
+</p>
+
+<dl class="dl-horizontal">
+  <dt>Error</dt>
+  <% if @payment %>  
+    <dd>code: <%= @payment.error_code %> <%= " - " + @rc if @rc %></dd>
+    <dd>description: <%= @payment.error_desc %></dd>
+  <% end %>
+</dl>
+

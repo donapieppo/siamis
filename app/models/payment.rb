@@ -1,15 +1,23 @@
+# payment = current_user.payments.new(amount: 10000, single_day: nil)
+# payment.save -> start_payment -> ask unicredit 
+# if ok    -> settato redirect_url and remote_id
+# if ERROR -> settato error_code, error_desc
+# 
+# solo dopo si puo' fare verify per vedere se l'utente ha fatto 
+# correttamente il pagamento
 class Payment < ApplicationRecord
   belongs_to :user
   has_one :conference_registration
 
   validates :user_id, presence: true
 
-  attr_accessor :redirect_url
+  attr_accessor :redirect_url, # from unicredit
+                :error_code,   # from unicredit
+                :error_desc    # from unicredit
 
-  before_create :copy_user_data
-
-  after_create :create_seed_and_shop_id,
-               :start_pay
+  after_create :copy_user_data,
+               :set_seed_and_shop_id,
+               :start_payment
 
   scope :verified, -> { where(verified: true) }
 
@@ -17,21 +25,30 @@ class Payment < ApplicationRecord
     "SIAM-IS18 registration: #{user.surname}, #{user.name[0]}. <#{user.email}>"[0..98]
   end
 
-  def start_pay
-    self.new_record? and return nil
+  def start_payment
+    Rails.logger.info("In Payment#start_payment: #{self.inspect}")
     @unicredit = Unicredit.new(self)
-    payment_id, redirect_url = @unicredit.ask(self.amount, description)
-    self.payment_id = payment_id
-    self.save!
-    @redirect_url = redirect_url
+    if @unicredit.ask(self.amount, description)
+      self.payment_id = @unicredit.remote_id
+      @redirect_url   = @unicredit.redirect_url
+      @error_code = @error_desc = nil
+    else
+      @error_code = @unicredit.error_code
+      @error_desc = @unicredit.error_desc
+    end
+    self.save
   end
 
   def verify
-    if res = Unicredit.new(self).verify
+    @unicredit = Unicredit.new(self)
+    if res = @unicredit.verify
       Rails.logger.info("verify RES: #{res.inspect}")
       self.update_attribute(:verified, true)
       # FIXME 
       self.user.conference_registration = ConferenceRegistration.new(payment: self, single_day: self.single_day)
+    else
+      @error_code = @unicredit.error_code
+      @error_desc = @unicredit.error_desc
     end
     res
   end
@@ -49,10 +66,10 @@ class Payment < ApplicationRecord
     self.student = self.user.student
   end
 
-  def create_seed_and_shop_id
+  # Shop_id Chiave esterna identificante l’operazione
+  def set_seed_and_shop_id
     self.seed = SecureRandom.hex(4)
     self.shop_id = "SIAM-#{self.id}-#{self.user_abbr}-#{self.seed}"
-    self.save
   end
 end
 
