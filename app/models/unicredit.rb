@@ -2,12 +2,21 @@ class Unicredit
   class WrongTid       < RuntimeError; end
   class WrongShopid    < RuntimeError; end
   class WrongSignature < RuntimeError; end
-  class ErrorResponse  < RuntimeError; end
 
   WSDL   = ENV['SIAMIS_UNICREDIT_WSDL']
   KSIG   = ENV['SIAMIS_UNICREDIT_KSIG']
   TID    = ENV['SIAMIS_UNICREDIT_TID']
 
+  attr_reader :remote_id,    # ientificativo della richiesta di pagamento (proprietà paymentID), generato da
+                             # Pagonline,che dovrà essere utilizzato nelle successive operazioni.
+              :redirect_url, # URL per l’instradamento (proprietà redirectURL) verso la pagina per
+                             # l’inserimento dei dati dello strumento di pagamento.
+              :error_code,
+              :error_desc
+
+
+  # payment = current_user.payments.new(amount: 100)
+  # u = Unicredit.new(payment)
   def initialize(payment)
     # log: true, pretty_print_xml: true
     @client  = Savon.client(wsdl: WSDL, logger: Rails.logger, log_level: :debug) 
@@ -20,16 +29,16 @@ class Unicredit
   end
 
   # amount in euro but unicredit asks cents
-  # check for errors and returns payment_id, redirect_url
+  # check for errors and returns [payment_id, redirect_url] or false in case of errors
   def ask(amount, description)
     check_amount_range(amount)
 
     request = { tid: TID,
                 shopID: @payment.shop_id,
-                ShopUserRef: 'siam-is2018@unibo.it',
-                ShopUserName: 'SIAM IS', # non numbers....
+                ShopUserRef: 'pietro.donatini@unibo.it',
+                ShopUserName: 'SIAM IS', # non numbers.... no siam-is2018@unibo.it,
                 TrType: 'AUTH',
-                Amount: amount * 100,
+                Amount: amount.to_i * 100,
                 CurrencyCode: 'EUR', 
                 LangID: 'EN',
                 NotifyURL: Rails.application.routes.url_helpers.verify_payment_url(@payment),
@@ -54,7 +63,7 @@ class Unicredit
   def verify
     request = {
       tid: TID,
-      shopID: @payment.shop_id,
+      shopID:    @payment.shop_id,
       paymentID: @payment.payment_id
     }
     signature    = get_signature(request, request.keys)
@@ -82,16 +91,17 @@ class Unicredit
     res[:shop_id] == @payment.shop_id or raise WrongShopid
   end
 
-
   def check_return_status(res)
     if res[:rc] != 'IGFS_000' or res[:error] != false 
       Rails.logger.info("Unicredit error in :rc with res=#{res.inspect}")
+      @error_code = res[:rc]
+      @error_desc = res[:error_desc]
       return false
     end
-    res
+    true
   end
 
-  # check for errors and returns payment_id, redirect_url
+  # check for errors and fills remote_id, redirect_url when ok
   def parse_ask_response(response)
     res = response.hash[:envelope][:body][:init_response][:response]
     # {:tid=>"****", :rc=>"****", :error=>false, :error_desc=>nil, :signature=>"****", :shop_id=>"****", :payment_id=>"****", :redirect_url=>"****"}
@@ -100,8 +110,13 @@ class Unicredit
 
     res[:signature] == get_signature(res, [:tid, :shop_id, :rc, :error_desc, :payment_id, :redirect_url]) or raise WrongSignature
 
-    check_return_status(res) or raise ErrorResponse, res[:error_desc]
-    return [res[:payment_id], res[:redirect_url]]
+    if check_return_status(res) 
+      @remote_id    = res[:payment_id]
+      @redirect_url = res[:redirect_url]
+      true
+    else
+      false
+    end
   end
 
   # check for errors and returns response or false
