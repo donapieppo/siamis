@@ -5,7 +5,7 @@
   <ul class"list-group">
     <% @minisymposia.each do |minisymposium| %>  
       <li class="list-group-item">
-        <strong><%= link_to minisymposium.name, minisymposium_path(minisymposium), remote: true %> </strong>
+        (<%= minisymposium.presentation_count %>) <strong><%= link_to minisymposium.name, minisymposium_path(minisymposium), remote: true %> </strong>
         <br/>
         <em><%= show_roles(minisymposium.organizers) %></em>
         <br/>
