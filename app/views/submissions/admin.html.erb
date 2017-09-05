@@ -2,17 +2,14 @@
 <% if @minisymposia %>  
    <%= program_title('Minisymposia Submissions', 'magic') %>  
 
-  <ul class"list-group">
+  <dl class="admin_list">
     <% @minisymposia.each do |minisymposium| %>  
-      <li class="list-group-item">
-        (<%= minisymposium.presentation_count %>) <strong><%= link_to minisymposium.name, minisymposium_path(minisymposium), remote: true %> </strong>
-        <br/>
-        <em><%= show_roles(minisymposium.organizers) %></em>
-        <br/>
-        <small> last update: <%= l minisymposium.updated_at %></small>
-      </li>
+      <dt>(<%= minisymposium.presentation_count %>) <%= link_to minisymposium.name, minisymposium_path(minisymposium), remote: true %></dt>
+      <dd><%= show_roles(minisymposium.organizers) %></dd>
+      <dd><%= minisymposium.all_tags %> </dd>
+      <dd><small>last update: <%= l minisymposium.updated_at %></small></dd>
     <% end %>
-  </ul>
+  </dl>
 <% end %>
 
 <% if @unassigned_presentations %>  
