@@ -12,11 +12,8 @@
           <%= select_tag "order[#{presentation.id}]", options_for_select(many, presentation.number) %>
 
           <%= link_to presentation, presentation %>  
-
           <% if user_in_organizer_committee? %>  
-            <div class="pull-right">
-              <%= show_role(presentation.speaker) %>
-            </div>
+            - <small><%= show_role(presentation.speaker, no_affiliation: true) %></small>
           <% end %>
         </li>
       <% end %>
