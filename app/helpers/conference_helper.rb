@@ -6,10 +6,10 @@ module ConferenceHelper
     link_to h(cn), user_path(user), remote: true 
   end
 
-  def show_role(role, editable: false)
+  def show_role(role, editable: false, no_affiliation: false)
     return unless role
     user_modal_link(role.user) + 
-    " (<small>".html_safe + h(role.user.affiliation) + "</small>) ".html_safe +
+    (no_affiliation ? "" : " (<small> #{h(role.user.affiliation)} </small>) ".html_safe) +
     (editable ? link_to_delete(role) : "")
   end
 
