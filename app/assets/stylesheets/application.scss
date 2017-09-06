@@ -134,9 +134,10 @@ div.hotel-panel {
     font-size: 13px;
     font-style: italic;
   }
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.18);
 }
 div.hotel-panel_selected {
-  box-shadow: 10px 10px 5px $blue;
+  box-shadow: 0px 4px 8px $blue;
   .hotel_description {   
     color: $red;
   }
@@ -180,4 +181,13 @@ div.hotel-panel_selected {
   margin: 30px 0 30px 0px;
   font-weight: bold;
   font-size: 21px;
+}
+.admin_list {
+  dt {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  dd {
+    margin-left: 10px;
+  }
 }
