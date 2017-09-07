@@ -36,7 +36,6 @@ module ConferenceHelper
 
   def breadcrumbs
     controller.class.to_s =~ /Devise/ and return 
-    controller.controller_name == 'home' and return 
     controller.controller_name == 'registrations' and return 
     controller.controller_name == 'passwords' and return 
     content_tag 'ol', class: "breadcrumb" do 
@@ -50,7 +49,9 @@ module ConferenceHelper
       elsif controller.controller_name == 'impersonations' or controller.controller_name == 'users'
         content_tag('li', current_user ? current_user.cn : '')
       else
-        content_tag('li', link_to(I18n.t(controller.controller_name.camelize), controller: controller.controller_name, action: :index))
+        unless controller.controller_name == 'home' 
+          content_tag('li', link_to(I18n.t(controller.controller_name.camelize), controller: controller.controller_name, action: :index))
+        end
       end 
     end
   end
