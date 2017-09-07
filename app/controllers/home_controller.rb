@@ -18,7 +18,7 @@ class HomeController < ApplicationController
   end
 
   def participants
-    @participants = User.partecipants.order('surname, name')
+    @participants = User.partecipants.where(visible: true).order('surname, name')
   end
 
   def travel_awards
