@@ -13,8 +13,25 @@ class SubmissionsController < ApplicationController
   end
 
   def admin
-    @minisymposia  = params[:minisymposium] ? Minisymposium.joins(:presentations).select('conference_sessions.*, COUNT(*) AS presentation_count').group('conference_session_id').includes(:schedule, ratings: :user, organizers: :user).order('updated_at DESC')  : nil
-    @unassigned_presentations = params[:contributed] ? Presentation.includes(:conference_session, ratings: :user, authors: :user).unassigned.not_poster : nil
-    @posters       = params[:poster] ? Presentation.includes(:conference_session, ratings: :user, authors: :user).unassigned.poster : nil
+    if params[:minisymposium]
+      @minisymposia  = Minisymposium.joins(:presentations)
+                                    .select('conference_sessions.*, COUNT(*) AS presentation_count')
+                                    .group('presentations.conference_session_id')
+                                    .includes(:schedule, ratings: :user, organizers: :user)
+                                    .order('updated_at DESC')
+
+      if params[:tag_id]
+        @tag = Tag.find(params[:tag_id]) 
+        @minisymposia = @minisymposia.joins(:tags).where('tags.id = ?', @tag.id)
+      end
+    elsif params[:contributed]
+      @presentations  = Presentation.includes(:conference_session, ratings: :user, authors: :user)
+                                    .unassigned
+                                    .not_poster 
+    elsif params[:poster] 
+      @posters = Presentation.includes(:conference_session, ratings: :user, authors: :user)
+                             .unassigned
+                             .poster 
+    end
   end
 end

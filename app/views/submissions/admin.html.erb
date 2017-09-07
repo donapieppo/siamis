@@ -4,15 +4,15 @@
 
   <dl class="admin_list">
     <% @minisymposia.each do |minisymposium| %>  
-      <dt>(<%= minisymposium.presentation_count %>) <%= link_to minisymposium.name, minisymposium_path(minisymposium), remote: true %></dt>
+      <dt><%= link_to minisymposium.name, minisymposium_path(minisymposium), remote: true %></dt>
       <dd><%= show_roles(minisymposium.organizers) %></dd>
-      <dd><%= minisymposium.all_tags %> </dd>
-      <dd><small>last update: <%= l minisymposium.updated_at %></small></dd>
+      <dd>keywords: <%= minisymposium.all_tags %> </dd>
+      <dd><small><%= minisymposium.presentation_count %> presentations. Last update: <%= l minisymposium.updated_at %></small></dd>
     <% end %>
   </dl>
 <% end %>
 
-<% if @unassigned_presentations %>  
+<% if @presentations %>  
   <h2>Presentations <small>(unassigned)</small></h2>
 <% end %>
 
