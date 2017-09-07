@@ -1,6 +1,6 @@
 class MinisymposiaController < ConferenceSessionsController
   before_action :check_deadline!, only: [:new, :create]
-  before_action :user_in_organizer_committee!, only: [:accept]
+  before_action :user_in_organizer_committee!, only: [:refuse, :accept]
 
   # wait till end of proposals to show accepted Minisymposia
   def index
@@ -23,7 +23,7 @@ class MinisymposiaController < ConferenceSessionsController
 
   def refuse
     Minisymposium.find(params[:id]).refuse!
-    redirect_to submissions_path(minisymposium: 1), notice: 'The minisymposium has been unaccepted.'
+    redirect_to submissions_path(minisymposium: 1), notice: 'The minisymposium has been refused.'
   end
 
   def accept
@@ -34,7 +34,7 @@ class MinisymposiaController < ConferenceSessionsController
   private
 
   def conference_session_params
-    params[:minisymposium].permit(:name, :description)
+    params[:minisymposium].permit(:name, :description, tag_ids: [])
   end
 
   def check_deadline!
