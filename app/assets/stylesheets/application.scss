@@ -75,6 +75,7 @@ input.boolean {
 #footer {
   padding: 60px 0 30px 0;
   text-align: center;
+  color: $gray;
   // color: #fff;
   // a {color: #ccc;}
   // background-color: $footer_color;
@@ -189,5 +190,13 @@ div.hotel-panel_selected {
   }
   dd {
     margin-left: 10px;
+    color: $gray-light;
+  }
+}
+ul.tag_admin_list {
+  @extend .row;
+  li {
+    @extend .col-md-4;
+    list-style-type: none; 
   }
 }
