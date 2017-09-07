@@ -30,6 +30,8 @@ en:
   Schedules: Schedule
   ConferenceProgram: Conference Program
   InvitationLetters: Letters of Invitation
+  Tags: Keywords
+  Home: Home
 
   # payments
   siag_member: SIAG member
@@ -47,6 +49,7 @@ en:
     attributes:
       minisymposium:
         name: Title
+        tags: Keywords
         description: Summary
       presentation:
         name: Title
