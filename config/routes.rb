@@ -99,6 +99,7 @@ Rails.application.routes.draw do
     post :manual_create, on: :collection, as: :manual_create
   end
 
+  resources :tags 
   resources :hotels
   resources :invitation_letters
 
