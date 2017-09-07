@@ -6,6 +6,8 @@ class ConferenceSession < ApplicationRecord
   has_one  :schedule, dependent: :destroy
   has_many :presentations
 
+  has_and_belongs_to_many :tags, join_table: :taggins
+
   def to_s
     self.name
   end
@@ -42,5 +44,8 @@ class ConferenceSession < ApplicationRecord
     "Chair"
   end
 
+  def tags_to_s
+    self.tags.map(&:name).join(", ")
+  end
 end
 

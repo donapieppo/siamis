@@ -9,6 +9,8 @@ class Presentation < ApplicationRecord
   belongs_to :minitutorial,  foreign_key: :conference_session_id, optional: true
   belongs_to :plenary,       foreign_key: :conference_session_id, optional: true
 
+  has_and_belongs_to_many :tags, join_table: :taggins
+
   scope :at_minisymposium, -> { left_outer_joins(:conference_session).where.not(conference_session_id: nil).where('conference_sessions.type = "Minisymposium"').references(:conference_session) }
   scope :at_minitutorial,  -> { left_outer_joins(:conference_session).where.not(conference_session_id: nil).where('conference_sessions.type = "Minitutorial"').references(:conference_session) }
   scope :at_plenary,       -> { left_outer_joins(:conference_session).where.not(conference_session_id: nil).where('conference_sessions.type = "Plenary"').references(:conference_session) }

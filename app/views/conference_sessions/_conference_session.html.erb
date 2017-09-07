@@ -26,6 +26,11 @@
 
     <%= render(partial: 'ratings/dl_list', locals: { what: conference_session }) %>  
 
+    <dl class="dl-horizontal">
+      <dt><%= t 'Tags' %>:</dt>
+      <dd><%= conference_session.tags_to_s %></dd>
+    </dl>
+
     <%= missing_presentations_alert if missing_presentations %>  
   </div>
 

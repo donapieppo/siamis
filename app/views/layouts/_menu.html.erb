@@ -55,7 +55,7 @@
       <% if current_user %>  
         <% if user_in_scientific_committee? %>  
           <%= dropdown_menu fwicon('gavel') + ' COMMITTEE' do %>
-            <%= menu_link 'star', 'Minisymposia ratings', ratings_path(minisymposia: 1) %>
+            <%= menu_link 'star', 'Minisymposia ratings', ratings_path(minisymposium: 0) %>
             <%= menu_link 'star', 'Submissions ratings', ratings_path %>
           <% end %>
         <% end %>
@@ -71,6 +71,8 @@
             <%= menu_link 'file', 'Invitation Letter Requests', invitation_letters_path %>
             <li class="divider"></li>
             <%= menu_link 'hotel', 'Accommodation', hotels_path %>
+            <li class="divider"></li>
+            <%= menu_link 'key', 'Keywords', tags_path %>
           <% end %>
         <% end %>
       <% end %>

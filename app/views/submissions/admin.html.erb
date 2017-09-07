@@ -6,7 +6,7 @@
     <% @minisymposia.each do |minisymposium| %>  
       <dt><%= link_to minisymposium.name, minisymposium_path(minisymposium), remote: true %></dt>
       <dd><%= show_roles(minisymposium.organizers) %></dd>
-      <dd>keywords: <%= minisymposium.all_tags %> </dd>
+      <dd>keywords: <%= minisymposium.tags_to_s %> </dd>
       <dd><small><%= minisymposium.presentation_count %> presentations. Last update: <%= l minisymposium.updated_at %></small></dd>
     <% end %>
   </dl>
