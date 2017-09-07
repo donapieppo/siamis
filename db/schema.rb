@@ -162,6 +162,20 @@ ActiveRecord::Schema.define(version: 0) do
     t.index ["room_id"], name: "room_id"
   end
 
+  create_table "taggins", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "tag_id", null: false, unsigned: true
+    t.integer "presentation_id", unsigned: true
+    t.integer "conference_session_id", unsigned: true
+    t.index ["conference_session_id"], name: "conference_session_id"
+    t.index ["presentation_id"], name: "presentation_id"
+    t.index ["tag_id"], name: "tag_id"
+  end
+
+  create_table "tags", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.index ["name"], name: "name"
+  end
+
   create_table "users", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "salutation", limit: 20
     t.string "name"
