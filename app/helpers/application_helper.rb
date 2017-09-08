@@ -75,6 +75,7 @@ module ApplicationHelper
     else
       val = object.send(what)
       val == false and val = "-"
+      val == nil   and val = "-"
       val == true  and val = icon('check')
       content_tag(:dt, I18n.t("activerecord.attributes.#{object.class.to_s.downcase}.#{what}").capitalize) + 
       content_tag(:dd, val) # what is a symbol
