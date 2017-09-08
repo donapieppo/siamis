@@ -1,0 +1,21 @@
+<%= program_title('Keywords', 'key') %>  
+
+<ul class="tag_admin_list">
+  <% @tags.each do |tag| %>  
+    <li>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <%= tag %>
+          <span class="pull-right">
+            <%= link_to_edit [:edit, tag] %>  
+            <%= link_to_delete tag %> 
+          </span>
+        </div>
+        <div class="panel-body">
+          <%= link_to tag.minisymposia.count.to_s + " minisymposia", admin_submissions_path(tag_id: tag.id, minisymposium: 1) %>  
+        </div>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to_new 'Add new keyword', new_tag_path %>  
