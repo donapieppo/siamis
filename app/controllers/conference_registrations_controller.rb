@@ -23,7 +23,6 @@ class ConferenceRegistrationsController < ApplicationController
       @single_day_fee = Fee.new(current_user, single_day: true)
       @single_day_price_to_pay_and_reason = @single_day_fee.price_to_pay_and_reason
     end
-    @no_container = true
   end
 
   def show

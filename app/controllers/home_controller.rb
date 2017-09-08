@@ -2,7 +2,6 @@ class HomeController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @home_header   = @no_container = true
     @plenaries     = Plenary.includes(presentation: [authors: :user], schedule: :room).order('users.surname, users.name')
     @minitutorials = Minitutorial.includes(presentation: [authors: :user], schedule: :room).order('users.surname, users.name')
   end
@@ -11,7 +10,6 @@ class HomeController < ApplicationController
   end
 
   def venue
-    @no_container = true
   end
 
   def privacy

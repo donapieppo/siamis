@@ -21,7 +21,7 @@ h1 {
   // color: $blue;
   //text-shadow: 2px 2px 0 $blue;
 }
-h1, h2, h3, h4 {
+h1, h2, h3 {
   @extend .centered;
   font-weight: 300;
 }

@@ -5,7 +5,6 @@ class SubmissionsController < ApplicationController
   # all minisymposia
   # presentations only unaccepted
   def index
-    @no_container = true
     if current_user
       @presentations = current_user.presentations.includes(:conference_session, authors: :user)
       @minisymposia  = current_user.minisymposia.includes(organizers: :user)

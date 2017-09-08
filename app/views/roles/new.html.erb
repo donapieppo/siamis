@@ -16,7 +16,7 @@
 
   <% unless uncorrect_email or @role.errors[:email].any? %> 
     <p>
-    We have no information about the user with the mail &ldquo;<em><%= @role.email %></em>&rdquo;.<br/>
+      We have no information about the user with e-mail &ldquo;<em><%= @role.email %></em>&rdquo;.<br/>
       Please submit the following info:
     </p>
     <%= role.input :name, required: true %>  
