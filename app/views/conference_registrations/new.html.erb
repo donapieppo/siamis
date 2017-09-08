@@ -3,8 +3,8 @@
 
 <div class="container">
   <% if Deadline.registration_open? %>  
-    <p>Early registration deadline – <strong><%= l Deadline.pre_registration_end, format: :long %></strong>.</p>
-    <p>All advance registration payments are to be made by credit card.  All fees are quoted in Euros.</p>
+    <p class="alert alert-info">Registration is now open for SIAM-IS17 Conference!<br/>
+    Early registration deadline – <strong><%= l Deadline.pre_registration_end, format: :long %></strong>.</p>
   <% else %>
     <p class="alert alert-warning">Registration will start at <strong><%= l Deadline.pre_registration_start %></strong>.</p>
   <% end %>
@@ -26,33 +26,39 @@
 <% if current_user %>  
   <div class="bg-colored">
     <div class="container">
-      <h2><%= big_icon :user %> Check your data!</h2>
-      <%= render current_user %>  
-    </div>
-  </div>
-  <div class="bg-colored">
-    <div class="container">
-
       <% if @current_user_conference_registration %>
-        <div class="alert alert-success">
-          You are already registerd to the Siam-is 2018 conference.
-        </div>
+        <p class="alert alert-success">
+        You are already registerd to the Siam-is 2018 conference.
+        </p>
       <% elsif current_user.can_register? %>  
-        <h2>Payment</h2>
+        <h2><%= big_icon('credit-card') %>  Credit card payment</h2>
         <%= render 'payments/social_dinner_invitation' %>  
-        <p class="centered">
-        <%= link_to new_payment_path, class: "big_pay_button" do %>  
-          PAY <br/><strong><%= @price_to_pay_and_reason[0] %> &euro;</strong><br/> for Registration
-          <br/><small>(<%= @price_to_pay_and_reason[1] %>)</small>
-        <% end %>
-        </p>
-
-        <p class="centered">
-        or<br/>
-        <%= link_to new_payment_path(single_day: 1), class: "button" do %>  
-          PAY <br/><strong><%= @single_day_price_to_pay_and_reason[0] %> &euro;</strong><br/> for One Day Registration
-        <% end %>
-        </p>
+        <div class="row">
+          <div class="col-md-6">
+            <h4>Please check your data</h4>
+            <dl class="dl-horizontal">
+              <% [:name, :surname, :affiliation, :siam, :siag, :student].each do |field| %>  
+                <%= dl_field(current_user, field) %>  
+              <% end %>
+            </dl>
+            <p>You can update your data <%= link_to 'here', edit_user_path(current_user), class: 'btn btn-warning btn-xs', role: "button" %>  </p>
+          </div><!-- col user -->
+          <div class="col-md-6">
+            <h4>Payment</h4>
+            <p class="centered">
+            <%= link_to new_payment_path, class: "big_pay_button" do %>  
+              PAY <br/><strong><%= @price_to_pay_and_reason[0] %> &euro;</strong><br/> for Registration
+              <br/><small>(<%= @price_to_pay_and_reason[1] %>)</small>
+            <% end %>
+            </p>
+            <p class="centered">or</p>
+            <p class="centered">
+            <%= link_to new_payment_path(single_day: 1), class: "button" do %>  
+              PAY <br/><strong><%= @single_day_price_to_pay_and_reason[0] %> &euro;</strong><br/> for One Day Registration
+            <% end %>
+            </p>
+          </div><!-- col payment -->
+        </div><!-- row -->
       <% end %>
     </div>
   </div>
