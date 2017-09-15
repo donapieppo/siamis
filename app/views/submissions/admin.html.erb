@@ -1,12 +1,12 @@
 <div class="container">
 <% if @minisymposia %>  
-   <%= program_title('Minisymposia Submissions', 'magic') %>  
+  <h2>Minisymposia Submissions</h2>
 
   <dl class="admin_list">
     <% @minisymposia.each do |minisymposium| %>  
       <dt><%= link_to minisymposium.name, minisymposium_path(minisymposium), remote: true %></dt>
       <dd><%= show_roles(minisymposium.organizers) %></dd>
-      <dd>keywords: <%= minisymposium.tags_to_s %> </dd>
+      <dd><small>keywords: <%= minisymposium.tags_to_s %></small></dd>
       <dd><small><%= minisymposium.presentation_count %> presentations. Last update: <%= l minisymposium.updated_at %></small></dd>
     <% end %>
   </dl>
