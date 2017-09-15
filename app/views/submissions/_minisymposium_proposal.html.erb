@@ -1,7 +1,7 @@
 <% if current_user and Deadline.can_propose?(:minisymposium) %>  
   <div class="minisymposium_submission">
     <p class="centered">
-    <%= link_to 'Submit <br/><strong>Minisymposium Proposal</strong>'.html_safe, new_minisymposium_path %>
+      <%= link_to 'Submit <br/><strong>Minisymposium Proposal</strong>'.html_safe, new_minisymposium_path %>
     </p>
   </div>
 <% end %>

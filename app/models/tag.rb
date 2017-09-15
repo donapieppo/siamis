@@ -17,6 +17,7 @@ class Tag < ApplicationRecord
   end
 
   # ????? downcase! Downcases the contents of str, returning nil if no changes were made. 
+  # quindi "ppp".downcase!.strip! e' nil.strip! = raise
   def self.add_manual_tags(tags_string)
     tags_string.split(',').map do |ts|
       t = ts.downcase.strip

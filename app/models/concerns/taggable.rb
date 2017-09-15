@@ -15,7 +15,6 @@ module Taggable
   end
 
   def manual_tags=(s)
-    # raise Tag.add_manual_tags(s).inspect
     tags << Tag.add_manual_tags(s)
   end
 end
