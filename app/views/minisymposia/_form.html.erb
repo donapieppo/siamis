@@ -17,7 +17,8 @@
   <%= conference_session.error_notification %>
   <%= conference_session.input :name %>  
   <%= conference_session.input :description, input_html: {rows: 6} %>  
-  <%= conference_session.association :tags, as: :check_boxes %>
+  <%= conference_session.association :tags, collection: Tag.global, as: :check_boxes %>
+  <%= conference_session.input :manual_tags %>
   <%= conference_session.submit %> - <%= link_to_back root_path %>
 <% end %>
 
@@ -26,5 +27,14 @@
     update_wcount($(this));
   });
   update_wcount($('#minisymposium_description'));
+
+  $('form').submit(function( event ) {
+    var manual_tags = $('#minisymposium_manual_tags').val();
+    if (manual_tags && manual_tags.length > 0) {
+      console.log("Manual tags=" + manual_tags);
+      var keys = manual_tags.split(",");
+      confirm( "You are adding the following keywords: " + keys );
+    }
+  });
 <% end %>
 
