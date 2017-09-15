@@ -87,22 +87,6 @@ input.boolean {
   //a { color: $color_2; }
 }
 
-.minisymposium_submission {
-  a {
-    @extend .btn;
-    @extend .btn-lg;
-    @extend .btn-primary;
-    // background-color: $minisymposium_color;
-  }
-}
-.presentation_proposal_submission {
-  a {
-    @extend .btn;
-    @extend .btn-lg;
-    @extend .btn-primary;
-    // background-color: $presentation_color;
-  }
-}
 .footer-actions {
   a { 
     @extend .button; 
@@ -155,12 +139,12 @@ div.hotel-panel_selected {
 .bg-colored-first {
   background-color: $section_first_bg_color;
   color: #fff;
-  a { color: #eee; }
+  a { color: #eee; text-decoration: underline;}
 }
 .bg-colored-second {
   background-color: $section_second_bg_color;
   color: #fff;
-  a { color: #eee; }
+  a { color: #eee; text-decoration: underline;}
 }
 .bg-colored:nth-child(even) {
   @extend .bg-colored-first;
@@ -198,5 +182,21 @@ ul.tag_admin_list {
   li {
     @extend .col-md-4;
     list-style-type: none; 
+  }
+}
+.minisymposium_submission {
+  a {
+    @extend .btn;
+    @extend .btn-lg;
+    @extend .btn-primary;
+    text-decoration: none;
+  }
+}
+.presentation_proposal_submission {
+  a {
+    @extend .btn;
+    @extend .btn-lg;
+    @extend .btn-primary;
+    text-decoration: none;
   }
 }
