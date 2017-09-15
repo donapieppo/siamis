@@ -44,9 +44,5 @@ class ConferenceSession < ApplicationRecord
     "Chair"
   end
 
-  def tags_to_s
-    self.tags.map(&:name).join(", ")
-  end
-
 end
 
