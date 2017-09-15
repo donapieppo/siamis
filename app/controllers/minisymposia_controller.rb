@@ -1,6 +1,7 @@
 class MinisymposiaController < ConferenceSessionsController
   before_action :check_deadline!, only: [:new, :create]
   before_action :user_in_organizer_committee!, only: [:refuse, :accept]
+  after_action :manual_tags, only: [:create, :update]
 
   # wait till end of proposals to show accepted Minisymposia
   def index
@@ -34,7 +35,12 @@ class MinisymposiaController < ConferenceSessionsController
   private
 
   def conference_session_params
+    @manual_tags = params[:minisymposium].delete(:manual_tags)
     params[:minisymposium].permit(:name, :description, tag_ids: [])
+  end
+
+  def manual_tags  
+    @conference_session.manual_tags = @manual_tags
   end
 
   def check_deadline!
