@@ -1,6 +1,7 @@
 CREATE TABLE `tags` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255),
+  `global` bool,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -16,25 +17,25 @@ CREATE TABLE `taggins` (
   KEY `conference_session_id` (`conference_session_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `tags` VALUES (0, 'reconstruction');
-INSERT INTO `tags` VALUES (0, 'enhancement');
-INSERT INTO `tags` VALUES (0, 'segmentation');
-INSERT INTO `tags` VALUES (0, 'analysis');
-INSERT INTO `tags` VALUES (0, 'registration');
-INSERT INTO `tags` VALUES (0, 'compression');
-INSERT INTO `tags` VALUES (0, 'representation');
-INSERT INTO `tags` VALUES (0, 'tomography');
-INSERT INTO `tags` VALUES (0, 'machine learning');
-INSERT INTO `tags` VALUES (0, 'nonlinear optimization');
-INSERT INTO `tags` VALUES (0, 'numerical linear algebra');
-INSERT INTO `tags` VALUES (0, 'integral equations');
-INSERT INTO `tags` VALUES (0, 'partial differential equations');
-INSERT INTO `tags` VALUES (0, 'bayesian methods');
-INSERT INTO `tags` VALUES (0, 'statistical inverse estimation methods');
-INSERT INTO `tags` VALUES (0, 'operator theory');
-INSERT INTO `tags` VALUES (0, 'differential geometry');
-INSERT INTO `tags` VALUES (0, 'information theory');
-INSERT INTO `tags` VALUES (0, 'interpolation and approximation');
-INSERT INTO `tags` VALUES (0, 'inverse problems');
-INSERT INTO `tags` VALUES (0, 'computer graphics and vision');
-INSERT INTO `tags` VALUES (0, 'stochastic processes');
+INSERT INTO `tags` VALUES (0, 'image reconstruction', 1);
+INSERT INTO `tags` VALUES (0, 'image enhancement', 1);
+INSERT INTO `tags` VALUES (0, 'image segmentation', 1);
+INSERT INTO `tags` VALUES (0, 'image deblurring', 1);
+INSERT INTO `tags` VALUES (0, 'image registration', 1);
+INSERT INTO `tags` VALUES (0, 'image compression', 1);
+INSERT INTO `tags` VALUES (0, 'image representation', 1);
+INSERT INTO `tags` VALUES (0, 'computed tomography', 1);
+INSERT INTO `tags` VALUES (0, 'machine learning', 1);
+INSERT INTO `tags` VALUES (0, 'deep learning', 1);
+INSERT INTO `tags` VALUES (0, 'nonlinear optimization', 1);
+INSERT INTO `tags` VALUES (0, 'numerical linear algebra', 1);
+INSERT INTO `tags` VALUES (0, 'integral equations for image analysis', 1);
+INSERT INTO `tags` VALUES (0, 'partial differential equation models', 1);
+INSERT INTO `tags` VALUES (0, 'bayesian methods', 1);
+INSERT INTO `tags` VALUES (0, 'statistical inverse estimation methods', 1);
+INSERT INTO `tags` VALUES (0, 'inverse problems', 1);
+INSERT INTO `tags` VALUES (0, 'computer graphics', 1);
+INSERT INTO `tags` VALUES (0, 'computer vision', 1);
+INSERT INTO `tags` VALUES (0, 'stochastic processes', 1);
+
+
