@@ -31,6 +31,7 @@ en:
   ConferenceProgram: Conference Program
   InvitationLetters: Letters of Invitation
   Tags: Keywords
+  Tag: Keyword
   Home: Home
 
   # payments
@@ -51,6 +52,7 @@ en:
         name: Title
         tags: Keywords
         description: Summary
+        manual_tags: Add other keywords
       presentation:
         name: Title
       user:
@@ -90,11 +92,14 @@ en:
         passport_number: Passport Number
         passport_origin: Passport Origin
         birthdate: Date of Birth
+      tag:
+        global: Public
 
   simple_form:
     hints:
       minisymposium: 
         name: Describe the subject of your minisymposium as accurately and specifically as possible in not more than ten words.
+        manual_tags: Other keywords separated by , (comma)
         description: Describe your minisymposium in not more than 100 words. <em>Using <span id="wcount"></span> words</em>.
       user:
         siam: IEEE and GAMM members are eligible to register at the SIAM Member rate.
@@ -108,6 +113,9 @@ en:
         speaker_id: Choose the speaker among the authors. Only the speaker can edit title and abstract.
       organizer:
         email: Please use the person institutional mail address.
+      tag:
+        global: Check in order to make the keyword selectable by people submitting.
+
     placeholders:
       user: 
         web_page: http://
