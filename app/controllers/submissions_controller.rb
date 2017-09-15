@@ -13,7 +13,7 @@ class SubmissionsController < ApplicationController
 
   def admin
     if params[:minisymposium]
-      @minisymposia  = Minisymposium.joins(:presentations)
+      @minisymposia  = Minisymposium.left_outer_joins(:presentations)
                                     .select('conference_sessions.*, COUNT(*) AS presentation_count')
                                     .group('presentations.conference_session_id')
                                     .includes(:schedule, ratings: :user, organizers: :user)
