@@ -12,7 +12,7 @@ class TagsController < ApplicationController
   end
 
   def create
-    @tag = Tag.new(name: params[:tag][:name])
+    @tag = Tag.new(name: params[:tag][:name], global: false)
     if @tag.save
       # if @what 
       #   @what.tags << @tag
@@ -30,7 +30,7 @@ class TagsController < ApplicationController
   end
 
   def update
-    @tag.update_attribute(:name, params[:tag][:name])
+    @tag.update_attributes(name: params[:tag][:name], global: params[:tag][:global])
     redirect_to tags_path
   end
 

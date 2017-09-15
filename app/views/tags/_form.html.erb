@@ -1,6 +1,7 @@
 <%= simple_form_for @tag do |tag| %>  
   <%= tag.input :name, hint: "<strong>Actual keywords:</strong> #{h Tag.all_tags}".html_safe %>  
-  <%= tag.submit "Add keyword" %>  
+  <%= tag.input :global %>
+  <%= tag.submit %>  
 <% end %>
 
 
