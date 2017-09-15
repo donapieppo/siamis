@@ -25,3 +25,14 @@
 /app/assets/images
 /config/initializers/conference.rb
 
+public/apple*
+public/android*
+public/favicon-16x16.png
+public/favicon-32x32.png
+public/favicon-96x96.png
+public/ms-icon-144x144.png
+public/ms-icon-150x150.png
+public/ms-icon-310x310.png
+public/ms-icon-70x70.png
+public/program.pdf
+
