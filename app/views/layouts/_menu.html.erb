@@ -13,6 +13,7 @@
     <ul class="nav navbar-nav navbar-right">
       <% cache 'common_menu' do %>
         <%= dropdown_menu fwicon('home') + ' GENERAL INFORMATION' do  %>
+          <%= menu_link 'home',         'Home page', root_path, 'general' %>
           <%= menu_link 'bullhorn',     'Preliminary Announcement', root_path(anchor: 'preliminary_announcement'), 'general' %>
           <%= menu_link 'info',         'Conference Themes', root_path(anchor: 'conference_themes'), 'general' %>
           <%= menu_link 'users',        'Committees', root_path(anchor: 'committees'), 'general' %>
