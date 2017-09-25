@@ -3,22 +3,7 @@
 <div class="container">
 <%= program_title('Submissions', 'envelope-o') %>  
 
-<% if user_in_organizer_committee? %>  
-  <% if @minisymposia %>  
-    <h2>Minisymposia</h2>
-    <%= render @minisymposia, condensed: true %>
-  <% end %>
-
-  <% if @unassigned_presentations %>  
-    <h2>Presentations <small>(unassigned)</small></h2>
-    <%= render @unassigned_presentations, condensed: true %>  
-  <% end %>
-
-  <% if @posters %>  
-    <h2>Posters <small>(unassigned)</small></h2>
-    <%= render @posters, condensed: true %>
-  <% end %>
-<% elsif current_user %>
+<% if current_user %>
   <% if @presentations.any? or @minisymposia.any? %>
     <% @presentations.each do |presentation| %>  
       <% if presentation.in_mono_conference_session? %>  
