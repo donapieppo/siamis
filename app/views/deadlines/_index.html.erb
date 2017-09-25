@@ -4,7 +4,7 @@
       <td><%= icon('hand-o-right') if Deadline.can_propose?(:minisymposium) %></td>
       <td><%= l(Deadline.minisymposium_proposal_start, format: :deadline) %></td>
       <td><%= l(Deadline.minisymposium_proposal_end, format: :deadline) %></td>
-      <th><%= link_to 'Minisymposium proposals', submissions_path %></th>
+      <th><%= link_to 'Minisymposium proposals', submissions_path %> <span class="bg-info" style="padding: 0 10px; color: #d9534f"> DEADLINE EXTENDED! </span></th>
     </tr>
 
     <tr>
