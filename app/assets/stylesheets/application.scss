@@ -140,11 +140,13 @@ div.hotel-panel_selected {
   background-color: $section_first_bg_color;
   color: #fff;
   a { color: #eee; text-decoration: underline;}
+  a.btn { text-decoration: none; }
 }
 .bg-colored-second {
   background-color: $section_second_bg_color;
   color: #fff;
   a { color: #eee; text-decoration: underline;}
+  a.btn { text-decoration: none; }
 }
 .bg-colored:nth-child(even) {
   @extend .bg-colored-first;
