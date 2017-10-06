@@ -41,7 +41,7 @@
                 <%= dl_field(current_user, field) %>  
               <% end %>
             </dl>
-            <p>You can update your data <%= link_to 'here', edit_user_path(current_user), class: 'btn btn-warning btn-xs', role: "button" %>  </p>
+            <p><%= link_to icon(:pencil) + ' modify your data', edit_user_path(current_user) %>.</p>
           </div><!-- col user -->
           <div class="col-md-6">
             <h4>Payment</h4>
