@@ -7,7 +7,14 @@
       <dt><%= link_to minisymposium.name.upcase, minisymposium_path(minisymposium), remote: true %></dt>
       <dd><%= show_roles(minisymposium.organizers) %></dd>
       <dd><small>keywords: <%= minisymposium.all_tags %></small></dd>
-      <dd><small><%= minisymposium.presentation_count %> presentations. Last update: <%= l minisymposium.updated_at %></small></dd>
+      <dd>
+        <small>
+          <%= icon('star') if @my_ratings.include?(minisymposium.id)  %>  
+          <%= minisymposium.presentation_count %> presentations. 
+          <%= minisymposium.ratings.count %> ratings.
+          Last update: <%= l minisymposium.updated_at %>
+        </small>
+      </dd>
     <% end %>
   </dl>
 <% end %>

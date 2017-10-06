@@ -1,6 +1,6 @@
 class SubmissionsController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :user_in_organizer_committee!, except: [:index]
+  before_action :user_in_organizer_or_scientific_committee!, except: [:index]
 
   # all minisymposia
   # presentations only unaccepted
@@ -13,11 +13,16 @@ class SubmissionsController < ApplicationController
 
   def admin
     if params[:minisymposium]
-      @minisymposia  = Minisymposium.left_outer_joins(:presentations)
-                                    .select('conference_sessions.*, COUNT(presentations.id) AS presentation_count')
-                                    .group('presentations.conference_session_id')
-                                    .includes(:schedule, ratings: :user, organizers: :user)
-                                    .order('updated_at DESC')
+      @minisymposia = Minisymposium.left_outer_joins(:presentations)
+                                   .select('conference_sessions.*, COUNT(presentations.id) AS presentation_count')
+                                   .group('presentations.conference_session_id')
+                                   .includes(:schedule, :tags, ratings: :user, organizers: :user)
+      if user_in_organizer_committee?
+        @minisymposia = @minisymposia.order('updated_at DESC')
+      else
+        @minisymposia = @minisymposia.order('name')
+      end
+      @my_ratings = current_user.ratings.select(:conference_session_id).pluck(:conference_session_id)
 
       if params[:tag_id]
         @tag = Tag.find(params[:tag_id]) 
