@@ -56,8 +56,7 @@
       <% if current_user %>  
         <% if user_in_scientific_committee? %>  
           <%= dropdown_menu fwicon('gavel') + ' COMMITTEE' do %>
-            <%= menu_link 'star', 'Minisymposia ratings', ratings_path(minisymposium: 0) %>
-            <%= menu_link 'star', 'Submissions ratings', ratings_path %>
+            <%= menu_link 'star', 'Minisymposia ratings', admin_submissions_path(minisymposium: 1) %>
           <% end %>
         <% end %>
         <% if user_in_organizer_committee? %>  
