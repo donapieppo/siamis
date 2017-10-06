@@ -1,6 +1,6 @@
 <%= simple_form_for [@rating.about, @rating] do |rating| %>  
   <%= rating.error_notification %>
-  <%= rating.input :score, collection: (0..Rating.excellence) %>  
+  <%= rating.input :score, collection: (0..Rating.excellence), include_blank: false %>  
   <%= rating.input :notes %>  
   <%= rating.submit "Save" %>  
 <% end %>
