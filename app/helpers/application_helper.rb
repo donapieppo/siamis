@@ -17,7 +17,7 @@ module ApplicationHelper
 
   def bootstrap_modal_div
     raw %Q|
-      <div class="modal fade" id="main-modal" >
+      <div class="modal fade" id="main-modal" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
