@@ -2,17 +2,6 @@ class RatingsController < ApplicationController
   before_action :user_in_scientific_committee!
   before_action :set_what, except: :index
 
-  def index
-    if @highlight = params[:minisymposium]
-      @list = Minisymposium.includes(:schedule, ratings: :user, roles: :user)
-    elsif @highlight = params[:contributed] || params[:poster]
-      @list = Presentation.includes(:schedule, ratings: :user, roles: :user).submitted
-    else
-      @list = []
-    end
-    @highlight = @highlight.to_i
-  end
-
   def new
     @rating = @what.ratings.where(user: current_user).first || @what.ratings.new(user: current_user)
   end
@@ -21,7 +10,7 @@ class RatingsController < ApplicationController
     @rating = @what.ratings.where(user: current_user).first || @what.ratings.new(user: current_user)
     @rating.user = current_user
     if @rating.update_attributes(rating_params)
-      redirect_to ratings_path(@what.class.name.underscore => @what.id)
+      redirect_to admin_submissions_path(@what.class.name.underscore => @what.id)
     else
       render action: :new
     end
