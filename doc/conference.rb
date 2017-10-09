@@ -5,7 +5,8 @@ COCHAIRS             = ['name.surname3@example.com',
 SCIENTIFIC_COMMITTEE = ['name.surname5@example.com',
                         'name.surname6@example.com']
 ORGANIZER_COMMITTEE  = ['name.surname7@unibo.it']
-LOCAL_COMMITTEE      = ['name.surname8@unibo.it']
+MANAGEMENT_COMMETTE  = ['name.surname8@unibo.it']
+LOCAL_COMMITTEE      = ['name.surname9@unibo.it']
 
 module Siamis
   class Application < Rails::Application
@@ -17,7 +18,9 @@ module Siamis
     config.active_record.time_zone_aware_types = [:datetime, :time]
 
     config.impersonate_admins = ['name.surname@example.com']
+    config.main_impersonations = ['name.surname9@unibo.it', 'name.surname11@unibo.it']
 
+    config.action_mailer.asset_host       = 'https://tester.example.com'
     routes.default_url_options[:host]     = 'tester.example.com'
     routes.default_url_options[:protocol] = 'https'
 
@@ -31,6 +34,15 @@ module Siamis
                          minisymposium_abstract: ['25/09/2017', '25/10/2017'],
                          presentation_proposal:  ['15/07/2017', '18/10/2017'] }
 
-    config.message_footer = "Conference name June 5-8, 2018 Example - Italy"
+    config.new_password_lenght = 6
+
+    config.durations = { Minitutorial:      120,
+                         Minisymposium:      30,
+                         Plenary:            45,
+                         ContributedSession: 20,
+                         PosterSession:      50 }
+
+    config.contact_mail_name = 'siam-is@example.it'
+    config.contact_mail      = 'siam-is@example.it'
   end
 end
