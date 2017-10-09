@@ -12,7 +12,9 @@
         <dd style="<%= 'font-weight: bold' if (rating.user == current_user) %>">
         <%= rating_stars(rating.score) %> 
         <%= rating.user %> 
-        <em>(<%= rating.notes %>)</em>  
+        <% unless rating.notes.blank? %>  
+          <em>(<%= rating.notes %>)</em>  
+        <% end %>
         </dd>
         <% sum += rating.score; num += 1 %>  
       <% end %>
