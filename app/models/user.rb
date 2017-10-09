@@ -81,6 +81,10 @@ class User < ApplicationRecord
     (SCIENTIFIC_COMMITTEE + COCHAIRS).include?(self.email)
   end
 
+  def in_management_commettee?
+    MANAGEMENT_COMMETTE.include?(self.email)
+  end
+
   def in_local_committee?
     (LOCAL_COMMITTEE).include?(self.email)
   end
