@@ -9,7 +9,11 @@
       <dd><small>keywords: <%= minisymposium.all_tags %></small></dd>
       <dd>
         <small>
-          <%= icon('star') if @my_ratings.include?(minisymposium.id)  %>  
+          <% if @my_ratings.include?(minisymposium.id) %>
+            <span style="color: green">You rated this minisymposium </span> -
+          <% elsif user_in_scientific_committee? %> 
+            <%= link_to icon('star') + ' rate this minisymposium', new_minisymposium_rating_path(minisymposium), remote: true %> -
+          <% end %>
           <%= minisymposium.presentation_count %> presentations. 
           <%= minisymposium.ratings.count %> ratings.
           Last update: <%= l minisymposium.updated_at %>
