@@ -145,7 +145,7 @@ class User < ApplicationRecord
   end
 
   def self.all_fields
-    self.safe_fields + [:address, :siag, :siam, :student]
+    self.safe_fields + [:address, :siag, :siam, :student, :dietary, :banquet_tickets]
   end
 
   def interested_in?(what)
