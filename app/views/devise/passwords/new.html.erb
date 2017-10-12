@@ -9,12 +9,15 @@
         <% resource.email = params[:e] %>
         <% user = User.where(email: params[:e]).first %>
         <div class="alert alert-warning">
-          <%= user %> is registered as 
-          <ul>
-            <% user_roles(user).each do |role| %>  
-              <li><%= role.html_safe %> </li>
-            <% end %>
-          </ul>
+          <% roles = user_roles(user) %>  
+          <% unless roles.empty? %>  
+            <%= user %> is registered as 
+            <ul>
+              <% roles.each do |role| %>  
+                <li><%= role.html_safe %> </li>
+              <% end %>
+            </ul>
+          <% end %>
           <p>To receive instructions in order to reset your password, please submit the form below.</p>
         </div>
       <% end %>
