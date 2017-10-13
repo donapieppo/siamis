@@ -2,7 +2,7 @@
 
 <p>
   <strong>Minisyposia organizers mail list:</strong><br/>
-  <%= Organizer.includes(:user).includes(:conference_session).where('conference_sessions.type = "Minisymposium"').references(:conference_sessions).map{|r| r.user.email}.join(', ') %>
+  <%= Organizer.includes(:user).includes(:conference_session).where('conference_sessions.type = "Minisymposium"').references(:conference_sessions).map{|r| r.user.email}.join('; ') %>
 </p>
 
 <p class="alert alert-info">Users with (*) are registered.</p>
