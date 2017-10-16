@@ -54,7 +54,7 @@
       <% end %> <!-- cache common_menu -->
 
       <% if current_user %>  
-        <% if user_in_management_commettee? %>  
+        <% if user_in_management_committee? %>  
           <%= menu_link 'euro', 'Registrations', conference_registrations_path %>
         <% end %>
         <% if user_in_scientific_committee? %>  
