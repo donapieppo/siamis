@@ -51,12 +51,12 @@ module UserHelper
     user_in_organizer_or_scientific_committee? or raise NoAccess
   end
 
-  def user_in_management_commettee?
-    current_user and current_user.in_management_commettee? 
+  def user_in_management_committee?
+    current_user and current_user.in_management_committee? 
   end
 
-  def user_in_management_commettee!
-    user_in_management_commettee? or raise NoAccess
+  def user_in_management_committee!
+    user_in_management_committee? or raise NoAccess
   end
 
   def true_user_can_impersonate?
