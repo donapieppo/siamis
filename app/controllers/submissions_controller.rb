@@ -26,7 +26,7 @@ class SubmissionsController < ApplicationController
 
       if params[:tag_id]
         @tag = Tag.find(params[:tag_id]) 
-        @minisymposia = @minisymposia.joins(:tags).where('tags.id = ?', @tag.id)
+        @minisymposia = @minisymposia.left_outer_joins(:tags).where('tags.id = ?', @tag.id)
       end
     elsif params[:contributed]
       @presentations  = Presentation.includes(:conference_session, ratings: :user, authors: :user)
