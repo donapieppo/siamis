@@ -23,6 +23,10 @@ module UserHelper
     user_in_organizer_committee? or raise NoAccess
   end
 
+  def user_cochair?
+    current_user and current_user.cochair?
+  end
+
   def user_in_scientific_committee?
     current_user and current_user.in_scientific_committee?
   end

@@ -77,6 +77,10 @@ class User < ApplicationRecord
     ORGANIZER_COMMITTEE.include?(self.email)
   end
 
+  def cochair?
+    COCHAIRS.include?(self.email)
+  end
+
   def in_scientific_committee?
     (SCIENTIFIC_COMMITTEE + COCHAIRS).include?(self.email)
   end
