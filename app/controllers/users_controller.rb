@@ -2,8 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   skip_before_action :check_user_fields, only: [:edit, :update]
 
-  before_action :user_in_organizer_committee!, except: [:show, :edit, :update, :index, :mailing_list, :multiple_speakers, :affiliations, :missing_affiliation, :update_affiliation] 
-  before_action :user_in_organizer_committee_or_cochair!,               only: [:index, :mailing_list, :multiple_speakers, :affiliations, :missing_affiliation, :update_affiliation] 
+  before_action :user_in_organizer_committee_or_cochair!, except: [:show, :edit, :update] 
   before_action :set_user_and_check_permission, only: [:edit, :update, :destroy]
 
   def index
@@ -11,12 +10,16 @@ class UsersController < ApplicationController
     if params[:affiliation]
       @users = @users.where(affiliation: params[:affiliation])
     end
+    if params[:country]
+      @users = @users.where(country: params[:country])
+    end
   end
 
   def show
     @user = User.find(params[:id])
     @fields = User.safe_fields
     @show_email = false
+
     @user_conference_sessions = @user.conference_sessions.to_a
     @user_presentations       = @user.presentations.includes(:conference_session).to_a
     @conference_registration  = @user.conference_registration
@@ -27,7 +30,7 @@ class UsersController < ApplicationController
       @user_presentations.select!{|x| x.accepted?}
     end
 
-    if user_in_organizer_committee_or_cochair? or user_in_scientific_committee? or user_in_management_commettee?
+    if (user_in_organizer_committee? or user_in_scientific_committee? or user_in_management_committee?) or (current_user and current_user == @user)
       @fields = User.all_fields
       @show_email = true
     end
@@ -110,7 +113,7 @@ class UsersController < ApplicationController
 
   def set_user_and_check_permission
     @user = User.find(params[:id])
-    @user == current_user or user_in_organizer_committee? or raise NOACCESS
+    @user == current_user or user_in_organizer_committee_or_cochair? or raise NoAccess
   end
 end
 
