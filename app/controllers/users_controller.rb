@@ -27,7 +27,7 @@ class UsersController < ApplicationController
       @user_presentations.select!{|x| x.accepted?}
     end
 
-    if user_in_organizer_committee? or user_in_scientific_committee? or user_in_management_commettee?
+    if user_in_organizer_committee_or_cochair? or user_in_scientific_committee? or user_in_management_commettee?
       @fields = User.all_fields
       @show_email = true
     end
