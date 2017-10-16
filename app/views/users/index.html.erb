@@ -1,19 +1,22 @@
 <%= program_title('Users', 'users') %>  
 
-<p>
+<% if user_in_organizer_committee? %>  
+  <p>
   <%= link_to 'Minisymposia organizers list', mailing_list_users_path, class: :button, remote: true %>
   <%= link_to 'Multiple presentations speakers', multiple_speakers_users_path, class: :button %>
   <%= link_to 'Affiliations', affiliations_users_path, class: :button %>
-</p>
+  </p>
+
+  <p class="centered">
+  <%= link_to 'New User', new_user_path, class: :button %>   
+  </p>
+
+<% end %>
 
 <p class="alert alert-info">
 Users with <%= icon('euro') %> are registered.
 Users with <%= icon('check') %> are active (have used the web site).
 Users with <%= icon('cog') %> are in scientific commettee.
-</p>
-
-<p class="centered">
-  <%= link_to 'New User', new_user_path, class: :button %>   
 </p>
 
 <table class="table table-condensed">
