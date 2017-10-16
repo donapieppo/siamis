@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     get :mailing_list, on: :collection
     get :multiple_speakers, on: :collection
     get :affiliations, on: :collection
+    get :missing_affiliation, on: :collection
+    put :update_affiliation, on: :member
   end
 
   resources :authors do

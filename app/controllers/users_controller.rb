@@ -88,6 +88,13 @@ class UsersController < ApplicationController
     @affiliations = User.order(:affiliation).group(:affiliation).count(:affiliation)
   end
 
+  def missing_affiliation
+    @user = User.where(country: nil).first
+  end
+
+  def update_affiliation
+  end
+
   private 
 
   def user_params
