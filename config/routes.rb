@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     post :admin_create, on: :collection # skip devise registration
     post :admin_notify_new, on: :member
     resources :presentations
+    get :mailing_list, on: :collection
+    get :multiple_speakers, on: :collection
   end
 
   resources :authors do
@@ -96,6 +98,7 @@ Rails.application.routes.draw do
   resources :conference_registrations do 
     get  :check, on: :collection, as: :check
     get  :manual_new,    on: :collection, as: :manual_new
+    get  :export,        on: :collection, as: :export
     post :manual_create, on: :collection, as: :manual_create
   end
 
