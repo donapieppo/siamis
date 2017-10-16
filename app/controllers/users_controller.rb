@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   skip_before_action :check_user_fields, only: [:edit, :update]
 
-  before_action :user_in_organizer_committee!, only: [:index, :new, :destroy, :admin_create, :admin_notify_new]
+  before_action :user_in_organizer_committee!, except: [:show, :edit, :update]
   before_action :set_user_and_check_permission, only: [:edit, :update, :destroy]
 
   def index
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       @user_presentations.select!{|x| x.accepted?}
     end
 
-    if user_in_organizer_committee? or user_in_scientific_committee?
+    if user_in_organizer_committee? or user_in_scientific_committee? or user_in_management_commettee?
       @fields = User.all_fields
       @show_email = true
     end
@@ -68,6 +68,16 @@ class UsersController < ApplicationController
       @user.destroy
       redirect_to users_path, notice: "The user has been deleted."
     end
+  end
+
+  def mailing_list
+    @minisymposia_organizers = Organizer.includes(:user).includes(:conference_session).where('conference_sessions.type = "Minisymposium"').references(:conference_sessions).map{|r| r.user.email}.join('; ')
+  end
+
+  def multiple_speakers
+    # choose fiels in roles so that id is users.id
+    q = "SELECT users.*, roles.type, roles.user_id, roles.speak, COUNT(user_id) AS presentation_count FROM roles LEFT JOIN users ON user_id = users.id WHERE speak = 1 AND type='Author' GROUP BY user_id ORDER BY presentation_count DESC"
+    @multiple_speakers = User.find_by_sql(q)
   end
 
   private 
