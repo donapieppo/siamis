@@ -15,7 +15,7 @@
   <% @conference_registrations.each do |conference_registration| %>  
     <% tot += 1 %>  
     <tr>
-      <th><%= user_modal_link(conference_registration.user) %></th>
+      <th title="<%= conference_registration.user.email %>"><%= user_modal_link(conference_registration.user) %></th>
       <% if payment = conference_registration.payment %>  
         <td><%= payment.amount %> &euro;</td>
         <% euro += payment.amount %>  
