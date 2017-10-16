@@ -80,6 +80,9 @@ class UsersController < ApplicationController
     @multiple_speakers = User.find_by_sql(q)
   end
 
+  def affiliations
+  end
+
   private 
 
   def user_params
