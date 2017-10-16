@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   skip_before_action :check_user_fields, only: [:edit, :update]
 
   before_action :user_in_organizer_committee!, except: [:show, :edit, :update, :index, :mailing_list, :multiple_speakers, :affiliations, :missing_affiliation, :update_affiliation] 
-  before_action :user_in_organizer_committee_or_cochair!, only: [:index, :mailing_list, :multiple_speakers, :affiliations, :missing_affiliation, :update_affiliation] 
+  before_action :user_in_organizer_committee_or_cochair!,               only: [:index, :mailing_list, :multiple_speakers, :affiliations, :missing_affiliation, :update_affiliation] 
   before_action :set_user_and_check_permission, only: [:edit, :update, :destroy]
 
   def index
