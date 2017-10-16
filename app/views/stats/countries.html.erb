@@ -1,9 +1,14 @@
 <h1>Countries Stats</h1>
 
+<p class="alert alert-warning">
+  <strong>Warning:</strong> here you find ALL users registered, included authors of presentations that are not speakers.
+</p>
+
 <table class="table table-striped">
   <% @users.each do |user_count| %>  
+    <% (count = user_count[1].to_i) > 0 or next %>  
     <tr>
-      <td><%= user_count[1] %></td>
+      <td><%= count %></td>
       <th><%= link_to user_count[0], users_path(country: user_count[0]) %></th>
       <td><%= ISO3166::Country[user_count[0]] %></td>
     </tr>
