@@ -4,6 +4,7 @@
 <%= link_to 'Minisymposia organizers list', mailing_list_users_path, class: :button, remote: true %>
 <%= link_to 'Multiple presentations speakers', multiple_speakers_users_path, class: :button %>
 <%# <%= link_to 'Affiliations', affiliations_users_path, class: :button %>
+<%= link_to 'Fix a missing affiliation', missing_affiliation_users_path, class: :button %>
 </p>
 
 <% if user_in_organizer_committee? %>  
@@ -29,6 +30,7 @@ Users with <%= icon('cog') %> are in scientific commettee.
       <th><%= link_to user.cn, user, remote: true %></th>
       <td><%= user.email %> </td>
       <td><em><small><%= user.affiliation %></small></em></td>
+      <td><%= user.country ? user.country : link_to_edit([:edit, user]) %></td>
       <td><%= icon('check') if user.sign_in_count > 0 %></td>
       <td><%= icon('cog') if user.in_scientific_committee? %></td>
     <% end %>
