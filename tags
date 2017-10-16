@@ -73,8 +73,10 @@ ScheduleHourInput	app/inputs/schedule_hour_input.rb	/^class ScheduleHourInput < 
 SchedulesController	app/controllers/schedules_controller.rb	/^class SchedulesController < ApplicationController$/;"	c
 SiamHelper	app/helpers/siam_helper.rb	/^module SiamHelper$/;"	m
 SponsorsHelper	app/helpers/sponsors_helper.rb	/^module SponsorsHelper$/;"	m
+StatsController	app/controllers/stats_controller.rb	/^class StatsController < ApplicationController$/;"	c
 SubmissionsController	app/controllers/submissions_controller.rb	/^class SubmissionsController < ApplicationController$/;"	c
 Tag	app/models/tag.rb	/^class Tag < ApplicationRecord$/;"	c
+Taggable	app/models/concerns/taggable.rb	/^module Taggable$/;"	m
 TagsController	app/controllers/tags_controller.rb	/^class TagsController < ApplicationController$/;"	c
 Unicredit	app/models/unicredit.rb	/^class Unicredit$/;"	c
 User	app/models/user.rb	/^class User < ApplicationRecord$/;"	c
@@ -100,8 +102,10 @@ add_manual_tags	app/models/tag.rb	/^  def self.add_manual_tags(tags_string)$/;"	
 admin	app/controllers/submissions_controller.rb	/^  def admin$/;"	f	class:SubmissionsController
 admin_create	app/controllers/users_controller.rb	/^  def admin_create$/;"	f	class:UsersController
 admin_notify_new	app/controllers/users_controller.rb	/^  def admin_notify_new$/;"	f	class:UsersController
+affiliations	app/controllers/users_controller.rb	/^  def affiliations$/;"	f	class:UsersController
 after_sending_reset_password_instructions_path_for	app/controllers/passwords_controller.rb	/^  def after_sending_reset_password_instructions_path_for(resource_name)$/;"	f	class:PasswordsController
 all_fields	app/models/user.rb	/^  def self.all_fields$/;"	F	class:User
+all_tags	app/models/concerns/taggable.rb	/^  def all_tags$/;"	f	class:Taggable
 all_tags	app/models/tag.rb	/^  def self.all_tags$/;"	F	class:Tag
 ask	app/models/unicredit.rb	/^  def ask(amount, description)$/;"	f	class:Unicredit
 asset_exist?	app/helpers/application_helper.rb	/^  def asset_exist?(path)$/;"	f	class:ApplicationHelper
@@ -135,6 +139,7 @@ class_active	app/helpers/application_helper.rb	/^  def class_active(x,y)$/;"	f	c
 class_name	app/models/conference_session.rb	/^  def class_name$/;"	f	class:ConferenceSession
 class_name	app/models/presentation.rb	/^  def class_name$/;"	f	class:Presentation
 cn	app/models/user.rb	/^  def cn$/;"	f	class:User
+cochair?	app/models/user.rb	/^  def cochair?$/;"	f	class:User
 cochairs	app/models/user.rb	/^  def self.cochairs$/;"	F	class:User
 code	app/models/contributed_session.rb	/^  def code$/;"	f	class:ContributedSession
 code	app/models/minisymposium.rb	/^  def code$/;"	f	class:Minisymposium
@@ -158,6 +163,7 @@ conference_session_parent_list_link	app/helpers/conference_helper.rb	/^  def con
 conference_start_date	app/models/deadline.rb	/^    def conference_start_date$/;"	f	class:Deadline
 contacts	app/controllers/home_controller.rb	/^  def contacts$/;"	f	class:HomeController
 copy_user_data	app/models/payment.rb	/^  def copy_user_data$/;"	f	class:Payment
+countries	app/controllers/stats_controller.rb	/^  def countries$/;"	f	class:StatsController
 create	app/controllers/authors_controller.rb	/^  def create$/;"	f	class:AuthorsController
 create	app/controllers/buildings_controller.rb	/^  def create$/;"	f	class:BuildingsController
 create	app/controllers/contributed_sessions_controller.rb	/^  def create $/;"	f	class:ContributedSessionsController
@@ -206,6 +212,7 @@ edit	app/controllers/users_controller.rb	/^  def edit$/;"	f	class:UsersControlle
 equipments	app/controllers/home_controller.rb	/^  def equipments$/;"	f	class:HomeController
 error	app/controllers/payments_controller.rb	/^  def error$/;"	f	class:PaymentsController
 excellence	app/models/rating.rb	/^  def self.excellence$/;"	F	class:Rating
+export	app/controllers/conference_registrations_controller.rb	/^  def export$/;"	f	class:ConferenceRegistrationsController
 fee	app/models/user.rb	/^  def fee$/;"	f	class:User
 first_proposal_start	app/models/deadline.rb	/^    def first_proposal_start$/;"	f	class:Deadline
 floors	app/models/room.rb	/^  def self.floors$/;"	F	class:Room
@@ -222,6 +229,7 @@ html_id	app/helpers/conference_helper.rb	/^  def html_id(what)$/;"	f
 icon	app/helpers/application_helper.rb	/^  def icon(name, options = { text: "", size: "18" })$/;"	f	class:ApplicationHelper
 impersonate	app/controllers/impersonations_controller.rb	/^  def impersonate$/;"	f	class:ImpersonationsController
 in_local_committee?	app/models/user.rb	/^  def in_local_committee?$/;"	f	class:User
+in_management_commettee?	app/models/user.rb	/^  def in_management_commettee?$/;"	f	class:User
 in_mono_conference_session?	app/models/presentation.rb	/^  def in_mono_conference_session?$/;"	f	class:Presentation
 in_organizer_committee?	app/models/user.rb	/^  def in_organizer_committee?$/;"	f	class:User
 in_scientific_committee?	app/models/user.rb	/^  def in_scientific_committee?$/;"	f	class:User
@@ -238,7 +246,6 @@ index	app/controllers/minitutorials_controller.rb	/^  def index $/;"	f	class:Min
 index	app/controllers/plenaries_controller.rb	/^  def index$/;"	f	class:PlenariesController
 index	app/controllers/poster_sessions_controller.rb	/^  def index$/;"	f	class:PosterSessionsController
 index	app/controllers/presentations_controller.rb	/^  def index$/;"	f	class:PresentationsController
-index	app/controllers/ratings_controller.rb	/^  def index$/;"	f	class:RatingsController
 index	app/controllers/rooms_controller.rb	/^  def index$/;"	f	class:RoomsController
 index	app/controllers/schedules_controller.rb	/^  def index$/;"	f	class:SchedulesController
 index	app/controllers/submissions_controller.rb	/^  def index$/;"	f	class:SubmissionsController
@@ -270,21 +277,24 @@ logged_user	app/helpers/menu_helper.rb	/^  def logged_user$/;"	f	class:MenuHelpe
 login_link	app/helpers/menu_helper.rb	/^  def login_link(button: false)$/;"	f	class:MenuHelper
 logout_link	app/helpers/menu_helper.rb	/^  def logout_link$/;"	f	class:MenuHelper
 mail_to_siam	app/helpers/conference_helper.rb	/^  def mail_to_siam$/;"	f
+mailing_list	app/controllers/users_controller.rb	/^  def mailing_list$/;"	f	class:UsersController
 make_speaker	app/controllers/authors_controller.rb	/^  def make_speaker$/;"	f	class:AuthorsController
 manage_presentations	app/controllers/conference_sessions_controller.rb	/^  def manage_presentations$/;"	f	class:ConferenceSessionsController
 manual_create	app/controllers/conference_registrations_controller.rb	/^  def manual_create$/;"	f	class:ConferenceRegistrationsController
 manual_new	app/controllers/conference_registrations_controller.rb	/^  def manual_new$/;"	f	class:ConferenceRegistrationsController
 manual_tags	app/controllers/minisymposia_controller.rb	/^  def manual_tags  $/;"	f	class:MinisymposiaController
-manual_tags	app/models/conference_session.rb	/^  def manual_tags$/;"	f	class:ConferenceSession
-manual_tags=	app/models/conference_session.rb	/^  def manual_tags=(s)$/;"	f	class:ConferenceSession
+manual_tags	app/models/concerns/taggable.rb	/^  def manual_tags$/;"	f	class:Taggable
+manual_tags=	app/models/concerns/taggable.rb	/^  def manual_tags=(s)$/;"	f	class:Taggable
 master_of_universe?	app/models/user.rb	/^  def master_of_universe?$/;"	f	class:User
 menu_link	app/helpers/menu_helper.rb	/^  def menu_link(icon, name, url, general = nil)$/;"	f	class:MenuHelper
 minisymposium_abstract_end	app/models/deadline.rb	/^    def minisymposium_abstract_end$/;"	f	class:Deadline
 minisymposium_abstract_start	app/models/deadline.rb	/^    def minisymposium_abstract_start$/;"	f	class:Deadline
 minisymposium_proposal_end	app/models/deadline.rb	/^    def minisymposium_proposal_end$/;"	f	class:Deadline
 minisymposium_proposal_start	app/models/deadline.rb	/^    def minisymposium_proposal_start$/;"	f	class:Deadline
+missing_affiliation	app/controllers/users_controller.rb	/^  def missing_affiliation$/;"	f	class:UsersController
 missing_presentations_alert	app/helpers/panels_helper.rb	/^  def missing_presentations_alert$/;"	f	class:PanelsHelper
 modify	app/models/interest.rb	/^  def self.modify!(user, what)$/;"	F	class:Interest
+multiple_speakers	app/controllers/users_controller.rb	/^  def multiple_speakers$/;"	f	class:UsersController
 new	app/controllers/authors_controller.rb	/^  def new$/;"	f	class:AuthorsController
 new	app/controllers/buildings_controller.rb	/^  def new$/;"	f	class:BuildingsController
 new	app/controllers/conference_registrations_controller.rb	/^  def new$/;"	f	class:ConferenceRegistrationsController
@@ -408,7 +418,6 @@ stop_impersonating	app/controllers/impersonations_controller.rb	/^  def stop_imp
 stop_impersonation_link	app/helpers/application_helper.rb	/^  def stop_impersonation_link$/;"	f	class:ApplicationHelper
 substringMatcher	app/assets/javascripts/typeahead_search.js	/^var substringMatcher = function(strs) {$/;"	f
 support_mail	app/helpers/link_helper.rb	/^  def support_mail$/;"	f	class:LinkHelper
-tags_to_s	app/models/conference_session.rb	/^  def tags_to_s$/;"	f	class:ConferenceSession
 title_with_conference	app/helpers/conference_helper.rb	/^  def title_with_conference(what = '')$/;"	f	class:ConferenceHelper
 to_s	app/models/building.rb	/^  def to_s$/;"	f	class:Building
 to_s	app/models/conference_registration.rb	/^  def to_s$/;"	f	class:ConferenceRegistration
@@ -438,10 +447,18 @@ update	app/controllers/ratings_controller.rb	/^  def update$/;"	f	class:RatingsC
 update	app/controllers/rooms_controller.rb	/^  def update$/;"	f	class:RoomsController
 update	app/controllers/tags_controller.rb	/^  def update$/;"	f	class:TagsController
 update	app/controllers/users_controller.rb	/^  def update$/;"	f	class:UsersController
+update_affiliation	app/controllers/users_controller.rb	/^  def update_affiliation$/;"	f	class:UsersController
 update_presentation_name	app/models/mono_conference_session.rb	/^  def update_presentation_name$/;"	f	class:MonoConferenceSession
 user_abbr	app/models/payment.rb	/^  def user_abbr$/;"	f	class:Payment
+user_cochair?	app/helpers/user_helper.rb	/^  def user_cochair?$/;"	f	class:UserHelper
+user_in_management_committee!	app/helpers/user_helper.rb	/^  def user_in_management_committee!$/;"	f	class:UserHelper
+user_in_management_committee?	app/helpers/user_helper.rb	/^  def user_in_management_committee?$/;"	f	class:UserHelper
 user_in_organizer_committee!	app/helpers/user_helper.rb	/^  def user_in_organizer_committee!$/;"	f	class:UserHelper
 user_in_organizer_committee?	app/helpers/user_helper.rb	/^  def user_in_organizer_committee?$/;"	f	class:UserHelper
+user_in_organizer_committee_or_cochair!	app/helpers/user_helper.rb	/^  def user_in_organizer_committee_or_cochair!$/;"	f	class:UserHelper
+user_in_organizer_committee_or_cochair?	app/helpers/user_helper.rb	/^  def user_in_organizer_committee_or_cochair?$/;"	f	class:UserHelper
+user_in_organizer_or_scientific_committee!	app/helpers/user_helper.rb	/^  def user_in_organizer_or_scientific_committee!$/;"	f	class:UserHelper
+user_in_organizer_or_scientific_committee?	app/helpers/user_helper.rb	/^  def user_in_organizer_or_scientific_committee?$/;"	f	class:UserHelper
 user_in_scientific_committee!	app/helpers/user_helper.rb	/^  def user_in_scientific_committee!$/;"	f	class:UserHelper
 user_in_scientific_committee?	app/helpers/user_helper.rb	/^  def user_in_scientific_committee?$/;"	f	class:UserHelper
 user_master_of_universe!	app/helpers/user_helper.rb	/^  def user_master_of_universe!$/;"	f	class:UserHelper
