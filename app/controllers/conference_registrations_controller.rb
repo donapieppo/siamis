@@ -2,9 +2,11 @@
 # organizing_commette creates here.
 class ConferenceRegistrationsController < ApplicationController
   skip_before_action :authenticate_user!, only: :new
-  before_action :user_in_organizer_committee!, only: [:index, :manual_new, :manual_create]
+  before_action :user_in_organizer_committee!, only: [:manual_new, :manual_create] # remember index
+  before_action :user_in_management_commettee!, only: [:export]
 
   def index
+    (user_in_organizer_committee? or user_in_management_commettee?) or raise NoAccess
     @conference_registrations = ConferenceRegistration.includes(:user, :payment).order('users.surname, users.name')
   end
 
@@ -50,5 +52,9 @@ class ConferenceRegistrationsController < ApplicationController
     redirect_to users_path, notice: 'The registration has been recorded.'
   end
 
+  def export
+    @conference_registrations = ConferenceRegistration.includes(:user, :payment).order('users.surname, users.name')
+    raise @conference_registrations.to_json
+  end
 end
 
