@@ -1,16 +1,15 @@
 <%= program_title('Users', 'users') %>  
 
-<% if user_in_organizer_committee? %>  
-  <p>
-  <%= link_to 'Minisymposia organizers list', mailing_list_users_path, class: :button, remote: true %>
-  <%= link_to 'Multiple presentations speakers', multiple_speakers_users_path, class: :button %>
-  <%= link_to 'Affiliations', affiliations_users_path, class: :button %>
-  </p>
+<p>
+<%= link_to 'Minisymposia organizers list', mailing_list_users_path, class: :button, remote: true %>
+<%= link_to 'Multiple presentations speakers', multiple_speakers_users_path, class: :button %>
+<%# <%= link_to 'Affiliations', affiliations_users_path, class: :button %>
+</p>
 
+<% if user_in_organizer_committee? %>  
   <p class="centered">
   <%= link_to 'New User', new_user_path, class: :button %>   
   </p>
-
 <% end %>
 
 <p class="alert alert-info">
