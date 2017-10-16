@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :presentations
     get :mailing_list, on: :collection
     get :multiple_speakers, on: :collection
+    get :affiliations, on: :collection
   end
 
   resources :authors do
