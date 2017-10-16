@@ -3,10 +3,10 @@
 class ConferenceRegistrationsController < ApplicationController
   skip_before_action :authenticate_user!, only: :new
   before_action :user_in_organizer_committee!, only: [:manual_new, :manual_create] # remember index
-  before_action :user_in_management_commettee!, only: [:export]
+  before_action :user_in_management_committee!, only: [:export]
 
   def index
-    (user_in_organizer_committee? or user_in_management_commettee?) or raise NoAccess
+    (user_in_organizer_committee? or user_in_management_committee?) or raise NoAccess
     @conference_registrations = ConferenceRegistration.includes(:user, :payment).order('users.surname, users.name')
   end
 
