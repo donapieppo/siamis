@@ -13,6 +13,8 @@
   <% if @show_email %>  
     <dt>Contact</dt>
     <dd><%= mail_to user.email, user.email %></dd>
+    <dt>Enail confirmed</dt>
+    <dd><%= user.sign_in_count > 0 ? "*" : '' %></dd>  
   <% end %>
 </dl>
 
