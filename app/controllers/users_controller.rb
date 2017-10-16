@@ -2,11 +2,15 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   skip_before_action :check_user_fields, only: [:edit, :update]
 
-  before_action :user_in_organizer_committee!, except: [:show, :edit, :update]
+  before_action :user_in_organizer_committee!, except: [:index, :show, :edit, :update] # check index!
   before_action :set_user_and_check_permission, only: [:edit, :update, :destroy]
 
   def index
+    user_in_organizer_committee? or user_cochair? or raise NOACCESS
     @users = User.includes(:conference_registration).order(:surname, :name)
+    if params[:affiliation]
+      @users = @users.where(affiliation: params[:affiliation])
+    end
   end
 
   def show
@@ -81,6 +85,7 @@ class UsersController < ApplicationController
   end
 
   def affiliations
+    @affiliations = User.order(:affiliation).group(:affiliation).count(:affiliation)
   end
 
   private 
