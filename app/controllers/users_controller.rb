@@ -89,7 +89,7 @@ class UsersController < ApplicationController
   end
 
   def missing_affiliation
-    @user = User.where(country: nil).first
+    @user = User.where('surname is not null').where(country: nil).first
   end
 
   def update_affiliation
