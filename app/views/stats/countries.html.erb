@@ -4,7 +4,7 @@
   <% @users.each do |user_count| %>  
     <tr>
       <td><%= user_count[1] %></td>
-      <th><%= user_count[0] %></th>
+      <th><%= link_to user_count[0], users_path(country: user_count[0]) %></th>
       <td><%= ISO3166::Country[user_count[0]] %></td>
     </tr>
   <% end %>
