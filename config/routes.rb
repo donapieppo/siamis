@@ -132,4 +132,5 @@ Rails.application.routes.draw do
   get 'impersonate/:id',    to: 'impersonations#impersonate',        as: :impersonate
   get 'stop_impersonating', to: 'impersonations#stop_impersonating', as: :stop_impersonating
 
+  get 'stats/countries', to: 'stats#countries', as: :countries_stats
 end
