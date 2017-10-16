@@ -1,0 +1,14 @@
+<h1>Multiple speakers</h1>
+
+<table class="table table-striped table-condensed">
+  <% @multiple_speakers.each do |user| %>  
+    <% if user.presentation_count > 1 %>  
+    <tr>
+      <th><%= user.presentation_count %></th>  
+      <th><%= link_to user.cn, user, remote: true %></th>
+      <td><%= user.email %></td>  
+    <% end %>
+  <% end %>
+</table>
+
+

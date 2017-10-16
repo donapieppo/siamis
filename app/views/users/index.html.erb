@@ -1,8 +1,10 @@
 <%= program_title('Users', 'users') %>  
 
 <p>
-  <strong>Minisyposia organizers mail list:</strong><br/>
-  <%= Organizer.includes(:user).includes(:conference_session).where('conference_sessions.type = "Minisymposium"').references(:conference_sessions).map{|r| r.user.email}.join('; ') %>
+  <%= link_to 'Minisymposia organizers list', mailing_list_users_path, class: :button, remote: true %>
+</p>
+<p>
+  <%= link_to 'Multiple presentations speakers', multiple_speakers_users_path, class: :button %>
 </p>
 
 <p class="alert alert-info">Users with (*) are registered.</p>
@@ -16,7 +18,7 @@
   <% @users.each do |user| %>  
     <tr>
       <td style="text-align: right"><%= num += 1 %></td>
-      <td><%= '*' if user.conference_registration %></td>
+      <td><%= icon('euro') if user.conference_registration %></td>
       <th><%= link_to user.cn, user, remote: true %></th>
       <td><%= user.email %> </td>
       <td><em><small><%= user.affiliation %></small></em></td>
