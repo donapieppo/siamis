@@ -15,7 +15,9 @@
           <% elsif user_in_scientific_committee? %> 
             <%= link_to icon('star') + ' rate this minisymposium', new_minisymposium_rating_path(minisymposium), remote: true %> -
           <% end %>
-          <%= minisymposium.presentation_count %> presentations. 
+          <span <%= 'class="alert-danger"'.html_safe if (minisymposium.presentation_count % 4) != 0 %>>
+            <%= minisymposium.presentation_count %> presentations. 
+          </span> 
           <%= minisymposium.ratings.count %> ratings.
           Last update: <%= l minisymposium.updated_at %>
           <% presentations += minisymposium.presentation_count %>  
