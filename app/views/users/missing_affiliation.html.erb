@@ -1,0 +1,10 @@
+<p>Complete with the correct country for <%= @user %> (<%= @user.id %>)</p>
+
+<h2><%= @user.affiliation %></h2>
+
+<%= simple_form_for @user do |user| %>  
+  <%= user.input :country, hint: "#{@user.cn} (#{@user.email})"  %>  
+  <%= user.submit %>
+<% end %>
+
+
