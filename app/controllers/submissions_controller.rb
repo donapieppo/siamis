@@ -13,29 +13,31 @@ class SubmissionsController < ApplicationController
 
   def admin
     if params[:minisymposium]
-      @minisymposia = Minisymposium.left_outer_joins(:presentations)
+      @list = Minisymposium.left_outer_joins(:presentations)
                                    .select('conference_sessions.*, COUNT(presentations.id) AS presentation_count')
                                    .group('presentations.conference_session_id')
                                    .includes(:schedule, :tags, ratings: :user, organizers: :user)
       if user_in_organizer_committee?
-        @minisymposia = @minisymposia.order('updated_at DESC')
+        @list = @list.order('updated_at DESC')
       else
-        @minisymposia = @minisymposia.order('name')
+        @list = @list.order('name')
       end
       @my_ratings = current_user.ratings.select(:conference_session_id).pluck(:conference_session_id)
 
       if params[:tag_id]
         @tag = Tag.find(params[:tag_id]) 
-        @minisymposia = @minisymposia.left_outer_joins(:tags).where('tags.id = ?', @tag.id)
+        @list = @list.left_outer_joins(:tags).where('tags.id = ?', @tag.id)
       end
     elsif params[:contributed]
-      @presentations  = Presentation.includes(:conference_session, ratings: :user, authors: :user)
-                                    .unassigned
-                                    .not_poster 
+      @list = Presentation.includes(:conference_session, ratings: :user, authors: :user)
+                          .unassigned
+                          .not_poster 
+      @my_ratings = current_user.ratings.select(:presentation_id).pluck(:presentation_id)
     elsif params[:poster] 
-      @posters = Presentation.includes(:conference_session, ratings: :user, authors: :user)
-                             .unassigned
-                             .poster 
+      @list = Presentation.includes(:conference_session, ratings: :user, authors: :user)
+                          .unassigned
+                          .poster 
+      @my_ratings = current_user.ratings.select(:presentation_id).pluck(:presentation_id)
     end
   end
 end
