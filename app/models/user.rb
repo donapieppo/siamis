@@ -40,27 +40,28 @@ class User < ApplicationRecord
   end
 
   # user own 
-  # 1) minisymposium when organizer
-  # 2) presentation when speaker
-  # 3) except for plenaries / minitutorials 
+  # 1) Minisymposium when organizer
+  # 2) Plenary, Minitutorial only if organizer_committee
+  # 3) presentation when 
+  #   3.1) owns Minisymposium of the presentation
+  #   3.2) is speaker (not author) and is possible to submit abstracts to minisymposium  presentations # FIXME also after
   def owns?(what)
-    self.master_of_universe? and return true
+    self.master_of_universe?     and return true
     self.in_organizer_committee? and return true
 
     case what
     when Minisymposium
       self.organizer?(what)
     when Plenary, Minitutorial
-      self.in_organizer_committee?
+      false # only organizer_committee
     when Presentation
       case what.conference_session
       when Plenary, Minitutorial
         self.owns?(what.conference_session)
       when Minisymposium
-        # FIXME dependas on date probably
-        self.owns?(what.conference_session)
+        self.owns?(what.conference_session) || (Deadline.in_minisymposium_abstract? and self.speaker?(what))
       else
-        self.speaker?(what)
+        self.speaker?(what) 
       end
     when Role
       self.owns?(what.conference_session || what.presentation)
