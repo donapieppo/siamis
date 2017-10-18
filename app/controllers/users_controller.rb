@@ -87,10 +87,6 @@ class UsersController < ApplicationController
     @multiple_speakers = User.find_by_sql(q)
   end
 
-  def affiliations
-    @affiliations = User.order(:affiliation).group(:affiliation).count(:affiliation)
-  end
-
   def missing_affiliation
     @user = User.where('surname is not null').where(country: nil).first
   end
