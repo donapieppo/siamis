@@ -50,11 +50,13 @@ en:
     attributes:
       minisymposium:
         name: Title
-        tags: Keywords
         description: Summary
+        tags: Keywords
         manual_tags: Other keywords
       presentation:
         name: Title
+        tags: Keywords
+        manual_tags: Other keywords
       user:
         name: Name
         surname: Surname
@@ -94,6 +96,8 @@ en:
         birthdate: Date of Birth
       tag:
         global: Public
+      paper: 
+        paperfile: File to upload
 
   simple_form:
     hints:
@@ -111,6 +115,7 @@ en:
       presentation: 
         abstract: Brief abstract not to exceed 75 words. <em>Using <span id="wcount"></span> words</em>.
         speaker_id: Choose the speaker among the authors. Only the speaker can edit title and abstract.
+        manual_tags: It is possible to add other keywords separated by comma (key1, key2, key3)
       organizer:
         email: Please use the person institutional mail address.
       tag:
