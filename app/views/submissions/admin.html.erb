@@ -1,40 +1,47 @@
 <div class="container">
-<% if @minisymposia %>  
-  <h2>Minisymposia Submissions</h2>
+  <h2>Submissions</h2>
 
   <dl class="admin_list">
     <% presentations = 0 %>  
-    <% @minisymposia.each do |minisymposium| %>  
-      <dt><%= link_to minisymposium.name.upcase, minisymposium_path(minisymposium), remote: true %></dt>
-      <dd><%= show_roles(minisymposium.organizers) %></dd>
-      <dd><small>keywords: <%= minisymposium.all_tags %></small></dd>
+    <% @list.each do |element| %>  
+      <dt>
+         <%= icon('check') if element.accepted %>  
+         <%= link_to element.name.upcase, element, remote: true %>
+      </dt>
+
+      <dd>
+        <%= show_roles(element.respond_to?(:organizers) ? element.organizers : element.authors) %>
+      </dd>
+
+      <dd><small>keywords: <%= element.all_tags %></small></dd>
+
       <dd>
         <small>
-          <% if @my_ratings.include?(minisymposium.id) %>
-            <span style="color: green">You rated this minisymposium </span> -
+          <% if @my_ratings.include?(element.id) %>
+            <span style="color: green">You rated this</span> -
           <% elsif user_in_scientific_committee? %> 
-            <%= link_to icon('star') + ' rate this minisymposium', new_minisymposium_rating_path(minisymposium), remote: true %> -
+            <%= link_to icon('star') + ' rate this', [:new, element, :rating], remote: true %> -
+            <%# new_minisymposium_rating_path(element) %>  
           <% end %>
-          <span <%= 'class="alert-danger"'.html_safe if (minisymposium.presentation_count % 4) != 0 %>>
-            <%= minisymposium.presentation_count %> presentations. 
-          </span> 
-          <%= minisymposium.ratings.count %> ratings.
-          Last update: <%= l minisymposium.updated_at %>
-          <% presentations += minisymposium.presentation_count %>  
-          <span class="pull-right"><%= presentations / 4 %></span>
+          <% if element.is_a?(Minisymposium) %>  
+            <span <%= 'class="alert-danger"'.html_safe if (element.presentation_count % 4) != 0 %>>
+              <%= element.presentation_count %> presentations. 
+            </span> 
+          <% end %>
+          <%= element.ratings.count %> ratings.
+          Last update: <%= l element.updated_at %>
+          <% if element.is_a?(Minisymposium) %>
+            <% presentations += element.presentation_count %>  
+            <span class="pull-right"><%= presentations / 4 %></span>
+          <% else %>
+            <% presentations += 1 %>
+            <span class="pull-right"><%= presentations %></span>
+          <% end %>
         </small>
       </dd>
     <% end %>
   </dl>
-<% end %>
 
-<% if @presentations %>  
-  <h2>Presentations <small>(unassigned)</small></h2>
-<% end %>
 
-<% if @posters %>  
-  <h2>Posters <small>(unassigned)</small></h2>
-<% end %>
-</div>
 
 
