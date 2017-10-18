@@ -1,0 +1,10 @@
+<h1>Submit paper for <br/><small><%= @presentation %></small></h1>
+
+<div class="alert alert-success">
+  <%= simple_form_for [@presentation, @paper] do |f| %>
+    <%= f.input :paperfile, as: :hidden, input_html: {value: @paper.cached_paperfile_data} %>
+    <%= f.input :paperfile, as: :file %>
+    <%= f.submit 'Submit paper' %>
+  <% end %>
+</div>
+
