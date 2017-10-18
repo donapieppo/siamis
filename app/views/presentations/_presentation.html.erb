@@ -16,13 +16,24 @@
       <%= link_to_delete author_path(author) if (current_user_owns?(presentation) and current_user != author.user) %>  
       </dd>
     <% end %>
+    <dt><%= t 'Tags' %>:</dt>
+    <dd><%= presentation.all_tags %></dd>
   </dl>
 
   <%= render partial: 'ratings/dl_list', locals: { what: presentation } %>  
-</div><!-- body -->
+
+  <ul>
+  <% presentation.papers.each do |paper| %>  
+    <li>
+      <%= link_to icon('download') + ' download paper', paper.paperfile_url %>  
+      <%= link_to_delete(paper_path(paper)) if (current_user_owns?(presentation)) %>
+    </li>
+  <% end %>
+  </ul>
+</div><!-- panel-body -->
 
 <div class="panel-footer footer-actions">
   <%= panel_actions(presentation) %>  
   <%= schedule(presentation) %>  
-</div><!-- footer -->
+</div><!-- panel-footer -->
 </div>
