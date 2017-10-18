@@ -10,7 +10,14 @@ class RatingsController < ApplicationController
     @rating = @what.ratings.where(user: current_user).first || @what.ratings.new(user: current_user)
     @rating.user = current_user
     if @rating.update_attributes(rating_params)
-      redirect_to admin_submissions_path(@what.class.name.underscore => @what.id)
+      what_type = case @what
+                  when Minisymposium
+                    'minisymposium'
+                  when Presentation 
+                    @what.poster ? 'poster' : 'presentation'
+                  end
+
+      redirect_to admin_submissions_path(what_type => @what.id)
     else
       render action: :new
     end
