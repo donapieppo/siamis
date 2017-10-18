@@ -23,12 +23,21 @@ class Deadline
       @@_deadlines[:pre_registration][:end]
     end
 
+    def in_preregistration?(t)
+      (t >= pre_registration_start) && (t <= pre_registration_end) 
+    end
+
     def minisymposium_proposal_start
       @@_deadlines[:minisymposium_proposal][:start] 
     end
 
     def minisymposium_proposal_end
       @@_deadlines[:minisymposium_proposal][:end] 
+    end
+
+    def in_minisymposium_proposal?
+      t = Date.today
+      (t >= minisymposium_proposal_start) && (t <= minisymposium_proposal_end)
     end
 
     def minisymposium_abstract_start
@@ -39,12 +48,22 @@ class Deadline
       @@_deadlines[:minisymposium_abstract][:end] 
     end
 
+    def in_minisymposium_abstract?
+      t = Date.today
+      (t >= minisymposium_abstract_start) && (t <= minisymposium_abstract_end)
+    end
+
     def presentation_proposal_start
       @@_deadlines[:presentation_proposal][:start]
     end
 
     def presentation_proposal_end
       @@_deadlines[:presentation_proposal][:end]
+    end
+
+    def in_preregistration_proposal?
+      t = Date.today
+      (t >= presentation_proposal_start) && (t <= presentation_proposal_end)
     end
 
     # start with minisymposia
