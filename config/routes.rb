@@ -79,6 +79,7 @@ Rails.application.routes.draw do
 
   resources :presentations do 
     resources :authors
+    resources :papers
     resources :ratings
     resources :interests do
       post :toggle, on: :collection
@@ -86,6 +87,8 @@ Rails.application.routes.draw do
     put 'accept',   on: :member
     put 'refuse',   on: :member
   end
+
+  resources :papers
 
   resources :payments do
     get :verify, on: :member, as: :verify
