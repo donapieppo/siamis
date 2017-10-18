@@ -14,6 +14,13 @@ class PapersController < ApplicationController
     end
   end
 
+  def destroy
+    @paper = Paper.find(params[:id])
+    current_user_owns!(@paper.presentation)
+    @paper.destroy
+    redirect_to presentation_path(@paper.presentation_id)
+  end
+
   private 
 
   def paper_params
@@ -22,7 +29,7 @@ class PapersController < ApplicationController
 
   def get_presentation_and_check_permission
     @presentation = Presentation.find(params[:presentation_id])
-    current_user.owns!(@presentation)
+    current_user_owns!(@presentation)
   end
 end
 
