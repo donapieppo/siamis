@@ -1,9 +1,13 @@
 class Presentation < ApplicationRecord
+  include Taggable
+
   has_many :authors, dependent: :destroy
-  has_many :roles
+  has_many :roles, dependent: :destroy
   # has_many :users, through: :authors
   has_many :ratings, dependent: :destroy
   has_many :interests, dependent: :destroy
+  has_many :papers, dependent: :destroy
+
   belongs_to :conference_session, optional: true, touch: true
   belongs_to :minisymposium, foreign_key: :conference_session_id, optional: true
   belongs_to :minitutorial,  foreign_key: :conference_session_id, optional: true
@@ -45,7 +49,7 @@ class Presentation < ApplicationRecord
   end
 
   def code 
-    conference_session ? conference_session.code : '-'
+    conference_session ? conference_session.code : ''
   end
 
   def speaker
