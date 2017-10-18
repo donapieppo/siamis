@@ -24,12 +24,12 @@ class MinisymposiaController < ConferenceSessionsController
 
   def refuse
     Minisymposium.find(params[:id]).refuse!
-    redirect_to submissions_path(minisymposium: 1), notice: 'The minisymposium has been refused.'
+    redirect_to admin_submissions_path(minisymposium: 1), notice: 'The minisymposium has been refused.'
   end
 
   def accept
     Minisymposium.find(params[:id]).accept!
-    redirect_to submissions_path(minisymposium: 1), notice: 'The minisymposium has been accepted.'
+    redirect_to admin_submissions_path(minisymposium: 1), notice: 'The minisymposium has been accepted.'
   end
 
   private
