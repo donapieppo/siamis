@@ -72,6 +72,7 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.3)
+    down (4.1.0)
     erubi (1.6.1)
     execjs (2.7.0)
     factory_girl (4.8.0)
@@ -125,6 +126,12 @@ GEM
       mini_portile2 (~> 2.2.0)
     nori (2.6.0)
     orm_adapter (0.5.0)
+    pdf-core (0.7.0)
+    prawn (2.2.2)
+      pdf-core (~> 0.7.0)
+      ttfunk (~> 1.5)
+    prawn-table (0.2.2)
+      prawn (>= 1.3.0, < 3.0.0)
     pretender (0.3.1)
       actionpack
     puma (3.10.0)
@@ -201,6 +208,8 @@ GEM
       nokogiri (>= 1.4.0)
       nori (~> 2.4)
       wasabi (~> 3.4)
+    shrine (2.8.0)
+      down (~> 4.1)
     simple_form (3.5.0)
       actionpack (> 4, < 5.2)
       activemodel (> 4, < 5.2)
@@ -227,6 +236,7 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.8)
     timecop (0.9.1)
+    ttfunk (1.5.1)
     twitter-typeahead-rails (0.11.1)
       actionpack (>= 3.1)
       jquery-rails
@@ -261,6 +271,8 @@ DEPENDENCIES
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   mysql2
+  prawn
+  prawn-table
   pretender (~> 0.2)
   puma (~> 3.7)
   rails (~> 5.1.4)
@@ -268,6 +280,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 5.0)
   savon
+  shrine
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
@@ -278,4 +291,4 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
 
 BUNDLED WITH
-   1.13.2
+   1.15.4

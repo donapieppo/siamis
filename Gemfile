@@ -13,6 +13,10 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 
+gem "shrine"
+gem "prawn"
+gem "prawn-table"
+
 gem 'pretender', '~> 0.2'
 gem 'devise'
 gem 'savon'
