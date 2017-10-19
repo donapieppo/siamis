@@ -2,6 +2,8 @@
   <%= presentation.error_notification %>
   <%= presentation.input :name %>  
   <%= presentation.input :abstract %>  
+  <%= presentation.association :tags, collection: Tag.global, as: :check_boxes %>
+  <%= presentation.input :manual_tags %>
   <%= presentation.input :poster, as: :hidden %>  
   <% if (authors = @presentation.authors).size > 1 %>  
     <%= presentation.input :speaker_id, collection: authors, label_method: lambda {|a| a.user.cn}, include_blank: false %>

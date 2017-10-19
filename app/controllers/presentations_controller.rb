@@ -7,6 +7,8 @@ class PresentationsController < ApplicationController
   before_action :check_deadline!, only: [:new, :create]
   before_action :user_in_organizer_committee!, only: [:accept]
 
+  after_action :manual_tags, only: [:create, :update]
+
   # like submissions (think, fixme)
   def index
     if params[:user_id] and user_in_organizer_committee?
@@ -14,7 +16,7 @@ class PresentationsController < ApplicationController
     else
       @user = current_user
     end
-    @presentations = @user.presentations.includes(authors: :user, conference_session: [organizers: :user]).all
+    @presentations = @user.presentations.includes(:tags, authors: :user, conference_session: [organizers: :user]).all
   end
 
   def show
@@ -38,7 +40,7 @@ class PresentationsController < ApplicationController
       # we are authors
       else
         @presentation.authors.create(user: current_user, speak: true) unless user_in_organizer_committee?
-        redirect_to @presentation
+        redirect_to @presentation, notice: "The presentation has been saved correctly."
       end
     else
       render action: :new
@@ -68,7 +70,7 @@ class PresentationsController < ApplicationController
 
   def update
     if @presentation.update_attributes(presentation_params)
-      redirect_to @presentation, notice: 'OK'
+      redirect_to @presentation, notice: "The presentation has been saved correctly."
     else
       render action: :edit
     end
@@ -82,19 +84,24 @@ class PresentationsController < ApplicationController
 
   def accept
     @presentation.accept!
-    redirect_to submissions_path((@presentation.poster ? :poster : :contributed) => 1), notice: 'The presentation has been accepted.'
+    redirect_to admin_submissions_path((@presentation.poster ? :poster : :contributed) => 1), notice: 'The presentation has been accepted.'
   end
 
   # FiXME for now is just unaccept.
   def refuse
     @presentation.refuse!
-    redirect_to submissions_path((@presentation.poster ? :poster : :contributed) => 1), notice: 'The presentation has been unaccepted.'
+    redirect_to admin_submissions_path((@presentation.poster ? :poster : :contributed) => 1), notice: 'The presentation has been unaccepted.'
   end
 
   private
 
   def presentation_params
-    params[:presentation].permit(:name, :abstract, :poster, :speaker_id)
+    @manual_tags = params[:presentation].delete(:manual_tags)
+    params[:presentation].permit(:name, :abstract, :poster, :speaker_id, tag_ids: [])
+  end
+
+  def manual_tags  
+    @presentation.manual_tags = @manual_tags
   end
 
   def set_presentation 
