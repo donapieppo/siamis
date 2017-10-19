@@ -1,3 +1,7 @@
+<% 
+  papers = presentation.papers || []
+%>
+
 <div class="presentation_panel">
 
 <%= panel_heading(presentation) %>  
@@ -18,18 +22,22 @@
     <% end %>
     <dt><%= t 'Tags' %>:</dt>
     <dd><%= presentation.all_tags %></dd>
+    <% unless papers.empty? %>  
+      <dt>Documents:</dt>
+      <% papers.each do |paper| %>  
+        <dd>
+        <%= link_to icon('download') + ' download paper', paper.paperfile_url %>  
+        <%= link_to_delete(paper_path(paper)) if (current_user_owns?(presentation)) %>
+        </dd>
+      <% end %>
+    <% end %>
   </dl>
 
-  <%= render partial: 'ratings/dl_list', locals: { what: presentation } %>  
-
-  <ul>
-  <% presentation.papers.each do |paper| %>  
-    <li>
-      <%= link_to icon('download') + ' download paper', paper.paperfile_url %>  
-      <%= link_to_delete(paper_path(paper)) if (current_user_owns?(presentation)) %>
-    </li>
+  <% if presentation.poster and current_user_owns?(presentation) and papers.empty? %>  
+    <p class="alert alert-warning">In order to apply to <em>Best poster award</em> please submit a paper at least a week before the conference.</p>
   <% end %>
-  </ul>
+
+  <%= render partial: 'ratings/dl_list', locals: { what: presentation } %>  
 </div><!-- panel-body -->
 
 <div class="panel-footer footer-actions">
