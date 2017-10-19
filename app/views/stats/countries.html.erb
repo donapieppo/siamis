@@ -5,12 +5,21 @@
 </p>
 
 <table class="table table-striped">
+  <tr>
+    <th>accounts</th>
+    <th>organizers</th>
+    <th>speakers</th>
+    <th colspan="2">country</th>
+  </tr>
   <% @users.each do |user_count| %>  
     <% (count = user_count[1].to_i) > 0 or next %>  
+    <% country = user_count[0] %>  
     <tr>
       <td><%= count %></td>
-      <th><%= link_to user_count[0], users_path(country: user_count[0]) %></th>
-      <td><%= ISO3166::Country[user_count[0]] %></td>
+      <td><%= @organizers[country] %>  
+      <td><%= @speakers[country] %>  
+      <th><%= link_to country, users_path(country: country) %></th>
+      <td><%= ISO3166::Country[country] %></td>
     </tr>
   <% end %>
 </table>
