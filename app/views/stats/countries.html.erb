@@ -1,9 +1,5 @@
 <h1>Countries Stats</h1>
 
-<p class="alert alert-warning">
-  <strong>Warning:</strong> here you find ALL users registered, included authors of presentations that are not speakers.
-</p>
-
 <table class="table table-striped">
   <tr>
     <th>accounts</th>
@@ -13,7 +9,8 @@
   </tr>
   <% @users.each do |user_count| %>  
     <% (count = user_count[1].to_i) > 0 or next %>  
-    <% country = user_count[0] %>  
+    <% country = user_count[0] or next %>  
+    <% country.blank? and next %>  
     <tr>
       <td><%= count %></td>
       <td><%= @organizers[country] %>  
