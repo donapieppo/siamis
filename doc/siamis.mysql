@@ -217,6 +217,8 @@ CREATE TABLE `papers` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `presentation_id` int(10) unsigned,
   `paperfile_data` text,
+  `created_at` datetime,
+  `updated_at` datetime,
   PRIMARY KEY (`id`),
   KEY `presentation_id` (`presentation_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
