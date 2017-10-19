@@ -3,5 +3,7 @@
 <%= render partial: 'description' %>  
 <%= render partial: 'deadlines/minisymposium_submission' %>  
 
-<%= render @minisymposia, condensed: true %>
+<% cache 'minisymposia_cache' do %>
+  <%= render @minisymposia, condensed: true %>
+<% end %>
 
