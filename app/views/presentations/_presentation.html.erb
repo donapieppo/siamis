@@ -1,5 +1,7 @@
 <% 
-  papers = presentation.papers || []
+  # papers = presentation.papers || []
+  papers = []
+  owner  = current_user_owns?(presentation)
 %>
 
 <div class="presentation_panel">
@@ -7,7 +9,11 @@
 <%= panel_heading(presentation) %>  
 
 <div class="panel-body">
-  <p><em><%= presentation.abstract %></em></p>
+  <% if owner and presentation.abstract.blank? and Deadline.in_minisymposium_abstract? %>  
+    <p class="alert alert-warning">Please add an abstract to this presentation <%= link_to_edit [:edit, presentation] %></p>
+  <% else %>
+    <p><em><%= presentation.abstract %></em></p>
+  <% end %>
 
   <%= presentation_parent(presentation) %>  
 
@@ -17,7 +23,7 @@
       <dd>
       <%= show_role(author) %> 
       <%= icon(:microphone) if author.speak %>
-      <%= link_to_delete author_path(author) if (current_user_owns?(presentation) and current_user != author.user) %>  
+      <%= link_to_delete author_path(author) if (owner and current_user != author.user) %>  
       </dd>
     <% end %>
     <dt><%= t 'Tags' %>:</dt>
@@ -27,15 +33,15 @@
       <% papers.each do |paper| %>  
         <dd>
         <%= link_to icon('download') + ' download paper', paper.paperfile_url %>  
-        <%= link_to_delete(paper_path(paper)) if (current_user_owns?(presentation)) %>
+        <%= link_to_delete(paper_path(paper)) if owner %>
         </dd>
       <% end %>
     <% end %>
   </dl>
 
-  <% if presentation.poster and current_user_owns?(presentation) and papers.empty? %>  
-    <p class="alert alert-warning">In order to apply to <em>Best poster award</em> please submit a paper at least a week before the conference.</p>
-  <% end %>
+  <%# <% if owner and presentation.poster and papers.empty? %>  
+  <%#   <p class="alert alert-warning">In order to apply to <em>Best poster award</em> please submit a paper at least a week before the conference.</p>
+  <%# <% end %>
 
   <%= render partial: 'ratings/dl_list', locals: { what: presentation } %>  
 </div><!-- panel-body -->
