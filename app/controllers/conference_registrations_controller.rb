@@ -42,7 +42,8 @@ class ConferenceRegistrationsController < ApplicationController
       format.html
       format.pdf do
         pdf = PrintableRegistration.new(@conference_registration)
-        send_data pdf.render, filename: @conference_registration.letter_filename, type: "application/pdf"
+        filename = "#{@conference_registration.user.name} #{@conference_registration.user.surname} registration.pdf".gsub(' ', '_')
+        send_data pdf.render, filename: filename, type: "application/pdf"
       end
     end
   end
