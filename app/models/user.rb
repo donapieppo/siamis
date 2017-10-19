@@ -145,6 +145,7 @@ class User < ApplicationRecord
     end
   end 
 
+  # web page not here for link
   def self.safe_fields
     [:name, :surname, :affiliation, :country, :biography]
   end
