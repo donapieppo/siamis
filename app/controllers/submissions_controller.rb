@@ -12,7 +12,7 @@ class SubmissionsController < ApplicationController
   end
 
   def admin
-    if params[:minisymposium]
+    if @position = params[:minisymposium]
       @list = Minisymposium.left_outer_joins(:presentations)
                                    .select('conference_sessions.*, COUNT(presentations.id) AS presentation_count')
                                    .group('presentations.conference_session_id')
@@ -28,12 +28,13 @@ class SubmissionsController < ApplicationController
         @tag = Tag.find(params[:tag_id]) 
         @list = @list.left_outer_joins(:tags).where('tags.id = ?', @tag.id)
       end
-    elsif params[:contributed]
+    elsif @position = params[:contributed]
       @list = Presentation.includes(:conference_session, ratings: :user, authors: :user)
                           .unassigned
                           .not_poster 
       @my_ratings = current_user.ratings.select(:presentation_id).pluck(:presentation_id)
-    elsif params[:poster] 
+    else
+      @position = params[:poster] || 0
       @list = Presentation.includes(:conference_session, ratings: :user, authors: :user)
                           .unassigned
                           .poster 
