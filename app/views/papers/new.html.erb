@@ -4,7 +4,7 @@
   <%= simple_form_for [@presentation, @paper] do |f| %>
     <%= f.input :paperfile, as: :hidden, input_html: {value: @paper.cached_paperfile_data} %>
     <%= f.input :paperfile, as: :file %>
-    <%= f.submit 'Submit paper' %>
+    <%= f.submit 'Submit paper' %> - <%= link_to_back presentation_path(@presentation) %>  
   <% end %>
 </div>
 
