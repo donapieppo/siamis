@@ -1,12 +1,12 @@
 class Presentation < ApplicationRecord
   include Taggable
 
-  has_many :authors, dependent: :destroy
-  has_many :roles, dependent: :destroy
-  # has_many :users, through: :authors
-  has_many :ratings, dependent: :destroy
+  has_many :authors,   dependent: :destroy
+  has_many :roles,     dependent: :destroy
+  has_many :ratings,   dependent: :destroy
   has_many :interests, dependent: :destroy
-  has_many :papers, dependent: :destroy
+  has_many :papers,    dependent: :destroy
+  # has_many :users, through: :authors
 
   belongs_to :conference_session, optional: true, touch: true
   belongs_to :minisymposium, foreign_key: :conference_session_id, optional: true
