@@ -89,6 +89,12 @@ ActiveRecord::Schema.define(version: 0) do
     t.index ["user_id"], name: "user_id"
   end
 
+  create_table "papers", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "presentation_id", unsigned: true
+    t.text "paperfile_data"
+    t.index ["presentation_id"], name: "presentation_id"
+  end
+
   create_table "parts", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "num", null: false, unsigned: true
     t.integer "conference_session_id", unsigned: true
