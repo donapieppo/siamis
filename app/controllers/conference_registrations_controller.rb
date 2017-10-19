@@ -2,8 +2,9 @@
 # organizing_commette creates here.
 class ConferenceRegistrationsController < ApplicationController
   skip_before_action :authenticate_user!, only: :new
+
   before_action :user_in_organizer_committee!, only: [:manual_new, :manual_create] # remember index
-  before_action :user_in_management_committee!, only: [:export]
+  before_action :user_in_organizer_or_management_committee!, only: [:print]
 
   def index
     (user_in_organizer_committee? or user_in_management_committee?) or raise NoAccess
@@ -28,7 +29,7 @@ class ConferenceRegistrationsController < ApplicationController
   end
 
   def show
-    if user_in_organizer_committee?
+    if user_in_organizer_or_management_committee? 
       @conference_registration = ConferenceRegistration.includes(:user).find(params[:id])
     else
       @conference_registration = current_user.conference_registration
@@ -36,6 +37,14 @@ class ConferenceRegistrationsController < ApplicationController
 
     @fields = User.all_fields
     @payment = @conference_registration ? @conference_registration.payment : nil
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = PrintableRegistration.new(@conference_registration)
+        send_data pdf.render, filename: @conference_registration.letter_filename, type: "application/pdf"
+      end
+    end
   end
 
   def check
@@ -52,9 +61,8 @@ class ConferenceRegistrationsController < ApplicationController
     redirect_to users_path, notice: 'The registration has been recorded.'
   end
 
-  def export
-    @conference_registrations = ConferenceRegistration.includes(:user, :payment).order('users.surname, users.name')
-    raise @conference_registrations.to_json
+  def print
+    #@conference_registrations = ConferenceRegistration.includes(:user, :payment).find(params[:id])
   end
 end
 
