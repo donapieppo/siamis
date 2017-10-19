@@ -92,6 +92,8 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "papers", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "presentation_id", unsigned: true
     t.text "paperfile_data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["presentation_id"], name: "presentation_id"
   end
 
