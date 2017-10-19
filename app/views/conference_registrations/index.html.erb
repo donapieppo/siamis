@@ -11,6 +11,7 @@
     <th>verified</th>
     <th>date</th>
     <th>Notes</th>
+    <th></th>
   </tr>
   <% @conference_registrations.each do |conference_registration| %>  
     <% tot += 1 %>  
@@ -27,8 +28,11 @@
           <%= l(payment.single_day, format: :day) if payment.single_day %>  
           <%= 'student' if payment.student %>  
         </td>
+        <td>
+          <%= link_to icon('file-pdf-o'), conference_registration_path(conference_registration, format: :pdf) %>  
+        </td>
       <% else %>
-        <td colspan="6"> - </td>
+        <td colspan="7"> - </td>
       <% end %>
     </tr>
   <% end %>
