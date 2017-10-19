@@ -43,9 +43,9 @@ module ActionsHelper
         concat(link_to icon('list') + " manage #{presentation_label}s", manage_presentations_conference_session_path(what))
       end 
 
-      if what.is_a?(Presentation)
-        concat(link_to icon('book') + ' submit paper', new_presentation_paper_path(what))
-      end
+      # if what.is_a?(Presentation)
+      #   concat(link_to icon('book') + ' submit paper', new_presentation_paper_path(what))
+      # end
 
       concat(link_to_delete('delete', what))
 
