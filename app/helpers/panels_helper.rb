@@ -9,15 +9,15 @@ module PanelsHelper
   end
 
   def presentation_parent(presentation)
-    presentation.conference_session or return ""
+    (cs = presentation.conference_session) or return ""
     content_tag(:p) do
       concat "This presentation is part of "
-      concat content_tag(:strong, h(t(presentation.conference_session.class)) + " &ldquo;".html_safe) 
-      concat content_tag(:em, link_to(presentation.conference_session, presentation.conference_session)) 
+      concat content_tag(:strong, h(t(cs.class)) + " &ldquo;".html_safe) 
+      concat content_tag(:em, link_to(cs, cs)) 
       concat "&rdquo; ".html_safe
       concat "<br/>".html_safe 
-      if presentation.conference_session.is_a?(Minisymposium) 
-        concat content_tag(:small, "organized by: ".html_safe + show_roles(presentation.conference_session.organizers)) + "."
+      if cs.is_a?(Minisymposium) 
+        concat content_tag(:small, "organized by: ".html_safe + show_roles(cs.organizers)) + "."
       end
     end
   end
