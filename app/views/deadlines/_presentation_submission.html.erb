@@ -1,21 +1,26 @@
 <% if Deadline.before_presentation_proposal? %>  
   <p class="future_magic">
-    Presentation / poster proposals submission forms will be availabe from</br>
-    <strong><%= l(Deadline.presentation_proposal_start, format: :long) %></strong>.
+  Presentation / poster proposals submission forms will be availabe from</br>
+  <strong><%= l(Deadline.presentation_proposal_start, format: :long) %></strong>.
   </p>
 <% elsif Deadline.can_propose?(:presentation) %>
   <p class="alert alert-success">
   <strong>Deadline</strong> for submission of <em>presentation / poster proposals</em>: <%= l(Deadline.presentation_proposal_end) %>.
-  <% if current_user %>  
-    <% unless controller.controller_name == 'submissions' or user_in_organizer_committee? %>
-      <br/><%= link_to 'Go to submissions page', submissions_path %>.
+  </p>
+
+  <div class="centered">
+    <% if current_user %>  
+      <% unless controller.controller_name == 'submissions' or user_in_organizer_committee? %>
+        <p><%= link_to 'Go to submissions page', submissions_path %>.</p>
+      <% end %>
+    <% else %>
+      <p><strong>In order to submit a <em>presentation / poster proposal</em>, please <%= login_link button: true %>.</strong></p>
     <% end %>
-  <% else %>
-    <br/>In order to submit a <em>presentation / poster proposal</em>, please <%= login_link %>.
-  <% end %>
+  </div>
 <% else %>
   <p class="alert alert-warning">
-  Please note that the deadline for sending <em>proposals</em> has been <strong>expired</strong> on <%= l(Deadline.presentation_proposal_end) %>.
+  Please note that the deadline for sending <em>proposals</em> 
+  has been <strong>expired</strong> on <%= l(Deadline.presentation_proposal_end) %>.
   </p>
 <% end %>
 
