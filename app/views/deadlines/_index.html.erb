@@ -1,14 +1,14 @@
 <% cache 'home_deadlines' do %>
   <table class="home_deadlines centered">
     <tr>
-      <td><%= icon('hand-o-right') if Deadline.can_propose?(:minisymposium) %></td>
+      <td></td>
       <td><%= l(Deadline.minisymposium_proposal_start, format: :deadline) %></td>
       <td><%= l(Deadline.minisymposium_proposal_end, format: :deadline) %></td>
-      <th><%= link_to 'Minisymposium proposals', submissions_path %> <span class="bg-info" style="padding: 0 10px; color: #d9534f"> DEADLINE EXTENDED! </span></th>
+      <th><%= link_to 'Minisymposium proposals', submissions_path %></th>
     </tr>
 
     <tr>
-      <td></td>
+      <td><%= icon('hand-o-right') if Deadline.can_propose?(:presentation_proposal) %></td>
       <td><%= l(Deadline.presentation_proposal_start, format: :deadline) %></td>
       <td><%= l(Deadline.presentation_proposal_end, format: :deadline) %></td>
       <th>Contributed Lecture and Minisymposium Presentation Abstracts</th>
