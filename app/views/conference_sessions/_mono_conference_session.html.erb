@@ -27,15 +27,16 @@
       <h4><%= conference_session %>  <span class="panel-header-code"><%= conference_session.code %></span></h4>
     </div>
 
-    <p class="mono_conference_session_content">
+    <div class="mono_conference_session_content">
     <% if conference_session.description.blank? %>  
       <% authors.each do |author| %>  
-        <div><%= author.user.biography %></div>
+        <p><%= author.user.biography %></p>
       <% end %>
     <% else %>
-      <%= conference_session.description %>
+      <p><%= conference_session.description %></p>
     <% end %>
-    </p>
+    </div>
+
     <% if organizers.any? %>  
       <p><strong><%= conference_session.organizers_label %>:</strong> <%= show_roles(conference_session.organizers) %></p>
     <% end %>
