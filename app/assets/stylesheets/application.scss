@@ -190,7 +190,7 @@ ul.tag_admin_list {
   a {
     @extend .btn;
     @extend .btn-lg;
-    @extend .btn-primary;
+    @extend .btn-success;
     text-decoration: none;
   }
 }
@@ -198,7 +198,9 @@ ul.tag_admin_list {
   a {
     @extend .btn;
     @extend .btn-lg;
-    @extend .btn-primary;
+    @extend .btn-success;
     text-decoration: none;
+    min-width: 250px;
+    margin: 10px;
   }
 }
