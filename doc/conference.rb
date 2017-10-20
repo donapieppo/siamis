@@ -17,6 +17,8 @@ module Siamis
     config.i18n.default_locale = :en
     config.active_record.time_zone_aware_types = [:datetime, :time]
 
+    config.autoload_paths += %W(#{Rails.root}/app/pdfs)
+
     config.impersonate_admins = ['name.surname@example.com']
     config.main_impersonations = ['name.surname9@unibo.it', 'name.surname11@unibo.it']
 
@@ -29,10 +31,10 @@ module Siamis
     config.number_of_days = 3
 
     # Deadlines
-    config.deadlines = { pre_registration:       '12/03/2018', # after prices are higher
-                         minisymposium_proposal: ['15/07/2017', '18/09/2017'],
-                         minisymposium_abstract: ['25/09/2017', '25/10/2017'],
-                         presentation_proposal:  ['15/07/2017', '18/10/2017'] }
+    config.deadlines = { pre_registration:       ['25/09/2017', '04/04/2018'], # after prices are higher
+                         minisymposium_proposal: ['03/07/2017', '15/10/2017'],
+                         minisymposium_abstract: ['27/10/2017', '15/11/2017'],
+                         presentation_proposal:  ['20/10/2017', '15/11/2017'] }
 
     config.new_password_lenght = 6
 
