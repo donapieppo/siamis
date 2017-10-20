@@ -12,7 +12,7 @@
   <% if owner and presentation.abstract.blank? and Deadline.in_minisymposium_abstract? %>  
     <p class="alert alert-warning">Please add an abstract to this presentation <%= link_to_edit [:edit, presentation] %></p>
   <% else %>
-    <p><em><%= presentation.abstract %></em></p>
+    <p style="text-align: justify; font-style: italic;"><%= presentation.abstract %></p>
   <% end %>
 
   <%= presentation_parent(presentation) %>  
