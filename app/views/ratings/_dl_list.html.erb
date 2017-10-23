@@ -21,7 +21,7 @@
       <dd>
       <%= num %> votes on <%= SCIENTIFIC_COMMITTEE.count %> scientific committee components.
       <% if num > 0 %>
-        Average: <%= sum/num %>
+        Average: <%= '%.1f' % (sum/num) %>
       <% end %>
       </dd>
     </dl>
