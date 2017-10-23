@@ -2,6 +2,15 @@ class RatingsController < ApplicationController
   before_action :user_in_scientific_committee!
   before_action :set_what, except: :index
 
+  def index
+    # only cochairs and admins
+    if user_in_organizer_committee_or_cochair?
+      @ratings = Rating.includes(:minisymposium, :user).order(:conference_session_id)
+    else
+      redirect_to root_path, alert: "no access"
+    end
+  end
+
   def new
     @rating = @what.ratings.where(user: current_user).first || @what.ratings.new(user: current_user)
   end

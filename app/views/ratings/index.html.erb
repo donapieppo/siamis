@@ -1,0 +1,11 @@
+<h1>Ratings</h1>
+
+<dl>
+  <% old_minisymposium = nil %>  
+  <% @ratings.each do |rating| %>  
+    <% if old_minisymposium != (old_minisymposium = rating.minisymposium) %>  
+      <dt><%= old_minisymposium %></dt>
+    <% end %>
+    <dd style="margin-left: 10px"><%= rating_stars(rating.score) %> - <%= rating.user.cn %> - <em><%= rating.notes %></em></dd>
+  <% end %>
+</dl>
