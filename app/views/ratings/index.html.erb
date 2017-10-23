@@ -4,7 +4,7 @@
   <% old_minisymposium = nil %>  
   <% @ratings.each do |rating| %>  
     <% if old_minisymposium != (old_minisymposium = rating.minisymposium) %>  
-      <dt><%= old_minisymposium %></dt>
+      <dt><%= link_to old_minisymposium, old_minisymposium, remote: true %></dt>
     <% end %>
     <dd style="margin-left: 10px"><%= rating_stars(rating.score) %> - <%= rating.user.cn %> - <em><%= rating.notes %></em></dd>
   <% end %>
