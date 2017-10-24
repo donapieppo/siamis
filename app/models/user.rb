@@ -112,7 +112,7 @@ class User < ApplicationRecord
 
   # FIXME
   def speaker_or_organizer?
-    self.presentations.accepted.any? or self.organizers.any? or self.in_organizer_committee?
+    self.presentations.accepted.where('roles.speak': true).any? or self.conference_sessions.accepted.any? or self.in_organizer_committee?
   end
 
   def fee
