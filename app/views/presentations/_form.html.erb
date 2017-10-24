@@ -1,7 +1,7 @@
 <%= simple_form_for [@conference_session, @presentation] do |presentation| %>  
   <%= presentation.error_notification %>
   <%= presentation.input :name %>  
-  <%= presentation.input :abstract %>  
+  <%= presentation.input :abstract, input_html: {rows: 8} %>  
   <%= presentation.association :tags, collection: Tag.global, as: :check_boxes %>
   <%= presentation.input :manual_tags %>
   <%= presentation.input :poster, as: :hidden %>  
