@@ -8,6 +8,8 @@ class ConferenceSession < ApplicationRecord
 
   include Taggable
 
+  scope :accepted, -> { where(accepted: true) }
+
   def to_s
     self.name
   end
