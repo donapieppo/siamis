@@ -51,3 +51,11 @@
   <%= schedule(presentation) %>  
 </div><!-- panel-footer -->
 </div>
+
+<% if owner %>  
+  <p class="alert alert-success">
+  <strong>Thank you for your submission.</strong> <br/>
+  Till <%= l Deadline.presentation_proposal_end %> you can modify it. <br/>
+  You will be notified whether your poster/presentation is accepted or not by email as close as possible to that date.
+  </p>
+<% end %>
