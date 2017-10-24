@@ -26,11 +26,13 @@ class ConferenceSession < ApplicationRecord
   # only Minisymposium
   def accept!
     self.update_attribute(:accepted, true)
+    self.presentations.each {|p| p.accept!}
   end
 
   # only Minisymposium
   def refuse!
     self.update_attribute(:accepted, false)
+    self.presentations.each {|p| p.refuse!}
   end
 
   def accepted?
