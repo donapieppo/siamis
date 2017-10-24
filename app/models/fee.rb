@@ -28,7 +28,7 @@ class Fee
     elsif @user.speaker_or_organizer?
       [Prices[:speaker_or_organizer][@array_number], "you are a non-member mini speaker or organizer"]
     else
-      [Prices[:non_member][@array_number], "you are a non-member and with no presentations"]
+      [Prices[:non_member][@array_number], "you are a non-member and with no presentations accepted"]
     end
     if (tickets = @user.banquet_tickets.to_i) > 0
       res = [res[0].to_i + tickets * 65, res[1].html_safe + ".<br/>#{tickets} extra banquet tickets included".html_safe ]
