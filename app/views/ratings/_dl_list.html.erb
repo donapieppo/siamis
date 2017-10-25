@@ -2,9 +2,7 @@
 <% if user_in_scientific_committee? or user_in_organizer_committee? %>
   <% sum = 0.to_f %> 
   <% num = 0 %>  
-  <% if what.accepted %>  
-    <p class="alert alert-success">This <%= what.class_name %> has been accepted.</p>
-  <% else %>
+  <% unless what.accepted %>  
     <dl class="dl-horizontal">
       <dt>Ratings:</dt>
       <% what.ratings.each do |rating| %>  
