@@ -31,10 +31,12 @@ module Siamis
     config.number_of_days = 3
 
     # Deadlines
-    config.deadlines = { pre_registration:       ['25/09/2017', '04/04/2018'], # after prices are higher
-                         minisymposium_proposal: ['03/07/2017', '15/10/2017'],
-                         minisymposium_abstract: ['27/10/2017', '15/11/2017'],
-                         presentation_proposal:  ['20/10/2017', '15/11/2017'] }
+    config.deadlines = { pre_registration:         ['25/09/2017', '04/04/2018'], # after prices are higher
+                         minisymposium_proposal:   ['03/07/2017', '15/10/2017'], # can connect and create/update minisymposium
+                         minisymposium_acceptance: ['15/10/2017', '26/10/2017'], # committee acceptance, no edit/update?
+                         minisymposium_abstract:   ['27/10/2017', '15/11/2017'], # authors updates minisymposium presentations
+                         presentation_proposal:    ['20/10/2017', '15/11/2017']  # presentations and posters
+                        }
 
     config.new_password_lenght = 6
 

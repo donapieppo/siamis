@@ -1,14 +1,16 @@
 class Deadline
   @@_deadlines = Hash.new {|hash, key| hash[key] = {}}
 
-  @@_deadlines[:pre_registration][:start]       = Date.parse(Rails.configuration.deadlines[:pre_registration][0])
-  @@_deadlines[:pre_registration][:end]         = Date.parse(Rails.configuration.deadlines[:pre_registration][1])
-  @@_deadlines[:minisymposium_proposal][:start] = Date.parse(Rails.configuration.deadlines[:minisymposium_proposal][0])
-  @@_deadlines[:minisymposium_proposal][:end]   = Date.parse(Rails.configuration.deadlines[:minisymposium_proposal][1])
-  @@_deadlines[:minisymposium_abstract][:start] = Date.parse(Rails.configuration.deadlines[:minisymposium_abstract][0])
-  @@_deadlines[:minisymposium_abstract][:end]   = Date.parse(Rails.configuration.deadlines[:minisymposium_abstract][1])
-  @@_deadlines[:presentation_proposal][:start]  = Date.parse(Rails.configuration.deadlines[:presentation_proposal][0])
-  @@_deadlines[:presentation_proposal][:end]    = Date.parse(Rails.configuration.deadlines[:presentation_proposal][1])
+  @@_deadlines[:pre_registration][:start]         = Date.parse(Rails.configuration.deadlines[:pre_registration][0])
+  @@_deadlines[:pre_registration][:end]           = Date.parse(Rails.configuration.deadlines[:pre_registration][1])
+  @@_deadlines[:minisymposium_proposal][:start]   = Date.parse(Rails.configuration.deadlines[:minisymposium_proposal][0])
+  @@_deadlines[:minisymposium_proposal][:end]     = Date.parse(Rails.configuration.deadlines[:minisymposium_proposal][1])
+  @@_deadlines[:minisymposium_acceptance][:start] = Date.parse(Rails.configuration.deadlines[:minisymposium_acceptance][0])
+  @@_deadlines[:minisymposium_acceptance][:end]   = Date.parse(Rails.configuration.deadlines[:minisymposium_acceptance][1])
+  @@_deadlines[:minisymposium_abstract][:start]   = Date.parse(Rails.configuration.deadlines[:minisymposium_abstract][0])
+  @@_deadlines[:minisymposium_abstract][:end]     = Date.parse(Rails.configuration.deadlines[:minisymposium_abstract][1])
+  @@_deadlines[:presentation_proposal][:start]    = Date.parse(Rails.configuration.deadlines[:presentation_proposal][0])
+  @@_deadlines[:presentation_proposal][:end]      = Date.parse(Rails.configuration.deadlines[:presentation_proposal][1])
 
   class << self
     def deadlines
@@ -51,6 +53,19 @@ class Deadline
     def in_minisymposium_abstract?
       t = Date.today
       (t >= minisymposium_abstract_start) && (t <= minisymposium_abstract_end)
+    end
+
+    def minisymposium_acceptance_start
+      @@_deadlines[:minisymposium_acceptance][:start] 
+    end
+
+    def minisymposium_acceptance_end
+      @@_deadlines[:minisymposium_acceptance][:end] 
+    end
+
+    def in_minisymposium_acceptance?
+      t = Date.today
+      (t >= minisymposium_acceptance_start) && (t <= minisymposium_acceptance_end)
     end
 
     def presentation_proposal_start
