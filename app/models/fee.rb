@@ -26,7 +26,7 @@ class Fee
     elsif @user.siam
       [Prices[:siam_member][@array_number], "you are registered as a siam member"]
     elsif @user.speaker_or_organizer?
-      [Prices[:speaker_or_organizer][@array_number], "you are a non-member mini speaker or organizer"]
+      [Prices[:speaker_or_organizer][@array_number], "you are a non-member speaker or organizer"]
     else
       [Prices[:non_member][@array_number], "you are a non-member and with no accepted presentations"]
     end
