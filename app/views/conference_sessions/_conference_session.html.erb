@@ -10,7 +10,10 @@
   <%= panel_heading(conference_session) %>  
 
   <div class="panel-body">
-    <div class="description"><p><%= conference_session.description %></p></div>
+    <p class="description"><%= conference_session.description %></p>
+
+    <%# dl_presentations(presentations) %>  
+    <%= list_presentations(presentations) %>  
 
     <dl class="dl-horizontal">
       <dt><%= conference_session.organizers_label %>:</dt>
@@ -21,8 +24,6 @@
         </dd>
       <% end %>
     </dl>
-
-    <%= dl_presentations(presentations) %>  
 
     <%= render(partial: 'ratings/dl_list', locals: { what: conference_session }) %>  
 
