@@ -2,6 +2,7 @@
   @extend .panel;
   @extend .panel-default;
   .description {
+    text-align: justify;
     font-style: italic;
   }
   .panel-heading {
@@ -54,3 +55,15 @@
     cursor: zoom-in;
   }
 }
+
+dl.conference_session_presentations_list {
+  dt {
+    margin-left: 12px;
+    margin-top: 6px;
+  }
+  dd {
+    margin-left: 24px;
+  }
+}
+
+
