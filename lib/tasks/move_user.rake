@@ -13,11 +13,17 @@ namespace :siamis do
       to = User.find(to_id)
       p to
 
-      from.roles.each do |role|
-        p role
-        p role.conference_session
-        p role.presentation
-        role.update_attribute(:user_id, to.id)
+      from.conference_registrations.each do |r|
+        r.update_attribute(:user_id, to.id)
+      end
+      from.ratings.each do |r|
+        r.update_attribute(:user_id, to.id)
+      end
+      from.roles.each do |r|
+        r.update_attribute(:user_id, to.id)
+      end
+      from.payments.each do |r|
+        r.update_attribute(:user_id, to.id)
       end
     end
   end
