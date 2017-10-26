@@ -129,6 +129,15 @@ module ConferenceHelper
      conference_session.class.to_s.downcase + "_panel"
   end
 
+  def list_presentations(presentations)
+    content_tag(:dl, class: "conference_session_presentations_list") do
+      presentations.each do |presentation| 
+        concat(content_tag(:dt, link_to(presentation, presentation, remote: true)))
+        concat(content_tag(:dd, show_role(presentation.speaker)))
+      end
+    end
+  end
+
   def dl_presentations(presentations)
     content_tag(:dl, class: "dl-horizontal") do
       concat content_tag(:dt, "Presentations:") 
