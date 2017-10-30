@@ -6,7 +6,7 @@ class MinisymposiaController < ConferenceSessionsController
   # wait till end of proposals to show accepted Minisymposia
   def index
     @minisymposia = if Date.today > Deadline.minisymposium_acceptance_end
-                      Minisymposium.includes([organizers: :user], :schedule).accepted.order(:name)
+                      Minisymposium.includes(:schedules, [organizers: :user]).accepted.order(:name)
                     else
                       []
                     end
@@ -40,7 +40,7 @@ class MinisymposiaController < ConferenceSessionsController
 
   def conference_session_params
     @manual_tags = params[:minisymposium].delete(:manual_tags)
-    params[:minisymposium].permit(:name, :description, tag_ids: [])
+    params[:minisymposium].permit(:name, :description, :parts, tag_ids: [])
   end
 
   def manual_tags  

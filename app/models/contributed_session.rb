@@ -1,4 +1,4 @@
-class ContributedSession < ConferenceSession
+class ContributedSession < MultipleConferenceSession
   has_many :presentations, foreign_key: :conference_session_id, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true

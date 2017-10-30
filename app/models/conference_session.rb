@@ -1,10 +1,14 @@
+# MonoConferenceSession     < ConferenceSession
+# MultipleConferenceSession < ConferenceSession
 class ConferenceSession < ApplicationRecord
   has_many :organizers, dependent: :destroy
   has_many :roles, dependent: :destroy
   has_many :ratings, dependent: :destroy
   has_many :interests, dependent: :destroy
-  has_one  :schedule, dependent: :destroy
+
+  # useful also for MonoConferenceSession which has one presentation only
   has_many :presentations
+  has_many :schedules, dependent: :destroy, foreign_key: :conference_session_id
 
   include Taggable
 

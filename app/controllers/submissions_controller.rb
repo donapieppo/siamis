@@ -16,7 +16,7 @@ class SubmissionsController < ApplicationController
       @list = Minisymposium.left_outer_joins(:presentations)
                                    .select('conference_sessions.*, COUNT(presentations.id) AS presentation_count')
                                    .group('presentations.conference_session_id')
-                                   .includes(:schedule, ratings: :user, organizers: :user)
+                                   .includes(ratings: :user, organizers: :user)
       if user_in_organizer_committee?
         @list = @list.order('updated_at DESC')
       else

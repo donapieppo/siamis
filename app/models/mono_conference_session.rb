@@ -6,10 +6,8 @@
 # Since you create the minitutorial first we stay with 
 # minitutorial with a name. So:
 #
-# Minitutorial: name
-#               description
-# Presentation: authors (speaker)
-#
+# Minitutorial < MonoConferenceSession
+# Plenary      < MonoConferenceSession
 class MonoConferenceSession < ConferenceSession 
   has_one :presentation, foreign_key: :conference_session_id, dependent: :destroy
 
@@ -27,6 +25,10 @@ class MonoConferenceSession < ConferenceSession
 
   def accepted?
     true
+  end
+
+  def schedule
+    self.schedules.first
   end
 
   private

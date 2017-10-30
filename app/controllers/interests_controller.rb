@@ -4,7 +4,7 @@ class InterestsController < ApplicationController
   # hash of days
   def index
     @interests = Hash.new{|h, k| h[k] = []}
-    current_user.interests.includes(presentation: :conference_session, conference_session: :schedule).order('schedules.start').each do |interest|
+    current_user.interests.includes(presentation: :conference_session, conference_session: :schedules).order('schedules.start').each do |interest|
       @interests[interest.on.schedule] << interest.on
     end
   end
