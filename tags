@@ -24,7 +24,7 @@ ConferenceRegistrationsController	app/controllers/conference_registrations_contr
 ConferenceSession	app/models/conference_session.rb	/^class ConferenceSession < ApplicationRecord$/;"	c
 ConferenceSessionsController	app/controllers/conference_sessions_controller.rb	/^class ConferenceSessionsController < ApplicationController$/;"	c
 Connection	app/channels/application_cable/connection.rb	/^  class Connection < ActionCable::Connection::Base$/;"	c	class:ApplicationCable
-ContributedSession	app/models/contributed_session.rb	/^class ContributedSession < ConferenceSession$/;"	c
+ContributedSession	app/models/contributed_session.rb	/^class ContributedSession < MultipleConferenceSession$/;"	c
 ContributedSessionsController	app/controllers/contributed_sessions_controller.rb	/^class ContributedSessionsController < ConferenceSessionsController$/;"	c
 Deadline	app/models/deadline.rb	/^class Deadline$/;"	c
 DeadlineHelper	app/helpers/deadline_helper.rb	/^module DeadlineHelper$/;"	m
@@ -283,7 +283,7 @@ link_to_remote_edit	app/helpers/link_helper.rb	/^  def link_to_remote_edit(url)$
 link_to_remote_new	app/helpers/link_helper.rb	/^  def link_to_remote_new(name = "", url)$/;"	f	class:LinkHelper
 link_to_show	app/helpers/link_helper.rb	/^  def link_to_show(name = "", url)$/;"	f	class:LinkHelper
 link_to_top	app/helpers/home_helper.rb	/^  def link_to_top$/;"	f	class:HomeHelper
-list_presentations	app/helpers/conference_helper.rb	/^  def list_presentations(presentations)$/;"	f	class:ConferenceHelper
+list_presentations	app/helpers/conference_helper.rb	/^  def list_presentations(presentations, conference_session)$/;"	f	class:ConferenceHelper
 local_committee	app/models/user.rb	/^  def self.local_committee$/;"	F	class:User
 log_current_user	app/controllers/application_controller.rb	/^  def log_current_user$/;"	f	class:ApplicationController
 logged_user	app/helpers/menu_helper.rb	/^  def logged_user$/;"	f	class:MenuHelper
@@ -390,6 +390,7 @@ room_params	app/controllers/rooms_controller.rb	/^  def room_params$/;"	f	class:
 safe_fields	app/models/user.rb	/^  def self.safe_fields$/;"	F	class:User
 satellites	app/controllers/home_controller.rb	/^  def satellites$/;"	f	class:HomeController
 schedule	app/helpers/conference_helper.rb	/^  def schedule(what)$/;"	f	class:ConferenceHelper
+schedule	app/models/mono_conference_session.rb	/^  def schedule$/;"	f	class:MonoConferenceSession
 schedule	app/models/presentation.rb	/^  def schedule$/;"	f	class:Presentation
 schedule_params	app/controllers/schedules_controller.rb	/^  def schedule_params$/;"	f	class:SchedulesController
 scientific_committee	app/models/user.rb	/^  def self.scientific_committee$/;"	F	class:User
