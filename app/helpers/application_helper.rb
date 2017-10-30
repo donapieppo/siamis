@@ -42,8 +42,8 @@ module ApplicationHelper
 
       type = type.to_sym
       type = :success if type.to_s == :notice.to_s
-      type = :danger if type.to_s == :alert.to_s
-      type = :danger if type.to_s == :error.to_s
+      type = :danger  if type.to_s == :alert.to_s
+      type = :danger  if type.to_s == :error.to_s
       next unless ALERT_TYPES.include?(type)
 
       Array(message).each do |msg|
@@ -120,4 +120,7 @@ module ApplicationHelper
     end 
   end
 
+  def redirect_home_with_auth_error
+    redirect_to root_path, alert: "You don't have enough permissions to access this page. Please contact #{Rails.configuration.contact_mail}."
+  end
 end
