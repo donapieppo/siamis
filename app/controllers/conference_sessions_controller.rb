@@ -8,7 +8,7 @@ class ConferenceSessionsController < ApplicationController
   end
 
   def show
-    @conference_session = ConferenceSession.includes(schedule: :room, organizers: :user).find(params[:id])
+    @conference_session = ConferenceSession.includes(roles: :user).find(params[:id])
   end
 
   def edit
@@ -23,7 +23,8 @@ class ConferenceSessionsController < ApplicationController
   end
 
   def manage_presentations
-    @actual_presentations = @conference_session.presentations.order(:number)
+    @actual_presentations = @conference_session.presentations.includes([roles: :user]).order(:part, :number)
+    @parts_number         = @conference_session.parts || 1
     if user_in_organizer_committee?
       @available_presentations = case @conference_session
                                  when PosterSession
@@ -37,15 +38,15 @@ class ConferenceSessionsController < ApplicationController
   end
 
   def ordering
-    params[:order].each do |presentation_id, num|
-      Presentation.find(presentation_id.to_i).update_attribute(:number, num)
+    params[:order].each do |presentation_id, o|
+      Presentation.find(presentation_id.to_i).update_attributes(o.permit(:part, :number))
     end
     redirect_to manage_presentations_conference_session_path(@conference_session)
   end
 
   # TODO
   def destroy
-    @conference_session.delete
+    @conference_session.destroy
     redirect_to root_path # FIXME
   end
 
