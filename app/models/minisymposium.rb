@@ -1,6 +1,4 @@
 class Minisymposium < MultipleConferenceSession
-  validates :name, presence: true
-
   scope :submitted, -> { where(accepted: nil) }
   scope :accepted,  -> { where(accepted: true) }
 
