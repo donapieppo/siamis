@@ -3,8 +3,6 @@
 <div class="container">
 <%= program_title('Submissions', 'envelope-o') %>  
 
-<p class="alert alert-warning">Acceptance notification for minisymposia by October 26, 2017</p>
-
 <% if current_user %>
   <% if @presentations.any? or @minisymposia.any? %>
     <% @presentations.each do |presentation| %>  
