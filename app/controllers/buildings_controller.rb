@@ -27,7 +27,7 @@ class BuildingsController < ApplicationController
   end
 
   def destroy
-    @building.delete
+    @building.destroy
     redirect_to rooms_path
   end
 

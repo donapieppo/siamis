@@ -31,7 +31,7 @@ class RoomsController < ApplicationController
   end
 
   def destroy
-    @room.delete
+    @room.destroy
     redirect_to rooms_path
   end
 
