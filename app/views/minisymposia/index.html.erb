@@ -3,7 +3,11 @@
 <%= render partial: 'description' %>  
 <%= render partial: 'deadlines/minisymposium_submission' %>  
 
-<% cache 'minisymposia_cache' do %>
-  <%= render @minisymposia, condensed: true %>
+<ul class="list-group">
+  <% cache 'minisymposia_list_cache' do %>
+    <% @minisymposia.each do |minisymposium| %>
+      <li class="list-group-item"><%= link_to minisymposium.name, minisymposium, remote: true %>
+    <% end %>
 <% end %>
+</ul>
 
