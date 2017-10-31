@@ -35,12 +35,10 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "number"
     t.string "name"
     t.text "description"
+    t.integer "parts", default: 1
     t.boolean "accepted"
-    t.integer "chair_id", unsigned: true
-    t.datetime "start"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["chair_id"], name: "chair_id"
   end
 
   create_table "hotels", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -125,6 +123,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "name"
     t.text "abstract"
     t.integer "conference_session_id", unsigned: true
+    t.integer "part", default: 1
     t.integer "number"
     t.boolean "poster"
     t.boolean "accepted"
@@ -164,6 +163,7 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "schedules", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "conference_session_id", unsigned: true
+    t.integer "part", default: 1
     t.integer "room_id", unsigned: true
     t.datetime "start"
     t.index ["conference_session_id"], name: "conference_session_id"
