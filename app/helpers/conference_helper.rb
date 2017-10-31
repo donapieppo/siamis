@@ -7,7 +7,7 @@ module ConferenceHelper
   end
 
   def show_role(role, editable: false, no_affiliation: false)
-    return unless role
+    return '' unless role
     user_modal_link(role.user) + 
     (no_affiliation ? "" : " (<small> #{h(role.user.affiliation)} </small>) ".html_safe) +
     (editable ? link_to_delete(role) : "")
@@ -109,7 +109,16 @@ module ConferenceHelper
   end
 
   def schedule(what)
-     content_tag(:span, what.schedule || 'schedule to be decided', class: "pull-right")
+    res = "".html_safe
+    case what
+    when MultipleConferenceSession
+      what.schedules.each do |s|
+        res += content_tag(:div, s.to_s)
+      end
+    when MonoConferenceSession
+      res = content_tag(:span, what.schedule || 'schedule to be decided', class: "pull-right")
+    end
+    res
   end
 
   def user_roles(user)
@@ -129,11 +138,20 @@ module ConferenceHelper
      conference_session.class.to_s.downcase + "_panel"
   end
 
-  def list_presentations(presentations)
+  def list_presentations(presentations, conference_session)
+    # hash with part number as key
+    schedule_from_part = conference_session.schedules.inject({}) {|res, s| res[s.part] = s; res}
+    part = 0
+
     content_tag(:dl, class: "conference_session_presentations_list") do
       presentations.each do |presentation| 
+        if part != (part = presentation.part)
+          part_string = (conference_session.parts > 1) ? "<strong>PART #{part.to_i}</strong> ".html_safe : "&nbsp;".html_safe # only if more than one part
+          concat(content_tag(:p, part_string + content_tag(:span, icon('calendar') + schedule_from_part[part], class: 'pull-right'), style: 'margin-top: 10px'))
+        end
         concat(content_tag(:dt, link_to(presentation, presentation, remote: true)))
-        concat(content_tag(:dd, show_role(presentation.speaker)))
+        has_abstract_icon = (user_in_organizer_committee? and ! presentation.abstract.blank?) ? icon('font', size: "14") : ''
+        concat(content_tag(:dd, show_role(presentation.speaker) + " " + has_abstract_icon))
       end
     end
   end
