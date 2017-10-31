@@ -1,24 +1,29 @@
+<%
+  parts_list  = [['part I', 1], ['part II', 2], ['part III', 3], ['part IV', 4], ['part V', 5]][0 ... @parts_number]  
+  actual_part = 1 # to separate parts
+%>
+
 <p class="alert alert-success">Current presentations in "<%= link_to @conference_session, @conference_session %>":</p>
 
 <% if @actual_presentations.any? %>  
   <%= form_tag ordering_conference_session_path(@conference_session) do |f| %>  
-    <% many = 1..@actual_presentations.count %>  
     <ul class="list-group">
       <% @actual_presentations.each do |presentation| %>  
+        <%= "<br/>".html_safe if actual_part != (actual_part = presentation.part) %>  
         <li class="list-group-item">
           <% if user_in_organizer_committee? && ! @conference_session.is_a?(Minisymposium) %>  
             <%= link_to icon('trash'), remove_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session' %>
           <% end %>
-          <%= select_tag "order[#{presentation.id}]", options_for_select(many, presentation.number) %>
 
-          <%= link_to presentation, presentation %>  
-          <% if user_in_organizer_committee? %>  
-            - <small><%= show_role(presentation.speaker, no_affiliation: true) %></small>
-          <% end %>
+          <%= select_tag "order[#{presentation.id}][part]",   options_for_select(parts_list, presentation.part), hidden: (@parts_number < 2) %>
+          <%= select_tag "order[#{presentation.id}][number]", options_for_select(1..5, presentation.number) %>
+
+          <%= link_to presentation, presentation %> -
+          <small><%= show_role(presentation.speaker, no_affiliation: true) %></small>
         </li>
       <% end %>
     </ul>
-    <%= submit_tag 'Save order' %> - <%= link_to_back @conference_session %>  
+    <%= submit_tag 'Save' %> - <%= link_to_back @conference_session %>  
   <% end %>
 <% end %>
 
@@ -27,11 +32,9 @@
   <ul class="list-group">
     <% @available_presentations.each do |presentation| %>  
       <li class="list-group-item">
-        <%= link_to icon('plus-circle'), add_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'add to session' %> 
-        <%= link_to presentation, presentation %> 
-        <span class="pull-right">
-          <%= show_role(presentation.speaker) %>
-        </span>
+        <%= link_to big_icon('plus-circle'), add_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'add to session' %> 
+        <%= presentation %>
+        <%= link_to icon('search'), presentation, remote: true %>
       </li>
     <% end %>
   </ul>
