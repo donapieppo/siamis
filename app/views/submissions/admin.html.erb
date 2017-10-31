@@ -2,16 +2,15 @@
 <h2>Submissions</h2>
 
 <dl class="admin_list">
-  <% total_presentations = 0 %>  
+  <% total = 0 %>  
   <% @list.each do |element| %>  
     <dt id="<%= element.id %>">
-    <%= icon('check') if element.accepted %>  
-    <%= link_to element.name.upcase, element, remote: true %>
+      <%= icon('check') if element.accepted %>  
+      <%= link_to element.name.upcase, element, remote: true %>
+      <small><%= "(#{element.parts} parts)" if element.is_a?(Minisymposium) and element.parts and element.parts > 1 %></small>
     </dt>
 
-    <dd>
-    <%= show_roles(element.respond_to?(:organizers) ? element.organizers : element.authors) %>
-    </dd>
+    <dd><%= show_roles(element.respond_to?(:organizers) ? element.organizers : element.authors) %></dd>
 
     <!-- <dd><small>keywords: <%# element.all_tags %></small></dd> -->
 
@@ -21,7 +20,6 @@
         <span style="color: green">You rated this</span> -
       <% elsif user_in_scientific_committee? %> 
         <%= link_to icon('star') + ' rate this', [:new, element, :rating], remote: true %> -
-        <%# new_minisymposium_rating_path(element) %>  
       <% end %>
 
       <% if element.is_a?(Minisymposium) %>  
@@ -32,11 +30,11 @@
       Last update: <%= l element.updated_at %>
 
       <% if element.is_a?(Minisymposium) %>
-        <% total_presentations += element.presentation_count %>  
-        <span class="pull-right"><%= total_presentations / 4 %></span>
+        <% total += (element.parts || 1) %>  
+        <span class="pull-right"><%= total %></span>
       <% else %>
-        <% total_presentations += 1 %>
-        <span class="pull-right"><%= total_presentations %></span>
+        <% total += 1 %>
+        <span class="pull-right"><%= total %></span>
       <% end %>
     </small>
     </dd>
