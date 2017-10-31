@@ -15,6 +15,10 @@
     <% end %>
     <%= render @minisymposia %>  
   <% end %>
+<% else %>
+  <p class="alert alert-info" style="text-align: center">
+    In order to submit a presentation or complete your previous submissions, please <%= login_link button: true %>.
+  </p>
 <% end %>
 </div>
 
