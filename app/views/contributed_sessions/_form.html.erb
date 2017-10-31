@@ -2,6 +2,7 @@
   <%= conference_session.error_notification %>
   <%= conference_session.input :name %>  
   <%= conference_session.input :description, input_html: {rows: 8} %>  
+  <%= conference_session.association :tags, collection: Tag.global, as: :check_boxes %>
   <%= conference_session.submit  %>  
 <% end %>
 
