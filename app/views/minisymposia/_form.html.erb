@@ -19,6 +19,9 @@
   <%= conference_session.input :description, input_html: {rows: 6} %>  
   <%= conference_session.association :tags, collection: Tag.global, as: :check_boxes %>
   <%= conference_session.input :manual_tags %>
+  <% if user_in_organizer_committee? %>  
+    <%= conference_session.input :parts, collection: 1..4, include_blank: false %>
+  <% end %>
   <%= conference_session.submit %> - <%= link_to_back root_path %>
 <% end %>
 
