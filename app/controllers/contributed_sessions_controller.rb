@@ -2,7 +2,7 @@ class ContributedSessionsController < ConferenceSessionsController
 
   # see all
   def index
-    @contributed_sessions = ContributedSession.includes(:schedule)
+    @contributed_sessions = ContributedSession.includes(:schedules)
   end
 
   def new
