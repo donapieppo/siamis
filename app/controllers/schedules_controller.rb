@@ -10,11 +10,14 @@ class SchedulesController < ApplicationController
   end
 
   def new
-    @schedule = @conference_session.schedule || @conference_session.build_schedule
+    @schedules = (1 .. @conference_session.parts).map do |part|
+      @conference_session.schedules.where(part: part).first or @conference_session.schedules.new(part: part)
+    end
   end
 
   def create
-    @schedule = @conference_session.schedule || @conference_session.build_schedule
+    part = params[:schedule].delete(:part)
+    @schedule = (@conference_session.schedules.where(part: part).first or @conference_session.schedules.new(part: part))
     if @schedule.update_attributes(schedule_params)
       redirect_to @conference_session, notice: 'OK'
     else

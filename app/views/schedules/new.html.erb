@@ -1,17 +1,22 @@
-<h2>Select date and location</h2>
+<h2>
+  Select date and location for <br/>
+  <small><%= link_to @conference_session, @conference_session %></small>
+</h2>
 
-<p class="alert alert-info">
-  <%= link_to @conference_session, @conference_session %>
-</p>
 
-<%= simple_form_for [@conference_session, @schedule] do |schedule| %>  
-  <%= schedule.error_notification %>
-  <%# <%= raise @schedule.start_day_number.inspect %>  
-  <%# <%= raise Schedule.days_array_for_select.inspect %>  
-  <%= schedule.input :start_day_number, as: :schedule_day %>  
-  <%= schedule.input :start_hour, as: :schedule_hour %>  
-  <%= schedule.association :room, include_blank: false %>  
-  <%= schedule.submit %>  
+<% @schedules.each do |schedule| %>  
+  <% if @conference_session.parts > 1 %>  
+    <p><strong>Part <%= schedule.part %></strong></p>
+  <% end %>
+
+  <%= simple_form_for [@conference_session, schedule] do |f| %>  
+    <%= f.error_notification %>
+    <%= f.input :part, as: :hidden %>  
+    <%= f.input :start_day_number, as: :schedule_day %>  
+    <%= f.input :start_hour, as: :schedule_hour %>  
+    <%= f.association :room, include_blank: false %>  
+    <%= f.submit %>  
+  <% end %>
 <% end %>
 
 

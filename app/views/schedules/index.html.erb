@@ -36,11 +36,13 @@
   <dl class="dl-horizontal">
     <dt><%= hour %></dt>
     <% presentations.each do |presentation_hash| %>
-      <dd style="border-bottom: 2px solid <%= conference_session_color(presentation_hash[:conference_session]) %>; ">
-      <span class="badge"><%= presentation_hash[:conference_session].code %></span>
-      <%= link_to presentation_hash[:presentation], conference_session_path(presentation_hash[:conference_session]), remote: true %> (until <%= presentation_hash[:end] %>)<br/>
-      <%= link_to user_modal_link presentation_hash[:speaker] %>  
-      <span class="pull-right"><%= presentation_hash[:conference_session].schedule.room %> </span>
+      <dd style="border-bottom: 2px solid <%= conference_session_color(presentation_hash[:conference_session]) %>">
+        <span class="badge"><%= presentation_hash[:conference_session].code %></span>
+
+        <%= link_to presentation_hash[:presentation], conference_session_path(presentation_hash[:conference_session]), remote: true %> (until <%= presentation_hash[:end] %>)<br/>
+        <%= link_to user_modal_link presentation_hash[:speaker] %>  
+
+        <span class="pull-right"><%= presentation_hash[:room] %> </span>
       </dd>
     <% end %>
   </dl>

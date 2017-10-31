@@ -2,6 +2,10 @@ class Schedule < ApplicationRecord
   belongs_to :conference_session
   belongs_to :room
 
+  def presentations
+    self.conference_session.presentations.where(part: self.part)
+  end
+
   def to_s
     "#{I18n.l(self.start, format: :with_day_name)} in #{self.room}"
   end
@@ -17,7 +21,7 @@ class Schedule < ApplicationRecord
   end
 
   def start_hour
-    self.start ? "#{self.start.hour}:#{self.start.min}" : Time.now
+    self.start ? "#{'%02d' % self.start.hour}:#{'%02d' % self.start.min}" : Time.now
   end
 
   # start from 0
@@ -36,27 +40,29 @@ class Schedule < ApplicationRecord
     end
   end
 
-  # Sessions
   def self.day_program(day)
-    ConferenceSession.includes(presentations: [authors: :user], schedule: [room: :building])
-                     .where('DATE_FORMAT(schedules.start, "%Y-%m-%d") = ?', day.strftime("%F"))
-                     .order('schedules.start')
+    Schedule.where('DATE_FORMAT(schedules.start, "%Y-%m-%d") = ?', day.strftime('%F'))
+            .includes(conference_session: [presentations: [authors: :user]], room: :building)
+            .order('schedules.start')
   end
 
-  # res["08:00"] = [ presentation1, presentation2 ]
+  # res["08:00"] = [ { presentation: p, speaker: user, conference_session: cs, end: end}, ... ]
   def self.day_program_hour_hash(day)
     res = Hash.new
-    self.day_program(day).each do |conference_session|
-      hour = conference_session.schedule.start
-      conference_session.presentations.each do |presentation|
+    self.day_program(day).each do |schedule|
+      hour = schedule.start
+      room = schedule.room
+      conference_session = schedule.conference_session
+
+      schedule.presentations.each do |presentation|
         hour = hour + conference_session.duration.minutes
         hour_str = hour.strftime("%H:%M")
         res[hour_str] ||= Array.new
-        res[hour_str] << { presentation: presentation,
-                           speaker: presentation.speaker.user,
+        res[hour_str] << { presentation:       presentation,
+                           speaker:            presentation.speaker.user,
                            conference_session: presentation.conference_session,
-                           end: (hour + conference_session.duration.minutes).strftime("%H:%M")
-        }
+                           room:               room,
+                           end:                (hour + conference_session.duration.minutes).strftime("%H:%M") }
       end
     end
     res
