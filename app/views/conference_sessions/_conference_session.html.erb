@@ -1,6 +1,6 @@
 <% 
   owner         = current_user_owns?(conference_session)
-  presentations = conference_session.presentations.includes(authors: :user).order(:number).all
+  presentations = conference_session.presentations.includes(authors: :user).order(:part, :number, :name).all
   organizers    = conference_session.organizers.includes(:user).order('users.surname').all 
   missing_presentations = conference_session.is_a?(Minisymposium) && ((! conference_session.accepted) and owner and (presentations.size < 4))
   condensed ||= false
@@ -12,8 +12,7 @@
   <div class="panel-body">
     <p class="description"><%= conference_session.description %></p>
 
-    <%# dl_presentations(presentations) %>  
-    <%= list_presentations(presentations) %>  
+    <%= list_presentations(presentations, conference_session) %>
 
     <dl class="dl-horizontal">
       <dt><%= conference_session.organizers_label %>:</dt>
@@ -37,7 +36,6 @@
 
   <div class="panel-footer footer-actions">
     <%= panel_actions(conference_session) %>  
-    <%= schedule(conference_session) %>  
   </div>
 </div>
 
