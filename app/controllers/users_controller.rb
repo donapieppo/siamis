@@ -84,7 +84,7 @@ class UsersController < ApplicationController
   # FIMXE 
   def multiple_speakers
     # NOTE: choose fiels in roles so that id is users.id
-    q_all = "SELECT users.name, users.surname, users.id, COUNT(user_id) AS presentation_count FROM roles LEFT JOIN users ON user_id = users.id WHERE speak = 1 AND type='Author' GROUP BY user_id HAVING COUNT(user_id) > 1 ORDER BY presentation_count DESC"
+    q_all = "SELECT users.name, users.surname, users.id, COUNT(user_id) AS presentation_count FROM roles LEFT JOIN users ON user_id = users.id WHERE speak = 1 AND type='Author' GROUP BY user_id HAVING COUNT(user_id) > 1 ORDER BY presentation_count DESC, surname"
     @multiple_speakers = User.find_by_sql(q_all)
 
     @multiple_speakers_presentations = Presentation.includes(:conference_session, :roles).where('roles.type="Author" and roles.speak = 1').references(:role).where('roles.user_id': @multiple_speakers.pluck(:id)).inject({}) do |res, p| 
