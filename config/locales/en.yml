@@ -53,6 +53,7 @@ en:
         description: Summary
         tags: Keywords
         manual_tags: Other keywords
+        parts: Number of parts
       presentation:
         name: Title
         tags: Keywords
