@@ -70,7 +70,7 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.roles.any?
-      redirect_to users_path, alert: "User has roles in databse. Please delete the user from presentations, chairs, organizing etc etc"
+      redirect_to users_path, alert: "User has roles in databse. Please delete the user from presentations, chairs, organizing etc etc."
     else
       @user.destroy
       redirect_to users_path, notice: "The user has been deleted."
@@ -81,10 +81,20 @@ class UsersController < ApplicationController
     @minisymposia_organizers = Organizer.includes(:user).includes(:conference_session).where('conference_sessions.type = "Minisymposium"').references(:conference_sessions).map{|r| r.user.email}.join('; ')
   end
 
+  # FIMXE 
   def multiple_speakers
-    # choose fiels in roles so that id is users.id
-    q = "SELECT users.*, roles.type, roles.user_id, roles.speak, COUNT(user_id) AS presentation_count FROM roles LEFT JOIN users ON user_id = users.id WHERE speak = 1 AND type='Author' GROUP BY user_id ORDER BY presentation_count DESC"
-    @multiple_speakers = User.find_by_sql(q)
+    # NOTE: choose fiels in roles so that id is users.id
+    q_all = "SELECT users.name, users.surname, users.id, COUNT(user_id) AS presentation_count FROM roles LEFT JOIN users ON user_id = users.id WHERE speak = 1 AND type='Author' GROUP BY user_id HAVING COUNT(user_id) > 1 ORDER BY presentation_count DESC"
+    @multiple_speakers = User.find_by_sql(q_all)
+
+    @multiple_speakers_presentations = Presentation.includes(:conference_session, :roles).where('roles.type="Author" and roles.speak = 1').references(:role).where('roles.user_id': @multiple_speakers.pluck(:id)).inject({}) do |res, p| 
+      uid = p.roles.first.user_id
+      res[uid] ||= []
+      res[uid] << { type: p.conference_session ? p.conference_session.type : ' - ',
+                    name: p.name,
+                    id:   p.id }
+      res
+    end
   end
 
   def missing_affiliation

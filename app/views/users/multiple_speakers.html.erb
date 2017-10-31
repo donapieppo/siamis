@@ -1,12 +1,20 @@
 <h1>Multiple speakers</h1>
 
+<p>* are presentations in minisymposia</p>
+
 <table class="table table-striped table-condensed">
   <% @multiple_speakers.each do |user| %>  
     <% if user.presentation_count > 1 %>  
     <tr>
       <th><%= user.presentation_count %></th>  
-      <th><%= link_to user.cn, user, remote: true %></th>
-      <td><%= user.email %></td>  
+      <th><%= link_to user.cn_simple, user, remote: true %></th>
+      <td>
+        <ul>
+          <% @multiple_speakers_presentations[user.id].each do |p| %>  
+            <li><%= link_to p[:name], presentation_path(p[:id]), remote: true %> <%= '*' if p[:type] == 'Minisymposium'  %>  </li>
+          <% end %>
+        </ul>
+      </td>  
     <% end %>
   <% end %>
 </table>

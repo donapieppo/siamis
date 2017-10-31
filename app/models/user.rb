@@ -35,6 +35,10 @@ class User < ApplicationRecord
     "#{self.salutation unless self.salutation.blank?} #{self.name} #{self.surname}"
   end
 
+  def cn_simple
+    "#{self.name} #{self.surname}"
+  end
+
   def owns!(what)
     self.owns?(what) or raise NoAccess
   end
