@@ -108,7 +108,7 @@ module ConferenceHelper
     end
   end
 
-  def schedule(what)
+  def show_schedule(what)
     res = "".html_safe
     case what
     when MultipleConferenceSession
@@ -116,7 +116,9 @@ module ConferenceHelper
         res += content_tag(:div, s.to_s)
       end
     when MonoConferenceSession
-      res = content_tag(:span, what.schedule || 'schedule to be decided', class: "pull-right")
+      res = content_tag(:span, what.schedule || I18n.t(:schedule_to_be_decided), class: "pull-right")
+    when Presentation
+      res = content_tag(:span, what.schedule || I18n.t(:schedule_to_be_decided), class: "pull-right")
     end
     res
   end
@@ -146,8 +148,9 @@ module ConferenceHelper
     content_tag(:dl, class: "conference_session_presentations_list") do
       presentations.each do |presentation| 
         if part != (part = presentation.part)
-          part_string = (conference_session.parts > 1) ? "<strong>PART #{part.to_i}</strong> ".html_safe : "&nbsp;".html_safe # only if more than one part
-          concat(content_tag(:p, part_string + content_tag(:span, icon('calendar') + schedule_from_part[part], class: 'pull-right'), style: 'margin-top: 10px'))
+          part_string     = (conference_session.parts > 1) ? "<strong>PART #{part.to_i}</strong> ".html_safe : "&nbsp;".html_safe # only if more than one part
+          schedule_string = icon('calendar') + (schedule_from_part[part] || I18n.t(:schedule_to_be_decided))
+          concat(content_tag(:p, part_string + content_tag(:span, schedule_string, class: 'pull-right'), style: 'margin-top: 10px'))
         end
         concat(content_tag(:dt, link_to(presentation, presentation, remote: true)))
         has_abstract_icon = (user_in_organizer_committee? and ! presentation.abstract.blank?) ? icon('font', size: "14") : ''

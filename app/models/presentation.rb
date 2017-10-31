@@ -87,8 +87,9 @@ class Presentation < ApplicationRecord
     (self.conference_session and self.conference_session.accepted?)
   end
 
+  # FIXME (TODO calculate start from number)
   def schedule
-    self.conference_session and self.conference_session.schedule
+    self.conference_session and self.conference_session.schedules.where(part: self.part).first
   end
 
   def notify_acceptance
