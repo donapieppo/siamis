@@ -13,9 +13,11 @@ namespace :siamis do
       to = User.find(to_id)
       p to
 
-      from.conference_registrations.each do |r|
-        r.update_attribute(:user_id, to.id)
-      end
+      puts "ok o ctrl+c"
+      gets
+
+      from.conference_registration.update_attribute(:user_id, to.id) if from.conference_registration
+
       from.ratings.each do |r|
         r.update_attribute(:user_id, to.id)
       end
