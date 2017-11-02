@@ -14,7 +14,7 @@ namespace :siamis do
       p to
 
       puts "ok o ctrl+c"
-      gets
+      STDIN.gets
 
       from.conference_registration.update_attribute(:user_id, to.id) if from.conference_registration
 
