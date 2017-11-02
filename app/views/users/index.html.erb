@@ -24,7 +24,7 @@ Users with <%= icon('cog') %> are in scientific committee.
   <% num = 0 %>  
   <% uniq_name = '' %>
   <% @users.each do |user| %>  
-    <% possible_duplication = (uniq_name == (uniq_name = "#{user.name.chomp}#{user.surname.chomp}".downcase)) %>  
+    <% possible_duplication = (uniq_name == (uniq_name = "#{user.name.to_s.chomp}#{user.surname.to_s.chomp}".downcase)) %>  
     <%= content_tag(:tr, class: (possible_duplication ? 'alert alert-danger' : '')) do %>
       <td style="text-align: right"><%= num += 1 %></td>
       <td><%= icon('euro') if user.conference_registration %></td>
