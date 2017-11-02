@@ -24,11 +24,11 @@ Users with <%= icon('cog') %> are in scientific committee.
   <% num = 0 %>  
   <% uniq_name = '' %>
   <% @users.each do |user| %>  
-    <% possible_duplication = (uniq_name == (uniq_name = "#{user.name}#{user.surname}".downcase)) %>  
+    <% possible_duplication = (uniq_name == (uniq_name = "#{user.name.chomp}#{user.surname.chomp}".downcase)) %>  
     <%= content_tag(:tr, class: (possible_duplication ? 'alert alert-danger' : '')) do %>
       <td style="text-align: right"><%= num += 1 %></td>
       <td><%= icon('euro') if user.conference_registration %></td>
-      <th><%= link_to user.cn, user, remote: true %></th>
+      <th><%= link_to user.cn_militar, user, remote: true %></th>
       <td><%= user.email %> </td>
       <td><em><small><%= user.affiliation %></small></em></td>
       <td><%= user.country ? user.country : link_to_edit([:edit, user]) %></td>
