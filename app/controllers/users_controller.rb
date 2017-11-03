@@ -2,16 +2,20 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   skip_before_action :check_user_fields, only: [:edit, :update]
 
-  before_action :user_in_organizer_committee_or_cochair!, except: [:show, :edit, :update] 
+  before_action :user_in_organizer_committee_or_cochair!, except: [:index, :show, :edit, :update] 
   before_action :set_user_and_check_permission, only: [:edit, :update, :destroy]
 
   def index
-    @users = User.includes(:conference_registration).order(:surname, :name)
-    if params[:affiliation]
-      @users = @users.where(affiliation: params[:affiliation])
-    end
-    if params[:country]
-      @users = @users.where(country: params[:country])
+    if user_in_organizer_committee_or_cochair? or user_in_management_committee?
+      @users = User.includes(:conference_registration).order(:surname, :name)
+      if params[:affiliation]
+        @users = @users.where(affiliation: params[:affiliation])
+      end
+      if params[:country]
+        @users = @users.where(country: params[:country])
+      end
+    else
+      redirect_to participants_path and return
     end
   end
 
