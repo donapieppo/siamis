@@ -131,6 +131,10 @@ class User < ApplicationRecord
     Deadline.registration_open? and self.payments.verified.empty? 
   end
 
+  def speaks_in
+    self.presentations.where('roles.speak': true)
+  end
+
   def self.cochairs
     @@cochairs ||= User.where(email: COCHAIRS).order('surname, name')
   end
