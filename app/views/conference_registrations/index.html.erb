@@ -28,12 +28,12 @@
           <%= l(payment.single_day, format: :day) if payment.single_day %>  
           <%= 'student' if payment.student %>  
         </td>
-        <td>
-          <%= link_to icon('file-pdf-o'), conference_registration_path(conference_registration, format: :pdf) %>  
-        </td>
       <% else %>
-        <td colspan="7"> - </td>
+        <td colspan="6"> - </td>
       <% end %>
+      <td>
+        <%= link_to icon('file-pdf-o'), conference_registration_path(conference_registration, format: :pdf) %>  
+      </td>
     </tr>
   <% end %>
 </table>
