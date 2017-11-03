@@ -55,7 +55,10 @@
 
       <% if current_user %>  
         <% if user_in_management_committee? %>  
-          <%= menu_link 'euro', 'Registrations', conference_registrations_path %>
+          <%= dropdown_menu fwicon('info-circle') + ' INFO' do %>
+            <%= menu_link 'euro', 'Registrations', conference_registrations_path %>
+            <%= menu_link 'users', 'Users', users_path %>
+          <% end %>
         <% end %>
         <% if user_in_scientific_committee? %>  
           <%= dropdown_menu fwicon('gavel') + ' COMMITTEE' do %>
