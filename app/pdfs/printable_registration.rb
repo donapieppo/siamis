@@ -43,6 +43,14 @@ class PrintableRegistration < Prawn::Document
 
     move_down(25)
 
+    if @user.in_scientific_committee?  
+      text "Member of Scientific Committee", size: 10
+    elsif @user.in_local_committee?
+      text "Member of Local Committee", size: 10
+    end
+
+    move_down(15)
+
     @user.conference_sessions.each do |conference_session|
       text "Organizzatore di " + conference_session.name, size: 10
     end
