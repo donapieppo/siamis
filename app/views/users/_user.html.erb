@@ -47,8 +47,11 @@
   <ul class="list-group">
     <% @user_presentations.each do |presentation| %>  
       <li class="list-group-item">
-        <span class="badge pull-right"><%= presentation.parent_class %></span> 
         "<%= link_to presentation, presentation %>"
+        <span class="badge pull-right">
+          <%= icon('microphone') if @user.speaker?(presentation) %> &nbsp; 
+          <%= presentation.parent_class %> 
+        </span> 
       </li>
     <% end %>
   </ul>
