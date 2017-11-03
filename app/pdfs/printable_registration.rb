@@ -33,13 +33,26 @@ class PrintableRegistration < Prawn::Document
 
     if @payment = @conference_registration.payment
       font "Times-Roman", size: 16
-      text "Payment: #{@payment.amount} €"
+      text "Ha pagato #{@payment.amount} €"
       move_down(5)
-      text "created on #{I18n.l @payment.created_at} with code #{@payment.shop_id}.", size: 10
+      text "il giorno #{I18n.l @payment.created_at} (codice #{@payment.shop_id}).", size: 10
       if @conference_registration.single_day 
         text "Registered for the day #{I18n.l @conference_registration.single_day}."
       end
     end 
+
+    move_down(25)
+
+    @user.conference_sessions.each do |conference_session|
+      text "Organizzatore di " + conference_session.name, size: 10
+    end
+
+    move_down(15)
+
+    @user.speaks_in.each do |presentation|
+      text "Relatore in " + presentation.name, size: 10
+    end
+
   end
 end
 
