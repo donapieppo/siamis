@@ -3,7 +3,7 @@ namespace :siamis do
 
     desc "Notify unlogged users"
     task notify_unlogged_users: :environment do
-      User.where(sign_in_count: 0).each do |user|
+      User.where(sign_in_count: 0).where('notified_at is null').each do |user|
         presentations = user.presentations.accepted.all
         minisymposia  = user.minisymposia.accepted.all
         (presentations.size + minisymposia.size) > 0 or next
