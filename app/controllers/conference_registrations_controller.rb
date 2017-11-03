@@ -8,7 +8,7 @@ class ConferenceRegistrationsController < ApplicationController
 
   def index
     (user_in_organizer_committee? or user_in_management_committee?) or raise NoAccess
-    @conference_registrations = ConferenceRegistration.includes(:user, :payment).order('users.surname, users.name')
+    @conference_registrations = ConferenceRegistration.includes(:user, :payment).order('updated_at DESC')
   end
 
   def new
