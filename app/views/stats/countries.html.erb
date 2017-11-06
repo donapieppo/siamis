@@ -3,10 +3,10 @@
 <table class="table table-condensed table-hover">
   <thead>
     <tr>
+      <th colspan="2">country</th>
       <th>accounts</th>
       <th>organizers</th>
       <th>speakers</th>
-      <th colspan="2">country</th>
     </tr>
   </thead>
   <tbody>
@@ -15,11 +15,17 @@
       <% country = user_count[0] or next %>  
       <% country.blank? and next %>  
       <tr>
+        <th>
+          <% if user_in_organizer_committee_or_cochair? %>  
+            <%= link_to country, users_path(country: country) %>
+          <% else %>
+            <%= country  %>  
+          <% end %>
+        </th>
+        <td><%= ISO3166::Country[country] %></td>
         <td><%= count %></td>
         <td><%= @organizers[country] %></td> 
         <td><%= @speakers[country] %></td>
-        <th><%= link_to country, users_path(country: country) %></th>
-        <td><%= ISO3166::Country[country] %></td>
       </tr>
     <% end %>
   </tbody>
@@ -29,8 +35,8 @@
 
 <%= javascript_tag do %>  
   var map; // global
-  var map_options = { zoom: 2,
-                      center: {lat: -25.363, lng: 131.044},
+  var map_options = { zoom: 3,
+                      center: {lat: 44.498955, lng: 11.327591},
                       scrollwheel: false };
 
   function initMap() {
