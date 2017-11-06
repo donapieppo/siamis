@@ -147,11 +147,19 @@ class User < ApplicationRecord
     @@local_committee ||= User.where(email: LOCAL_COMMITTEE).order('surname, name')
   end
 
-  def activate_and_set_password
-    self.confirmed? and return
+  def set_random_password
     generated_password = Devise.friendly_token.first(Rails.configuration.new_password_lenght)
     self.password = generated_password
-    if self.save 
+    if self.save
+      return generated_password
+    else
+      return false
+    end
+  end
+
+  def activate_and_set_password
+    self.confirmed? and return false
+    if generated_password = self.set_random_password
       self.confirm
       return generated_password
     end
