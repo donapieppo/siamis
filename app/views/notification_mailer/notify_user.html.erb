@@ -1,34 +1,53 @@
 <p>Dear <%= @user.cn %>,</p>
 
-<p>you are registered in SIAM-is18 web site as </p>
+<p>you are registered in <%= link_to 'SIAM-is18 web site', root_url %> as </p>
 
-<dl>
+<div style="text-align: center; margin: 15px">
   <% @minisymposia.each do |minisymposia| %>  
-    <dt>ORGANIZER in:</dt>
-    <dd>
-    "<%= minisymposia %>"
+    <p>
+    organizer in the minisymposium<br/>
+    <span class="title">"<%= minisymposia %>"</span>
     <% if (other_organizers = minisymposia.organizers.where.not(user_id: @user.id).all).size > 0 %>  
       <br/>with <%= other_organizers.map(&:user).join(' - ') %>
   <% end %>
-    </dd>
+    </p>
   <% end %>
+
   <% @presentations.each do |presentation| %>  
-    <dt>AUTHOR in:</dt>
-    <dd>
-    "<%= presentation %>" 
+    <p>
+    author in the presentation<br/>
+    <span class="title">"<%= presentation %>"</span>
     <% if (other_authors = presentation.authors.where.not(user_id: @user.id).all).size > 0 %>
-      <br/>with <%= other_authors.map(&:user).join(' - ') %>
+      <br/><i>with <%= other_authors.map(&:user).join(' - ') %></i>
     <% end %>
-    </dd>
+    </p>
   <% end %>
-</dl>
+</div>
 
 <p>
-You can access <%= link_to 'SIAM-is18 web site', root_url %>
-with the following credentials:
+You can access with the following credentials:
 </p>
 
-<p>Username: <%= @user.email %></p>
-<p>Password: <%= @password %></p>
+<p>
+Username: <%= @user.email %> <br/>
+Password: <%= @password %>
+</p>
 
+<p>
+Once logged you can manage your presentation abstract 
+(from the menu 'Info for participants' -> 'Submissions') and your personal
+informations (clicking on your name in the right part of the top menu).
+</p>
+
+<p>For every problem please contact <a href="mailto:siam-is2018@unibo.it">siam-is2018@unibo.it</a>.
+
+<p>
+Sincerally,
+</p>
+
+<p>
+<strong>SIAM-IS18 committee</strong><br/>
+<i>Omar Ghattas, University of Texas at Austin, USA</i><br/>
+<i>Fiorella Sgallari, University of Bologna, Italy</i>
+</p>
 
