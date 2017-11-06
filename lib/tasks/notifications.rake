@@ -3,20 +3,24 @@ namespace :siamis do
 
     desc "Notify unlogged users"
     task notify_unlogged_users: :environment do
-      User.where(sign_in_count: 0).where('notified_at is null').each do |user|
-        presentations = user.presentations.accepted.all
+      User.where('sign_in_count = 0 and notified_at is null').each do |user|
+        presentations = user.speaks_in.accepted.all
         minisymposia  = user.minisymposia.accepted.all
-        (presentations.size + minisymposia.size) > 0 or next
+        presentations.size > 0 or next
 
-        puts user.cn
+        puts user.inspect
         puts presentations.inspect
         puts minisymposia.inspect
 
-        password = user.activate_and_set_password
+        STDIN.gets
+
+        password = user.set_random_password
+        puts "password: #{password}"
 
         if password and NotificationMailer.notify_user(user, password, presentations, minisymposia).deliver
           user.update_attribute(:notified_at, Time.now)
-          exit 0
+        else 
+          raise "Error in #{user.inspect}"
         end
       end
     end
