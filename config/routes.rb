@@ -62,6 +62,7 @@ Rails.application.routes.draw do
     resources :schedules
     put 'accept', on: :member
     put 'refuse', on: :member
+    get 'print',  on: :collection
   end
 
   resources :poster_sessions do 

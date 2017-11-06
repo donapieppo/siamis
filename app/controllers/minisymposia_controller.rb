@@ -36,6 +36,12 @@ class MinisymposiaController < ConferenceSessionsController
     redirect_to admin_submissions_path(minisymposium: 1), notice: 'The minisymposium has been accepted.'
   end
 
+  def print
+    @minisymposia = Minisymposium.includes(organizers: :user).accepted.order(:name)
+    pdf = PrintableMinisymposia.new(@minisymposia)
+    send_data pdf.render, filename: "minisymposia.pdf", type: "application/pdf"
+  end
+
   private
 
   def conference_session_params
