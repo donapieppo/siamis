@@ -5,6 +5,6 @@ class NotificationMailer < ApplicationMailer
     @presentations = presentations
     @minisymposia  = minisymposia
 
-    mail(to: @user.email, subject: 'Presentation accepted for SIAM-IS18')
+    mail(to: @user.email, subject: 'Presentation accepted for SIAM Conference on imaging science in Bologna, Italy')
   end
 end
