@@ -209,5 +209,12 @@ module ConferenceHelper
       "html_id_#{what.id}"
     end
   end
+
+  ROMAN_NUMBERS = [ 'I', 'II', 'III', 'IV', 'V']
+
+  def show_parts_range(conference_session)
+    (conference_session.parts < 1) and return ""
+    'I - ' + ROMAN_NUMBERS[conference_session.parts]
+  end
 end
 
