@@ -1,17 +1,22 @@
 <% @no_container = true %>
 
-<h1>Nationalities <small>(country of affiliation)</small></h1>
+<h1>Nationalities <br/><small>(country of affiliation)</small></h1>
 
 <div id="map" style="height: 750px; width: 100%"></div>
 
 <div class="container">
+
+<p class="alert alert-info">
+  The total number for every country represents the number of registered accounts.
+</p>
+
 <table class="table table-condensed table-hover" style="width: 80%">
   <thead>
     <tr>
-      <th colspan="2">country</th>
-      <th>accounts</th>
-      <th>organizers</th>
-      <th>speakers</th>
+      <th style="text-align: right">organizers</th>
+      <th style="text-align: right">speakers</th>
+      <th>country</th>
+      <th>tot</th>
     </tr>
   </thead>
   <tbody>
@@ -20,17 +25,17 @@
       <% country = user_count[0] or next %>  
       <% country.blank? and next %>  
       <tr>
+        <td style="text-align: right"><%= @organizers[country] %></td> 
+        <td style="text-align: right"><%= @speakers[country] %></td>
         <th>
+          <% str = "#{country} - (#{ISO3166::Country[country]})" %>  
           <% if user_in_organizer_committee_or_cochair? %>  
-            <%= link_to country, users_path(country: country) %>
+            <%= link_to str, users_path(country: country) %>
           <% else %>
-            <%= country  %>  
+            <%= str %>  
           <% end %>
         </th>
-        <td><%= ISO3166::Country[country] %></td>
         <td><%= count %></td>
-        <td><%= @organizers[country] %></td> 
-        <td><%= @speakers[country] %></td>
       </tr>
     <% end %>
   </tbody>
