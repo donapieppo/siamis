@@ -1,6 +1,11 @@
+<% @no_container = true %>
+
 <h1>Nationalities <small>(country of affiliation)</small></h1>
 
-<table class="table table-condensed table-hover">
+<div id="map" style="height: 750px; width: 100%"></div>
+
+<div class="container">
+<table class="table table-condensed table-hover" style="width: 80%">
   <thead>
     <tr>
       <th colspan="2">country</th>
@@ -30,8 +35,8 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
-<div id="map" style="height: 650px; width: 100%"></div>
 
 <%= javascript_tag do %>  
   var map; // global
