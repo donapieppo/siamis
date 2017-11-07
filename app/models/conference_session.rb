@@ -12,7 +12,8 @@ class ConferenceSession < ApplicationRecord
 
   include Taggable
 
-  scope :accepted, -> { where(accepted: true) }
+  scope :accepted,  -> { where(accepted: true) }
+  scope :submitted, -> { where(accepted: nil) }
 
   def to_s
     self.name
