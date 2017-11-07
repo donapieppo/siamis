@@ -6,7 +6,11 @@
 <ul class="list-group">
   <% cache 'minisymposia_list_cache' do %>
     <% @minisymposia.each do |minisymposium| %>
-      <li class="list-group-item"><%= link_to minisymposium.name, minisymposium, remote: true %>
+      <li class="list-group-item">
+        <%= minisymposium.name %> 
+        <%# link_to minisymposium.name, minisymposium, remote: true %> 
+        <span class="badge"><%= "#{minisymposium.parts} parts" if minisymposium.parts > 1 %></span> 
+      </li>
     <% end %>
 <% end %>
 </ul>
