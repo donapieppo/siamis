@@ -153,7 +153,7 @@ module ConferenceHelper
           concat(content_tag(:p, part_string + content_tag(:span, schedule_string, class: 'pull-right'), style: 'margin-top: 10px'))
         end
         concat(content_tag(:dt, link_to(presentation, presentation, remote: true)))
-        has_abstract_icon = (user_in_organizer_committee? and ! presentation.abstract.blank?) ? icon('font', size: "14") : ''
+        has_abstract_icon = (user_in_organizer_committee_or_cochair? and ! presentation.abstract.blank?) ? icon('font', size: "14") : ''
         concat(content_tag(:dd, show_role(presentation.speaker) + " " + has_abstract_icon))
       end
     end
