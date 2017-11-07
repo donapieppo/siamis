@@ -1,10 +1,12 @@
 <%= program_title('Participants', 'users') %>  
 
 <p class="alert alert-info">
-Currently <strong><%= User.count %> users</strong> are registered to the Siam-is18 web site.<br/>
-The list below only displays users that have given permission to publish their name.<br/>
-If your name does not appear in the list, please log in to your personal data page and tick "Show in Siam-is18 page".
+There are currently <strong><%= User.count %> users</strong> registered at the Siam-is18 website.<br/>
+The Partecipant List only shows the names of those users that have given explicit permission to publish their name.<br/>
+If your name does not appear in the Partecipant List, please log in (sign in, using your credentials) and tick the flag 'Show in SIAM-IS18 page' in your personal data.
 </p>
+
+<%# link_to 'see where participants come from', countries_stats_path, class: :button %>  
 
 <% initial = nil %>
 <dl class='dl-horizontal'>
