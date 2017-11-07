@@ -1,5 +1,11 @@
 <%= program_title('Participants', 'users') %>  
 
+<p class="alert alert-info">
+Currently <strong><%= User.count %> users</strong> are registered to the Siam-is18 web site.<br/>
+The list below only displays users that have given permission to publish their name.<br/>
+If your name does not appear in the list, please log in to your personal data page and tick "Show in Siam-is18 page".
+</p>
+
 <% initial = nil %>
 <dl class='dl-horizontal'>
   <% @participants.each do |user| %> 
