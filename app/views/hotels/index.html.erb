@@ -1,35 +1,36 @@
-<%= program_title('Accommodation', 'hotel') %>  
+<div class="container">
+  <%= program_title('Accommodation', 'hotel') %>  
 
-<% if user_in_organizer_committee? %>  
-  <p class="centered"><%= link_to 'New Hotel', new_hotel_path, class: :button %></p>
-<% end %>
-
-<p class="alert alert-info">
-  Preferred rates with a number of accommodation sites have been negotiated for the Congress. <br/>
-  Please mention the SIAM-IS 2018 when reserving your room.
-</p>
-
-<% column = 0 %>  
-<% Hotel.order(:name).each do |hotel| %>  
-  <% if column == 0 %>
-    <div class="row">
+  <% if user_in_organizer_committee? %>  
+    <p class="centered"><%= link_to 'New Hotel', new_hotel_path, class: :button %></p>
   <% end %>
-  <div class="col-md-4">
-    <%= render hotel %>  
-  </div>
-  <% if column == 2 %>
-    </div><!-- row -->
+
+  <p class="alert alert-info">
+    Preferred rates with a number of accommodation sites have been negotiated for the Congress.<br/>
+    Please mention the SIAM-IS 2018 when reserving your room.
+  </p>
+
+  <% cache 'hotels_list_cache' do %>
+    <% column = 0 %>  
+    <% Hotel.order(:name).each do |hotel| %>  
+      <% if column == 0 %>
+        <div class="row"><!-- row start -->
+      <% end %>
+      <div class="col-md-4">
+        <%= render hotel %>  
+      </div>
+      <% if column == 2 %>
+          </div><!-- end row -->
+      <% end %>
+      <% column = (column + 1) % 3 %>  
+    <% end %><!-- hotel -->
+
+    <div class="col-md-4">
+      <p class="centered"><%= bologna_welcome_links %></p>
+    </div>
+    </div><!-- end row -->
   <% end %>
-  <% column = (column + 1) % 3 %>  
-<% end %>
-
-<% if column == 0 %>
-  </div><!-- row -->
-<% end %>
-
-<p class="centered">
-  <%= bologna_welcome_links %>  
-</p>
+</div><!-- container -->
 
 <%= render partial: 'shared/main_google_map.html' %>  
 

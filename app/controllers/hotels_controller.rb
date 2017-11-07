@@ -4,7 +4,7 @@ class HotelsController < ApplicationController
   before_action :set_hotel, only: [:edit, :update, :destroy]
 
   def index
-    @hotels = Hotel.all
+    @no_container = true
   end
 
   def new
