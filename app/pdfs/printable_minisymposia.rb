@@ -26,7 +26,8 @@ class PrintableMinisymposia < Prawn::Document
             move_down(12)
           end
 
-          text "#{minisymposium.name} [part #{part}]", style: :bold, align: :center, size: 10
+          part_text = (minisymposium.parts > 1) ? "[part #{part} of #{minisymposium.parts}]" : ""
+          text "#{minisymposium.name} #{part_text}", style: :bold, align: :center, size: 10
 
           minisymposium.organizers.includes(:user).each do |organizer|
             text organizer.user.to_s, align: :center
