@@ -12,8 +12,6 @@
 
     <dd><%= show_roles(element.respond_to?(:organizers) ? element.organizers : element.authors) %></dd>
 
-    <!-- <dd><small>keywords: <%# element.all_tags %></small></dd> -->
-
     <dd>
     <small>
       <% if @my_ratings.include?(element.id) %>
@@ -30,9 +28,15 @@
       Last update: <%= l element.updated_at %>
 
       <% if element.is_a?(Minisymposium) %>
+        <% if (missing_count = element.presentations.without_abstract.count) > 0 %>  
+          <span class="alert-warning"><%= missing_count %> abstracts missing</span>
+        <% end %>
         <% total += (element.parts || 1) %>  
         <span class="pull-right"><%= total %></span>
       <% else %>
+        <% if element.abstract.blank? %>  
+          <span class="alert-warning"><%= missing_count %>no abstract</span>
+        <% end %>
         <% total += 1 %>
         <span class="pull-right"><%= total %></span>
       <% end %>
