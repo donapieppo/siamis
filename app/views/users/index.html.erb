@@ -1,11 +1,10 @@
 <%= program_title('Users', 'users') %>  
 
-<p>
-<%= link_to 'Minisymposia organizers list', mailing_list_users_path, class: :button, remote: true %>
-<%= link_to 'Multiple presentations speakers', multiple_speakers_users_path, class: :button %>
-<%# <%= link_to 'Affiliations', affiliations_users_path, class: :button %>
-<%= link_to 'Fix a missing affiliation', missing_affiliation_users_path, class: :button %>
-<%= link_to 'Nationalities', countries_stats_path, class: :button %>
+<p class="centered">
+  <%= link_to 'Minisymposia organizers email list', mailing_list_users_path, class: :button, remote: true %>
+  <%= link_to 'Multiple presentations speakers', multiple_speakers_users_path, class: :button %>
+  <%# <%= link_to 'Affiliations', affiliations_users_path, class: :button %>
+  <%= link_to 'Nationalities', countries_stats_path, class: :button %>
 </p>
 
 <% if user_in_organizer_committee? %>  
@@ -38,3 +37,6 @@ Users with <%= icon('cog') %> are in scientific committee.
   <% end %>
 </table>
 
+<p>
+<%= link_to 'Fix a missing affiliation', missing_affiliation_users_path, class: :button %>
+</p>
