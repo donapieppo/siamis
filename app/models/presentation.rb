@@ -26,6 +26,8 @@ class Presentation < ApplicationRecord
   scope :submitted,        -> { unassigned.where(accepted: nil) }
   scope :accepted,         -> { where(accepted: true) }
 
+  scope :without_abstract, -> { where("abstract is null or abstract REGEXP '^[[:space:]]*$'") }
+
   validates :name, presence: true
 
   def to_s
@@ -53,7 +55,7 @@ class Presentation < ApplicationRecord
   end
 
   def speaker
-    self.authors.where(speak: true).first || self.authors.first
+    self.authors.includes(:user).where(speak: true).first || self.authors.first
   end
 
   def speaker=(_author)
