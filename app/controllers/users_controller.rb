@@ -17,6 +17,15 @@ class UsersController < ApplicationController
     else
       redirect_to participants_path and return
     end
+
+    if params[:speakers]
+      @users = @users.speakers
+    end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data to_csv, filename: "users-#{Date.today}.csv" }
+    end
   end
 
   def show
@@ -124,6 +133,16 @@ class UsersController < ApplicationController
   def set_user_and_check_permission
     @user = User.find(params[:id])
     @user == current_user or user_in_organizer_committee_or_cochair? or raise NoAccess
+  end
+
+  def to_csv
+    attributes = [:email, :name, :surname, :affiliation, :student]
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+      @users.pluck(*attributes).each do |user|
+        csv << user
+      end
+    end
   end
 end
 
