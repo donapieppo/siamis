@@ -27,6 +27,8 @@ class User < ApplicationRecord
 
   attr_accessor :privacy_policy
 
+  scope :speakers, -> { where(id: Role.where('speak is true').pluck(:user_id)) }
+
   def to_s
     "#{self.cn} (#{self.affiliation})"
   end
@@ -135,18 +137,6 @@ class User < ApplicationRecord
     self.presentations.where('roles.speak': true)
   end
 
-  def self.cochairs
-    @@cochairs ||= User.where(email: COCHAIRS).order('surname, name')
-  end
-
-  def self.scientific_committee
-    @@scientific_committee ||= User.where(email: SCIENTIFIC_COMMITTEE).order('surname, name')
-  end
-
-  def self.local_committee
-    @@local_committee ||= User.where(email: LOCAL_COMMITTEE).order('surname, name')
-  end
-
   def set_random_password
     generated_password = Devise.friendly_token.first(Rails.configuration.new_password_lenght)
     self.password = generated_password
@@ -165,6 +155,30 @@ class User < ApplicationRecord
     end
   end 
 
+  def photo_asset
+    unless self.email.blank?
+      "speakers/#{self.email}.jpg"
+    end
+  end
+
+  def interested_in?(what)
+    what.interests.where(user_id: self.id).any?
+  end
+
+  ###################################################################
+
+  def self.cochairs
+    @@cochairs ||= User.where(email: COCHAIRS).order('surname, name')
+  end
+
+  def self.scientific_committee
+    @@scientific_committee ||= User.where(email: SCIENTIFIC_COMMITTEE).order('surname, name')
+  end
+
+  def self.local_committee
+    @@local_committee ||= User.where(email: LOCAL_COMMITTEE).order('surname, name')
+  end
+
   # web page not here for link
   def self.safe_fields
     [:name, :surname, :affiliation, :country, :biography]
@@ -174,20 +188,10 @@ class User < ApplicationRecord
     self.safe_fields + [:address, :siag, :siam, :student, :dietary, :banquet_tickets]
   end
 
-  def interested_in?(what)
-    what.interests.where(user_id: self.id).any?
-  end
-
   def self.partecipants
     active_ids  = Role.select(:user_id).map(&:user_id)
     visible_ids = User.where(visible: true).ids
     User.where(id: (active_ids + visible_ids).uniq)
-  end
-
-  def photo_asset
-    unless self.email.blank?
-      "speakers/#{self.email}.jpg"
-    end
   end
 end
 
