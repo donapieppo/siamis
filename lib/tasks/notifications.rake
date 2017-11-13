@@ -8,9 +8,9 @@ namespace :siamis do
         minisymposia  = user.minisymposia.accepted.all
         presentations.size > 0 or next
 
-        puts user.inspect
-        puts presentations.inspect
-        puts minisymposia.inspect
+        p user
+        p presentations
+        p minisymposia
 
         STDIN.gets
 
@@ -25,9 +25,26 @@ namespace :siamis do
       end
     end
 
-    desc "Ask minisymposium speakers for abstract"
-    task "ask_minisymposium_speakers_for_abstract" do
+    desc "Remind speakers for abstract"
+    task remind_abstract: :environment do
+      Presentation.where("abstract is null or abstract REGEXP '^[[:space:]]*$'").each do |presentation|
+        conference_session = presentation.conference_session
+
+        conference_session.is_a?(Plenary) and next
+        conference_session.is_a?(Minitutorial) and next
+
+        user = presentation.speaker.user
+
+        p user
+        p presentation
+        p conference_session
+
+        STDIN.gets
+
+        NotificationMailer.remind_abstract(user, presentation, conference_session).deliver
+      end
     end
+
   end
 end
 

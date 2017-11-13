@@ -1,0 +1,41 @@
+<p>Dear <%= @user.cn %>,</p>
+
+<p>You are speaker of the presentation:</p>
+
+<div style="text-align: center; margin: 15px">
+  <p><strong><%= @presentation.name %></strong></p>
+</div>
+
+<% if @conference_session.is_a?(Minisymposium) %>  
+  <p>
+    in the Minisymposium <i>"<%= @conference_session %>"</i><br/>
+    organized by: <%= @conference_session.organizers.map(&:user).join(' - ') %>
+  </p>
+<% end %>
+
+<p>for the SIAM Conference on imaging science in Bologna, Italy.</p>
+
+<p>
+Please log in to <%= link_to 'SIAM-is18 web site', root_url %> before 
+November 15 and <strong>submit an abstract of your presentation</strong>
+(from the menu 'Info for participants' -> 'Submissions').
+</p>
+
+<% if @user.sign_in_count == 0 %>  
+  <p>On November 6th you should have recived an email with your password
+  in order to log in. It is always possible to ask a new password following
+  the instructions on the login page of the web site.</p>
+<% end %>
+
+<p>For every problem contact <a href="mailto:siam-is2018@unibo.it">siam-is2018@unibo.it</a>.
+
+<p>
+Sincerally,
+</p>
+
+<p>
+<strong>SIAM-IS18 committee</strong><br/>
+<i>Omar Ghattas, University of Texas at Austin, USA</i><br/>
+<i>Fiorella Sgallari, University of Bologna, Italy</i>
+</p>
+
