@@ -1,3 +1,5 @@
+require 'csv'
+
 MASTERS_OF_UNIVERSE  = ['name.surname@example.com', 
                         'name.surname2@example.com']
 COCHAIRS             = ['name.surname3@example.com',
