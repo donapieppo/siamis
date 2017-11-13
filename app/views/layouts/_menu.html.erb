@@ -76,8 +76,10 @@
             <%= menu_link 'file', 'Poster session submissions', admin_submissions_path(poster: 1) %>
             <%= menu_link 'star', 'All ratings', ratings_path %>
             <li class="divider"></li>
-            <%= menu_link 'building-o', 'Rooms', rooms_path %>
             <%= menu_link 'users', 'Users', users_path %>
+            <%= menu_link 'bullhorn', 'speakers csv', users_path(format: :csv, speakers: true) %>
+            <li class="divider"></li>
+            <%= menu_link 'building-o', 'Rooms', rooms_path %>
             <%= menu_link 'euro', 'Registrations', conference_registrations_path %>
             <%= menu_link 'file', 'Invitation Letter Requests', invitation_letters_path %>
             <li class="divider"></li>
