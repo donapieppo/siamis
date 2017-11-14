@@ -389,6 +389,7 @@ refuse!	app/models/conference_session.rb	/^  def refuse!$/;"	f	class:ConferenceS
 refuse!	app/models/presentation.rb	/^  def refuse!$/;"	f	class:Presentation
 registration_open?	app/models/deadline.rb	/^    def registration_open?$/;"	f	class:Deadline
 relative_to	app/models/role.rb	/^  def relative_to$/;"	f	class:Role
+remind_abstract	app/mailers/notification_mailer.rb	/^  def remind_abstract(user, presentation, conference_session)$/;"	f	class:NotificationMailer
 remove	app/controllers/presentations_controller.rb	/^  def remove$/;"	f	class:PresentationsController
 role_params	app/controllers/roles_controller.rb	/^  def role_params$/;"	f	class:RolesController
 room_params	app/controllers/rooms_controller.rb	/^  def room_params$/;"	f	class:RoomsController
@@ -448,6 +449,7 @@ stop_impersonation_link	app/helpers/application_helper.rb	/^  def stop_impersona
 substringMatcher	app/assets/javascripts/typeahead_search.js	/^var substringMatcher = function(strs) {$/;"	f
 support_mail	app/helpers/link_helper.rb	/^  def support_mail$/;"	f	class:LinkHelper
 title_with_conference	app/helpers/conference_helper.rb	/^  def title_with_conference(what = '')$/;"	f	class:ConferenceHelper
+to_csv	app/controllers/users_controller.rb	/^  def to_csv$/;"	f
 to_s	app/models/building.rb	/^  def to_s$/;"	f	class:Building
 to_s	app/models/conference_registration.rb	/^  def to_s$/;"	f	class:ConferenceRegistration
 to_s	app/models/conference_session.rb	/^  def to_s$/;"	f	class:ConferenceSession
