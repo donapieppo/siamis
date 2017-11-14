@@ -38,20 +38,24 @@
           <%= menu_link 'handshake-o', 'Satellite events', satellites_path %>
           <%# <%= menu_link 'map-o',      'My program', interests_path %>  
         <% end %>
-
-        <%= dropdown_menu fwicon('user') + ' INFO FOR PARTICIPANTS' do  %>  
-          <%= menu_link 'credit-card',  'Registration', new_conference_registration_path %>
-          <%= menu_link 'envelope-o',   'Submissions', submissions_path %>
-          <li class="divider"></li>
-          <%= menu_link 'child',        'Child Care', child_care_path %>
-          <%= menu_link 'file',         'Visa and Letter of Invitation', visa_path %>
-          <%= menu_link 'plane',        'Student/Post-doc travel awards', travel_awards_path %>
-          <%= menu_link 'video-camera', 'Audio-visual Policy ', equipments_path %>
-          <li class="divider"></li>
-          <%= menu_link 'university',   'Venue', venue_path %>
-          <%= menu_link 'hotel',        'Accommodation', hotels_path %>
-        <% end %>
       <% end %> <!-- cache common_menu -->
+
+      <%= dropdown_menu fwicon('user') + ' INFO FOR PARTICIPANTS' do  %>  
+        <%= menu_link 'credit-card',  'Registration', new_conference_registration_path %>
+        <%= menu_link 'envelope-o',   'Submissions', submissions_path %>
+        <li class="divider"></li>
+        <%= menu_link 'child',        'Child Care', child_care_path %>
+        <%= menu_link 'file',         'Visa and Letter of Invitation', visa_path %>
+        <%= menu_link 'plane',        'Student/Post-doc travel awards', travel_awards_path %>
+        <%= menu_link 'video-camera', 'Audio-visual Policy ', equipments_path %>
+        <li class="divider"></li>
+        <%= menu_link 'university',   'Venue', venue_path %>
+        <%= menu_link 'hotel',        'Accommodation', hotels_path %>
+        <% if current_user %>  
+          <li class="divider"></li>
+          <%= menu_link 'user',          'Your personal data', edit_user_path(current_user) %>
+        <% end %>
+      <% end %>
 
       <% if current_user %>  
         <% if user_in_management_committee? %>  
@@ -62,7 +66,7 @@
         <% end %>
         <% if user_in_scientific_committee? %>  
           <%= dropdown_menu fwicon('gavel') + ' COMMITTEE' do %>
-            <%= menu_link 'star', 'Minisymposia', admin_submissions_path(minisymposium: 1) %>
+            <%= menu_link 'star', 'Minisymposia submissions', admin_submissions_path(minisymposium: 1) %>
             <% if user_cochair? %>  
               <%= menu_link 'star', 'All ratings', ratings_path %>
               <%= menu_link 'users', 'Users', users_path %>
@@ -71,16 +75,19 @@
         <% end %>
         <% if user_in_organizer_committee? %>  
           <%= dropdown_menu fwicon('magic') + ' ADMIN' do %>
-            <%= menu_link 'file', 'Minisymposium submissions', admin_submissions_path(minisymposium: 1) %>
-            <%= menu_link 'file', 'Contributed session submissions', admin_submissions_path(contributed: 1) %>
-            <%= menu_link 'file', 'Poster session submissions', admin_submissions_path(poster: 1) %>
-            <%= menu_link 'star', 'All ratings', ratings_path %>
+            <li class="dropdown-header">Submissions</li>
+            <%= menu_link 'file', 'Minisymposia', admin_submissions_path(minisymposium: 1) %>
+            <%= menu_link 'file', 'Contributed Sessions', admin_submissions_path(contributed: 1) %>
+            <%= menu_link 'file', 'Poster Sessions', admin_submissions_path(poster: 1) %>
+            <%= menu_link 'file-pdf-o',  'Minisymposia pdf', print_minisymposia_path %>
+            <li class="divider"></li>
+            <%= menu_link 'star', 'Ratings', ratings_path %>
             <li class="divider"></li>
             <%= menu_link 'users', 'Users', users_path %>
             <%= menu_link 'bullhorn', 'speakers csv', users_path(format: :csv, speakers: true) %>
+            <%= menu_link 'euro', 'Registrations', conference_registrations_path %>
             <li class="divider"></li>
             <%= menu_link 'building-o', 'Rooms', rooms_path %>
-            <%= menu_link 'euro', 'Registrations', conference_registrations_path %>
             <%= menu_link 'file', 'Invitation Letter Requests', invitation_letters_path %>
             <li class="divider"></li>
             <%= menu_link 'hotel', 'Accommodation', hotels_path %>
