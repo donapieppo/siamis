@@ -27,8 +27,8 @@ Users with <%= icon('cog') %> are in scientific committee.
     <%= content_tag(:tr, class: (possible_duplication ? 'alert alert-danger' : '')) do %>
       <td style="text-align: right"><%= num += 1 %></td>
       <td><%= icon('euro') if user.conference_registration %></td>
-      <th><%= link_to user.cn_militar, user, remote: true %></th>
-      <td><%= user.email %> </td>
+      <td><%= user.cn_militar %> </td>
+      <th><%= link_to user.email, user, remote: true %></th>
       <td><em><small><%= user.affiliation %></small></em></td>
       <td><%= user.country ? user.country : link_to_edit([:edit, user]) %></td>
       <td><%= icon('check') if user.sign_in_count > 0 %></td>
