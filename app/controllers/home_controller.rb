@@ -17,6 +17,7 @@ class HomeController < ApplicationController
 
   def participants
     @participants = User.partecipants.where(visible: true).order('surname, name')
+    @link_to_user  = current_user
   end
 
   def travel_awards

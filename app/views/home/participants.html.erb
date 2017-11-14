@@ -15,6 +15,6 @@ If your name does not appear in the Partecipant List, please log in (sign in, us
       <dd>&nbsp;</dd>
       <dt><%= initial %></dt>
     <% end %>
-  <dd><%= user_modal_link(user) %> <small>(<%= user.affiliation %>)</small></dd>
+  <dd><%= @link_to_user ? user_modal_link(user) : user.cn %> <small>(<%= user.affiliation %>)</small></dd>
 <% end %>
 </dl>
