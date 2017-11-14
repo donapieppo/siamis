@@ -33,19 +33,22 @@ class UsersController < ApplicationController
     @fields = User.safe_fields
     @show_email = false
 
-    @user_conference_sessions = @user.conference_sessions.to_a
-    @user_presentations       = @user.presentations.includes(:conference_session).to_a
-    @conference_registration  = @user.conference_registration
-
-    # only accepted unless for organizer
-    unless user_in_organizer_committee? or user_in_scientific_committee?
-      @user_conference_sessions.select!{|x| x.accepted?}
-      @user_presentations.select!{|x| x.accepted?}
-    end
-
     if (user_in_organizer_committee? or user_in_scientific_committee? or user_in_management_committee?) or (current_user and current_user == @user)
       @fields = User.all_fields
       @show_email = true
+    end
+
+    # only logged users see sessions/presentations
+    if current_user 
+      @user_conference_sessions = @user.conference_sessions.to_a
+      @user_presentations       = @user.presentations.includes(:conference_session).to_a
+      @conference_registration  = @user.conference_registration
+
+      # only accepted unless for organizer
+      unless user_in_organizer_committee? or user_in_scientific_committee?
+        @user_conference_sessions.select!{|x| x.accepted?}
+        @user_presentations.select!{|x| x.accepted?}
+      end
     end
   end
 
