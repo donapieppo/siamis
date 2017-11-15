@@ -66,10 +66,12 @@
         <% end %>
         <% if user_in_scientific_committee? %>  
           <%= dropdown_menu fwicon('gavel') + ' COMMITTEE' do %>
-            <%= menu_link 'star', 'Minisymposia submissions', admin_submissions_path(minisymposium: 1) %>
-            <%= menu_link 'file', 'Contributed Sessions', admin_submissions_path(contributed: 1) %>
-            <%= menu_link 'file', 'Poster Sessions', admin_submissions_path(poster: 1) %>
+            <li class="dropdown-header">Submissions</li>
+            <%= menu_link 'star', 'Minisymposia', admin_submissions_path(minisymposium: 1) %>
+            <%= menu_link 'star', 'Presentations', admin_submissions_path(contributed: 1) %>
+            <%= menu_link 'star', 'Posters', admin_submissions_path(poster: 1) %>
             <% if user_cochair? %>  
+              <li class="divider"></li>li>
               <%= menu_link 'star', 'All ratings', ratings_path %>
               <%= menu_link 'users', 'Users', users_path %>
             <% end %>
@@ -79,8 +81,8 @@
           <%= dropdown_menu fwicon('magic') + ' ADMIN' do %>
             <li class="dropdown-header">Submissions</li>
             <%= menu_link 'file', 'Minisymposia', admin_submissions_path(minisymposium: 1) %>
-            <%= menu_link 'file', 'Contributed Sessions', admin_submissions_path(contributed: 1) %>
-            <%= menu_link 'file', 'Poster Sessions', admin_submissions_path(poster: 1) %>
+            <%= menu_link 'file', 'Presentations', admin_submissions_path(contributed: 1) %>
+            <%= menu_link 'file', 'Posters', admin_submissions_path(poster: 1) %>
             <%= menu_link 'file-pdf-o',  'Minisymposia pdf', print_minisymposia_path %>
             <li class="divider"></li>
             <%= menu_link 'star', 'Ratings', ratings_path %>
