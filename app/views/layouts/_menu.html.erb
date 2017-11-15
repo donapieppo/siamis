@@ -83,12 +83,14 @@
             <li class="divider"></li>
             <%= menu_link 'star', 'Ratings', ratings_path %>
             <li class="divider"></li>
+            <li class="dropdown-header">Users</li>
             <%= menu_link 'users', 'Users', users_path %>
             <%= menu_link 'bullhorn', 'speakers csv', users_path(format: :csv, speakers: true) %>
             <%= menu_link 'euro', 'Registrations', conference_registrations_path %>
-            <li class="divider"></li>
-            <%= menu_link 'building-o', 'Rooms', rooms_path %>
             <%= menu_link 'file', 'Invitation Letter Requests', invitation_letters_path %>
+            <li class="divider"></li>
+            <li class="dropdown-header">Locations</li>
+            <%= menu_link 'building-o', 'Rooms', rooms_path %>
             <li class="divider"></li>
             <%= menu_link 'hotel', 'Accommodation', hotels_path %>
             <li class="divider"></li>
