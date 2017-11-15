@@ -14,5 +14,5 @@
 <p><%= t(:credit_cards) %>.</p>
 
 <% unless current_user %>  
-  <p>To register please <%= link_to 'sign in', new_user_session_path, class: 'btn btn-success' %></p>
+  <p>In order to register please, <%= login_link button: true %></p>
 <% end %>
