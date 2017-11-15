@@ -52,7 +52,7 @@ class Presentation < ApplicationRecord
   end
 
   def code 
-    conference_session ? conference_session.code : ''
+    conference_session ? conference_session.code : (self.poster ? 'PS' : 'CP')
   end
 
   def speaker
