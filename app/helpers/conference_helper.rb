@@ -34,6 +34,21 @@ module ConferenceHelper
     link_to name, Rails.application.routes.path_for(controller: conference_session.class.to_s.pluralize.tableize, action: :index)
   end
 
+  def breadcrumbs_minimal
+    @conference_session or @presentation or return ''
+
+    content_tag 'ol', class: "breadcrumb" do 
+      content_tag('li', link_to('Home', root_path)) +
+      if @conference_session
+        content_tag('li', conference_session_parent_list_link(@conference_session)) +
+        (@conference_session.new_record? ? '' : content_tag('li', link_to(@conference_session, @conference_session)))
+      elsif @presentation and @presentation.conference_session
+        content_tag('li', conference_session_parent_list_link(@presentation.conference_session)) +
+        content_tag('li', link_to(@presentation.conference_session, @presentation.conference_session))
+      end 
+    end
+  end
+
   def breadcrumbs
     controller.class.to_s =~ /Devise/ and return 
     controller.controller_name == 'registrations' and return 
