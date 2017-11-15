@@ -111,10 +111,10 @@ class PresentationsController < ApplicationController
   # A presentation can be created relative to a minitutorial or minisymosium
   # Otherwise is submitted by author and then Committee assign it to PosterSession o ContributedSession
   def set_conference_session_and_check_permission
-    @conference_session = Minisymposium.find(params[:minisymposium_id]) if params[:minisymposium_id]
-    @conference_session = Minitutorial.find(params[:minitutorial_id])   if params[:minitutorial_id]
+    @conference_session = Minisymposium.find(params[:minisymposium_id])            if params[:minisymposium_id]
+    @conference_session = Minitutorial.find(params[:minitutorial_id])              if params[:minitutorial_id]
     @conference_session = ContributedSession.find(params[:contributed_session_id]) if params[:contributed_session_id]
-    @conference_session = PosterSession.find(params[:poster_session_id]) if params[:poster_session_id]
+    @conference_session = PosterSession.find(params[:poster_session_id])           if params[:poster_session_id]
     current_user.owns!(@conference_session) if @conference_session
   end
 
@@ -124,9 +124,13 @@ class PresentationsController < ApplicationController
   end
 
   def check_deadline!
-    # FIXME
-    # if conference_session can always add presentations
-    @conference_session or Deadline.can_propose?(:presentation) or user_in_organizer_committee? or raise ProposalClose
+    # if conference_session can always add presentations ???
+    if @conference_session or Deadline.can_propose?(:presentation) or user_in_organizer_committee? 
+      return true
+    else
+      redirect_to(root_path, alert: 'Proposals are close') and return 
+      raise ProposalClose
+    end
   end
 end
 
