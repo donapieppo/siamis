@@ -55,7 +55,9 @@
 <% if owner and ! presentation.conference_session_id %>  
   <p class="alert alert-success">
   <strong>Thank you for your submission.</strong> <br/>
-  Till <%= l Deadline.presentation_proposal_end %> you can modify it. <br/>
+  After <%= l Deadline.presentation_proposal_end %> the Scientific Committee will evaluate the presentation.<br/>
   You will be notified whether your poster/presentation is accepted or not by email as close as possible to that date.
   </p>
 <% end %>
+
+
