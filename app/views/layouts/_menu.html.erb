@@ -84,6 +84,9 @@
             <%= menu_link 'file', 'Presentations', admin_submissions_path(contributed: 1) %>
             <%= menu_link 'file', 'Posters', admin_submissions_path(poster: 1) %>
             <%= menu_link 'file-pdf-o',  'Minisymposia pdf', print_minisymposia_path %>
+            <li class="dropdown-header">Manual Submissions</li>
+            <%= menu_link 'file-o', 'New presentation', new_presentation_path %>
+            <%= menu_link 'file-o', 'New poster', new_presentation_path(poster: 1) %>
             <li class="divider"></li>
             <%= menu_link 'star', 'Ratings', ratings_path %>
             <li class="divider"></li>
