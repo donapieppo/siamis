@@ -37,7 +37,7 @@ class Unicredit
                 shopID: @payment.shop_id,
                 ShopUserRef: 'pietro.donatini@unibo.it',
                 ShopUserName: 'SIAM IS', # non numbers.... no siam-is2018@unibo.it,
-                TrType: 'AUTH',
+                TrType: 'PURCHASE',
                 Amount: amount.to_i * 100,
                 CurrencyCode: 'EUR', 
                 LangID: 'EN',
