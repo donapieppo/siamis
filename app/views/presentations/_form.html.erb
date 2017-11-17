@@ -4,10 +4,15 @@
   <%= presentation.input :abstract, input_html: {rows: 8} %>  
   <%= presentation.association :tags, collection: Tag.global, as: :check_boxes %>
   <%= presentation.input :manual_tags %>
-  <%= presentation.input :poster, as: :hidden %>  
   <% if (authors = @presentation.authors).size > 1 %>  
     <%= presentation.input :speaker_id, collection: authors, label_method: lambda {|a| a.user.cn}, include_blank: false %>
   <% end %>
+  <% if user_in_organizer_committee? %>  
+    <%= presentation.input :poster %>  
+  <% else %>
+    <%= presentation.input :poster, as: :hidden %>  
+  <% end %>
+  <%= presentation.input :poster, as: :hidden %>  
   <%= presentation.submit 'Submit' %> - <%= link_to_back submissions_path %>  
 <% end %>
 
