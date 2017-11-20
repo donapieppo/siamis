@@ -1,5 +1,9 @@
 <%= program_title('Conference Registrations', 'euro') %>  
 
+<p>
+  <%= link_to 'Expected Gain', expected_conference_registrations_path, class: "btn btn-success" %>  
+</p>
+
 <% tot = euro = 0 %>  
 
 <table class="table table-striped table-condensed">
@@ -14,9 +18,10 @@
     <th></th>
   </tr>
   <% @conference_registrations.each do |conference_registration| %>  
+    <% user = conference_registration.user or next %>  
     <% tot += 1 %>  
     <tr>
-      <th title="<%= conference_registration.user.email %>"><%= user_modal_link(conference_registration.user) %></th>
+      <th title="<%= user.email %>"><%= user_modal_link(user) %></th>
       <% if payment = conference_registration.payment %>  
         <td><%= payment.amount %> &euro;</td>
         <% euro += payment.amount %>  
