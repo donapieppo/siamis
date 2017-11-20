@@ -36,6 +36,19 @@ class Fee
     res
   end
 
+  def expected_payment_from_speakers_and_organizers
+    res = if @user.student
+      [Prices[:student][@array_number], "registered as a student"]
+    elsif @user.siag
+      [Prices[:siag_member][@array_number], "registered as a siag member"]
+    elsif @user.siam
+      [Prices[:siam_member][@array_number], "registered as a siam member"]
+    else
+      [Prices[:speaker_or_organizer][@array_number], "non-member speaker or organizer"]
+    end
+    res
+  end
+
   def price_to_pay
     price_to_pay_and_reason[0]
   end
