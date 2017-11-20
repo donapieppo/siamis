@@ -65,5 +65,23 @@ class ConferenceRegistrationsController < ApplicationController
   def print
     #@conference_registrations = ConferenceRegistration.includes(:user, :payment).find(params[:id])
   end
+
+  def expected
+    @totals = Hash.new{|h, k| h[k] = { number: 0, users: [], total: 0 }}
+
+    Role.includes(:user).map(&:user).uniq.each do |user|
+      if user.conference_registration and user.conference_registration.payment and user.conference_registration.payment.verified
+        @totals[:already_registered][:number] += 1
+        # @totals[:registered][:users] << user.email
+        @totals[:already_registered][:total] += user.conference_registration.payment.amount
+      else
+        fee = Fee.new(user).expected_payment_from_speakers_and_organizers
+        fee[1] or raise fee.inspect
+        @totals[fee[1]][:number] += 1
+        # @totals[fee[1]][:users] << user.email
+        @totals[fee[1]][:total] += fee[0]
+      end
+    end
+  end
 end
 

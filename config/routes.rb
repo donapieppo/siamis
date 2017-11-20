@@ -108,6 +108,8 @@ Rails.application.routes.draw do
 
     get  :manual_new,    on: :collection, as: :manual_new
     post :manual_create, on: :collection, as: :manual_create
+
+    get :expected,       on: :collection
   end
 
   resources :tags 
