@@ -74,10 +74,12 @@ class ConferenceRegistrationsController < ApplicationController
       # only speakers and organizers
 
       # already registerd
-      if user.conference_registration and user.conference_registration.payment and user.conference_registration.payment.verified
+      if registration = user.conference_registration
         @totals[:already_registered][:number] += 1
-        # @totals[:registered][:users] << user.email
-        @totals[:already_registered][:total] += user.conference_registration.payment.amount
+        if registration.payment and registration.payment.verified
+          # @totals[:registered][:users] << user.email
+          @totals[:already_registered][:total] += user.conference_registration.payment.amount
+        end
       else
         fee = Fee.new(user).expected_payment_from_speakers_and_organizers
         fee[1] or raise fee.inspect

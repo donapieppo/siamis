@@ -1,6 +1,8 @@
 <%= program_title('Expected Gain for Registrations', 'euro') %> 
 
 <% money = 0 %>  
+<% participants = 0 %>  
+
 <table class="table">
   <% @totals.each do |key, vals| %>  
     <tr>
@@ -8,10 +10,13 @@
       <td class="number"><%= vals[:number] %></td>
       <th><%= t key %></th>
       <% money += vals[:total] %>  
+      <% participants += vals[:number]  %>  
     </tr>
   <% end %>
   <tr>
     <th class="number"><%= money %>&euro;</th>
+    <td class="number"><%= participants %></td>
+    <th>Total speakers/organizers</th>
   </tr>
 </table>
 
