@@ -69,7 +69,11 @@ class ConferenceRegistrationsController < ApplicationController
   def expected
     @totals = Hash.new{|h, k| h[k] = { number: 0, users: [], total: 0 }}
 
-    Role.includes(:user).map(&:user).uniq.each do |user|
+    # expected partecipants: speakers and organizers
+    Role.where('(type = "Author" and speak=1) or type="Organizer"').includes(:user).map(&:user).uniq.each do |user|
+      # only speakers and organizers
+
+      # already registerd
       if user.conference_registration and user.conference_registration.payment and user.conference_registration.payment.verified
         @totals[:already_registered][:number] += 1
         # @totals[:registered][:users] << user.email
