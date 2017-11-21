@@ -28,6 +28,7 @@ class User < ApplicationRecord
   attr_accessor :privacy_policy
 
   scope :speakers, -> { where(id: Role.where('speak is true').pluck(:user_id)) }
+  scope :student,  -> { where(student: true) }
 
   def to_s
     "#{self.cn} (#{self.affiliation})"
@@ -69,7 +70,7 @@ class User < ApplicationRecord
       when Plenary, Minitutorial
         self.owns?(what.conference_session)
       when Minisymposium
-        self.owns?(what.conference_session) || (Deadline.in_minisymposium_abstract? and self.speaker?(what))
+        self.owns?(what.conference_session) || self.speaker?(what) # (Deadline.in_minisymposium_abstract? and self.speaker?(what))
       else
         self.speaker?(what) 
       end
