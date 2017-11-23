@@ -71,7 +71,7 @@
             <%= menu_link 'star', 'Presentations', admin_submissions_path(contributed: 1) %>
             <%= menu_link 'star', 'Posters', admin_submissions_path(poster: 1) %>
             <% if user_cochair? %>  
-              <li class="divider"></li>li>
+              <li class="divider"></li>
               <%= menu_link 'star', 'All ratings', ratings_path %>
               <%= menu_link 'users', 'Users', users_path %>
             <% end %>
