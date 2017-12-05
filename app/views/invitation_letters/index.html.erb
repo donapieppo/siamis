@@ -1,7 +1,7 @@
 <%= program_title('Invitation letter requests', 'envelope') %>  
 
-<ul>
+<ul class="list-group">
 <% @invitation_letters.each do |letter| %>  
-  <li> <%= link_to letter.user, letter %> </li>
+  <li class="list-group-item <%= 'list-group-item-success' if letter.complete %>  "> <%= link_to letter.user, letter %> </li>
 <% end %>
 </ul>

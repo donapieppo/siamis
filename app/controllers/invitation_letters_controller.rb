@@ -1,12 +1,12 @@
 class InvitationLettersController < ApplicationController
-  before_action :user_in_organizer_committee!, only: [:index, :show]
+  before_action :user_in_organizer_committee!, only: [:index, :show, :mark_as_sent, :mark_as_unsent]
+  before_action :set_invitation_letter, only: [:show, :mark_as_sent, :mark_as_unsent]
 
   def index
     @invitation_letters = InvitationLetter.includes(:user)
   end
 
   def show
-    @invitation_letter = InvitationLetter.includes(:user).find(params[:id])
   end
 
   def new
@@ -35,10 +35,24 @@ class InvitationLettersController < ApplicationController
     end
   end
 
+  def mark_as_sent
+    @invitation_letter.update_attribute(:complete, true)
+    redirect_to invitation_letters_path
+  end
+
+  def mark_as_unsent
+    @invitation_letter.update_attribute(:complete, false)
+    redirect_to invitation_letters_path
+  end
+
   private
 
   def invitation_letter_params
     params[:invitation_letter].permit(:passport_name, :birthdate, :passport_origin, :passport_number,
                                       :address, :city, :state, :zip, :country)
+  end
+
+  def set_invitation_letter
+    @invitation_letter = InvitationLetter.includes(:user).find(params[:id])
   end
 end

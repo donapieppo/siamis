@@ -1,3 +1,5 @@
+<h1>Letter of Invitation</h1>
+
 <dl class="dl-horizontal">
 <% [:passport_name, :birthdate, :passport_origin, :passport_number, :address, :city, :state, :zip, :country].each do |f| %>
   <dt><%= t f %></dt>
@@ -7,3 +9,9 @@
   <%= dl_field(@invitation_letter.user, field) %>  
 <% end %>
 </dl>
+
+<% if @invitation_letter.complete %>  
+  <%= link_to 'mark not sent', mark_as_unsent_invitation_letter_path(@invitation_letter), method: :put, class: 'btn btn-warning' %>  
+<% else %>
+  <%= link_to 'mark as sent', mark_as_sent_invitation_letter_path(@invitation_letter), method: :put, class: 'btn btn-success' %>  
+<% end %>

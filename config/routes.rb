@@ -114,7 +114,10 @@ Rails.application.routes.draw do
 
   resources :tags 
   resources :hotels
-  resources :invitation_letters
+  resources :invitation_letters do
+    put :mark_as_sent,   on: :member
+    put :mark_as_unsent, on: :member
+  end
 
   get 'submissions',                 to: 'submissions#index', as: :submissions
   get 'submissions/admin',           to: 'submissions#admin', as: :admin_submissions
