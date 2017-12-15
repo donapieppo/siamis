@@ -95,13 +95,13 @@ class UsersController < ApplicationController
 
   def mailing_list
     if params[:minisymposia]
-      @title = "Organizers of minisymposia."
+      @title = "Organizers of minisymposia"
       @email_list = Organizer.includes(:user).includes(:conference_session).where('conference_sessions.type = "Minisymposium"').references(:conference_sessions).map{|r| r.user.email}.join('; ')
     elsif params[:contributed]
-      @title = "Authors of presentations."
+      @title = "Authors of presentations"
       @email_list = User.where(id: Presentation.not_poster.left_joins(:conference_session).where('conference_session_id is null or conference_sessions.type = "ContributedSession"').includes(:roles).map(&:roles).flatten.map(&:user_id)).select(:email).map(&:email).join('; ')
     elsif params[:poster]
-      @title = "Authors of posters."
+      @title = "Authors of posters"
       @email_list = User.where(id: Presentation.poster.left_joins(:conference_session).where('conference_session_id is null or conference_sessions.type = "PosterSession"').includes(:roles).map(&:roles).flatten.map(&:user_id)).select(:email).map(&:email).join('; ')
     end
   end
