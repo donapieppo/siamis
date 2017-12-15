@@ -19,7 +19,7 @@ class SchedulesController < ApplicationController
     part = params[:schedule].delete(:part)
     @schedule = (@conference_session.schedules.where(part: part).first or @conference_session.schedules.new(part: part))
     if @schedule.update_attributes(schedule_params)
-      redirect_to @conference_session, notice: 'OK'
+      redirect_to [:new, @conference_session, @schedule], notice: 'Updated'
     else
       render action: :new
     end
