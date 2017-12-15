@@ -42,7 +42,8 @@
         <span class="pull-right"><%= total %></span>
       <% end %>
       <% if element.is_a?(Minisymposium) %>
-        ( <%= link_to 'schedule', new_conference_session_schedule_path(element) %> <%= icon('check') if (element.schedules.count == element.parts) %>) 
+        ( <%= link_to icon('calendar'), new_conference_session_schedule_path(element), 
+                                        class: (element.schedules.count == element.parts) ? 'alert-success' : '' %>)
       <% end %>
     </small>
     </dd>
