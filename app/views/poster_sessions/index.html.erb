@@ -5,8 +5,20 @@
 <% end %>
 
 <%= render partial: 'contributed_sessions/description' %>  
-
 <%= render partial: 'deadlines/presentation_submission' %>  
 
-<%= render @poster_sessions, condensed: true %>
+<%# render @poster_sessions, condensed: true %>
 
+<% if false and @poster_sessions.empty? %>  
+  <h2>List of accepted posters</h2>
+
+  <ul class="list-group">
+    <% cache 'presentations_list_cache' do %>
+      <% Presentation.poster.unassigned.order(:name).each do |presentation| %>  
+        <li class="list-group-item">
+          <%= link_to presentation.name, presentation, remote: true %> 
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
