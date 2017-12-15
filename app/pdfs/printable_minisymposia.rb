@@ -17,7 +17,7 @@ class PrintableMinisymposia < Prawn::Document
       minisymposium.presentations.includes(:authors).order(:part, :number).each do |presentation|
         if (part != (part = presentation.part))
           # new page
-          if (num += 1) == 5
+          if (num += 1) == 4
             start_new_page
             num = 1
           elsif num != 1 # skip the fir
@@ -32,6 +32,11 @@ class PrintableMinisymposia < Prawn::Document
           minisymposium.organizers.includes(:user).each do |organizer|
             text organizer.user.to_s, align: :center
           end
+
+          move_down(6)
+
+          text minisymposium.description, style: :italic
+
           move_down(6)
         end
 
