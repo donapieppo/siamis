@@ -25,7 +25,7 @@
         <span <%= 'class="alert-danger"'.html_safe if (element.presentation_count % 4) != 0 %>><%= element.presentation_count %> presentations.</span> 
       <% end %>
 
-      <%= element.ratings.count %> ratings.
+      <%= element.ratings.size %> ratings.
       Last update: <%= l element.updated_at %>
 
       <% if element.is_a?(Minisymposium) %>
@@ -40,6 +40,9 @@
         <% end %>
         <% total += 1 %>
         <span class="pull-right"><%= total %></span>
+      <% end %>
+      <% if element.is_a?(Minisymposium) %>
+        ( <%= link_to 'schedule', new_conference_session_schedule_path(element) %> <%= icon('check') if (element.schedules.count == element.parts) %>) 
       <% end %>
     </small>
     </dd>
