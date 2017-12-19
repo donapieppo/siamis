@@ -35,8 +35,15 @@
   <ul class="list-group">
     <% @user_conference_sessions.each do |conference_session| %>  
       <li class="list-group-item">
-        <span class="badge pull-right"><%= conference_session.class_name %></span> 
-        "<%= link_to conference_session, conference_session %>"
+        <p>
+          "<%= link_to conference_session, conference_session %>"
+          <span class="badge pull-right">
+            <%= conference_session.class_name %>
+          </span> 
+        </p>
+        <p>
+          <%= schedules_list(conference_session.schedules) %>  
+        </p>
       </li>
     <% end %>
   </ul>
@@ -47,11 +54,19 @@
   <ul class="list-group">
     <% @user_presentations.each do |presentation| %>  
       <li class="list-group-item">
+        <p>
         "<%= link_to presentation, presentation %>"
         <span class="badge pull-right">
           <%= icon('microphone') if @user.speaker?(presentation) %> &nbsp; 
           <%= presentation.parent_class %> 
         </span> 
+        </p>
+        <% if cs = presentation.conference_session %>  
+          <p class="small">
+          in <em><%= link_to cs, cs %></em>
+          <%= schedules_list(presentation.schedule) %>
+          </p>
+        <% end %>
       </li>
     <% end %>
   </ul>
