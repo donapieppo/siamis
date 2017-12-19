@@ -53,5 +53,13 @@ class ConferenceSession < ApplicationRecord
     "Chair"
   end
 
+  def schedules_to_s
+    self.schedules.map{|s| s.to_s}.join(', ')
+  end
+
+  def speakers(part = nil)
+    self.presentations.where(part: part || 1).map{|p| p.speaker}
+  end
+
 end
 
