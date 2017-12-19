@@ -38,11 +38,11 @@ class UsersController < ApplicationController
           schedule = presentation.schedule or next
           start = presentation.schedule.start 
           start or next
-          @res[user][start] << { what: 'S', conference_session: cs }
+          @res[user][start] << { what: 'S', conference_session: cs, where: schedule.room.name }
         elsif role.is_a?(Organizer)
-          role.conference_session.schedules.each do |schedule|
+          role.conference_session.schedules.includes(:room).each do |schedule|
             start = schedule.start
-            @res[user][start] << { what: 'O', conference_session: role.conference_session}
+            @res[user][start] << { what: 'O', conference_session: role.conference_session, where: schedule.room.name}
           end
         end
       end
