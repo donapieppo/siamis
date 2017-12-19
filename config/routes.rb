@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get :mailing_list, on: :collection
     get :multiple_speakers, on: :collection
     get :affiliations, on: :collection
+    get :schedules, on: :collection
     get :missing_affiliation, on: :collection
     put :update_affiliation, on: :member
   end
@@ -137,6 +138,7 @@ Rails.application.routes.draw do
   get 'equipments',      to: 'home#equipments',  as: :equipments
 
   get 'conference_program' , to: 'conference_program#index', as: :conference_program
+  get 'conference_program/index2' , to: 'conference_program#index2', as: :conference_program2
 
   get 'who_impersonate',    to: 'impersonations#who_impersonate',    as: :who_impersonate
   get 'impersonate/:id',    to: 'impersonations#impersonate',        as: :impersonate

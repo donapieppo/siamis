@@ -28,6 +28,41 @@ class UsersController < ApplicationController
     end
   end
 
+  def schedules
+    @res = Hash.new {|hash, key| hash[key] = Hash.new {|hash2, key2| hash2[key2] = []}}
+    User.includes(roles: [:conference_session, presentation: :conference_session]).order(:surname, :name).each do |user|
+      user.roles.each do |role|
+        if role.is_a?(Author) and role.speak
+          presentation  = role.presentation
+          cs = role.presentation.conference_session or next
+          schedule = presentation.schedule or next
+          start = presentation.schedule.start 
+          start or next
+          @res[user][start] << { what: 'S', conference_session: cs }
+        elsif role.is_a?(Organizer)
+          role.conference_session.schedules.each do |schedule|
+            start = schedule.start
+            @res[user][start] << { what: 'O', conference_session: role.conference_session}
+          end
+        end
+      end
+    end
+
+    respond_to do |format|
+      format.html
+      format.csv { 
+        send_data (CSV.generate(headers: false) do |csv|
+          @res.each_key do |user|
+            csv << [user, 
+                    @res[user][:speaker].map { |hash_presentation| "#{hash_presentation[:when]} #{hash_presentation[:presentation]}"},
+                    @res[user][:organizer].map { |hash_conference_session| "#{hash_conference_session[:conference_session]}" }
+                   ].flatten
+          end
+        end), filename: "users-#{Date.today}.csv" 
+      }
+    end
+  end
+
   def show
     @user = User.find(params[:id])
     @fields = User.safe_fields
