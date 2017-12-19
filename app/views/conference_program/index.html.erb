@@ -1,28 +1,29 @@
-<% old_hour = nil %>  
+<% if user_in_organizer_or_scientific_committee? %> 
+  <% old_hour = nil %>  
 
-<div class="row">
-  <div class="col-md-3">
-    <nav aria-label="Day pagination">
-      <ul class="list-group">
-        <% (0...Rails.configuration.number_of_days).each do |daynumber| %>  
-          <% day = Schedule.conference_day(daynumber) %>
-          <%= link_to l(day, format: :schedule), conference_program_path(day: daynumber, room_id: @room ? @room.id : nil), class: "list-group-item #{'active' if day == @day}" %>
-        <% end %>
-      </ul>
-    </nav>
-    <nav aria-label="Room pagination">
-      <ul class="list-group">
-        <%= link_to 'Show all rooms', conference_program_path(day: @daynumber), class: "list-group-item" %>
-        <% Room.order(:name).each do |room| %>  
-          <%= link_to room.name, conference_program_path(day: @daynumber, room_id: room.id), class: "list-group-item #{'active' if room == @room}" %>
-        <% end %>
-      </ul>
-    </nav>
-  </div>
-  <div class="col-md-9">
-    <%= program_title("Conference Program", 'map') %>  
+  <div class="row">
+    <div class="col-md-3">
+      <nav aria-label="Day pagination">
+        <ul class="list-group">
+          <% (0...Rails.configuration.number_of_days).each do |daynumber| %>  
+            <% day = Schedule.conference_day(daynumber) %>
+            <%= link_to l(day, format: :schedule), conference_program_path(day: daynumber, room_id: @room ? @room.id : nil), class: "list-group-item #{'active' if day == @day}" %>
+          <% end %>
+        </ul>
+      </nav>
+      <nav aria-label="Room pagination">
+        <ul class="list-group">
+          <%= link_to 'Show all rooms', conference_program_path(day: @daynumber), class: "list-group-item" %>
+          <% Room.order(:name).each do |room| %>  
+            <%= link_to room.name, conference_program_path(day: @daynumber, room_id: room.id), class: "list-group-item #{'active' if room == @room}" %>
+          <% end %>
+        </ul>
+      </nav>
+    </div><!-- div nav -->
 
-    <% if user_in_organizer_or_scientific_committee? %> 
+    <div class="col-md-9">
+      <%= program_title("Conference Program", 'map') %>  
+
       <div class="day_program">
         <% @conference_program.each do |schedule| %>  
           <% conference_session = schedule.conference_session %>  
@@ -58,12 +59,13 @@
                 <small><%= schedule.room %></small>
               </div>
             </div>
-          </div>
+          </div><!-- conference_session -->
         <% end %>
-      </div>
-    <% else %>
-      <p class="alert alert-info">
-      The SIAM IS 2018 program will be posted in January 2018.
-      </p>
-    <% end %>
-  </div>
+      </div><!-- day_program -->
+    </div><!-- col-md-9 -->
+  </div><!-- row -->
+<% else %>
+  <p class="alert alert-info">
+  The SIAM IS 2018 program will be posted in January 2018.
+  </p>
+<% end %>
