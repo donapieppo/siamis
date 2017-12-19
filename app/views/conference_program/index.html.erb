@@ -1,5 +1,69 @@
-<%= program_title('Conference Program', 'map') %>  
+<% old_hour = nil %>  
 
-<p class="alert alert-info">
-  The SIAM IS 2018 program will be posted in January 2018.
-</p>
+<div class="row">
+  <div class="col-md-3">
+    <nav aria-label="Day pagination">
+      <ul class="list-group">
+        <% (0...Rails.configuration.number_of_days).each do |daynumber| %>  
+          <% day = Schedule.conference_day(daynumber) %>
+          <%= link_to l(day, format: :schedule), conference_program_path(day: daynumber, room_id: @room ? @room.id : nil), class: "list-group-item #{'active' if day == @day}" %>
+        <% end %>
+      </ul>
+    </nav>
+    <nav aria-label="Room pagination">
+      <ul class="list-group">
+        <%= link_to 'Show all rooms', conference_program_path(day: @daynumber), class: "list-group-item" %>
+        <% Room.order(:name).each do |room| %>  
+          <%= link_to room.name, conference_program_path(day: @daynumber, room_id: room.id), class: "list-group-item #{'active' if room == @room}" %>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+  <div class="col-md-9">
+    <%= program_title("Conference Program", 'map') %>  
+
+    <% if user_in_organizer_or_scientific_committee? %> 
+      <div class="day_program">
+        <% @conference_program.each do |schedule| %>  
+          <% conference_session = schedule.conference_session %>  
+          <% hour = l(schedule.start, format: :hour) %>  
+
+          <% if old_hour != (old_hour = hour) %>  
+            <div class="alert alert-info centered"><p><strong><%= hour %></strong></p></div>
+          <% end %>
+
+          <div class="conference_session">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <strong><%= link_to conference_session, conference_session, remote: true %></strong>
+                <% if conference_session.parts > 1 %>  
+                  (part <%= schedule.part %> of <%= conference_session.parts %>)
+                <% end %>
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <p>Organizers:</p>
+                    <p>
+                    <%= show_roles_list(conference_session.organizers) %>  
+                    </p>
+                  </div>
+                  <div class="col-md-6">
+                    <p>Speakers:</p>
+                    <%= show_roles_list(conference_session.speakers(schedule.part)) %>  
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer" style="text-align: right">
+                <small><%= schedule.room %></small>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="alert alert-info">
+      The SIAM IS 2018 program will be posted in January 2018.
+      </p>
+    <% end %>
+  </div>
