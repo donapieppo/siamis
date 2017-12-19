@@ -20,6 +20,14 @@ module ConferenceHelper
     end.join(', ').html_safe
   end
 
+  def show_roles_list(roles)
+    content_tag(:ul) do 
+      roles.map do |role|
+        concat content_tag(:li, show_role(role))
+      end
+    end
+  end
+
   def rating_stars(rating)
     # can be nil if new rating
     return unless rating
@@ -156,7 +164,8 @@ module ConferenceHelper
   end
 
   def list_presentations(presentations, conference_session)
-    # hash with part number as key
+    # hash with part number as key (from 1)
+    # schedule_from_part[1] = schedule
     schedule_from_part = conference_session.schedules.inject({}) {|res, s| res[s.part] = s; res}
     part = 0
 
@@ -169,7 +178,7 @@ module ConferenceHelper
         end
         concat(content_tag(:dt, link_to(presentation, presentation, remote: true)))
         has_abstract_icon = (user_in_organizer_committee_or_cochair? and presentation.abstract and presentation.abstract.size >= 50) ? icon('font', size: "14") : ''
-        concat(content_tag(:dd, show_role(presentation.speaker) + " " + has_abstract_icon))
+        concat(content_tag(:dd, show_roles(presentation.speakers) + " " + has_abstract_icon))
       end
     end
   end
@@ -230,6 +239,16 @@ module ConferenceHelper
   def show_parts_range(conference_session)
     (conference_session.parts < 1) and return ""
     'I - ' + ROMAN_NUMBERS[conference_session.parts - 1]
+  end
+
+  def schedules_list(schedules)
+    return '' unless schedules
+    schedules = [schedules] if schedules.is_a?(Schedule)
+    content_tag(:ul) do 
+      schedules.each do |s|
+        concat content_tag(:li, s, class: 'small')
+      end
+    end
   end
 end
 
