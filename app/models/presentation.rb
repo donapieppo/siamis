@@ -55,10 +55,20 @@ class Presentation < ApplicationRecord
     conference_session ? conference_session.code : (self.poster ? 'PS' : 'CP')
   end
 
+  # exception for some
+  def speakers 
+    self.authors.includes(:user).where(speak: true)
+  end
+
+  def speakers_to_s
+    speakers.map {|u| u.to_s}.join(',')
+  end
+
   def speaker
     self.authors.includes(:user).where(speak: true).first || self.authors.first
   end
 
+  # to set only one
   def speaker=(_author)
     self.authors.each do |a|
       a.update_attribute(:speak, a == _author)
