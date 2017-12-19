@@ -161,6 +161,7 @@ en:
       schedule: '%A %d %B %Y'
       deadline: '%B %d, %Y'
       day: '%A'
+      hour: '%H:%M'
       menu: '%d %B - %A'
       schedule_day_and_hour: '%A %d at %H:%M'
 
