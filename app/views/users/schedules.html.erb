@@ -14,6 +14,7 @@
         <strong><%= l start %></strong>
         <small><%= link_to w[:conference_session], w[:conference_session], remote: true %></small>
         <%= big_icon('exclamation-triangle') if (other_cs && other_cs != w[:conference_session]) %>  
+        <small>(<%= w[:where] %>)</small>
         <br/>
       <% end %>
       </dd>
