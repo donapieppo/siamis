@@ -35,7 +35,8 @@ class User < ApplicationRecord
   end
 
   def cn
-    "#{self.salutation unless self.salutation.blank?} #{self.name} #{self.surname}"
+    # "#{self.salutation unless self.salutation.blank?} #{self.name} #{self.surname}"
+    "#{self.name} #{self.surname}"
   end
 
   def cn_militar
