@@ -24,9 +24,11 @@ class Schedule < ApplicationRecord
     self.start ? "#{'%02d' % self.start.hour}:#{'%02d' % self.start.min}" : Time.now
   end
 
+
+
   # start from 0
   def self.conference_day(num)
-    ((num = num.to_i) < Rails.configuration.number_of_days) or raise "#{num} is not a conference day number"
+    ((num = num.to_i) < Rails.configuration.number_of_days) or num = 0
     Rails.configuration.conference_start_date + num.days
   end
 
@@ -40,10 +42,22 @@ class Schedule < ApplicationRecord
     end
   end
 
-  def self.day_program(day)
-    Schedule.where('DATE_FORMAT(schedules.start, "%Y-%m-%d") = ?', day.strftime('%F'))
-            .includes(conference_session: [presentations: [authors: :user]], room: :building)
-            .order('schedules.start')
+  def self.hour_starts_array
+    res = []
+    (8..16).each do |start_hour|
+      [0,15,30,45].each do |start_minute|
+        res << ("%02d:%02d" % [start_hour, start_minute])
+      end
+    end
+    res
+  end
+
+  def self.day_program(day, room_id = nil)
+    res = Schedule.where('DATE_FORMAT(schedules.start, "%Y-%m-%d") = ?', day.strftime('%F'))
+                  .includes(conference_session: [presentations: [authors: :user]], room: :building)
+                  .order('schedules.start, conference_sessions.name').references(:conference_session)
+    res = res.where('schedules.room_id = ?', room_id) if room_id
+    res
   end
 
   # res["08:00"] = [ { presentation: p, speaker: user, conference_session: cs, end: end}, ... ]
