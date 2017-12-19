@@ -42,7 +42,8 @@ class PrintableMinisymposia < Prawn::Document
 
         move_down(6)
         text "\xC2\xA0 #{presentation.name} #{(presentation.abstract && presentation.abstract.size > 50) ? '*' : ''}", style: :italic
-        text "\xC2\xA0 \xC2\xA0   #{presentation.speaker.user.to_s}", size: 6
+        speaker = presentation.speaker
+        text "\xC2\xA0 \xC2\xA0   #{speaker ? speaker.user.to_s : 'MANCA SPEAKER'}", size: 6
       end
     end
   end
