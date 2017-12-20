@@ -52,11 +52,12 @@ class Schedule < ApplicationRecord
     res
   end
 
-  def self.day_program(day, room_id = nil)
+  def self.day_program(day, room: nil, start: nil)
     res = Schedule.where('DATE_FORMAT(schedules.start, "%Y-%m-%d") = ?', day.strftime('%F'))
                   .includes(conference_session: [presentations: [authors: :user]], room: :building)
-                  .order('schedules.start, conference_sessions.name').references(:conference_session)
-    res = res.where('schedules.room_id = ?', room_id) if room_id
+                  .order('schedules.start, rooms.name').references(:rooms)
+    res = res.where('schedules.room_id = ?', room.id) if room
+    res = res.where('DATE_FORMAT(schedules.start, "%H:%i") = ?', start) if start
     res
   end
 
@@ -80,5 +81,16 @@ class Schedule < ApplicationRecord
       end
     end
     res
+  end
+
+  # FIXME to refactor
+  # remeber I18n.l 
+  def self.startings_cest(day)
+    Schedule.where('DATE_FORMAT(schedules.start, "%Y-%m-%d") = ?', day.strftime('%F'))
+            .select('DATE_FORMAT(schedules.start, "%H:%i") as hour_start').map(&:hour_start).uniq.sort
+  end
+  def self.startings(day)
+    Schedule.where('DATE_FORMAT(schedules.start, "%Y-%m-%d") = ?', day.strftime('%F'))
+            .select(:start).map{|s| I18n.l(s.start, format: :hour)}.uniq.sort
   end
 end
