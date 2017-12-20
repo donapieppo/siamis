@@ -1,4 +1,5 @@
 class ContributedSessionsController < ConferenceSessionsController
+  after_action :manual_tags, only: [:create, :update]
 
   # see all
   def index
@@ -22,7 +23,14 @@ class ContributedSessionsController < ConferenceSessionsController
 
   # see ConferenceSessionsController
   def conference_session_params
-    params[:contributed_session].permit(:name, :description)
+    @manual_tags = params[:contributed_session].delete(:manual_tags)
+    params[:contributed_session].permit(:name, :description, tag_ids: [])
+  end
+
+  def manual_tags  
+    if @manual_tags
+      @conference_session.manual_tags = @manual_tags
+    end
   end
 end
 
