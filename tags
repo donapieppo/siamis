@@ -63,6 +63,7 @@ PosterSessionsController	app/controllers/poster_sessions_controller.rb	/^class P
 Presentation	app/models/presentation.rb	/^class Presentation < ApplicationRecord$/;"	c
 PresentationsController	app/controllers/presentations_controller.rb	/^class PresentationsController < ApplicationController$/;"	c
 PrintableMinisymposia	app/pdfs/printable_minisymposia.rb	/^class PrintableMinisymposia < Prawn::Document$/;"	c
+PrintableProgram	app/pdfs/printable_program.rb	/^class PrintableProgram < Prawn::Document$/;"	c
 PrintableRegistration	app/pdfs/printable_registration.rb	/^class PrintableRegistration < Prawn::Document$/;"	c
 PrivacyHelper	app/helpers/privacy_helper.rb	/^module PrivacyHelper $/;"	m
 Rating	app/models/rating.rb	/^class Rating < ApplicationRecord$/;"	c
@@ -190,7 +191,7 @@ create_the_presentation	app/models/mono_conference_session.rb	/^  def create_the
 credits	app/controllers/home_controller.rb	/^  def credits$/;"	f	class:HomeController
 current_user_owns!	app/helpers/user_helper.rb	/^  def current_user_owns!(what)$/;"	f	class:UserHelper
 current_user_owns?	app/helpers/user_helper.rb	/^  def current_user_owns?(what)$/;"	f	class:UserHelper
-day_program	app/models/schedule.rb	/^  def self.day_program(day, room_id = nil)$/;"	F	class:Schedule
+day_program	app/models/schedule.rb	/^  def self.day_program(day, room: nil, start: nil)$/;"	F	class:Schedule
 day_program_hour_hash	app/models/schedule.rb	/^  def self.day_program_hour_hash(day)$/;"	F	class:Schedule
 days_array_for_select	app/models/schedule.rb	/^  def self.days_array_for_select$/;"	F	class:Schedule
 deadline_range	app/helpers/deadline_helper.rb	/^  def deadline_range(what)$/;"	f	class:DeadlineHelper
@@ -268,11 +269,11 @@ index	app/controllers/schedules_controller.rb	/^  def index$/;"	f	class:Schedule
 index	app/controllers/submissions_controller.rb	/^  def index$/;"	f	class:SubmissionsController
 index	app/controllers/tags_controller.rb	/^  def index$/;"	f	class:TagsController
 index	app/controllers/users_controller.rb	/^  def index$/;"	f	class:UsersController
-index2	app/controllers/conference_program_controller.rb	/^  def index2$/;"	f	class:ConferenceProgramController
 info_tag	app/helpers/application_helper.rb	/^  def info_tag(&block)$/;"	f	class:ApplicationHelper
 initialize	app/models/fee.rb	/^  def initialize(user, single_day: nil)$/;"	f	class:Fee
 initialize	app/models/unicredit.rb	/^  def initialize(payment)$/;"	f	class:Unicredit
 initialize	app/pdfs/printable_minisymposia.rb	/^  def initialize(minisymposia)$/;"	f	class:PrintableMinisymposia
+initialize	app/pdfs/printable_program.rb	/^  def initialize$/;"	f	class:PrintableProgram
 initialize	app/pdfs/printable_registration.rb	/^  def initialize(conference_registration)$/;"	f	class:PrintableRegistration
 input	app/inputs/schedule_day_input.rb	/^  def input(wrapper_options)$/;"	f	class:ScheduleDayInput
 input	app/inputs/schedule_hour_input.rb	/^  def input(wrapper_options)$/;"	f	class:ScheduleHourInput
@@ -303,6 +304,7 @@ make_speaker	app/controllers/authors_controller.rb	/^  def make_speaker$/;"	f	cl
 manage_presentations	app/controllers/conference_sessions_controller.rb	/^  def manage_presentations$/;"	f	class:ConferenceSessionsController
 manual_create	app/controllers/conference_registrations_controller.rb	/^  def manual_create$/;"	f	class:ConferenceRegistrationsController
 manual_new	app/controllers/conference_registrations_controller.rb	/^  def manual_new$/;"	f	class:ConferenceRegistrationsController
+manual_tags	app/controllers/contributed_sessions_controller.rb	/^  def manual_tags  $/;"	f	class:ContributedSessionsController
 manual_tags	app/controllers/minisymposia_controller.rb	/^  def manual_tags  $/;"	f
 manual_tags	app/controllers/presentations_controller.rb	/^  def manual_tags  $/;"	f	class:PresentationsController
 manual_tags	app/models/concerns/taggable.rb	/^  def manual_tags$/;"	f	class:Taggable
@@ -375,6 +377,7 @@ price_to_pay	app/models/fee.rb	/^  def price_to_pay$/;"	f
 price_to_pay_and_reason	app/models/fee.rb	/^  def price_to_pay_and_reason$/;"	f	class:Fee
 price_types	app/models/hotel.rb	/^  def self.price_types$/;"	F	class:Hotel
 prices	app/models/fee.rb	/^  def self.prices$/;"	F
+print	app/controllers/conference_program_controller.rb	/^  def print$/;"	f	class:ConferenceProgramController
 print	app/controllers/conference_registrations_controller.rb	/^  def print$/;"	f	class:ConferenceRegistrationsController
 print	app/controllers/minisymposia_controller.rb	/^  def print$/;"	f
 privacy	app/controllers/home_controller.rb	/^  def privacy$/;"	f	class:HomeController
@@ -442,6 +445,7 @@ show_role	app/helpers/conference_helper.rb	/^  def show_role(role, editable: fal
 show_roles	app/helpers/conference_helper.rb	/^  def show_roles(roles, editable: false)$/;"	f	class:ConferenceHelper
 show_roles_list	app/helpers/conference_helper.rb	/^  def show_roles_list(roles)$/;"	f	class:ConferenceHelper.show_roles
 show_schedule	app/helpers/conference_helper.rb	/^  def show_schedule(what)$/;"	f
+slot	app/pdfs/printable_program.rb	/^  def slot(day, hour)$/;"	f	class:PrintableProgram
 speaker	app/models/mono_conference_session.rb	/^  def speaker$/;"	f	class:MonoConferenceSession
 speaker	app/models/presentation.rb	/^  def speaker$/;"	f	class:Presentation
 speaker=	app/models/presentation.rb	/^  def speaker=(_author)$/;"	f	class:Presentation
@@ -459,6 +463,8 @@ start_day_number	app/models/schedule.rb	/^  def start_day_number$/;"	f	class:Sch
 start_hour	app/models/schedule.rb	/^  def start_hour$/;"	f	class:Schedule
 start_impersonation_link	app/helpers/application_helper.rb	/^  def start_impersonation_link$/;"	f	class:ApplicationHelper
 start_payment	app/models/payment.rb	/^  def start_payment$/;"	f	class:Payment
+startings	app/models/schedule.rb	/^  def self.startings(day)$/;"	F	class:Schedule
+startings_cest	app/models/schedule.rb	/^  def self.startings_cest(day)$/;"	F	class:Schedule
 stop_impersonating	app/controllers/impersonations_controller.rb	/^  def stop_impersonating$/;"	f	class:ImpersonationsController
 stop_impersonation_link	app/helpers/application_helper.rb	/^  def stop_impersonation_link$/;"	f	class:ApplicationHelper
 substringMatcher	app/assets/javascripts/typeahead_search.js	/^var substringMatcher = function(strs) {$/;"	f
