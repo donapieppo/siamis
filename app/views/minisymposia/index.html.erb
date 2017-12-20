@@ -7,8 +7,7 @@
   <% cache 'minisymposia_list_cache' do %>
     <% @minisymposia.each do |minisymposium| %>
       <li class="list-group-item">
-        <%= minisymposium.name %> 
-        <%# link_to minisymposium.name, minisymposium, remote: true %> 
+        <%= link_to minisymposium.name, minisymposium, remote: true %> 
         <span><%= "<small>(#{show_parts_range(minisymposium)})</small>".html_safe if minisymposium.parts > 1 %></span> 
       </li>
     <% end %>
