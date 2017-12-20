@@ -138,7 +138,7 @@ Rails.application.routes.draw do
   get 'equipments',      to: 'home#equipments',  as: :equipments
 
   get 'conference_program' , to: 'conference_program#index', as: :conference_program
-  get 'conference_program/index2' , to: 'conference_program#index2', as: :conference_program2
+  get 'conference_program/print' , to: 'conference_program#print', as: :print_conference_program
 
   get 'who_impersonate',    to: 'impersonations#who_impersonate',    as: :who_impersonate
   get 'impersonate/:id',    to: 'impersonations#impersonate',        as: :impersonate
