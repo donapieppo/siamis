@@ -36,10 +36,7 @@
           <div class="conference_session">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <strong><%= link_to conference_session, conference_session, remote: true %></strong>
-                <% if conference_session.parts > 1 %>  
-                  (part <%= schedule.part %> of <%= conference_session.parts %>)
-                <% end %>
+                <strong><%= link_to schedule.conference_session_with_part, conference_session, remote: true %></strong>
               </div>
               <div class="panel-body">
                 <div class="row">
