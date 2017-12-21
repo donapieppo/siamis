@@ -24,6 +24,10 @@ class Schedule < ApplicationRecord
     self.start ? "#{'%02d' % self.start.hour}:#{'%02d' % self.start.min}" : Time.now
   end
 
+  def conference_session_with_part
+    cs = self.conference_session or return ""
+    (cs.parts > 1) ? "#{cs} [part #{self.part} of #{cs.parts}]" : cs.to_s
+  end
 
 
   # start from 0
