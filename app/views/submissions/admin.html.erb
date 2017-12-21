@@ -7,8 +7,7 @@
   <% @list.each do |element| %>  
     <dt id="<%= element.id %>">
       <%= icon('check') if element.accepted %>  
-      <%= link_to element.name.upcase, element, remote: true %>
-      <small><%= "(#{element.parts} parts)" if element.is_a?(Minisymposium) and element.parts and element.parts > 1 %></small>
+      <%= link_to element.to_s.upcase, element, remote: true %>
     </dt>
 
     <dd><%= show_roles(element.respond_to?(:organizers) ? element.organizers : element.authors) %></dd>
@@ -28,23 +27,22 @@
       <%= element.ratings.size %> ratings.
       Last update: <%= l element.updated_at %>
 
-      <% if element.is_a?(Minisymposium) %>
-        <% if (missing_count = element.presentations.without_abstract.count) > 0 %>  
-          <span class="alert-warning"><%= missing_count %> abstracts missing</span>
-        <% end %>
-        <% total += (element.parts || 1) %>  
-        <span class="pull-right"><%= total %></span>
-      <% else %>
-        <% if element.abstract.blank? %>  
-          <span class="alert-warning"><%= missing_count %>no abstract</span>
-        <% end %>
-        <% total += 1 %>
-        <span class="pull-right"><%= total %></span>
+    <% if element.is_a?(Minisymposium) %>
+      <% if (missing_count = element.presentations.without_abstract.count) > 0 %>  
+        <span class="alert-warning"><%= missing_count %> abstracts missing</span>
       <% end %>
-      <% if element.is_a?(Minisymposium) %>
-        ( <%= link_to icon('calendar'), new_conference_session_schedule_path(element), 
-                                        class: (element.schedules.count == element.parts) ? 'alert-success' : '' %>)
+      <% total += (element.parts || 1) %>  
+      <span class="pull-right"><%= total %></span>
+    <% else %>
+      <% if element.abstract.blank? %>  
+        <span class="alert-warning"><%= missing_count %>no abstract</span>
       <% end %>
+      <% total += 1 %>
+      <span class="pull-right"><%= total %></span>
+    <% end %>
+    <% if element.is_a?(Minisymposium) %>
+      ( <%= link_to icon('calendar'), new_conference_session_schedule_path(element), class: (element.schedules.count == element.parts) ? 'alert-success' : '' %>)
+    <% end %>
     </small>
     </dd>
   <% end %>
