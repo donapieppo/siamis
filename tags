@@ -167,6 +167,7 @@ conference_session_params	app/controllers/minitutorials_controller.rb	/^  def co
 conference_session_params	app/controllers/plenaries_controller.rb	/^  def conference_session_params$/;"	f	class:PlenariesController
 conference_session_params	app/controllers/poster_sessions_controller.rb	/^  def conference_session_params$/;"	f	class:PosterSessionsController
 conference_session_parent_list_link	app/helpers/conference_helper.rb	/^  def conference_session_parent_list_link(conference_session)$/;"	f	class:ConferenceHelper.show_roles
+conference_session_with_part	app/models/schedule.rb	/^  def conference_session_with_part$/;"	f	class:Schedule
 conference_start_date	app/models/deadline.rb	/^    def conference_start_date$/;"	f	class:Deadline
 contacts	app/controllers/home_controller.rb	/^  def contacts$/;"	f	class:HomeController
 copy_user_data	app/models/payment.rb	/^  def copy_user_data$/;"	f	class:Payment
@@ -218,6 +219,7 @@ edit	app/controllers/presentations_controller.rb	/^  def edit$/;"	f	class:Presen
 edit	app/controllers/rooms_controller.rb	/^  def edit$/;"	f	class:RoomsController
 edit	app/controllers/tags_controller.rb	/^  def edit$/;"	f	class:TagsController
 edit	app/controllers/users_controller.rb	/^  def edit$/;"	f	class:UsersController.schedules
+email	app/models/role.rb	/^  def email$/;"	f	class:Role
 equipments	app/controllers/home_controller.rb	/^  def equipments$/;"	f	class:HomeController
 error	app/controllers/payments_controller.rb	/^  def error$/;"	f	class:PaymentsController
 excellence	app/models/rating.rb	/^  def self.excellence$/;"	F	class:Rating
@@ -300,6 +302,7 @@ login_link	app/helpers/menu_helper.rb	/^  def login_link(button: false)$/;"	f	cl
 logout_link	app/helpers/menu_helper.rb	/^  def logout_link$/;"	f	class:MenuHelper
 mail_to_siam	app/helpers/conference_helper.rb	/^  def mail_to_siam$/;"	f
 mailing_list	app/controllers/users_controller.rb	/^  def mailing_list$/;"	f	class:UsersController.schedules
+mailing_lists	app/controllers/users_controller.rb	/^  def mailing_lists$/;"	f	class:UsersController.schedules
 make_speaker	app/controllers/authors_controller.rb	/^  def make_speaker$/;"	f	class:AuthorsController
 manage_presentations	app/controllers/conference_sessions_controller.rb	/^  def manage_presentations$/;"	f	class:ConferenceSessionsController
 manual_create	app/controllers/conference_registrations_controller.rb	/^  def manual_create$/;"	f	class:ConferenceRegistrationsController
@@ -442,7 +445,7 @@ show	app/controllers/presentations_controller.rb	/^  def show$/;"	f	class:Presen
 show	app/controllers/users_controller.rb	/^  def show$/;"	f	class:UsersController.schedules
 show_parts_range	app/helpers/conference_helper.rb	/^  def show_parts_range(conference_session)$/;"	f
 show_role	app/helpers/conference_helper.rb	/^  def show_role(role, editable: false, no_affiliation: false)$/;"	f	class:ConferenceHelper
-show_roles	app/helpers/conference_helper.rb	/^  def show_roles(roles, editable: false)$/;"	f	class:ConferenceHelper
+show_roles	app/helpers/conference_helper.rb	/^  def show_roles(roles, editable: false, only_speaker: false)$/;"	f	class:ConferenceHelper
 show_roles_list	app/helpers/conference_helper.rb	/^  def show_roles_list(roles)$/;"	f	class:ConferenceHelper.show_roles
 show_schedule	app/helpers/conference_helper.rb	/^  def show_schedule(what)$/;"	f
 slot	app/pdfs/printable_program.rb	/^  def slot(day, hour)$/;"	f	class:PrintableProgram
