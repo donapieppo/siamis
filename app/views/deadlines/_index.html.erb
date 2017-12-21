@@ -4,28 +4,28 @@
       <td></td>
       <td><%= l(Deadline.minisymposium_proposal_start, format: :deadline) %></td>
       <td><%= l(Deadline.minisymposium_proposal_end, format: :deadline) %></td>
-      <th><%= link_to 'Minisymposium proposals', submissions_path %></th>
+      <th><s>Minisymposium proposals</s></th>
     </tr>
 
     <tr>
       <td><%= icon('hand-o-right') if Deadline.can_propose?(:presentation_proposal) %></td>
       <td><%= l(Deadline.presentation_proposal_start, format: :deadline) %></td>
       <td><%= l(Deadline.presentation_proposal_end, format: :deadline) %></td>
-      <th>Contributed Lecture and Minisymposium Presentation Abstracts</th>
+      <th><s>Contributed Lecture and Minisymposium Presentation Abstracts</s></th>
     </tr>
 
     <tr>
       <td></td>
       <td><%= l(Deadline.presentation_proposal_start, format: :deadline) %></td>
       <td><%= l(Deadline.presentation_proposal_end, format: :deadline) %></td>
-      <th>Poster Abstracts</th>
+      <th><s>Poster Abstracts</s></th>
     </tr>
 
     <tr>
       <td></td>
       <td></td>
       <td><%= l(Deadline.pre_registration_end, format: :deadline) %></td>
-      <th>Early registration deadline</th>
+      <th><%= link_to 'Early registration deadline', new_conference_registration_path %></th>
     </tr>
 
     <tr>
