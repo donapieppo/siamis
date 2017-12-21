@@ -1,27 +1,25 @@
+<h1><%= @day %></h1>
+
+<%= startings = Schedule.startings_cest %>  
+
 <table class="table conference_program">
+  <% @schedule =  Schedule.day_program(@day, start: "11:30") %>  
   <tr>
-    <th></th>
-    <% Schedule.conference_days_array.each do |day| %>  
-      <th><%= l day, format: :schedule_day_and_hour %></th>
+    <% @schedule.each do |schedule| %>  
+      <th><%= schedule.room.name %> </th>
     <% end %>
   </tr>
   <tr>
-    <th>08:15</th>
-    <td></td>
-    <td rowspan="3" class="plenary">PLENARY 3</td>
-    <td rowspan="3" class="plenary">PLENARY 4</td>
-    <td></td>
+    <% @schedule.each do |schedule| %>  
+      <td><%= schedule.conference_session.name %> </td>
+    <% end %>
   </tr>
   <tr>
-    <th>08:30</th>
-    <td></td>
-    <td rowspan="2">AWARDS</td>
-  </tr>
-  <tr>
-    <th>08:45</th>
-  </tr>
-  <tr>
-    <th>09:00</th>
+    <% @schedule.each do |schedule| %>  
+      <td>
+         <%= show_roles_list(schedule.conference_session.organizers) %>  
+      </td>
+    <% end %>
   </tr>
 
 </table>
