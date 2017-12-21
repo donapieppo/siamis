@@ -16,7 +16,7 @@ class ConferenceSession < ApplicationRecord
   scope :submitted, -> { where(accepted: nil) }
 
   def to_s
-    self.name
+    self.name + ((self.parts && self.parts > 1) ? " (#{self.parts} parts)" : "")
   end
 
   # Minisymposium, Plenary, Contributed Session
