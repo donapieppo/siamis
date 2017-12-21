@@ -6,6 +6,8 @@
   <%= link_to 'Minisymposia speakers', mailing_list_users_path(minisymposia_speakers: 1), remote: true, class: "list-group-item" %>
   <%= link_to 'Contributed presentation authors', mailing_list_users_path(contributed: 1), remote: true, class: "list-group-item" %>
   <%= link_to 'Poster authors', mailing_list_users_path(poster: 1), remote: true, class: "list-group-item"  %>
+  <br/>
+  <%= link_to 'All active users', mailing_list_users_path(active_users: 1), remote: true, class: "list-group-item"  %>
 </div>
 </div>
 

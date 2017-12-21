@@ -132,7 +132,10 @@ class UsersController < ApplicationController
   end
 
   def mailing_list
-    if params[:minisymposia]
+    if params[:active_users]
+      @title = "All active users"
+      @emails = User.where('sign_in_count > 0').select(:email).map(&:email)
+    elsif params[:minisymposia]
       @title = "Minisymposia Organizers"
       @emails = Organizer.includes(:user).includes(:conference_session).where('conference_sessions.type = "Minisymposium"').references(:conference_sessions).map{|r| r.user.email}
     elsif params[:minisymposia_speakers]
