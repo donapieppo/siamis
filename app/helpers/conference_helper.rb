@@ -14,7 +14,10 @@ module ConferenceHelper
   end
 
   # html_safe becouse of h() before
-  def show_roles(roles, editable: false)
+  def show_roles(roles, editable: false, only_speaker: false)
+    if only_speaker 
+      roles = roles.select{|r| r.speak}
+    end
     roles.map do |role|
       show_role(role, editable: editable)
     end.join(', ').html_safe
@@ -177,8 +180,9 @@ module ConferenceHelper
           concat(content_tag(:p, part_string + content_tag(:span, schedule_string, class: 'pull-right'), style: 'margin-top: 10px'))
         end
         concat(content_tag(:dt, link_to(presentation, presentation, remote: true)))
+        # for organizer_committee_or_cochair
         has_abstract_icon = (user_in_organizer_committee_or_cochair? and presentation.abstract and presentation.abstract.size >= 50) ? icon('font', size: "14") : ''
-        concat(content_tag(:dd, show_roles(presentation.speakers) + " " + has_abstract_icon))
+        concat(content_tag(:dd, show_roles(presentation.authors, only_speaker: true) + " " + has_abstract_icon))
       end
     end
   end
