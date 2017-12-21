@@ -8,12 +8,13 @@ Rails.application.routes.draw do
     post :admin_create, on: :collection # skip devise registration
     post :admin_notify_new, on: :member
     resources :presentations
-    get :mailing_list, on: :collection
+    put :update_affiliation, on: :member
     get :multiple_speakers, on: :collection
     get :affiliations, on: :collection
     get :schedules, on: :collection
     get :missing_affiliation, on: :collection
-    put :update_affiliation, on: :member
+    get :mailing_list, on: :collection
+    get :mailing_lists, on: :collection
   end
 
   resources :authors do

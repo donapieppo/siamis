@@ -1,3 +1,3 @@
 $('#main-modal').modal('show');
-$(".modal-title").html("<h4><%= @title %>:</h4>");
+$(".modal-title").html("<h4><%= @title %>: <%= @size %> emails</h4>");
 $(".modal-body").html("<%= escape_javascript(@email_list) %>");

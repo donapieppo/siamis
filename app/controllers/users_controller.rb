@@ -128,17 +128,29 @@ class UsersController < ApplicationController
     end
   end
 
+  def mailing_lists
+  end
+
   def mailing_list
     if params[:minisymposia]
-      @title = "Organizers of minisymposia"
-      @email_list = Organizer.includes(:user).includes(:conference_session).where('conference_sessions.type = "Minisymposium"').references(:conference_sessions).map{|r| r.user.email}.join('; ')
+      @title = "Minisymposia Organizers"
+      @emails = Organizer.includes(:user).includes(:conference_session).where('conference_sessions.type = "Minisymposium"').references(:conference_sessions).map{|r| r.user.email}
+    elsif params[:minisymposia_speakers]
+      @title = "Minisymposia Authors"
+      @emails = Presentation.at_minisymposium.includes(authors: :user).inject([]){|emails, p| emails << p.authors.select{|a| a.speak}.map(&:email); emails}
+      # @email_list = User.where(id: Presentation.not_poster.left_joins(:conference_session).where('conference_session_id is null or conference_sessions.type = "Minisymposia"').includes(:roles).map(&:roles).flatten.map(&:user_id)).select(:email).map(&:email).join('; ')
     elsif params[:contributed]
-      @title = "Authors of presentations"
-      @email_list = User.where(id: Presentation.not_poster.left_joins(:conference_session).where('conference_session_id is null or conference_sessions.type = "ContributedSession"').includes(:roles).map(&:roles).flatten.map(&:user_id)).select(:email).map(&:email).join('; ')
+      @title = "Presentations Authors"
+      @emails = Presentation.at_contributed.not_poster.includes(authors: :user).inject([]){|emails, p| emails << p.authors.select{|a| a.speak}.map(&:email); emails}
+      # @email_list = User.where(id: Presentation.not_poster.left_joins(:conference_session).where('conference_session_id is null or conference_sessions.type = "ContributedSession"').includes(:roles).map(&:roles).flatten.map(&:user_id)).select(:email).map(&:email).join('; ')
     elsif params[:poster]
       @title = "Authors of posters"
-      @email_list = User.where(id: Presentation.poster.left_joins(:conference_session).where('conference_session_id is null or conference_sessions.type = "PosterSession"').includes(:roles).map(&:roles).flatten.map(&:user_id)).select(:email).map(&:email).join('; ')
+      @emails = Presentation.poster.includes(authors: :user).inject([]){|emails, p| emails << p.authors.select{|a| a.speak}.map(&:email); emails}
+      # @email_list = User.where(id: Presentation.poster.left_joins(:conference_session).where('conference_session_id is null or conference_sessions.type = "PosterSession"').includes(:roles).map(&:roles).flatten.map(&:user_id)).select(:email).map(&:email).join('; ')
     end
+      @emails = @emails.flatten.uniq
+      @size = @emails.size
+      @email_list = @emails.join('; ')
   end
 
   # FIMXE 

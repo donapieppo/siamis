@@ -1,0 +1,11 @@
+<%= program_title('Mailing Lists', 'users') %>  
+
+<div class="centered" style="width: 70%">
+<div class="list-group centered">
+  <%= link_to 'Minisymposia organizers', mailing_list_users_path(minisymposia: 1), remote: true, class: "list-group-item" %>
+  <%= link_to 'Minisymposia speakers', mailing_list_users_path(minisymposia_speakers: 1), remote: true, class: "list-group-item" %>
+  <%= link_to 'Contributed presentation authors', mailing_list_users_path(contributed: 1), remote: true, class: "list-group-item" %>
+  <%= link_to 'Poster authors', mailing_list_users_path(poster: 1), remote: true, class: "list-group-item"  %>
+</div>
+</div>
+
