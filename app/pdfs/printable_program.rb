@@ -31,7 +31,7 @@ class PrintableProgram < Prawn::Document
     colors << "ffffff"
     res << schedule.map{|s| s.room.capacity }
     colors << "f18f01"
-    res << schedule.map{|s| "<b>#{s.conference_session.name}</b>"}
+    res << schedule.map{|s| "<b>#{s.conference_session_with_part}</b>"}
 
     # 0 = ----
     # 1 = --
