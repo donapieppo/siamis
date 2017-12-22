@@ -7,13 +7,21 @@
 <%= render partial: 'contributed_sessions/description' %>  
 <%= render partial: 'deadlines/presentation_submission' %>  
 
-<%# render @poster_sessions, condensed: true %>
+<% if user_in_organizer_committee? %> 
+  <ul class="list-group">
+  <% @conference_sessions.each do |cs| %>
+      <li class="list-group-item">
+        <%= link_to cs, cs, remote: true %> 
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 
 <h2>List of accepted posters</h2>
 
 <ul class="list-group">
   <% cache 'presentations_list_cache' do %>
-    <% Presentation.poster.unassigned.order(:name).each do |presentation| %>  
+    <% Presentation.at_poster.order(:name).each do |presentation| %>  
       <li class="list-group-item">
         <%= link_to presentation.name, presentation, remote: true %> 
       </li>

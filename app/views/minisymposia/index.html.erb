@@ -5,9 +5,9 @@
 
 <ul class="list-group">
   <% cache 'minisymposia_list_cache' do %>
-    <% @minisymposia.each do |minisymposium| %>
+    <% @conference_sessions.each do |cs| %>
       <li class="list-group-item">
-        <%= link_to minisymposium, minisymposium, remote: true %> 
+        <%= link_to cs, cs, remote: true %> 
       </li>
     <% end %>
 <% end %>
