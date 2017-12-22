@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "state"
     t.string "zip"
     t.string "country"
+    t.boolean "complete"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["user_id"], name: "user_id"
@@ -125,7 +126,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "conference_session_id", unsigned: true
     t.integer "part", default: 1
     t.integer "number"
-    t.boolean "poster"
+    t.boolean "poster", default: false
     t.boolean "accepted"
     t.datetime "created_at"
     t.datetime "updated_at"
