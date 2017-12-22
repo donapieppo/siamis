@@ -72,10 +72,10 @@
             <%= menu_link 'star', 'Posters', admin_submissions_path(poster: 1) %>
             <li class="divider"></li>
             <%= menu_link 'file-pdf-o',  'Printable program', print_conference_program_path %>
+            <%= menu_link 'calendar', 'Users Schedules', schedules_users_path %>
             <% if user_cochair? %>  
               <%= menu_link 'star', 'All ratings', ratings_path %>
               <%= menu_link 'users', 'Users', users_path %>
-              <%= menu_link 'calendar', 'User Schedules', schedules_users_path %>
             <% end %>
           <% end %>
         <% end %>

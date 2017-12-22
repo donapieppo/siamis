@@ -2,7 +2,9 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   skip_before_action :check_user_fields, only: [:edit, :update]
 
-  before_action :user_in_organizer_committee_or_cochair!, except: [:index, :show, :edit, :update] 
+  before_action :user_in_organizer_committee_or_cochair!, except: [:index, :show, :edit, :update, :schedules]
+  before_action :user_in_organizer_or_scientific_committee!, only: [:schedules]
+
   before_action :set_user_and_check_permission, only: [:edit, :update, :destroy]
 
   def index
