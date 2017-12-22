@@ -58,7 +58,9 @@ class ConferenceSession < ApplicationRecord
   end
 
   def speakers(part = nil)
-    self.presentations.where(part: part || 1).map{|p| p.speaker}
+    # inefficient ???
+    # self.presentations.where(part: part || 1).map{|p| p.speaker}
+    Author.includes(:user).where(speak: true).where(presentation: self.presentations.where(part: part || 1).ids).map(&:user)
   end
 
 end
