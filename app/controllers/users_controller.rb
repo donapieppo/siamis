@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
   def schedules
     @res = Hash.new {|hash, key| hash[key] = Hash.new {|hash2, key2| hash2[key2] = []}}
-    User.includes(roles: [:conference_session, presentation: :conference_session]).order(:surname, :name).each do |user|
+    User.includes(roles: [conference_session: :schedules, presentation: [conference_session: :schedules]]).order(:surname, :name).each do |user|
       user.roles.each do |role|
         if role.is_a?(Author) and role.speak
           presentation  = role.presentation
@@ -40,9 +40,10 @@ class UsersController < ApplicationController
           start or next
           @res[user][start] << { what: 'S', conference_session: cs, where: schedule.room.name }
         elsif role.is_a?(Organizer)
-          role.conference_session.schedules.includes(:room).each do |schedule|
+          cs = role.conference_session
+          cs.schedules.includes(:room).each do |schedule|
             start = schedule.start
-            @res[user][start] << { what: 'O', conference_session: role.conference_session, where: schedule.room.name}
+            @res[user][start] << { what: 'O', conference_session: cs, where: schedule.room.name}
           end
         end
       end
