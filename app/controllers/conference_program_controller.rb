@@ -12,8 +12,12 @@ class ConferenceProgramController < ApplicationController
   end
 
   def print
-    pdf = PrintableProgram.new()
-    send_data pdf.render, filename: "program.pdf", type: "application/pdf"
+    if user_in_organizer_or_scientific_committee?
+      pdf = PrintableProgram.new()
+      send_data pdf.render, filename: "program.pdf", type: "application/pdf"
+    else
+      redirect_to root_path
+    end
   end
 end
 
