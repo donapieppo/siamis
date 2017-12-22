@@ -66,7 +66,7 @@ class PrintableProgram < Prawn::Document
 
     text "#{I18n.l day} #{hour.split(':')[0].to_i + 2}:#{hour.split(':')[1]}", style: :bold, size: 18
 
-    table(res, cell_style: { inline_format: true, width: 60 }, 
+    table(res, cell_style: { inline_format: true, width: 65 }, 
                row_colors: colors)
   end
 end
