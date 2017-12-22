@@ -70,13 +70,12 @@
             <%= menu_link 'star', 'Minisymposia', admin_submissions_path(minisymposium: 1) %>
             <%= menu_link 'star', 'Presentations', admin_submissions_path(contributed: 1) %>
             <%= menu_link 'star', 'Posters', admin_submissions_path(poster: 1) %>
+            <li class="divider"></li>
+            <%= menu_link 'file-pdf-o',  'Printable program', print_conference_program_path %>
             <% if user_cochair? %>  
-              <li class="divider"></li>
               <%= menu_link 'star', 'All ratings', ratings_path %>
               <%= menu_link 'users', 'Users', users_path %>
-              <%= menu_link 'calendar', 'Schedules', schedules_users_path %>
-              <li class="dropdown-header">Program</li>
-              <%= menu_link 'file-pdf-o',  'Printable program', print_conference_program_path %>
+              <%= menu_link 'calendar', 'User Schedules', schedules_users_path %>
             <% end %>
           <% end %>
         <% end %>
