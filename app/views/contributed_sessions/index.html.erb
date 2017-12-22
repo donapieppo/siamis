@@ -15,7 +15,7 @@
 
 <ul class="list-group">
   <% cache 'presentations_list_cache' do %>
-    <% Presentation.not_poster.unassigned.order(:name).each do |presentation| %>  
+    <% Presentation.not_poster.order(:name).each do |presentation| %>  
       <li class="list-group-item">
         <%= link_to presentation.name, presentation, remote: true %> 
       </li>
