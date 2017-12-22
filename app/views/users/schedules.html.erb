@@ -5,15 +5,14 @@
 <dl class="dl-horizontal">
   <% @res.each do |user, presences| %>  
     <dt><%= user_modal_link(user) %></dt>
+
     <% presences.keys.sort.each do |start| %>
-      <dd style="background-color: <%= (presences[start].size > 1) ? '#ddd' : 'white' %>">
-      <% other_cs = nil %>
+      <% danger = (presences[start].size > 1 and presences[start].map {|w| w[:conference_session]}.uniq.size > 1) %>
+      <dd class="<%= 'alert alert-danger' if danger %>">
       <% presences[start].each do |w| %>  
-        <% other_cs = w[:conference_session] unless other_cs %>  
         <span class="badge"><%= w[:what] %></span> 
         <strong><%= l start %></strong>
         <small><%= link_to w[:conference_session], w[:conference_session], remote: true %></small>
-        <%= big_icon('exclamation-triangle') if (other_cs && other_cs != w[:conference_session]) %>  
         <small>(<%= w[:where] %>)</small>
         <br/>
       <% end %>
