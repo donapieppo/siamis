@@ -38,7 +38,7 @@ class PrintableProgram < Prawn::Document
     # 2 = ---
     organizers = []
     schedule.each do |s| 
-      organizers << s.conference_session.organizers.map(&:to_s)
+      organizers << s.conference_session.organizers.includes(:user).map(&:to_s)
     end
 
     while organizers.flatten.compact.any?
