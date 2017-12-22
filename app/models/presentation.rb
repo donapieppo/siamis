@@ -18,11 +18,13 @@ class Presentation < ApplicationRecord
   scope :at_minisymposium, -> { left_outer_joins(:conference_session).where.not(conference_session_id: nil).where('conference_sessions.type = "Minisymposium"').references(:conference_session) }
   scope :at_minitutorial,  -> { left_outer_joins(:conference_session).where.not(conference_session_id: nil).where('conference_sessions.type = "Minitutorial"').references(:conference_session) }
   scope :at_plenary,       -> { left_outer_joins(:conference_session).where.not(conference_session_id: nil).where('conference_sessions.type = "Plenary"').references(:conference_session) }
-  scope :at_contributed,   -> { left_outer_joins(:conference_session).where('presentations.conference_session_id IS NULL or conference_sessions.type = "ContributedSession"').references(:conference_session) }
+  scope :at_contributed,   -> { not_poster.left_outer_joins(:conference_session).where('presentations.conference_session_id IS NULL or conference_sessions.type = "ContributedSession"') }
+  scope :at_poster,        -> { poster.left_outer_joins(:conference_session).where('presentations.conference_session_id IS NULL or conference_sessions.type = "PosterSession"') }
 
   scope :unassigned,       -> { where(conference_session_id: nil) }
-  scope :poster,           -> { where.not(poster: nil) }
-  scope :not_poster,       -> { where(poster: nil) }
+
+  scope :poster,           -> { where(poster: 1) }
+  scope :not_poster,       -> { where(poster: 0) }
 
   scope :submitted,        -> { unassigned.where(accepted: nil) }
   scope :accepted,         -> { where(accepted: true) }

@@ -31,16 +31,12 @@ class SubmissionsController < ApplicationController
       end
     elsif @position = params[:contributed]
       @title = 'Presentations'
-      @list = Presentation.includes(:conference_session, ratings: :user, authors: :user)
-                          .unassigned
-                          .not_poster 
+      @list = Presentation.at_contributed.includes(:conference_session, ratings: :user, authors: :user)
       @my_ratings = current_user.ratings.select(:presentation_id).pluck(:presentation_id)
     else
       @title = 'Posters'
       @position = params[:poster] || 0
-      @list = Presentation.includes(:conference_session, ratings: :user, authors: :user)
-                          .unassigned
-                          .poster 
+      @list = Presentation.at_poster.includes(:conference_session, ratings: :user, authors: :user)
       @my_ratings = current_user.ratings.select(:presentation_id).pluck(:presentation_id)
     end
   end
