@@ -8,7 +8,7 @@
 
     <% presences.keys.sort.each do |start| %>
       <% danger = (presences[start].size > 1 and presences[start].map {|w| w[:conference_session]}.uniq.size > 1) %>
-      <dd class="<%= 'alert alert-danger' if danger %>">
+      <dd class="<%= 'alert-danger' if danger %>">
       <% presences[start].each do |w| %>  
         <span class="badge"><%= w[:what] %></span> 
         <strong><%= l start %></strong>
