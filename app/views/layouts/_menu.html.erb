@@ -95,13 +95,13 @@
             <li class="divider"></li>
             <li class="dropdown-header">Program</li>
             <%= menu_link 'file-pdf-o',  'Printable program', print_conference_program_path %>
+            <%= menu_link 'calendar', 'User Schedules', schedules_users_path %>
             <li class="divider"></li>
             <li class="dropdown-header">Users</li>
             <%= menu_link 'users', 'Users', users_path %>
             <%= menu_link 'bullhorn', 'speakers csv', users_path(format: :csv, speakers: true) %>
             <%= menu_link 'euro', 'Registrations', conference_registrations_path %>
             <%= menu_link 'file', 'Invitation Letter Requests', invitation_letters_path %>
-            <%= menu_link 'calendar', 'Schedules', schedules_users_path %>
             <%= menu_link 'envelope', 'Mailing lists', mailing_lists_users_path %>
             <li class="divider"></li>
             <li class="dropdown-header">Locations</li>
