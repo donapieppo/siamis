@@ -52,7 +52,7 @@ class PrintableProgram < Prawn::Document
 
     speakers = []
     schedule.each do |s| 
-      speakers << s.conference_session.speakers.map(&:to_s)
+      speakers << s.conference_session.speakers(s.part).map(&:to_s)
     end
 
     while speakers.flatten.compact.any?
