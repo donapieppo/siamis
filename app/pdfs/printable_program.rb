@@ -37,28 +37,34 @@ class PrintableProgram < Prawn::Document
     # 1 = --
     # 2 = ---
     organizers = []
+    max = 0
     schedule.each do |s| 
-      organizers << s.conference_session.organizers.includes(:user).map(&:to_s)
+      session_organizers = s.conference_session.organizers.includes(:user).map(&:to_s)
+      max = session_organizers.size if max < session_organizers.size
+      organizers << session_organizers
     end
 
-    while organizers.flatten.compact.any?
+    (0 ... max).each do |i|
       res2 = []
       organizers.each do |line|
-        res2 << line.pop
+        res2 << line[i]
       end
       colors << "99c24d"
       res << res2
     end 
 
     speakers = []
+    max = 0 
     schedule.each do |s| 
-      speakers << s.conference_session.speakers(s.part).map(&:to_s)
+      session_speakers = s.conference_session.speakers(s.part).map(&:to_s)
+      max = session_speakers.size if max < session_speakers.size
+      speakers << session_speakers
     end
 
-    while speakers.flatten.compact.any?
+    (0 ... max).each do |i|
       res2 = []
       speakers.each do |line|
-        res2 << line.pop
+        res2 << line[i]
       end
       colors << "e4e6c3"
       res << res2
