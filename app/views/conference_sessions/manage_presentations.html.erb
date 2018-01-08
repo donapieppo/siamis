@@ -16,7 +16,7 @@
           <% end %>
 
           <%= select_tag "order[#{presentation.id}][part]",   options_for_select(parts_list, presentation.part), hidden: (@parts_number < 2) %>
-          <%= select_tag "order[#{presentation.id}][number]", options_for_select(1..6, presentation.number) %>
+          <%= select_tag "order[#{presentation.id}][number]", options_for_select(1..7, presentation.number) %>
 
           <%= link_to presentation, presentation %> -
           <small><%= show_role(presentation.speaker, no_affiliation: true) %></small>
