@@ -15,10 +15,6 @@ class Role < ApplicationRecord
     self.conference_session || self.presentation
   end
 
-  def email
-    self.user.email
-  end
-
   private
 
   def validate_if_has_already_same_role
