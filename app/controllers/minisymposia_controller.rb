@@ -7,7 +7,7 @@ class MinisymposiaController < ConferenceSessionsController
   def index
     @conference_sessions = if Date.today > Deadline.minisymposium_acceptance_end
                       # Minisymposium.includes(:schedules, [organizers: :user]).accepted.order(:name)
-                      Minisymposium.accepted.order(:name)
+                      Minisymposium.accepted.order(:number, :name)
                     else
                       []
                     end
