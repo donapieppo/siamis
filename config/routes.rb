@@ -146,4 +146,10 @@ Rails.application.routes.draw do
   get 'stop_impersonating', to: 'impersonations#stop_impersonating', as: :stop_impersonating
 
   get 'stats/countries', to: 'stats#countries', as: :countries_stats
+
+  get 'latex',              to: 'latex#index',        as: :latex
+  get 'latex/plearies',     to: 'latex#plenaries',    as: :plenaries_latex
+  get 'latex/minisymposia', to: 'latex#minisymposia', as: :minisymposia_latex
+  get 'latex/contributed',  to: 'latex#contributed',  as: :contributed_latex
+  get 'latex/poster',       to: 'latex#poster',       as: :poster_latex
 end
