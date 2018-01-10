@@ -1,0 +1,30 @@
+%----------------INVITED PLENARY PRESENTATIONS
+
+\chapter*{Invited Plenary Speakers and Biography}
+\addcontentsline{toc}{section}{Invited Plenary Speakers and Biography}
+{\small{Invited Plenary Presentations  IP1 and IP2 on Tuesday, June 5, will take place in Aula Santa Lucia, while the other Invited Presentation will take place in Building A, Rooms A and B in via Belmeloro 14}}
+%\vspace{2cm}
+
+<% @plenaries.each do |plenary| %>
+
+\newpage\vspace{2cm}
+\begin{center}{\Large{
+      Tuesday, June 5, 9:45 AM - 10:30 AM \\
+      \textbf{<%= raw latex_text_clean plenary.name%>}\\
+      <%= raw plenary.speaker %>  
+}}
+\end{center}
+\vspace{1cm}
+
+\begin{wrapfloat}{figure}{o}{0pt}
+  \includegraphics[width=0.33\textwidth]{{images/speakers/<%= plenary.speaker.user.email %>}.jpg}
+\end{wrapfloat}
+
+<%= raw latex_text_clean plenary.speaker.user.biography %>  
+\\\\
+
+\textbf{Abstract:}\\
+
+<%= raw latex_text_clean plenary.description %>  
+
+<% end %>
