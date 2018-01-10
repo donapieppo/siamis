@@ -147,9 +147,10 @@ Rails.application.routes.draw do
 
   get 'stats/countries', to: 'stats#countries', as: :countries_stats
 
-  get 'latex',              to: 'latex#index',        as: :latex
-  get 'latex/plearies',     to: 'latex#plenaries',    as: :plenaries_latex
-  get 'latex/minisymposia', to: 'latex#minisymposia', as: :minisymposia_latex
-  get 'latex/contributed',  to: 'latex#contributed',  as: :contributed_latex
-  get 'latex/poster',       to: 'latex#poster',       as: :poster_latex
+  get 'latex',               to: 'latex#index',         as: :latex
+  get 'latex/plearies',      to: 'latex#plenaries',     as: :plenaries_latex
+  get 'latex/minitutorials', to: 'latex#minitutorials', as: :minitutorials_latex
+  get 'latex/minisymposia',  to: 'latex#minisymposia',  as: :minisymposia_latex
+  get 'latex/contributed',   to: 'latex#contributed',   as: :contributed_latex
+  get 'latex/poster',        to: 'latex#poster',        as: :poster_latex
 end
