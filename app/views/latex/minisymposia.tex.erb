@@ -8,11 +8,11 @@
 
 \begin{multicols}{2}
 
-<% Minisymposium.order(:number).includes(:presentations).limit(30).each do |ms| %>
+<% @minisymposia.each do |ms| %>
   <% ms.presentations.each do |presentation| %>  
     \noindent\textbf{<%= ms.code %> Part <%= presentation.part %>}\\
 \\  
-    \textit{<%= raw presentation.abstract.chomp.gsub(/^\s*[\r\n]$/, '\\').gsub('_', '\_').gsub('&') {'\\&'} %>}\\
+    \textit{<%= raw latex_text_clean presentation.abstract %>}\\
 \\ 
   <% speaker = presentation.speaker or next %>  
     \myaut{<%= raw (user = speaker.user).cn %>}\\
