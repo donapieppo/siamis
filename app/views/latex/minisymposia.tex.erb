@@ -1,22 +1,14 @@
-%----------------------------------------------------------------------------------------
-%	PART III: Abstracts
-%----------------------------------------------------------------------------------------
-
-\part{Abstracts}
-
-\chapter*{Abstracts of Minysimposia Talks}
-
 \begin{multicols}{2}
-
-<% @minisymposia.each do |ms| %>
-  <% ms.presentations.each do |presentation| %>  
-    \noindent\textbf{<%= ms.code %> Part <%= presentation.part %>}\\
+<% @conference_sessions.each do |cs| %>
+  <% cs.presentations.each do |presentation| %>  
+    \noindent\textbf{<%= cs.code %> Part <%= presentation.part %>}\\
 \\  
     \textit{<%= raw latex_text_clean presentation.abstract %>}\\
 \\ 
-  <% speaker = presentation.speaker or next %>  
-    \myaut{<%= raw (user = speaker.user).cn %>}\\
-    \mail{<%= raw user.email.gsub('_', '\_') %>}\\\\
+    <% presentation.authors.each do |author| %>  
+      \myaut{<%= raw (user = author.user).cn %>}\\
+      \mail{<%= raw user.email.gsub('_', '\_') %>}\\\\
+    <% end %>
   <% end %>
 <% end %>
 \end{multicols}

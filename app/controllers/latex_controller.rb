@@ -1,4 +1,5 @@
 class LatexController < ApplicationController
+  before_action :user_in_organizer_committee!
 
   def index
   end
@@ -12,7 +13,14 @@ class LatexController < ApplicationController
   end
 
   def minisymposia
-    @minisymposia = Minisymposium.order(:number).includes(:presentations).limit(20)
+    @conference_sessions = Minisymposium.order(:number).includes(:presentations).limit(20)
   end
 
+  def contributed
+    @conference_sessions = ContributedSession.order(:number).includes(:presentations).limit(20)
+    render action: :minisymposia
+  end
+
+  def posters
+  end
 end
