@@ -1,17 +1,20 @@
 <% @conference_sessions.each do |cs| %>
   \noindent\textbf{<%= cs.code %> <%= raw latex_text_clean cs.name %>}\\
+  <% cs.schedules.order(:start).each do |schedule| %>
+    <%= schedule %>  \\
+  <% end %>
   \textit{<%= raw latex_text_clean cs.description %>} \\
     
   \begin{multicols}{2}
-    <% cs.presentations.each do |presentation| %>  
-      \textit{<%= raw latex_text_clean presentation.abstract %>}\\
+  <% cs.presentations.each do |presentation| %>  
+    \textit{<%= raw latex_text_clean presentation.abstract %>}\\
 \\ 
-      <% presentation.authors.each do |author| %>  
-        \myaut{<%= '* ' if author.speak %>  <%= raw (user = author.user).cn %>}\\
-        \mail{<%= raw user.email.gsub('_', '\_') %>}\\\\
-        <% end %>
+    <% presentation.authors.each do |author| %>  
+      \myaut{<%= '* ' if author.speak %>  <%= raw (user = author.user).cn %>}\\
+      \mail{<%= raw user.email.gsub('_', '\_') %>}\\\\
+    <% end %>
 \\
   <% end %>
-\end{multicols}
+  \end{multicols}
 <% end %>
 
