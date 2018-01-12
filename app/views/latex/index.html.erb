@@ -3,9 +3,14 @@
 <ul>
 <li><%= link_to 'Plenary latex', plenaries_latex_path(format: :tex) %></li>
 <li><%= link_to 'Minitutorials latex', minitutorials_latex_path(format: :tex) %></li>
-<li><%= link_to 'Minisymposia latex', minisymposia_latex_path(format: :tex) %></li>
-<li><%= link_to 'Contributed latex', contributed_latex_path(format: :tex) %></li>
-<li><%= link_to 'Poster latex', poster_latex_path(format: :tex) %></li>
+
+<!-- ordinato per numero -->
+<li><%= link_to 'Minisymposia (abstracts) latex', minisymposia_latex_path(format: :tex) %></li>
+<li><%= link_to 'Contributed (abstracts) latex', contributed_latex_path(format: :tex) %></li>
+<li><%= link_to 'Poster (abstracts) latex', posters_latex_path(format: :tex) %></li>
+
+<!-- ordinato per schedule -->
+<li><%= link_to 'Program latex', posters_latex_path(format: :tex) %></li>
 </ul>
 
 <p class="alert alert-success">
