@@ -1,0 +1,15 @@
+\begin{multicols}{2}
+<% @posters.each do |cs| %>
+  <% cs.presentations.each do |presentation| %>  
+    \noindent\textbf{<%= cs.code %> Part <%= presentation.part %>}\\
+\\  
+    \textit{<%= raw latex_text_clean presentation.abstract %>}\\
+\\ 
+    <% presentation.authors.each do |author| %>  
+      \myaut{<%= raw (user = author.user).cn %>}\\
+      \mail{<%= raw user.email.gsub('_', '\_') %>}\\\\
+    <% end %>
+  <% end %>
+<% end %>
+\end{multicols}
+
