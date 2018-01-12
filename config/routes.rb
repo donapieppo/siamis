@@ -153,4 +153,5 @@ Rails.application.routes.draw do
   get 'latex/minisymposia',  to: 'latex#minisymposia',  as: :minisymposia_latex
   get 'latex/contributed',   to: 'latex#contributed',   as: :contributed_latex
   get 'latex/posters',       to: 'latex#posters',       as: :posters_latex
+  get 'latex/program',       to: 'latex#program',       as: :program_latex
 end
