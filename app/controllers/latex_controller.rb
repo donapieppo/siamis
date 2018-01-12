@@ -24,4 +24,7 @@ class LatexController < ApplicationController
   def posters
     @posters = PosterSession.order(:number).includes(:presentations).limit(20)
   end
+
+  def program
+  end
 end
