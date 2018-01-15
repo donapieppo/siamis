@@ -1,4 +1,4 @@
-\documentclass[9pt, a4paper]{book}
+\documentclass[10pt, a4paper]{book}
 \renewcommand\familydefault{\sfdefault}
 
 \input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
@@ -23,7 +23,7 @@
 \coordinate [below=12cm] (midpoint) at (current page.north);
 \node at (current page.north west)
 {\begin{tikzpicture}[remember picture,overlay]
-\node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{images/nettuni.png}}; % Background
+\node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{images/nettuni_small}}; % Background
 \draw[anchor=north] (midpoint) node [fill=myblue!30!white,fill opacity=0.6,text opacity=1,inner sep=1cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering SIAM Conference on IMAGING SCIENCE\\ Program and Abstracts\\[15pt] % Book title
 {\Large June 5-8, 2018}\\[20pt] % Subtitle
 {\huge University of Bologna, Italy}}}; % Author name
@@ -43,7 +43,7 @@
 %\usechapterimagefalse % If you don't want to include a chapter image, use this to toggle images off - it can be enabled later with 
 \usechapterimagetrue
 
-\chapterimage{images/nettuni} % Table of contents heading image
+\chapterimage{images/nettuni_small} % Table of contents heading image
 
 \pagestyle{empty} % No headers
 
@@ -64,18 +64,16 @@
 
 %----------------INVITED PLENARY PRESENTATIONS
 
-\chapter*{Invited Plenary Speakers and Biography}
-\addcontentsline{toc}{section}{Invited Plenary Speakers and Biography}
-{\small{Invited Plenary Presentations  IP1 and IP2 on Tuesday, June 5, will take place in Aula Santa Lucia, while the other Invited Presentation will take place in Building A, Rooms A and B in via Belmeloro 14}}
-%\vspace{2cm}
-
+\chapter*{Plenary Talks and Biography}
+\addcontentsline{toc}{section}{Plenary Talks and Biography}
 \include{plenaries}
+
+
 
 %--------------MINITUTORIALS
 \newpage
-\section*{Minitutorials}
-\addcontentsline{toc}{section}{Minitutorials}
-
+\chapter*{Minitutorials and Biography}
+\addcontentsline{toc}{section}{Minitutorials and Biography}
 \include{minitutorials}
 
 %----------------PROGRAM SCHEDULE 1
@@ -111,113 +109,28 @@
 \part{Program}
 
 
-%%----------------PROGRAM SCHEDULE 2
-%\newpage 
-%\section*{SIAM IS18 PROGRAM-2}
-%\addcontentsline{toc}{section}{Program Schedule-2}
-%\newpage
-%
-%\begin{tabular}{|c|p{6.5cm}|l|}
-%\hline
-%\multicolumn{3}{|l|}{}\\
-%\multicolumn{3}{|l|}{\textbf{\Large{Tuesday, 5th}}}\\
-%\multicolumn{3}{|l|}{}\\\hline
-%& &\\TIME & & ROOM\\& &\\\hline & &\\
-%8:00 AM - 12:00 PM & Registration & Belmeloro1\\& &\\
-%9:30 AM - 10:00 AM & Welcoming Remarks & Aula Absidale Santa Lucia \\& &\\
-%10:00 AM - 10:45 AM & \bf{Plenary session IP1} & Aula Absidale Santa Lucia\\& \bf{Who:} a very long title&\\& &\\
-%10:45 AM - 11:30 AM & \bf{Plenary session IP2} & Aula Absidale Santa Lucia\\& \bf{Who:} a very very long and interesting title&\\& &\\
-%12:30 PM & Lunch & Belmeloro \\& &\\
-%14:00 PM - 16:00 PM & MS session 1 &  \\& &\\
-%16:00 PM - 16:30 PM & Coffee break &  \\& &\\
-%16:30 PM - 18:30 PM & MS session 2 &  \\& &\\
-%
-%\hline
-%\end{tabular}
-%
-%\newpage
-%\begin{tabular}{|p{12.5cm}|l|}
-%\hline
-%\multicolumn{2}{|l|}{}\\
-%\multicolumn{2}{|l|}{\textbf{\Large{Tuesday, 5th}}}\\
-%\multicolumn{2}{|l|}{}\\\hline
-% &\\ LIST OF MS SESSION 1  14:00 PM - 16:00 PM & ROOM\\ &\\\hline  &\\
-% MS1 Inversion of Non-linear Image Formation Models (Part I of II)  & Belmeloro A \\
-% Organizers: bla bla bla & \\ &\\
-% 
-%  MS2 Recent Advances in Convex Relaxations (Part I of II)  & Belmeloro B \\
-% Organizers: bla bla bla & \\ &\\
-% 
-%  MS3 Recent Advances in Dictionary Learning (Part I of II)  & Belmeloro C \\
-% Organizers: bla bla bla & \\ &\\
-% 
-%  MS4 Statistical Methods for Inverse Problems Involving Partial Differential Equations & Belmeloro D \\
-% Organizers: bla bla bla & \\ &\\
-% 
-%  MS5 Multi-Modality Imagining and Structural Priors (Part I of II)  & Belmeloro E \\
-% Organizers: bla bla bla & \\ &\\
-% 
-%  MS6 Image Segmentation, Classification and Application (Part I of II)  & Belmeloro F \\
-% Organizers: bla bla bla & \\ &\\
-% 
-%  MS7 Computational Metods for Inverse Problems in Imagining  & Belmeloro G \\
-% Organizers: bla bla bla & \\ &\\
-% 
-%  MS8 Non-Gaussian Noise: New Trends and Challenges (Part I of II)  & Belmeloro H \\
-% Organizers: bla bla bla & \\ &\\
-%  MS9 Efficient Algorithms for Large-scale Inverse Problems in Medical Imagining (Part I of II)  & Belmeloro I \\
-% Organizers: bla bla bla & \\ &\\
-%  MS10 Image Analysis Advances in Dynamic Microscopy and Live Cell Imaging (Part I of II)  & Belmeloro J \\
-% Organizers: bla bla bla & \\ &\\
-% \hline
-%
-% \end{tabular}
-% 
-% \begin{tabular}{|p{12.5cm}|l|}
-%\hline
-%\multicolumn{2}{|l|}{}\\
-%\multicolumn{2}{|l|}{\textbf{\Large{Tuesday, 5th}}}\\
-%\multicolumn{2}{|l|}{}\\\hline
-% &\\ LIST OF MS SESSION 32  16:00 PM - 18:00 PM & ROOM\\ &\\\hline  &\\
-% MS11 Inversion of Non-linear Image Formation Models (Part I of II)  & Belmeloro A \\
-% Organizers: bla bla bla & \\ &\\
-% 
-%  MS12 Recent Advances in Convex Relaxations (Part I of II)  & Belmeloro B \\
-% Organizers: bla bla bla & \\ &\\
-% 
-%  MS13 Recent Advances in Dictionary Learning (Part I of II)  & Belmeloro C \\
-% Organizers: bla bla bla & \\ &\\
-% 
-%  MS14 Statistical Methods for Inverse Problems Involving Partial Differential Equations & Belmeloro D \\
-% Organizers: bla bla bla & \\ &\\
-% 
-%  MS15 Multi-Modality Imagining and Structural Priors (Part I of II)  & Belmeloro E \\
-% Organizers: bla bla bla & \\ &\\
-% 
-%  MS16 Image Segmentation, Classification and Application (Part I of II)  & Belmeloro F \\
-% Organizers: bla bla bla & \\ &\\
-% 
-%  MS17 Computational Metods for Inverse Problems in Imagining  & Belmeloro G \\
-% Organizers: bla bla bla & \\ &\\
-% 
-%  MS18 Non-Gaussian Noise: New Trends and Challenges (Part I of II)  & Belmeloro H \\
-% Organizers: bla bla bla & \\ &\\
-%  MS19 Efficient Algorithms for Large-scale Inverse Problems in Medical Imagining (Part I of II)  & Belmeloro I \\
-% Organizers: bla bla bla & \\ &\\
-%  MS20 Image Analysis Advances in Dynamic Microscopy and Live Cell Imaging (Part I of II)  & Belmeloro J \\
-% Organizers: bla bla bla & \\ &\\
-% \hline
-%
-% \end{tabular}
 
+
+%----------------------------------------------------------------------------------------
+%	PART III: ABSTRACTS
+%----------------------------------------------------------------------------------------
 \part{Abstracts}
-\chapter*{Abstracts of Minysimposia Talks}
 
+\chapter*{Minisymposia Presentations Abstracts}
+\addcontentsline{toc}{section}{Minysimposia Presentations Abstracts}
 \include{minisyposia}
 
-\chapter*{Abstracts of Contributed Talks}
-\include{contributed}
+\chapter*{Contributed Presentations Abstracts}
+\addcontentsline{toc}{section}{Contributed Presentations Abstracts}
 
+\chapter*{Posters Abstracts}
+\addcontentsline{toc}{section}{Posters Abstracts}
+
+
+%----------------------------------------------------------------------------------------
+%	PART IV: NOTES
+%----------------------------------------------------------------------------------------
+\part{Notes}
 \newpage
 \thispagestyle{empty}
 \includegraphics[scale=0.6]{program_table.pdf}
