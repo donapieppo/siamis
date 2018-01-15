@@ -1,5 +1,6 @@
 class LatexController < ApplicationController
-  before_action :user_in_organizer_committee!
+  # before_action :user_in_organizer_committee!
+  skip_before_action :authenticate_user!
 
   def index
   end
