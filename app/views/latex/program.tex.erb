@@ -1,3 +1,44 @@
+<% Schedule.conference_days_array.each do |day| %>
+----------------------------- \\
+\noindent\textbf{<%= l day %>}\\
+----------------------------- \\
+
+<% Schedule.day_program(day).limit(8).each do |schedule| %>
+  <% cs = schedule.conference_session %> 
+
+  \medskip
+  \noindent\textsf{\Large <%= l schedule.start, format: :day %> }\\
+  \medskip
+  \noindent\textbf{\LARGE <%= cs.code %> 
+  <% if schedule.part > 1 %>  
+    \large - Part <%= schedule.part %> of <%= cs.parts %>  
+  <% end %>
+  } \\
+  \medskip
+  Room: <%= schedule.room %> 
+  \medskip
+
+  \noindent\textbf{\large <%= raw latex_text_clean cs.name %>} \\
+  \noindent{<%= raw latex_text_clean cs.description %>} \\
+
+  \noindent{<%= cs.organizers_label %>: }
+  <% cs.organizers.each do |o| %>  
+    <%= raw latex_text_clean o.user.cn %> {\small <%= raw latex_text_clean o.user.affiliation %>} 
+  <% end %>\\
+
+
+  <% next if cs.mono_session? %>  
+  \begin{multicols}{2}
+  <% schedule.presentations.order(:number).each do |presentation| %>  
+    \noindent\textbf{<%= raw latex_text_clean presentation.name %>} \\
+    <% presentation.authors.each do |author| %>  
+      <%= raw latex_text_clean author.to_s %> \\
+    <% end %> \\
+  <% end %>
+  \end{multicols}
+
+<% end %>
+<% end %>
 
 
 
