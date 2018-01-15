@@ -8,9 +8,18 @@
 <% Schedule.day_program(day).limit(8).each do |schedule| %>
   <% cs = schedule.conference_session %> 
 
-  \begin{mdframed}[style=program_event, frametitle={\Large <%= schedule.conference_session_code_with_part %> \\ \large <%= l schedule.start, format: :day %> Room: <%= schedule.room %>}]
+  \begin{mdframed}[style=program_event, 
+                   frametitle={\Large <%= schedule.conference_session_code_with_part %>
+
+                               \medskip \large <%= l schedule.start, format: :schedule %> 
+
+                               \medskip \normalsize Room: <%= schedule.room %>}]
 
   \medskip
+
+  \noindent\textbf{<%= raw latex_text_clean cs.name %>} 
+
+  \bigskip
 
   \noindent\textit{<%= raw latex_text_clean cs.description %>} 
 
@@ -20,13 +29,14 @@
   <% end %>\\
 
 
-  <% if ! cs.mono_session? %>  
+
   <% schedule.presentations.order(:number).each do |presentation| %>  
-    \noindent\textbf{<%= l(presentation.start, format: :hour) if presentation.start %>  <%= raw latex_text_clean presentation.name %>} \\
+    <% if ! cs.mono_session? %>  
+      \noindent\textbf{<%= l(presentation.start, format: :hour) if presentation.start %>  <%= raw latex_text_clean presentation.name %>} \\
+    <% end %>
     <% presentation.authors.each do |author| %>  
       \indent <%= raw latex_text_clean author.to_s %> \\
     <% end %> \\
-  <% end %>
   <% end %>
   \end{mdframed}
 
