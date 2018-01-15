@@ -63,5 +63,8 @@ class ConferenceSession < ApplicationRecord
     # Author.includes(:user).where(speak: true).where(presentation: self.presentations.order(:number).where(part: part || 1).ids)
   end
 
+  def mono_session?
+    false
+  end
 end
 

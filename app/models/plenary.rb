@@ -6,4 +6,7 @@ class Plenary < MonoConferenceSession
 
   alias chairs organizers
 
+  def mono_session?
+    true
+  end
 end
