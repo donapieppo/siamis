@@ -7,6 +7,7 @@
     
   \begin{multicols}{2}
   <% cs.presentations.each do |presentation| %>  
+    <%= raw latex_text_clean presentation.name %>\\
     \textit{<%= raw latex_text_clean presentation.abstract %>}\\
 \\ 
     <% presentation.authors.each do |author| %>  
