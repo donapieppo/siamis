@@ -29,6 +29,11 @@ class Schedule < ApplicationRecord
     (cs.parts > 1) ? "#{cs} [part #{self.part} of #{cs.parts}]" : cs.to_s
   end
 
+  def conference_session_code_with_part
+    cs = self.conference_session or return ""
+    (cs.parts > 1) ? "#{cs.code} [part #{self.part} of #{cs.parts}]" : cs.code
+  end
+
 
   # start from 0
   def self.conference_day(num)
@@ -96,5 +101,11 @@ class Schedule < ApplicationRecord
   def self.startings(day)
     Schedule.where('DATE_FORMAT(schedules.start, "%Y-%m-%d") = ?', day.strftime('%F'))
             .select(:start).map{|s| I18n.l(s.start, format: :hour)}.uniq.sort
+  end
+
+
+  def self.missing_presentations
+  end
+  def self.conference_sessions
   end
 end
