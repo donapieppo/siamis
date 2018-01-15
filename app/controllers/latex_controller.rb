@@ -13,16 +13,16 @@ class LatexController < ApplicationController
   end
 
   def minisymposia
-    @conference_sessions = Minisymposium.order(:number).includes(:presentations).limit(20)
+    @conference_sessions = Minisymposium.order(:number).includes(:presentations)
   end
 
   def contributed
-    @conference_sessions = ContributedSession.order(:number).includes(:presentations).limit(20)
+    @conference_sessions = ContributedSession.order(:number).includes(:presentations)
     render action: :minisymposia
   end
 
   def posters
-    @posters = PosterSession.order(:number).includes(:presentations).limit(20)
+    @posters = PosterSession.order(:number).includes(:presentations)
   end
 
   def program
