@@ -108,6 +108,16 @@ class Presentation < ApplicationRecord
     self.conference_session and self.conference_session.schedules.where(part: self.part).first
   end
 
+  def duration
+    self.conference_session.duration
+  end
+
+  def start 
+    if (_schedule = self.schedule) && self.number 
+      _schedule.start + (self.duration * self.number).minutes
+    end
+  end
+
   def notify_acceptance
     self.authors.each do |author|
       author.notify_acceptance(self)
