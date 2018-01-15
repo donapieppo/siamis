@@ -10,7 +10,7 @@
     \textit{<%= raw latex_text_clean presentation.abstract %>}\\
 \\ 
     <% presentation.authors.each do |author| %>  
-      \myaut{<%= '* ' if author.speak %>  <%= raw (user = author.user).cn %>}\\
+      \myaut{<%= '* ' if author.speak %>  <%= raw latex_text_clean (user = author.user).to_s %>}\\
       \mail{<%= raw user.email.gsub('_', '\_') %>}\\\\
     <% end %>
 \\
