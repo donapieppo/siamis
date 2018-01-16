@@ -5,7 +5,7 @@
   \par\noindent\rule{\textwidth}{0.4pt}
 \end{center}
 
-<% Schedule.day_program(day).limit(8).each do |schedule| %>
+<% Schedule.day_program(day).each do |schedule| %>
   <% cs = schedule.conference_session %> 
 
   \begin{mdframed}[style=program_event, 
@@ -21,14 +21,12 @@
 
   \bigskip
 
-  \noindent\textit{<%= raw latex_text_clean cs.description %>} 
+  \noindent\textit{<%= raw latex_text_clean cs.description %>} \\
 
   \noindent{<%= cs.organizers_label %>: }
   <% cs.organizers.each do |o| %>  
     <%= raw latex_text_clean o.user.cn %> {\small <%= raw latex_text_clean o.user.affiliation %>} 
   <% end %>\\
-
-
 
   <% schedule.presentations.order(:number).each do |presentation| %>  
     <% if ! cs.mono_session? %>  
