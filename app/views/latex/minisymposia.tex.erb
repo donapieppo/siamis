@@ -1,20 +1,30 @@
 <% @conference_sessions.each do |cs| %>
-  \noindent\textbf{<%= cs.code %> <%= raw latex_text_clean cs.name %>}\\
+  \noindent\textbf{<%= cs.code %> <%= raw latex_text_clean cs.name %>}
+
+  \begin{flushright}
   <% cs.schedules.order(:start).each do |schedule| %>
-    <%= schedule %>  \\
+    {\small <%= schedule %>}\\
   <% end %>
+  \end{flushright}
+
   \textit{<%= raw latex_text_clean cs.description %>} \\
     
   \begin{multicols}{2}
   <% cs.presentations.each do |presentation| %>  
-    <%= raw latex_text_clean presentation.name %>\\
-    \textit{<%= raw latex_text_clean presentation.abstract %>}\\
-\\ 
+    \noindent\textbf{<%= raw latex_text_clean presentation.name %>}
+
+    \smallskip
+
+    \textit{<%= raw latex_text_clean presentation.abstract %>}
+
+    \smallskip
+
     <% presentation.authors.each do |author| %>  
-      \myaut{<%= '* ' if author.speak %>  <%= raw latex_text_clean (user = author.user).to_s %>}\\
-      \mail{<%= raw user.email.gsub('_', '\_') %>}\\\\
+      \myaut{<%= '* ' if author.speak %>  <%= raw latex_text_clean (user = author.user).cn %>}\\
+      {\small <%= raw latex_text_clean user.affiliation %>} \\
+      \mail{<%= raw user.email.gsub('_', '\_') %>}\\
     <% end %>
-\\
+
   <% end %>
   \end{multicols}
 <% end %>
