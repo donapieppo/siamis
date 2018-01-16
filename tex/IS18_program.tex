@@ -2,16 +2,23 @@
 \renewcommand\familydefault{\sfdefault}
 
 \input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
+
 \usepackage{multicol}
 \usepackage{wrapfig}
-\newcommand{\mail}[1]{\href{mailto:#1}{\texttt{#1}}}
-\newcommand{\member}[2]{{\textbf{#1}\\}{#2}}
+\usepackage{mdframed}
+
+\setlength{\columnseprule}{0.4pt}
+\mdfdefinestyle{program_event}{leftmargin=1cm,rightmargin=2cm,innerleftmargin=1cm,innerrightmargin=1cm,roundcorner=10pt,frametitlerule=true,frametitlebackgroundcolor=yellow!70!white}
+
+\newcommand{\R}{\mathbb{R}} 
 \newcommand{\myaut}[1]{{\underline{#1}}}
 
 %\setlength{\columnseprule}{0.5pt}
-%\newcommand{\mail}[1]{\href{mailto:#1}{\texttt{#1}}}
-%\newcommand{\member}[2]{{\textbf{#1}\\}{#2}}
-%\newcommand{\myaut}[1]{{\underline{#1}}}
+\newcommand{\mail}[1]{\href{mailto:#1}{\texttt{#1}}}
+\newcommand{\member}[2]{{\textbf{#1}\\}{#2}}
+% \newcommand{\myaut}[1]{{\underline{#1}}}
+
+\DeclareUnicodeCharacter{3B1}{\ensuremath{\alpha}}
 
 \hyphenation{aspects}
 
@@ -69,7 +76,6 @@
 \include{plenaries}
 
 
-
 %--------------MINITUTORIALS
 \newpage
 \chapter*{Minitutorials and Biography}
@@ -108,9 +114,6 @@
 
 \part{Program}
 
-
-
-
 %----------------------------------------------------------------------------------------
 %	PART III: ABSTRACTS
 %----------------------------------------------------------------------------------------
@@ -118,14 +121,17 @@
 
 \chapter*{Minisymposia Presentations Abstracts}
 \addcontentsline{toc}{section}{Minysimposia Presentations Abstracts}
-\include{minisyposia}
+\include{minisymposia}
 
 \chapter*{Contributed Presentations Abstracts}
 \addcontentsline{toc}{section}{Contributed Presentations Abstracts}
+\include{contributed}
 
 \chapter*{Posters Abstracts}
 \addcontentsline{toc}{section}{Posters Abstracts}
+\include{posters}
 
+\include{program}
 
 %----------------------------------------------------------------------------------------
 %	PART IV: NOTES
