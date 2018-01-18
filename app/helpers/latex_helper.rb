@@ -4,5 +4,24 @@ module LatexHelper
     txt.chomp.gsub(/^\s*$[\r\n]+/, '').gsub('_', '\_').gsub('&') {'\\&'}.gsub('%', '\%')
   end
 
+  def latex_url_clean(txt)
+    txt.html_safe.gsub('_', '\_').gsub('%20', '\ ').gsub('#', '\#')
+  end
+
+  def latex_author(author)
+    user = author.user
+
+    cn = latex_text_clean user.cn
+    affiliation = latex_text_clean user.affiliation
+    
+    unless user.web_page.blank?
+      cn = "{\\href{#{latex_url_clean(user.web_page)}}{#{cn}}}"
+    end
+
+    affiliation = " - " if affiliation.blank?
+
+    "\\siamauthor{#{'* ' if author.speak} #{cn}}{#{affiliation}}".html_safe
+  end
+
 end
 
