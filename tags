@@ -161,6 +161,7 @@ common_actions	app/helpers/actions_helper.rb	/^  def common_actions(what)$/;"	f	
 conference_day	app/models/schedule.rb	/^  def self.conference_day(num)$/;"	F	class:Schedule
 conference_days_array	app/models/schedule.rb	/^  def self.conference_days_array$/;"	F	class:Schedule
 conference_home_title	app/helpers/home_helper.rb	/^  def conference_home_title$/;"	f	class:HomeHelper
+conference_session_code_with_part	app/models/schedule.rb	/^  def conference_session_code_with_part$/;"	f	class:Schedule
 conference_session_color	app/helpers/conference_helper.rb	/^  def conference_session_color(cs)$/;"	f
 conference_session_panel_class	app/helpers/conference_helper.rb	/^  def conference_session_panel_class(conference_session)$/;"	f
 conference_session_params	app/controllers/contributed_sessions_controller.rb	/^  def conference_session_params$/;"	f	class:ContributedSessionsController
@@ -173,6 +174,7 @@ conference_session_with_part	app/models/schedule.rb	/^  def conference_session_w
 conference_sessions	app/models/schedule.rb	/^  def self.conference_sessions$/;"	F	class:Schedule
 conference_start_date	app/models/deadline.rb	/^    def conference_start_date$/;"	f	class:Deadline
 contacts	app/controllers/home_controller.rb	/^  def contacts$/;"	f	class:HomeController
+contributed	app/controllers/latex_controller.rb	/^  def contributed$/;"	f	class:LatexController
 copy_user_data	app/models/payment.rb	/^  def copy_user_data$/;"	f	class:Payment
 countries	app/controllers/stats_controller.rb	/^  def countries$/;"	f	class:StatsController
 create	app/controllers/authors_controller.rb	/^  def create$/;"	f	class:AuthorsController
@@ -215,6 +217,7 @@ dl_field	app/helpers/application_helper.rb	/^  def dl_field(object, what)$/;"	f	
 dl_presentations	app/helpers/conference_helper.rb	/^  def dl_presentations(presentations)$/;"	f
 dropdown_menu	app/helpers/menu_helper.rb	/^  def dropdown_menu(title, &block)$/;"	f	class:MenuHelper
 duration	app/models/conference_session.rb	/^  def duration $/;"	f	class:ConferenceSession
+duration	app/models/presentation.rb	/^  def duration$/;"	f	class:Presentation
 edit	app/controllers/buildings_controller.rb	/^  def edit$/;"	f	class:BuildingsController
 edit	app/controllers/conference_sessions_controller.rb	/^  def edit$/;"	f	class:ConferenceSessionsController
 edit	app/controllers/invitation_letters_controller.rb	/^  def edit$/;"	f	class:InvitationLettersController
@@ -230,6 +233,7 @@ expected_payment_from_speakers_and_organizers	app/models/fee.rb	/^  def expected
 fee	app/models/user.rb	/^  def fee$/;"	f	class:User
 first_proposal_start	app/models/deadline.rb	/^    def first_proposal_start$/;"	f	class:Deadline
 floors	app/models/room.rb	/^  def self.floors$/;"	F	class:Room
+for_poster_sessions	app/models/schedule.rb	/^  def self.for_poster_sessions$/;"	F	class:Schedule
 fwicon	app/helpers/application_helper.rb	/^  def fwicon(name, options = { text: "", size: "18" })$/;"	f	class:ApplicationHelper
 get_presentation_and_check_permission	app/controllers/papers_controller.rb	/^  def get_presentation_and_check_permission$/;"	f	class:PapersController
 get_signature	app/models/unicredit.rb	/^  def get_signature(hash, keys) $/;"	f	class:Unicredit
@@ -285,7 +289,9 @@ input	app/inputs/schedule_hour_input.rb	/^  def input(wrapper_options)$/;"	f	cla
 interested_in?	app/models/user.rb	/^  def interested_in?(what)$/;"	f	class:User
 invitation_letter_params	app/controllers/invitation_letters_controller.rb	/^  def invitation_letter_params$/;"	f	class:InvitationLettersController
 last_proposal_end	app/models/deadline.rb	/^    def last_proposal_end$/;"	f	class:Deadline
+latex_author	app/helpers/latex_helper.rb	/^  def latex_author(author)$/;"	f	class:LatexHelper
 latex_text_clean	app/helpers/latex_helper.rb	/^  def latex_text_clean(txt)$/;"	f	class:LatexHelper
+latex_url_clean	app/helpers/latex_helper.rb	/^  def latex_url_clean(txt)$/;"	f	class:LatexHelper
 link_to_back	app/helpers/link_helper.rb	/^  def link_to_back url$/;"	f	class:LinkHelper
 link_to_delete	app/helpers/link_helper.rb	/^  def link_to_delete(name = "", url, button: false)$/;"	f	class:LinkHelper
 link_to_download	app/helpers/link_helper.rb	/^  def link_to_download(url)$/;"	f	class:LinkHelper
@@ -332,6 +338,9 @@ missing_affiliation	app/controllers/users_controller.rb	/^  def missing_affiliat
 missing_presentations	app/models/schedule.rb	/^  def self.missing_presentations$/;"	F	class:Schedule
 missing_presentations_alert	app/helpers/panels_helper.rb	/^  def missing_presentations_alert$/;"	f	class:PanelsHelper
 modify	app/models/interest.rb	/^  def self.modify!(user, what)$/;"	F	class:Interest
+mono_session?	app/models/conference_session.rb	/^  def mono_session?$/;"	f	class:ConferenceSession
+mono_session?	app/models/minitutorial.rb	/^  def mono_session?$/;"	f	class:Minitutorial
+mono_session?	app/models/plenary.rb	/^  def mono_session?$/;"	f	class:Plenary
 multiple_speakers	app/controllers/users_controller.rb	/^  def multiple_speakers$/;"	f	class:UsersController.schedules
 new	app/controllers/authors_controller.rb	/^  def new$/;"	f	class:AuthorsController
 new	app/controllers/buildings_controller.rb	/^  def new$/;"	f	class:BuildingsController
@@ -377,6 +386,7 @@ participants	app/controllers/home_controller.rb	/^  def participants$/;"	f	class
 photo_asset	app/models/user.rb	/^  def photo_asset$/;"	f	class:User
 plenaries	app/controllers/latex_controller.rb	/^  def plenaries$/;"	f	class:LatexController
 popover_help	app/helpers/application_helper.rb	/^  def popover_help(title, content)$/;"	f	class:ApplicationHelper
+posters	app/controllers/latex_controller.rb	/^  def posters$/;"	f	class:LatexController
 pre_registration_end	app/models/deadline.rb	/^    def pre_registration_end$/;"	f	class:Deadline
 pre_registration_start	app/models/deadline.rb	/^    def pre_registration_start$/;"	f	class:Deadline
 presentation_params	app/controllers/presentations_controller.rb	/^  def presentation_params$/;"	f	class:PresentationsController
@@ -395,6 +405,7 @@ privacy	app/controllers/home_controller.rb	/^  def privacy$/;"	f	class:HomeContr
 privacy_alert	app/helpers/privacy_helper.rb	/^  def privacy_alert$/;"	f	class:PrivacyHelper
 privacy_cookie_name	app/helpers/privacy_helper.rb	/^  def privacy_cookie_name$/;"	f	class:PrivacyHelper
 prize	app/controllers/home_controller.rb	/^  def prize$/;"	f	class:HomeController
+program	app/controllers/latex_controller.rb	/^  def program$/;"	f	class:LatexController
 program_title	app/helpers/conference_helper.rb	/^  def program_title(what, icon = nil)$/;"	f
 proposals_expired?	app/models/deadline.rb	/^    def proposals_expired?$/;"	f	class:Deadline
 raise_if_uncorrect	app/models/unicredit.rb	/^  def raise_if_uncorrect(res)$/;"	f	class:Unicredit
@@ -469,6 +480,7 @@ speakers	app/models/presentation.rb	/^  def speakers $/;"	f	class:Presentation
 speakers_to_s	app/models/presentation.rb	/^  def speakers_to_s$/;"	f	class:Presentation
 speaks_in	app/models/user.rb	/^  def speaks_in$/;"	f	class:User
 sponsor_div	app/helpers/sponsors_helper.rb	/^  def sponsor_div(name, url, image)$/;"	f	class:SponsorsHelper
+start	app/models/presentation.rb	/^  def start $/;"	f	class:Presentation
 start_day	app/models/schedule.rb	/^  def start_day$/;"	f	class:Schedule
 start_day_number	app/models/schedule.rb	/^  def start_day_number$/;"	f	class:Schedule
 start_hour	app/models/schedule.rb	/^  def start_hour$/;"	f	class:Schedule
