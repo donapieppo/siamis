@@ -1,1 +1,17 @@
-<%= render partial: 'conference_sessions/conference_session', locals: { conference_session: poster_session } %>  
+<% 
+  presentations = Presentation.at_poster.includes(authors: :user).order(:part, :number, :name).all
+%>  
+
+<div class="conference_session_panel">
+  <%= panel_heading(poster_session) %>  
+
+  <div class="panel-body">
+    <%= list_presentations(presentations, poster_session) %>
+  </div>
+
+  <div class="panel-footer footer-actions">
+    <%= panel_actions(poster_session) %>  
+  </div>
+</div>
+
+
