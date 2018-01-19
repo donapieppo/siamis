@@ -23,10 +23,13 @@ leftmargin=0cm,
 rightmargin=0cm,
 linewidth=4pt]{siamtitle}	
 
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{gray}}
+
 \newcommand{\mail}[1]{\href{mailto:#1}{\texttt{#1}}}
 \newcommand{\member}[2]{{\textbf{#1}\\}{#2}}
 
-\newcommand{\siamsessiontitle}[2]{\newpage\begin{siamtitle}\noindent\large{\textbf{{#1} - {#2}}}\end{siamtitle}}
+\newcommand{\siamsessiontitle}[2]{\newpage\begin{siamtitle}\noindent{\large{\textbf{{#1}  {#2}}}}\end{siamtitle}}
 \newcommand{\siamschedule}[3]{{\contentslabel[\colorbox{blue!30}{\large{\textbf{#1}}}]{2cm}}{\textbf{#2}\\\indent{#3}\medskip}}
 %\newcommand{\siamschedule}[3]{{\marginnote{#1}[2cm]}\noindent\textbf{#2}\\ {#3}\medskip}
 \newcommand{\siampresentationtitle}[1]{\noindent\textbf{#1}}
