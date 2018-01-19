@@ -1,0 +1,43 @@
+%\usepackage[9pt]{extsizes}
+
+\usepackage[utf8]{inputenc} % Required for including letters with accents
+\usepackage{multicol}
+
+\usepackage{marginnote}
+
+\usepackage{wrapfig}
+
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+backgroundcolor=ocre!10,
+linecolor=ocre,
+innerleftmargin=8pt,
+innerrightmargin=8pt,
+innertopmargin=8pt,
+innerbottommargin=8pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt]{siamtitle}	
+
+\newcommand{\mail}[1]{\href{mailto:#1}{\texttt{#1}}}
+\newcommand{\member}[2]{{\textbf{#1}\\}{#2}}
+
+\newcommand{\siamsessiontitle}[2]{\newpage\begin{siamtitle}\noindent\large{\textbf{{#1} - {#2}}}\end{siamtitle}}
+\newcommand{\siamschedule}[3]{{\contentslabel[\colorbox{blue!30}{\large{\textbf{#1}}}]{2cm}}{\textbf{#2}\\\indent{#3}\medskip}}
+%\newcommand{\siamschedule}[3]{{\marginnote{#1}[2cm]}\noindent\textbf{#2}\\ {#3}\medskip}
+\newcommand{\siampresentationtitle}[1]{\noindent\textbf{#1}}
+\newcommand{\siampresentationabstract}[1]{\noindent{#1}}
+
+\newcommand{\siamauthor}[2]{{\color{blue}{{#1}}}\\\textit{#2}}
+
+\newcommand{\siamscheduleday}[1]{\newpage\begin{center}\noindent\textbf{\large{#1}}\par\noindent\rule{\textwidth}{0.4pt}\end{center}}
+
+\DeclareUnicodeCharacter{3B1}{\ensuremath{\alpha}}
+
+\newcommand{\R}{\mathbb{R}} 
+
+
