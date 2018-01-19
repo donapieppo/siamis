@@ -3,7 +3,7 @@ class Schedule < ApplicationRecord
   belongs_to :room
 
   def presentations
-    self.conference_session.presentations.where(part: self.part)
+    self.conference_session.presentations.where(part: self.part).order(:number)
   end
 
   def to_s
@@ -26,14 +26,8 @@ class Schedule < ApplicationRecord
 
   def conference_session_with_part
     cs = self.conference_session or return ""
-    (cs.parts > 1) ? "#{cs} [part #{self.part} of #{cs.parts}]" : cs.to_s
+    (cs.parts > 1) ? "#{cs.to_s_with_part(self.part)} [part #{self.part} of #{cs.parts}]" : cs.to_s
   end
-
-  def conference_session_code_with_part
-    cs = self.conference_session or return ""
-    (cs.parts > 1) ? "#{cs.code} [part #{self.part} of #{cs.parts}]" : cs.code
-  end
-
 
   # start from 0
   def self.conference_day(num)
@@ -108,4 +102,10 @@ class Schedule < ApplicationRecord
   end
   def self.conference_sessions
   end
+
+  # FIXME to rethink
+  def self.for_poster_sessions
+    PosterSession.all.map(&:schedules).flatten
+  end
+
 end
