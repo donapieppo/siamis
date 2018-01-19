@@ -11,14 +11,13 @@
 
   \siamsessionabstract{<%= raw latex_text_clean cs.description %>}
 
-  \begin{flushright}
-  \noindent\textbf{<%= cs.organizers_label %>: }
+  \begin{organizers}
   <% cs.organizers.each do |o| %>  
     <%= raw latex_text_clean o.user.cn %> {\small{(<%= raw latex_text_clean o.user.affiliation %>)}} \\
   <% end %>
-  \end{flushright}
+  \end{organizers}
 
-  \begin{multicols}{2}
+  \begin{presentation_list}
   <% schedule.presentations.order(:number).each do |presentation| %>  
     <% if ! cs.mono_session? %>  
       \noindent\textbf{<%= l(presentation.start, format: :hour) if presentation.start %>  <%= raw latex_text_clean presentation.name %>} 
@@ -32,7 +31,7 @@
     <% end %> 
     \end{flushright}
   <% end %>
-  \end{multicols}
+  \end{presentation_list}
 
 <% end %>
 <% end %>
