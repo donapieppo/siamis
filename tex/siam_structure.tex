@@ -29,7 +29,9 @@ linewidth=4pt]{siamtitle}
 \newcommand{\mail}[1]{\href{mailto:#1}{\texttt{#1}}}
 \newcommand{\member}[2]{{\textbf{#1}\\}{#2}}
 
+% with new page
 \newcommand{\siamsessiontitle}[2]{\newpage\begin{siamtitle}\noindent{\large{\textbf{{#1}  {#2}}}}\end{siamtitle}}
+%\newcommand{\siamsessiontitle}[2]{\newpage\begin{siamtitle}\noindent{\large{\textbf{{#1}  {#2}}}}\end{siamtitle}}
 \newcommand{\siamsessiondate}[1]{\noindent\textbf{#1}\\}
 \newcommand{\siamsessionroom}[1]{\noindent\textbf{#1}}
 \newcommand{\siamsessionabstract}[1]{\medskip{#1} \medskip}
@@ -45,7 +47,12 @@ linewidth=4pt]{siamtitle}
 \newcommand{\siamscheduleday}[1]{\newpage\begin{center}\noindent\textbf{\large{#1}}\par\noindent\rule{\textwidth}{0.4pt}\end{center}}
 
 \newenvironment{organizers}{\begin{flushright}\textbf{Organizers:} \\}{\end{flushright}}
+
+%\newenvironment{siamsessions}{\begin{multicols}{2}}{\end{multicols}}
+\newenvironment{siamsessions}{}{}
+
 \newenvironment{presentation_list}{\begin{multicols}{2}}{\end{multicols}}
+%\newenvironment{presentation_list}{}{\vfill\null \columnbreak}
 
 \DeclareUnicodeCharacter{3B1}{\ensuremath{\alpha}}
 
