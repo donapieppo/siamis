@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Minitutorial, type: :model do
-  let (:minitutorial) { FactoryGirl.create(:minitutorial) }
-  let (:user) { FactoryGirl.create(:user) }
+  let (:minitutorial) { FactoryBot.create(:minitutorial) }
+  let (:user) { FactoryBot.create(:user) }
 
   it "does create the presentation" do
     expect(minitutorial.presentation).to be

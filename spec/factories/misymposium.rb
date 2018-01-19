@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :minisymposium do 
     sequence(:name)        { |n| "MinisymposiumTitle#{n}" }
     sequence(:description) { |n| "MinisymposiumAbstract#{n}" }
