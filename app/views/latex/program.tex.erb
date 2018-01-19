@@ -6,16 +6,10 @@
 
   \siamsessiontitle{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}
 
-  \noindent\medskip <%= l schedule.start, format: :schedule_day_and_hour %>\\
-  \noindent\medskip <%= schedule.room %>
+  \siamsessiondate{<%= l schedule.start, format: :schedule_day_and_hour %>}
+  \siamsessionroom{<%= schedule.room %>}
 
-  \medskip
-
-  \noindent\textbf{<%= raw latex_text_clean cs.name %>} 
-
-  \bigskip
-
-  \noindent{<%= raw latex_text_clean cs.description %>} \\
+  \siamsessionabstract{<%= raw latex_text_clean cs.description %>}
 
   \begin{flushright}
   \noindent\textbf{<%= cs.organizers_label %>: }
