@@ -1,19 +1,13 @@
 <% Schedule.conference_days_array.each do |day| %>
-\newpage
-\begin{center}
-  \noindent\textbf{\large <%= l day %>}
-  \par\noindent\rule{\textwidth}{0.4pt}
-\end{center}
+  \siamscheduleday{<%= l day %>}
 
 <% Schedule.day_program(day).each do |schedule| %>
   <% cs = schedule.conference_session %> 
 
-  \begin{mdframed}[style=program_event, 
-                   frametitle={\Large <%= schedule.conference_session_code_with_part %>
+  \siamsessiontitle{<%= cs.code %>}{<%= raw latex_text_clean cs.name %>}
 
-                               \medskip \large <%= l schedule.start, format: :schedule %> 
-
-                               \medskip \normalsize Room: <%= schedule.room %>}]
+  \noindent\medskip <%= l schedule.start, format: :schedule_day_and_hour %>\\
+  \noindent\medskip <%= schedule.room %>
 
   \medskip
 
@@ -21,23 +15,30 @@
 
   \bigskip
 
-  \noindent\textit{<%= raw latex_text_clean cs.description %>} \\
+  \noindent{<%= raw latex_text_clean cs.description %>} \\
 
-  \noindent{<%= cs.organizers_label %>: }
+  \begin{flushright}
+  \noindent{<%= cs.organizers_label %>: }\\
   <% cs.organizers.each do |o| %>  
-    <%= raw latex_text_clean o.user.cn %> {\small <%= raw latex_text_clean o.user.affiliation %>} 
-  <% end %>\\
+    <%= raw latex_text_clean o.user.cn %> {\small{(<%= raw latex_text_clean o.user.affiliation %>)}} \\
+  <% end %>
+  \end{flushright}
 
+  \begin{multicols}{2}
   <% schedule.presentations.order(:number).each do |presentation| %>  
     <% if ! cs.mono_session? %>  
-      \noindent\textbf{<%= l(presentation.start, format: :hour) if presentation.start %>  <%= raw latex_text_clean presentation.name %>} \\
+      \noindent\textbf{<%= l(presentation.start, format: :hour) if presentation.start %>  <%= raw latex_text_clean presentation.name %>} 
     <% end %>
-    <% presentation.authors.each do |author| %>  
-      \indent <%= raw latex_text_clean author.to_s %> \\
-    <% end %> \\
-  <% end %>
-  \end{mdframed}
 
+    \smallskip
+
+    \begin{flushright}
+    <% presentation.authors.each do |author| %>  
+      <%= latex_author(author) %>\\
+    <% end %> 
+    \end{flushright}
+  <% end %>
+  \end{multicols}
 
 <% end %>
 <% end %>
