@@ -4,7 +4,7 @@
 <% Schedule.day_program(day).each do |schedule| %>
   <% cs = schedule.conference_session %> 
 
-  \siamsessiontitle{<%= cs.code %>}{<%= raw latex_text_clean cs.name %>}
+  \siamsessiontitle{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}
 
   \noindent\medskip <%= l schedule.start, format: :schedule_day_and_hour %>\\
   \noindent\medskip <%= schedule.room %>
@@ -18,7 +18,7 @@
   \noindent{<%= raw latex_text_clean cs.description %>} \\
 
   \begin{flushright}
-  \noindent{<%= cs.organizers_label %>: }\\
+  \noindent\textbf{<%= cs.organizers_label %>: }
   <% cs.organizers.each do |o| %>  
     <%= raw latex_text_clean o.user.cn %> {\small{(<%= raw latex_text_clean o.user.affiliation %>)}} \\
   <% end %>
