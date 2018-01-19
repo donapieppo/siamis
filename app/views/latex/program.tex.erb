@@ -1,9 +1,9 @@
 <% Schedule.conference_days_array.each do |day| %>
   \siamscheduleday{<%= l day %>}
 
+\begin{siamsessions}
 <% Schedule.day_program(day).each do |schedule| %>
   <% cs = schedule.conference_session %> 
-
   \siamsessiontitle{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}
 
   \siamsessiondate{<%= l schedule.start, format: :schedule_day_and_hour %>}
@@ -32,8 +32,8 @@
     \end{flushright}
   <% end %>
   \end{presentation_list}
-
 <% end %>
+\end{siamsessions}
 <% end %>
 
 
