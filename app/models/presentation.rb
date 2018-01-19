@@ -105,7 +105,11 @@ class Presentation < ApplicationRecord
 
   # FIXME (TODO calculate start from number)
   def schedule
-    self.conference_session and self.conference_session.schedules.where(part: self.part).first
+    if self.poster
+      Schedule.for_poster_sessions.map(&:to_s).join("</br>".html_safe)
+    else
+      self.conference_session and self.conference_session.schedules.where(part: self.part).first
+    end
   end
 
   def duration
@@ -114,7 +118,7 @@ class Presentation < ApplicationRecord
 
   def start 
     if (_schedule = self.schedule) && self.number 
-      _schedule.start + (self.duration * self.number).minutes
+      _schedule.start + (self.duration * (self.number - 1)).minutes
     end
   end
 
