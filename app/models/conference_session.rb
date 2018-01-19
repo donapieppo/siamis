@@ -15,8 +15,16 @@ class ConferenceSession < ApplicationRecord
   scope :accepted,  -> { where(accepted: true) }
   scope :submitted, -> { where(accepted: nil) }
 
+  def code_with_part(p)
+    (self.parts && self.parts > 1) ? "#{self.code}-#{p}" : self.code
+  end
+
   def to_s
-    (self.number ? "#{self.code} - " : '') + self.name + ((self.parts && self.parts > 1) ? " (#{self.parts} parts)" : "")
+    (self.number ? "#{self.code} - " : '') + " " + self.name + ((self.parts && self.parts > 1) ? " (#{self.parts} parts)" : "")
+  end
+
+  def to_s_with_part(p)
+    (self.number ? code_with_part(p) : '') + " " + self.name 
   end
 
   # Minisymposium, Plenary, Contributed Session
