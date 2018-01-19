@@ -44,7 +44,7 @@ linewidth=4pt]{siamtitle}
 
 \newcommand{\siamauthor}[2]{{\color{blue}{{#1}}}\\\textit{#2}}
 
-\newcommand{\siamscheduleday}[1]{\newpage\begin{center}\noindent\textbf{\large{#1}}\par\noindent\rule{\textwidth}{0.4pt}\end{center}}
+\newcommand{\siamscheduleday}[1]{\newpage\rhead{Program for #1}\begin{center}\noindent\textbf{\large{#1}}\par\noindent\rule{\textwidth}{0.4pt}\end{center}}
 
 \newenvironment{organizers}{\begin{flushright}\textbf{Organizers:} \\}{\end{flushright}}
 
@@ -57,5 +57,9 @@ linewidth=4pt]{siamtitle}
 \DeclareUnicodeCharacter{3B1}{\ensuremath{\alpha}}
 
 \newcommand{\R}{\mathbb{R}} 
+
+
+\pagestyle{fancy}
+\fancyhf{}
 
 
