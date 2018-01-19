@@ -24,6 +24,8 @@
     <div class="col-md-9">
       <%= program_title("Conference Program", 'map') %>  
 
+      <p style="text-align: right"><%= link_to 'Printable program in A3 page', 'https://www.siam-is18.dm.unibo.it/siamis18_a3_program.pdf' %></p>
+
       <div class="day_program">
         <% @conference_program.each do |schedule| %>  
           <% hour = l(schedule.start, format: :hour) %>  
