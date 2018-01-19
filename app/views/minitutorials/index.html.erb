@@ -2,7 +2,7 @@
 
 <%= program_title('Minitutorials', 'wrench') %>  
 
-<% if @minitutorials.empty? %>  
+<% if @conference_sessions.empty? %>  
   <div class="future_magic">
     <p>Multiple minitutorials will be organized for presentation during the conference.</p>
     <p>Additional details will be posted as they become available.</p>
@@ -13,8 +13,8 @@
   <p class="centered"><%= link_to 'Create a Minitutorial Session', new_minitutorial_path, class: :big_button %></p>
 <% end %>
 
-<%= cache_unless current_user, @minitutorials do %>
-  <% @minitutorials.each do |minitutorial| %>  
+<%= cache_unless current_user, @conference_sessions do %>
+  <% @conference_sessions.each do |minitutorial| %>  
     <div class="bg-colored" id="<%= minitutorial.id %>">
       <div class="container">
         <%= render minitutorial %>  
