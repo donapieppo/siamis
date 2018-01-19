@@ -1,140 +1,54 @@
-\documentclass[10pt, a4paper]{book}
-\renewcommand\familydefault{\sfdefault}
+\documentclass[twoside]{book}
 
 \input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
-\usepackage{multicol}
-\usepackage{wrapfig}
-\usepackage{mdframed}
-
-\mdfdefinestyle{program_event}{leftmargin=1cm,rightmargin=2cm,innerleftmargin=1cm,innerrightmargin=1cm,roundcorner=10pt,frametitlerule=true,frametitlebackgroundcolor=yellow!70!white}
-\newcommand{\mail}[1]{\href{mailto:#1}{\texttt{#1}}}
-\newcommand{\member}[2]{{\textbf{#1}\\}{#2}}
-\newcommand{\myaut}[1]{{\underline{#1}}}
-\DeclareUnicodeCharacter{3B1}{\ensuremath{\alpha}}
-\newcommand{\R}{\mathbb{R}}
-
-%\setlength{\columnseprule}{0.5pt}
-%\newcommand{\mail}[1]{\href{mailto:#1}{\texttt{#1}}}
-%\newcommand{\member}[2]{{\textbf{#1}\\}{#2}}
-%\newcommand{\myaut}[1]{{\underline{#1}}}
-
-\hyphenation{aspects}
+\input{siam_structure}
 
 \begin{document}
 
-\begingroup
-\thispagestyle{empty}
-\begin{tikzpicture}[remember picture,overlay]
-\coordinate [below=12cm] (midpoint) at (current page.north);
-\node at (current page.north west)
-{\begin{tikzpicture}[remember picture,overlay]
-\node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{images/nettuni_small}}; % Background
-\draw[anchor=north] (midpoint) node [fill=myblue!30!white,fill opacity=0.6,text opacity=1,inner sep=1cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering SIAM Conference on IMAGING SCIENCE\\ Program and Abstracts\\[15pt] % Book title
-{\Large June 5-8, 2018}\\[20pt] % Subtitle
-{\huge University of Bologna, Italy}}}; % Author name
-\end{tikzpicture}};
-\end{tikzpicture}
-\vfill
-\endgroup
-%\maketitle
+\include{first_page}
 
 \input{themes}
 \input{committee}
 
-%----------------------------------------------------------------------------------------
-%	TABLE OF CONTENTS
-%----------------------------------------------------------------------------------------
-
-%\usechapterimagefalse % If you don't want to include a chapter image, use this to toggle images off - it can be enabled later with 
 \usechapterimagetrue
-
 \chapterimage{images/nettuni_small} % Table of contents heading image
-
 \pagestyle{empty} % No headers
 
 \tableofcontents % Print the table of contents itself
-
 \cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
-
 \pagestyle{fancy} % Print headers again
 
-%---------------At-A-GLANCE
-%\newpage
-%\section*{Program At-A-Glance}
-%%\phantomsection
-%\addcontentsline{toc}{section}{Program AT-A-Glance}
-
+\newpage
+\section*{Program At-A-Glance}
+\addcontentsline{toc}{section}{Program AT-A-Glance}
 
 \include{general_informations}
 
-%----------------INVITED PLENARY PRESENTATIONS
 \addcontentsline{toc}{section}{Plenary Talks and Biograpies}
 \include{plenaries}
 
-
-
-%--------------MINITUTORIALS
 \addcontentsline{toc}{section}{Minitutorials and Biograpies}
 \include{minitutorials}
 
-%----------------PROGRAM SCHEDULE 1
-%\newpage
-%\section*{SIAM IS18 PROGRAM-1}
-%\addcontentsline{toc}{section}{Program Schedule-1}
-%\newpage
-%\begin{multicols}{3}
-%\noindent {\large\textbf{Monday 4 June}} \\\\
-%\textbf{Registration}\\ 5:00 PM -8:00 PM\\
-%where
-%
-%\columnbreak 
-%\noindent {\large\textbf{Tuesday 5 June}} \\\\
-%\textbf{Registration}\\ 8:00 AM -12:00 PM\\
-%2:00 PM - 5:00 PM\\
-%where\\\\
-%\textbf{Conference Remarks}\\
-%when\\
-%where
-%
-%
-%\columnbreak 
-%\noindent {\large\textbf{Tuesday 5 June}} \\\\
-%blablabla
-%\end{multicols}
-%
-
-%----------------------------------------------------------------------------------------
-%	PART II: PROGRAM
-%----------------------------------------------------------------------------------------
-
 \part{Program}
-%\include{program}
+\include{program}
 
-
-
-%----------------------------------------------------------------------------------------
-%	PART III: ABSTRACTS
-%----------------------------------------------------------------------------------------
 \part{Abstracts}
-
 \chapter*{Minisymposia Presentations Abstracts}
 \addcontentsline{toc}{section}{Minysimposia Presentations Abstracts}
 \include{minisymposia}
 
 \chapter*{Contributed Presentations Abstracts}
 \addcontentsline{toc}{section}{Contributed Presentations Abstracts}
+\include{contributed}
 
 \chapter*{Posters Abstracts}
 \addcontentsline{toc}{section}{Posters Abstracts}
+\include{program}
 
-
-%----------------------------------------------------------------------------------------
-%	PART IV: NOTES
-%----------------------------------------------------------------------------------------
-\part{Notes}
 \newpage
+\part{Notes}
 \thispagestyle{empty}
 \includegraphics[scale=0.6]{program_table.pdf}
-%
-%
+
 \end{document}
