@@ -11,6 +11,10 @@ class Role < ApplicationRecord
     self.user.to_s
   end
 
+  def cn
+    self.user.cn
+  end
+
   def relative_to
     self.conference_session || self.presentation
   end
