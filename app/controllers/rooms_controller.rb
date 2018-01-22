@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
   before_action :set_room, only: [:edit, :update, :destroy]
 
   def index
-    @rooms = Room.includes(:building)
+    @rooms = Room.includes(:building).order(:manual_order, :name)
   end
 
   def new
@@ -38,7 +38,7 @@ class RoomsController < ApplicationController
   private
 
   def room_params
-    params[:room].permit(:name, :capacity, :building_id, :floor)
+    params[:room].permit(:name, :capacity, :building_id, :floor, :manual_order)
   end
 
   def set_room
