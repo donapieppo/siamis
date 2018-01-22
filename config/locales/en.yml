@@ -90,6 +90,8 @@ en:
       schedule:
         start_day_number: Day
         start_hour: Hour
+      room:
+        manual_order: Order
       invitation_letter:
         passport_name: Name as it appears on passport
         passport_number: Passport Number

@@ -2,7 +2,9 @@
 
 <ul class="list-group">
   <% @rooms.each do |room| %>  
-    <li class="list-group-item"><%= room %> - <%= room.capacity %> seats <span class="pull-right"><%= link_to_edit edit_room_path(room) %> <%= link_to_delete room_path(room) %></span></li>
+    <li class="list-group-item">
+      <strong><%= room %></strong> - <small><%= room.capacity %> seats</small> <span class="pull-right"><%= link_to_edit edit_room_path(room) %> <%= link_to_delete room_path(room) %></span>
+    </li>
   <% end %>
 </ul>
 

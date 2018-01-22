@@ -159,6 +159,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "capacity"
     t.integer "building_id", unsigned: true
     t.integer "floor"
+    t.integer "manual_order", default: 1
     t.index ["building_id"], name: "building_id"
   end
 

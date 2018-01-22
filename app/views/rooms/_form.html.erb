@@ -4,5 +4,6 @@
   <%= room.input :capacity %> 
   <%= room.association :building %> 
   <%= room.input :floor, collection: Room.floors, include_blank: false %> 
+  <%= room.input :manual_order, collection: (1 .. Room.count) %>  
   <%= room.submit %>  
 <% end %>
