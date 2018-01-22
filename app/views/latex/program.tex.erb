@@ -20,7 +20,7 @@
   \begin{presentation_list}
   <% schedule.presentations.order(:number).each do |presentation| %>  
     <% if ! cs.mono_session? %>  
-      \noindent\textbf{<%= l(presentation.start, format: :hour) if presentation.start %>  <%= raw latex_text_clean presentation.name %>} 
+      \siamppresentationwithhour{<%= l(presentation.start, format: :hour) if presentation.start %>}{<%= raw latex_text_clean presentation.name %>}
     <% end %>
 
     \smallskip
