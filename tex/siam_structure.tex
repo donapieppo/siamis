@@ -30,8 +30,8 @@ linewidth=4pt]{siamtitle}
 \newcommand{\member}[2]{{\textbf{#1}\\}{#2}}
 
 % with new page
-\newcommand{\siamsessiontitle}[2]{\newpage\begin{siamtitle}\noindent{\large{\textbf{{#1}  {#2}}}}\end{siamtitle}}
 %\newcommand{\siamsessiontitle}[2]{\newpage\begin{siamtitle}\noindent{\large{\textbf{{#1}  {#2}}}}\end{siamtitle}}
+\newcommand{\siamsessiontitle}[2]{\begin{siamtitle}\noindent{\large{\textbf{{#1} {#2}}}}\end{siamtitle}}
 \newcommand{\siamsessiondate}[1]{\noindent\textbf{#1}\\}
 \newcommand{\siamsessionroom}[1]{\noindent\textbf{#1}}
 \newcommand{\siamsessionabstract}[1]{\medskip{#1} \medskip}
@@ -48,16 +48,19 @@ linewidth=4pt]{siamtitle}
 
 \newenvironment{organizers}{\begin{flushright}\textbf{Organizers:} \\}{\end{flushright}}
 
-%\newenvironment{siamsessions}{\begin{multicols}{2}}{\end{multicols}}
-\newenvironment{siamsessions}{}{}
-
-\newenvironment{presentation_list}{\begin{multicols}{2}}{\end{multicols}}
+% who columns as 2016
+\newenvironment{siamsessions}{\begin{multicols}{2}\raggedcolumns}{\end{multicols}}
+\newenvironment{presentation_list}{}{}
 %\newenvironment{presentation_list}{}{\vfill\null \columnbreak}
+% standard
+%\newenvironment{siamsessions}{}{}
+%\newenvironment{presentation_list}{\begin{multicols}{2}}{\end{multicols}}
+
+\newenvironment{siamppresentationwithhour}[2]{\noindent\textbf{{#1} {#2}}}
 
 \DeclareUnicodeCharacter{3B1}{\ensuremath{\alpha}}
 
 \newcommand{\R}{\mathbb{R}} 
-
 
 \pagestyle{fancy}
 \fancyhf{}
