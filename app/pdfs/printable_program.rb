@@ -116,8 +116,8 @@ class PrintableProgram < Prawn::Document
     end 
 
     ha = hour_array(hour)
+    text "#{I18n.l day, format: :schedule} #{print_hour(ha)} - #{print_hour(ha, 2)}", style: :bold, size: 18
     move_down 20
-    text "#{I18n.l day} #{print_hour(ha)} - #{print_hour(ha, 2)}", style: :bold, size: 18
 
     table(res, cell_style: { inline_format: true, width: 65 }, row_colors: colors) do
       #column(0).rotate = 90
