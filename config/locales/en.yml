@@ -159,13 +159,13 @@ en:
 
   date:
     formats:
-      default:  '%B %d, %Y'
-      schedule: '%A %d %B %Y'
-      deadline: '%B %d, %Y'
+      default:  '%B %d, %Y'     # June 05, 2018
+      schedule: '%A, %d %B %Y'  # Tuesday, 05 June 2018
+      deadline: '%B %d, %Y'     # June 05, 2018
       day: '%A'
       hour: '%H:%M'
       menu: '%d %B - %A'
-      schedule_day_and_hour: '%A, %d at %H:%M'
+      schedule_day_and_hour: '%A, %d at %H:%M' # Tuesday, 05 at 00:00
 
   credit_cards: Registration fees can be paid by Mastercard, Visa and American Express credit cards.
   bank_security: Clicking on the button below you are automatically redirected to the Bank's payment server (Unicredit bank).  So we actually never know your Credit Card number.  All information exchanged with the system are encrypted using the SSL protocol and can not be intercepted or altered.
