@@ -15,6 +15,7 @@ class ConferenceProgramController < ApplicationController
   def print
     if current_user # user_in_organizer_or_scientific_committee?
       pdf = PrintableProgram.new()
+      pdf.render_file('public/siamis18_a3_program.pdf')
       send_data pdf.render, filename: "program.pdf", type: "application/pdf"
     else
       redirect_to root_path
