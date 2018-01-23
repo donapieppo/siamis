@@ -1,39 +1,50 @@
 <% Schedule.conference_days_array.each do |day| %>
-  \siamscheduleday{<%= l day %>}
+\siamscheduleday{<%= l day, format: :siam %>}
 
-\begin{siamsessions}
+\begin{siam_schedule_sessions}
 <% Schedule.day_program(day).each do |schedule| %>
-  <% cs = schedule.conference_session %> 
-  \siamsessiontitle{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}
+<% cs = schedule.conference_session %> 
 
-  \siamsessiondate{<%= l schedule.start, format: :schedule_day_and_hour %>}
-  \siamsessionroom{<%= schedule.room %>}
+% ------------------------------------------------------------------------------------------------
+\begin{siam_schedule_session}
+\siamsessiontitle{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}
 
-  \siamsessionabstract{<%= raw latex_text_clean cs.description %>}
+\siamsessiondate{<%= l schedule.start, format: :schedule_day_and_hour %>}
+\siamsessionroom{<%= schedule.room %>}
 
-  \begin{organizers}
-  <% cs.organizers.each do |o| %>  
-    <%= raw latex_text_clean o.user.cn %> {\small{(<%= raw latex_text_clean o.user.affiliation %>)}} \\
+\siamsessionabstract{<%= raw latex_text_clean cs.description %>}
+
+\begin{siam_organizers}{<%= cs.organizers_label.pluralize %>}
+  <% (organizers = cs.organizers).each do |o| %>  
+    \item[] <%= latex_user(o.user) %>
   <% end %>
-  \end{organizers}
+  <% if organizers.empty? %>  
+    \item[] To be defined
+  <% end %>
+\end{siam_organizers}
 
-  \begin{presentation_list}
+\begin{siam_presentation_list}
   <% schedule.presentations.order(:number).each do |presentation| %>  
     <% if ! cs.mono_session? %>  
       \siamppresentationwithhour{<%= l(presentation.start, format: :hour) if presentation.start %>}{<%= raw latex_text_clean presentation.name %>}
     <% end %>
 
-    \smallskip
-
-    \begin{flushright}
-    <% presentation.authors.each do |author| %>  
-      <%= latex_author(author) %>\\
+    \begin{siam_speakers}
+    <% (authors = presentation.authors).each do |author| %>  
+      \item<%= '[]' unless author.speak %>  <%= latex_user(author.user, author.speak) %>
     <% end %> 
-    \end{flushright}
+    <% if authors.empty? %>  
+       \item[] To be defined
+    <% end %>
+    \end{siam_speakers}
+
   <% end %>
-  \end{presentation_list}
+\end{siam_presentation_list}
+\end{siam_schedule_session}
+% ------------------------------------------------------------------------------------------------
 <% end %>
-\end{siamsessions}
+\end{siam_schedule_sessions}
+
 <% end %>
 
 
