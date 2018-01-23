@@ -160,6 +160,7 @@ en:
   date:
     formats:
       default:  '%B %d, %Y'     # June 05, 2018
+      siam:     '%A, %d %B'     # Tuesday, 05 June
       schedule: '%A, %d %B %Y'  # Tuesday, 05 June 2018
       deadline: '%B %d, %Y'     # June 05, 2018
       day: '%A'
