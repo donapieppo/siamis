@@ -145,6 +145,7 @@ child_care	app/controllers/home_controller.rb	/^  def child_care$/;"	f	class:Hom
 class_active	app/helpers/application_helper.rb	/^  def class_active(x,y)$/;"	f	class:ApplicationHelper
 class_name	app/models/conference_session.rb	/^  def class_name$/;"	f	class:ConferenceSession
 class_name	app/models/presentation.rb	/^  def class_name$/;"	f	class:Presentation
+cn	app/models/role.rb	/^  def cn$/;"	f	class:Role
 cn	app/models/user.rb	/^  def cn$/;"	f	class:User
 cn_militar	app/models/user.rb	/^  def cn_militar$/;"	f	class:User
 cn_simple	app/models/user.rb	/^  def cn_simple$/;"	f	class:User
@@ -156,13 +157,14 @@ code	app/models/minitutorial.rb	/^  def code$/;"	f	class:Minitutorial
 code	app/models/plenary.rb	/^  def code$/;"	f	class:Plenary
 code	app/models/poster_session.rb	/^  def code$/;"	f	class:PosterSession
 code	app/models/presentation.rb	/^  def code $/;"	f	class:Presentation
+code_with_part	app/models/conference_session.rb	/^  def code_with_part(p)$/;"	f	class:ConferenceSession
 committe_name	app/helpers/conference_helper.rb	/^  def committe_name$/;"	f
 common_actions	app/helpers/actions_helper.rb	/^  def common_actions(what)$/;"	f	class:ActionsHelper
 conference_day	app/models/schedule.rb	/^  def self.conference_day(num)$/;"	F	class:Schedule
 conference_days_array	app/models/schedule.rb	/^  def self.conference_days_array$/;"	F	class:Schedule
 conference_home_title	app/helpers/home_helper.rb	/^  def conference_home_title$/;"	f	class:HomeHelper
-conference_session_code_with_part	app/models/schedule.rb	/^  def conference_session_code_with_part$/;"	f	class:Schedule
 conference_session_color	app/helpers/conference_helper.rb	/^  def conference_session_color(cs)$/;"	f
+conference_session_color	app/pdfs/printable_program.rb	/^  def conference_session_color(cs)$/;"	f	class:PrintableProgram
 conference_session_panel_class	app/helpers/conference_helper.rb	/^  def conference_session_panel_class(conference_session)$/;"	f
 conference_session_params	app/controllers/contributed_sessions_controller.rb	/^  def conference_session_params$/;"	f	class:ContributedSessionsController
 conference_session_params	app/controllers/minisymposia_controller.rb	/^  def conference_session_params$/;"	f
@@ -231,6 +233,7 @@ excellence	app/models/rating.rb	/^  def self.excellence$/;"	F	class:Rating
 expected	app/controllers/conference_registrations_controller.rb	/^  def expected$/;"	f	class:ConferenceRegistrationsController
 expected_payment_from_speakers_and_organizers	app/models/fee.rb	/^  def expected_payment_from_speakers_and_organizers$/;"	f
 fee	app/models/user.rb	/^  def fee$/;"	f	class:User
+first_page	app/pdfs/printable_program.rb	/^  def first_page$/;"	f	class:PrintableProgram
 first_proposal_start	app/models/deadline.rb	/^    def first_proposal_start$/;"	f	class:Deadline
 floors	app/models/room.rb	/^  def self.floors$/;"	F	class:Room
 for_poster_sessions	app/models/schedule.rb	/^  def self.for_poster_sessions$/;"	F	class:Schedule
@@ -244,6 +247,7 @@ google_map_array	app/models/hotel.rb	/^  def self.google_map_array$/;"	F	class:H
 home_program_title	app/helpers/home_helper.rb	/^  def home_program_title(what, icon = nil)$/;"	f	class:HomeHelper
 home_section	app/helpers/home_helper.rb	/^  def home_section(id)$/;"	f	class:HomeHelper
 hotel_params	app/controllers/hotels_controller.rb	/^  def hotel_params$/;"	f	class:HotelsController
+hour_array	app/pdfs/printable_program.rb	/^  def hour_array(h)$/;"	f	class:PrintableProgram
 hour_starts_array	app/models/schedule.rb	/^  def self.hour_starts_array$/;"	F	class:Schedule
 html_id	app/helpers/conference_helper.rb	/^  def html_id(what)$/;"	f
 icon	app/helpers/application_helper.rb	/^  def icon(name, options = { text: "", size: "18" })$/;"	f	class:ApplicationHelper
@@ -289,9 +293,9 @@ input	app/inputs/schedule_hour_input.rb	/^  def input(wrapper_options)$/;"	f	cla
 interested_in?	app/models/user.rb	/^  def interested_in?(what)$/;"	f	class:User
 invitation_letter_params	app/controllers/invitation_letters_controller.rb	/^  def invitation_letter_params$/;"	f	class:InvitationLettersController
 last_proposal_end	app/models/deadline.rb	/^    def last_proposal_end$/;"	f	class:Deadline
-latex_author	app/helpers/latex_helper.rb	/^  def latex_author(author)$/;"	f	class:LatexHelper
 latex_text_clean	app/helpers/latex_helper.rb	/^  def latex_text_clean(txt)$/;"	f	class:LatexHelper
 latex_url_clean	app/helpers/latex_helper.rb	/^  def latex_url_clean(txt)$/;"	f	class:LatexHelper
+latex_user	app/helpers/latex_helper.rb	/^  def latex_user(user, speak = nil)$/;"	f	class:LatexHelper
 link_to_back	app/helpers/link_helper.rb	/^  def link_to_back url$/;"	f	class:LinkHelper
 link_to_delete	app/helpers/link_helper.rb	/^  def link_to_delete(name = "", url, button: false)$/;"	f	class:LinkHelper
 link_to_download	app/helpers/link_helper.rb	/^  def link_to_download(url)$/;"	f	class:LinkHelper
@@ -401,6 +405,7 @@ prices	app/models/fee.rb	/^  def self.prices$/;"	F
 print	app/controllers/conference_program_controller.rb	/^  def print$/;"	f	class:ConferenceProgramController
 print	app/controllers/conference_registrations_controller.rb	/^  def print$/;"	f	class:ConferenceRegistrationsController
 print	app/controllers/minisymposia_controller.rb	/^  def print$/;"	f
+print_hour	app/pdfs/printable_program.rb	/^  def print_hour(a, plus = 0)$/;"	f	class:PrintableProgram
 privacy	app/controllers/home_controller.rb	/^  def privacy$/;"	f	class:HomeController
 privacy_alert	app/helpers/privacy_helper.rb	/^  def privacy_alert$/;"	f	class:PrivacyHelper
 privacy_cookie_name	app/helpers/privacy_helper.rb	/^  def privacy_cookie_name$/;"	f	class:PrivacyHelper
@@ -505,6 +510,7 @@ to_s	app/models/room.rb	/^  def to_s$/;"	f	class:Room
 to_s	app/models/schedule.rb	/^  def to_s$/;"	f	class:Schedule
 to_s	app/models/tag.rb	/^  def to_s$/;"	f	class:Tag
 to_s	app/models/user.rb	/^  def to_s$/;"	f	class:User
+to_s_with_part	app/models/conference_session.rb	/^  def to_s_with_part(p)$/;"	f	class:ConferenceSession
 toggle	app/controllers/interests_controller.rb	/^  def toggle$/;"	f	class:InterestsController
 tooltip	app/helpers/application_helper.rb	/^  def tooltip(key)$/;"	f	class:ApplicationHelper
 travel_awards	app/controllers/home_controller.rb	/^  def travel_awards$/;"	f	class:HomeController
