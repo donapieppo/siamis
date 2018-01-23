@@ -8,9 +8,7 @@ module LatexHelper
     txt.html_safe.gsub('_', '\_').gsub('%20', '\ ').gsub('#', '\#')
   end
 
-  def latex_author(author)
-    user = author.user
-
+  def latex_user(user, speak = nil)
     cn = latex_text_clean user.cn
     affiliation = latex_text_clean user.affiliation
     
@@ -20,7 +18,9 @@ module LatexHelper
 
     affiliation = " - " if affiliation.blank?
 
-    "\\siamauthor{#{'* ' if author.speak} #{cn}}{#{affiliation}}".html_safe
+    # no more with bullet
+    # "\\siamuser{#{'* ' if speak} #{cn}}{#{affiliation}}".html_safe
+    "\\siamuser{#{cn}}{#{affiliation}}".html_safe
   end
 
 end
