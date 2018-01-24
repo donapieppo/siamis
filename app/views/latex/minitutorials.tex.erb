@@ -1,25 +1,18 @@
 <% @minitutorials.each do |plenary| %>
 
-\newpage\vspace{2cm}
-\begin{center}{\Large{
-      Tuesday, June 5, 9:45 AM - 10:30 AM \\
-      \textbf{<%= raw latex_text_clean plenary.name%>}\\
-      <%= raw plenary.speaker %>  
-}}
-\end{center}
-\vspace{1cm}
+%-------------------------------------------------------------------
+  \begin{siamplenary}
+    \siamplenarydate{<%= raw l plenary.schedules.first.start, format: :schedule_day_and_hour %>}
+    \siamplenarytitle{<%= raw latex_text_clean plenary.name %>}
+    \siamplenaryspeaker{<%= raw plenary.speaker %>}
 
-\begin{wrapfloat}{figure}{o}{0pt}
-  \includegraphics[width=0.33\textwidth]{{images/speakers/<%= plenary.speaker.user.email %>}.jpg}
-\end{wrapfloat}
+    \siamplenarybiography{<%= raw latex_text_clean plenary.speaker.user.biography %>}{{images/speakers/<%= plenary.speaker.user.email %>}.jpg}
 
-<%= raw latex_text_clean plenary.speaker.user.biography %>  
-\\\\
-
-\textbf{Abstract:}\\
-
-<%= raw latex_text_clean plenary.description %>  
+    \siamplenaryabstract{<%= raw latex_text_clean plenary.description %>}
+  \end{siamplenary}
+%-------------------------------------------------------------------
 
 <% end %>
+
 
 
