@@ -9,13 +9,13 @@
 \rhead{Siam Is18}
 \lhead{Page \thepage}
 
-%\include{first_page}
+\include{first_page}
 
-%\input{themes}
-%\input{committee}
+\input{themes}
+\input{committee}
 
 \usechapterimagetrue
-\chapterimage{images/nettuni_small} % Table of contents heading image
+\chapterimage{images/nettuni_small} 
 \pagestyle{empty} % No headers
 
 \tableofcontents % Print the table of contents itself
@@ -26,34 +26,32 @@
 \section*{Program At-A-Glance}
 \addcontentsline{toc}{section}{Program AT-A-Glance}
 
+\part{General Information}
+\chapterimage{images/nettuni_small} 
+\chapter*{General Information}
 \include{general_informations}
+\include{sponsors}
 
-
-\chapterimage{images/nettuni_small} % Chapter heading image
+\chapterimage{images/nettuni_small} 
 \addcontentsline{toc}{section}{Plenary Talks and Biograpies}
 \chapter*{Plenary Talks and Biograpies}
 \include{plenaries_summary}
-{\Large{Invited Plenary Presentations  IP1 and IP2 will take place in Aula Magna Santa Lucia, while the other Invited Presentations will take place in Building A, Room A and Room B in via Belmeloro 14}}
 \include{plenaries}
 
-
-\chapterimage{images/nettuni_small} % Chapter heading image
+\chapterimage{images/nettuni_small} 
 \addcontentsline{toc}{section}{Minitutorials and Biograpies}
 \chapter*{Minitutorials and Biograpies}
 \include{minitutorials_summary}
-{\Large{All minitutorials will take place in Room B.}}\\\\
 \include{minitutorials}
 
+% \part{Program}
+% \include{program}
 
-\part{Program}
-\include{program}
-
-
-\part{Abstracts}
-\rhead{Minisymposia Presentations Abstracts}
-\chapter*{Minisymposia Presentations Abstracts}
-\addcontentsline{toc}{section}{Minysimposia Presentations Abstracts}
-\include{minisymposia}
+% \part{Abstracts}
+% \rhead{Minisymposia Presentations Abstracts}
+% \chapter*{Minisymposia Presentations Abstracts}
+% \addcontentsline{toc}{section}{Minysimposia Presentations Abstracts}
+% \include{minisymposia}
 
 %\rhead{Contributed Presentations Abstracts}
 %\chapter*{Contributed Presentations Abstracts}
@@ -64,9 +62,9 @@
 %\addcontentsline{toc}{section}{Posters Abstracts}
 %\include{program}
 
-\newpage
-\part{Notes}
-\thispagestyle{empty}
-\includegraphics[scale=0.6]{program_table.pdf}
+% \newpage
+% \part{Notes}
+% \thispagestyle{empty}
+% \includegraphics[scale=0.6]{program_table.pdf}
 
 \end{document}

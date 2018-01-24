@@ -3,61 +3,77 @@
 \usepackage[utf8]{inputenc} % Required for including letters with accents
 \usepackage{multicol}
 
-\usepackage{marginnote}
-
 \usepackage{wrapfig}
 
-\newmdenv[skipabove=7pt,
-skipbelow=7pt,
-rightline=false,
-leftline=true,
-topline=false,
-bottomline=false,
-backgroundcolor=ocre!10,
-linecolor=ocre,
-innerleftmargin=8pt,
-innerrightmargin=8pt,
-innertopmargin=8pt,
-innerbottommargin=8pt,
-leftmargin=0cm,
-rightmargin=0cm,
-linewidth=4pt]{siamtitle}	
+\newmdenv[skipabove=4pt, skipbelow=4pt,
+          rightline=false, leftline=true, topline=false, bottomline=false,
+          backgroundcolor=ocre!10,
+          linecolor=ocre,
+          innerleftmargin=4pt, innerrightmargin=4pt, innertopmargin=8pt, innerbottommargin=8pt,
+          leftmargin=0cm, rightmargin=0cm,
+          linewidth=4pt]{siamtitle}	
 
 \setlength{\columnseprule}{0.5pt}
 \def\columnseprulecolor{\color{gray}}
 
 \newcommand{\mail}[1]{\href{mailto:#1}{\texttt{#1}}}
-\newcommand{\member}[2]{{\textbf{#1}\\}{#2}}
+\newcommand{\member}[2]{{\textbf{#1}} {\small({#2})}}
 
-% with new page
-%\newcommand{\siamsessiontitle}[2]{\newpage\begin{siamtitle}\noindent{\large{\textbf{{#1}  {#2}}}}\end{siamtitle}}
+% schedule (program.tex)
+\newcommand{\siamscheduleday}[1]{
+  \newpage
+  \rhead{Program for \textbf{#1}}
+  \vspace*{10cm}
+  \begin{center}\noindent\textbf{\Large{#1}}\end{center}
+  \newpage
+}
+
+% plenaries
+\newenvironment{siamplenary}{\newpage}
+
+\newcommand{\siamplenarydate}[1]{\begin{center}{#1}\end{center}}
+\newcommand{\siamplenarytitle}[1]{\par\textbf{{#1}}}
+\newcommand{\siamplenaryspeaker}[1]{\par{#1}}
+\newcommand{\siamplenarybiography}[2]{
+  \bigskip
+  \noindent\textbf{Biography:}
+  \begin{wrapfigure}{i}{0.5\textwidth}
+    \begin{center}
+    \includegraphics[width=0.33\textwidth]{#2}
+    \end{center}
+  \end{wrapfigure}
+  {#1}
+}
+
+\newcommand{\siamplenaryabstract}[1]{\bigskip\par\noindent\textbf{Abstract:}\\{#1}}
+
+% program
+\newenvironment{siam_schedule_sessions}{\begin{multicols*}{2}}{\end{multicols*}}
+%\newenvironment{siam_schedule_session}{\columnbreak}{}
+\newenvironment{siam_schedule_session}{}{}
+\newenvironment{siam_presentation_list}{}{}
+\newenvironment{siamppresentationwithhour}[2]{\noindent\textbf{{#1} {#2}}}
+ 
 \newcommand{\siamsessiontitle}[2]{\begin{siamtitle}\noindent{\large{\textbf{{#1} {#2}}}}\end{siamtitle}}
-\newcommand{\siamsessiondate}[1]{\noindent\textbf{#1}\\}
+\newcommand{\siamsessiondate}[1]{\noindent\textbf{#1}\hfill\break}
 \newcommand{\siamsessionroom}[1]{\noindent\textbf{#1}}
-\newcommand{\siamsessionabstract}[1]{\medskip{#1} \medskip}
-
+\newcommand{\siamsessionabstract}[1]{\medskip{#1}}
 
 \newcommand{\siamschedule}[3]{{\contentslabel[\colorbox{blue!30}{\large{\textbf{#1}}}]{2cm}}{\textbf{#2}\\\indent{#3}\medskip}}
-%\newcommand{\siamschedule}[3]{{\marginnote{#1}[2cm]}\noindent\textbf{#2}\\ {#3}\medskip}
 \newcommand{\siampresentationtitle}[1]{\noindent\textbf{#1}}
 \newcommand{\siampresentationabstract}[1]{\noindent{#1}}
 
-\newcommand{\siamauthor}[2]{{\color{blue}{{#1}}}\\\textit{#2}}
+\newcommand{\siamuser}[2]{{\color{blue}{{#1}}} ({\small\textit{#2}})}
 
-\newcommand{\siamscheduleday}[1]{\newpage\rhead{Program for #1}\begin{center}\noindent\textbf{\large{#1}}\par\noindent\rule{\textwidth}{0.4pt}\end{center}}
+\newenvironment{siam_organizers}[1]{\begin{flushright}\begin{itemize}\item[]{\textbf{#1}:}}{\end{itemize}\end{flushright}}
+\newenvironment{siam_speakers}{\begin{flushright}\begin{itemize}}{\end{itemize}\end{flushright}}
 
-\newenvironment{organizers}{\begin{flushright}\textbf{Organizers:} \\}{\end{flushright}}
-
-% who columns as 2016
-\newenvironment{siamsessions}{\begin{multicols}{2}\raggedcolumns}{\end{multicols}}
-\newenvironment{presentation_list}{}{}
 %\newenvironment{presentation_list}{}{\vfill\null \columnbreak}
 % standard
 %\newenvironment{siamsessions}{}{}
 %\newenvironment{presentation_list}{\begin{multicols}{2}}{\end{multicols}}
 
-\newenvironment{siamppresentationwithhour}[2]{\noindent\textbf{{#1} {#2}}}
-
+\DeclareUnicodeCharacter{00A0}{}
 \DeclareUnicodeCharacter{3B1}{\ensuremath{\alpha}}
 
 \newcommand{\R}{\mathbb{R}} 
