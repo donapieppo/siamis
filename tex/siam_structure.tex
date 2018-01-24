@@ -5,38 +5,51 @@
 
 \usepackage{wrapfig}
 
-\newmdenv[skipabove=7pt,
-skipbelow=7pt,
-rightline=false,
-leftline=true,
-topline=false,
-bottomline=false,
-backgroundcolor=ocre!10,
-linecolor=ocre,
-innerleftmargin=8pt,
-innerrightmargin=8pt,
-innertopmargin=8pt,
-innerbottommargin=8pt,
-leftmargin=0cm,
-rightmargin=0cm,
-linewidth=4pt]{siamtitle}	
+\newmdenv[skipabove=4pt, skipbelow=4pt,
+          rightline=false, leftline=true, topline=false, bottomline=false,
+          backgroundcolor=ocre!10,
+          linecolor=ocre,
+          innerleftmargin=4pt, innerrightmargin=4pt, innertopmargin=8pt, innerbottommargin=8pt,
+          leftmargin=0cm, rightmargin=0cm,
+          linewidth=4pt]{siamtitle}	
 
 \setlength{\columnseprule}{0.5pt}
 \def\columnseprulecolor{\color{gray}}
 
 \newcommand{\mail}[1]{\href{mailto:#1}{\texttt{#1}}}
-\newcommand{\member}[2]{{\textbf{#1}\\}{#2}}
+\newcommand{\member}[2]{{\textbf{#1}} {\small({#2})}}
 
 % schedule (program.tex)
 \newcommand{\siamscheduleday}[1]{
   \newpage
-  \rhead{Program for #1}
+  \rhead{Program for \textbf{#1}}
   \vspace*{10cm}
-  \begin{center}\textbf{\Large{#1}}\end{center}
+  \begin{center}\noindent\textbf{\Large{#1}}\end{center}
   \newpage
 }
 
-\newenvironment{siam_schedule_sessions}{\begin{multicols}{2}}{\end{multicols}}
+% plenaries
+\newenvironment{siamplenary}{\newpage}
+
+\newcommand{\siamplenarydate}[1]{\begin{center}{#1}\end{center}}
+\newcommand{\siamplenarytitle}[1]{\par\textbf{{#1}}}
+\newcommand{\siamplenaryspeaker}[1]{\par{#1}}
+\newcommand{\siamplenarybiography}[2]{
+  \bigskip
+  \noindent\textbf{Biography:}
+  \begin{wrapfigure}{i}{0.5\textwidth}
+    \begin{center}
+    \includegraphics[width=0.33\textwidth]{#2}
+    \end{center}
+  \end{wrapfigure}
+  {#1}
+}
+
+\newcommand{\siamplenaryabstract}[1]{\bigskip\par\noindent\textbf{Abstract:}\\{#1}}
+
+% program
+\newenvironment{siam_schedule_sessions}{\begin{multicols*}{2}}{\end{multicols*}}
+%\newenvironment{siam_schedule_session}{\columnbreak}{}
 \newenvironment{siam_schedule_session}{}{}
 \newenvironment{siam_presentation_list}{}{}
 \newenvironment{siamppresentationwithhour}[2]{\noindent\textbf{{#1} {#2}}}
@@ -60,7 +73,7 @@ linewidth=4pt]{siamtitle}
 %\newenvironment{siamsessions}{}{}
 %\newenvironment{presentation_list}{\begin{multicols}{2}}{\end{multicols}}
 
-
+\DeclareUnicodeCharacter{00A0}{}
 \DeclareUnicodeCharacter{3B1}{\ensuremath{\alpha}}
 
 \newcommand{\R}{\mathbb{R}} 
