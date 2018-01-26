@@ -1,0 +1,12 @@
+#!/bin/bash
+
+wget -O plenaries.tex     https://tester.dm.unibo.it/siamis/latex/plenaries.tex 
+wget -O minitutorials.tex https://tester.dm.unibo.it/siamis/latex/minitutorials.tex 
+
+wget -O minisymposia.tex  https://tester.dm.unibo.it/siamis/latex/minisymposia.tex 
+wget -O contributed.tex   https://tester.dm.unibo.it/siamis/latex/contributed.tex 
+wget -O posters.tex       https://tester.dm.unibo.it/siamis/latex/posters.tex 
+
+wget -O program.tex       https://tester.dm.unibo.it/siamis/latex/program.tex 
+
+
