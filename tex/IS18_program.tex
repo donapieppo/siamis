@@ -1,6 +1,6 @@
 \documentclass[twoside]{book}
 
-\input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
+\input{structure} 
 \input{siam_structure}
 
 \begin{document}
@@ -33,25 +33,24 @@
 \include{sponsors}
 
 \chapterimage{images/nettuni_small} 
-\addcontentsline{toc}{section}{Plenary Talks and Biograpies}
-\chapter*{Plenary Talks and Biograpies}
-\include{plenaries_summary}
+\chapter*{Plenary Talks and Biographies}
+\input{plenaries_summary}
 \include{plenaries}
 
 \chapterimage{images/nettuni_small} 
 \addcontentsline{toc}{section}{Minitutorials and Biograpies}
 \chapter*{Minitutorials and Biograpies}
-\include{minitutorials_summary}
+\input{minitutorials_summary}
 \include{minitutorials}
 
-% \part{Program}
-% \include{program}
+\part{Program}
+\include{program}
 
-% \part{Abstracts}
-% \rhead{Minisymposia Presentations Abstracts}
-% \chapter*{Minisymposia Presentations Abstracts}
-% \addcontentsline{toc}{section}{Minysimposia Presentations Abstracts}
-% \include{minisymposia}
+\part{Abstracts}
+\rhead{Minisymposia Presentations Abstracts}
+\chapter*{Minisymposia Presentations Abstracts}
+\addcontentsline{toc}{section}{Minysimposia Presentations Abstracts}
+\include{minisymposia}
 
 %\rhead{Contributed Presentations Abstracts}
 %\chapter*{Contributed Presentations Abstracts}
