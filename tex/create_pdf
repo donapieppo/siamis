@@ -1,12 +1,12 @@
 #!/bin/bash
 
-curl https://tester.dm.unibo.it/siamis/latex/plenaries.tex 
-curl https://tester.dm.unibo.it/siamis/latex/minitutorials.tex 
+curl https://tester.dm.unibo.it/siamis/latex/plenaries.tex       -o plenaries.tex
+curl https://tester.dm.unibo.it/siamis/latex/minitutorials.tex   -o minitutorials.tex
 
-curl https://tester.dm.unibo.it/siamis/latex/minisymposia.tex 
-curl https://tester.dm.unibo.it/siamis/latex/contributed.tex 
-curl https://tester.dm.unibo.it/siamis/latex/posters.tex 
+curl https://tester.dm.unibo.it/siamis/latex/minisymposia.tex    -o minisymposia.tex
+curl https://tester.dm.unibo.it/siamis/latex/contributed.tex     -o contributed.tex
+curl https://tester.dm.unibo.it/siamis/latex/posters.tex         -o posters.tex
 
-curl https://tester.dm.unibo.it/siamis/latex/program.tex 
+curl https://tester.dm.unibo.it/siamis/latex/program.tex         -o program.tex
 
 
