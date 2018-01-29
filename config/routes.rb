@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :users do
     post :admin_create, on: :collection # skip devise registration
     post :admin_notify_new, on: :member
-    resources :presentations
     put :update_affiliation, on: :member
     get :multiple_speakers, on: :collection
     get :affiliations, on: :collection
@@ -15,6 +14,8 @@ Rails.application.routes.draw do
     get :missing_affiliation, on: :collection
     get :mailing_list, on: :collection
     get :mailing_lists, on: :collection
+    resources :presentations
+    resources :manual_payments
   end
 
   resources :authors do
@@ -97,6 +98,8 @@ Rails.application.routes.draw do
     get :verify, on: :member, as: :verify
     get :error,  on: :member, as: :error
   end
+
+  resources :manual_payments
 
   resources :organizers
   resources :ratings

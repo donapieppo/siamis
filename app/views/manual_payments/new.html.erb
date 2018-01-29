@@ -1,0 +1,12 @@
+<h1><small>New manual payment for</small><br/><%= @user.cn %></h1>
+
+<%= simple_form_for [@user, @manual_payment] do |payment| %>  
+  <%= payment.input :amount %>  
+  <% unless (@conference_registration && @conference_registration.payment_id) %>  
+    <div class='col-md-9 col-md-offset-3'>
+      <input type="checkbox" name="for_registration" value="1"></input>
+      <label>For registration <% if ! @conference_registration %><em>(If checked the user will also be registered to the conference).</em><% end %></label>
+    </div>
+  <% end %>
+  <%= payment.submit %>  
+<% end %>

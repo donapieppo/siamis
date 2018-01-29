@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :presentations,       through: :authors
   has_many :ratings
   has_many :payments
+  has_many :manual_payments
   has_many :interests, dependent: :destroy
 
   has_one  :conference_registration
