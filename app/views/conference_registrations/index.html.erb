@@ -25,19 +25,25 @@
       <% if payment = conference_registration.payment %>  
         <td><%= payment.amount %> &euro;</td>
         <% euro += payment.amount %>  
-        <td><%= payment.payment_id %></td>
+        <td><%= payment.manual ? 'Manual' : payment.payment_id %></td>
         <td><%= payment.shop_id %></td>
         <td><%= payment.verified %></td>
         <td><%= l payment.created_at %></td>
-        <td>
-          <%= l(payment.single_day, format: :day) if payment.single_day %>  
-          <%= 'student' if payment.student %>  
-        </td>
       <% else %>
-        <td colspan="6"> - </td>
+        <td colspan="5"> - </td>
       <% end %>
+        <td>
+          <% if payment %>  
+            <%= l(payment.single_day, format: :day) if payment.single_day %>  
+            <%= 'student' if payment.student %>  
+          <% elsif user.student_award %>
+            student <%= icon('trophy') %>  
+          <% end %>
+        </td>
       <td>
-        <%= link_to icon('file-pdf-o'), conference_registration_path(conference_registration, format: :pdf) %>  
+        <%= link_to(icon('file-pdf-o'), conference_registration_path(conference_registration, format: :pdf), title: '') %>  
+        <%= link_to(icon('print'), edit_conference_registration_path(conference_registration), title: '') %>  
+        <%= link_to(icon('euro'), new_manual_payment_path(user_id: conference_registration.user_id), title: '') %>  
       </td>
     </tr>
   <% end %>
