@@ -1,0 +1,50 @@
+<%= program_title('Payments', 'euro') %>  
+
+<p>
+  <%= link_to 'Expected Gain', expected_conference_registrations_path, class: "btn btn-success" %>  
+</p>
+
+<% tot = euro = 0 %>  
+
+<table class="table table-striped table-condensed">
+  <tr>
+    <th>User</th>
+    <th>amount</th>
+    <th>payment id</th>
+    <th>identification</th>
+    <th>verified</th>
+    <th>date</th>
+    <th>Notes</th>
+    <th></th>
+  </tr>
+  <% @payments.each do |payment| %>  
+    <% user = payment.user or next %>  
+    <% tot += 1 %>  
+    <%= content_tag :tr, class: ('info' if payment.manual) do %> 
+      <th title="<%= user.email %>"><%= user_modal_link(user) %></th>
+      <td><%= payment.amount %> &euro;</td>
+      <% euro += payment.amount.to_i %>  
+      <td><%= payment.manual ? 'Manual' : payment.payment_id %></td>
+      <td><%= payment.shop_id %></td>
+      <td><%= payment.verified %></td>
+      <td><%= l payment.created_at %></td>
+      <td>
+        <%= l(payment.single_day, format: :day) if payment.single_day %>  
+        <%= 'student' if payment.student %>  
+        <% if user.student_award %>
+          student <%= icon('trophy') %>  
+        <% end %>
+      </td>
+      <td>
+        <%= link_to_delete(payment) if payment.manual %>  
+      </td>
+    <% end %>
+  <% end %>
+</table>
+
+<dl class="dl-horizontal">
+  <dt>Users:</dt>
+  <dd><%= tot %></dd>
+  <dt>Euro: </dt>
+  <dd><%= euro %> &euro;</dd>
+</dl>
