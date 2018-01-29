@@ -17,6 +17,10 @@
   <%= user.input :dietary %>  
   <%= user.input :banquet_tickets %>  
 
+  <% if user_in_organizer_committee? %>  
+    <%= user.input :student_award %>  
+  <% end %>
+
   <%= user.submit 'Save'%> - <%= link_to_back root_path %>  
 <% end %>
 
