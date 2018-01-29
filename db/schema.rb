@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.boolean "student"
     t.date "single_day"
     t.boolean "verified"
+    t.boolean "manual", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["user_id"], name: "user_id"
@@ -202,6 +203,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "web_page"
     t.text "dietary"
     t.integer "banquet_tickets"
+    t.boolean "student_award", default: false
     t.boolean "visible"
     t.string "encrypted_password"
     t.string "reset_password_token"
