@@ -2,7 +2,7 @@ module ConferenceHelper
 
   def user_modal_link(user)
     return "" unless user
-    cn = (current_user == user) ? user.cn.upcase : user.cn
+    cn = (current_user == user) ? "<u>#{h user.cn.upcase}</u>".html_safe : user.cn
     link_to h(cn), user_path(user), remote: true 
   end
 
