@@ -26,7 +26,10 @@
   <% if user.conference_registration %>  
     <strong><%= icon :star %> Registered</strong> to SIAM-IS18.
   <% elsif user_in_organizer_committee? %>
-    <p><%= link_to 'Manual Registration', manual_new_conference_registrations_path(user_id: user.id), class: :button %><p>
+    <p>
+      <%= link_to 'Manual Registration', manual_new_conference_registrations_path(user_id: user.id), class: :button %> 
+      <%= link_to 'Manual Payment', new_user_manual_payment_path(user), class: :button %>
+    <p>
   <% end %>
 <% end %>
 
