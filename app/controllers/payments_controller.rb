@@ -1,4 +1,9 @@
 class PaymentsController < ApplicationController
+  before_action :user_in_organizer_or_management_committee!, only: [:index, :destroy]
+
+  def index
+    @payments = Payment.verified.includes(:user).order('updated_at DESC')
+  end
 
   def new
     if current_user.payments.verified.any?
@@ -48,5 +53,20 @@ class PaymentsController < ApplicationController
     @rc = params[:rc] || 'Unknown error'
   end
 
+  # FIMXE temporary accrocchio
+  def destroy
+    @manual_payment = Payment.find(params[:id])
+    @user = @manual_payment.user
+    if @manual_payment.manual
+      if @user.conference_registration and @user.conference_registration.payment_id = @manual_payment.id
+        @user.conference_registration.update_attribute(:payment_id, nil)
+      end
+      @manual_payment.destroy
+      flash[:notice] = "The manual payment has been deleted."
+    else
+      flash[:alert] = "Not a manual payment. Contact site administrator."
+    end
+    redirect_to payments_path
+  end
 end
 
