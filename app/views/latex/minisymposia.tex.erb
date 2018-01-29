@@ -1,24 +1,36 @@
 <% @conference_sessions.each do |cs| %>
   \siamsessiontitle{<%= cs.code %>}{<%= raw latex_text_clean cs.name %>}
 
+  \begin{siam_organizers}{<%= cs.organizers_label.pluralize %>}
+    <% (organizers = cs.organizers).each do |o| %>  
+      \item[] <%= latex_user(o.user) %>
+    <% end %>
+    <% if organizers.empty? %>  
+      \item[] To be defined
+    <% end %>
+  \end{siam_organizers}
+
   <% cs.schedules.order(:start).each do |schedule| %>
+  \begin{siam_session_part}
     \siamschedule{<%= "#{cs.code}-#{schedule.part}" %>}{<%= l schedule.start, format: :schedule_day_and_hour %>}{<%= schedule.room %>}
 
-    \begin{multicols}{2}
     <% schedule.presentations.each do |presentation| %>  
 
       \siampresentationtitle{<%= raw latex_text_clean presentation.name %>}
 
       \siampresentationabstract{<%= raw latex_text_clean presentation.abstract %>}
 
-      \begin{flushright}
-        <% presentation.authors.each do |author| %>  
-          <%= latex_author(author) %>\\
-
+      \begin{siam_speakers}
+        <% (authors = presentation.authors).each do |author| %>  
+          \item<%= '[]' unless author.speak %>  <%= latex_user(author.user, author.speak) %>
+        <% end %> 
+        <% if authors.empty? %>  
+          \item[] To be defined
         <% end %>
-      \end{flushright}
+      \end{siam_speakers}
+
     <% end %>
-    \end{multicols}
+  \end{siam_session_part}
   <% end %>
 <% end %>
 
