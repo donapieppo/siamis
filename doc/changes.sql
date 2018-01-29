@@ -13,6 +13,24 @@ ALTER TABLE `conference_sessions` ADD COLUMN `parts` int(1) DEFAULT 1 AFTER `des
 ALTER TABLE `presentations`       ADD COLUMN `part` int(1)  DEFAULT 1 AFTER `conference_session_id`;
 ALTER TABLE `schedules`           ADD COLUMN `part` int(1)  DEFAULT 1 AFTER `conference_session_id`;
 
+ALTER TABLE `users` ADD COLUMN `student_award` bool DEFAULT 0 AFTER `banquet_tickets`;
+UPDATE users set student_award = 1 where id=1038;
+UPDATE users set student_award = 1 where id=778;
+UPDATE users set student_award = 1 where id=474;
+UPDATE users set student_award = 1 where id=267;
+UPDATE users set student_award = 1 where id=601;
+UPDATE users set student_award = 1 where id=791;
+UPDATE users set student_award = 1 where id=1267;
+UPDATE users set student_award = 1 where id=583;
+UPDATE users set student_award = 1 where id=755;
+UPDATE users set student_award = 1 where id=559;
+UPDATE users set student_award = 1 where id=426;
+UPDATE users set student_award = 1 where id=104;
+UPDATE users set student_award = 1 where id=977;
+
+
+ALTER TABLE `payments` ADD COLUMN `manual` bool DEFAULT 0 AFTER `verified`;
+
 
 
 
