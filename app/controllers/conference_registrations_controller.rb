@@ -4,7 +4,7 @@ class ConferenceRegistrationsController < ApplicationController
   skip_before_action :authenticate_user!, only: :new
 
   before_action :user_in_organizer_committee!, only: [:manual_new, :manual_create, :edit, :update] # remember index
-  before_action :user_in_organizer_or_management_committee!, only: [:index, :print]
+  before_action :user_in_organizer_or_management_committee!, only: [:index, :recipe]
 
   def index
     @conference_registrations = ConferenceRegistration.includes(:user, :payment).order('updated_at DESC')
@@ -41,7 +41,7 @@ class ConferenceRegistrationsController < ApplicationController
       format.html
       format.pdf do
         pdf = PrintableRegistration.new(@conference_registration)
-        filename = "#{@conference_registration.user.name} #{@conference_registration.user.surname} registration.pdf".gsub(' ', '_')
+        filename = "#{@conference_registration.user.name}_#{@conference_registration.user.surname}_registration.pdf".gsub(' ', '_')
         send_data pdf.render, filename: filename, type: "application/pdf"
       end
     end
@@ -61,8 +61,11 @@ class ConferenceRegistrationsController < ApplicationController
     redirect_to users_path, notice: 'The registration has been recorded.'
   end
 
-  def print
-    #@conference_registrations = ConferenceRegistration.includes(:user, :payment).find(params[:id])
+  def recipe
+    @conference_registration = ConferenceRegistration.includes(:user, :payment).find(params[:id])
+    pdf = PrintableRecipe.new(@conference_registration)
+    filename = "#{@conference_registration.user.name}_#{@conference_registration.user.surname}_recipe.pdf".gsub(' ', '_')
+    send_data pdf.render, filename: filename, type: "application/pdf"
   end
 
   def expected

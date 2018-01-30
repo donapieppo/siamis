@@ -59,7 +59,8 @@
       <% if current_user %>  
         <% if user_in_management_committee? %>  
           <%= dropdown_menu fwicon('info-circle') + ' INFO' do %>
-            <%= menu_link 'euro', 'Registrations', conference_registrations_path %>
+            <%= menu_link 'certificate', 'Registrations', conference_registrations_path %>
+            <%= menu_link 'euro', 'Payments', payments_path %>
             <%= menu_link 'users', 'Users', users_path %>
           <% end %>
         <% end %>
@@ -99,7 +100,7 @@
             <li class="dropdown-header">Users</li>
             <%= menu_link 'users', 'Users', users_path %>
             <%= menu_link 'bullhorn', 'speakers csv', users_path(format: :csv, speakers: true) %>
-            <%= menu_link 'euro', 'Registrations', conference_registrations_path %>
+            <%= menu_link 'certificate', 'Registrations', conference_registrations_path %>
             <%= menu_link 'euro', 'Payments', payments_path %>
             <%= menu_link 'file', 'Invitation Letter Requests', invitation_letters_path %>
             <%= menu_link 'envelope', 'Mailing lists', mailing_lists_users_path %>

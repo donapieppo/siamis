@@ -109,7 +109,7 @@ Rails.application.routes.draw do
 
   resources :conference_registrations do 
     get  :check,         on: :collection, as: :check
-    get  :print,         on: :member, as: :export
+    get  :recipe,        on: :member
 
     get  :manual_new,    on: :collection, as: :manual_new
     post :manual_create, on: :collection, as: :manual_create

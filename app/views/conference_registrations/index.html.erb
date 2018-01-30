@@ -41,8 +41,13 @@
           <% end %>
         </td>
       <td>
-        <%= link_to(icon('file-pdf-o'), conference_registration_path(conference_registration, format: :pdf), title: '') %>  
-        <%= link_to(icon('euro'), new_manual_payment_path(user_id: conference_registration.user_id), title: '') %>  
+        <%= link_to(icon('file-pdf-o'), conference_registration_path(conference_registration, format: :pdf), title: 'info') %>  
+        <% if payment and payment.amount > 0 %>  
+          <%= link_to(icon('envelope-o'), recipe_conference_registration_path(conference_registration), title: 'recipe') %>  
+        <% end %>
+        <% if user_in_organizer_committee? %>  
+          <%= link_to(icon('euro'), new_manual_payment_path(user_id: conference_registration.user_id), title: 'new payment') %>  
+        <% end %>
       </td>
     </tr>
   <% end %>
