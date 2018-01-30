@@ -93,6 +93,7 @@ GEM
     httpi (2.4.2)
       rack
       socksify
+    humanize (1.7.0)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     i18n_data (0.8.0)
@@ -267,6 +268,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   font-awesome-sass
+  humanize
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
