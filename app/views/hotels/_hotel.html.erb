@@ -6,7 +6,11 @@
 </div>
 <div class="panel-body">
   <p><%= link_to icon('map-marker')    + " " + hotel.address, '#', class: "activate_address_link", data: {addressid: hotel.id} %></p>
-  <p><%= link_to icon('external-link') + " web page", hotel.web_page, target: :new %></p>
+  <% if hotel.booking_page %>  
+    <p><%= link_to icon('external-link') + " booking page", hotel.booking_page, target: :new %></p>
+  <% else %>
+    <p><%= link_to icon('external-link') + " web page", hotel.web_page, target: :new %></p>
+  <% end %>
 
   <p class='hotel_description'><%= hotel.description %></p>
 
@@ -23,6 +27,10 @@
       </tr>
     <% end %>
   </table>
+
+  <% if hotel.booking_page %>  
+    <p class="alert alert-warning">Please use this <%= link_to 'link', hotel.booking_page, target: :new %> when booking this hotel.</p>
+  <% end %>
 </div>
 <% if user_in_organizer_committee? %>  
   <div class="panel-footer">

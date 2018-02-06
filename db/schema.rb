@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.boolean "bb"
     t.boolean "tax"
     t.string "web_page"
+    t.string "booking_page"
     t.string "image"
     t.float "lat", limit: 24
     t.float "lng", limit: 24

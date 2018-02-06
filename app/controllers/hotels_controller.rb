@@ -36,7 +36,7 @@ class HotelsController < ApplicationController
                           :dusprice, :dusprice_deluxe, 
                           :doubleprice, :doubleprice_deluxe, 
                           :suiteprice, :juniorsuiteprice, :apartment, 
-                          :bb, :tax, :web_page, :image, :lat, :lng)
+                          :bb, :tax, :web_page, :booking_page, :image, :lat, :lng)
   end
 
   def set_hotel

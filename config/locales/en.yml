@@ -83,10 +83,11 @@ en:
         suiteprice:         Suite
         juniorsuiteprice:   Junior Suite
         apartment:          Apartment
-        bb:          Bed and breakfast
-        tax:         Tax to add
-        address:     Address
-        web_page:    Web Page
+        bb:                 Bed and breakfast
+        tax:                Tax to add
+        address:            Address
+        web_page:           Web Page
+        booking_page:       Mandatory booking page
       schedule:
         start_day_number: Day
         start_hour: Hour
@@ -138,6 +139,7 @@ en:
         name: Title to be announced
       hotel:
         web_page: http://
+        booking_page: http://
 
   helpers:
     submit:
