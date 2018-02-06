@@ -1,0 +1,21 @@
+<h1>Statistics</h1>
+
+<table class="table">
+  <tr>
+    <th class="number"><%= Role.where(speak: 1).where(presentation: Presentation.at_minisymposium.ids).group(:user_id).uniq.count %></th>
+    <td>Numero di speakers nei minisymposia</td>
+  </tr>
+  <tr>
+    <th class="number"><%= Role.where(speak: 1).where(presentation: Presentation.at_contributed.ids).group(:user_id).uniq.count %></th>
+    <td>Numero di speakers nei contributed</td>
+  </tr>
+  <tr>
+    <th class="number"><%= Role.where(speak: 1).where(presentation: Presentation.at_poster.ids).group(:user_id).uniq.count %></th>
+    <td>Numero di speakers nei posters</td>
+  </tr>
+  <tr>
+    <th class="number"><%= Role.where(speak: 1).where('presentation_id is not null').group(:user_id).uniq.count %></th>
+    <td>Numero complessivo di speaker tra minisimposia, contributed, posters, plenaries and minitutorials</td>
+  </tr>
+</table>
+

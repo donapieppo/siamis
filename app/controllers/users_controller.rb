@@ -182,6 +182,9 @@ class UsersController < ApplicationController
   def update_affiliation
   end
 
+  def stats
+  end
+
   private 
 
   def user_params

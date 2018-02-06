@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get :missing_affiliation, on: :collection
     get :mailing_list, on: :collection
     get :mailing_lists, on: :collection
+    get :stats, on: :collection
     resources :presentations
     resources :manual_payments
   end
