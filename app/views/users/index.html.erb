@@ -1,13 +1,5 @@
 <%= program_title('Users', 'envelope') %>  
 
-<div class="centered">
-  <p>
-    <%= link_to 'Multiple presentations speakers', multiple_speakers_users_path, class: :button %>
-    <%# <%= link_to 'Affiliations', affiliations_users_path, class: :button %>
-    <%= link_to 'Nationalities', countries_stats_path, class: :button %>
-  </p>
-</div>
-
 <% if user_in_organizer_committee? %>  
   <p class="centered">
   <%= link_to 'New User', new_user_path, class: :button %>   
@@ -18,6 +10,12 @@
 Users with <%= icon('euro') %> are registered.
 Users with <%= icon('check') %> are active (have used the web site).
 Users with <%= icon('cog') %> are in scientific committee.
+</p>
+
+<p>
+  <%= link_to 'Multiple presentations speakers', multiple_speakers_users_path, class: 'btn btn-sm btn-info' %> - 
+  <%= link_to 'Nationalities', countries_stats_path, class: 'btn btn-sm btn-info' %> -
+  <%= link_to 'Number of speakers', stats_users_path, class: 'btn btn-sm btn-info' %>
 </p>
 
 <table class="table table-condensed">
