@@ -41,6 +41,8 @@ InvitationLettersController	app/controllers/invitation_letters_controller.rb	/^c
 LatexController	app/controllers/latex_controller.rb	/^class LatexController < ApplicationController$/;"	c
 LatexHelper	app/helpers/latex_helper.rb	/^module LatexHelper$/;"	m
 LinkHelper	app/helpers/link_helper.rb	/^module LinkHelper$/;"	m
+ManualPayment	app/models/manual_payment.rb	/^class ManualPayment < ApplicationRecord$/;"	c
+ManualPaymentsController	app/controllers/manual_payments_controller.rb	/^class ManualPaymentsController < ApplicationController$/;"	c
 MenuHelper	app/helpers/menu_helper.rb	/^module MenuHelper$/;"	m
 MinisymposiaController	app/controllers/minisymposia_controller.rb	/^class MinisymposiaController < ConferenceSessionsController$/;"	c
 Minisymposium	app/models/minisymposium.rb	/^class Minisymposium < MultipleConferenceSession$/;"	c
@@ -66,6 +68,7 @@ Presentation	app/models/presentation.rb	/^class Presentation < ApplicationRecord
 PresentationsController	app/controllers/presentations_controller.rb	/^class PresentationsController < ApplicationController$/;"	c
 PrintableMinisymposia	app/pdfs/printable_minisymposia.rb	/^class PrintableMinisymposia < Prawn::Document$/;"	c
 PrintableProgram	app/pdfs/printable_program.rb	/^class PrintableProgram < Prawn::Document$/;"	c
+PrintableRecipe	app/pdfs/printable_recipe.rb	/^class PrintableRecipe < Prawn::Document$/;"	c
 PrintableRegistration	app/pdfs/printable_registration.rb	/^class PrintableRegistration < Prawn::Document$/;"	c
 PrivacyHelper	app/helpers/privacy_helper.rb	/^module PrivacyHelper $/;"	m
 Rating	app/models/rating.rb	/^class Rating < ApplicationRecord$/;"	c
@@ -82,6 +85,7 @@ SchedulesController	app/controllers/schedules_controller.rb	/^class SchedulesCon
 SiamHelper	app/helpers/siam_helper.rb	/^module SiamHelper$/;"	m
 SponsorsHelper	app/helpers/sponsors_helper.rb	/^module SponsorsHelper$/;"	m
 StatsController	app/controllers/stats_controller.rb	/^class StatsController < ApplicationController$/;"	c
+StyleHelper	app/helpers/style_helper.rb	/^module StyleHelper$/;"	m
 SubmissionsController	app/controllers/submissions_controller.rb	/^class SubmissionsController < ApplicationController$/;"	c
 Tag	app/models/tag.rb	/^class Tag < ApplicationRecord$/;"	c
 Taggable	app/models/concerns/taggable.rb	/^module Taggable$/;"	m
@@ -163,6 +167,7 @@ common_actions	app/helpers/actions_helper.rb	/^  def common_actions(what)$/;"	f	
 conference_day	app/models/schedule.rb	/^  def self.conference_day(num)$/;"	F	class:Schedule
 conference_days_array	app/models/schedule.rb	/^  def self.conference_days_array$/;"	F	class:Schedule
 conference_home_title	app/helpers/home_helper.rb	/^  def conference_home_title$/;"	f	class:HomeHelper
+conference_session_abbr	app/models/schedule.rb	/^  def conference_session_abbr$/;"	f	class:Schedule
 conference_session_color	app/helpers/conference_helper.rb	/^  def conference_session_color(cs)$/;"	f
 conference_session_color	app/pdfs/printable_program.rb	/^  def conference_session_color(cs)$/;"	f	class:PrintableProgram
 conference_session_panel_class	app/helpers/conference_helper.rb	/^  def conference_session_panel_class(conference_session)$/;"	f
@@ -184,6 +189,7 @@ create	app/controllers/buildings_controller.rb	/^  def create$/;"	f	class:Buildi
 create	app/controllers/contributed_sessions_controller.rb	/^  def create $/;"	f	class:ContributedSessionsController
 create	app/controllers/hotels_controller.rb	/^  def create$/;"	f	class:HotelsController
 create	app/controllers/invitation_letters_controller.rb	/^  def create$/;"	f	class:InvitationLettersController
+create	app/controllers/manual_payments_controller.rb	/^  def create$/;"	f	class:ManualPaymentsController
 create	app/controllers/minisymposia_controller.rb	/^  def create $/;"	f
 create	app/controllers/minitutorials_controller.rb	/^  def create $/;"	f	class:MinitutorialsController
 create	app/controllers/organizers_controller.rb	/^  def create$/;"	f	class:OrganizersController
@@ -209,6 +215,7 @@ destroy	app/controllers/authors_controller.rb	/^  def destroy$/;"	f	class:Author
 destroy	app/controllers/buildings_controller.rb	/^  def destroy$/;"	f	class:BuildingsController
 destroy	app/controllers/conference_sessions_controller.rb	/^  def destroy$/;"	f
 destroy	app/controllers/papers_controller.rb	/^  def destroy$/;"	f	class:PapersController
+destroy	app/controllers/payments_controller.rb	/^  def destroy$/;"	f	class:PaymentsController
 destroy	app/controllers/presentations_controller.rb	/^  def destroy$/;"	f	class:PresentationsController
 destroy	app/controllers/ratings_controller.rb	/^  def destroy$/;"	f
 destroy	app/controllers/roles_controller.rb	/^  def destroy$/;"	f	class:RolesController
@@ -273,6 +280,7 @@ index	app/controllers/invitation_letters_controller.rb	/^  def index$/;"	f	class
 index	app/controllers/latex_controller.rb	/^  def index$/;"	f	class:LatexController
 index	app/controllers/minisymposia_controller.rb	/^  def index$/;"	f	class:MinisymposiaController
 index	app/controllers/minitutorials_controller.rb	/^  def index $/;"	f	class:MinitutorialsController
+index	app/controllers/payments_controller.rb	/^  def index$/;"	f	class:PaymentsController
 index	app/controllers/plenaries_controller.rb	/^  def index$/;"	f	class:PlenariesController
 index	app/controllers/poster_sessions_controller.rb	/^  def index$/;"	f	class:PosterSessionsController
 index	app/controllers/presentations_controller.rb	/^  def index$/;"	f	class:PresentationsController
@@ -287,6 +295,7 @@ initialize	app/models/fee.rb	/^  def initialize(user, single_day: nil)$/;"	f	cla
 initialize	app/models/unicredit.rb	/^  def initialize(payment)$/;"	f	class:Unicredit
 initialize	app/pdfs/printable_minisymposia.rb	/^  def initialize(minisymposia)$/;"	f	class:PrintableMinisymposia
 initialize	app/pdfs/printable_program.rb	/^  def initialize$/;"	f	class:PrintableProgram
+initialize	app/pdfs/printable_recipe.rb	/^  def initialize(conference_registration)$/;"	f	class:PrintableRecipe
 initialize	app/pdfs/printable_registration.rb	/^  def initialize(conference_registration)$/;"	f	class:PrintableRegistration
 input	app/inputs/schedule_day_input.rb	/^  def input(wrapper_options)$/;"	f	class:ScheduleDayInput
 input	app/inputs/schedule_hour_input.rb	/^  def input(wrapper_options)$/;"	f	class:ScheduleHourInput
@@ -352,6 +361,7 @@ new	app/controllers/conference_registrations_controller.rb	/^  def new$/;"	f	cla
 new	app/controllers/contributed_sessions_controller.rb	/^  def new$/;"	f	class:ContributedSessionsController
 new	app/controllers/hotels_controller.rb	/^  def new$/;"	f	class:HotelsController
 new	app/controllers/invitation_letters_controller.rb	/^  def new$/;"	f	class:InvitationLettersController
+new	app/controllers/manual_payments_controller.rb	/^  def new$/;"	f	class:ManualPaymentsController
 new	app/controllers/minisymposia_controller.rb	/^  def new$/;"	f
 new	app/controllers/minitutorials_controller.rb	/^  def new$/;"	f	class:MinitutorialsController
 new	app/controllers/organizers_controller.rb	/^  def new$/;"	f	class:OrganizersController
@@ -398,12 +408,12 @@ presentation_parent	app/helpers/panels_helper.rb	/^  def presentation_parent(pre
 presentation_proposal_end	app/models/deadline.rb	/^    def presentation_proposal_end$/;"	f	class:Deadline
 presentation_proposal_start	app/models/deadline.rb	/^    def presentation_proposal_start$/;"	f	class:Deadline
 presentations	app/models/schedule.rb	/^  def presentations$/;"	f	class:Schedule
+presentations_in_parts	app/models/conference_session.rb	/^  def presentations_in_parts$/;"	f	class:ConferenceSession
 price_to_pay	app/models/fee.rb	/^  def price_to_pay$/;"	f
 price_to_pay_and_reason	app/models/fee.rb	/^  def price_to_pay_and_reason$/;"	f	class:Fee
 price_types	app/models/hotel.rb	/^  def self.price_types$/;"	F	class:Hotel
 prices	app/models/fee.rb	/^  def self.prices$/;"	F
 print	app/controllers/conference_program_controller.rb	/^  def print$/;"	f	class:ConferenceProgramController
-print	app/controllers/conference_registrations_controller.rb	/^  def print$/;"	f	class:ConferenceRegistrationsController
 print	app/controllers/minisymposia_controller.rb	/^  def print$/;"	f
 print_hour	app/pdfs/printable_program.rb	/^  def print_hour(a, plus = 0)$/;"	f	class:PrintableProgram
 privacy	app/controllers/home_controller.rb	/^  def privacy$/;"	f	class:HomeController
@@ -419,6 +429,7 @@ ratable?	app/models/minisymposium.rb	/^  def ratable?$/;"	f	class:Minisymposium
 ratable?	app/models/presentation.rb	/^  def ratable?$/;"	f	class:Presentation
 rating_params	app/controllers/ratings_controller.rb	/^  def rating_params$/;"	f
 rating_stars	app/helpers/conference_helper.rb	/^  def rating_stars(rating)$/;"	f	class:ConferenceHelper.show_roles
+recipe	app/controllers/conference_registrations_controller.rb	/^  def recipe$/;"	f	class:ConferenceRegistrationsController
 redirect_home_with_auth_error	app/helpers/application_helper.rb	/^  def redirect_home_with_auth_error$/;"	f	class:ApplicationHelper
 refuse	app/controllers/minisymposia_controller.rb	/^  def refuse$/;"	f
 refuse	app/controllers/presentations_controller.rb	/^  def refuse$/;"	f	class:PresentationsController
@@ -435,6 +446,7 @@ satellites	app/controllers/home_controller.rb	/^  def satellites$/;"	f	class:Hom
 schedule	app/models/mono_conference_session.rb	/^  def schedule$/;"	f	class:MonoConferenceSession
 schedule	app/models/presentation.rb	/^  def schedule$/;"	f	class:Presentation
 schedule_params	app/controllers/schedules_controller.rb	/^  def schedule_params$/;"	f	class:SchedulesController
+schedule_session_link	app/helpers/style_helper.rb	/^  def schedule_session_link(schedule)$/;"	f	class:StyleHelper
 schedules	app/controllers/users_controller.rb	/^  def schedules$/;"	f	class:UsersController
 schedules_list	app/helpers/conference_helper.rb	/^  def schedules_list(schedules)$/;"	f
 schedules_to_s	app/models/conference_session.rb	/^  def schedules_to_s$/;"	f	class:ConferenceSession
@@ -493,6 +505,7 @@ start_impersonation_link	app/helpers/application_helper.rb	/^  def start_imperso
 start_payment	app/models/payment.rb	/^  def start_payment$/;"	f	class:Payment
 startings	app/models/schedule.rb	/^  def self.startings(day)$/;"	F	class:Schedule
 startings_cest	app/models/schedule.rb	/^  def self.startings_cest(day)$/;"	F	class:Schedule
+stats	app/controllers/users_controller.rb	/^  def stats$/;"	f	class:UsersController
 stop_impersonating	app/controllers/impersonations_controller.rb	/^  def stop_impersonating$/;"	f	class:ImpersonationsController
 stop_impersonation_link	app/helpers/application_helper.rb	/^  def stop_impersonation_link$/;"	f	class:ApplicationHelper
 substringMatcher	app/assets/javascripts/typeahead_search.js	/^var substringMatcher = function(strs) {$/;"	f
