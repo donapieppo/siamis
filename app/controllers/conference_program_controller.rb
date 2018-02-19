@@ -2,7 +2,7 @@ class ConferenceProgramController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @daynumber = params[:day]
+    @daynumber = params[:day].to_i 
     @day = Schedule.conference_day(@daynumber)
     @room = Room.find(params[:room_id]) if params[:room_id]
 
