@@ -18,13 +18,13 @@
   <% end %>
 </dl>
 
-<% if current_user and (user == current_user or user_in_organizer_committee?) %>  
+<% if current_user and (user == current_user or user_in_organizer_or_management_committee?) %>  
   <p class="centered">
     <%= link_to_edit2  'modify', [:edit, user] %>  
     <%= link_to_delete('delete', user, button: true) if user_in_organizer_committee? %>  
   </p>
   <% if user.conference_registration %>  
-    <strong><%= icon :star %> Registered</strong> to SIAM-IS18.
+    <p class="alert alert-success"><%= icon :star %> Registered to SIAM-IS18.</p>
   <% elsif user_in_organizer_committee? %>
     <p>
       <%= link_to 'Manual Registration', manual_new_conference_registrations_path(user_id: user.id), class: :button %> 
@@ -39,7 +39,7 @@
     <% @user_conference_sessions.each do |conference_session| %>  
       <li class="list-group-item">
         <p>
-          "<%= link_to conference_session, conference_session %>"
+          &ldquo;<%= link_to conference_session, conference_session %>&rdquo;
           <span class="badge pull-right">
             <%= conference_session.class_name %>
           </span> 
@@ -58,7 +58,7 @@
     <% @user_presentations.each do |presentation| %>  
       <li class="list-group-item">
         <p>
-        "<%= link_to presentation, presentation %>"
+        &ldquo;<%= link_to presentation, presentation %>&rdquo;
         <span class="badge pull-right">
           <%= icon('microphone') if @user.speaker?(presentation) %> &nbsp; 
           <%= presentation.parent_class %> 
