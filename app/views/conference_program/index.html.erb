@@ -32,10 +32,21 @@
       <div class="alert centered" style="font-size: 120%"><%= big_icon 'clock-o' %>  <strong><%= hour %></strong> <br/> <%= l(schedule.start, format: :schedule) %>  </div>
     <% end %>
 
-    <p><%= schedule_session_link(schedule) %></p>
+    <p>
+      <%= cache schedule do %>  
+        <%= show_schedule_session(schedule) %>
+        <%# render schedule %>  
+      <% end %>
+    </p>
 
-    <%# <%= cache schedule do %>  
-      <%#   <%= render schedule %>  
-      <%# <% end %> 
   <% end %> 
 </div><!-- day_program -->
+
+<div class="centered">
+  <% if @daynumber > 0 %>
+    <%= link_to icon('chevron-circle-left', size: 42), conference_program_path(day: @daynumber - 1) %>
+  <% end %>
+  <% if @daynumber < Rails.configuration.number_of_days %>
+    <%= link_to icon('chevron-circle-right', size: 42), conference_program_path(day: @daynumber + 1) %>
+  <% end %>
+</div>
