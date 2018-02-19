@@ -1,8 +1,9 @@
 <% 
-  owner         = current_user_owns?(conference_session)
-  presentations = conference_session.presentations.includes(authors: :user).order(:part, :number, :name).all
-  organizers    = conference_session.organizers.includes(:user).order('users.surname').all 
-  missing_presentations = conference_session.is_a?(Minisymposium) && ((! conference_session.accepted) and owner and (presentations.size < 4))
+  owner = current_user_owns?(conference_session)
+  presentations_in_parts = conference_session.presentations_in_parts
+  schedules_in_parts = conference_session.schedules.inject({}) {|res, s| res[s.part] = s; res}
+  organizers = conference_session.organizers.includes(:user).order('users.surname').all 
+  missing_presentations = conference_session.is_a?(Minisymposium) && ((! conference_session.accepted) and owner and (presentations[1].size < 4))
   condensed ||= false
 %>  
 
@@ -12,7 +13,13 @@
   <div class="panel-body">
     <p class="description"><%= conference_session.description %></p>
 
-    <%= list_presentations(presentations, conference_session) %>
+    <% presentations_in_parts.each do |part, presentations| %>
+      <div <%= raw 'class="alert alert-warning"' if part == @highlight_part %>>
+        <span><%= raw (conference_session.parts > 1) ? "<strong>PART #{part.to_i}</strong> " : "&nbsp;" %></span>
+        <span class='pull-right'><%= icon('calendar') + (schedules_in_parts[part] || I18n.t(:schedule_to_be_decided)) %></span>
+      </div>
+      <%= list_presentations(presentations, conference_session) %>
+    <% end %>
 
     <dl class="dl-horizontal">
       <dt><%= conference_session.organizers_label %>:</dt>
