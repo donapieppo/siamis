@@ -1,48 +1,41 @@
-<% if current_user %> 
-  <% old_hour = nil %>  
+<%= program_title("Conference Program", 'map') %>  
+<p style="text-align: right"><%= link_to 'Printable program in A3 page', 'https://www.siam-is18.dm.unibo.it/siamis18_a3_program.pdf' %></p>
 
-  <div class="row">
-    <div class="col-md-3">
-      <nav aria-label="Day pagination">
-        <ul class="list-group">
-          <% (0...Rails.configuration.number_of_days).each do |daynumber| %>  
-            <% day = Schedule.conference_day(daynumber) %>
-            <%= link_to l(day, format: :schedule), conference_program_path(day: daynumber, room_id: @room ? @room.id : nil), class: "list-group-item #{'active' if day == @day}" %>
-          <% end %>
-        </ul>
-      </nav>
-      <nav aria-label="Room pagination">
-        <ul class="list-group">
-          <%= link_to 'Show all rooms', conference_program_path(day: @daynumber), class: "list-group-item" %>
-          <% Room.order(:name).each do |room| %>  
-            <%= link_to room.name, conference_program_path(day: @daynumber, room_id: room.id), class: "list-group-item #{'active' if room == @room}" %>
-          <% end %>
-        </ul>
-      </nav>
-    </div><!-- div nav -->
+<% old_hour = nil %>  
 
-    <div class="col-md-9">
-      <%= program_title("Conference Program", 'map') %>  
+<nav aria-label="Day pagination">
+  <ul class="nav nav-tabs nav-justified">
+    <% (0...Rails.configuration.number_of_days).each do |daynumber| %>  
+      <% day = Schedule.conference_day(daynumber) %>
+      <li role="presentation">
+        <% day_string = "<strong>#{day.strftime('%A')}</strong><br/>#{day.strftime('%d %B %Y')}" %>  
+        <%= link_to day_string.html_safe, conference_program_path(day: daynumber, room_id: @room ? @room.id : nil), class: "list-group-item #{'active' if day == @day}" %>
+      </li>
+    <% end %>
+  </ul>
+</nav>
 
-      <p style="text-align: right"><%= link_to 'Printable program in A3 page', 'https://www.siam-is18.dm.unibo.it/siamis18_a3_program.pdf' %></p>
+<!-- <nav aria&#45;label="Room pagination"> -->
+<!--   <ul class="list&#45;group"> -->
+<!--     <%= link_to 'Show all rooms', conference_program_path(day: @daynumber), class: "list&#45;group&#45;item" %> -->
+<!--     <% Room.order(:name).each do |room| %>   -->
+  <!--       <%= link_to room.name, conference_program_path(day: @daynumber, room_id: room.id), class: "list&#45;group&#45;item #{'active' if room == @room}" %> -->
+  <!--     <% end %> -->
+<!--   </ul> -->
+<!-- </nav> -->
 
-      <div class="day_program">
-        <% @conference_program.each do |schedule| %>  
-          <% hour = l(schedule.start, format: :hour) %>  
+<div class="day_program" style="margin-top: 10px;">
+  <% @conference_program.each do |schedule| %>  
+    <% hour = l(schedule.start, format: :hour) %>  
 
-          <% if old_hour != (old_hour = hour) %>  
-            <div class="alert alert-info centered"><p><strong><%= hour %></strong></p></div>
-          <% end %>
+    <% if old_hour != (old_hour = hour) %>  
+      <div class="alert centered" style="font-size: 120%"><%= big_icon 'clock-o' %>  <strong><%= hour %></strong> <br/> <%= l(schedule.start, format: :schedule) %>  </div>
+    <% end %>
 
-          <%= cache schedule do %>  
-            <%= render schedule %>  
-          <% end %> 
-        <% end %> 
-      </div><!-- day_program -->
-    </div><!-- col-md-9 -->
-  </div><!-- row -->
-<% else %>
-  <p class="alert alert-info">
-    Please login to view The SIAM IS 2018 program.
-  </p>
-<% end %>
+    <p><%= schedule_session_link(schedule) %></p>
+
+    <%# <%= cache schedule do %>  
+      <%#   <%= render schedule %>  
+      <%# <% end %> 
+  <% end %> 
+</div><!-- day_program -->
