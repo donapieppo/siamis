@@ -6,10 +6,20 @@ module ConferenceHelper
     link_to h(cn), user_path(user), remote: true 
   end
 
+  def show_registered(user)
+    if user_in_organizer_or_management_committee? && user.conference_registration 
+      " <span style='color: green; font-weight: bold'>&euro;</span> ".html_safe 
+    else 
+      ""
+    end
+  end
+
   def show_role(role, editable: false, no_affiliation: false)
     return '' unless role
-    user_modal_link(role.user) + 
-    (no_affiliation ? "" : " (<small> #{h(role.user.affiliation)} </small>) ".html_safe) +
+    user = role.user
+    user_modal_link(user) + 
+    show_registered(user) +
+    (no_affiliation ? "" : " (<small> #{h(user.affiliation)} </small>) ".html_safe) +
     (editable ? link_to_delete(role) : "")
   end
 
@@ -167,18 +177,8 @@ module ConferenceHelper
   end
 
   def list_presentations(presentations, conference_session)
-    # hash with part number as key (from 1)
-    # schedule_from_part[1] = schedule
-    schedule_from_part = conference_session.schedules.inject({}) {|res, s| res[s.part] = s; res}
-    part = 0
-
     content_tag(:dl, class: "conference_session_presentations_list") do
       presentations.each do |presentation| 
-        if part != (part = presentation.part)
-          part_string     = (conference_session.parts > 1) ? "<strong>PART #{part.to_i}</strong> ".html_safe : "&nbsp;".html_safe # only if more than one part
-          schedule_string = icon('calendar') + (schedule_from_part[part] || I18n.t(:schedule_to_be_decided))
-          concat(content_tag(:p, part_string + content_tag(:span, schedule_string, class: 'pull-right'), style: 'margin-top: 10px'))
-        end
         concat(content_tag(:dt, link_to(presentation, presentation, remote: true)))
         # for organizer_committee_or_cochair
         has_abstract_icon = (user_in_organizer_committee_or_cochair? and presentation.abstract and presentation.abstract.size >= 50) ? icon('font', size: "14") : ''
