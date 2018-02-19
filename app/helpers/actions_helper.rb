@@ -1,9 +1,10 @@
 module ActionsHelper
 
+  # old. Better keep because in card footer 
   def common_actions(what)
     return "&nbsp;".html_safe
-    return "&nbsp;".html_safe if current_user_owns?(what)
-    return "&nbsp;".html_safe if what.is_a?(Plenary)
+    # return "&nbsp;".html_safe if current_user_owns?(what)
+    # return "&nbsp;".html_safe if what.is_a?(Plenary)
     # FIXME return "&nbsp;".html_safe if current_user and current_user.speaker?(what)
 
     # activate when there is a program
