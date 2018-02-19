@@ -45,11 +45,12 @@
         <li class="divider"></li>
         <%= menu_link 'child',        'Child Care', child_care_path %>
         <%= menu_link 'file',         'Visa and Letter of Invitation', visa_path %>
-        <%= menu_link 'plane',        'Student/Post-doc travel awards', travel_awards_path %>
+        <%= menu_link 'trophy',       'Student/Post-doc travel awards', travel_awards_path %>
         <%= menu_link 'video-camera', 'Audio-visual Policy ', equipments_path %>
         <li class="divider"></li>
         <%= menu_link 'university',   'Venue', venue_path %>
         <%= menu_link 'hotel',        'Accommodation', hotels_path %>
+        <%= menu_link 'plane',        'Travel opportunities', travel_path %>
         <% if current_user %>  
           <li class="divider"></li>
           <%= menu_link 'user',          'Your personal data', edit_user_path(current_user) %>
