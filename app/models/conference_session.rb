@@ -74,5 +74,9 @@ class ConferenceSession < ApplicationRecord
   def mono_session?
     false
   end
+
+  def presentations_in_parts
+    self.presentations.includes(authors: :user).order(:part, :number, :name).inject({}) {|res, presentation| res[presentation.part] ||= []; res[presentation.part] << presentation; res}
+  end
 end
 
