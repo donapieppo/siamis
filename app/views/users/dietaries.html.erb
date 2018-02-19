@@ -1,0 +1,14 @@
+<%= program_title('Dietaries', 'spoon') %>  
+
+<ul>
+  <% User.where('CHAR_LENGTH(dietary) > 2').order(:dietary).each do |user| %>  
+    <% user.dietary.downcase == 'none' and next %>  
+    <% user.dietary.downcase == 'n/a' and next %>  
+    <li>
+      <%= user.dietary %> 
+      <small><em>(<%= user_modal_link(user) %>)</em></small>
+    </li>
+  <% end %>
+</ul>
+
+

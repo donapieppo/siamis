@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   skip_before_action :check_user_fields, only: [:edit, :update]
 
-  before_action :user_in_organizer_committee_or_cochair!, except: [:index, :show, :edit, :update, :schedules]
+  before_action :user_in_organizer_committee_or_cochair!, except: [:index, :show, :edit, :update, :schedules, :dietaries]
   before_action :user_in_organizer_or_scientific_committee!, only: [:schedules]
 
   before_action :set_user_and_check_permission, only: [:edit, :update, :destroy]
@@ -16,20 +16,19 @@ class UsersController < ApplicationController
       if params[:country]
         @users = @users.where(country: params[:country])
       end
+      if params[:speakers]
+        @users = @users.speakers
+      end
+      respond_to do |format|
+        format.html
+        format.csv { send_data to_csv, filename: "users-#{Date.today}.csv" }
+      end
     else
       redirect_to participants_path and return
     end
-
-    if params[:speakers]
-      @users = @users.speakers
-    end
-
-    respond_to do |format|
-      format.html
-      format.csv { send_data to_csv, filename: "users-#{Date.today}.csv" }
-    end
   end
 
+  # user_in_organizer_or_scientific_committee!
   def schedules
     @res = Hash.new {|hash, key| hash[key] = Hash.new {|hash2, key2| hash2[key2] = []}}
     User.includes(roles: [conference_session: :schedules, presentation: [conference_session: :schedules]]).order(:surname, :name).each do |user|
@@ -66,6 +65,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # OPEN FOR ALL
   def show
     @user = User.find(params[:id])
 
@@ -91,10 +91,12 @@ class UsersController < ApplicationController
     end
   end
 
+  # user_in_organizer_committee_or_cochair!
   def new
     @user = User.new
   end
 
+  # user_in_organizer_committee_or_cochair!
   def admin_create
     @p = user_params
     @p[:password] = Devise.friendly_token.first(Rails.configuration.new_password_lenght)
@@ -184,6 +186,10 @@ class UsersController < ApplicationController
   end
 
   def stats
+  end
+
+  def dietaries
+    (user_in_organizer_committee_or_cochair? or user_in_management_committee?) or RAISE 
   end
 
   private 
