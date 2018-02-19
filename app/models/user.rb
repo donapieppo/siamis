@@ -84,27 +84,27 @@ class User < ApplicationRecord
   end
 
   def master_of_universe?
-    MASTERS_OF_UNIVERSE.include?(self.email)
+    defined?(@__mofu) ? @__mofu : @__mofu = MASTERS_OF_UNIVERSE.include?(self.email)
   end
 
   def in_organizer_committee?
-    ORGANIZER_COMMITTEE.include?(self.email)
+    defined?(@__iorc) ? @__iorc : @__iorc = ORGANIZER_COMMITTEE.include?(self.email)
   end
 
   def cochair?
-    COCHAIRS.include?(self.email)
+    defined?(@__coch) ? @__coch : @__coch = COCHAIRS.include?(self.email)
   end
 
   def in_scientific_committee?
-    (SCIENTIFIC_COMMITTEE + COCHAIRS).include?(self.email)
+    defined?(@__scic) ? @__scic : @__scic = (SCIENTIFIC_COMMITTEE + COCHAIRS).include?(self.email)
   end
 
   def in_management_committee?
-    MANAGEMENT_COMMETTE.include?(self.email)
+    defined?(@__manc) ? @__manc : @__manc = MANAGEMENT_COMMETTE.include?(self.email)
   end
 
   def in_local_committee?
-    (LOCAL_COMMITTEE).include?(self.email)
+    defined?(@__locc) ? @__locc : @__locc = LOCAL_COMMITTEE.include?(self.email)
   end
 
   # minisymposium
