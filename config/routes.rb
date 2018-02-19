@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get :mailing_list, on: :collection
     get :mailing_lists, on: :collection
     get :stats, on: :collection
+    get :dietaries, on: :collection
     resources :presentations
     resources :manual_payments
   end
@@ -141,6 +142,7 @@ Rails.application.routes.draw do
   get 'child_care',      to: 'home#child_care',  as: :child_care
   get 'visa',            to: 'home#visa',        as: :visa
   get 'equipments',      to: 'home#equipments',  as: :equipments
+  get 'travel',          to: 'home#travel',      as: :travel
 
   get 'conference_program' , to: 'conference_program#index', as: :conference_program
   get 'conference_program/print' , to: 'conference_program#print', as: :print_conference_program
