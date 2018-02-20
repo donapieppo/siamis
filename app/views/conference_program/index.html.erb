@@ -1,4 +1,5 @@
 <%= program_title("Conference Program", 'map') %>  
+
 <p style="text-align: right"><%= link_to 'Printable program in A3 page', 'https://www.siam-is18.dm.unibo.it/siamis18_a3_program.pdf' %></p>
 
 <% old_hour = nil %>  
@@ -15,15 +16,6 @@
   </ul>
 </nav>
 
-<!-- <nav aria&#45;label="Room pagination"> -->
-<!--   <ul class="list&#45;group"> -->
-<!--     <%= link_to 'Show all rooms', conference_program_path(day: @daynumber), class: "list&#45;group&#45;item" %> -->
-<!--     <% Room.order(:name).each do |room| %>   -->
-  <!--       <%= link_to room.name, conference_program_path(day: @daynumber, room_id: room.id), class: "list&#45;group&#45;item #{'active' if room == @room}" %> -->
-  <!--     <% end %> -->
-<!--   </ul> -->
-<!-- </nav> -->
-
 <div class="day_program" style="margin-top: 10px;">
   <% @conference_program.each do |schedule| %>  
     <% hour = l(schedule.start, format: :hour) %>  
@@ -32,12 +24,10 @@
       <div class="alert centered" style="font-size: 120%"><%= big_icon 'clock-o' %>  <strong><%= hour %></strong> <br/> <%= l(schedule.start, format: :schedule) %>  </div>
     <% end %>
 
-    <p>
-      <%= cache schedule do %>  
-        <%= show_schedule_session(schedule) %>
-        <%# render schedule %>  
-      <% end %>
-    </p>
+    <%= cache schedule do %>  
+      <%= show_schedule_session(schedule) %>
+      <%# render schedule %>  
+    <% end %>
 
   <% end %> 
 </div><!-- day_program -->
