@@ -213,6 +213,15 @@ module ConferenceHelper
     end
   end
 
+  def conference_session_css_class(cs)
+    case cs
+    when Plenary
+      "plenary-session"
+    else
+      ""
+    end
+  end
+
   def user_photo(user, small: false)
     if asset_exist?(user.photo_asset)  
       image_tag(user.photo_asset, width: (small ?  100 : 250), class: 'img-rounded')
