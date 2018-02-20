@@ -165,3 +165,14 @@
     text-align: right;
   }
 }
+
+.home_number {
+  @extend .centered;
+  font-weight: bold;
+  font-size: 24px;
+  border: 3px solid white;
+  border-radius: 50%;
+  padding: 10px;
+  width: 80px;
+}
+
