@@ -170,6 +170,7 @@ conference_home_title	app/helpers/home_helper.rb	/^  def conference_home_title$/
 conference_session_abbr	app/models/schedule.rb	/^  def conference_session_abbr$/;"	f	class:Schedule
 conference_session_color	app/helpers/conference_helper.rb	/^  def conference_session_color(cs)$/;"	f
 conference_session_color	app/pdfs/printable_program.rb	/^  def conference_session_color(cs)$/;"	f	class:PrintableProgram
+conference_session_css_class	app/helpers/conference_helper.rb	/^  def conference_session_css_class(cs)$/;"	f
 conference_session_panel_class	app/helpers/conference_helper.rb	/^  def conference_session_panel_class(conference_session)$/;"	f
 conference_session_params	app/controllers/contributed_sessions_controller.rb	/^  def conference_session_params$/;"	f	class:ContributedSessionsController
 conference_session_params	app/controllers/minisymposia_controller.rb	/^  def conference_session_params$/;"	f
@@ -222,6 +223,7 @@ destroy	app/controllers/roles_controller.rb	/^  def destroy$/;"	f	class:RolesCon
 destroy	app/controllers/rooms_controller.rb	/^  def destroy$/;"	f	class:RoomsController
 destroy	app/controllers/tags_controller.rb	/^  def destroy$/;"	f	class:TagsController
 destroy	app/controllers/users_controller.rb	/^  def destroy$/;"	f	class:UsersController.schedules
+dietaries	app/controllers/users_controller.rb	/^  def dietaries$/;"	f	class:UsersController
 dl_field	app/helpers/application_helper.rb	/^  def dl_field(object, what)$/;"	f	class:ApplicationHelper
 dl_presentations	app/helpers/conference_helper.rb	/^  def dl_presentations(presentations)$/;"	f
 dropdown_menu	app/helpers/menu_helper.rb	/^  def dropdown_menu(title, &block)$/;"	f	class:MenuHelper
@@ -446,7 +448,6 @@ satellites	app/controllers/home_controller.rb	/^  def satellites$/;"	f	class:Hom
 schedule	app/models/mono_conference_session.rb	/^  def schedule$/;"	f	class:MonoConferenceSession
 schedule	app/models/presentation.rb	/^  def schedule$/;"	f	class:Presentation
 schedule_params	app/controllers/schedules_controller.rb	/^  def schedule_params$/;"	f	class:SchedulesController
-schedule_session_link	app/helpers/style_helper.rb	/^  def schedule_session_link(schedule)$/;"	f	class:StyleHelper
 schedules	app/controllers/users_controller.rb	/^  def schedules$/;"	f	class:UsersController
 schedules_list	app/helpers/conference_helper.rb	/^  def schedules_list(schedules)$/;"	f
 schedules_to_s	app/models/conference_session.rb	/^  def schedules_to_s$/;"	f	class:ConferenceSession
@@ -480,10 +481,12 @@ show	app/controllers/invitation_letters_controller.rb	/^  def show$/;"	f	class:I
 show	app/controllers/presentations_controller.rb	/^  def show$/;"	f	class:PresentationsController
 show	app/controllers/users_controller.rb	/^  def show$/;"	f	class:UsersController.schedules
 show_parts_range	app/helpers/conference_helper.rb	/^  def show_parts_range(conference_session)$/;"	f
+show_registered	app/helpers/conference_helper.rb	/^  def show_registered(user)$/;"	f	class:ConferenceHelper
 show_role	app/helpers/conference_helper.rb	/^  def show_role(role, editable: false, no_affiliation: false)$/;"	f	class:ConferenceHelper
 show_roles	app/helpers/conference_helper.rb	/^  def show_roles(roles, editable: false, only_speaker: false)$/;"	f	class:ConferenceHelper
 show_roles_list	app/helpers/conference_helper.rb	/^  def show_roles_list(roles)$/;"	f	class:ConferenceHelper.show_roles
 show_schedule	app/helpers/conference_helper.rb	/^  def show_schedule(what)$/;"	f
+show_schedule_session	app/helpers/style_helper.rb	/^  def show_schedule_session(schedule)$/;"	f	class:StyleHelper
 slot	app/pdfs/printable_program.rb	/^  def slot(day, hour)$/;"	f	class:PrintableProgram
 speaker	app/models/mono_conference_session.rb	/^  def speaker$/;"	f	class:MonoConferenceSession
 speaker	app/models/presentation.rb	/^  def speaker$/;"	f	class:Presentation
