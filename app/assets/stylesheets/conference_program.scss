@@ -2,13 +2,20 @@
   margin-top: 3px;
 
   .conference_program_item_name {
-    @extend .col-xs-3; 
-    @extend .col-md-2;
+    @extend .col-xs-2;
     @extend .label;
     font-size: 16px; 
     font-weight: bold; 
     padding-top: 1.5em; 
     height: 4em;
+  }
+  .conference_program_item_description {
+    @extend .col-xs-10;
+  }
+  @media (max-width: 450px) {
+    .conference_program_item_name {
+      font-size: 14px;
+    }
   }
   .plenary-session {
     @extend .label-success;
@@ -21,9 +28,5 @@
   }
   .contributedsession-session {
     @extend .label-info;
-  }
-  .conference_program_item_description {
-    @extend .col-xs-9;
-    @extend .col-md-10;
   }
 }
