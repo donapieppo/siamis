@@ -9,7 +9,7 @@ class PrintableRecipe < Prawn::Document
     @user = @conference_registration.user
     @payment = @conference_registration.payment
 
-    super()
+    super(left_margin: 100, right_margin: 100)
 
     font_families.update("LiberationSans" => {
       :bold   => "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
@@ -21,16 +21,14 @@ class PrintableRecipe < Prawn::Document
 
     # A4 595.28 x 841.89
     image Rails.root.join('app/assets/images/siam_recipe_header.jpg'), at: [70,720], width: 380
-    move_down(150)
+
+    move_down(200)
 
     text "TO WHOM IT MAY CONCERN", size: 16, style: :bold, align: :center
 
-    move_down(30)
+    move_down(50)
 
-    text "This is to certify that Prof./Dr. #{@user.cn} from #{@user.affiliation}
-         paid the amount of € #{@payment.amount} (#{@payment.amount.humanize} euros)
-         as registration fee for the participation to the SIAM Conference on Imaging Science 
-         organized at the University of Bologna (june 5-8, 2018)."
+    text "This is to certify that Prof./Dr. #{@user.cn} from #{@user.affiliation} paid the amount of € #{@payment.amount} (#{@payment.amount.humanize} euros) as registration fee for the participation to the SIAM Conference on Imaging Science organized at the University of Bologna (june 5-8, 2018).", align: :justify
 
     move_down(30)
 
