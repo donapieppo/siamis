@@ -8,11 +8,10 @@
   <% end %>
   <div class='conference_program_item_description'>
     <%= link_to conference_session_path(schedule.conference_session, part: schedule.part), remote: true do %>
-      <strong><%= cs.name %></strong>  <br/>
+      <strong><%= cs.name %></strong> 
     <% end %>
-    <small><%= h schedule.room %></small>
-    <br/>
-    <small><%= cs.organizers_label %>: <%= show_roles(cs.organizers) %></small>
+    <br/><small><%= cs.organizers_label %>: <%= show_roles(cs.organizers) %></small>
+    <br/><small><em><span style="opacity: 0.7;"><%= icon('map-marker') %> <%= schedule.room %></span></em></small>
   </div>
 </div><!-- conference_session -->
 
