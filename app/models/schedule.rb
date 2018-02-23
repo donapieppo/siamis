@@ -61,7 +61,7 @@ class Schedule < ApplicationRecord
 
   def self.day_program(day, room: nil, start: nil)
     res = Schedule.where('DATE_FORMAT(schedules.start, "%Y-%m-%d") = ?', day.strftime('%F'))
-                  .includes(conference_session: [presentations: [authors: :user]], room: :building)
+                  .includes(conference_session: [organizers: :user, presentations: [authors: :user]], room: :building)
                   .order('schedules.start, rooms.manual_order, rooms.name').references(:rooms)
     res = res.where('schedules.room_id = ?', room.id) if room
     res = res.where('DATE_FORMAT(schedules.start, "%H:%i") = ?', start) if start
