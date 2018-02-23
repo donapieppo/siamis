@@ -75,8 +75,13 @@ class ConferenceSession < ApplicationRecord
     false
   end
 
+  # { 1 => [ .., ..], 2 => [.....] }
   def presentations_in_parts
-    self.presentations.includes(authors: :user).order(:part, :number, :name).inject({}) {|res, presentation| res[presentation.part] ||= []; res[presentation.part] << presentation; res}
+    self.presentations.includes(authors: :user).order(:part, :number, :name).inject({}) do |res, presentation| 
+      res[presentation.part] ||= []
+      res[presentation.part] << presentation
+      res
+    end
   end
 end
 
