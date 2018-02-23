@@ -214,12 +214,7 @@ module ConferenceHelper
   end
 
   def conference_session_css_class(cs)
-    case cs
-    when Plenary
-      "plenary-session"
-    else
-      ""
-    end
+    cs.class.to_s.downcase + '-session'
   end
 
   def user_photo(user, small: false)
