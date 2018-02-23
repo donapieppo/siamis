@@ -9,7 +9,6 @@ class ConferenceSessionsController < ApplicationController
 
   def show
     @conference_session = ConferenceSession.includes(roles: :user).find(params[:id])
-    @highlight_part = params[:part].to_i
   end
 
   def edit
