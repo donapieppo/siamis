@@ -9,18 +9,18 @@ class PrintableRecipe < Prawn::Document
     @user = @conference_registration.user
     @payment = @conference_registration.payment
 
-    super(left_margin: 100, right_margin: 100)
+    super(page_size: 'A4', left_margin: 100, right_margin: 100)
 
     font_families.update("LiberationSans" => {
-      :bold   => "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
-      :normal => "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
-      :italic => "/usr/share/fonts/truetype/liberation/LiberationMono-Italic.ttf"
+      bold:   "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+      normal: "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+      italic: "/usr/share/fonts/truetype/liberation/LiberationMono-Italic.ttf"
     })
     font "LiberationSans"
     font_size 12
 
     # A4 595.28 x 841.89
-    image Rails.root.join('app/assets/images/siam_recipe_header.jpg'), at: [70,720], width: 380
+    image Rails.root.join('app/assets/images/siam_recipe_header.jpg'), at: [40,720], width: 300
 
     move_down(200)
 
