@@ -5,13 +5,21 @@
     @extend .col-xs-3; 
     @extend .col-md-2;
     @extend .label;
-    @extend .label-warning;
     font-size: 16px; 
     font-weight: bold; 
-    padding-top: 1em; 
-    height: 3em;
+    padding-top: 1.5em; 
+    height: 4em;
   }
   .plenary-session {
+    @extend .label-success;
+  }
+  .minitutorial-session {
+    @extend .label-success;
+  }
+  .minisymposium-session {
+    @extend .label-warning;
+  }
+  .contributedsession-session {
     @extend .label-info;
   }
   .conference_program_item_description {
