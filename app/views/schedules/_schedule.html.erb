@@ -1,27 +1,18 @@
-<% conference_session = schedule.conference_session %>  
+<% cs = schedule.conference_session %>  
 
-<div class="conference_session">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <strong><%= link_to schedule.conference_session_with_part, conference_session, remote: true %></strong>
+<div class="row conference_program_item">
+  <%= link_to(conference_session_path(cs, part: schedule.part), remote: true) do %>
+    <div class= "<%= conference_session_css_class(cs) %> conference_program_item_name">
+      <%= cs.code_with_part(schedule.part) %>
     </div>
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-md-6">
-          <p><%= conference_session.organizers_label %>:</p>
-          <p>
-          <%= show_roles_list(conference_session.organizers) %>  
-          </p>
-        </div>
-        <div class="col-md-6">
-          <p>Speakers:</p>
-          <%= show_roles_list(conference_session.speakers(schedule.part)) %>  
-        </div>
-      </div>
-    </div>
-    <div class="panel-footer" style="text-align: right">
-      <small><%= schedule.room %></small>
-    </div>
+  <% end %>
+  <div class='conference_program_item_description'>
+    <%= link_to conference_session_path(schedule.conference_session, part: schedule.part), remote: true do %>
+      <%= cs.name %>  <br/>
+    <% end %>
+    <small><%= h schedule.room %></small>
+    <br/>
+    <small><%= cs.organizers_label %>: <%= show_roles(cs.organizers) %></small>
   </div>
 </div><!-- conference_session -->
 
