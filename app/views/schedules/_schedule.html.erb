@@ -8,7 +8,7 @@
   <% end %>
   <div class='conference_program_item_description'>
     <%= link_to conference_session_path(schedule.conference_session, part: schedule.part), remote: true do %>
-      <%= cs.name %>  <br/>
+      <strong><%= cs.name %></strong>  <br/>
     <% end %>
     <small><%= h schedule.room %></small>
     <br/>
