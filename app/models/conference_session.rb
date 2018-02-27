@@ -15,6 +15,8 @@ class ConferenceSession < ApplicationRecord
   scope :accepted,  -> { where(accepted: true) }
   scope :submitted, -> { where(accepted: nil) }
 
+  # Remeber: self.code in Minisymposium, Plenary, Minitutorial, ContributedSession
+
   def code_with_part(p)
     (self.parts && self.parts > 1) ? "#{self.code}-#{p}" : self.code
   end
