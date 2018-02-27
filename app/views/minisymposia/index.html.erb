@@ -3,13 +3,14 @@
 <%= render partial: 'description' %>  
 <%= render partial: 'deadlines/minisymposium_submission' %>  
 
-<ul class="list-group">
+<div class="list-group">
   <% cache 'minisymposia_list_cache' do %>
     <% @conference_sessions.each do |cs| %>
-      <li class="list-group-item">
-        <%= link_to cs, cs, remote: true %> 
-      </li>
+      <div class="list-group-item">
+        <strong><%= link_to cs, cs, remote: true %></strong><br/>
+        <span style="font-size: 85%; margin-left: 2em"><%= show_roles(cs.organizers) %> </span>
+      </div>
     <% end %>
 <% end %>
-</ul>
+</div>
 
