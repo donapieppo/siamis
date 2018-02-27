@@ -1,15 +1,14 @@
-<%= program_title("Conference Program", 'map') %>  
-
 <p style="text-align: right"><%= link_to 'Printable program in A3 page', 'https://www.siam-is18.dm.unibo.it/siamis18_a3_program.pdf' %></p>
 
 <% old_hour = nil %>  
 
 <nav aria-label="Day pagination">
   <ul class="nav nav-tabs nav-justified">
+    <% percent = (100 / Rails.configuration.number_of_days).to_i %>  
     <% (0...Rails.configuration.number_of_days).each do |daynumber| %>  
       <% day = Schedule.conference_day(daynumber) %>
-      <li role="presentation">
-        <% day_string = "<strong>#{day.strftime('%A')}</strong><br/>#{day.strftime('%d %B %Y')}" %>  
+      <li role="presentation" style="float: left; display: block; width: <%= percent %>%">
+        <% day_string = "<strong>#{day.strftime('%^a')}</strong><br/>#{day.strftime('%d %B')}" %>  
         <%= link_to day_string.html_safe, conference_program_path(day: daynumber, room_id: @room ? @room.id : nil), class: "list-group-item #{'active' if day == @day}" %>
       </li>
     <% end %>
