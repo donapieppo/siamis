@@ -110,7 +110,7 @@ en:
         manual_tags: It is possible to add other keywords separated by comma (key1, key2, key3)
         description: Describe your minisymposium in not more than 100 words. <em>Using <span id="wcount"></span> words</em>.
       user:
-        siam: IEEE and GAMM members are eligible to register at the SIAM Member rate.
+        siam: IEEE, SIMAI and GAMM members are eligible to register at the SIAM Member rate.
         student: STUDENTS MUST SHOW A CURRENT STUDENT ID UPON CHECKING IN AT THE SIAM REGISTRATION DESK.
         salutation: (e.g. Prof., PhD, Jr., Sr., etc.) 
         visible: Check to be included on the <strong>list of participants</strong> on the SIAM-IS18 web site and to share your data with SIAM (see <a href="/privacy">privacy</a>).
