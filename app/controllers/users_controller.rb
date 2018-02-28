@@ -196,7 +196,7 @@ class UsersController < ApplicationController
 
   def user_params
     permitted = [:salutation, :name, :surname, :affiliation, :address, :country, :biography, :siag, :siam, :student, :web_page, :dietary, :banquet_tickets, :visible]
-    permitted += [:email, :student_award] if user_in_organizer_committee?
+    permitted += [:email, :exhibitor, :student_award] if user_in_organizer_committee?
     params[:user].permit(permitted)
   end
 

@@ -33,4 +33,5 @@ ALTER TABLE `payments` ADD COLUMN `manual` bool DEFAULT 0 AFTER `verified`;
 
 
 
+alter table users add column `exhibitor` bool default NULL after `student` ;
 

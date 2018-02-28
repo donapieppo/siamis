@@ -201,6 +201,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.boolean "siag"
     t.boolean "siam"
     t.boolean "student"
+    t.boolean "exhibitor"
     t.string "web_page"
     t.text "dietary"
     t.integer "banquet_tickets"

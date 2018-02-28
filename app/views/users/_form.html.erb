@@ -13,6 +13,9 @@
   <%= user.input :siam %>  
   <%= user.input :siag %>  
   <%= user.input :student %>  
+  <% if user_in_organizer_committee? %>  
+    <%= user.input :exhibitor %>  
+  <% end %>
 
   <%= user.input :dietary %>  
   <%= user.input :banquet_tickets %>  
