@@ -37,6 +37,7 @@ Users with <%= icon('cog') %> are in scientific committee.
       <td><%= user.country ? user.country : link_to_edit([:edit, user]) %></td>
       <td><%= icon('check') if user.sign_in_count > 0 %></td>
       <td><%= icon('cog') if user.in_scientific_committee? %></td>
+      <td><%= icon('life-ring') if user.staff %></td>
       <td><%= icon('cubes') if user.exhibitor %></td>
     <% end %>
   <% end %>

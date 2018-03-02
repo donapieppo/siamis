@@ -38,6 +38,8 @@
             <%= 'student' if payment.student %>  
           <% elsif user.student_award %>
             student <%= icon('trophy') %>  
+          <% elsif user.staff %>
+            staff
           <% elsif user.exhibitor %>
             exhibitor
           <% end %>

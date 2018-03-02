@@ -14,6 +14,7 @@
   <%= user.input :siag %>  
   <%= user.input :student %>  
   <% if user_in_organizer_committee? %>  
+    <%= user.input :staff %>  
     <%= user.input :exhibitor %>  
   <% end %>
 

@@ -31,7 +31,6 @@ UPDATE users set student_award = 1 where id=977;
 
 ALTER TABLE `payments` ADD COLUMN `manual` bool DEFAULT 0 AFTER `verified`;
 
-
-
 alter table users add column `exhibitor` bool default NULL after `student` ;
-
+alter table interests add column `part` int(1) default NULL after conference_session_id;
+update interests set part = 1 where conference_session_id is not null;

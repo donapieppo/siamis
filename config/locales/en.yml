@@ -70,6 +70,8 @@ en:
         siag: SIAG/IS Member
         siam: SIAM Member
         student: Student
+        staff: Staff
+        exhibitor: Exhibitor
         visible: Show in Siam-is18 page
         dietary: Dietary 
         banquet_tickets: Number of extra banquet tickets
