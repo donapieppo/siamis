@@ -1,20 +1,29 @@
 .conference_program_item {
-  margin-top: 3px;
+  margin-top: 6px;
 
   .conference_program_item_name {
-    @extend .col-xs-2;
+    float: left;
     @extend .label;
+    @extend .label-success;
     font-size: 16px; 
     font-weight: bold; 
-    padding-top: 1.5em; 
-    height: 4em;
+    padding-top: 2em; 
+    height: 5em;
+    width: 8em;
+    margin-right: 1em;
+    text-align: center;
   }
   .conference_program_item_description {
-    @extend .col-xs-10;
+    &:after {
+      content: " ";
+      display: table;
+      clear: both;
+    }
   }
   @media (max-width: 450px) {
     .conference_program_item_name {
       font-size: 14px;
+      width: 5em;
     }
   }
   .plenary-session {
@@ -29,4 +38,8 @@
   .contributedsession-session {
     @extend .label-info;
   }
+}
+
+.conference_program_item.interested {
+  @extend .alert-success;
 }
