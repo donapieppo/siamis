@@ -15,9 +15,9 @@ body {
   text-align:   center;
 }
 h1 {
-  font-size: 36px;
+  font-size: 32px;
   text-transform: uppercase;
-  //text-shadow: 2px 2px 0 black;
+  // text-shadow: 1px 1px 0 #ccc;
 }
 h1, h2, h3 {
   @extend .centered;
@@ -27,7 +27,7 @@ h1.program {
   margin-bottom: 36px;
   border: 3px solid #000;
   display: inline-block;
-  padding: .5em;
+  padding: .3em;
 }
 
 .button {
@@ -206,6 +206,14 @@ ul.tag_admin_list {
 
 .number {
   text-align: right;
+}
+
+.my-interest {
+  color: green;
+}
+.not-my-interest {
+  opacity: 0.5;
+  filter: alpha(opacity=50); 
 }
 
 @import "home";
