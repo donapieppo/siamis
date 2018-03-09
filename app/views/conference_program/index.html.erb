@@ -2,18 +2,7 @@
 
 <% old_hour = nil %>  
 
-<nav aria-label="Day pagination">
-  <ul class="nav nav-tabs nav-justified">
-    <% percent = (100 / Rails.configuration.number_of_days).to_i %>  
-    <% (0...Rails.configuration.number_of_days).each do |daynumber| %>  
-      <% day = Schedule.conference_day(daynumber) %>
-      <li role="presentation" style="float: left; display: block; width: <%= percent %>%">
-        <% day_string = "<strong>#{day.strftime('%^a')}</strong><br/>#{day.strftime('%d %B')}" %>  
-        <%= link_to day_string.html_safe, conference_program_path(day: daynumber, room_id: @room ? @room.id : nil), class: "list-group-item #{'active' if day == @day}" %>
-      </li>
-    <% end %>
-  </ul>
-</nav>
+<%= render partial: 'day_pagination', locals: { current_day: @day } %>  
 
 <div class="day_program" style="margin-top: 10px;">
   <% @conference_program.each do |schedule| %>  
@@ -30,11 +19,17 @@
   <% end %> 
 </div><!-- day_program -->
 
-<div class="centered">
+<div class="centered" style="margin-top: 10px">
   <% if @daynumber > 0 %>
-    <%= link_to icon('chevron-circle-left', size: 42), conference_program_path(day: @daynumber - 1) %>
+    <%= link_to icon('chevron-circle-left', size: 42), conference_program_path(day: @daynumber - 1), style: "margin-right: 10px" %>
   <% end %>
   <% if @daynumber < Rails.configuration.number_of_days %>
-    <%= link_to icon('chevron-circle-right', size: 42), conference_program_path(day: @daynumber + 1) %>
+    <%= link_to icon('chevron-circle-right', size: 42), conference_program_path(day: @daynumber + 1), style: "margin-left: 10px"  %>
   <% end %>
 </div>
+
+<%= javascript_tag do %>  
+  reload_on_modal_close = false;
+  update_interests_highlight();
+<% end %>
+

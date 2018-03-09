@@ -164,8 +164,8 @@ class User < ApplicationRecord
     end
   end
 
-  def interested_in?(what)
-    what.interests.where(user_id: self.id).any?
+  def interested_in?(what, part)
+    what.interests.where(user_id: self.id, part: part).any?
   end
 
   ###################################################################
