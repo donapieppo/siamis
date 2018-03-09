@@ -176,8 +176,8 @@ module ConferenceHelper
      conference_session.class.to_s.downcase + "_panel"
   end
 
-  def list_presentations(presentations, conference_session)
-    content_tag(:dl, class: "conference_session_presentations_list") do
+  def list_presentations(presentations, conference_session, to_highlight = false)
+    content_tag(:dl, class: "conference_session_presentations_list #{to_highlight ? 'alert alert-warning' : '' }") do
       presentations.each do |presentation| 
         concat(content_tag(:dt, link_to(presentation, presentation, remote: true)))
         # for organizer_committee_or_cochair
