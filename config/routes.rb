@@ -107,7 +107,9 @@ Rails.application.routes.draw do
   resources :ratings
   resources :buildings
   resources :rooms
-  resources :interests
+  resources :interests do 
+    get :session_ids, on: :collection
+  end
 
   resources :conference_registrations do 
     get  :check,         on: :collection, as: :check
