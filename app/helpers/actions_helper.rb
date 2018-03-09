@@ -2,21 +2,12 @@ module ActionsHelper
 
   # old. Better keep because in card footer 
   def common_actions(what)
-    return "&nbsp;".html_safe
+     return "&nbsp;".html_safe
     # return "&nbsp;".html_safe if current_user_owns?(what)
     # return "&nbsp;".html_safe if what.is_a?(Plenary)
     # FIXME return "&nbsp;".html_safe if current_user and current_user.speaker?(what)
 
     # activate when there is a program
-    # now_icon  = current_user.interested_in?(what) ? "check-square" : "square"
-    # title     = current_user.interested_in?(what) ? " interested" : " interested" 
-    # link_path = case what
-    # when Minisymposium, ConferenceSession, PosterSession
-    #   toggle_conference_session_interests_path(what)
-    # when Presentation
-    #   toggle_presentation_interests_path(what)
-    # end
-    # link_to icon(now_icon) + title, link_path, method: :post
   end
 
   def owner_actions(what)
