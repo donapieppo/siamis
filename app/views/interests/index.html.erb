@@ -1,21 +1,37 @@
+<%= program_title('My program', 'map') %>  
+
 <% if @interests.empty? %>  
   <p class="future_magic">
   It is possible to express interest in presentations and conference sessions in order to create a <strong>personal program</strong>.<br/>
-    In every session / presentation you will find a button to add 
+  In every session / presentation you will find a button to add 
   </p>
 <% end %>
 
-<% @interests.each_key do |schedule| %>  
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3><%= schedule ? I18n.l(schedule.start, format: :day) : "Schedule not defined" %></h3>
+<% @interests.sort.to_h.each do |day, sessions| %>  
+  <h4 style="margin: 24px 8px"><span style="border: 1px solid black; padding: 8px"><%= big_icon(:calendar) %> <%= l(day) %></span></h4>
+  <% sessions.sort_by {|e| e[:start] }.each do |s| %>  
+    <% cs       = s[:cs] %>  
+    <% part     = s[:part] %>  
+    <% schedule = cs.schedules.where(part: part).first %>  
+    <div class="conference_program_item">
+      <%= link_to(conference_session_path(cs, part: schedule.part), remote: true) do %>
+        <div class= "<%= conference_session_css_class(cs) %> conference_program_item_name">
+          <%= icon 'clock-o' %> &nbsp; <%= schedule ? l(schedule.start, format: :hour) : ' - ' %>  
+        </div>
+      <% end %>
+      <div class='conference_program_item_description'>
+        <%= link_to conference_session_path(cs, part: part), remote: true do %>
+          <strong><%= cs %></strong> 
+        <% end %>
+        <small>
+          <br/><%= cs.organizers_label %>: <%= show_roles(cs.organizers) %><br/>
+          <em><span><%= icon('map-marker') %> <%= schedule.room if schedule %></span></em>
+        </small>
+      </div>
     </div>
-    <div class="panel-body">
-  <% @interests[schedule].each do |what| %>  
-    <ul>
-      <li><span style="font-size: 150%; font-weight: 300;"><%= l(schedule.start, format: :hour) if schedule %></span>  <%= link_to what, what %> <span class="pull-right"><%= schedule.room if schedule %></span></li>
-    </ul>
   <% end %>
-    </div>
-  </div>
+<% end %>
+
+<%= javascript_tag do %>  
+  reload_on_modal_close = true;
 <% end %>

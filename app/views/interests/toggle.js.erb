@@ -1,0 +1,12 @@
+$("#<%= interest_id(@what, @part) %>").html("<%= j interest_link(@what, @part, @actual) %>");
+
+if (! ok_modal_close_policy) {
+  $('#main-modal').on('hidden.bs.modal', function () {
+    if (reload_on_modal_close) {
+      location.reload();
+    } else { 
+      update_interests_highlight();
+    }
+  });
+  ok_modal_close_policy = true;
+}
