@@ -25,16 +25,17 @@
           <%= menu_link 'gift',         'Sponsors', root_path(anchor: 'sponsors'), 'general' %>
         <% end %>
         <%= dropdown_menu fwicon('map-o') + ' PROGRAM' do  %>  
+          <%= menu_link 'calendar',    'Program day by day', conference_program_path %>  
+          <%= menu_link 'file-o',      'One page Program', 'https://www.siam-is18.dm.unibo.it/siam_is18_one_page_program.pdf' %>
+          <%= menu_link 'map-o',       'My program', interests_path %>  
+          <li class="divider"></li>
           <%= menu_link 'user',        'Plenary presentations', plenaries_path %>  
           <%= menu_link 'wrench',      'Minitutorials', minitutorials_path %>
           <%= menu_link 'users',       'Minisymposia', minisymposia_path %>
           <%= menu_link 'users',       'Contributed presentations', contributed_sessions_path %>
           <%= menu_link 'picture-o',   'Poster sessions', poster_sessions_path %>
           <li class="divider"></li>
-          <%= menu_link 'map-o',       'Participant list', participants_path %>  
-          <%= menu_link 'calendar',    'Program day by day', conference_program_path %>  
-          <%= menu_link 'file-o',      'One page Program', 'https://www.siam-is18.dm.unibo.it/siam_is18_one_page_program.pdf' %>
-          <li class="divider"></li>
+          <%= menu_link 'users',       'Participant list', participants_path %>  
           <%= menu_link 'handshake-o', 'Satellite events', satellites_path %>
           <%# <%= menu_link 'map-o',      'My program', interests_path %>  
         <% end %>

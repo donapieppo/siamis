@@ -1,5 +1,5 @@
 <% 
-  part_to_show = params[:part].to_i
+  current_part = (conference_session.parts > 0) ? params[:part].to_i : nil
   owner = current_user_owns?(conference_session)
   presentations_in_parts = conference_session.presentations_in_parts
   schedules_in_parts = conference_session.schedules.inject({}) {|res, s| res[s.part] = s; res}
@@ -15,15 +15,21 @@
     <p class="description"><%= conference_session.description %></p>
 
     <% presentations_in_parts.each do |part, presentations| %>
-        <div>
-          <span><%= raw (conference_session.parts > 1) ? "<strong>PART #{part.to_i}</strong> " : "&nbsp;" %></span>
-          <span class='pull-right'><%= icon('calendar') + (schedules_in_parts[part] || I18n.t(:schedule_to_be_decided)) %></span>
+      <div class="row">
+        <div class="col-md-4">
+          <% if conference_session.parts > 1 %> 
+            <span class="session_part"><strong>PART <%= part.to_i %></strong></span>
+          <% else %>
+            &nbsp;
+          <% end %>
+          <span class="interest_link" id="<%= interest_id(conference_session, part) %>"><%= interest_link(conference_session, part)%></span>
         </div>
-        <% if part_to_show > 0 and part_to_show != part %>  
-         &nbsp;  <%= link_to "show complete session", conference_session, remote: true %>
-        <% else %>
-          <%= list_presentations(presentations, conference_session) %>
-        <% end %>
+        <div class="col-md-8" style="text-align: right;">
+          <%= icon('calendar') + (schedules_in_parts[part] || I18n.t(:schedule_to_be_decided)) %>
+        </div>
+      </div>
+      <% to_highlight = (current_part && current_part == part) %>  
+      <%= list_presentations(presentations, conference_session, to_highlight) %>
     <% end %>
 
     <dl class="dl-horizontal">
@@ -51,3 +57,13 @@
   </div>
 </div>
 
+<%= javascript_tag do %>  
+  $(".my-interest").popover({
+      trigger: 'hover', 
+      content: 'Remove from watchlist.',
+  });
+  $(".not-my-interest").popover({
+      trigger: 'hover', 
+      content: 'I am interested. Add to watchlist.',
+  });
+<% end %>
