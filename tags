@@ -384,6 +384,7 @@ new	app/controllers/users_controller.rb	/^  def new$/;"	f	class:UsersController.
 next_to_rate	app/helpers/conference_helper.rb	/^  def next_to_rate(what)$/;"	f
 notify_acceptance	app/models/presentation.rb	/^  def notify_acceptance$/;"	f	class:Presentation
 notify_user	app/mailers/notification_mailer.rb	/^  def notify_user(user, password, presentations, minisymposia)$/;"	f	class:NotificationMailer
+ok_modal_close_policy	app/assets/javascripts/siam.js	/^var ok_modal_close_policy = false;$/;"	v
 on	app/models/interest.rb	/^  def on$/;"	f	class:Interest
 only_speaker!	app/models/author.rb	/^  def only_speaker!$/;"	f	class:Author
 ordering	app/controllers/conference_sessions_controller.rb	/^  def ordering$/;"	f
@@ -443,6 +444,7 @@ refuse!	app/models/conference_session.rb	/^  def refuse!$/;"	f	class:ConferenceS
 refuse!	app/models/presentation.rb	/^  def refuse!$/;"	f	class:Presentation
 registration_open?	app/models/deadline.rb	/^    def registration_open?$/;"	f	class:Deadline
 relative_to	app/models/role.rb	/^  def relative_to$/;"	f	class:Role
+reload_on_modal_close	app/assets/javascripts/siam.js	/^var reload_on_modal_close = false;$/;"	v
 remind_abstract	app/mailers/notification_mailer.rb	/^  def remind_abstract(user, presentation, conference_session)$/;"	f	class:NotificationMailer
 remove	app/controllers/presentations_controller.rb	/^  def remove$/;"	f	class:PresentationsController
 role_params	app/controllers/roles_controller.rb	/^  def role_params$/;"	f	class:RolesController
@@ -551,6 +553,7 @@ update	app/controllers/rooms_controller.rb	/^  def update$/;"	f	class:RoomsContr
 update	app/controllers/tags_controller.rb	/^  def update$/;"	f	class:TagsController
 update	app/controllers/users_controller.rb	/^  def update$/;"	f	class:UsersController.schedules
 update_affiliation	app/controllers/users_controller.rb	/^  def update_affiliation$/;"	f	class:UsersController
+update_interests_highlight	app/assets/javascripts/siam.js	/^function update_interests_highlight() {$/;"	f	function:update_wcount
 update_presentation_name	app/models/mono_conference_session.rb	/^  def update_presentation_name$/;"	f	class:MonoConferenceSession
 user_abbr	app/models/payment.rb	/^  def user_abbr$/;"	f	class:Payment
 user_cochair?	app/helpers/user_helper.rb	/^  def user_cochair?$/;"	f	class:UserHelper
