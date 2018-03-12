@@ -17,12 +17,12 @@
     <% presentations_in_parts.each do |part, presentations| %>
       <div class="row">
         <div class="col-md-4">
+          <%= interest_link(conference_session, part)%>
           <% if conference_session.parts > 1 %> 
             <span class="session_part"><strong>PART <%= part.to_i %></strong></span>
           <% else %>
             &nbsp;
           <% end %>
-          <span class="interest_link" id="<%= interest_id(conference_session, part) %>"><%= interest_link(conference_session, part)%></span>
         </div>
         <div class="col-md-8" style="text-align: right;">
           <%= icon('calendar') + (schedules_in_parts[part] || I18n.t(:schedule_to_be_decided)) %>
@@ -59,11 +59,11 @@
 
 <%= javascript_tag do %>  
   $(".my-interest").popover({
-      trigger: 'hover', 
-      content: 'Remove from watchlist.',
+    trigger: 'hover', 
+    content: 'Remove from watchlist.',
   });
   $(".not-my-interest").popover({
-      trigger: 'hover', 
-      content: 'I am interested. Add to watchlist.',
+    trigger: 'hover', 
+    content: 'I am interested. Add to watchlist.',
   });
 <% end %>

@@ -12,7 +12,9 @@ module InterestsHelper
                 when Presentation
                   toggle_presentation_interests_path(what)
                 end
-    link_to icon('star'), link_path, method: :post, class: (interested ? 'my-interest' : 'not-my-interest'), remote: true
+    content_tag :span, class: 'interest_link', id: interest_id(what, part) do
+      link_to big_icon('star'), link_path, method: :post, class: (interested ? 'my-interest' : 'not-my-interest'), remote: true
+    end
   end
 end
 
