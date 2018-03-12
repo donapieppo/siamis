@@ -1,15 +1,20 @@
 <%= program_title('My program', 'map') %>  
 
 <% @interests.sort.to_h.each do |day, sessions| %>  
-  <h4 style="margin: 24px 8px"><span style="border: 1px solid black; padding: 8px"><%= big_icon(:calendar) %> <%= l(day) %></span></h4>
-  <% sessions.sort_by {|e| e[:start] }.each do |s| %>  
+  <% day_number = (day - Rails.configuration.conference_start_date).to_i %>  
+  <div style="font-size: 18px; margin: 32px 0px">
+    <span style="border: 1px solid black; padding: 12px">
+      <%= link_to big_icon(:calendar) + " " + l(day), conference_program_path(day: day_number), style: 'color: black' %>
+    </span>
+  </div>
+  <% sessions.sort_by {|s| s[:start] }.each do |s| %>  
     <% cs       = s[:cs] %>  
     <% part     = s[:part] %>  
     <% schedule = cs.schedules.where(part: part).first %>  
     <div class="conference_program_item">
       <%= link_to(conference_session_path(cs, part: schedule.part), remote: true) do %>
         <div class= "<%= conference_session_css_class(cs) %> conference_program_item_name">
-          <%= icon 'clock-o' %> &nbsp; <%= schedule ? l(schedule.start, format: :hour) : ' - ' %>  
+          <%= icon 'clock-o' %> <%= schedule ? l(schedule.start, format: :hour) : ' - ' %>  
         </div>
       <% end %>
       <div class='conference_program_item_description'>
