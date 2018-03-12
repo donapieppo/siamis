@@ -1,12 +1,5 @@
 <%= program_title('My program', 'map') %>  
 
-<% if @interests.empty? %>  
-  <p class="future_magic">
-  It is possible to express interest in presentations and conference sessions in order to create a <strong>personal program</strong>.<br/>
-  In every session / presentation you will find a button to add 
-  </p>
-<% end %>
-
 <% @interests.sort.to_h.each do |day, sessions| %>  
   <h4 style="margin: 24px 8px"><span style="border: 1px solid black; padding: 8px"><%= big_icon(:calendar) %> <%= l(day) %></span></h4>
   <% sessions.sort_by {|e| e[:start] }.each do |s| %>  
