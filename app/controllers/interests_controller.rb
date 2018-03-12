@@ -1,6 +1,7 @@
 class InterestsController < ApplicationController
   before_action :set_what_and_part, except: :index
 
+  # interests are not schedules but conference_sessions. 
   def index
     @interests = Hash.new {|hash, key| hash[key] = []}
     current_user.interests.includes(presentation: :conference_session, conference_session: :schedules).order('schedules.start').map do |interest|
