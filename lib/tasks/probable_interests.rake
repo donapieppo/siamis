@@ -2,7 +2,7 @@ namespace :siamis do
   namespace :users do
 
     desc "Create probable interest for speakers/organizers"
-    task create_probable_intersts: :environment do
+    task create_probable_interests: :environment do
       # interests = Array di { conference_session_id, part }
       # si creano alla fine per avere uniq
       interests = Hash.new {|h,k| h[k]=[] }
