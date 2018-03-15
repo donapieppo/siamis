@@ -1,5 +1,5 @@
 <% 
-  current_part = (conference_session.parts > 0) ? params[:part].to_i : nil
+  current_part = (conference_session.parts > 1) ? params[:part].to_i : nil
   owner = current_user_owns?(conference_session)
   presentations_in_parts = conference_session.presentations_in_parts
   schedules_in_parts = conference_session.schedules.inject({}) {|res, s| res[s.part] = s; res}
@@ -17,7 +17,7 @@
     <% presentations_in_parts.each do |part, presentations| %>
       <div class="row">
         <div class="col-md-4">
-          <%= interest_link(conference_session, part)%>
+          <%= interest_link(conference_session, part) %>
           <% if conference_session.parts > 1 %> 
             <span class="session_part"><strong>PART <%= part.to_i %></strong></span>
           <% else %>
