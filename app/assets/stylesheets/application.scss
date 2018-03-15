@@ -208,12 +208,15 @@ ul.tag_admin_list {
   text-align: right;
 }
 
+.interest_link {
+  margin-right: 5px;
+}
 .my-interest {
   color: green;
 }
 .not-my-interest {
-  opacity: 0.5;
-  filter: alpha(opacity=50); 
+  opacity: 0.3;
+  filter: alpha(opacity=30); 
 }
 
 @import "home";
