@@ -1,6 +1,6 @@
 <%= program_title('My program', 'map') %>  
 
-<p class="alert alert-info">In order to build you personal schedule visit <%= link_to 'program day by day', conference_program_path %>, choose the session you are interested in  and click on the star ( <%= icon('star') %>) icon.</p>
+<p class="alert alert-info">In order to build you personal schedule visit the <%= link_to 'program day by day page', conference_program_path %>, open the session you are interested in and click on the star ( <%= icon('star') %>) icon.</p>
 <% @interests.sort.to_h.each do |day, sessions| %>  
   <% day_number = (day - Rails.configuration.conference_start_date).to_i %>  
   <div style="font-size: 18px; margin: 32px 0px">
