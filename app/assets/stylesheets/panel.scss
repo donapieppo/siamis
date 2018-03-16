@@ -57,7 +57,7 @@
   }
 }
 
-dl.conference_session_presentations_list {
+dl.conference-session-presentations-list {
   margin-top: 6px;
   dt {
     margin-left: 12px;
@@ -66,6 +66,11 @@ dl.conference_session_presentations_list {
   dd {
     margin-left: 24px;
   }
+}
+.selected-presentations-list {
+  @extend .alert;
+  @extend .alert-warning;
+  border: 1px solid #708090;
 }
 
 .session_part {
