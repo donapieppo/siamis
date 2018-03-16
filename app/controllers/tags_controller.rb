@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
   before_action :user_in_organizer_committee!
-  before_action :set_tag, only: [:edit, :update, :destroy]
+  before_action :set_tag, only: [:edit, :update, :show, :destroy]
   # before_action :what_for_and_check_permission, only: [:new, :create]
 
   def index
@@ -32,6 +32,9 @@ class TagsController < ApplicationController
   def update
     @tag.update_attributes(name: params[:tag][:name], global: params[:tag][:global])
     redirect_to tags_path
+  end
+
+  def show
   end
 
   def destroy
