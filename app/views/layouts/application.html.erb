@@ -19,7 +19,6 @@
     <![endif]-->
   </head>
   <body>
-    <%= link_to image_tag('logo.png', alt: 'logo', id: 'header_logo'), root_path %>  
     <%= render partial: 'layouts/menu' %>
     <%= privacy_alert %>
     <%= render partial: 'home/header' if @home_header %>  
