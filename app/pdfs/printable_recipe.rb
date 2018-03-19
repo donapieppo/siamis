@@ -18,6 +18,7 @@ class PrintableRecipe < Prawn::Document
     })
     font "LiberationSans"
     font_size 12
+    default_leading 5
 
     # A4 595.28 x 841.89
     image Rails.root.join('app/assets/images/siam_recipe_header.jpg'), at: [40,720], width: 300
