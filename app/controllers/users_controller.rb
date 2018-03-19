@@ -160,6 +160,10 @@ class UsersController < ApplicationController
       @title = "Unregistered active users"
       registered_ids = ConferenceRegistration.select(:user_id).map(&:user_id).to_a
       @emails = User.where('sign_in_count > 0').where("id NOT IN (?)", registered_ids).select(:email).map(&:email)
+    elsif params[:registered_students]
+      @title = "Registered students."
+      registered_ids = ConferenceRegistration.select(:user_id).map(&:user_id).to_a
+      @emails = User.student.where(id: registered_ids).select(:email).map(&:email)
     end
       @emails = @emails.flatten.uniq
       @size = @emails.size
