@@ -14,7 +14,7 @@ module ActionsHelper
     return "&nbsp;".html_safe unless current_user_owns?(what)
 
     capture do 
-      txt = (what.is_a?(Presentation) and what.authors.size > 1) ? ' edit presentation or modify speaker' : ' edit'
+      txt = (what.is_a?(Presentation) and what.authors.size > 1) ? " edit #{what.to_s_type} or modify speaker" : ' edit'
       concat(link_to icon('pencil') + txt, [:edit, what])
 
       # plenary, minitutorial
@@ -35,9 +35,9 @@ module ActionsHelper
         concat(link_to icon('list') + " manage #{presentation_label}s", manage_presentations_conference_session_path(what))
       end 
 
-      # if what.is_a?(Presentation)
-      #   concat(link_to icon('book') + ' submit paper', new_presentation_paper_path(what))
-      # end
+      if what.is_a?(Presentation)
+        concat(link_to icon('book') + ' submit paper', new_presentation_paper_path(what))
+      end
 
       concat(link_to_delete('delete', what))
 
