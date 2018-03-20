@@ -42,7 +42,7 @@ Users with <%= icon('cog') %> are in scientific committee.
       <td title="committee"><%= icon('cog') if user.in_scientific_committee? %></td>
       <td title="staff"><%= icon('life-ring') if user.staff %></td>
       <td title="exhibitor"><%= icon('cubes') if user.exhibitor %></td>
-      <td title="student"><%= icon('graduation-cap') if user.student %></td>
+      <td title="student" style="<%= user.student_confirmed ? 'color: green' : '' %>"><%= icon('graduation-cap') if user.student %></td>
     <% end %>
   <% end %>
 </table>
