@@ -32,13 +32,17 @@ Users with <%= icon('cog') %> are in scientific committee.
       <td style="text-align: right"><%= num += 1 %></td>
       <td><%= icon('euro') if user.conference_registration %></td>
       <td><%= user.cn_militar %> </td>
-      <th><%= link_to user.email, user, remote: true %></th>
+      <th>
+        <%= link_to user.email, user, remote: true %>
+        <%= link_to(icon('external-link'), user.web_page, title: 'web', target: 'new') unless user.web_page.blank? %>  
+      </th>
       <td><em><small><%= user.affiliation %></small></em></td>
       <td><%= user.country ? user.country : link_to_edit([:edit, user]) %></td>
-      <td><%= icon('check') if user.sign_in_count > 0 %></td>
-      <td><%= icon('cog') if user.in_scientific_committee? %></td>
-      <td><%= icon('life-ring') if user.staff %></td>
-      <td><%= icon('cubes') if user.exhibitor %></td>
+      <td tile="active"><%= icon('check') if user.sign_in_count > 0 %></td>
+      <td title="committee"><%= icon('cog') if user.in_scientific_committee? %></td>
+      <td title="staff"><%= icon('life-ring') if user.staff %></td>
+      <td title="exhibitor"><%= icon('cubes') if user.exhibitor %></td>
+      <td title="student"><%= icon('graduation-cap') if user.student %></td>
     <% end %>
   <% end %>
 </table>

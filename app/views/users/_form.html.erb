@@ -14,6 +14,7 @@
   <%= user.input :siag %>  
   <%= user.input :student %>  
   <% if user_in_organizer_committee? %>  
+    <%= user.input :student_confirmed %>  
     <%= user.input :staff %>  
     <%= user.input :exhibitor %>  
   <% end %>
@@ -28,3 +29,10 @@
   <%= user.submit 'Save'%> - <%= link_to_back root_path %>  
 <% end %>
 
+<%= javascript_tag do %>  
+  $('#user_student').change(function() {
+    if ($(this).is(':checked')) {
+      alert("In order to register with student rates you will have to send by email, after the payment, a document attesting your status.");
+    };
+  });
+<% end %>

@@ -163,7 +163,7 @@ class UsersController < ApplicationController
     elsif params[:registered_students]
       @title = "Registered students."
       registered_ids = ConferenceRegistration.select(:user_id).map(&:user_id).to_a
-      @emails = User.student.where(id: registered_ids).select(:email).map(&:email)
+      @emails = User.student.where('student_confirmed IS NULL OR student_confirmed <> 1').where(id: registered_ids).select(:email).map(&:email)
     end
       @emails = @emails.flatten.uniq
       @size = @emails.size
@@ -204,7 +204,7 @@ class UsersController < ApplicationController
 
   def user_params
     permitted = [:salutation, :name, :surname, :affiliation, :address, :country, :biography, :siag, :siam, :student, :web_page, :dietary, :banquet_tickets, :visible]
-    permitted += [:email, :staff, :exhibitor, :student_award] if user_in_organizer_committee?
+    permitted += [:email, :staff, :student_confirmed, :exhibitor, :student_award] if user_in_organizer_committee?
     params[:user].permit(permitted)
   end
 

@@ -33,6 +33,7 @@
       <td>
         <%= l(payment.single_day, format: :day) if payment.single_day %>  
         <%= 'student' if payment.student %>  
+        <%= 'confirmed' if payment.user.student_confirmed %>  
         <% if user.student_award %>
           student <%= icon('trophy') %>  
         <% end %>
