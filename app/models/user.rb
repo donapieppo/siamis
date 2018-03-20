@@ -188,7 +188,7 @@ class User < ApplicationRecord
   end
 
   def self.all_fields
-    self.safe_fields + [:address, :siag, :siam, :student, :staff, :exhibitor, :dietary, :banquet_tickets]
+    self.safe_fields + [:address, :siag, :siam, :student, :student_confirmed, :staff, :exhibitor, :dietary, :banquet_tickets]
   end
 
   def self.partecipants
