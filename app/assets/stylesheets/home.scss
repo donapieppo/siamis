@@ -166,12 +166,20 @@
   }
 }
 
-.home_number {
-  margin-top: 20px;
-
-  font-size: 28px;
-  padding: 15px;
-  text-align: center;
-  letter-spacing: -1px;
+.home-number-container {
+  @extend .row;
+  margin-top: 30px;
 }
-
+.home-number {
+  margin: 10px auto;
+  text-align: center;
+  font-size: 1.5em; 
+  font-weight: bold;
+  width: 220px; 
+  height: 220px; 
+  padding-top: 55px;
+  border: 9px solid #e6a8a9;
+  color: #fff;
+  border-radius: 50%; 
+  background-color: #c73b3b;
+}

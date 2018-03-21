@@ -11,6 +11,7 @@ class SubmissionsController < ApplicationController
     end
   end
 
+  # position is the number to go with window.location
   def admin
     if @position = params[:minisymposium]
       @title = 'Minisymposia'
@@ -24,20 +25,23 @@ class SubmissionsController < ApplicationController
         @list = @list.order('name')
       end
       @my_ratings = current_user.ratings.select(:conference_session_id).pluck(:conference_session_id)
-
-      if params[:tag_id]
-        @tag = Tag.find(params[:tag_id]) 
-        @list = @list.left_outer_joins(:tags).where('tags.id = ?', @tag.id)
-      end
     elsif @position = params[:contributed]
       @title = 'Presentations'
       @list = Presentation.at_contributed.includes(:conference_session, ratings: :user, authors: :user)
+      @my_ratings = current_user.ratings.select(:presentation_id).pluck(:presentation_id)
+    elsif @position = params[:presentation]
+      @title = 'Presentations / Posters'
+      @list = Presentation.includes(:conference_session, ratings: :user, authors: :user)
       @my_ratings = current_user.ratings.select(:presentation_id).pluck(:presentation_id)
     else
       @title = 'Posters'
       @position = params[:poster] || 0
       @list = Presentation.at_poster.includes(:conference_session, ratings: :user, authors: :user)
       @my_ratings = current_user.ratings.select(:presentation_id).pluck(:presentation_id)
+    end
+    if params[:tag_id]
+      @tag = Tag.find(params[:tag_id]) 
+      @list = @list.left_outer_joins(:tags).where('tags.id = ?', @tag.id)
     end
   end
 end

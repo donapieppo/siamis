@@ -1,6 +1,5 @@
 <% 
-  # papers = presentation.papers || []
-  papers = []
+  papers = presentation.papers || []
   owner  = current_user_owns?(presentation)
 %>
 
@@ -28,20 +27,24 @@
     <% end %>
     <dt><%= t 'Tags' %>:</dt>
     <dd><%= presentation.all_tags %></dd>
-    <% unless papers.empty? %>  
+    <% if current_user and ! papers.empty? %>  
       <dt>Documents:</dt>
       <% papers.each do |paper| %>  
         <dd>
-        <%= link_to icon('download') + ' download paper', paper.paperfile_url %>  
-        <%= link_to_delete(paper_path(paper)) if owner %>
+          <% if owner or false %>  
+            <%= link_to('download paper '.html_safe + icon('download'), paper.paperfile_url) if owner %>  
+          <% else %>
+            <span style="color: green">The paper will be visible from May, 28.</span>
+          <% end %>
+          <%= link_to_delete(paper_path(paper)) if owner %>
         </dd>
       <% end %>
     <% end %>
   </dl>
 
-  <%# <% if owner and presentation.poster and papers.empty? %>  
-  <%#   <p class="alert alert-warning">In order to apply to <em>Best poster award</em> please submit a paper at least a week before the conference.</p>
-  <%# <% end %>
+  <% if owner and presentation.poster and papers.empty? %>  
+    <p class="alert alert-warning">In order to apply to <em>Best poster award</em> please <%= link_to 'submit a paper', new_presentation_paper_path(presentation) %> at least a week before the conference.</p>
+  <% end %>
 
   <%= render partial: 'ratings/dl_list', locals: { what: presentation } %>  
 </div><!-- panel-body -->

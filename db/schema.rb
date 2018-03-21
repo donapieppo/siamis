@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "interests", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id", unsigned: true
     t.integer "conference_session_id", unsigned: true
+    t.integer "part"
     t.integer "presentation_id", unsigned: true
     t.index ["conference_session_id"], name: "conference_session_id"
     t.index ["presentation_id"], name: "presentation_id"
@@ -201,6 +202,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.boolean "siag"
     t.boolean "siam"
     t.boolean "student"
+    t.boolean "student_confirmed"
     t.boolean "staff"
     t.boolean "exhibitor"
     t.string "web_page"

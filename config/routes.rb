@@ -107,7 +107,9 @@ Rails.application.routes.draw do
   resources :ratings
   resources :buildings
   resources :rooms
-  resources :interests
+  resources :interests do 
+    get :session_ids, on: :collection
+  end
 
   resources :conference_registrations do 
     get  :check,         on: :collection, as: :check
@@ -126,9 +128,11 @@ Rails.application.routes.draw do
     put :mark_as_unsent, on: :member
   end
 
-  get 'submissions',                 to: 'submissions#index', as: :submissions
-  get 'submissions/admin',           to: 'submissions#admin', as: :admin_submissions
-  get 'logins/no_access',            to: 'logins#no_access',  as: :no_access
+  post 'search',            to: 'search#search',     as: :search   
+
+  get 'submissions',       to: 'submissions#index', as: :submissions
+  get 'submissions/admin', to: 'submissions#admin', as: :admin_submissions
+  get 'logins/no_access',  to: 'logins#no_access',  as: :no_access
 
   get 'privacy',       to: 'home#privacy',       as: :privacy
   get 'contacts',      to: 'home#contacts',      as: :contacts

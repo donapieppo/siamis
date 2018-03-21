@@ -59,3 +59,17 @@
 <%= link_to '[ more on Minitutorials ]', minitutorials_path %>
 </p>
 
+<p style="margin-top: 30px; font-size: 18px; font-weight: bold">AND</strong></p>
+
+<div class="home-number-container">
+  <div class="col-md-4">
+    <div class="home-number"><%= Minisymposium.sum(:parts) %><br/> minisymposia</div>
+  </div>
+  <div class="col-md-4">
+    <div class="home-number"><%= Role.where(speak: true).count %><br/> speakers</div>
+  </div>
+  <div class="col-md-4">
+    <div class="home-number"><%= Presentation.at_poster.count %><br/> posters</div>
+  </div>
+</div>
+

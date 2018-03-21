@@ -156,6 +156,14 @@ class UsersController < ApplicationController
       @title = "Authors of posters"
       @emails = Presentation.poster.includes(authors: :user).inject([]){|emails, p| emails << p.authors.select{|a| a.speak}.map{|a| a.user.email}; emails}
       # @email_list = User.where(id: Presentation.poster.left_joins(:conference_session).where('conference_session_id is null or conference_sessions.type = "PosterSession"').includes(:roles).map(&:roles).flatten.map(&:user_id)).select(:email).map(&:email).join('; ')
+    elsif params[:unregistered]
+      @title = "Unregistered active users"
+      registered_ids = ConferenceRegistration.select(:user_id).map(&:user_id).to_a
+      @emails = User.where('sign_in_count > 0').where("id NOT IN (?)", registered_ids).select(:email).map(&:email)
+    elsif params[:registered_students]
+      @title = "Registered students."
+      registered_ids = ConferenceRegistration.select(:user_id).map(&:user_id).to_a
+      @emails = User.student.where('student_confirmed IS NULL OR student_confirmed <> 1').where(id: registered_ids).select(:email).map(&:email)
     end
       @emails = @emails.flatten.uniq
       @size = @emails.size
@@ -196,7 +204,7 @@ class UsersController < ApplicationController
 
   def user_params
     permitted = [:salutation, :name, :surname, :affiliation, :address, :country, :biography, :siag, :siam, :student, :web_page, :dietary, :banquet_tickets, :visible]
-    permitted += [:email, :staff, :exhibitor, :student_award] if user_in_organizer_committee?
+    permitted += [:email, :staff, :student_confirmed, :exhibitor, :student_award] if user_in_organizer_committee?
     params[:user].permit(permitted)
   end
 

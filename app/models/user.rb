@@ -164,8 +164,8 @@ class User < ApplicationRecord
     end
   end
 
-  def interested_in?(what)
-    what.interests.where(user_id: self.id).any?
+  def interested_in?(what, part)
+    what.interests.where(user_id: self.id, part: part).any?
   end
 
   ###################################################################
@@ -188,7 +188,7 @@ class User < ApplicationRecord
   end
 
   def self.all_fields
-    self.safe_fields + [:address, :siag, :siam, :student, :staff, :exhibitor, :dietary, :banquet_tickets]
+    self.safe_fields + [:address, :siag, :siam, :student, :student_confirmed, :staff, :exhibitor, :dietary, :banquet_tickets]
   end
 
   def self.partecipants

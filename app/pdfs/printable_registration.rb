@@ -9,9 +9,18 @@ class PrintableRegistration < Prawn::Document
   def initialize(conference_registration)
     @conference_registration = conference_registration
     @user = @conference_registration.user
-    super()
+
+    super(page_size: 'A4')
+
+    font_families.update("LiberationSans" => {
+      bold:   "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+      normal: "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+      italic: "/usr/share/fonts/truetype/liberation/LiberationMono-Italic.ttf"
+    })
+    font "LiberationSans"
+    font_size 12
+
     move_down(25)
-    font "Times-Roman", size: 10
 
     text @user.cn, size: 18, style: :bold, align: :center
     text @user.email, size: 14, align: :center

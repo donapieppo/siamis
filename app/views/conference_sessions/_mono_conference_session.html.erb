@@ -24,7 +24,7 @@
 
   <div class="col-md-8">
     <div class="title">
-      <h4><%= conference_session %>  <span class="panel-header-code"><%= conference_session.code %></span></h4>
+      <h4><%= conference_session.name %> <span class="panel-header-code"><%= conference_session.code %></span></h4>
     </div>
 
     <div class="mono_conference_session_content">
@@ -44,8 +44,8 @@
 </div>
 <div class="row">
   <div class="col-md-8 col-md-offset-4 footer-actions">
-    <%= panel_actions(conference_session) %>  
-    <%= show_schedule(conference_session) %>  
+    <p>&nbsp;<%= show_schedule(conference_session) %></p>
+    <p><%= panel_actions(conference_session) %> </p>
   </div>
 </div>
 </div>

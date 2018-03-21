@@ -38,6 +38,10 @@ class Presentation < ApplicationRecord
     self.name || self.conference_session.to_s
   end
 
+  def to_s_type
+    self.poster ? 'poster' : 'presentation'
+  end
+
   def umbrella
     self.conference_session ? self.conference_session.class : ContributedSession
   end

@@ -2,8 +2,8 @@ class HomeController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @plenaries     = Plenary.includes(presentation: [authors: :user], schedules: :room).order('users.surname, users.name')
-    @minitutorials = Minitutorial.includes(presentation: [authors: :user], schedules: :room).order('users.surname, users.name')
+    @plenaries     = Plenary.includes(presentation: [authors: :user], schedules: :room).order('schedules.start, users.surname, users.name')
+    @minitutorials = Minitutorial.includes(presentation: [authors: :user], schedules: :room).order('schedules.start, users.surname, users.name')
   end
 
   def contacts

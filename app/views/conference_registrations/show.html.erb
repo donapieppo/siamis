@@ -1,7 +1,7 @@
 <%= program_title('Registration', 'info') %>  
 
 <div class="row">
-  <div class="col-md-6 alert alert-success">
+  <div class="col-md-4 alert alert-success centered">
     <% if @conference_registration %>  
       <h2>
         <%= icon('check-circle', size: 80) %> <br/>
@@ -19,7 +19,7 @@
     <% end %>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-8">
     <h3>Registration Data</h3>
     <%= render current_user %>  
   </div>

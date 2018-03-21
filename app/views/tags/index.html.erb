@@ -14,6 +14,8 @@
         <div class="panel-body">
           <% if (num = tag.minisymposia.count) > 0 %>  
             <%= link_to "#{num} minisymposia", admin_submissions_path(tag_id: tag.id, minisymposium: 1) %>  
+          <% elsif (num = tag.presentations.count) > 0 %>
+            <%= link_to "#{num} presentations", admin_submissions_path(tag_id: tag.id, presentation: 1) %>  
           <% else %>
               -
           <% end %>

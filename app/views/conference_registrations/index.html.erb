@@ -12,7 +12,6 @@
     <th>amount</th>
     <th>payment id</th>
     <th>identification</th>
-    <th>verified</th>
     <th>date</th>
     <th>Notes</th>
     <th></th>
@@ -27,10 +26,9 @@
         <% euro += payment.amount %>  
         <td><%= payment.manual ? 'Manual' : payment.payment_id %></td>
         <td><%= payment.shop_id %></td>
-        <td><%= payment.verified %></td>
         <td><%= l payment.created_at %></td>
       <% else %>
-        <td colspan="5"> - </td>
+        <td colspan="4"> - </td>
       <% end %>
         <td>
           <% if payment %>  

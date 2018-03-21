@@ -1,12 +1,13 @@
 <header class="navbar navbar-default navbar-main navbar-fixed-top" role="banner">
 <div class="container-fluid">
   <div class="navbar-header">
-    <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar-collapse">
+    <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar-collapse" aria-expanded="false">
       <span class="sr-only">Toggle navigation</span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
+    <%= link_to image_tag('logo_small.png', alt: 'logo'), root_path, class: "navbar-brand" %>  
   </div><!-- navbar-header -->
 
   <nav class="collapse navbar-collapse" id="bs-navbar-collapse">
@@ -25,16 +26,17 @@
           <%= menu_link 'gift',         'Sponsors', root_path(anchor: 'sponsors'), 'general' %>
         <% end %>
         <%= dropdown_menu fwicon('map-o') + ' PROGRAM' do  %>  
+          <%= menu_link 'calendar',    'Program day by day', conference_program_path %>  
+          <%= menu_link 'file-o',      'One page Program', 'https://www.siam-is18.dm.unibo.it/siam_is18_one_page_program.pdf' %>
+          <%= menu_link 'star',        'My program', interests_path %>  
+          <li class="divider"></li>
           <%= menu_link 'user',        'Plenary presentations', plenaries_path %>  
           <%= menu_link 'wrench',      'Minitutorials', minitutorials_path %>
           <%= menu_link 'users',       'Minisymposia', minisymposia_path %>
           <%= menu_link 'users',       'Contributed presentations', contributed_sessions_path %>
           <%= menu_link 'picture-o',   'Poster sessions', poster_sessions_path %>
           <li class="divider"></li>
-          <%= menu_link 'map-o',       'Participant list', participants_path %>  
-          <%= menu_link 'calendar',    'Program day by day', conference_program_path %>  
-          <%= menu_link 'file-o',      'One page Program', 'https://www.siam-is18.dm.unibo.it/siam_is18_one_page_program.pdf' %>
-          <li class="divider"></li>
+          <%= menu_link 'users',       'Participant list', participants_path %>  
           <%= menu_link 'handshake-o', 'Satellite events', satellites_path %>
           <%# <%= menu_link 'map-o',      'My program', interests_path %>  
         <% end %>
@@ -54,7 +56,7 @@
         <%= menu_link 'plane',        'Travel opportunities', travel_path %>
         <% if current_user %>  
           <li class="divider"></li>
-          <%= menu_link 'user',          'Your personal data', edit_user_path(current_user) %>
+          <%= menu_link 'user',       'Your personal data', edit_user_path(current_user) %>
         <% end %>
       <% end %>
 
@@ -115,7 +117,13 @@
             <%= menu_link 'key', 'Keywords', tags_path %>
           <% end %>
         <% end %>
+        <%= form_tag search_path, class: 'navbar-form navbar-left' do %>  
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search user or presentations" name="search_string"></input>
+          </div>
+        <% end %>
       <% end %>
+
       <%= logged_user %>
     </ul>
   </nav>

@@ -18,6 +18,7 @@ class PrintableRecipe < Prawn::Document
     })
     font "LiberationSans"
     font_size 12
+    default_leading 5
 
     # A4 595.28 x 841.89
     image Rails.root.join('app/assets/images/siam_recipe_header.jpg'), at: [40,720], width: 300
@@ -28,16 +29,16 @@ class PrintableRecipe < Prawn::Document
 
     move_down(50)
 
-    text "This is to certify that Prof./Dr. #{@user.cn} from #{@user.affiliation} paid the amount of € #{@payment.amount} (#{@payment.amount.humanize} euros) as registration fee for the participation to the SIAM Conference on Imaging Science organized at the University of Bologna (june 5-8, 2018).", align: :justify
+    text "This is to certify that Prof./Dr. #{@user.cn} from #{@user.affiliation} paid on #{I18n.l(@payment.created_at.to_date)} the amount of € #{@payment.amount} (#{@payment.amount.humanize} euros) as registration fee for the participation to the SIAM Conference on Imaging Science organized at the University of Bologna (june 5-8, 2018).", align: :justify
 
-    move_down(30)
+    move_down(60)
 
     text "The  SIAM IS18
           Organization Committee", align: :right
 
-    move_down(20)
+    move_down(40)
 
-    text "Bologna, #{I18n.l Date.today}"
+    text "Bologna, "
 
     move_cursor_to 40
 

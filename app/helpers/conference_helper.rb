@@ -2,8 +2,9 @@ module ConferenceHelper
 
   def user_modal_link(user)
     return "" unless user
-    cn = (current_user == user) ? "<u>#{h user.cn.upcase}</u>".html_safe : user.cn
-    link_to h(cn), user_path(user), remote: true 
+    # not good with cache
+    # cn = (current_user == user) ? "<u>#{h user.cn.upcase}</u>".html_safe : user.cn
+    link_to user.cn, user_path(user), remote: true 
   end
 
   def show_registered(user)
@@ -176,8 +177,8 @@ module ConferenceHelper
      conference_session.class.to_s.downcase + "_panel"
   end
 
-  def list_presentations(presentations, conference_session)
-    content_tag(:dl, class: "conference_session_presentations_list") do
+  def list_presentations(presentations, conference_session, to_highlight = false)
+    content_tag(:dl, class: "conference-session-presentations-list #{to_highlight ? 'selected-presentations-list' : '' }") do
       presentations.each do |presentation| 
         concat(content_tag(:dt, link_to(presentation, presentation, remote: true)))
         # for organizer_committee_or_cochair
@@ -219,9 +220,9 @@ module ConferenceHelper
 
   def user_photo(user, small: false)
     if asset_exist?(user.photo_asset)  
-      image_tag(user.photo_asset, width: (small ?  100 : 250), class: 'img-rounded')
+      image_tag(user.photo_asset, width: (small ? 100 : 250), class: 'img-rounded')
     else
-      '<i class="fa fa-user-circle" style="font-size: 80px; margin: 20px;" aria-hidden="true"></i>'.html_safe
+      '<i class="fa fa-user-circle" style="font-size: 60px; margin: 6px;" aria-hidden="true"></i>'.html_safe
     end
   end
 

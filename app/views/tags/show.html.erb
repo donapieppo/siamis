@@ -1,0 +1,16 @@
+<h1>Keyword: <%= @tag %></h1>
+
+<h2>Sessions</h2>
+<ul class="list-group">
+  <% @tag.conference_sessions.each do |cs| %>  
+    <li class="list-group-item"><%= link_to cs, cs, remote: true %></li>
+  <% end %>
+</ul>
+
+<h2>Presentatons / Posters</h2>
+<ul class="list-group">
+  <% @tag.presentations.each do |pres| %>  
+    <li class="list-group-item"><%= link_to pres, pres, remote: true %></li>
+  <% end %>
+</ul>
+

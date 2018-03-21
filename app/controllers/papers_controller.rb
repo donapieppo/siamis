@@ -1,3 +1,5 @@
+# FIXME
+# check is a poster. But who cares? :-)
 class PapersController < ApplicationController
   before_action :get_presentation_and_check_permission, only: [:new, :create]
 

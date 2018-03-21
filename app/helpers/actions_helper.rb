@@ -2,28 +2,19 @@ module ActionsHelper
 
   # old. Better keep because in card footer 
   def common_actions(what)
-    return "&nbsp;".html_safe
+     return "&nbsp;".html_safe
     # return "&nbsp;".html_safe if current_user_owns?(what)
     # return "&nbsp;".html_safe if what.is_a?(Plenary)
     # FIXME return "&nbsp;".html_safe if current_user and current_user.speaker?(what)
 
     # activate when there is a program
-    # now_icon  = current_user.interested_in?(what) ? "check-square" : "square"
-    # title     = current_user.interested_in?(what) ? " interested" : " interested" 
-    # link_path = case what
-    # when Minisymposium, ConferenceSession, PosterSession
-    #   toggle_conference_session_interests_path(what)
-    # when Presentation
-    #   toggle_presentation_interests_path(what)
-    # end
-    # link_to icon(now_icon) + title, link_path, method: :post
   end
 
   def owner_actions(what)
     return "&nbsp;".html_safe unless current_user_owns?(what)
 
     capture do 
-      txt = (what.is_a?(Presentation) and what.authors.size > 1) ? ' edit presentation or modify speaker' : ' edit'
+      txt = (what.is_a?(Presentation) and what.authors.size > 1) ? " edit #{what.to_s_type} or modify speaker" : ' edit'
       concat(link_to icon('pencil') + txt, [:edit, what])
 
       # plenary, minitutorial
@@ -44,9 +35,9 @@ module ActionsHelper
         concat(link_to icon('list') + " manage #{presentation_label}s", manage_presentations_conference_session_path(what))
       end 
 
-      # if what.is_a?(Presentation)
-      #   concat(link_to icon('book') + ' submit paper', new_presentation_paper_path(what))
-      # end
+      if what.is_a?(Presentation) and what.poster
+        concat(link_to icon('book') + ' submit paper', new_presentation_paper_path(what))
+      end
 
       concat(link_to_delete('delete', what))
 

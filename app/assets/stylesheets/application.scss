@@ -15,19 +15,21 @@ body {
   text-align:   center;
 }
 h1 {
-  font-size: 36px;
+  font-size: 32px;
   text-transform: uppercase;
-  //text-shadow: 2px 2px 0 black;
-}
-h1, h2, h3 {
   @extend .centered;
+  font-weight: 300;
+  // text-shadow: 1px 1px 0 #708090;
+}
+h2, h3 {
+  font-size: 24px;
   font-weight: 300;
 }
 h1.program {
   margin-bottom: 36px;
   border: 3px solid #000;
   display: inline-block;
-  padding: .5em;
+  padding: .3em;
 }
 
 .button {
@@ -46,6 +48,12 @@ h1.program {
   }
 }
 
+.navbar-brand {
+  padding-top: 5px;
+  img {
+    height: 60px;
+  }
+}
 .navbar-main {
   font-size: 18px;
   font-weight: 600;
@@ -154,14 +162,6 @@ div.hotel-panel_selected {
   @extend .bg-colored-second;
 }
   
-#header_logo {
-  height: 70px;
-  z-index: 1050; 
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  border: 0;
-}
 .privacy-title {
   text-align: left;
   margin: 30px 0 30px 0px;
@@ -206,6 +206,17 @@ ul.tag_admin_list {
 
 .number {
   text-align: right;
+}
+
+.interest_link {
+  margin-right: 5px;
+}
+.my-interest {
+  color: green;
+}
+.not-my-interest {
+  opacity: 0.3;
+  filter: alpha(opacity=30); 
 }
 
 @import "home";

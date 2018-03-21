@@ -70,6 +70,7 @@ en:
         siag: SIAG/IS Member
         siam: SIAM Member
         student: Student
+        student_confirmed: Student confirmed
         staff: Staff
         exhibitor: Exhibitor
         visible: Show in Siam-is18 page
@@ -114,6 +115,7 @@ en:
       user:
         siam: IEEE, SIMAI and GAMM members are eligible to register at the SIAM Member rate.
         student: STUDENTS MUST SHOW A CURRENT STUDENT ID UPON CHECKING IN AT THE SIAM REGISTRATION DESK.
+        student_confirmed: I am positive this is a student (confirmed document).
         salutation: (e.g. Prof., PhD, Jr., Sr., etc.) 
         visible: Check to be included on the <strong>list of participants</strong> on the SIAM-IS18 web site and to share your data with SIAM (see <a href="/privacy">privacy</a>).
         dietary: Dietary restrictions and food allergies.
@@ -154,7 +156,7 @@ en:
       short:   ! '%d %b %H:%M'
       date_picker: ! "%d/%m/%Y"
       datetime_picker: "%d/%m/%Y %H:%M"
-      with_day_name: '%A %d %B %Y at %H:%M'
+      with_day_name: '%a %d %B at %H:%M'
       day:  '%A %d %B'
       schedule_day:  '%d'
       schedule: '%A %d %B %Y at %H:%M'

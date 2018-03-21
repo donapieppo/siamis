@@ -7,24 +7,18 @@
 <%= render partial: 'contributed_sessions/description' %>  
 <%= render partial: 'deadlines/presentation_submission' %>  
 
-<% if user_in_organizer_committee? %> 
-  <ul class="list-group">
+<div class="list-group">
   <% @conference_sessions.each do |cs| %>
-      <li class="list-group-item">
-        <%= link_to cs, cs, remote: true %> 
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+    <%= link_to cs, cs, remote: true, class: 'list-group-item' %> 
+  <% end %>
+</div>
 
 <h2>List of accepted contributed presentations</h2>
 
-<ul class="list-group">
+<div class="list-group">
   <% cache 'presentations_list_cache' do %>
     <% Presentation.at_contributed.order(:name).each do |presentation| %>  
-      <li class="list-group-item">
-        <%= link_to presentation.name, presentation, remote: true %> 
-      </li>
+      <%= link_to presentation.name, presentation, remote: true, class: 'list-group-item' %> 
     <% end %>
   <% end %>
-</ul>
+</div>
