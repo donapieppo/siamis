@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-info">
-        <div class="panel-heading">
+        <div class="panel-heading centered">
           <h2><%= big_icon(:user) %>Your Registration Data</h2>
-          <p class="centered"><%= icon('key') %> <%= link_to "Change your password", edit_user_registration_path %></p>
+          <p><%= icon('key') %> <%= link_to "Change your password", edit_user_registration_path %></p>
         </div>
         <div class="panel-body">
           <%= render partial: 'form' %>  
