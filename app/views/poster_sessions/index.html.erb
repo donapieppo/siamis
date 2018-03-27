@@ -21,8 +21,8 @@
 
 <div class="list-group">
   <% cache 'presentations_list_cache' do %>
-    <% Presentation.at_poster.order(:name).each do |presentation| %>  
-      <%= link_to presentation.name, presentation, remote: true, class: 'list-group-item' %> 
+    <% Presentation.at_poster.order(:number, :name).each do |presentation| %>  
+      <%= link_to "#{presentation.number} #{presentation.name}", presentation, remote: true, class: 'list-group-item' %> 
     <% end %>
   <% end %>
 </ul>
