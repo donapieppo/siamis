@@ -5,7 +5,7 @@
 \\  
     \textit{<%= raw latex_text_clean presentation.abstract %>}\\
 \\ 
-    <% presentation.authors.each do |author| %>  
+    <% presentation.authors.order(:surname, :name).each do |author| %>  
       \myaut{<%= raw (user = author.user).cn %>}\\
       \mail{<%= raw user.email.gsub('_', '\_') %>}\\\\
     <% end %>

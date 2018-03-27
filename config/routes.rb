@@ -157,11 +157,13 @@ Rails.application.routes.draw do
 
   get 'stats/countries', to: 'stats#countries', as: :countries_stats
 
-  get 'latex',               to: 'latex#index',         as: :latex
-  get 'latex/plenaries',     to: 'latex#plenaries',     as: :plenaries_latex
-  get 'latex/minitutorials', to: 'latex#minitutorials', as: :minitutorials_latex
-  get 'latex/minisymposia',  to: 'latex#minisymposia',  as: :minisymposia_latex
-  get 'latex/contributed',   to: 'latex#contributed',   as: :contributed_latex
-  get 'latex/posters',       to: 'latex#posters',       as: :posters_latex
-  get 'latex/program',       to: 'latex#program',       as: :program_latex
+  get 'latex',                to: 'latex#index',          as: :latex
+  get 'latex/plenaries',      to: 'latex#plenaries',      as: :plenaries_latex
+  get 'latex/minitutorials',  to: 'latex#minitutorials',  as: :minitutorials_latex
+  get 'latex/minisymposia',   to: 'latex#minisymposia',   as: :minisymposia_latex
+  get 'latex/contributed',    to: 'latex#contributed',    as: :contributed_latex
+  get 'latex/posters',        to: 'latex#posters',        as: :posters_latex
+  get 'latex/program',        to: 'latex#program',        as: :program_latex
+  get 'latex/program_glance', to: 'latex#program_glance', as: :program_glance_latex
+  get 'latex/speakers_and_organizers', to: 'latex#speakers_and_organizers',       as: :speakers_and_organizers_latex
 end

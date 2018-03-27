@@ -1,8 +1,8 @@
 <div class="hotel-panel" id="hotel_<%= hotel.id %>">
 <div class="panel-heading" style='height: 300px; background: url(<%= image_path(hotel.asset_image) %>) no-repeat center top; background-size: cover;'>
-  <h3 style="background-color: rgba(255,255,255,0.7); padding: 20px 0;">
+  <h2 style="background-color: rgba(255,255,255,0.8); padding: 20px 0; text-align: center; font-weight: bold ">
     <%= link_to hotel.name, hotel.web_page, target: :new %>
-  </h3>
+  </h2>
 </div>
 <div class="panel-body">
   <p><%= link_to icon('map-marker')    + " " + hotel.address, '#', class: "activate_address_link", data: {addressid: hotel.id} %></p>
@@ -28,7 +28,7 @@
     <% end %>
   </table>
 
-  <% if hotel.booking_page %>  
+  <% unless hotel.booking_page.blank? %>  
     <p class="alert alert-warning">Please use this <%= link_to 'link', hotel.booking_page, target: :new %> when booking this hotel.</p>
   <% end %>
 </div>

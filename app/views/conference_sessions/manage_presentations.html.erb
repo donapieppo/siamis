@@ -1,5 +1,6 @@
 <%
   parts_list  = [['part I', 1], ['part II', 2], ['part III', 3], ['part IV', 4], ['part V', 5], ['part VI', 6]][0 ... @parts_number]  
+  total_presentations = @conference_session.is_a?(PosterSession) ? @conference_session.presentations.count : 7
   actual_part = 1 # to separate parts
 %>
 
@@ -16,7 +17,7 @@
           <% end %>
 
           <%= select_tag "order[#{presentation.id}][part]",   options_for_select(parts_list, presentation.part), hidden: (@parts_number < 2) %>
-          <%= select_tag "order[#{presentation.id}][number]", options_for_select(1..7, presentation.number) %>
+          <%= select_tag "order[#{presentation.id}][number]", options_for_select(1..total_presentations, presentation.number) %>
 
           <%= link_to presentation, presentation %> -
           <small><%= show_role(presentation.speaker, no_affiliation: true) %></small>

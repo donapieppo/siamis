@@ -21,7 +21,7 @@
       \siampresentationabstract{<%= raw latex_text_clean presentation.abstract %>}
 
       \begin{siam_speakers}
-        <% (authors = presentation.authors).each do |author| %>  
+        <% (authors = presentation.authors.includes(:user).order('users.surname, users.name')).each do |author| %>  
           \item<%= '[]' unless author.speak %>  <%= latex_user(author.user, author.speak) %>
         <% end %> 
         <% if authors.empty? %>  
