@@ -40,11 +40,14 @@ class LatexController < ApplicationController
       cs.presentations.each do |presentation|
         user_name = presentation.speaker.user.cn_militar
         initial   = user_name.gsub(/^(van|da|de) /, '')[0]
-        @users[initial][presentation.speaker.user.cn_militar] << "#{what} (* #{cs.code_with_part(schedule.part)})"
+        @users[initial][presentation.speaker.user.cn_militar] << "#{what} (#{cs.code_with_part(schedule.part)} *)"
       end
     end
   end
 
   def program
+  end
+
+  def program_glance
   end
 end
