@@ -1,6 +1,12 @@
 <%= program_title('Poster Sessions', 'picture-o') %>  
 
 <% if user_in_organizer_committee? %>  
+  <p>
+  Actual poster sessions: 
+  <% PosterSession.order(:name).each do |ps| %>  
+    <%= link_to ps, ps %>
+  <% end %>
+  </p>
   <p class="centered"><%= link_to 'Create Poster Session', new_poster_session_path, class: :big_button %></p>
 <% end %>
 
