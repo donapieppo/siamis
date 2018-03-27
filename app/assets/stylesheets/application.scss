@@ -219,6 +219,9 @@ ul.tag_admin_list {
   filter: alpha(opacity=30); 
 }
 
+.panel-heading h2 {
+  text-align: center;
+}
 @import "home";
 @import "conference_program";
 @import "panel";
