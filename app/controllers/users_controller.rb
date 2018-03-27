@@ -36,8 +36,9 @@ class UsersController < ApplicationController
         if role.is_a?(Author) and role.speak
           presentation  = role.presentation
           cs = role.presentation.conference_session or next
+          cs.is_a?(PosterSession) and next
           schedule = presentation.schedule or next
-          start = presentation.schedule.start 
+          start = schedule.start 
           start or next
           @res[user][start] << { what: 'S', conference_session: cs, where: schedule.room.name }
         elsif role.is_a?(Organizer)
