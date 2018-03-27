@@ -8,6 +8,8 @@
         <%= @conference_registration.user.cn %><br/> 
         is registered to<br/> SIAM-IS18 Conference.<br/>
       </h2>
+      <p>You will receive your payment receipt at the registration desk during the conference.</p>
+      <p>If you need it before, please write to <br/><%= mail_to_siam %>.</p>
     <% end %>
     <% if @payment %>  
       <p>
