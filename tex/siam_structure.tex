@@ -48,8 +48,10 @@
 \newcommand{\siamscheduleday}[1]{
   \newpage
   \rhead{Program for \textbf{#1}}
-  \vspace*{10cm}
-  \begin{center}\noindent\textbf{\Large{#1}}\end{center}
+  \begin{tikzpicture}[remember picture,overlay] 
+    \fill[siamblue] (-2,-8) rectangle (20,-12);
+    \node at (2,-10){\parbox[t][][t]{14cm}{\strut\raggedleft\color{white}\fontsize{25}{25}\sffamily\bfseries #1}};
+  \end{tikzpicture}
   \newpage
 }
 
@@ -77,10 +79,11 @@
 % \newcommand{\siamschedule}[3]{{\contentslabel[\colorbox{blue!30}{\large{\textbf{#1}}}]{2cm}}{\textbf{#2}\\\indent{#3}\medskip}}
 \newcommand{\siamschedule}[3]{{\colorbox{blue!30}{\large{\textbf{#1}}}]{2cm}}{\textbf{#2}\\\indent{#3}\medskip}}
 
+%\newenvironment{siam_program_glance}{\hspace*{-0.5cm}\begin{tabular}{ p{0.5cm} r p{9cm} p{5cm} }}{\end{tabular}}
 \newenvironment{siam_program_glance}{\begin{description}[align=right,labelwidth=1.2cm]}{\end{description}}
-\newcommand{\siamprogramglanceday}[1]{{\bigskip\large{\textbf{#1}}\bigskip}}
-\newcommand{\siamprogramglanceitem}[4]{\item[{#1}] {#3} - {#2} {\small({#4})}}
-% \newcommand{\siamprogramglanceitem}[4]{{#3} & \textbf{{#1}} & {#2} & {#4} \\}
+\newcommand{\siamprogramglanceday}[1]{{\bigskip\Large{\ruleline{\textbf{#1}}}\bigskip}}
+\newcommand{\siamprogramglanceitem}[4]{\item[{#1}] {#3} - {#2} {\small\textit{({#4})}}}
+%\newcommand{\siamprogramglanceitem}[4]{{#3} & \textbf{{#1}} & {#2} & {#4} \\}
 
 %\newenvironment{presentation_list}{}{\vfill\null \columnbreak}
 % standard
@@ -95,4 +98,6 @@
 \pagestyle{fancy}
 \fancyhf{}
 
+\newcommand*\ruleline[1]{\color{siamblue}\par\noindent\raisebox{.8ex}{\makebox[\linewidth]{\hrulefill\hspace{3ex}\raisebox{-.8ex}{#1}\hspace{3ex}\hrulefill}}}
 
+\definecolor{siamblue}{HTML}{3F729B}
