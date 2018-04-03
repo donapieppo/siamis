@@ -1,15 +1,17 @@
-\begin{multicols}{2}
 <% @posters.each do |cs| %>
   <% cs.presentations.each do |presentation| %>  
-    \noindent\textbf{<%= cs.code %> Part <%= presentation.part %>}\\
-\\  
-    \textit{<%= raw latex_text_clean presentation.abstract %>}\\
-\\ 
-    <% presentation.authors.order(:surname, :name).each do |author| %>  
-      \myaut{<%= raw (user = author.user).cn %>}\\
-      \mail{<%= raw user.email.gsub('_', '\_') %>}\\\\
-    <% end %>
+    \siampresentationtitle{<%= raw latex_text_clean presentation.name %>}
+
+    \siampresentationabstract{<%= raw latex_text_clean presentation.abstract %>}
+
+    \begin{siam_speakers}
+      <% (authors = presentation.authors.includes(:user).order('users.surname, users.name')).each do |author| %>  
+        \item<%= '[]' unless author.speak %>  <%= latex_user(author.user, author.speak) %>
+      <% end %> 
+      <% if authors.empty? %>  
+        \item[] To be defined
+      <% end %>
+    \end{siam_speakers}
   <% end %>
 <% end %>
-\end{multicols}
 
