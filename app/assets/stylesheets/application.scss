@@ -225,3 +225,9 @@ ul.tag_admin_list {
 @import "home";
 @import "conference_program";
 @import "panel";
+
+// don't know why necessary. See in minitutorials 
+.popover-content {
+  background-color: #white;
+  color: black;
+}
