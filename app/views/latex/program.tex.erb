@@ -7,7 +7,11 @@
 
 % ------------------------------------------------------------------------------------------------
 \begin{siam_schedule_session}
+<% if cs.is_a?(Plenary) %>  
 \siamsessiontitle{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}
+<% else %>
+\siamplenarysessiontitle{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}
+<% end %>
 
 \siamsessiondate{<%= l schedule.start, format: :schedule_day_and_hour %>}
 \siamsessionroom{<%= schedule.room %>}
