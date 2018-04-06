@@ -4,10 +4,9 @@
 \begin{siam_program_glance}
 <% Schedule.day_program(day).each do |schedule| %>
 <% cs = schedule.conference_session %> 
-\siamprogramglanceitem{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}{<%= l schedule.start, format: :hour %>}{<%= schedule.room %>}
+\siamprogramglanceitem{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}{<%= l schedule.start, format: :hour %>}{<%= schedule.room.name %>}
 <% end %>
 \end{siam_program_glance}
-
 <% end %>
 
 

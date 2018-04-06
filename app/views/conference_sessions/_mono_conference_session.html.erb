@@ -12,6 +12,11 @@
         <h3><%= user_modal_link(author.user) %></h3>
         <small><%= author.user.affiliation %></small>
       </div>
+      <% if conference_session.is_a?(Minitutorial) %>  
+        <p class="centered" style="margin: 10px">
+          <%= interest_link_span(conference_session, 1) if conference_session.is_a?(Minitutorial) %>
+        </p>
+      <% end %>
     <% end %>
     <% if conference_session.id == 23 %> 
       <hr/>
@@ -44,13 +49,22 @@
 </div>
 <div class="row">
   <div class="col-md-8 col-md-offset-4 footer-actions">
-    <p>&nbsp;<%= show_schedule(conference_session) %></p>
+    <p>
+    &nbsp;<%= show_schedule(conference_session) %>
+    </p>
     <p><%= panel_actions(conference_session) %> </p>
   </div>
 </div>
 </div>
 
-
-
-
+<%= javascript_tag do %>  
+  $(".my-interest").popover({
+    trigger: 'hover', 
+    content: 'Remove from watchlist.',
+  });
+  $(".not-my-interest").popover({
+    trigger: 'hover', 
+    content: 'I am interested. Add to watchlist.',
+  });
+<% end %>
 
