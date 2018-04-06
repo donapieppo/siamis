@@ -1,5 +1,11 @@
 %\usepackage[9pt]{extsizes}
 
+% rhead diventa data per program
+% E: Even page O: Odd page L: Left field C: Center field R: Right field H: Header F: Footer
+\rhead{Siam Is18}
+\lhead{Page \thepage}
+\fancyhead[CH]{\includegraphics[scale=0.05]{images/logo.png}}
+
 \usepackage[utf8]{inputenc} % Required for including letters with accents
 \usepackage{multicol}
 \usepackage{eurosym}
@@ -7,15 +13,23 @@
 
 \usepackage{wrapfig}
 
-\fancyhead[RO,LE]{\includegraphics[scale=0.07]{images/logo.png}}
+\definecolor{plenary}{HTML}{D8B445}
+\definecolor{session}{HTML}{3F729B}
 
 \newmdenv[skipabove=4pt, skipbelow=4pt,
           rightline=false, leftline=true, topline=false, bottomline=false,
-          backgroundcolor=ocre!10,
-          linecolor=ocre,
+          backgroundcolor=plenary!60,
+          linecolor=plenary,
           innerleftmargin=4pt, innerrightmargin=4pt, innertopmargin=8pt, innerbottommargin=8pt,
           leftmargin=0cm, rightmargin=0cm,
-          linewidth=4pt]{siamtitle}	
+          linewidth=4pt]{siamplenarybox}	
+\newmdenv[skipabove=4pt, skipbelow=4pt,
+          rightline=false, leftline=true, topline=false, bottomline=false,
+          backgroundcolor=session!60,
+          linecolor=session,
+          innerleftmargin=4pt, innerrightmargin=4pt, innertopmargin=8pt, innerbottommargin=8pt,
+          leftmargin=0cm, rightmargin=0cm,
+          linewidth=4pt]{siamsessionbox}	
 
 \setlength{\columnseprule}{0.5pt}
 \def\columnseprulecolor{\color{gray}}
@@ -26,10 +40,11 @@
 % plenaries and minitutotials
 \newenvironment{siamplenary}{\newpage}
 
-\newcommand{\plenaryitem}[4]{\medskip{#1}\\{\textbf{#2}}\\{\uppercase{#3}}\\{\small {#4}}}
+%\newcommand{\plenaryitem}[4]{\medskip{#1}\\{\textbf{#2}}\\{\uppercase{#3}}\\{\small {#4}}}
+\newcommand{\plenaryitem}[5]{\begin{tabular}{ p{3cm} p{13cm} } \textbf{#1}\newline\textbf{#2} & {\textbf{\color{siamblue}{\uppercase{#3}}}} \newline {\uppercase{#4}} \newline {\small{#5}} \\ \end{tabular} \bigskip}
 
-\newcommand{\siamplenarydate}[1]{\bigskip{\Large\noindent\textbf{#1}}\bigskip}
-\newcommand{\siamplenarytitle}[1]{\begin{siamtitle}{\large\textbf{{#1}}}\end{siamtitle}}
+\newcommand{\siamplenarydate}[1]{\vspace*{0.5cm}{\Large\noindent\textbf{#1}}}
+\newcommand{\siamplenarytitle}[1]{\bigskip\begin{siamsessionbox}{\large\textbf{{#1}}}\end{siamsessionbox}}
 \newcommand{\siamplenaryspeaker}[1]{\bigskip{\large\textbf{#1}}}
 \newcommand{\siamplenarybiography}[2]{
   \bigskip
@@ -61,7 +76,8 @@
 \newenvironment{siam_presentation_list}{}{}
 \newenvironment{siamppresentationwithhour}[2]{\noindent\textbf{{#1} {#2}}}
  
-\newcommand{\siamsessiontitle}[2]{\begin{siamtitle}\noindent{\large{\textbf{{#1} {#2}}}}\end{siamtitle}}
+\newcommand{\siamsessiontitle}[2]{\begin{siamsessionbox}\noindent{\large{\textbf{{#1} {#2}}}}\end{siamsessionbox}}
+\newcommand{\siamplenarysessiontitle}[2]{\begin{siamplenarybox}\noindent{\large{\textbf{{#1} {#2}}}}\end{siamplenarybox}}
 \newcommand{\siamsessiondate}[1]{\noindent\textbf{#1}\hfill\break}
 \newcommand{\siamsessionroom}[1]{\noindent\textbf{#1}}
 \newcommand{\siamsessionabstract}[1]{\medskip{#1}}
@@ -94,9 +110,6 @@
 \DeclareUnicodeCharacter{3B1}{\ensuremath{\alpha}}
 
 \newcommand{\R}{\mathbb{R}} 
-
-\pagestyle{fancy}
-\fancyhf{}
 
 \newcommand*\ruleline[1]{\color{siamblue}\par\noindent\raisebox{.8ex}{\makebox[\linewidth]{\hrulefill\hspace{3ex}\raisebox{-.8ex}{#1}\hspace{3ex}\hrulefill}}}
 
