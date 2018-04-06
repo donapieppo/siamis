@@ -21,7 +21,7 @@ module ApplicationHelper
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="font-size: 42px" aria-hidden="true">&times;</span></button>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="font-size: 52px; margin-right: 6px" aria-hidden="true">&times;</span></button>
               <h4 class="modal-title"></h4>
             </div>
             <div class="modal-body">
