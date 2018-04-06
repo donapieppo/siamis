@@ -1,6 +1,6 @@
 class BuildingsController < ApplicationController
   before_action :user_in_organizer_committee!
-  before_action :set_building, only: [:edit, :update, :destroy]
+  before_action :set_building, only: [:show, :edit, :update, :destroy]
 
   def new
     @building = Building.new

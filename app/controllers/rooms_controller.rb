@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   before_action :user_in_organizer_committee!
-  before_action :set_room, only: [:edit, :update, :destroy]
+  before_action :set_room, only: [:show, :edit, :update, :destroy]
 
   def index
     @rooms = Room.includes(:building).order(:manual_order, :name)
