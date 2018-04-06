@@ -24,7 +24,7 @@
     <%= link_to_delete('delete', user, button: true) if user_in_organizer_committee? %>  
   </p>
   <% if user.conference_registration %>  
-    <p class="alert alert-success"><%= icon :star %> Registered to SIAM-IS18.</p>
+    <p class="alert alert-success"><%= icon :star %> Registered to SIAM-IS18 (<%= l user.conference_registration.created_at %>).</p>
   <% elsif user_in_organizer_committee? %>
     <p>
       <%= link_to 'Manual Registration', manual_new_conference_registrations_path(user_id: user.id), class: :button %> 
