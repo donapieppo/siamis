@@ -140,6 +140,12 @@
   @extend .home_content_div;
 }
 
+.sponsor-container {
+  @extend .row;
+  // border-left: 4px solid $blue;
+  // border-bottom: 4px solid $blue;
+}
+
 .sponsor-title {
   @extend .centered;
   margin-top: 60px;
