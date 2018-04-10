@@ -7,7 +7,12 @@ class ConferenceRegistrationsController < ApplicationController
   before_action :user_in_organizer_or_management_committee!, only: [:index, :recipe]
 
   def index
-    @conference_registrations = ConferenceRegistration.includes(:user, :payment).order('updated_at DESC')
+    @conference_registrations = ConferenceRegistration.includes(:user, :payment)
+    if params[:by_name]
+      @conference_registrations = @conference_registrations.order('users.surname, users.name')
+    else
+      @conference_registrations = @conference_registrations.order('updated_at DESC')
+    end
   end
 
   def new
