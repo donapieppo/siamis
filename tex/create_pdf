@@ -12,5 +12,4 @@ curl https://tester.dm.unibo.it/siamis/latex/program_glance.tex          -o prog
 
 curl https://tester.dm.unibo.it/siamis/latex/speakers_and_organizers.tex -o speakers_and_organizers.tex
 
-
-
+curl https://tester.dm.unibo.it/siamis/latex/rooms.tex                   -o rooms.tex
