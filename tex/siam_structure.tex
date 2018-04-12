@@ -16,20 +16,23 @@
 \definecolor{plenary}{HTML}{D8B445}
 \definecolor{session}{HTML}{3F729B}
 
+\newmdenv[skipabove=8pt, skipbelow=8pt,
+          innerleftmargin=4pt, innerrightmargin=4pt, innertopmargin=-8pt, innerbottommargin=8pt,
+          leftmargin=0cm, rightmargin=0cm,
+          backgroundcolor=session!60, linecolor=session,
+          rightline=false, leftline=true, topline=false, bottomline=false, linewidth=4pt]{gisectionbox}	
+
 \newmdenv[skipabove=4pt, skipbelow=4pt,
-          rightline=false, leftline=true, topline=false, bottomline=false,
-          backgroundcolor=plenary!60,
-          linecolor=plenary,
           innerleftmargin=4pt, innerrightmargin=4pt, innertopmargin=8pt, innerbottommargin=8pt,
           leftmargin=0cm, rightmargin=0cm,
-          linewidth=4pt]{siamplenarybox}	
+          backgroundcolor=plenary!60, linecolor=plenary,
+          rightline=false, leftline=true, topline=false, bottomline=false, linewidth=4pt]{siamplenarybox}	
+
 \newmdenv[skipabove=4pt, skipbelow=4pt,
-          rightline=false, leftline=true, topline=false, bottomline=false,
-          backgroundcolor=session!60,
-          linecolor=session,
           innerleftmargin=4pt, innerrightmargin=4pt, innertopmargin=8pt, innerbottommargin=8pt,
           leftmargin=0cm, rightmargin=0cm,
-          linewidth=4pt]{siamsessionbox}	
+          backgroundcolor=session!60, linecolor=session,
+          rightline=false, leftline=true, topline=false, bottomline=false, linewidth=4pt]{siamsessionbox}	
 
 \setlength{\columnseprule}{0.5pt}
 \def\columnseprulecolor{\color{gray}}
@@ -42,6 +45,8 @@
 
 %\newcommand{\plenaryitem}[4]{\medskip{#1}\\{\textbf{#2}}\\{\uppercase{#3}}\\{\small {#4}}}
 \newcommand{\plenaryitem}[5]{\begin{tabular}{ p{3cm} p{13cm} } \textbf{#1}\newline\textbf{#2} & {\textbf{\color{siamblue}{\uppercase{#3}}}} \newline {\uppercase{#4}} \newline {\small{#5}} \\ \end{tabular} \bigskip}
+
+\newcommand{\gisection}[1]{\begin{gisectionbox}\section*{#1}\end{gisectionbox}}
 
 \newcommand{\siamplenarydate}[1]{\vspace*{0.5cm}{\Large\noindent\textbf{#1}}}
 \newcommand{\siamplenarytitle}[1]{\bigskip\begin{siamsessionbox}{\large\textbf{{#1}}}\end{siamsessionbox}}
