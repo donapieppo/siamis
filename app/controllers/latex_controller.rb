@@ -31,16 +31,16 @@ class LatexController < ApplicationController
     @users = Hash.new {|hash, key| hash[key] = Hash.new {|hash2, key2| hash2[key2] = []}}
     Schedule.order(:start).includes(conference_session: [presentations: [roles: :user]]).each do |schedule|
       cs   = schedule.conference_session
-      what = I18n.l(schedule.start, format: :hour_and_day)
+      day_and_hour = I18n.l(schedule.start, format: :day_and_hour)
       cs.organizers.each do |organizer|
         user_name = organizer.user.cn_militar
         initial   = user_name.gsub(/^(van|da|de|di) /, '')[0]
-        @users[initial][organizer.user.cn_militar] << "#{what} (#{cs.code_with_part(schedule.part)})"
+        @users[initial][organizer.user.cn_militar] << "\\textbf{#{cs.code_with_part(schedule.part)}} #{day_and_hour} (p.\\pageref{#{cs.code_with_part(schedule.part)}})"
       end
       cs.presentations.each do |presentation|
         user_name = presentation.speaker.user.cn_militar
         initial   = user_name.gsub(/^(van|da|de) /, '')[0]
-        @users[initial][presentation.speaker.user.cn_militar] << "#{what} (#{cs.code_with_part(schedule.part)} *)"
+        @users[initial][presentation.speaker.user.cn_militar] << "* \\textbf{#{cs.code_with_part(schedule.part)}} #{day_and_hour} (p.\\pageref{#{cs.code_with_part(schedule.part)}})"
       end
     end
   end
@@ -49,5 +49,8 @@ class LatexController < ApplicationController
   end
 
   def program_glance
+  end
+
+  def doors
   end
 end
