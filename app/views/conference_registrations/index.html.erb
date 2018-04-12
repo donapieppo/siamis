@@ -1,6 +1,8 @@
 <%= program_title('Conference Registrations', 'euro') %>  
 
 <p>
+  <%= link_to 'Order by date', conference_registrations_path, class: "btn btn-success" %>  
+  <%= link_to 'Order by name', conference_registrations_path(by_name: 1), class: "btn btn-success" %>  
   <%= link_to 'Expected Gain', expected_conference_registrations_path, class: "btn btn-success" %>  
 </p>
 
