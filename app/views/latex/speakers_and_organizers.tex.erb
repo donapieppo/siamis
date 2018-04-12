@@ -1,10 +1,9 @@
 <% @users.keys.sort.each do |initial| %>  
-  \bigskip {\Large\textbf{<%= initial %>}} \bigskip
-  \begin{description}
+  \begin{siamuserslist}{<%= initial %>}
     <% @users[initial].keys.sort.each do |user_name| %>  
-      \item \textbf{<%= raw user_name %>}: <%= raw @users[initial][user_name].join(', ') %>  
+      \siamuserslistitem{<%= raw user_name %>}{<%= raw @users[initial][user_name].join(', ') %>}  
     <% end %>
-  \end{description}
+  \end{siamuserslist}
 <% end %>
 
 

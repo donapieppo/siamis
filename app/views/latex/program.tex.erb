@@ -8,15 +8,17 @@
 % ------------------------------------------------------------------------------------------------
 \begin{siam_schedule_session}
 <% if cs.is_a?(Plenary) %>  
-\siamsessiontitle{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}
-<% else %>
 \siamplenarysessiontitle{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}
+<% else %>
+\siamsessiontitle{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}
 <% end %>
 
 \siamsessiondate{<%= l schedule.start, format: :schedule_day_and_hour %>}
 \siamsessionroom{<%= schedule.room %>}
 
-\siamsessionabstract{<%= raw latex_text_clean cs.description %>}
+<% unless cs.description.blank? %>  
+  \siamsessionabstract{<%= raw latex_text_clean cs.description %>}
+<% end %>
 
 \begin{siam_organizers}{<%= cs.organizers_label.pluralize %>}
   <% (organizers = cs.organizers).each do |o| %>  
