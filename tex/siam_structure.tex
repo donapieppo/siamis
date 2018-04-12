@@ -4,7 +4,7 @@
 % E: Even page O: Odd page L: Left field C: Center field R: Right field H: Header F: Footer
 \rhead{Siam Is18}
 \lhead{Page \thepage}
-\fancyhead[CH]{\includegraphics[scale=0.05]{images/logo.png}}
+% \fancyhead[CH]{\includegraphics[scale=0.05]{images/logo.png}}
 
 \usepackage[utf8]{inputenc} % Required for including letters with accents
 \usepackage{multicol}
@@ -77,7 +77,7 @@
 
 \newenvironment{siam_schedule_sessions}{\begin{multicols*}{2}}{\end{multicols*}}
 %\newenvironment{siam_schedule_session}{\columnbreak}{}
-\newenvironment{siam_schedule_session}{}{}
+\newenvironment{siam_schedule_session}{\smallskip}{}
 \newenvironment{siam_presentation_list}{}{}
 \newenvironment{siamppresentationwithhour}[2]{\noindent\textbf{{#1} {#2}}}
  
@@ -85,7 +85,7 @@
 \newcommand{\siamplenarysessiontitle}[2]{\label{#1}\begin{siamplenarybox}\noindent{\large{\textbf{{#1} {#2}}}}\end{siamplenarybox}}
 \newcommand{\siamsessiondate}[1]{\noindent\textbf{#1}\hfill\break}
 \newcommand{\siamsessionroom}[1]{\noindent\textbf{#1}}
-\newcommand{\siamsessionabstract}[1]{\medskip{#1}}
+\newcommand{\siamsessionabstract}[1]{\medskip\noindent{#1}}
 
 \newcommand{\siampresentationtitle}[1]{\noindent\textbf{#1}}
 \newcommand{\siampresentationabstract}[1]{\noindent{#1}}
@@ -94,8 +94,8 @@
 \newenvironment{siamuserslist}[1]{\bigskip {\Large{\textbf{#1}}} \bigskip\begin{description}}{\end{description}}
 \newcommand{\siamuserslistitem}[2]{\item {\textbf{#1}}: {#2}}
 
-\newenvironment{siam_organizers}[1]{\begin{flushright}\begin{itemize}\item[]{\textbf{#1}:}}{\end{itemize}\end{flushright}}
-\newenvironment{siam_speakers}{\begin{flushright}\begin{itemize}}{\end{itemize}\end{flushright}}
+\newenvironment{siam_organizers}[1]{\smallskip\begin{itemize}[leftmargin=6mm]\item[]{\textbf{#1}:}}{\end{itemize}\smallskip}
+\newenvironment{siam_speakers}{\smallskip\begin{itemize}[leftmargin=6mm]}{\end{itemize}\smallskip}
 \newenvironment{siam_session_part}{}{}
 
 % minisymposia and contributed
