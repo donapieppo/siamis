@@ -13,15 +13,24 @@
 
 \usepackage{wrapfig}
 
+\definecolor{siamblue}{HTML}{3F729B}
 \definecolor{plenary}{HTML}{D8B445}
 \definecolor{session}{HTML}{3F729B}
 
+% titles in general informations
 \newmdenv[skipabove=8pt, skipbelow=8pt,
           innerleftmargin=4pt, innerrightmargin=4pt, innertopmargin=-8pt, innerbottommargin=8pt,
           leftmargin=0cm, rightmargin=0cm,
           backgroundcolor=session!60, linecolor=session,
           rightline=false, leftline=true, topline=false, bottomline=false, linewidth=4pt]{gisectionbox}	
 
+\newmdenv[skipabove=4pt, skipbelow=4pt,
+          innerleftmargin=8pt, innerrightmargin=8pt, innertopmargin=16pt, innerbottommargin=16pt,
+          leftmargin=0cm, rightmargin=0cm,
+          backgroundcolor=session, linecolor=session!60, fontcolor=white, 
+          rightline=false, leftline=true, topline=false, bottomline=false, linewidth=4pt]{siamplenarytitlebox}	
+
+% next 2 differ only on color. FIXME
 \newmdenv[skipabove=4pt, skipbelow=4pt,
           innerleftmargin=4pt, innerrightmargin=4pt, innertopmargin=8pt, innerbottommargin=8pt,
           leftmargin=0cm, rightmargin=0cm,
@@ -49,7 +58,7 @@
 \newcommand{\gisection}[1]{\begin{gisectionbox}\section*{#1}\end{gisectionbox}}
 
 \newcommand{\siamplenarydate}[1]{\vspace*{0.5cm}{\Large\noindent\textbf{#1}}}
-\newcommand{\siamplenarytitle}[1]{\bigskip\begin{siamsessionbox}{\large\textbf{{#1}}}\end{siamsessionbox}}
+\newcommand{\siamplenarytitle}[1]{\bigskip\begin{siamplenarytitlebox}{\LARGE\textbf{{#1}}}\end{siamplenarytitlebox}}
 \newcommand{\siamplenaryspeaker}[1]{\bigskip{\large\textbf{#1}}}
 \newcommand{\siamplenarybiography}[2]{
   \bigskip
@@ -83,7 +92,7 @@
  
 \newcommand{\siamsessiontitle}[2]{\label{#1}\hspace{-1cm}\begin{siamsessionbox}\noindent{\large{\textbf{{#1} {#2}}}}\end{siamsessionbox}}
 \newcommand{\siamplenarysessiontitle}[2]{\label{#1}\begin{siamplenarybox}\noindent{\large{\textbf{{#1} {#2}}}}\end{siamplenarybox}}
-\newcommand{\siamsessiondate}[1]{\noindent\textbf{#1}\hfill\break}
+\newcommand{\siamsessiondate}[1]{\smallskip\noindent\textbf{#1}\hfill\break}
 \newcommand{\siamsessionroom}[1]{\noindent\textbf{#1}}
 \newcommand{\siamsessionabstract}[1]{\medskip\noindent{#1}}
 
@@ -92,10 +101,10 @@
 
 \newcommand{\siamuser}[2]{{\color{blue}{{#1}}} ({\small\textit{#2}})}
 \newenvironment{siamuserslist}[1]{\bigskip {\Large{\textbf{#1}}} \bigskip\begin{description}}{\end{description}}
-\newcommand{\siamuserslistitem}[2]{\item {\textbf{#1}}: {#2}}
+\newcommand{\siamuserslistitem}[2]{\item {\color{siamblue}\textbf{#1}}: {#2}}
 
-\newenvironment{siam_organizers}[1]{\smallskip\begin{itemize}[leftmargin=6mm]\item[]{\textbf{#1}:}}{\end{itemize}\smallskip}
-\newenvironment{siam_speakers}{\smallskip\begin{itemize}[leftmargin=6mm]}{\end{itemize}\smallskip}
+\newenvironment{siam_organizers}[1]{\smallskip\begin{itemize}[leftmargin=5mm]\item[]{\textbf{#1}:}}{\end{itemize}\smallskip}
+\newenvironment{siam_speakers}{\smallskip\begin{itemize}[leftmargin=5mm]}{\end{itemize}\smallskip}
 \newenvironment{siam_session_part}{}{}
 
 % minisymposia and contributed
@@ -120,4 +129,3 @@
 
 \newcommand*\ruleline[1]{\color{siamblue}\par\noindent\raisebox{.8ex}{\makebox[\linewidth]{\hrulefill\hspace{3ex}\raisebox{-.8ex}{#1}\hspace{3ex}\hrulefill}}}
 
-\definecolor{siamblue}{HTML}{3F729B}
