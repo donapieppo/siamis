@@ -162,7 +162,7 @@ en:
       schedule: '%A %d %B %Y at %H:%M'
       schedule_day_and_hour: '%A, %d at %H:%M'
       hour: '%H:%M'
-      hour_and_day: '%H:%M %a'
+      day_and_hour: '%a %H:%M'
 
   date:
     formats:
