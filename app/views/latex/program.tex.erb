@@ -8,9 +8,11 @@
 % ------------------------------------------------------------------------------------------------
 \begin{siam_schedule_session}
 <% if cs.is_a?(Plenary) %>  
-\siamplenarysessiontitle{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}
-<% else %>
-\siamsessiontitle{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}
+  \siamplenarysessiontitle{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}
+<% else cs.is_a?(Minisymposia) %>
+  \siamminisymposiumsessiontitle{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}
+<% else %>  
+  \siamsessiontitle{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}
 <% end %>
 
 \siamsessiondate{<%= l schedule.start, format: :schedule_day_and_hour %>}
