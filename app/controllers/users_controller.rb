@@ -165,6 +165,9 @@ class UsersController < ApplicationController
       @title = "Registered students."
       registered_ids = ConferenceRegistration.select(:user_id).map(&:user_id).to_a
       @emails = User.student.where('student_confirmed IS NULL OR student_confirmed <> 1').where(id: registered_ids).select(:email).map(&:email)
+    elsif params[:no_privacy_consent]
+      @title = "Speakers / Organizers without privacy consent"
+      @emails = Role.speakers_and_organizers.includes(:user).where('users.visible != 1').references(:user).map{|r| r.user.email}
     end
       @emails = @emails.flatten.uniq
       @size = @emails.size
