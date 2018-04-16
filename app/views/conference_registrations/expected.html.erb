@@ -3,6 +3,8 @@
 <% money = 0 %>  
 <% participants = 0 %>  
 
+<div class="alert alert-info"><%= Role.speakers_and_organizers.map(&:user_id).uniq.count %> speakers/organizers.</div>
+
 <table class="table">
   <% @totals.each do |key, vals| %>  
     <tr>
