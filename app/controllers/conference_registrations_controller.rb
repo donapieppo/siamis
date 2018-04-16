@@ -77,17 +77,15 @@ class ConferenceRegistrationsController < ApplicationController
     @totals = Hash.new{|h, k| h[k] = { number: 0, users: [], total: 0 }}
 
     # expected partecipants: speakers and organizers
-    Role.where('(type = "Author" and speak=1) or type="Organizer"').includes(:user).map(&:user).uniq.each do |user|
-      # only speakers and organizers
-
-      # already registerd
+    Role.speakers_and_organizers.includes(:user).map(&:user).uniq.each do |user|
       if registration = user.conference_registration
-        @totals[:already_registered][:number] += 1
+        @totals[:speakers_organizers_already_registered][:number] += 1
         if registration.payment and registration.payment.verified
           # @totals[:registered][:users] << user.email
-          @totals[:already_registered][:total] += user.conference_registration.payment.amount
+          @totals[:speakers_organizers_already_registered][:total] += user.conference_registration.payment.amount
         end
       else
+        @totals[:speaker_organizers_still_not_registered][:number] += 1
         fee = Fee.new(user).expected_payment_from_speakers_and_organizers
         fee[1] or raise fee.inspect
         @totals[fee[1]][:number] += 1
