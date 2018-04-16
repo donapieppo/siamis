@@ -13,6 +13,13 @@ class LatexController < ApplicationController
     @minitutorials = Minitutorial.includes(schedules: :room, presentation: [authors: :user], organizers: :user).order('schedules.start, users.surname').all
   end
 
+  def program
+  end
+
+  def program_glance
+  end
+
+  # abstracts
   def minisymposia
     @conference_sessions = Minisymposium.order(:number).includes(:presentations)
   end
@@ -34,21 +41,15 @@ class LatexController < ApplicationController
       day_and_hour = I18n.l(schedule.start, format: :day_and_hour)
       cs.organizers.each do |organizer|
         user_name = organizer.user.cn_militar
-        initial   = user_name.gsub(/^(van|da|de|di) /, '')[0]
+        initial   = user_name.gsub(/^(van|da|de|di) /, '')[0].upcase
         @users[initial][organizer.user.cn_militar] << "\\textbf{#{cs.code_with_part(schedule.part)}} #{day_and_hour} (p.\\pageref{#{cs.code_with_part(schedule.part)}})"
       end
       cs.presentations.each do |presentation|
         user_name = presentation.speaker.user.cn_militar
-        initial   = user_name.gsub(/^(van|da|de) /, '')[0]
+        initial   = user_name.gsub(/^(van|da|de|di) /, '')[0].upcase
         @users[initial][presentation.speaker.user.cn_militar] << "* \\textbf{#{cs.code_with_part(schedule.part)}} #{day_and_hour} (p.\\pageref{#{cs.code_with_part(schedule.part)}})"
       end
     end
-  end
-
-  def program
-  end
-
-  def program_glance
   end
 
   def doors
