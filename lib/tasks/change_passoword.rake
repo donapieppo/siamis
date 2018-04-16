@@ -12,6 +12,8 @@ namespace :siamis do
       user.password = pass
       user.password_confirmation = pass
       user.save
+      user.confirmed_at = Time.now.utc
+      user.save
       puts mail + ": " + pass.to_s
     end
   end
