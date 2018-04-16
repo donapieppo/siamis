@@ -7,6 +7,8 @@ class Role < ApplicationRecord
 
   before_validation :set_or_create_user_from_email
 
+  scope :speakers_and_organizers, -> { where('(type = "Author" and speak=1) or type="Organizer"') }
+
   def to_s
     self.user.to_s
   end
