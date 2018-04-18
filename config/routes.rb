@@ -166,4 +166,5 @@ Rails.application.routes.draw do
   get 'latex/program',        to: 'latex#program',        as: :program_latex
   get 'latex/program_glance', to: 'latex#program_glance', as: :program_glance_latex
   get 'latex/speakers_and_organizers', to: 'latex#speakers_and_organizers',       as: :speakers_and_organizers_latex
+  get 'latex/doors',          to: 'latex#doors',          as: :doors
 end
