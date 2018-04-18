@@ -13,4 +13,4 @@ curl https://tester.dm.unibo.it/siamis/latex/minisymposia.tex            -o mini
 curl https://tester.dm.unibo.it/siamis/latex/contributed.tex             -o contributed.tex
 curl https://tester.dm.unibo.it/siamis/latex/posters.tex                 -o posters.tex
 
-curl https://tester.dm.unibo.it/siamis/latex/rooms.tex                   -o rooms.tex
+curl https://tester.dm.unibo.it/siamis/latex/doors.tex                   -o doors.tex

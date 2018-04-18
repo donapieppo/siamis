@@ -1,0 +1,37 @@
+\documentclass[A3, oneside]{book}
+
+\input{structure} 
+\usepackage{scrextend}
+
+\geometry{margin=2cm}
+
+\newcommand{\roomtitle}[1]{}
+
+\newcommand{\siamconferencesession}[5]{\rhead{#4} \lhead{#5}%
+.
+\begin{center} 
+  {\Huge{\color{blue!60}\textbf{#1}}} 
+  \bigskip
+  {\par \LARGE\textbf{\color{blue!60}{#2}}} 
+\end{center} 
+\par\noindent\textit{#3}
+\vspace{0.5cm}
+} 
+
+\newcommand{\siampresentationtitle}[1]{\noindent\textbf{#1}}
+\newcommand{\siampresentationabstract}[1]{\begin{addmargin}[4em]{0em}\smallskip\par{#1}\end{addmargin}}
+\newcommand{\siamuser}[2]{\hfill\textbf{#1} ({\textit{#2}})}
+\newenvironment{siam_organizers}[1]{\begin{flushright}\begin{itemize}\item[]{\textbf{#1}:}}{\end{itemize}\end{flushright}}
+\newenvironment{siam_speakers}{\begin{flushright}\begin{itemize}}{\end{itemize}\end{flushright}}
+\newenvironment{siam_session_part}{\newpage}{}
+\newenvironment{siamppresentationwithhour}[2]{\noindent{\large\textbf{{#1} \hspace{0.2cm} {#2}}}}
+
+\DeclareUnicodeCharacter{00A0}{}
+\DeclareUnicodeCharacter{3B1}{\ensuremath{\alpha}}
+
+\newcommand{\R}{\mathbb{R}} 
+\begin{document}
+
+\include{doors}
+
+\end{document}
