@@ -1,0 +1,32 @@
+<% Room.order('manual_order').each do |room| %>
+  \roomtitle{<%= room.to_s %>}
+  <% room.schedules.includes(conference_session: [presentations: [authors: :user]]).order(:start).each do |schedule| %>  
+  <% cs = schedule.conference_session %>  
+  \begin{siam_session_part}
+    \siamconferencesession{<%= "#{cs.code}-#{schedule.part}" %>}{<%= raw latex_text_clean cs.name %>}{<%= raw latex_text_clean cs.description %>}{<%= l schedule.start, format: :schedule_day_and_hour %>}{<%= schedule.room %>}
+
+    \begin{siam_organizers}{<%= cs.organizers_label.pluralize %>}
+      <% (organizers = cs.organizers).each do |o| %>  
+        \item[] <%= latex_user(o.user) %>
+      <% end %>
+      <% if organizers.empty? %>  
+      \item[] To be defined
+      <% end %>
+    \end{siam_organizers}
+
+    <% schedule.presentations.each do |presentation| %>  
+
+      \siamppresentationwithhour{<%= l(presentation.start, format: :hour) if presentation.start %>}{<%= raw latex_text_clean presentation.name %>}
+
+      \begin{siam_speakers}
+        <% author = presentation.speaker %>  
+        \item[] <%= latex_user(author.user, author.speak) %>
+      \end{siam_speakers}
+
+      \siampresentationabstract{<%= raw latex_text_clean presentation.abstract %>}
+
+    <% end %>
+  \end{siam_session_part}
+  <% end %>
+<% end %>
+
