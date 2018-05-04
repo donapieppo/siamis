@@ -1,5 +1,5 @@
 <% 
-  papers = presentation.papers || []
+  papers = presentation.papers.to_a || []
   owner  = current_user_owns?(presentation)
 %>
 
@@ -27,14 +27,14 @@
     <% end %>
     <dt><%= t 'Tags' %>:</dt>
     <dd><%= presentation.all_tags %></dd>
-    <% if current_user and ! papers.empty? %>  
+    <% if presentation.poster and current_user and ! papers.empty? %>  
       <dt>Documents:</dt>
       <% papers.each do |paper| %>  
         <dd>
-          <% if owner or false %>  
-            <%= link_to('download paper '.html_safe + icon('download'), paper.paperfile_url) if owner %>  
+          <% if owner or current_user.in_review_commette? %>  
+            <%= link_to('download paper '.html_safe + icon('download'), paper.paperfile_url) %>  
           <% else %>
-            <span style="color: green">The paper will be visible from May, 28.</span>
+            <span style="color: green">The paper will be visible from May the 28th.</span>
           <% end %>
           <%= link_to_delete(paper_path(paper)) if owner %>
         </dd>
