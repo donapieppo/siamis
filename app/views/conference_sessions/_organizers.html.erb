@@ -1,13 +1,13 @@
-<div class="form-horizontal">
-<div class="form-group">
-  <label class="col-sm-3 control-label text">
+<div class="simple-form form-horizontal">
+<div class="form-group string">
+  <label class="col-sm-3 control-label string">
     <%= @conference_session.organizers_label %>
   </label>
   <div class="col-sm-9">
     <% @conference_session.organizers.each do |organizer| %>  
       <p><%= organizer %> <%= link_to_delete organizer_path(organizer) %></p>
     <% end %>
-    <p><%= link_to icon(:plus) + ' add chair', new_conference_session_organizer_path(@conference_session), class: :button %></p>
+    <p><%= link_to icon(:plus) + " add #{@conference_session.organizers_label}", new_conference_session_organizer_path(@conference_session), class: :button %></p>
   </div>
 </div>
 </div>
