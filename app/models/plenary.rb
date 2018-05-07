@@ -1,10 +1,10 @@
 class Plenary < MonoConferenceSession
 
+  alias chairs organizers
+
   def code
     "IP#{self.number || ""}" 
   end
-
-  alias chairs organizers
 
   def mono_session?
     true
