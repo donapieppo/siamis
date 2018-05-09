@@ -42,12 +42,12 @@ class LatexController < ApplicationController
       cs.organizers.each do |organizer|
         user_name = organizer.user.cn_militar
         initial   = user_name.gsub(/^(van|da|de|di) /, '')[0].upcase
-        @users[initial][organizer.user.cn_militar] << "\\textbf{#{cs.code_with_part(schedule.part)}} #{day_and_hour} (p.\\pageref{#{cs.code_with_part(schedule.part)}})"
+        @users[initial][user_name] << "\\textbf{#{cs.code_with_part(schedule.part)}} #{day_and_hour} (p.\\pageref{#{cs.code_with_part(schedule.part)}})"
       end
-      cs.presentations.each do |presentation|
+      cs.presentations.in_part(schedule.part).each do |presentation|
         user_name = presentation.speaker.user.cn_militar
         initial   = user_name.gsub(/^(van|da|de|di) /, '')[0].upcase
-        @users[initial][presentation.speaker.user.cn_militar] << "* \\textbf{#{cs.code_with_part(schedule.part)}} #{day_and_hour} (p.\\pageref{#{cs.code_with_part(schedule.part)}})"
+        @users[initial][user_name] << "* \\textbf{#{cs.code_with_part(schedule.part)}} #{day_and_hour} (p.\\pageref{#{cs.code_with_part(schedule.part)}})"
       end
     end
   end

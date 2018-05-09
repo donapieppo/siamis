@@ -29,6 +29,8 @@ class Presentation < ApplicationRecord
   scope :submitted,        -> { unassigned.where(accepted: nil) }
   scope :accepted,         -> { where(accepted: true) }
 
+  scope :in_part,          -> (part) { where(part: part) }
+
   # FIXME put 50 in configuration. Userd also list_presentations helper
   scope :without_abstract, -> { where("abstract is null or CHAR_LENGTH(abstract) < 50") }
 
