@@ -66,7 +66,7 @@
         </p>
         <% if cs = presentation.conference_session %>  
           <p class="small">
-          in <em><%= link_to cs, cs %></em>
+          in <em><%= link_to cs.to_s_with_part(presentation.part), cs %></em>
           <%= schedules_list(presentation.schedule) %>
           </p>
         <% end %>
