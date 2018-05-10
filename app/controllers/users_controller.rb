@@ -204,6 +204,14 @@ class UsersController < ApplicationController
     (user_in_organizer_committee_or_cochair? or user_in_management_committee?) or RAISE 
   end
 
+  def expected
+    @users = User.participants
+    respond_to do |format|
+      format.html
+      format.csv { send_data to_csv([:name, :surname, :affiliation]), filename: "expected_users-#{Date.today}.csv" }
+    end
+  end
+
   private 
 
   def user_params
@@ -222,8 +230,8 @@ class UsersController < ApplicationController
     @user == current_user or user_in_organizer_committee_or_cochair? or raise NoAccess
   end
 
-  def to_csv
-    attributes = [:email, :name, :surname, :affiliation, :student]
+  def to_csv(attributes = nil)
+    attributes ||= [:email, :name, :surname, :affiliation, :student]
     CSV.generate(headers: true) do |csv|
       csv << attributes
       @users.pluck(*attributes).each do |user|

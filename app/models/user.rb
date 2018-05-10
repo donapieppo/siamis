@@ -192,13 +192,18 @@ class User < ApplicationRecord
   end
 
   def self.all_fields
-    self.safe_fields + [:address, :siag, :siam, :student, :student_confirmed, :staff, :exhibitor, :dietary, :banquet_tickets]
+    self.safe_fields + [:address, :siag, :siam, :student, :student_confirmed, :staff, :exhibitor, :dietary, :banquet_tickets, :visible]
   end
 
-  def self.partecipants
-    active_ids  = Role.select(:user_id).map(&:user_id)
-    visible_ids = User.where(visible: true).ids
-    User.where(id: (active_ids + visible_ids).uniq)
+  def self.visible_participants
+    User.participants.where(visible: true)
+  end
+
+  def self.participants
+    # active_ids  = Role.select(:user_id).map(&:user_id)
+    _user_speakers_and_organizers_ids = Role.speakers_and_organizers.select(:user_id).map(&:user_id)
+    _registered_users_ids = ConferenceRegistration.select(:user_id).map(&:user_id)
+    User.where(id: (_user_speakers_and_organizers_ids + _registered_users_ids).uniq)
   end
 end
 

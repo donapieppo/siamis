@@ -76,7 +76,7 @@ class ConferenceRegistrationsController < ApplicationController
   def expected
     @totals = Hash.new{|h, k| h[k] = { number: 0, users: [], total: 0 }}
 
-    # expected partecipants: speakers and organizers
+    # expected participants: speakers and organizers
     Role.speakers_and_organizers.includes(:user).map(&:user).uniq.each do |user|
       if registration = user.conference_registration
         @totals[:speakers_organizers_already_registered][:number] += 1
