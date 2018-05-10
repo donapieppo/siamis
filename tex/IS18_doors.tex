@@ -2,15 +2,16 @@
 
 \input{structure} 
 \usepackage{scrextend}
+\usepackage{wrapfig}
 
 \geometry{margin=2cm}
 
 \newcommand{\roomtitle}[1]{}
 
 \newcommand{\siamconferencesession}[5]{\rhead{#4} \lhead{#5}%
-.
+\includegraphics[width=2.5cm]{images/logo.png} 
+{\hspace{3.5cm}\Huge{\color{blue!60}\textbf{#1}}}
 \begin{center} 
-  {\Huge{\color{blue!60}\textbf{#1}}} 
   \bigskip
   {\par \LARGE\textbf{\color{blue!60}{#2}}} 
 \end{center} 
@@ -19,7 +20,7 @@
 } 
 
 \newcommand{\siampresentationtitle}[1]{\noindent\textbf{#1}}
-\newcommand{\siampresentationabstract}[1]{\begin{addmargin}[4em]{0em}\smallskip\par{#1}\end{addmargin}}
+\newcommand{\siampresentationabstract}[1]{\begin{addmargin}[4em]{0em}\smallskip\par\small{#1}\end{addmargin}}
 \newcommand{\siamuser}[2]{\hfill\textbf{#1} ({\textit{#2}})}
 \newenvironment{siam_organizers}[1]{\begin{flushright}\begin{itemize}\item[]{\textbf{#1}:}}{\end{itemize}\end{flushright}}
 \newenvironment{siam_speakers}{\begin{flushright}\begin{itemize}}{\end{itemize}\end{flushright}}
