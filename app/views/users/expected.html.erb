@@ -1,0 +1,5 @@
+<h1>User expeced to attend</h1>
+<% i = 0 %>  
+<% @users.each do |user| %>  
+  <%= i += 1 %>;<%= user.cn %>;<%= user.affiliation %> <br/>
+<% end %>
