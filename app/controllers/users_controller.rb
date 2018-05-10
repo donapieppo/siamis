@@ -204,6 +204,10 @@ class UsersController < ApplicationController
     (user_in_organizer_committee_or_cochair? or user_in_management_committee?) or RAISE 
   end
 
+  def expected
+    @users = User.participants
+  end
+
   private 
 
   def user_params

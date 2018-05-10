@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get :mailing_lists, on: :collection
     get :stats, on: :collection
     get :dietaries, on: :collection
+    get :expected, on: :collection
     resources :presentations
     resources :manual_payments
   end
