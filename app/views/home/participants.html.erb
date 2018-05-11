@@ -2,8 +2,9 @@
 
 <p class="alert alert-info">
 There are currently <strong><%= User.count %> users</strong> registered at the Siam-is18 website.<br/>
-The Partecipant List only shows the names of those users that have given explicit permission to publish their name.<br/>
-If your name does not appear in the Partecipant List, please log in (sign in, using your credentials) and tick the flag 'Show in SIAM-IS18 page' in your personal data.
+The Participant List only shows the names of those users that have given explicit permission to publish their name.<br/>
+<strong>If your name does not appear in the Partecipant List</strong>, please log in (sign in, using your credentials) and tick the flag 'Show in SIAM-IS18 page' in your personal data
+otherwise send an e-mail to siam-is2018@unibo.it, writing  "I CONFIRM THAT I WANT TO BE INCLUDED IN THE LIST OF PARTICIPANTS ON THE SIAM-IS18 WEBSITE".
 </p>
 
 <%# link_to 'see where participants come from', countries_stats_path, class: :button %>  
@@ -15,6 +16,6 @@ If your name does not appear in the Partecipant List, please log in (sign in, us
       <dd>&nbsp;</dd>
       <dt><%= initial %></dt>
     <% end %>
-  <dd><%= @link_to_user ? user_modal_link(user) : user.cn %> <small>(<%= user.affiliation %>)</small></dd>
+  <dd><%= user_modal_link(user) %> <small>(<%= user.affiliation %>)</small></dd>
 <% end %>
 </dl>
