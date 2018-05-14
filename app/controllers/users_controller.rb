@@ -161,6 +161,13 @@ class UsersController < ApplicationController
       @title = "Unregistered active users"
       registered_ids = ConferenceRegistration.select(:user_id).map(&:user_id).to_a
       @emails = User.where('sign_in_count > 0').where("id NOT IN (?)", registered_ids).select(:email).map(&:email)
+    elsif params[:unregistered_speakers_organizers_not_students]
+      @title = "Unregistered Speakers/Organizers not students"
+      registered_ids = ConferenceRegistration.select(:user_id).map(&:user_id).to_a
+      @emails = User.not_student.speakers_and_organizers.where("id NOT IN (?)", registered_ids).select(:email).map(&:email)
+    elsif params[:students]
+      @title = "Students."
+      @emails = User.student.select(:email).map(&:email)
     elsif params[:registered_students]
       @title = "Registered students."
       registered_ids = ConferenceRegistration.select(:user_id).map(&:user_id).to_a
@@ -168,6 +175,9 @@ class UsersController < ApplicationController
     elsif params[:no_privacy_consent]
       @title = "Speakers / Organizers without privacy consent"
       @emails = Role.speakers_and_organizers.includes(:user).where('users.visible != 1').references(:user).map{|r| r.user.email}
+    elsif params[:staff]
+      @title = "Staff"
+      @emails = User.where(staff: true).select(:email).map(&:email)
     end
       @emails = @emails.flatten.uniq
       @size = @emails.size
