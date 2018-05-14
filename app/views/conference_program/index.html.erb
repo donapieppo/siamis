@@ -1,32 +1,34 @@
-<p style="text-align: right"><%= link_to 'Printable program in A3 page', 'https://www.siam-is18.dm.unibo.it/siamis18_a3_program.pdf' %></p>
+<%= cache "conference_program_day_#{@daynumber}" do %>  
+  <p style="text-align: right"><%= link_to 'Printable program in A3 page', 'https://www.siam-is18.dm.unibo.it/siamis18_a3_program.pdf' %></p>
 
-<% old_hour = nil %>  
+  <% old_hour = nil %>  
 
-<%= render partial: 'day_pagination', locals: { current_day: @day } %>  
+  <%= render partial: 'day_pagination', locals: { current_day: @day } %>  
 
-<div class="day_program" style="margin-top: 10px;">
-  <% @conference_program.each do |schedule| %>  
-    <% hour = l(schedule.start, format: :hour) %>  
+  <div class="day_program" style="margin-top: 10px;">
+    <% @conference_program.each do |schedule| %>  
+      <% hour = l(schedule.start, format: :hour) %>  
 
-    <% if old_hour != (old_hour = hour) %>  
-      <div class="alert centered" style="font-size: 120%"><%= big_icon 'clock-o' %>  <strong><%= hour %></strong> <br/> <%= l(schedule.start, format: :schedule) %>  </div>
+      <% if old_hour != (old_hour = hour) %>  
+        <div class="alert centered" style="font-size: 120%"><%= big_icon 'clock-o' %> <strong><%= hour %></strong> <br/> <%= l(schedule.start, format: :schedule) %></div>
+      <% end %>
+
+      <%= cache schedule do %>  
+        <%= render schedule %>  
+      <% end %>
+
+    <% end %> 
+  </div><!-- day_program -->
+
+  <div class="centered" style="margin-top: 10px">
+    <% if @daynumber > 0 %>
+      <%= link_to icon('chevron-circle-left', size: 42), conference_program_path(day: @daynumber - 1), style: "margin-right: 10px" %>
     <% end %>
-
-    <%= cache schedule do %>  
-      <%= render schedule %>  
+    <% if @daynumber < Rails.configuration.number_of_days %>
+      <%= link_to icon('chevron-circle-right', size: 42), conference_program_path(day: @daynumber + 1), style: "margin-left: 10px"  %>
     <% end %>
-
-  <% end %> 
-</div><!-- day_program -->
-
-<div class="centered" style="margin-top: 10px">
-  <% if @daynumber > 0 %>
-    <%= link_to icon('chevron-circle-left', size: 42), conference_program_path(day: @daynumber - 1), style: "margin-right: 10px" %>
-  <% end %>
-  <% if @daynumber < Rails.configuration.number_of_days %>
-    <%= link_to icon('chevron-circle-right', size: 42), conference_program_path(day: @daynumber + 1), style: "margin-left: 10px"  %>
-  <% end %>
-</div>
+  </div>
+<% end %>
 
 <% if current_user %>  
   <%= javascript_tag do %>  
