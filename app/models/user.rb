@@ -28,8 +28,10 @@ class User < ApplicationRecord
 
   attr_accessor :privacy_policy
 
-  scope :speakers, -> { where(id: Role.where('speak is true').pluck(:user_id)) }
-  scope :student,  -> { where(student: true) }
+  scope :speakers,                -> { where(id: Role.where('speak is true').pluck(:user_id)) }
+  scope :speakers_and_organizers, -> { where(id: Role.speakers_and_organizers.pluck(:user_id)) }
+  scope :student,                 -> { where(student: true) }
+  scope :not_student,             -> { where('users.student = 0 or users.student IS NULL') }
 
   def to_s
     "#{self.cn} (#{self.affiliation})"
