@@ -19,7 +19,7 @@ module ConferenceHelper
     return '' unless role
     user = role.user
     user_modal_link(user) + 
-    show_registered(user) +
+    # show_registered(user) +
     (no_affiliation ? "" : " (<small> #{h(user.affiliation)} </small>) ".html_safe) +
     (editable ? link_to_delete(role) : "")
   end
