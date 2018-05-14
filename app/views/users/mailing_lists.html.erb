@@ -2,22 +2,23 @@
 
 <div class="centered" style="width: 70%">
   <div class="row list-group centered">
-    <div class="col-md-4">
-      <%= link_to 'Minisymposia organizers', mailing_list_users_path(minisymposia: 1), remote: true, class: "list-group-item" %>
-      <%= link_to 'Minisymposia speakers', mailing_list_users_path(minisymposia_speakers: 1), remote: true, class: "list-group-item" %>
-      <%= link_to 'Contributed presentation authors', mailing_list_users_path(contributed: 1), remote: true, class: "list-group-item" %>
-      <%= link_to 'Poster authors', mailing_list_users_path(poster: 1), remote: true, class: "list-group-item"  %>
+    <div class="col-md-6">
+      <h2>Speakers/Authors/Organizers</h2>
+      <%= link_to 'Minisymposia Organizers', mailing_list_users_path(minisymposia: 1), remote: true, class: "list-group-item" %>
+      <%= link_to 'Minisymposia Speakers', mailing_list_users_path(minisymposia_speakers: 1), remote: true, class: "list-group-item" %>
+      <%= link_to 'Contributed Presentation Authors', mailing_list_users_path(contributed: 1), remote: true, class: "list-group-item" %>
+      <%= link_to 'Poster Authors', mailing_list_users_path(poster: 1), remote: true, class: "list-group-item"  %>
     </div>
-    <div class="col-md-4">
-      <%= link_to 'All active users', mailing_list_users_path(active_users: 1), remote: true, class: "list-group-item"  %>
+    <div class="col-md-6">
+      <h2>Users</h2>
+      <%= link_to 'Active Users', mailing_list_users_path(active_users: 1), remote: true, class: "list-group-item"  %>
+      <%= link_to 'Students', mailing_list_users_path(students: 1), remote: true, class: "list-group-item"  %>
+      <%= link_to 'Staff', mailing_list_users_path(staff: 1), remote: true, class: "list-group-item"  %>
+      <%= link_to 'Speaker/Organizers without privacy consent', mailing_list_users_path(no_privacy_consent: 1), remote: true, class: "list-group-item"  %>
+      <h2>Registrations</h2>
       <%= link_to 'Unregistered users', mailing_list_users_path(unregistered: 1), remote: true, class: "list-group-item"  %>
       <%= link_to 'Unregistered speakers/organizers not students', mailing_list_users_path(unregistered_speakers_organizers_not_students: 1), remote: true, class: "list-group-item"  %>
-      <%= link_to 'Staff', mailing_list_users_path(staff: 1), remote: true, class: "list-group-item"  %>
-    </div>
-    <div class="col-md-4">
-      <%= link_to 'All students', mailing_list_users_path(students: 1), remote: true, class: "list-group-item"  %>
       <%= link_to 'Registered students (unconfirmed)', mailing_list_users_path(registered_students: 1), remote: true, class: "list-group-item"  %>
-      <%= link_to 'Speaker/Organizers without privacy consent', mailing_list_users_path(no_privacy_consent: 1), remote: true, class: "list-group-item"  %>
     </div>
   </div>
 </div>
