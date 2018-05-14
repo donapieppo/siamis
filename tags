@@ -245,7 +245,6 @@ error	app/controllers/payments_controller.rb	/^  def error$/;"	f	class:PaymentsC
 excellence	app/models/rating.rb	/^  def self.excellence$/;"	F	class:Rating
 expected	app/controllers/conference_registrations_controller.rb	/^  def expected$/;"	f	class:ConferenceRegistrationsController
 expected	app/controllers/users_controller.rb	/^  def expected$/;"	f	class:UsersController
-expected	app/models/user.rb	/^  def self.expected$/;"	F	class:User
 expected_payment_from_speakers_and_organizers	app/models/fee.rb	/^  def expected_payment_from_speakers_and_organizers$/;"	f
 fee	app/models/user.rb	/^  def fee$/;"	f	class:User
 first_page	app/pdfs/printable_program.rb	/^  def first_page$/;"	f	class:PrintableProgram
@@ -533,7 +532,7 @@ stop_impersonation_link	app/helpers/application_helper.rb	/^  def stop_impersona
 substringMatcher	app/assets/javascripts/typeahead_search.js	/^var substringMatcher = function(strs) {$/;"	f
 support_mail	app/helpers/link_helper.rb	/^  def support_mail$/;"	f	class:LinkHelper
 title_with_conference	app/helpers/conference_helper.rb	/^  def title_with_conference(what = '')$/;"	f
-to_csv	app/controllers/users_controller.rb	/^  def to_csv$/;"	f	class:UsersController
+to_csv	app/controllers/users_controller.rb	/^  def to_csv(attributes = nil)$/;"	f	class:UsersController
 to_s	app/models/building.rb	/^  def to_s$/;"	f	class:Building
 to_s	app/models/conference_registration.rb	/^  def to_s$/;"	f	class:ConferenceRegistration
 to_s	app/models/conference_session.rb	/^  def to_s$/;"	f	class:ConferenceSession
@@ -595,4 +594,5 @@ verify	app/controllers/payments_controller.rb	/^  def verify$/;"	f	class:Payment
 verify	app/models/payment.rb	/^  def verify$/;"	f	class:Payment
 verify	app/models/unicredit.rb	/^  def verify$/;"	f	class:Unicredit
 visa	app/controllers/home_controller.rb	/^  def visa$/;"	f	class:HomeController
+visible_participants	app/models/user.rb	/^  def self.visible_participants$/;"	F	class:User
 who_impersonate	app/controllers/impersonations_controller.rb	/^  def who_impersonate$/;"	f	class:ImpersonationsController
