@@ -43,7 +43,7 @@
   </dl>
 
   <% if owner and presentation.poster and papers.empty? %>  
-    <p class="alert alert-warning">In order to apply to <em>Best poster award</em> please <%= link_to 'submit a paper', new_presentation_paper_path(presentation) %> at least a week before the conference.</p>
+    <p class="alert alert-warning">In order to apply to <em>Best poster award</em> please <%= link_to 'submit a paper', new_presentation_paper_path(presentation) %> before May the 24th.</p>
   <% end %>
 
   <%= render partial: 'ratings/dl_list', locals: { what: presentation } %>  
