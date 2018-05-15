@@ -1,8 +1,7 @@
 <% @posters.each do |cs| %>
-  <% cs.presentations.each do |presentation| %>  
-    \siampresentationtitle{<%= raw latex_text_clean presentation.name %>}
-
-    \siampresentationabstract{<%= raw latex_text_clean presentation.abstract %>}
+  <% cs.presentations.order(:number, :name).each do |presentation| %>  
+    \siampostertitle{<%= presentation.number %> - <%= raw latex_text_clean presentation.name.upcase %>}
+    <%# \siampresentationabstract{<%= raw latex_text_clean presentation.abstract %1>} %>
 
     \begin{siam_speakers}
       <% (authors = presentation.authors.includes(:user).order('users.surname, users.name')).each do |author| %>  
