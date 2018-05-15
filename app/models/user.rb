@@ -110,7 +110,7 @@ class User < ApplicationRecord
   end
 
   def in_review_commette?
-    defined?(@__revi) ? @__revi : @__revi = (SCIENTIFIC_COMMITTEE + COCHAIRS + ['luca.formaggia@polimi.it']).include?(self.email)
+    defined?(@__revi) ? @__revi : @__revi = (SCIENTIFIC_COMMITTEE + COCHAIRS + ORGANIZER_COMMITTEE + ['luca.formaggia@polimi.it']).include?(self.email)
   end
 
   # minisymposium
