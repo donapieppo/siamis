@@ -1,5 +1,12 @@
 <h1>User expeced to attend</h1>
+
 <% i = 0 %>  
-<% @users.each do |user| %>  
-  <%= i += 1 %>;<%= user.cn %>;<%= user.affiliation %> <br/>
-<% end %>
+
+<table class="table table-condensed">
+  <% @users.each do |user| %>  
+    <tr>
+      <th><%= i += 1 %> <%= user_modal_link(user) %></th>
+      <td><%= user.affiliation %></td>
+    </tr>
+  <% end %>
+</table>
