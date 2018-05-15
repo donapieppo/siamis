@@ -141,6 +141,10 @@ class Presentation < ApplicationRecord
   def class_name
     I18n.t(self.class.to_s)
   end
+
+  def self.with_paper_ids 
+    Paper.select(:presentation_id).map(&:presentation_id).to_a
+  end
 end
 
 
