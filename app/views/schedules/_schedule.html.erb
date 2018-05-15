@@ -12,7 +12,7 @@
     <% end %>
     <small>
       <br/><%= cs.organizers_label %>: <%= show_roles(cs.organizers) %>
-      <br/><em><span><%= icon('map-marker') %> <%= schedule.room %></span></em>
+      <br/><em><span><%= icon('map-marker') %> <%= link_to schedule.room.to_s, room_path(schedule.room), remote: true %></span></em>
     </small>
   </div>
 </div>
