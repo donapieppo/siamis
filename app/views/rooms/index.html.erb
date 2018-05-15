@@ -1,21 +1,29 @@
 <%= program_title('Rooms', 'building') %>  
 
-<ul class="list-group">
-  <% @rooms.each do |room| %>  
-    <li class="list-group-item">
-      <strong><%= room %></strong> - <small><%= room.capacity %> seats</small> <span class="pull-right"><%= link_to_edit edit_room_path(room) %> <%= link_to_delete room_path(room) %></span>
-    </li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="col-md-6">
+    <h2>Rooms</h2>
+    <ul class="list-group">
+      <% @rooms.each do |room| %>  
+        <li class="list-group-item">
+          <strong><%= room %></strong> - <small><%= room.capacity %> seats</small> 
+          <span class="pull-right"><%= link_to_edit edit_room_path(room) %> <%= link_to_delete room_path(room) %> <%= link_to icon('map'), room_path(room), remote: true %>  </span>
+        </li>
+      <% end %>
+    </ul>
 
-<%= link_to 'New Room', new_room_path, class: :button %>  
+    <%= link_to 'New Room', new_room_path, class: :button %>  
+  </div>
+  <div class="col-md-6">
 
-<h2>Buildings</h2>
+    <h2>Buildings</h2>
 
-<ul class="list-group">
-  <% Building.find_each do |building| %>  
-    <li class="list-group-item"><%= building %> <span class="pull-right"><%= link_to_edit edit_building_path(building) %> <%= link_to_delete building_path(building) %></span></li>
-  <% end %>
-</ul>
+    <ul class="list-group">
+      <% Building.find_each do |building| %>  
+        <li class="list-group-item"><%= building %> <span class="pull-right"><%= link_to_edit edit_building_path(building) %> <%= link_to_delete building_path(building) %></span></li>
+      <% end %>
+    </ul>
 
-<%= link_to 'New Bulding', new_building_path, class: :button %>  
+    <%= link_to 'New Bulding', new_building_path, class: :button %>  
+  </div>
+</div>
