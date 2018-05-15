@@ -24,7 +24,7 @@
         <% end %>
         <small>
           <br/><%= cs.organizers_label %>: <%= show_roles(cs.organizers) %><br/>
-          <em><span><%= icon('map-marker') %> <%= schedule.room if schedule %></span></em>
+          <%= room_modal_link(schedule.room) if schedule %>  
         </small>
       </div>
     </div>
