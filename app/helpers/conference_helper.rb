@@ -15,22 +15,22 @@ module ConferenceHelper
     end
   end
 
-  def show_role(role, editable: false, no_affiliation: false)
+  def show_role(role, editable: false, no_affiliation: false, show_registration: false)
     return '' unless role
     user = role.user
     user_modal_link(user) + 
-    # show_registered(user) +
+    (show_registration ? show_registered(user) : '') +
     (no_affiliation ? "" : " (<small> #{h(user.affiliation)} </small>) ".html_safe) +
     (editable ? link_to_delete(role) : "")
   end
 
   # html_safe becouse of h() before
-  def show_roles(roles, editable: false, only_speaker: false)
+  def show_roles(roles, editable: false, only_speaker: false, show_registration: false)
     if only_speaker 
       roles = roles.select{|r| r.speak}
     end
     roles.map do |role|
-      show_role(role, editable: editable)
+      show_role(role, editable: editable, show_registration: show_registration)
     end.join(', ').html_safe
   end
 
