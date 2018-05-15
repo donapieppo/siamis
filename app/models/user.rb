@@ -188,6 +188,10 @@ class User < ApplicationRecord
     @@local_committee ||= User.where(email: LOCAL_COMMITTEE).order('surname, name')
   end
 
+  def self.all_committees
+    @@all_committees ||= User.where(email: (COCHAIRS + ORGANIZER_COMMITTEE + MANAGEMENT_COMMETTE + SCIENTIFIC_COMMITTEE + LOCAL_COMMITTEE).uniq).order('surname, name')
+  end
+
   # web page not here for link
   def self.safe_fields
     [:name, :surname, :affiliation, :country, :biography]
@@ -201,11 +205,12 @@ class User < ApplicationRecord
     User.participants.where(visible: true)
   end
 
+  # speakers + organizers + staff + registered users
   def self.participants
-    # active_ids  = Role.select(:user_id).map(&:user_id)
-    _user_speakers_and_organizers_ids = Role.speakers_and_organizers.select(:user_id).map(&:user_id)
+    _speakers_and_organizers_ids = Role.speakers_and_organizers.select(:user_id).map(&:user_id)
     _registered_users_ids = ConferenceRegistration.select(:user_id).map(&:user_id)
-    User.where(id: (_user_speakers_and_organizers_ids + _registered_users_ids).uniq)
+    _committee_ids = User.all_committees.map(&:id)
+    User.where(id: (_speakers_and_organizers_ids + _registered_users_ids + _committee_ids).uniq)
   end
 end
 
