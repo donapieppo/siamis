@@ -36,7 +36,7 @@ class SubmissionsController < ApplicationController
     else
       @title = 'Posters'
       @position = params[:poster] || 0
-      @list = Presentation.at_poster.includes(:conference_session, ratings: :user, authors: :user)
+      @list = Presentation.at_poster.includes(:conference_session, ratings: :user, authors: :user).order(:number, :name)
       @my_ratings = current_user.ratings.select(:presentation_id).pluck(:presentation_id)
     end
     if params[:tag_id]
