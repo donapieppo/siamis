@@ -1,0 +1,5 @@
+$('#main-modal').modal('show');
+$(".modal-title").html("<h4><%= escape_javascript(@room.to_s) %></h4>");
+$(".modal-body").html("<%= escape_javascript(render(@room)) %>");
+
+
