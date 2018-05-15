@@ -42,6 +42,10 @@ module ConferenceHelper
     end
   end
 
+  def room_modal_link(room)
+    "<em><span>#{icon('map-marker')}".html_safe + link_to(room, room_path(room), remote: true) + "</span></em>".html_safe
+  end
+  
   def rating_stars(rating)
     # can be nil if new rating
     return unless rating
