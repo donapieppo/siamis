@@ -14,7 +14,12 @@
     <p style="text-align: justify; font-style: italic;"><%= presentation.abstract %></p>
   <% end %>
 
-  <%= presentation_parent(presentation) %>  
+  <% if presentation.poster %>  
+    <p>This is poster <strong>number <%= presentation.number %></strong> in <%= link_to presentation.conference_session, presentation.conference_session %></p>
+  <% else %>
+    <%= presentation_parent(presentation) %>  
+  <% end %>
+
 
   <dl class="dl-horizontal">
     <dt>Authors:</dt>
