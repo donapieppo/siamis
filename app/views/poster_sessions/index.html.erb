@@ -25,10 +25,18 @@
 
 <h2>List of accepted posters</h2>
 
+<% poster_with_paper_ids = current_user.in_review_commette? ? Presentation.with_paper_ids : nil %>  
+
 <div class="list-group">
   <% cache 'presentations_list_cache' do %>
     <% Presentation.at_poster.order(:number, :name).each do |presentation| %>  
-      <%= link_to "#{presentation.number} #{presentation.name}", presentation, remote: true, class: 'list-group-item' %> 
+      <div class="list-group-item">
+        <%= link_to presentation, presentation, remote: true %> 
+        <span class='pull-right'>
+          <% if poster_with_paper_ids and poster_with_paper_ids.include?(presentation.id) %> <%= icon('file-pdf-o') %> <% end %> 
+          <span class="badge"><%= presentation.number %></span>
+        </span>
+      </div>
     <% end %>
   <% end %>
 </ul>
