@@ -33,7 +33,7 @@
       <div class="list-group-item">
         <%= link_to presentation, presentation, remote: true %> 
         <span class='pull-right'>
-          <% if poster_with_paper_ids and poster_with_paper_ids.include?(presentation.id) %> <%= icon('file-pdf-o') %> <% end %> 
+          <%= icon('file-pdf-o') if (poster_with_paper_ids && poster_with_paper_ids.include?(presentation.id)) %>
           <span class="badge"><%= presentation.number %></span>
         </span>
       </div>
