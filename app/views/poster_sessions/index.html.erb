@@ -28,7 +28,7 @@
 <% poster_with_paper_ids = user_in_review_committee? ? Presentation.with_paper_ids : nil %>  
 
 <div class="list-group">
-  <% cache 'presentations_list_cache' do %>
+  <%= cache_unless poster_with_paper_ids, 'presentations_list_cache' do %>
     <% Presentation.at_poster.order(:number, :name).each do |presentation| %>  
       <div class="list-group-item">
         <%= link_to presentation, presentation, remote: true %> 
