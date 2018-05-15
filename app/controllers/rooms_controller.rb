@@ -6,6 +6,9 @@ class RoomsController < ApplicationController
     @rooms = Room.includes(:building).order(:manual_order, :name)
   end
 
+  def show
+  end
+
   def new
     @room = Room.new
   end
