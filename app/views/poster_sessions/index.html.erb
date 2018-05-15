@@ -25,7 +25,7 @@
 
 <h2>List of accepted posters</h2>
 
-<% poster_with_paper_ids = (current_user && current_user.in_review_commette?) ? Presentation.with_paper_ids : nil %>  
+<% poster_with_paper_ids = user_in_review_committee? ? Presentation.with_paper_ids : nil %>  
 
 <div class="list-group">
   <% cache 'presentations_list_cache' do %>
