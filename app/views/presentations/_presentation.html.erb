@@ -36,7 +36,7 @@
       <dt>Documents:</dt>
       <% papers.each do |paper| %>  
         <dd>
-          <% if owner or current_user.in_review_commette? %>  
+          <% if owner or user_in_review_committee? %>  
             <%= link_to('download paper '.html_safe + icon('download'), paper.paperfile_url) %>  
           <% else %>
             <span style="color: green">The paper will be visible from May the 28th.</span>

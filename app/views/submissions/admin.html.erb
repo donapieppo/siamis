@@ -5,12 +5,8 @@
   <% total = 0 %>  
   <% @list.each do |element| %>  
     <dt id="<%= element.id %>">
-    <% if element.poster %>  
-      <span class="badge"><%= element.number %></span>
-    <% elsif element.accepted %>
-      <%= icon('check') %>  
-    <% end %>
-    <%= link_to element.to_s.upcase, element, remote: true %>
+      <%= icon('check') if element.accepted %>  
+      <%= link_to element.to_s.upcase, element, remote: true %>
     </dt>
 
     <dd><%= show_roles(element.respond_to?(:organizers) ? element.organizers : element.authors) %></dd>

@@ -67,6 +67,10 @@ module UserHelper
     user_in_organizer_or_management_committee? or raise NoAccess
   end
 
+  def user_in_review_committee?
+    current_user and current_user.in_review_committee? 
+  end
+
   def true_user_can_impersonate?
     true_user and Rails.configuration.impersonate_admins and Rails.configuration.impersonate_admins.include?(true_user.email)
   end
