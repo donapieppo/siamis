@@ -45,20 +45,24 @@ class LatexController < ApplicationController
 
       # organizers
       schedule.conference_session.organizers.each do |organizer|
-        user_name = organizer.user.cn_militar
-        initial   = user_name.gsub(/^(van|da|de|di) /, '')[0].upcase
-        @users[initial][user_name] << "\\textbf{#{what}} #{day_and_hour} (p.\\pageref{#{what}})"
+        add_to_users(organizer.user, what, day_and_hour)
       end
 
       # speakers
       schedule.presentations.each do |presentation|
-        user_name = presentation.speaker.user.cn_militar
-        initial   = user_name.gsub(/^(van|da|de|di) /, '')[0].upcase
-        @users[initial][user_name] << "* \\textbf{#{what}} #{day_and_hour} (p.\\pageref{#{what}})"
+        add_to_users(presentation.speaker.user, what, day_and_hour, 1)
       end
     end
   end
 
   def doors
+  end
+
+  private
+
+  def add_to_users(user, what, day_and_hour, speak = false)
+    user_name = user.cn_militar
+    initial   = user_name.gsub(/^(van|da|de|di) /, '')[0].upcase.gsub('Ö', 'O')
+    @users[initial][user_name] << "#{speak ? '* ' : ''}\\textbf{#{what}} #{day_and_hour} (p.\\pageref{#{what}})"
   end
 end
