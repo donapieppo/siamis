@@ -65,6 +65,6 @@ class LatexController < ApplicationController
 
   def add_to_users(user, what, day_and_hour, speak = false)
     initial = user.surname.gsub(/^(van|da|de|di) /, '')[0].upcase.gsub('Ö', 'O')
-    @users[initial][user.cn_militar] << "\\textbf{#{what}} #{day_and_hour} #{speak ? '\\ \\faMicrophone \\ ' : ''} (p.\\pageref{#{what}})"
+    @users[initial][user.cn_militar] << "\\textbf{#{what}} #{day_and_hour} #{speak ? '\\siammicrophone \\ ' : ''} (p.\\pageref{#{what}})"
   end
 end
