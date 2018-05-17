@@ -12,7 +12,7 @@
 \usepackage{enumitem}
 
 \usepackage{wrapfig}
-% \usepackage{ragged2e}
+\usepackage{fontawesome}
 
 \definecolor{siamblue}{HTML}{3F729B}
 \definecolor{plenary}{HTML}{D8B445}
@@ -96,7 +96,7 @@
 \newenvironment{siam_presentation_list}{}{}
 \newenvironment{siamppresentationwithhour}[2]{\noindent\textbf{{#1} {#2}}}
  
-\newcommand{\textinbox}[1]{\begin{flushleft}\large{\textbf{#1}}\end{flushleft}}
+\newcommand{\textinbox}[1]{\begin{flushleft}\uppercase{\textbf{#1}}\end{flushleft}}
 \newcommand{\siamplenarysessiontitle}[2]      {\label{#1}\begin{siamplenarybox}      \textinbox{{#1} {#2}}\end{siamplenarybox}}
 \newcommand{\siamminisymposiumsessiontitle}[2]{\label{#1}\begin{siamminisymposiumbox}\textinbox{{#1} {#2}}\end{siamminisymposiumbox}}
 \newcommand{\siamsessiontitle}[2]             {\label{#1}\begin{siamsessionbox}      \textinbox{{#1} {#2}}\end{siamsessionbox}}
@@ -107,7 +107,8 @@
 
 \newcommand{\siampresentationtitle}[1]{\noindent\textbf{#1}}
 \newcommand{\siampresentationabstract}[1]{\noindent{#1}}
-\newcommand{\siampostertitle}[1]{\noindent\textbf{#1}}
+
+\newcommand{\siampostertitle}[2]{\noindent\colorbox{siamblue!60}{\textbf{#1}} \textbf{#2}}
 
 \newcommand{\siamuser}[2]{{\color{blue}{{#1}}} ({\textit{#2}})}
 \newenvironment{siamuserslist}[1]{\bigskip {\Large{\textbf{#1}}} \bigskip\begin{description}}{\end{description}}
