@@ -5,7 +5,7 @@ class Room < ApplicationRecord
   validates :name, presence: true
 
   def to_s
-    "#{self.name} (#{self.building.to_s} floor #{self.floor || 0})"
+    "#{self.name} (#{self.building.to_s}, floor #{self.floor || 0})"
   end
 
   def self.floors

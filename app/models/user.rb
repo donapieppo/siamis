@@ -43,7 +43,7 @@ class User < ApplicationRecord
   end
 
   def cn_militar
-    "%s %s" % [self.surname, self.name]
+    "%s, %s" % [self.surname, self.name]
   end
 
   def cn_simple
