@@ -20,7 +20,7 @@ module ConferenceHelper
     user = role.user
     user_modal_link(user) + 
     (show_registration ? show_registered(user) : '') +
-    (no_affiliation ? "" : " (<small> #{h(user.affiliation)} </small>) ".html_safe) +
+    (no_affiliation ? "" : " (<small>#{h(user.affiliation)}</small>) ".html_safe) +
     (editable ? link_to_delete(role) : "")
   end
 
@@ -80,6 +80,7 @@ module ConferenceHelper
     controller.controller_name == 'registrations' and return 
     controller.controller_name == 'passwords' and return 
     controller.controller_name == 'stats' and return 
+    controller.controller_name == 'meetings' and return 
     content_tag 'ol', class: "breadcrumb" do 
       content_tag('li', link_to('Home', root_path)) +
       if @conference_session
