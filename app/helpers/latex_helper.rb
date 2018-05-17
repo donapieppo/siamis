@@ -21,7 +21,7 @@ module LatexHelper
 
     # no more with bullet
     # "\\siamuser{#{'* ' if speak} #{cn}}{#{affiliation}}".html_safe
-    "\\siamuser{#{cn}}{#{affiliation}}".html_safe
+    "\\#{speak ? "siamspeaker" : "siamuser"}{#{cn}}{#{affiliation}}".html_safe
   end
 
 end
