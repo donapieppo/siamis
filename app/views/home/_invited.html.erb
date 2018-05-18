@@ -5,7 +5,6 @@
 
 <div class="row">
   <% @plenaries.each do |plenary| %>  
-    <% speaker = plenary.authors.first.user %>  
     <div class="home-plenary col-md-4">
       <% if plenary.schedule %>  
         <div class="plenary-when"><%= l(plenary.schedule.start) %></div>
