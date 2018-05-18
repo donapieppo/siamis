@@ -5,7 +5,7 @@
 
     \begin{siam_speakers}
       <% (authors = presentation.authors.includes(:user).order('users.surname, users.name')).each do |author| %>  
-        \item[] <%= latex_user(author.user, author.speak) %> <%= '\\ \\faMicrophone' if author.speak %> 
+        \item[] <%= latex_user(author.user, author.speak) %> 
       <% end %> 
       <% if authors.empty? %>  
         \item[] To be defined
