@@ -11,7 +11,8 @@ module ActionsHelper
   end
 
   def owner_actions(what)
-    return "&nbsp;".html_safe unless current_user_owns?(what)
+    # return "&nbsp;".html_safe unless current_user_owns?(what)
+    return "&nbsp;".html_safe unless user_in_organizer_committee?
 
     capture do 
       txt = (what.is_a?(Presentation) and what.authors.size > 1) ? " edit #{what.to_s_type} or modify speaker" : ' edit'

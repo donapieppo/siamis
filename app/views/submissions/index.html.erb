@@ -5,6 +5,7 @@
 
 <% if current_user %>
   <% if @presentations.any? or @minisymposia.any? %>
+    <p class="alert alert-info" style="text-align: center">To make chages please write to <%= mail_to_siam %></p>
     <% @presentations.each do |presentation| %>  
       <% if presentation.in_mono_conference_session? %>  
         <p class="alert alert-success">You are speaker in <%= t presentation.parent_class %> (<%= presentation.code %>)
