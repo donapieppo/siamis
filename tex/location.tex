@@ -1,3 +1,8 @@
+\newmdenv[ innerleftmargin=10pt, innerrightmargin=10pt, innertopmargin=10pt, innerbottommargin=10pt,
+          leftmargin=0cm, rightmargin=0cm,
+          backgroundcolor=session!60, linecolor=session,
+          rightline=false, leftline=false, topline=false, bottomline=false, linewidth=4pt]{siambuildingbox}	
+
 \section*{Conference location}
 \addcontentsline{toc}{section}{Conference location}
 The Conference will be held in several locations: 
@@ -22,92 +27,73 @@ The Conference will be held in several locations:
 \includegraphics[width=15cm]{images/maps/f-00-complessoBelmeloro.png}
 
 \newpage
-\hspace*{-1cm}
-\includegraphics[width=17.5cm]{images/maps/f-01-Belmeloro14_p0.png}
-\vfill
 
-\hfill
-\colorbox{siamblue!50}{\large
-\begin{tabular}{ r l }
-  Building A, ground floor: & \textbf{Registration desk} \\
-                            & \textbf{Room A} \\
-                            & \textbf{Room G} \\
-  Building B, ground floor: & \textbf{Room P} \\
-                            & \textbf{Room Q} \\
-  Matemates, ground floor:  & \textbf{Room Matemates}
-\end{tabular}
-}
+% {
+% \begin{tabular}{ r l }
+%   \Large{\textbf{Palazzina A - Building A}, ground floor:} & {Registration desk} \\
+
+%                                      & {Room A} \\
+%                                      & {Room G} \\
+%   \Large{\textbf{Palazzina B - Building B}, ground floor:} & {Room P} \\
+%                                      & {Room Q} \\
+%   \Large{\textbf{Matemates}, ground floor:}  & {Room Matemates}
+% \end{tabular}
+% }
+
+% \newcommand{\siammaptitle}[2]{\begin{center}{\colorbox{siamblue!60}{\color{white} {\textbf {\huge {#1}}}}} \hspace{0.5cm} {\Large {#2}}\end{center}}
+\newcommand{\siammaptitle}[2]{\begin{siambuildingbox}\begin{center}\textbf{\Huge {#1}} \par \vspace{10pt} {\Large {#2}}\end{center}\end{siambuildingbox}}
+\newcommand{\siammapbuilding}[3]{\begin{center}{\large \textbf{#1}} {\textit ({#3})} \\ {#2} \end{center}}
+
+\begin{center}
+
+\siammaptitle{0}{GROUND FLOOR -- PIANO TERRA}
+\siammapbuilding{Palazzina A - Building A}{Registration desk -- Room A -- Room G}{via B. Andreatta, 8}
+\siammapbuilding{Palazzina B - Building B}{Room Q}{via B. Andreatta, 8}
+\siammapbuilding{Matemates}{Room Matemates}{Viale Filopanti, 5}
+
+\vfill
+\includegraphics[width=15cm]{images/maps/f-01-Belmeloro14_p0.png}
 
 \newpage
-\hspace*{-1cm}
+
+\siammaptitle{1}{FIRST FLOOR -- PRIMO PIANO}
+\siammapbuilding{Palazzina A - Building A}{Room B -- Room C -- Room D}{via B. Andreatta, 8}
+\siammapbuilding{Palazzina B - Building B}{Room H -- Room I}{via B. Andreatta, 8}
+
+\vfill
 \includegraphics[width=13cm]{images/maps/f-02-Belmeloro14_p1.png}
-\vfill
-
-\hfill
-\colorbox{siamblue!50}{\large
-\begin{tabular}{ r l }
-  Building A, floor 1: & \textbf{Room B} \\
-                       & \textbf{Room C} \\
-                       & \textbf{Room D} \\
-  Building B, floor 1: & \textbf{Room H} \\
-                       & \textbf{Room I}
-\end{tabular}
-}
 
 \newpage
-\hspace*{-1cm}
+
+\siammaptitle{2}{SECOND FLOOR -- SECONDO PIANO}
+\siammapbuilding{Palazzina A - Building A}{Room E -- Room F}{via B. Andreatta, 8}
+\siammapbuilding{Palazzina B - Building B}{Room L -- Room M}{via B. Andreatta, 8}
+
+\vfill
 \includegraphics[width=13cm]{images/maps/f-03-Belmeloro14_p2.png}
-\vfill
-
-\hfill
-\colorbox{siamblue!50}{\large
-\begin{tabular}{ r l }
-  Building A, floor 2: & \textbf{Room E} \\
-                       & \textbf{Room F} \\
-  Building B, floor 2: & \textbf{Room L} \\
-                       & \textbf{Room M}
-\end{tabular}
-}
 
 \newpage
-\hspace*{-1cm}
+
+\siammaptitle{3}{THIRD FLOOR -- TERZO PIANO}
+\siammapbuilding{Palazzina B - Building B}{Room N -- Room O}{via B. Andreatta, 8}
+
+\vfill
 \includegraphics[width=13cm]{images/maps/f-04-Belmeloro14_p3.png}
-\vfill
-
-\hfill
-\colorbox{siamblue!50}{\large
-\begin{tabular}{ r l }
-  Building B, floor 3: & \textbf{Room N} \\
-                       & \textbf{Room O}
-\end{tabular}
-}
 
 \newpage
-\hspace*{-1cm}
+
+\siammaptitle{0}{GROUND FLOOR -- PIANO TERRA}
+\siammapbuilding{SP.I.S.A. and Redenti}{Aula magna SP.I.S.A. -- Room 1 - Redenti}{via B. Andreatta, 6}
+
 \includegraphics[width=17cm]{images/maps/f-05-Belmeloro10-12_p0.png}
 
-\bigskip
+\vspace{1.5cm}
 
-\hfill
-\colorbox{siamblue!50}{\large
-\begin{tabular}{ r l }
-  SP.I.S.A. and Redenti, ground floor: & \textbf{Aula magna SP.I.S.A.} \\
-                                       & \textbf{Room 1 - Redenti}
-\end{tabular}
-}
+\siammaptitle{1}{FIRST FLOOR -- PRIMO PIANO}
+\siammapbuilding{SP.I.S.A. and Redenti}{Room 2 - Redenti}{via B. Andreatta, 6}
 
-\vfill 
-
-\hspace*{-1cm}
+\vfill
 \includegraphics[width=17cm]{images/maps/f-06-Belmeloro10-12_p1.png}
 
-\bigskip
-
-\hfill
-\colorbox{siamblue!50}{\large
-\begin{tabular}{ r l }
-  Redenti, floor 1: & \textbf{Room 2 - Redenti}
-\end{tabular}
-}
-
+\end{center}
 
