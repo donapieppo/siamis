@@ -27,8 +27,9 @@
         <% end %>
         <%= dropdown_menu fwicon('map-o') + ' PROGRAM' do  %>  
           <%= menu_link 'calendar',    'Program day by day', conference_program_path %>  
-          <%= menu_link 'file-o',      'One page Program', 'https://www.siam-is18.dm.unibo.it/siam_is18_one_page_program.pdf' %>
           <%= menu_link 'star',        'My program', interests_path %>  
+          <%= menu_link 'file-o',      'Program (pdf)', 'https://www.siam-is18.dm.unibo.it/IS18_program.pdf' %>
+          <%= menu_link 'file-o',      'One page Program', 'https://www.siam-is18.dm.unibo.it/siam_is18_one_page_program.pdf' %>
           <li class="divider"></li>
           <%= menu_link 'user',        'Plenary presentations', plenaries_path %>  
           <%= menu_link 'wrench',      'Minitutorials', minitutorials_path %>
@@ -53,7 +54,7 @@
         <li class="divider"></li>
         <%= menu_link 'university',   'Venue', venue_path %>
         <%= menu_link 'hotel',        'Accommodation', hotels_path %>
-        <%= menu_link 'plane',        'Travel opportunities', travel_path %>
+        <%= menu_link 'plane',        'Travel information', travel_path %>
         <% if current_user %>  
           <li class="divider"></li>
           <%= menu_link 'user',       'Your personal data', edit_user_path(current_user) %>
