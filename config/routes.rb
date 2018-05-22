@@ -52,6 +52,8 @@ Rails.application.routes.draw do
     resources :schedules
   end
 
+  resources :panels
+
   # many presentations
   resources :contributed_sessions do
     resources :organizers
@@ -80,6 +82,11 @@ Rails.application.routes.draw do
       put 'add', on: :member
       put 'remove', on: :member
     end
+  end
+
+  resources :panels do
+    resources :organizers
+    resources :schedules
   end
 
   resources :schedules
@@ -158,14 +165,15 @@ Rails.application.routes.draw do
 
   get 'stats/countries', to: 'stats#countries', as: :countries_stats
 
-  get 'latex',                to: 'latex#index',          as: :latex
-  get 'latex/plenaries',      to: 'latex#plenaries',      as: :plenaries_latex
-  get 'latex/minitutorials',  to: 'latex#minitutorials',  as: :minitutorials_latex
-  get 'latex/minisymposia',   to: 'latex#minisymposia',   as: :minisymposia_latex
-  get 'latex/contributed',    to: 'latex#contributed',    as: :contributed_latex
-  get 'latex/posters',        to: 'latex#posters',        as: :posters_latex
-  get 'latex/program',        to: 'latex#program',        as: :program_latex
-  get 'latex/program_glance', to: 'latex#program_glance', as: :program_glance_latex
+  get 'latex',                  to: 'latex#index',            as: :latex
+  get 'latex/plenaries',        to: 'latex#plenaries',        as: :plenaries_latex
+  get 'latex/minitutorials',    to: 'latex#minitutorials',    as: :minitutorials_latex
+  get 'latex/minisymposia',     to: 'latex#minisymposia',     as: :minisymposia_latex
+  get 'latex/contributed',      to: 'latex#contributed',      as: :contributed_latex
+  get 'latex/posters',          to: 'latex#posters',          as: :posters_latex
+  get 'latex/poster_abstracts', to: 'latex#poster_abstracts', as: :poster_abstracts_latex
+  get 'latex/program',          to: 'latex#program',          as: :program_latex
+  get 'latex/program_glance',   to: 'latex#program_glance',   as: :program_glance_latex
   get 'latex/speakers_and_organizers', to: 'latex#speakers_and_organizers',       as: :speakers_and_organizers_latex
-  get 'latex/doors',          to: 'latex#doors',          as: :doors
+  get 'latex/doors',            to: 'latex#doors',            as: :doors
 end
