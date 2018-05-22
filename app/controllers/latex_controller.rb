@@ -33,6 +33,10 @@ class LatexController < ApplicationController
     @posters = PosterSession.order(:number).includes(:presentations)
   end
 
+  def poster_abstracts
+    @posters = PosterSession.order(:number).includes(:presentations)
+  end
+
   def speakers_and_organizers
     # @users['d']['Donatini, Pietro'] = ['10:30 Tue (MS01)', ...] 
     @users = Hash.new {|hash, key| hash[key] = Hash.new {|hash2, key2| hash2[key2] = []}}
