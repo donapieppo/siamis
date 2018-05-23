@@ -5,12 +5,13 @@ curl https://tester.dm.unibo.it/siamis/latex/minitutorials.tex           -o mini
 
 curl https://tester.dm.unibo.it/siamis/latex/program.tex                 -o program.tex
 curl https://tester.dm.unibo.it/siamis/latex/program_glance.tex          -o program_glance.tex
+curl https://tester.dm.unibo.it/siamis/latex/posters.tex                 -o posters.tex
 
 curl https://tester.dm.unibo.it/siamis/latex/speakers_and_organizers.tex -o speakers_and_organizers.tex
 
 # Book of abstracts
 curl https://tester.dm.unibo.it/siamis/latex/minisymposia.tex            -o minisymposia.tex
 curl https://tester.dm.unibo.it/siamis/latex/contributed.tex             -o contributed.tex
-curl https://tester.dm.unibo.it/siamis/latex/posters.tex                 -o posters.tex
+curl https://tester.dm.unibo.it/siamis/latex/poster_abstracts.tex        -o poster_abstracts.tex
 
 curl https://tester.dm.unibo.it/siamis/latex/doors.tex                   -o doors.tex
