@@ -43,9 +43,25 @@
 <div class="alert alert-warning">
   <h2 class="centered"><%= big_icon('train') %> Arriving to Bologna by Train</h2>
 
-  <p>Bus <a href="https://www.tper.it/bo-32">line 32</a> departs frequently from Station Stazione Centrale to Porta San Vitale, which is located right in front of the venue.</p>
+  <p>Bus <a href="https://www.tper.it/bo-32">line 32</a> departs frequently from Station Stazione Centrale to Porta San Vitale, which is located right in front of the venue.
+  For other buses see <a href="https://www.tper.it/map">Tper maps</a>.
   <p>Buses are operated by <a href="https://www.tper.it">TPER</a>. Tickets can be bought on the bus (1.50 &euro; from vending machines, using coins only) or at tobacco shops, e.g. at the train station (1.30 &euro;). The cost for 10 tickets (city pass) is 12.00 &euro;.</p>
-
+  <div class="row centered" style="margin-top: 20px">
+    <div class="col-md-6">
+      <p><strong>Bus 11 from station to Aula Magna Santa Lucia</strong></p>
+      <p>On the first day of the Conference, the <strong>Opening Session</strong> and the <strong>Plenary Presentations</strong> will take place 
+      in <a href="https://www.google.com/maps/place/Ex+Saint+Lucia/@44.4895534,11.3476291,15z/data=!4m5!3m4!1s0x0:0x119657fd9e0ebc80!8m2!3d44.4895534!4d11.3476291" target="_new">Aula Magna Santa Lucia</a>.</p>  
+      <% map_url = "https://www.google.com/maps/dir/Bologna+Centrale,+Piazza+delle+Medaglie+d'Oro,+40121+Bologna+BO/Via+Castiglione,+36,+40124+Bologna+BO/@44.4969246,11.3358582,15z" %>  
+      <%= link_to image_tag('venues/bus/bus_from_station_to_Aula_Sanat_Lucia.png', class: "img-thumbnail"), map_url, target: '_new' %>  
+    </div>
+    <div class="col-md-6">
+      <p><strong>Bus 32 from station to main conference location</strong></p>
+      <p>Other <strong>Plenary Presentations</strong> and <strong>Concurrent sessions</strong> will take place 
+      in <a href="https://www.google.com/maps/place/Universit%C3%A0+di+Bologna+Aula+Studio/@44.4950431,11.3560656,15z/data=!4m5!3m4!1s0x0:0xca27122b03987eea!8m2!3d44.4950431!4d11.3560656" target="_new">Complesso Belmeloro</a>.</p>
+      <% map_url = "https://www.google.com/maps/dir/Bologna+Centrale,+40121+Bologna+BO/Via+Beniamino+Andreatta,+8,+40126+Bologna+BO/@44.4999433,11.3456732,16z" %>  
+      <%= link_to image_tag('venues/bus/bus_from_station_to_main_conference_location.png', class: "img-thumbnail"), map_url, target: '_new' %>  
+    </div>
+  </div>
 </div>
 
 <div class="alert alert-success">
