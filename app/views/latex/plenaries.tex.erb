@@ -1,16 +1,16 @@
-<% @plenaries.each do |plenary| %>
+<% @conference_sessions.each do |cs| %>
 
 %-------------------------------------------------------------------
   \begin{siamplenary}
-    \siamplenarydate{<%= raw l plenary.schedules.first.start, format: :schedule_day_and_hour %>}
-    \siamplenarytitle{<%= raw latex_text_clean plenary.to_s %>}
-    \siamplenaryspeaker{<%= raw plenary.speaker %>}
+    \siamplenarydate{<%= raw l cs.schedules.first.start, format: :schedule_day_and_hour %>}
+      \siamplenarytitle{<%= cs.code %>}{<%= raw latex_text_clean cs.name %>}
+    \siamplenaryspeaker{<%= raw cs.speaker %>}
 
-    <% if plenary.speaker %>
-      \siamplenarybiography{<%= raw latex_text_clean plenary.speaker.user.biography %>}{{images/speakers/<%= plenary.speaker.user.email %>}.jpg}
+    <% if cs.speaker %>
+      \siamplenarybiography{<%= raw latex_text_clean cs.speaker.user.biography %>}{{images/speakers/<%= cs.speaker.user.email %>}.jpg}
     <% end %>
 
-    \siamplenaryabstract{<%= raw latex_text_clean plenary.description %>}
+    \siamplenaryabstract{<%= raw latex_text_clean cs.description %>}
   \end{siamplenary}
 %-------------------------------------------------------------------
 

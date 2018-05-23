@@ -6,7 +6,9 @@
     \siamplenarytitle{<%= raw latex_text_clean plenary.to_s %>}
     \siamplenaryspeaker{<%= raw plenary.speaker %>}
 
-    \siamplenarybiography{<%= raw latex_text_clean plenary.speaker.user.biography %>}{{images/speakers/<%= plenary.speaker.user.email %>}.jpg}
+    <% if plenary.speaker %>
+      \siamplenarybiography{<%= raw latex_text_clean plenary.speaker.user.biography %>}{{images/speakers/<%= plenary.speaker.user.email %>}.jpg}
+    <% end %>
 
     \siamplenaryabstract{<%= raw latex_text_clean plenary.description %>}
   \end{siamplenary}

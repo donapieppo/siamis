@@ -10,6 +10,7 @@
     <% end %>
   \end{siam_organizers}
 
+  \begin{siam_session_parts}
   <% cs.schedules.order(:start).each do |schedule| %>
   \begin{siam_session_part}
     \siamabstractschedule{<%= "#{cs.code}-#{schedule.part}" %>}{<%= l schedule.start, format: :schedule_day_and_hour %>}{<%= schedule.room %>}
@@ -32,5 +33,6 @@
     <% end %>
   \end{siam_session_part}
   <% end %>
+  \end{siam_session_parts}
 <% end %>
 
