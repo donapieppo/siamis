@@ -6,11 +6,12 @@ class LatexController < ApplicationController
   end
 
   def plenaries
-    @plenaries = Plenary.includes(schedules: :room, presentation: [authors: :user], organizers: :user).order('schedules.start, users.surname').all
+    @conference_sessions = Plenary.includes(schedules: :room, presentation: [authors: :user], organizers: :user).order('schedules.start, users.surname').all
   end
 
   def minitutorials
-    @minitutorials = Minitutorial.includes(schedules: :room, presentation: [authors: :user], organizers: :user).order('schedules.start, users.surname').all
+    @conference_sessions = Minitutorial.includes(schedules: :room, presentation: [authors: :user], organizers: :user).order('schedules.start, users.surname').all
+    render action: :plenaries
   end
 
   def program
