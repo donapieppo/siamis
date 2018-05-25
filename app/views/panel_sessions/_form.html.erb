@@ -1,0 +1,9 @@
+<%= simple_form_for @conference_session do |conference_session| %>  
+  <%= conference_session.error_notification %>
+  <%= conference_session.input :name %>  
+  <%= conference_session.input :description, input_html: {rows: 6} %>  
+  <%= conference_session.submit %> - <%= link_to_back root_path %>
+<% end %>
+
+
+

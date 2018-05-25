@@ -1,0 +1,42 @@
+<% participants = panel_session.organizers.all %>  
+<% authors      = panel_session.authors.includes(:user).order('users.surname, users.name') %>  
+
+<div class="<%= conference_session_panel_class(panel_session) %>" id="<%= html_id(panel_session) %>">
+  <div class="row">
+    <div class="col-md-4">
+      <%= icon('comments', size: 240) %>  
+    </div>
+    <div class="col-md-8">
+      <div class="title">
+        <h4><%= panel_session.name %> <span class="panel-header-code"><%= panel_session.code %></span></h4>
+      </div>
+      <div class="mono_conference_session_content">
+        <p><%= panel_session.description %></p>
+      </div>
+      <div class="mono_conference_session_content">
+        <% if participants.any? %>  
+          <p><strong><%= panel_session.organizers_label %>:</strong> <%= show_roles(participants) %></p>
+        <% end %>
+      </div>
+      <div><p> &nbsp;<%= show_schedule(panel_session) %> </p></div>
+    </div>
+  </div>
+  <div class="row">
+    <% authors.each do |author| %>
+      <div class="col-md-3 mono_conference_session_speaker">  
+        <div class="speaker-image" style="text-align: center">
+          <%= user_photo(author.user) %>  
+        </div>
+        <div class="speaker_name">
+          <h3><%= user_modal_link(author.user) %></h3>
+          <small><%= author.user.affiliation %></small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="footer-actions">
+    <p><%= panel_actions(panel_session) %> </p>
+  </div>
+</div>
+

@@ -1,0 +1,17 @@
+<% @no_container = true %>
+
+<%= program_title('Panel Sessions', 'users') %>  
+
+<% if user_in_organizer_committee? %>
+  <p class="centered"><%= link_to 'Create new Panel Session', new_panel_session_path, class: :big_button %></p>
+<% end %>
+
+<%= cache_unless current_user, @conference_sessions do %>
+  <% @conference_sessions.each do |cs| %>  
+    <div class="bg-colored" id="<%= cs.id %>">
+      <div class="container">
+        <%= render cs %>  
+      </div>
+    </div>
+  <% end %>
+<% end %>
