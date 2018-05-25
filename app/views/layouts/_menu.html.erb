@@ -28,17 +28,20 @@
         <%= dropdown_menu fwicon('map-o') + ' PROGRAM' do  %>  
           <%= menu_link 'calendar',    'Program day by day', conference_program_path %>  
           <%= menu_link 'star',        'My program', interests_path %>  
-          <%= menu_link 'file-pdf-o',  'Program (pdf)', 'https://www.siam-is18.dm.unibo.it/IS18_program.pdf' %>
-          <%= menu_link 'file-pdf-o',  'One page Program', 'https://www.siam-is18.dm.unibo.it/siam_is18_one_page_program.pdf' %>
-          <li class="divider"></li>
+          <li role="separator" class="divider"></li>
           <%= menu_link 'user',        'Plenary presentations', plenaries_path %>  
+          <%= menu_link 'comments',    'Panel sessions', panel_sessions_path %>
           <%= menu_link 'wrench',      'Minitutorials', minitutorials_path %>
           <%= menu_link 'users',       'Minisymposia', minisymposia_path %>
           <%= menu_link 'users',       'Contributed presentations', contributed_sessions_path %>
           <%= menu_link 'picture-o',   'Poster sessions', poster_sessions_path %>
-          <li class="divider"></li>
+          <li role="separator" class="divider"></li>
           <%= menu_link 'users',       'Participant list', participants_path %>  
           <%= menu_link 'handshake-o', 'Satellite events', satellites_path %>
+          <li role="separator" class="divider"></li>
+          <%= menu_link 'file-pdf-o',  'Program (pdf)', 'https://www.siam-is18.dm.unibo.it/IS18_program.pdf' %>
+          <%= menu_link 'file-pdf-o',  'Book of abstracts', 'https://www.siam-is18.dm.unibo.it/IS18_abstracts.pdf' %>
+          <%= menu_link 'file-pdf-o',  'One page Program', 'https://www.siam-is18.dm.unibo.it/siam_is18_one_page_program.pdf' %>
           <%# <%= menu_link 'map-o',      'My program', interests_path %>  
         <% end %>
       <% end %> <!-- cache common_menu -->
@@ -46,17 +49,18 @@
       <%= dropdown_menu fwicon('user') + ' INFO FOR PARTICIPANTS' do  %>  
         <%= menu_link 'credit-card',  'Registration', new_conference_registration_path %>
         <%= menu_link 'envelope-o',   'Submissions', submissions_path %>
-        <li class="divider"></li>
+        <li role="separator" class="divider"></li>
         <%= menu_link 'child',        'Child Care', child_care_path %>
         <%= menu_link 'file',         'Visa and Letter of Invitation', visa_path %>
         <%= menu_link 'trophy',       'Student/Post-doc travel awards', travel_awards_path %>
         <%= menu_link 'video-camera', 'Audio-visual Policy ', equipments_path %>
-        <li class="divider"></li>
+        <li role="separator" class="divider"></li>
         <%= menu_link 'university',   'Venue', venue_path %>
         <%= menu_link 'hotel',        'Accommodation', hotels_path %>
         <%= menu_link 'plane',        'Travel information', travel_path %>
+        <%# <%= menu_link 'photo',        'Sightseeing Tours', sightseeings_path %1> %>
         <% if current_user %>  
-          <li class="divider"></li>
+          <li role="separator" class="divider"></li>
           <%= menu_link 'user',       'Your personal data', edit_user_path(current_user) %>
         <% end %>
       <% end %>
@@ -75,7 +79,7 @@
             <%= menu_link 'star', 'Minisymposia', admin_submissions_path(minisymposium: 1) %>
             <%= menu_link 'star', 'Presentations', admin_submissions_path(contributed: 1) %>
             <%= menu_link 'star', 'Posters', admin_submissions_path(poster: 1) %>
-            <li class="divider"></li>
+            <li role="separator" class="divider"></li>
             <%= menu_link 'file-pdf-o',  'Printable program', print_conference_program_path %>
             <%= menu_link 'calendar', 'Users Schedules', schedules_users_path %>
             <% if user_cochair? %>  
@@ -94,14 +98,14 @@
             <li class="dropdown-header">Manual Submissions</li>
             <%= menu_link 'file-o', 'New presentation', new_presentation_path %>
             <%= menu_link 'file-o', 'New poster', new_presentation_path(poster: 1) %>
-            <li class="divider"></li>
+            <li role="separator" class="divider"></li>
             <%= menu_link 'star', 'Ratings', ratings_path %>
-            <li class="divider"></li>
+            <li role="separator" class="divider"></li>
             <li class="dropdown-header">Program</li>
             <%= menu_link 'file-pdf-o',  'Printable program', print_conference_program_path %>
             <%= menu_link 'calendar', 'User Schedules', schedules_users_path %>
             <%= menu_link 'file-code-o', 'Latex files', latex_path %>
-            <li class="divider"></li>
+            <li role="separator" class="divider"></li<li role="separator" class="divider"></li>
             <li class="dropdown-header">Users</li>
             <%= menu_link 'users', 'Users', users_path %>
             <%= menu_link 'bullhorn', 'speakers csv', users_path(format: :csv, speakers: true) %>
@@ -109,12 +113,12 @@
             <%= menu_link 'euro', 'Payments', payments_path %>
             <%= menu_link 'file', 'Invitation Letter Requests', invitation_letters_path %>
             <%= menu_link 'envelope', 'Mailing lists', mailing_lists_users_path %>
-            <li class="divider"></li>
+            <li role="separator" class="divider"></li>
             <li class="dropdown-header">Locations</li>
             <%= menu_link 'building-o', 'Rooms', rooms_path %>
-            <li class="divider"></li>
+            <li role="separator" class="divider"></li>
             <%= menu_link 'hotel', 'Accommodation', hotels_path %>
-            <li class="divider"></li>
+            <li role="separator" class="divider"></li>
             <%= menu_link 'key', 'Keywords', tags_path %>
           <% end %>
         <% end %>

@@ -30,7 +30,7 @@ class SchedulesController < ApplicationController
   private
 
   def set_conference_session
-    conference_session_id = params[:conference_session_id] || params[:contributed_session_id] || params[:minisymposium_id] || params[:minitutorial_id] || params[:poster_session_id] || params[:plenary_id]
+    conference_session_id = params[:conference_session_id] || params[:contributed_session_id] || params[:minisymposium_id] || params[:minitutorial_id] || params[:poster_session_id] || params[:plenary_id] || params[:panel_session_id] || params[:conference_break_id]
     @conference_session  = ConferenceSession.find(conference_session_id)
   end
 

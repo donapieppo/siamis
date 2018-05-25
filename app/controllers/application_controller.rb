@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_conference_session
-    param_id = params[:minisymposium_id] || params[:minitutorial_id] || params[:plenary_id] || params[:contributed_session_id] || params[:conference_session_id] 
+    param_id = params[:minisymposium_id] || params[:minitutorial_id] || params[:plenary_id] || params[:contributed_session_id] || params[:conference_session_id] || params[:panel_session_id] || params[:conference_break_id]
     @conference_session = ConferenceSession.find(param_id)
   end
 end
