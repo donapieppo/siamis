@@ -218,7 +218,24 @@ class UsersController < ApplicationController
     @users = User.participants
     respond_to do |format|
       format.html
-      format.csv { send_data to_csv([:name, :surname, :affiliation]), filename: "expected_users-#{Date.today}.csv" }
+      format.csv { send_data to_csv2([:cn, :affiliation_with_country]), filename: "expected_users-#{Date.today}.csv" }
+    end
+  end
+
+  # FIXME temporary - to delete
+  def expected2
+    @users = User.participants.not_student
+    _registered_users_ids = ConferenceRegistration.select(:user_id).map(&:user_id)
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data(
+          CSV.generate(headers: false, col_sep: ";") do |csv|
+            @users.each do |user|
+              csv << [user.cn, user.affiliation_with_country, _registered_users_ids.include?(user.id) ? 'Y' : 'N' ]
+            end
+          end, filename: "expected_users-#{Date.today}.csv")
+      end
     end
   end
 
@@ -246,6 +263,15 @@ class UsersController < ApplicationController
       csv << attributes
       @users.pluck(*attributes).each do |user|
         csv << user
+      end
+    end
+  end
+
+  # FIXME (in a hurry)
+  def to_csv2(attributes)
+    CSV.generate(headers: false, col_sep: ";") do |csv|
+      @users.each do |user|
+        csv << [user.cn, user.affiliation_with_country]
       end
     end
   end

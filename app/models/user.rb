@@ -50,6 +50,10 @@ class User < ApplicationRecord
     "#{self.name} #{self.surname}"
   end
 
+  def affiliation_with_country
+    "#{self.affiliation}#{(", " + self.country) unless self.country.blank?}"
+  end
+
   def owns!(what)
     self.owns?(what) or raise NoAccess
   end
