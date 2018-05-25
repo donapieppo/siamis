@@ -78,5 +78,15 @@ module ActionsHelper
       "&nbsp;".html_safe
     end
   end
+
+  # what = presentation or minisymposium
+  def show_actions(what)
+    return "&nbsp;".html_safe unless current_user
+
+    common_actions(what) +
+    owner_actions(what) +
+    scientific_committee_actions(what) +
+    organizer_committee_actions(what)
+  end
 end
 
