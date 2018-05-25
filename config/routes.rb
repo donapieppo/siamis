@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get :stats, on: :collection
     get :dietaries, on: :collection
     get :expected, on: :collection
+    get :expected2, on: :collection
     resources :presentations
     resources :manual_payments
   end
@@ -52,8 +53,6 @@ Rails.application.routes.draw do
     resources :schedules
   end
 
-  resources :panels
-
   # many presentations
   resources :contributed_sessions do
     resources :organizers
@@ -84,8 +83,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :panels do
+  resources :panel_sessions do
     resources :organizers
+    resources :schedules
+  end
+
+  resources :conference_breaks do
     resources :schedules
   end
 
@@ -135,6 +138,8 @@ Rails.application.routes.draw do
     put :mark_as_sent,   on: :member
     put :mark_as_unsent, on: :member
   end
+
+  resources :sightseeings
 
   post 'search',            to: 'search#search',     as: :search   
 
