@@ -3,7 +3,7 @@
 
 <div class="container centered">
   <% if Deadline.registration_open? %>  
-    <p class="alert alert-success"> <span style="font-size: 21px">Registration is <strong>now open</strong> for SIAM-IS18 Conference!</span>.</p>
+    <p class="alert alert-success"> <span style="font-size: 21px">Registration is <strong>open</strong> for SIAM-IS18 Conference!</span>.</p>
   <% else %>
     <p class="alert alert-warning">Registration will start at <strong><%= l Deadline.pre_registration_start %></strong>.</p>
   <% end %>
