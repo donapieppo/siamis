@@ -3,14 +3,14 @@
 %>  
 
 <div class="conference_session_panel">
-  <%= panel_heading(poster_session) %>  
+  <%= card_heading(poster_session) %>  
 
   <div class="panel-body">
     <%= list_presentations(presentations, poster_session) %>
   </div>
 
   <div class="panel-footer footer-actions">
-    <%= panel_actions(poster_session) %>  
+    <%= show_actions(poster_session) %>  
   </div>
 </div>
 

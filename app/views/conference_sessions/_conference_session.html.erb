@@ -9,7 +9,7 @@
 %>  
 
 <div class="conference_session_panel <%= 'condensed_panel' if condensed %>" id="<%= html_id(conference_session) %>">
-  <%= panel_heading(conference_session) %>  
+  <%= card_heading(conference_session) %>  
 
   <div class="panel-body">
     <p class="description"><%= conference_session.description %></p>
@@ -53,7 +53,7 @@
   </div>
 
   <div class="panel-footer footer-actions">
-    <%= panel_actions(conference_session) %>  
+    <%= show_actions(conference_session) %>  
   </div>
 </div>
 

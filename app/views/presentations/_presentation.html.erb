@@ -5,7 +5,7 @@
 
 <div class="presentation_panel">
 
-<%= panel_heading(presentation) %>  
+<%= card_heading(presentation) %>  
 
 <div class="panel-body">
   <% if owner and presentation.abstract.blank? and Deadline.in_minisymposium_abstract? %>  
@@ -17,7 +17,7 @@
   <% if presentation.poster %>  
     <p>This is poster <strong>number <%= presentation.number %></strong> in <%= link_to presentation.conference_session, presentation.conference_session %></p>
   <% else %>
-    <%= presentation_parent(presentation) %>  
+    <%= show_presentation_parent(presentation) %>  
   <% end %>
 
 
@@ -56,7 +56,7 @@
 
 <div class="panel-footer footer-actions">
   <p>
-    <%= panel_actions(presentation) %>  
+    <%= show_actions(presentation) %>  
     <%= show_schedule(presentation) %>  
   </p>
 </div><!-- panel-footer -->
