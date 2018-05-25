@@ -2,7 +2,7 @@ class PanelSession < MonoConferenceSession
   alias chairs organizers
 
   def code
-    "PS" 
+    "PD" 
   end
 
   def mono_session?
@@ -14,7 +14,7 @@ class PanelSession < MonoConferenceSession
   end
 
   def code_with_part(p)
-    "PS"
+    "PD"
   end
 end
 
