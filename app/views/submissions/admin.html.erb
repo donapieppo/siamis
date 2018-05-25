@@ -9,7 +9,7 @@
       <%= link_to element.to_s.upcase, element, remote: true %>
     </dt>
 
-    <dd><%= show_roles(element.respond_to?(:organizers) ? element.organizers : element.authors) %></dd>
+    <dd><%= show_roles(element.respond_to?(:organizers) ? element.organizers : element.authors, show_registration: true) %></dd>
 
     <dd style="font-size: 80%">
     <% if @my_ratings.include?(element.id) %>
