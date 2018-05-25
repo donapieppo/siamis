@@ -10,10 +10,12 @@
     <%= link_to conference_session_path(schedule.conference_session, part: schedule.part), remote: true do %>
       <strong><%= cs.name %></strong> 
     <% end %>
-    <small>
-      <br/><%= cs.organizers_label %>: <%= show_roles(cs.organizers) %>
-      <br/><em><span><%= icon('map-marker') %> <%= link_to schedule.room.to_s, room_path(schedule.room), remote: true %></span></em>
-    </small>
+    <div style="">
+      <% unless cs.is_a?(ConferenceBreak) %>  
+        <%= cs.organizers_label %>: <%= show_roles(cs.organizers) %><br/>
+      <% end %>
+      <em><span><%= icon('map-marker') %> <%= link_to schedule.room.to_s, room_path(schedule.room), remote: true %></span></em>
+    </div>
   </div>
 </div>
 

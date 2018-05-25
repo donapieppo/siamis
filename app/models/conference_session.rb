@@ -63,6 +63,10 @@ class ConferenceSession < ApplicationRecord
     "Chair"
   end
 
+  def author_label
+    "Author"
+  end
+
   def schedules_to_s
     self.schedules.map{|s| s.to_s}.join(', ')
   end
