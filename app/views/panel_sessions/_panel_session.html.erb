@@ -18,7 +18,8 @@
           <p><strong><%= panel_session.organizers_label %>:</strong> <%= show_roles(participants) %></p>
         <% end %>
       </div>
-      <div><p> &nbsp;<%= show_schedule(panel_session) %> </p></div>
+      <div><p>&nbsp;<%= show_schedule(panel_session) %></p></div>
+      <div class="footer-actions"><p><%= show_actions(panel_session) %></p></div>
     </div>
   </div>
   <div class="row">
@@ -33,10 +34,6 @@
         </div>
       </div>
     <% end %>
-  </div>
-
-  <div class="footer-actions">
-    <p><%= show_actions(panel_session) %> </p>
   </div>
 </div>
 
