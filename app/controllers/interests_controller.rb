@@ -7,6 +7,10 @@ class InterestsController < ApplicationController
     current_user.interests.includes(presentation: :conference_session, conference_session: :schedules).order('schedules.start').map do |interest|
       @interests[interest.start.to_date] << { start: interest.start, part: interest.part, cs: interest.conference_session }
     end
+    # FIXME Rrefactor with cache
+    PanelSession.find_each do |cs|
+      @interests[cs.schedules.first.start.to_date] << { start: cs.schedules.first.start,  part: 1, cs: cs }
+    end
     Plenary.find_each do |cs|
       @interests[cs.schedules.first.start.to_date] << { start: cs.schedules.first.start,  part: 1, cs: cs }
     end
