@@ -2,7 +2,7 @@ class PanelSession < MonoConferenceSession
   alias chairs organizers
 
   def code
-    "PD" 
+    "PD#{self.number || ""}" 
   end
 
   def mono_session?
@@ -11,10 +11,6 @@ class PanelSession < MonoConferenceSession
 
   def author_label
     "Participant"
-  end
-
-  def code_with_part(p)
-    "PD"
   end
 end
 
