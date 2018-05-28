@@ -16,12 +16,28 @@
 \pagestyle{fancy} % Print headers again
 
 \part{Program}
+
 \chapter*{Program At-A-Glance}
 \chapterimage{images/nettuni_small} 
 \addcontentsline{toc}{section}{Program At-A-Glance}
 \input{program_glance}
 
 \part{Abstracts}
+
+\rhead{Plenary Talks}
+\chapter*{Plenary Talks and Biographies}
+\chapterimage{images/nettuni_small} 
+\addcontentsline{toc}{section}{Plenary Talks and Biographies}
+\input{plenaries_summary}
+\include{plenaries}
+
+\rhead{Minitutorials}
+\chapter*{Minitutorials and Biographies}
+\chapterimage{images/nettuni_small} 
+\addcontentsline{toc}{section}{Minitutorials and Biographies}
+\input{minitutorials_summary}
+\include{minitutorials}
+
 \rhead{Minisymposia Presentations Abstracts}
 \chapter*{Minisymposia Presentations Abstracts}
 \addcontentsline{toc}{section}{Minisymposia Presentations Abstracts}
@@ -34,9 +50,11 @@
 
 \chapter*{Posters Abstracts}
 \addcontentsline{toc}{section}{Posters Abstracts}
+\input{posters_summary}
+\label{PP1}
 \input{poster_abstracts}
 
-\part{Notes}
+\part{Speakers and Organizers}
 \chapter*{Speakers and Organizers Index}
 \addcontentsline{toc}{section}{Speakers and Organizers Index}
 \vspace{0.5cm}
