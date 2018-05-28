@@ -3,14 +3,30 @@
 %-------------------------------------------------------------------
   \begin{siamplenary}
     \siamplenarydate{<%= raw l cs.schedules.first.start, format: :schedule_day_and_hour %>}
-      \siamplenarytitle{<%= cs.code %>}{<%= raw latex_text_clean cs.name %>}
-    \siamplenaryspeaker{<%= raw cs.speaker %>}
+    \siamplenarytitle{<%= cs.code %>}{<%= raw latex_text_clean cs.name %>}
 
-    <% if cs.speaker %>
-      \siamplenarybiography{<%= raw latex_text_clean cs.speaker.user.biography %>}{{images/speakers/<%= cs.speaker.user.email %>}.jpg}
+    \siamplenaryorganizer{<%= cs.organizers.first %>}
+
+    <% if cs.is_a?(Plenary) or cs.is_a?(Minitutorial) %>  
+      \siamplenaryspeaker{<%= raw cs.speaker.user.cn %>}{<%= raw cs.speaker.user.affiliation %>}
+    
+      <% if cs.speaker %>
+        \siamplenarybiography{<%= raw latex_text_clean cs.speaker.user.biography %>}{{images/speakers/<%= cs.speaker.user.email %>}.jpg}
+      <% end %>
+
+      \siamplenaryabstract{<%= raw latex_text_clean cs.description %>}
+    <% else %>
+      \siamplenaryabstract{<%= raw latex_text_clean cs.description %>}
+
+      \begin{siampanelspeakers}
+      <% cs.authors.each do |speaker| %>  
+        \siampanelspeaker{<%= raw speaker.user.cn %>}{<%= raw speaker.user.affiliation %>}
+
+        \siampanelimage{{images/speakers/<%= speaker.user.email %>}.jpg}
+
+        <% end %>
+      \end{siampanelspeakers}
     <% end %>
-
-    \siamplenaryabstract{<%= raw latex_text_clean cs.description %>}
   \end{siamplenary}
 %-------------------------------------------------------------------
 

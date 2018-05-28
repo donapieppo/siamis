@@ -7,7 +7,7 @@
 
 % ------------------------------------------------------------------------------------------------
 \begin{siam_schedule_session}
-<% if cs.is_a?(Plenary) or cs.is_a?(Minitutorial) %>  
+<% if cs.is_a?(Plenary) or cs.is_a?(Minitutorial) or cs.is_a?(PanelSession) %>  
   \siamplenarysessiontitle{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}
 <% elsif cs.is_a?(Minisymposium) %>
   \siamminisymposiumsessiontitle{<%= cs.code_with_part(schedule.part) %>}{<%= raw latex_text_clean cs.name %>}
