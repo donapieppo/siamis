@@ -12,6 +12,8 @@ class ConferenceSession < ApplicationRecord
 
   include Taggable
 
+  scope :plenary_or_panel, -> { where("conference_sessions.type IN ('Plenary', 'PanelSession')") }
+
   scope :accepted,  -> { where(accepted: true) }
   scope :submitted, -> { where(accepted: nil) }
 
