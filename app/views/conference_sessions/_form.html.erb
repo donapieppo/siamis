@@ -2,6 +2,7 @@
   <%= conference_session.error_notification %>
   <%= conference_session.input :name %>  
   <%= conference_session.input :description, input_html: {rows: 8} %>  
+  <%= conference_session.input :number %>  
   <%= conference_session.submit %> - <%= link_to_back @conference_session %>
 <% end %>
 

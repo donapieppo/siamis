@@ -21,6 +21,6 @@ class PlenariesController < ConferenceSessionsController
   private
 
   def conference_session_params
-    params[:plenary].permit(:name, :description)
+    params[:plenary].permit(:name, :description, :number)
   end
 end
