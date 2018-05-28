@@ -159,18 +159,18 @@ class UsersController < ApplicationController
       # @email_list = User.where(id: Presentation.poster.left_joins(:conference_session).where('conference_session_id is null or conference_sessions.type = "PosterSession"').includes(:roles).map(&:roles).flatten.map(&:user_id)).select(:email).map(&:email).join('; ')
     elsif params[:unregistered]
       @title = "Unregistered active users"
-      registered_ids = ConferenceRegistration.select(:user_id).map(&:user_id).to_a
+      registered_ids = ConferenceRegistration.pluck(:user_id)
       @emails = User.where('sign_in_count > 0').where("id NOT IN (?)", registered_ids).select(:email).map(&:email)
     elsif params[:unregistered_speakers_organizers_not_students]
       @title = "Unregistered Speakers/Organizers not students"
-      registered_ids = ConferenceRegistration.select(:user_id).map(&:user_id).to_a
+      registered_ids = ConferenceRegistration.pluck(:user_id)
       @emails = User.not_student.speakers_and_organizers.where("id NOT IN (?)", registered_ids).select(:email).map(&:email)
     elsif params[:students]
       @title = "Students."
       @emails = User.student.select(:email).map(&:email)
     elsif params[:registered_students]
       @title = "Registered students."
-      registered_ids = ConferenceRegistration.select(:user_id).map(&:user_id).to_a
+      registered_ids = ConferenceRegistration.pluck(:user_id)
       @emails = User.student.where('student_confirmed IS NULL OR student_confirmed <> 1').where(id: registered_ids).select(:email).map(&:email)
     elsif params[:no_privacy_consent]
       @title = "Speakers / Organizers without privacy consent"
@@ -178,10 +178,15 @@ class UsersController < ApplicationController
     elsif params[:staff]
       @title = "Staff"
       @emails = User.where(staff: true).select(:email).map(&:email)
+    elsif params[:registered_not_speakers_organizers]
+      @title = 'Registered not speakers/organizers'
+      registered_ids = ConferenceRegistration.pluck(:user_id)
+      speakers_and_organizers_ids = User.speakers_and_organizers.ids
+      @emails = User.where(id: (registered_ids - speakers_and_organizers_ids)).pluck(:email)
     end
-      @emails = @emails.flatten.uniq
-      @size = @emails.size
-      @email_list = @emails.join('; ')
+    @emails = @emails.flatten.uniq
+    @size = @emails.size
+    @email_list = @emails.join('; ')
   end
 
   # FIMXE 
