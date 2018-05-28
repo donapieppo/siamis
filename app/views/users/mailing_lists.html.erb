@@ -19,6 +19,7 @@
       <%= link_to 'Unregistered users', mailing_list_users_path(unregistered: 1), remote: true, class: "list-group-item"  %>
       <%= link_to 'Unregistered speakers/organizers not students', mailing_list_users_path(unregistered_speakers_organizers_not_students: 1), remote: true, class: "list-group-item"  %>
       <%= link_to 'Registered students (unconfirmed)', mailing_list_users_path(registered_students: 1), remote: true, class: "list-group-item"  %>
+      <%= link_to 'Registered not speakers/organizers', mailing_list_users_path(registered_not_speakers_organizers: 1), remote: true, class: "list-group-item"  %>
     </div>
   </div>
 </div>
