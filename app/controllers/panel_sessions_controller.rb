@@ -21,6 +21,6 @@ class PanelSessionsController < ConferenceSessionsController
   private
 
   def conference_session_params
-    params[:panel_session].permit(:name, :description)
+    params[:panel_session].permit(:name, :description, :number)
   end
 end
