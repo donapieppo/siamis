@@ -160,7 +160,11 @@ module ConferenceHelper
     when MonoConferenceSession
       res = content_tag(:span, what.schedule || I18n.t(:schedule_to_be_decided), class: "pull-right")
     when Presentation
-      res = content_tag(:span, what.schedule || I18n.t(:schedule_to_be_decided), class: "pull-right")
+      if what.poster
+        res = content_tag(:span, "Tue 5 (18:30 onwards) and Wed 6 (11:30 to 13:00) in Building A (first and second floor) and B (ground floor)", class: "pull-right")
+      else
+        res = content_tag(:span, what.schedule || I18n.t(:schedule_to_be_decided), class: "pull-right")
+      end
     end
     res
   end
