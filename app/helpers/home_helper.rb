@@ -19,8 +19,8 @@ module HomeHelper
       <span class="fa-stack fa-lg" style="margin-top: 20px; font-size: 60px; border-radius: 50%; border: 3px solid;">
         <i class="fa fa-#{icon} fa-stack-1x"></i>
       </span>
-    </div>
-    <h2>#{what}</h2>|.html_safe
+      <h2>#{what}</h2>
+    </div> |.html_safe
   end
 
   def conference_home_title
