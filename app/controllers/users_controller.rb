@@ -239,7 +239,26 @@ class UsersController < ApplicationController
             @users.each do |user|
               csv << [user.cn, user.affiliation_with_country, _registered_users_ids.include?(user.id) ? 'Y' : 'N' ]
             end
-          end, filename: "expected_users-#{Date.today}.csv")
+          end, filename: "expected_users-#{Date.today}.csv"
+        )
+      end
+    end
+  end
+
+  # FIXME temporary - to delete
+  def wifi_accounts
+    @users = User.participants.order(:surname, :name)
+    _registered_users_ids = ConferenceRegistration.pluck(:user_id)
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data(
+          CSV.generate(headers: false, col_sep: "\t") do |csv|
+            @users.each do |user|
+              csv << [user.to_s, user.email]
+            end
+          end, filename: "wifi_accounts-#{Date.today}.csv"
+        )
       end
     end
   end
