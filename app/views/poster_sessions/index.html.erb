@@ -11,7 +11,7 @@
 <% end %>
 
 <%= render partial: 'contributed_sessions/description' %>  
-<%= render partial: 'deadlines/presentation_submission' %>  
+<%# <%= render partial: 'deadlines/presentation_submission' %1> %>  
 
 <% if false and user_in_organizer_committee? %> 
   <ul class="list-group">
@@ -23,11 +23,7 @@
   </ul>
 <% end %>
 
-<h2>List of accepted posters</h2>
-
-<p class="centered">
-<a href='https://www.siam-is18.dm.unibo.it/posters_map.pdf'><%= icon('map', size: 32) %>  Poster's Map</a><br/>
-</p>
+<%= render partial: 'when_and_map' %>  
 
 <% poster_with_paper_ids = user_in_review_committee? ? Presentation.with_paper_ids : nil %>  
 
