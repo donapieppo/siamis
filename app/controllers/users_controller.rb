@@ -255,7 +255,9 @@ class UsersController < ApplicationController
         send_data(
           CSV.generate(headers: false, col_sep: "\t") do |csv|
             @users.each do |user|
-              csv << [user.to_s, user.email]
+              unless user.email =~ /@[a-z]*\.?unibo.it/
+                csv << [user.cn_militar + " (#{user.affiliation})", user.email]
+              end
             end
           end, filename: "wifi_accounts-#{Date.today}.csv"
         )
