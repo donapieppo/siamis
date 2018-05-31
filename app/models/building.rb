@@ -33,6 +33,8 @@ class Building < ApplicationRecord
       ['f01-Belmeloro14_p0.png', 'f02-Belmeloro14_p1.png', 'f03-Belmeloro14_p2.png', 'f04-Belmeloro14_p3.png'][floor_num]
     when 4, 5
       ['f05-Belmeloro10-12_p0.png', 'f06-Belmeloro10-12_p1.png'][floor_num]
+    when 2
+      'aula_magna_santa_lucia.png'
     else
       nil
     end
