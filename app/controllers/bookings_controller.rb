@@ -13,5 +13,13 @@ class BookingsController < ApplicationController
       render action: :new
     end
   end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    if user_in_organizer_committee? or @booking.user_id == current_user.id
+      @booking.destroy
+    end
+    redirect_to sightseeings_path
+  end
 end
 
