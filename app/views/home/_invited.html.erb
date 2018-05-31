@@ -11,7 +11,7 @@
       <% end %>
       <div class="plenary-title"><%= link_to plenary.name, plenaries_path(anchor: plenary.id) %></div>
       <div class="plenary-speaker">
-        <% plenary.authors.each do |author| %>  
+        <% plenary.authors.includes(:user).order('users.surname').each do |author| %>  
           <strong><%= author.user.cn %></strong><br/>
           <small><em>(<%= author.user.affiliation %>)</em></small><br/>
         <% end %>
