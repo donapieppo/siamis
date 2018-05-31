@@ -140,7 +140,10 @@ Rails.application.routes.draw do
     put :mark_as_unsent, on: :member
   end
 
-  resources :sightseeings
+  resources :bookings
+  resources :sightseeings do
+    resources :bookings
+  end
 
   post 'search',            to: 'search#search',     as: :search   
 

@@ -1,0 +1,32 @@
+<% @no_container = true %>
+
+<%= program_title('Sightseeings', 'photo') %>  
+
+<% if user_in_organizer_committee? %>
+  <p class="centered"><%= link_to 'Create new Sightseeings', new_sightseeing_path, class: :big_button %></p>
+<% end %>
+
+<div class="container">
+<div class="alert alert-info">
+  <h2>Discover Alma Mater University Museums</h2>
+
+  <h3>University Museum Network - SMA</h3>
+
+  <p>The Bologna University Museum Network (SMA) brings together the corpus of University Museums and Archives with a view to optimizing use 
+  of these resources and connecting the manifold expressions of historical memory and present-day research into one virtual itinerary.</p>
+
+  <p>
+  <a href="http://www.unibo.it/en/university/campuses-and-structures/university-museum-system-sma" target="new"><%= icon('external-link') %>  University Museum Network - SMA</a><br/>
+  <a href="http://www.sma.unibo.it/en" target="new"><%= icon('external-link') %> SMA Home page</a><br/>
+  <a href="http://www.sma.unibo.it/en/the-university-museum-network" target="new"><%= icon('external-link') %> MAP of SMA museums</a><br/>
+  </p>
+</div>
+</div>
+
+<% @sightseeings.each do |sightseeing| %>  
+  <div class="bg-colored" id="<%= sightseeing.id %>">
+    <div class="container">
+      <%= render sightseeing %>  
+    </div>
+  </div>
+<% end %>

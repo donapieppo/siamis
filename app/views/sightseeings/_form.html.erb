@@ -1,0 +1,12 @@
+<%= simple_form_for @sightseeing do |sightseeing| %>  
+  <%= sightseeing.error_notification %>
+  <%= sightseeing.input :name %>  
+  <%= sightseeing.input :description, input_html: {rows: 2} %>  
+  <%= sightseeing.input :seats %>  
+  <%= sightseeing.input :webpage %>  
+  <%= sightseeing.input :image_name %>  
+  <%= sightseeing.input :starting %>  
+  <%= sightseeing.input :ending %>  
+  <%= sightseeing.submit %> 
+<% end %>
+

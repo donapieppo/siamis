@@ -1,0 +1,21 @@
+<% seats_left = @sightseeing.seats_left %>  
+<div class="row">
+  <div class="col-md-6">
+    <h2 class="centered"><%= @sightseeing.name %></h2>
+    <div class="centered">
+    <img src="https://www.siam-is18.dm.unibo.it/sightseeings/<%= @sightseeing.image_name %>" class="img-responsive img-rounded"></img>
+    <div class="alert alert-info" style="font-style: italic; text-align: center">
+      <%= raw @sightseeing.description %>  
+    </div>
+    </div>
+  </div>
+  <div class="col-md-6" >
+    <h2 class="centered">Book a free visit</h2>
+
+    <%= simple_form_for [@sightseeing, @booking] do |booking| %>  
+      <%= booking.error_notification %>
+      <%= booking.input :number, collection: [[1,1], [2,2], [3,3], [4,4]][0...seats_left], hint: "Please select the number of person attending (#{seats_left} left).", width: 10 %>  
+      <%= booking.submit %> - <%= link_to_back sightseeings_path %>  
+    <% end %>
+  </div>
+</div>

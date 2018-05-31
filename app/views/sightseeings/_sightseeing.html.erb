@@ -1,0 +1,44 @@
+<% left_seats = sightseeing.seats_left  %>  
+
+<div class="row">
+  <div class="col-md-3">
+    <img src="https://www.siam-is18.dm.unibo.it/sightseeings/<%= sightseeing.image_name %>" class="img-responsive img-rounded"></img>
+  </div>
+<div class="col-md-9">
+  <h2><%= icon('calendar') %> <%= l sightseeing.starting, format: :schedule_day_and_hour %></h2>
+  <h2><%= icon('user-circle') %> <%= sightseeing.seats_left %> seats left </h2>
+  <h3>
+    <%= link_to sightseeing.name.upcase, sightseeing.webpage, target: :new %> 
+  </h3>
+
+  <div style="font-style: italic; margin: 10px">
+    <%= raw sightseeing.description %>  
+  </div>
+
+  <p><%= icon('map-marker') %> Address: <%= sightseeing.address %></p>
+  <p>
+  <% if current_user %>  
+    <% booking = current_user.bookings.where(sightseeing_id: sightseeing.id).first %>  
+    <% if booking %>  
+      <strong><%= big_icon('check-square-o') %> You booked <%= booking.number %> seats <%= big_icon('hand-o-left') %>.</strong>
+    <% elsif left_seats > 0 %>
+      <%= link_to icon('star') + ' Book a visit', new_sightseeing_booking_path(sightseeing), class: :button %>
+    <% else %>
+      No seats left.
+    <% end %>
+  <% else %>
+      Login to book a visit.
+  <% end %>
+  </p>
+  <% if user_in_organizer_committee? %>
+    <p>Bookings:</p>
+    <p>
+      <% sightseeing.bookings.includes(:user).each do |booking| %>  
+        <span class="badge"><%= booking.number %></span> <%= booking.user.email %>
+      <% end %>
+    </p>
+    <p> <%= link_to_edit "edit", edit_sightseeing_path(sightseeing), button: true %> </p>
+  <% end %>
+  </p>
+</div>
+</div>
