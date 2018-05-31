@@ -14,6 +14,10 @@ class InterestsController < ApplicationController
     Plenary.find_each do |cs|
       @interests[cs.schedules.first.start.to_date] << { start: cs.schedules.first.start,  part: 1, cs: cs }
     end
+    respond_to do |format|
+      format.html
+      format.txt
+    end
   end
 
   def session_ids
