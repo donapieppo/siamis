@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @plenaries     = Plenary.includes(presentation: [authors: :user], schedules: :room).order('schedules.start, users.surname, users.name')
+    @plenaries     = ConferenceSession.plenary_or_panel.includes(presentations: [authors: :user], schedules: :room).order('schedules.start, users.surname, users.name')
     @minitutorials = Minitutorial.includes(presentation: [authors: :user], schedules: :room).order('schedules.start, users.surname, users.name')
   end
 
