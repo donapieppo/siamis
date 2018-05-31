@@ -21,6 +21,7 @@
     <% booking = current_user.bookings.where(sightseeing_id: sightseeing.id).first %>  
     <% if booking %>  
       <strong><%= big_icon('check-square-o') %> You booked <%= booking.number %> seats <%= big_icon('hand-o-left') %>.</strong>
+      <%= link_to_delete booking_path(booking) %>  
     <% elsif left_seats > 0 %>
       <%= link_to icon('star') + ' Book a visit', new_sightseeing_booking_path(sightseeing), class: :button %>
     <% else %>
