@@ -1,0 +1,22 @@
+-----------------------------------
+
+       SIAM-IS18 MY PROGRAM
+
+-----------------------------------
+
+<% @interests.sort.to_h.each do |day, sessions| %>  
+<% day_number = (day - Rails.configuration.conference_start_date).to_i %>  
+
+<%= l(day) %>
+
+<% sessions.sort_by {|s| s[:start] }.each do |s| %>  
+  <% cs       = s[:cs] %>  
+  <% part     = s[:part] %>  
+  <% schedule = cs.schedules.where(part: part).first %>  
+
+  <%= schedule ? l(schedule.start, format: :hour) : ' - ' %> <%= schedule.room if schedule %>  
+     **<%= cs.to_s_with_part(part) %>**
+     <%= cs.organizers_label %>: <%= cs.organizers.map(&:cn).join(', ') %>
+<% end %>
+<% end %>
+
