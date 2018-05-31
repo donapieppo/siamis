@@ -58,7 +58,7 @@
         <%= menu_link 'university',   'Venue', venue_path %>
         <%= menu_link 'hotel',        'Accommodation', hotels_path %>
         <%= menu_link 'plane',        'Travel information', travel_path %>
-        <%# <%= menu_link 'photo',        'Sightseeing Tours', sightseeings_path %1> %>
+        <%= menu_link 'photo',        'Sightseeing Tours', sightseeings_path %>
         <% if current_user %>  
           <li role="separator" class="divider"></li>
           <%= menu_link 'user',       'Your personal data', edit_user_path(current_user) %>

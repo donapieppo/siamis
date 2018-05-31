@@ -19,6 +19,8 @@ class User < ApplicationRecord
   has_many :payments
   has_many :manual_payments
   has_many :interests, dependent: :destroy
+  has_many :bookings, dependent: :destroy
+  has_many :sightseeings,        through: :bookings
 
   has_one  :conference_registration
   has_one  :invitation_letter
