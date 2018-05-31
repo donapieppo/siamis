@@ -12,6 +12,16 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
+  create_table "bookings", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "user_id", null: false, unsigned: true
+    t.integer "sightseeing_id", null: false, unsigned: true
+    t.integer "number", unsigned: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["sightseeing_id"], name: "sightseeing_id"
+    t.index ["user_id"], name: "user_id"
+  end
+
   create_table "buildings", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.text "description"
@@ -173,6 +183,19 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "start"
     t.index ["conference_session_id"], name: "conference_session_id"
     t.index ["room_id"], name: "room_id"
+  end
+
+  create_table "sightseeings", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "starting"
+    t.datetime "ending"
+    t.integer "seats", limit: 2
+    t.string "webpage"
+    t.string "address"
+    t.string "image_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "taggins", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
