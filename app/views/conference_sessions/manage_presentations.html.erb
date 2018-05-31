@@ -13,7 +13,7 @@
         <%= "<br/>".html_safe if actual_part != (actual_part = presentation.part) %>  
         <li class="list-group-item">
           <% if user_in_organizer_committee? && ! @conference_session.is_a?(Minisymposium) %>  
-            <%= link_to icon('trash'), remove_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session' %>
+            <%= link_to icon('remove'), remove_conference_session_presentation_path(@conference_session, presentation), method: :put, title: 'remove from session' %>
           <% end %>
 
           <%= select_tag "order[#{presentation.id}][part]",   options_for_select(parts_list, presentation.part), hidden: (@parts_number < 2) %>
