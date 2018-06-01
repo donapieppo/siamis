@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :user_in_organizer_committee!, except: [:show]
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
