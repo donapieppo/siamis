@@ -15,6 +15,10 @@ class Interest < ApplicationRecord
     end
   end
 
+  def self.conference_sessions_for_all
+    ConferenceSession.plenary_or_panel
+  end
+
   def on
     self.conference_session || self.presentation
   end
@@ -27,6 +31,10 @@ class Interest < ApplicationRecord
   def start
     cs = self.conference_session
     cs.schedules.where(part: self.part).first.start
+  end
+
+  def schedule
+    self.conference_session.schedules.where(part: self.part).first
   end
 end
 
