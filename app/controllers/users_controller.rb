@@ -229,7 +229,7 @@ class UsersController < ApplicationController
 
   # FIXME temporary - to delete
   def expected2
-    @users = User.participants.not_student
+    @users = User.participants.order(:surname, :name)
     _registered_users_ids = ConferenceRegistration.select(:user_id).map(&:user_id)
     respond_to do |format|
       format.html
@@ -237,7 +237,7 @@ class UsersController < ApplicationController
         send_data(
           CSV.generate(headers: false, col_sep: ";") do |csv|
             @users.each do |user|
-              csv << [user.cn, user.affiliation_with_country, _registered_users_ids.include?(user.id) ? 'Y' : 'N' ]
+              csv << [user.cn_militar, user.affiliation_with_country, _registered_users_ids.include?(user.id) ? 'Y' : 'N' ]
             end
           end, filename: "expected_users-#{Date.today}.csv"
         )
