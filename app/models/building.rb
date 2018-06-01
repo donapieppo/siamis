@@ -27,6 +27,8 @@ class Building < ApplicationRecord
   # |  4 | SP.I.S.A.                |
   # |  5 | Redenti                  |  
   # |  6 | Matemates                |  
+  #
+  # 2 santa lucia
   def image(floor_num)
     file_name = case id 
     when 1, 3, 6 #  Palazzina A - Building A -  Palazzina B - Building B - Matemates
@@ -39,6 +41,25 @@ class Building < ApplicationRecord
       nil
     end
     file_name ? (MAP_DIR + '/' + file_name) : ''
+  end
+
+  def satelite_image
+    MAP_DIR + '/' + case id
+    when 1
+      'satellite_a.png'
+    when 2
+      'satellite_santa_lucia.png'
+    when 3
+      'satellite_b.png'
+    when 4
+      'satellite_spisa.png'
+    when 5
+      'satellite_redenti.png'
+    when 6
+      'satellite_matemates.png'
+    else
+      ''
+    end
   end
 end
 
