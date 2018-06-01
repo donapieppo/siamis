@@ -43,7 +43,7 @@ module ConferenceHelper
   end
 
   def room_modal_link(room)
-    "<em><span>#{icon('map-marker')}".html_safe + link_to(room, room_path(room), remote: true) + "</span></em>".html_safe
+    icon('map-marker') + " " + link_to(room, room_path(room), remote: true) 
   end
   
   def rating_stars(rating)
@@ -153,18 +153,22 @@ module ConferenceHelper
   def show_schedule(what)
     res = "".html_safe
     case what
+    when Schedule
+      res = content_tag(:span, (icon('calendar') + " " + what.start_to_s + " " + room_modal_link(what.room)).html_safe, class: "pull-right")
     when MultipleConferenceSession
       what.schedules.each do |s|
         res += content_tag(:div, s.to_s)
       end
     when MonoConferenceSession
-      res = content_tag(:span, what.schedule || I18n.t(:schedule_to_be_decided), class: "pull-right")
+      res = show_schedule(what.schedule)
     when Presentation
       if what.poster
         res = content_tag(:span, "Tue 5 (18:30 onwards) and Wed 6 (11:30 to 13:00) in Building A (first and second floor) and B (ground floor)", class: "pull-right")
       else
-        res = content_tag(:span, what.schedule || I18n.t(:schedule_to_be_decided), class: "pull-right")
+        res = show_schedule(what.schedule)
       end
+    else
+      res = content_tag(:span, I18n.t(:schedule_to_be_decided), class: "pull-right")
     end
     res
   end
