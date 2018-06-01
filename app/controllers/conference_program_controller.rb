@@ -2,11 +2,12 @@ class ConferenceProgramController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @daynumber = params[:day].to_i 
+    @daynumber = params[:day] ? params[:day].to_i : 0
     @day = Schedule.conference_day(@daynumber)
     @room = Room.find(params[:room_id]) if params[:room_id]
 
-    @conference_program = Schedule.day_program(@day, room: @room)
+    @user = params[:u] ? current_user : nil
+    @conference_program = Schedule.day_program(@day, room: @room, user: @user, with_includes: false)
   end
 
   def print
