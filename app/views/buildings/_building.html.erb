@@ -1,0 +1,13 @@
+<p>
+  <%= big_icon('map-marker') %> 
+  <%= building.address %>
+  <a href="https://www.google.com/maps/search/?api=1&query=<%= building.lat %>,<%= building.lng %>" target="new"> view on google map</a> 
+</p>
+
+<div>
+  <%= image_tag "/siamis/" + building.image(floor), class: "img-responsive", style: "max-width: 900px;" %>
+</div>
+<div>
+  <%= raw building.description %>  
+</div>
+

@@ -1,6 +1,1 @@
-<div>
-  <%= image_tag "/siamis/" + room.building.image(@room.floor), class: "img-responsive", style: "max-width: 900px;" %>
-</div>
-<div>
-  <%= raw room.building.description %>  
-</div>
+<%= render room.building, floor: room.floor %>  
