@@ -1,5 +1,5 @@
-<%= cache "conference_program_day_#{@daynumber}" do %>  
-  <p style="text-align: right"><%= link_to 'Printable program in A3 page', 'https://www.siam-is18.dm.unibo.it/siamis18_a3_program.pdf' %></p>
+<%= cache_unless @user, "conference_program_day_#{@daynumber}" do %>  
+  <%# <p style="text-align: right"><%= link_to 'Printable program in A3 page', 'https://www.siam-is18.dm.unibo.it/siamis18_a3_program.pdf' %1></p> %>
 
   <% old_hour = nil %>  
 
@@ -8,9 +8,8 @@
   <div class="day_program" style="margin-top: 10px;">
     <% @conference_program.each do |schedule| %>  
       <% hour = l(schedule.start, format: :hour) %>  
-
       <% if old_hour != (old_hour = hour) %>  
-        <div class="alert centered" style="font-size: 120%"><%= big_icon 'clock-o' %> <strong><%= hour %></strong> <br/> <%= l(schedule.start, format: :schedule) %></div>
+        <div class="alert centered" style="font-size: 120%"><%= big_icon 'clock-o' %> <strong><%= hour %></strong> <br/> <%= l(schedule.start, format: :day) %></div>
       <% end %>
 
       <%= cache schedule do %>  
@@ -22,18 +21,22 @@
 
   <div class="centered" style="margin-top: 10px">
     <% if @daynumber > 0 %>
-      <%= link_to icon('chevron-circle-left', size: 42), conference_program_path(day: @daynumber - 1), style: "margin-right: 10px" %>
+      <%= link_to icon('chevron-circle-left', size: 42), conference_program_path(day: @daynumber - 1, u: @user ? 1 : nil), style: "margin-right: 10px" %>
     <% end %>
     <% if @daynumber < Rails.configuration.number_of_days %>
-      <%= link_to icon('chevron-circle-right', size: 42), conference_program_path(day: @daynumber + 1), style: "margin-left: 10px"  %>
+      <%= link_to icon('chevron-circle-right', size: 42), conference_program_path(day: @daynumber + 1, u: @user ? 1 : nil), style: "margin-left: 10px"  %>
     <% end %>
   </div>
 <% end %>
 
 <% if current_user %>  
   <%= javascript_tag do %>  
-    reload_on_modal_close = false;
-    update_interests_highlight();
+    <% if @user %>  
+      reload_on_modal_close = true;
+    <% else @user %>  
+      reload_on_modal_close = false;
+      update_interests_highlight();
+    <% end %>
   <% end %>
 <% end %>
 

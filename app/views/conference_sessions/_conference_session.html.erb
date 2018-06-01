@@ -25,7 +25,7 @@
           <% end %>
         </div>
         <div class="col-md-8" style="text-align: right;">
-          <%= icon('calendar') + (schedules_in_parts[part] || I18n.t(:schedule_to_be_decided)) %>
+          <%= show_schedule schedules_in_parts[part] %>  
         </div>
       </div>
       <% to_highlight = (current_part && current_part == part) %>  

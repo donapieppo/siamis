@@ -10,6 +10,10 @@ class Schedule < ApplicationRecord
     "#{I18n.l(self.start, format: :with_day_name)} in #{self.room}"
   end
 
+  def start_to_s
+    I18n.l(self.start, format: :with_day_name)
+  end
+
   def start_day_number
     if self.start
       (self.start.to_date - Rails.configuration.conference_start_date).to_i
@@ -59,13 +63,22 @@ class Schedule < ApplicationRecord
     res
   end
 
-  def self.day_program(day, room: nil, start: nil)
+  def self.day_program(day, room: nil, start: nil, user: nil, with_includes: true)
     res = Schedule.where('DATE_FORMAT(schedules.start, "%Y-%m-%d") = ?', day.strftime('%F'))
-                  .includes(conference_session: [organizers: :user, presentations: [authors: :user]], room: :building)
-                  .order('schedules.start, conference_sessions.type, conference_sessions.number, conference_sessions.name').references(:conference_sessions)
-                  # .order('schedules.start, rooms.manual_order, rooms.name').references(:rooms)
+                  .order('schedules.start, conference_sessions.type, conference_sessions.number, conference_sessions.name')
+                  .references(:conference_sessions)
+
+    res = res.joins("LEFT JOIN interests ON interests.conference_session_id = schedules.conference_session_id AND interests.part = schedules.part").where('interests.user_id = ? or schedules.conference_session_id in (?)', user.id, Interest.conference_sessions_for_all.ids) if user
+
+    if with_includes
+      res = res.includes(conference_session: [organizers: :user, presentations: [authors: :user]], room: :building) 
+    else 
+      res = res.includes(:conference_session)
+    end
+
     res = res.where('schedules.room_id = ?', room.id) if room
     res = res.where('DATE_FORMAT(schedules.start, "%H:%i") = ?', start) if start
+
     res
   end
 

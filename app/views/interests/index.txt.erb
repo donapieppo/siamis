@@ -17,6 +17,7 @@
   <%= schedule ? l(schedule.start, format: :hour) : ' - ' %> <%= schedule.room if schedule %>  
      **<%= cs.to_s_with_part(part) %>**
      <%= cs.organizers_label %>: <%= cs.organizers.map(&:cn).join(', ') %>
+     <%= render schedule %>  
 <% end %>
 <% end %>
 

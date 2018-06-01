@@ -45,16 +45,11 @@
     <% if organizers.any? %>  
       <p><strong><%= conference_session.organizers_label %>:</strong> <%= show_roles(conference_session.organizers) %></p>
     <% end %>
+
+    <p>&nbsp;<%= show_schedule(conference_session) %></p>
+    <p class="footer-actions">&nbsp;<%= show_actions(conference_session) %></p>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-8 col-md-offset-4 footer-actions">
-    <p>
-    &nbsp;<%= show_schedule(conference_session) %>
-    </p>
-    <p><%= show_actions(conference_session) %> </p>
-  </div>
-</div>
+  </div><!-- row -->
 </div>
 
 <%= javascript_tag do %>  

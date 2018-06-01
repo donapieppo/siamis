@@ -5,7 +5,8 @@
       <% day = Schedule.conference_day(daynumber) %>
       <li role="presentation" style="float: left; display: block; width: <%= percent %>%">
         <% day_string = "<strong>#{day.strftime('%^a')}</strong><br/>#{day.strftime('%d %B')}" %>  
-        <%= link_to day_string.html_safe, conference_program_path(day: daynumber, room_id: @room ? @room.id : nil), class: "list-group-item #{'active' if day == current_day}" %>
+        <% h = { day: daynumber } ; h[:room_id] = @room.id if @room ; h[:u] = 1 if params[:u] %>  
+        <%= link_to day_string.html_safe, conference_program_path(h), class: "list-group-item #{'active' if day == current_day}" %>
       </li>
     <% end %>
   </ul>
