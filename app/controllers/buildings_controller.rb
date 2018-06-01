@@ -34,7 +34,7 @@ class BuildingsController < ApplicationController
   private
 
   def building_params
-    params[:building].permit(:name, :description, :lat, :lng)
+    params[:building].permit(:name, :description, :address, :city, :lat, :lng)
   end
 
   def set_building
