@@ -1,6 +1,7 @@
 <%= program_title('My program', 'map') %>  
 
 <p class="alert alert-info">In order to build you personal schedule visit the <%= link_to 'program day by day page', conference_program_path %>, open the session you are interested in and click on the star ( <%= icon('star') %>) icon.</p>
+
 <% @interests.sort.to_h.each do |day, sessions| %>  
   <% day_number = (day - Rails.configuration.conference_start_date).to_i %>  
   <div style="font-size: 18px; margin: 32px 0px">
@@ -12,22 +13,25 @@
     <% cs       = s[:cs] %>  
     <% part     = s[:part] %>  
     <% schedule = cs.schedules.where(part: part).first %>  
-    <div class="conference_program_item">
-      <%= link_to(conference_session_path(cs, part: schedule.part), remote: true) do %>
-        <div class= "<%= conference_session_css_class(cs) %> conference_program_item_name">
-          <%= icon 'clock-o' %> <%= schedule ? l(schedule.start, format: :hour) : ' - ' %>  
-        </div>
-      <% end %>
-      <div class='conference_program_item_description'>
-        <%= link_to conference_session_path(cs, part: part), remote: true do %>
-          <strong><%= cs.to_s_with_part(part) %></strong> 
-        <% end %>
-        <small>
-          <br/><%= cs.organizers_label %>: <%= show_roles(cs.organizers) %><br/>
-          <%= room_modal_link(schedule.room) if schedule %>  
-        </small>
-      </div>
-    </div>
+    <%= l schedule.start, format: :hour %>  
+    <%= render schedule %>  
+
+    <%# <div class="conference_program_item"> %>
+    <%#   <%= link_to(conference_session_path(cs, part: schedule.part), remote: true) do %1> %>
+    <%#     <div class= "<%= conference_session_css_class(cs) %1> conference_program_item_name"> %>
+    <%#       <%= icon 'clock-o' %1> <%= schedule ? l(schedule.start, format: :hour) : ' - ' %1> %>  
+    <%#     </div> %>
+    <%#   <% end %1> %>
+    <%#   <div class='conference_program_item_description'> %>
+    <%#     <%= link_to conference_session_path(cs, part: part), remote: true do %1> %>
+    <%#       <strong><%= cs.to_s_with_part(part) %1></strong> %> 
+    <%#     <% end %1> %>
+    <%#     <small> %>
+    <%#       <br/><%= cs.organizers_label %1>: <%= show_roles(cs.organizers) %1><br/> %>
+    <%#       <%= room_modal_link(schedule.room) if schedule %1> %>  
+    <%#     </small> %>
+    <%#   </div> %>
+    <%# </div> %>
   <% end %>
 <% end %>
 
