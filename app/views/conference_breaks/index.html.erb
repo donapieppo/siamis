@@ -1,0 +1,10 @@
+<%= program_title('Breaks', 'user') %>  
+
+<% if user_in_organizer_committee? %>
+  <p class="centered"><%= link_to 'Create new Break', new_conference_break_path, class: :big_button %></p>
+<% end %>
+
+<% @conference_sessions.each do |cb| %>  
+  <%= render cb %>  
+<% end %>
+  

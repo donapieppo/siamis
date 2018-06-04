@@ -1,0 +1,3 @@
+<%= conference_break %>
+<%= link_to_edit(edit_conference_break_path(conference_break)) if user_in_organizer_committee? %>  
+&nbsp;<%= show_schedule(conference_break) %>
