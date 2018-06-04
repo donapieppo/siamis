@@ -11,7 +11,9 @@
       <strong><%= cs.name %></strong> 
     <% end %>
     <div style="">
-      <% unless cs.is_a?(ConferenceBreak) %>  
+      <% if cs.is_a?(MonoConferenceSession) %>  
+        <%= show_role(cs.speaker) %><br/>
+      <% elsif ! cs.is_a?(ConferenceBreak) %>  
         <%= cs.organizers_label %>: <%= show_roles(cs.organizers) %><br/>
       <% end %>
       <em><span><%= room_modal_link(schedule.room) %></span></em>
