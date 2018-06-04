@@ -34,6 +34,9 @@ public/ms-icon-144x144.png
 public/ms-icon-150x150.png
 public/ms-icon-310x310.png
 public/ms-icon-70x70.png
+public/sightseeings
+public/uploads
+public/maps
 public/*.pdf
 
 /doc/*
