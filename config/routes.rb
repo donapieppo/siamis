@@ -165,8 +165,10 @@ Rails.application.routes.draw do
   get 'equipments',      to: 'home#equipments',  as: :equipments
   get 'travel',          to: 'home#travel',      as: :travel
 
-  get 'conference_program' , to: 'conference_program#index', as: :conference_program
-  get 'conference_program/print' , to: 'conference_program#print', as: :print_conference_program
+  get 'conference_program',                   to: 'conference_program#index', as: :conference_program
+  get 'day/(:day)/conference_program',          to: 'conference_program#index', as: :conference_program_day, constraints: { day: /\d/ }
+  get 'day/(:day)/personal_conference_program', to: 'conference_program#index', as: :personal_conference_program_day, u: 1, constraints: { day: /\d/ }
+  get 'conference_program/print',             to: 'conference_program#print', as: :print_conference_program
 
   get 'who_impersonate',    to: 'impersonations#who_impersonate',    as: :who_impersonate
   get 'impersonate/:id',    to: 'impersonations#impersonate',        as: :impersonate
@@ -185,4 +187,5 @@ Rails.application.routes.draw do
   get 'latex/program_glance',   to: 'latex#program_glance',   as: :program_glance_latex
   get 'latex/speakers_and_organizers', to: 'latex#speakers_and_organizers',       as: :speakers_and_organizers_latex
   get 'latex/doors',            to: 'latex#doors',            as: :doors
+  get 'latex/mono_doors',       to: 'latex#mono_doors',       as: :mono_doors
 end
