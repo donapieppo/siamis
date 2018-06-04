@@ -6,16 +6,20 @@
 <a href="https://www.google.com/maps/search/?api=1&query=<%= building.lat %>,<%= building.lng %>" target="new"> view on google map</a> 
 </p>
 
-<div>
-  <%= image_tag "/" + building.satelite_image, class: "img-responsive", alt: 'satellite image' %>
-</div>
-
-<div>
-  <%= image_tag "/siamis/" + building.image(floor), class: "img-responsive", alt: 'building image' %>
-</div>
-
-<div>
+<p>
   <%= raw building.description %>  
+</p>
+
+<p>
+  -
+  <%= image_tag Rails.configuration.conference_main_url + building.satelite_image, class: "img-responsive", alt: 'satellite image' %>
+  -
+</p>
+
+<div>
+  -
+  <%= image_tag Rails.configuration.conference_main_url + building.image(floor), class: "img-responsive", alt: 'building image' %>
+  -
 </div>
 
 </div>
