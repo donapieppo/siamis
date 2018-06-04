@@ -1,0 +1,13 @@
+<% h = {} ; h[:room_id] = room.id if room %>  
+
+<div class="centered" style="margin-top: 10px">
+  <% if daynumber > 0 %>
+    <% cp_url = user ? personal_conference_program_day_path(daynumber - 1, h) : conference_program_day_path(daynumber - 1, h) %>  
+    <%= link_to icon('chevron-circle-left', size: 42), cp_url, style: "margin-right: 10px" %>
+  <% end %>
+  <% if (daynumber + 1) < Rails.configuration.number_of_days %>
+    <% cp_url = user ? personal_conference_program_day_path(daynumber + 1, h) : conference_program_day_path(daynumber + 1, h) %>  
+    <%= link_to icon('chevron-circle-right', size: 42), cp_url, style: "margin-left: 10px"  %>
+  <% end %>
+</div>
+
