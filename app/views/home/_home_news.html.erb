@@ -1,0 +1,30 @@
+<p class="centered alert alert-info" style="font-size: 120%">
+  SIAM-IS18 <br/> is happening in <br/> <strong><%= big_icon('bell') %> <%= (Rails.configuration.conference_start_date - Date.today).to_i %> days!</strong>
+</p>
+
+<div class="container" style="max-width: 992px;">
+  <p class="centered">
+  <span class="fa-stack fa-lg" style="margin-top: 20px; font-size: 60px; border-radius: 50%; border: 3px solid; color: green">
+    <i class="fa fa-bell-o fa-stack-1x"></i>
+  </span>
+  </p>
+  <p>
+  The SIAM IS18 Conference will begin on Tuesday, June 5 at 9:00 in 
+  <%= room_modal_link(Room.find(4)) %>
+  (Via Castiglione, 36). The opening session will include greetings of the Rector Francesco Ubertini, the President of Emilia Romagna Region Stefano Bonaccini, the Bologna Mayor Virginio Merola, the  Chair of SIAG/IS Gitta Kutyniok, the President of SIMAI-Italy Luca Formaggia, the Director of the Department of Mathematics at Alma Mater Giovanni Dore, and the Conference General Co-chair and Vice-chair of SIAG/IS Fiorella Sgallari.
+  </p>
+  <p>
+  The opening speeches will be followed by the two <%= link_to 'plenary lectures', plenaries_path %> by Raymond H. Chan (10:00) and Anna Michalak (11:00).
+  </p>
+  <p>
+  The Conference will continue in its main location in <a href="https://www.google.com/maps/place/Via+Beniamino+Andreatta,+8,+40126+Bologna+BO" target="new">via Andreatta 8</a>.
+  </p>
+  <p>
+  Welcome lunch will be offered at 12:00 in the courtyard of the main building. 
+  </p>
+  <p>
+  At 13:30, the concurrent afternoon sessions will begin and will be followed by the poster session and welcome cocktail at 18:30.
+  </p>
+</div><!-- container -->
+<hr/>
+
