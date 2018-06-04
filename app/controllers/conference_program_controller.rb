@@ -7,7 +7,10 @@ class ConferenceProgramController < ApplicationController
     @room = Room.find(params[:room_id]) if params[:room_id]
 
     @user = params[:u] ? current_user : nil
-    @conference_program = Schedule.day_program(@day, room: @room, user: @user, with_includes: false)
+    # update for user and for changes
+    #if @user or stale?(strong_etag: "123456_#{@day}_111")
+      @conference_program = Schedule.day_program(@day, room: @room, user: @user, with_includes: false)
+    #end
   end
 
   def print
