@@ -2,7 +2,11 @@
   <p class="alert alert-danger">
   <strong>In order to to create your personal program, please <%= login_link button: true %>.</strong>
   </p>
+<% elsif params[:u] %>
+  <%= program_title('My program', 'map') %>  
+  <p class="alert alert-info">In order to build you personal schedule visit the <%= link_to 'program day by day page', conference_program_path %>, open the session you are interested in and click on the star ( <%= icon('star') %>) icon.</p>
 <% end %>
+
 
 <%= cache_unless (@user || @room), "conference_program_day_#{@daynumber}" do %>  
   <% old_hour = nil %>  
