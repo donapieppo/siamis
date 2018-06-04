@@ -66,6 +66,9 @@ class LatexController < ApplicationController
   def doors
   end
 
+  def mono_doors
+  end
+
   private
 
   def add_to_users(user, what, day_and_hour, speak = false)
