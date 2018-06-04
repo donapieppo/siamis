@@ -43,7 +43,7 @@ module ConferenceHelper
   end
 
   def room_modal_link(room)
-    icon('map-marker') + " " + link_to(room, room_path(room), remote: true) 
+    icon('map-marker') + " " + link_to(room, room_path(room), target: 'new') 
   end
   
   def rating_stars(rating)
