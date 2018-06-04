@@ -1,0 +1,37 @@
+<% ConferenceSession.where("conference_sessions.type IN ('Plenary', 'PanelSession', 'Minitutorial')").each do |cs| %>  
+  <% schedule = cs.schedules.first %>  
+  \begin{siam_session_part}
+    \siammonoconferencesession{<%= "#{cs.to_s_with_part(schedule.part)}" %>}{<%= raw latex_text_clean cs.name %>}{<%= raw latex_text_clean cs.description %>}{<%= l schedule.start, format: :schedule_day_and_hour %>}{<%= schedule.room %>}
+
+    \bigskip
+
+    \begin{siam_organizers}{<%= cs.organizers_label.pluralize %>}
+      <% (organizers = cs.organizers).each do |o| %>  
+        \item[] <%= latex_user(o.user) %>
+      <% end %>
+      <% if organizers.empty? %>  
+      \item[] To be defined
+      <% end %>
+    \end{siam_organizers}
+
+    \bigskip
+
+      <% cs.authors.each do |author| %>  
+
+      {\Large<%= latex_user(author.user, 1) %>}
+      \smallskip
+
+      <% end %>
+      <% if cs.id == 23 %> 
+        with
+
+        {\Large Carlo de Franchis (École Normale Supérieure Paris-Saclay)}
+
+        \smallskip
+
+        {\Large Enric Meinhardt-Llopis (École Normale Supérieure Paris-Saclay)}
+      <% end %>
+
+  \end{siam_session_part}
+<% end %>
+
