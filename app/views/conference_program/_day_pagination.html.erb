@@ -1,12 +1,14 @@
+<% percent = (100 / Rails.configuration.number_of_days).to_i %>  
+
 <nav aria-label="Day pagination">
   <ul class="nav nav-tabs nav-justified">
-    <% percent = (100 / Rails.configuration.number_of_days).to_i %>  
     <% (0...Rails.configuration.number_of_days).each do |daynumber| %>  
       <% day = Schedule.conference_day(daynumber) %>
       <li role="presentation" style="float: left; display: block; width: <%= percent %>%">
         <% day_string = "<strong>#{day.strftime('%^a')}</strong><br/>#{day.strftime('%d %B')}" %>  
-        <% h = { day: daynumber } ; h[:room_id] = @room.id if @room ; h[:u] = 1 if params[:u] %>  
-        <%= link_to day_string.html_safe, conference_program_path(h), class: "list-group-item #{'active' if day == current_day}" %>
+        <% h = {} ; h[:room_id] = room.id if room %>  
+        <% cp_url = user ? personal_conference_program_day_path(daynumber, h) : conference_program_day_path(daynumber, h) %>  
+        <%= link_to day_string.html_safe, cp_url, class: "list-group-item #{'active' if day == current_day}" %>
       </li>
     <% end %>
   </ul>
