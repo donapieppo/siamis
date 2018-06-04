@@ -29,7 +29,7 @@ class Building < ApplicationRecord
   # |  6 | Matemates                |  
   #
   # 2 santa lucia
-  def image(floor_num)
+  def image(floor_num=0)
     file_name = case id 
     when 1, 3, 6 #  Palazzina A - Building A -  Palazzina B - Building B - Matemates
       ['f01-Belmeloro14_p0.png', 'f02-Belmeloro14_p1.png', 'f03-Belmeloro14_p2.png', 'f04-Belmeloro14_p3.png'][floor_num]
