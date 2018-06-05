@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-  before_action :user_in_organizer_committee!
+  before_action :user_in_organizer_committee!, except: [:show]
   before_action :set_tag, only: [:edit, :update, :show, :destroy]
   # before_action :what_for_and_check_permission, only: [:new, :create]
 
