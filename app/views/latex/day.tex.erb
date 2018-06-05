@@ -1,0 +1,12 @@
+<% old_hour = nil %>  
+<% @conference_program.each do |schedule| %>  
+  <% hour = l(schedule.start, format: :hour) %>  
+  <% if old_hour != (old_hour = hour) %>  
+    \dayhour{<%= hour %>}
+  <% end %>
+
+  <% cs = schedule.conference_session %>  
+  \daysession{<%= cs.code_with_part(schedule.part) %>}{<%= cs.name %>}{<%= schedule.room %>}
+<% end %>
+
+

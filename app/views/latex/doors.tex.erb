@@ -1,9 +1,9 @@
-<% Room.order('manual_order').each do |room| %>
-  \roomtitle{<%= room.to_s %>}
-  <% room.schedules.includes(conference_session: [presentations: [authors: :user]]).order(:start).each do |schedule| %>  
+<%# <% Room.order('manual_order').each do |room| %1> %>
+<%#   \roomtitle{<%= room.to_s %1>} %>
+  <% Schedule.includes(conference_session: [presentations: [authors: :user]]).where("conference_sessions.type IN ('Minisymposium', 'ContributedSession')").references(:confernce_session).order(:start).each do |schedule| %>  
   <% cs = schedule.conference_session %>  
   \begin{siam_session_part}
-    \siamconferencesession{<%= "#{cs.to_s_with_part(schedule.part)}" %>}{<%= raw latex_text_clean cs.name %>}{<%= raw latex_text_clean cs.description %>}{<%= l schedule.start, format: :schedule_day_and_hour %>}{<%= schedule.room %>}
+    \siamconferencesession{<%= "#{cs.code_with_part(schedule.part)}" %>}{<%= raw latex_text_clean cs.name %>}{<%= raw latex_text_clean cs.description %>}{<%= l schedule.start, format: :schedule_day_and_hour %>}{<%= schedule.room %>}
 
     \begin{siam_organizers}{<%= cs.organizers_label.pluralize %>}
       <% (organizers = cs.organizers).each do |o| %>  
@@ -28,5 +28,5 @@
     <% end %>
   \end{siam_session_part}
   <% end %>
-<% end %>
+<%# <% end %1> %>
 
