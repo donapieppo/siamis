@@ -19,7 +19,7 @@ class Unicredit
   # u = Unicredit.new(payment)
   def initialize(payment)
     # log: true, pretty_print_xml: true
-    @client  = Savon.client(wsdl: WSDL, logger: Rails.logger, log_level: :debug) 
+    @client  = Savon.client(wsdl: WSDL, logger: Rails.logger) 
     @payment = payment
   end
 
