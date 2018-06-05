@@ -188,4 +188,5 @@ Rails.application.routes.draw do
   get 'latex/speakers_and_organizers', to: 'latex#speakers_and_organizers',       as: :speakers_and_organizers_latex
   get 'latex/doors',            to: 'latex#doors',            as: :doors
   get 'latex/mono_doors',       to: 'latex#mono_doors',       as: :mono_doors
+  get 'latex/day',              to: 'latex#day',              as: :latex_day
 end
