@@ -109,7 +109,7 @@ class Deadline
 
     def registration_open?
       t = Date.today
-      (t >= pre_registration_start) and (t < Rails.configuration.conference_start_date)
+      (t >= pre_registration_start) # and (t <= Rails.configuration.conference_start_date)
     end
 
     def can_propose?(what)
