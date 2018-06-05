@@ -33,11 +33,11 @@
   </p>
   <% if user_in_organizer_committee? %>
     <p>Bookings:</p>
-    <p>
+    <ul>
       <% sightseeing.bookings.includes(:user).each do |booking| %>  
-        <span class="badge"><%= booking.number %></span> <%= booking.user.email %>
+        <li><span class="badge"><%= booking.number %></span> <%= booking.user.cn_militar %> (<%= booking.user.email %>)</li>
       <% end %>
-    </p>
+    </ul>
     <p> <%= link_to_edit "edit", edit_sightseeing_path(sightseeing), button: true %> </p>
   <% end %>
   </p>
