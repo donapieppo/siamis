@@ -12,7 +12,7 @@
     <% end %>
     <div style="">
       <% if cs.is_a?(MonoConferenceSession) %>  
-        <%= show_role(cs.speaker) %><br/>
+        <%= show_roles(cs.speakers) %><br/>
       <% elsif ! cs.is_a?(ConferenceBreak) %>  
         <%= cs.organizers_label %>: <%= show_roles(cs.organizers) %><br/>
       <% end %>
