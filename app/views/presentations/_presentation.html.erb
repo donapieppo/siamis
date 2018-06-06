@@ -55,7 +55,13 @@
 </div><!-- panel-body -->
 
 <div class="panel-footer">
-  <p>&nbsp;<%= show_schedule(presentation) %></p>
+  <p>
+  <% if presentation.poster %>  
+    <%= render partial: 'poster_sessions/when_and_map' %>
+  <% else %>
+    &nbsp;<%= show_schedule(presentation) %>
+  <% end %>
+  </p>
   <p class="footer-actions"><%= show_actions(presentation) %></p>
 </div><!-- panel-footer -->
 </div>
