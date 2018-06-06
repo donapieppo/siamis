@@ -73,6 +73,7 @@ class ConferenceSession < ApplicationRecord
     self.schedules.map{|s| s.to_s}.join(', ')
   end
 
+  # < roles 
   def speakers(part = nil)
     # inefficient ???
     self.presentations.order(:number).where(part: part || 1).map{|p| p.speaker}
