@@ -95,6 +95,10 @@ class Deadline
       Rails.configuration.conference_start_date
     end
 
+    def conference_end_date
+      @@_conference_end_date ||= Rails.configuration.conference_start_date + Rails.configuration.number_of_days.days
+    end
+
     def before_minisymposium_proposal?
       Date.today < @@_deadlines[:minisymposium_proposal][:start]
     end
@@ -109,7 +113,7 @@ class Deadline
 
     def registration_open?
       t = Date.today
-      (t >= pre_registration_start) # and (t <= Rails.configuration.conference_start_date)
+      (t >= pre_registration_start) and (t <= conference_end_date)
     end
 
     def can_propose?(what)
