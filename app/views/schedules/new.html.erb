@@ -19,6 +19,10 @@
   <% end %>
 <% end %>
 
-<%= link_to icon('reply') + ' back to submissions', admin_submissions_path(@conference_session.class.to_s.downcase => 1), class: :button %>  
+<% if @conference_session.is_a?(ConferenceBreak) %>  
+  <%= link_to icon('reply') + ' back to breaks', conference_breaks_path, class: :button %>  
+<% else %>
+  <%= link_to icon('reply') + ' back to submissions', admin_submissions_path(@conference_session.class.to_s.downcase => 1), class: :button %>  
+<% end %>
 
 
