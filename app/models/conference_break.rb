@@ -13,6 +13,14 @@ class ConferenceBreak < MonoConferenceSession
   def code_with_part(p)
     "BR"
   end
+
+  def authors
+    []
+  end
+
+  def author
+    nil
+  end
 end
 
 
