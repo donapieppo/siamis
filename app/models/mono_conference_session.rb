@@ -14,6 +14,8 @@ class MonoConferenceSession < ConferenceSession
   after_create :create_the_presentation
   after_update :update_presentation_name
   
+  scope :all_included, -> { includes(schedules: :room, presentation: [authors: :user], organizers: :user) }
+
   def authors
     self.presentation and self.presentation.authors
   end
