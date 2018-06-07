@@ -157,7 +157,7 @@ module ConferenceHelper
       res = content_tag(:span, (icon('calendar') + " " + what.start_to_s + " " + room_modal_link(what.room)).html_safe, class: "pull-right")
     when MultipleConferenceSession
       what.schedules.each do |s|
-        res += content_tag(:div, s.to_s)
+        res += show_schedule(s)
       end
     when MonoConferenceSession
       res = show_schedule(what.schedule)
@@ -190,6 +190,19 @@ module ConferenceHelper
      conference_session.class.to_s.downcase + "_panel"
   end
 
+  # for better caching
+  # REFACTOR!!!
+  def list_presentations_with_hour(presentations, conference_session, schedule, to_highlight = false)
+    content_tag(:dl, class: "conference-session-presentations-list #{to_highlight ? 'selected-presentations-list' : '' }") do
+      presentations.each do |presentation|
+        concat(content_tag(:dt, I18n.l(presentation.start, format: :hour).html_safe + " " + link_to(presentation, presentation, remote: true)))
+        # for organizer_committee_or_cochair
+        has_abstract_icon = (user_in_organizer_committee_or_cochair? and presentation.abstract and presentation.abstract.size >= 50) ? icon('font', size: "14") : ''
+        concat(content_tag(:dd, show_roles(presentation.authors, only_speaker: true) + " " + has_abstract_icon))
+      end
+    end
+  end
+
   def list_presentations(presentations, conference_session, to_highlight = false)
     content_tag(:dl, class: "conference-session-presentations-list #{to_highlight ? 'selected-presentations-list' : '' }") do
       presentations.each do |presentation| 
@@ -197,6 +210,7 @@ module ConferenceHelper
         # for organizer_committee_or_cochair
         has_abstract_icon = (user_in_organizer_committee_or_cochair? and presentation.abstract and presentation.abstract.size >= 50) ? icon('font', size: "14") : ''
         concat(content_tag(:dd, show_roles(presentation.authors, only_speaker: true) + " " + has_abstract_icon))
+        # concat(presentation.abstract) if to_highlight
       end
     end
   end
