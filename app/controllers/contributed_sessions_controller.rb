@@ -3,7 +3,7 @@ class ContributedSessionsController < ConferenceSessionsController
 
   # see all
   def index
-    @conference_sessions = ContributedSession.includes(:schedules).order(:number)
+    @conference_sessions = ContributedSession.includes(schedules: :room, organizers: :user).order(:number)
   end
 
   def new
