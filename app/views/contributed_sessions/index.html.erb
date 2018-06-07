@@ -8,8 +8,13 @@
 <%# <%= render partial: 'deadlines/presentation_submission' %1> %>  
 
 <div class="list-group">
-  <% @conference_sessions.each do |cs| %>
-    <%= link_to cs, cs, remote: true, class: 'list-group-item' %> 
+  <% cache 'conference_sessions_list_cache' do %>
+    <% @conference_sessions.each do |cs| %>
+      <div class="list-group-item">
+        <strong><%= link_to cs, cs, remote: true %></strong></br>
+        <small><span style="margin-left: 2em"><%= show_roles(cs.organizers) %></span> <%= show_schedule(cs) %></small>
+      </div>
+    <% end %>
   <% end %>
 </div>
 
