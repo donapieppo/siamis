@@ -42,7 +42,7 @@ CREATE TABLE `users` (
 -- ContributedSession
 CREATE TABLE `conference_sessions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `type` ENUM('Minisymposium', 'Minitutorial', 'Plenary', 'PosterSession', 'ContributedSession'),
+  `type` ENUM('Minisymposium', 'Minitutorial', 'Plenary', 'PosterSession', 'ContributedSession', 'ConferenceBreak'),
   `number` int(2),
   `name` varchar(255),
   `description` text, 
