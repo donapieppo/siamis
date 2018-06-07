@@ -12,7 +12,7 @@
     <% @conference_sessions.each do |cs| %>
       <div class="list-group-item">
         <strong><%= link_to cs, cs, remote: true %></strong></br>
-        <small><span style="margin-left: 2em"><%= show_roles(cs.organizers) %></span> <%= show_schedule(cs) %></small>
+        <small><span style="margin-left: 2em"><%= cs.organizers_label %>: <%= show_roles(cs.organizers) %></span> <%= show_schedule(cs) %></small>
       </div>
     <% end %>
   <% end %>
@@ -21,7 +21,7 @@
 <h2>List of accepted contributed presentations</h2>
 
 <div class="list-group">
-  <% cache 'presentations_list_cache' do %>
+  <% cache 'contributed_presentations_list_cache' do %>
     <% Presentation.at_contributed.order(:name).each do |presentation| %>  
       <%= link_to presentation.name, presentation, remote: true, class: 'list-group-item' %> 
     <% end %>
