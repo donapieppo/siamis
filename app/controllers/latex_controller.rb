@@ -70,7 +70,7 @@ class LatexController < ApplicationController
   end
 
   def day
-    @daynumber = params[:day] ? params[:day].to_i : 2
+    @daynumber = params[:day] ? params[:day].to_i : 0
     @day = Schedule.conference_day(@daynumber)
     @conference_program = Schedule.day_program(@day)
   end
