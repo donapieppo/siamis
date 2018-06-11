@@ -1,3 +1,4 @@
+\rhead{\textbf{<%= l @day %>  }}
 <% old_hour = nil %>  
 <% @conference_program.each do |schedule| %>  
   <% hour = l(schedule.start, format: :hour) %>  
