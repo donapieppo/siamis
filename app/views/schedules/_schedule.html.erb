@@ -11,11 +11,14 @@
       <strong><%= cs.name %></strong> 
     <% end %>
     <div style="">
-      <% if cs.is_a?(MonoConferenceSession) %>  
-        <%= show_roles(cs.speakers) %><br/>
-      <% elsif ! cs.is_a?(ConferenceBreak) %>  
-        <%= cs.organizers_label %>: <%= show_roles(cs.organizers) %><br/>
+      <% if cs.is_a?(ConferenceBreak) %>  
+        <%= big_icon('coffee') %> <%= cs.description %>  
+      <% elsif cs.is_a?(MonoConferenceSession) %>  
+        <%= show_roles(cs.speakers) %>
+      <% else %>  
+        <%= cs.organizers_label %>: <%= show_roles(cs.organizers) %>
       <% end %>
+      <br/>
       <em><span><%= room_modal_link(schedule.room) %></span></em>
     </div>
   </div>
