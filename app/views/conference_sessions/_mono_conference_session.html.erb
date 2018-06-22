@@ -41,13 +41,17 @@
       <p><%= conference_session.description %></p>
     <% end %>
     </div>
-
     <% if organizers.any? %>  
       <p><strong><%= conference_session.organizers_label %>:</strong> <%= show_roles(conference_session.organizers) %></p>
     <% end %>
 
+    <div class="raw_note" style="text-align: center">
+      <%= raw conference_session.raw_note %>  
+    </div>
+
     <p>&nbsp;<%= show_schedule(conference_session) %></p>
     <p class="footer-actions">&nbsp;<%= show_actions(conference_session) %></p>
+
   </div>
   </div><!-- row -->
 </div>

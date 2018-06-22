@@ -3,6 +3,9 @@
   <%= conference_session.input :name %>  
   <%= conference_session.input :description, input_html: {rows: 8} %>  
   <%= conference_session.input :number %>  
+  <% if current_user.in_organizer_committee? %>  
+    <%= conference_session.input :raw_note %>  
+  <% end %>
   <%= conference_session.submit %> - <%= link_to_back @conference_session %>
 <% end %>
 

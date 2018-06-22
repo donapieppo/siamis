@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get :dietaries, on: :collection
     get :expected, on: :collection
     get :expected2, on: :collection
+    get :final_sum, on: :collection
     get :wifi_accounts, on: :collection
     resources :presentations
     resources :manual_payments

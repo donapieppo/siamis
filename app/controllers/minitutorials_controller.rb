@@ -21,7 +21,7 @@ class MinitutorialsController < ConferenceSessionsController
   private
 
   def conference_session_params
-    params[:minitutorial].permit(:name, :description, :number)
+    params[:minitutorial].permit(:name, :description, :number, :raw_note)
   end
 end
 
