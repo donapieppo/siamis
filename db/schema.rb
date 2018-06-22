@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "bookings", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id", null: false, unsigned: true
     t.integer "sightseeing_id", null: false, unsigned: true
-    t.integer "number", unsigned: true
+    t.integer "number", limit: 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["sightseeing_id"], name: "sightseeing_id"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.text "description"
     t.integer "parts", default: 1
     t.boolean "accepted"
+    t.text "raw_note"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
