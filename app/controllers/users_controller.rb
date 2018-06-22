@@ -245,6 +245,26 @@ class UsersController < ApplicationController
     end
   end
 
+  #COGNOME NOME, AFFILIAZIONE, COUNTRY, SITO per chi lo ha inserito, E-MAIL, TIPO DI REGISTRAZIONE (SIAG member / SIAM member / Non member minisymposia organizer or speaker / Non member / One day / Student  e anche Early registration/ On site registration)
+  def final_sum
+    @users = User.participants.includes(conference_registration: :payment)
+    _speakers_and_organizers_ids = Role.speakers_and_organizers.select(:user_id).map(&:user_id)
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data(CSV.generate(headers: true, col_sep: ";") do |csv|
+          csv << [ 'surname', 'name', 'affiliation', 'siam', 'siag', 'student', 'staff', 'speaker_organizer', 'payment', 'singleday', 'web page', 'email']
+          @users.each do |user|
+            registration = user.conference_registration or next
+            payment = registration ? registration.payment : nil 
+            speaker_or_organizer = _speakers_and_organizers_ids.include?(user.id)
+            csv << [user.surname, user.name, user.affiliation_with_country, show_bool(user.siam), show_bool(user.siag), show_bool(user.student), show_bool(user.staff), show_bool(speaker_or_organizer), payment ? payment.amount : '0', payment ? payment.single_day : '', user.web_page, user.email]
+          end
+        end)
+      end
+    end
+  end
+
   # FIXME temporary - to delete
   def wifi_accounts
     @users = User.participants.order(:surname, :name)
@@ -300,6 +320,10 @@ class UsersController < ApplicationController
         csv << [user.cn, user.affiliation_with_country]
       end
     end
+  end
+
+  def show_bool(v)
+    v.blank? ? '' : '*'
   end
 end
 
