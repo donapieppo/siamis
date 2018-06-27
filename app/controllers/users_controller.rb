@@ -253,12 +253,12 @@ class UsersController < ApplicationController
       format.html
       format.csv do
         send_data(CSV.generate(headers: true, col_sep: ";") do |csv|
-          csv << [ 'surname', 'name', 'affiliation', 'siam', 'siag', 'student', 'staff', 'speaker_organizer', 'payment', 'singleday', 'web page', 'email']
+          csv << [ 'surname', 'name', 'affiliation', 'country', 'siam', 'siag', 'student', 'staff', 'speaker_organizer', 'payment', 'singleday', 'web page', 'email']
           @users.each do |user|
             registration = user.conference_registration or next
             payment = registration ? registration.payment : nil 
             speaker_or_organizer = _speakers_and_organizers_ids.include?(user.id)
-            csv << [user.surname, user.name, user.affiliation_with_country, show_bool(user.siam), show_bool(user.siag), show_bool(user.student), show_bool(user.staff), show_bool(speaker_or_organizer), payment ? payment.amount : '0', payment ? payment.single_day : '', user.web_page, user.email]
+            csv << [user.surname, user.name, user.affiliation, user.country, show_bool(user.siam), show_bool(user.siag), show_bool(user.student), show_bool(user.staff), show_bool(speaker_or_organizer), payment ? payment.amount : '0', payment ? payment.single_day : '', user.web_page, user.email]
           end
         end)
       end
