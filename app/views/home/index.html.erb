@@ -1,7 +1,8 @@
 <% @home_header = @no_container = true %>
 
 <% cache 'home_page_cache' do %>
-  <%= render partial: 'home_news' %>
+  <%# <%= render partial: 'home_news' %1> %>
+  <%= render partial: 'thanks' %>
   <div>
     <%= home_section('preliminary_announcement') %>  
     <%= home_section('conference_themes') %>  

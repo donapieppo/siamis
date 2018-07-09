@@ -1,0 +1,48 @@
+<%= home_program_title('Thank you for your participation and see you again in Bologna!', 'heart') %>
+
+<div class="container" style="max-width: 992px;">
+
+  <div class="row">
+    <div class="col-md-6">
+      <img src="https://www.siam-is18.dm.unibo.it/photos/Siam2018_Opening1.jpg" alt="Siam2018 Winner" class="img-rounded img-responsive" style="margin-bottom:10px"/>
+    </div>
+    <div class="col-md-6">
+      <img src="https://www.siam-is18.dm.unibo.it/photos/Siam2018_Opening2.jpg" alt="Siam2018 Winner" class="img-rounded img-responsive" style="margin-bottom:10px"/>
+    </div>
+    <div class="col-md-6">
+      <img src="https://www.siam-is18.dm.unibo.it/photos/Siam2018_grana.jpg" alt="Siam2018 Winner" class="img-rounded img-responsive" style="margin-bottom:10px"/>
+    </div>
+    <div class="col-md-6">
+      <img src="https://www.siam-is18.dm.unibo.it/photos/Siam2018_GalaDinner3.jpg" alt="Siam2018 Winner" class="img-rounded img-responsive" style="margin-bottom:10px"/>
+    </div>
+  </div>
+  <div class="alert alert-success">
+    <div class="centered"><h4>Photos of the conference</h4></div>
+
+    <div class="row">
+      <% [['QFPmejgYMaJuo7at6', 'arrival.jpg',   'Arrival at Aula Magna Santa Lucia'], 
+          ['zU6om4VjFUdXoeR89', 'choir.jpg',     'Choir "Collegium Musicum Almae Matris"'],
+          ['LGToeqvgaxeMgnRN6', 'opening.jpg',   'Opening Session at Aula Magna Santa Lucia'],
+          ['uPyLnKaZxdQnHjtd8', 'welcome.jpg',   'Welcome cocktail at Complesso Belmeloro'],
+          ['gEbjRu8CfPxAuf6DA', 'posters.jpg',   'Poster Session'],
+          ['8aKPyKTSaTiDsaL48', 'dinner.jpg',    'Social Dinner at Palazzo Re Enzo'],
+          ['E5mCwNwHM5YGGWH6A', 'calzolari.jpg', 'Inauguration Ceremony of Aula Calzolari'],
+          ['9ZdZNQ3gZHGvL58v9', 'awards.jpg',    'Awards']].each do |i| %>  
+          <% url =  "https://photos.app.goo.gl/#{i[0]}"; image = "https://www.siam-is18.dm.unibo.it/photos/thanks/#{i[1]}"; name = i[2] %>  
+          <div class="col-md-3">
+            <div class="thumbnail">
+              <a href="<%= url %>" target="_new">
+                <img src="<%= image %>" style="width:100%"/>
+                <div class="caption" style="height: 4em"><%= name %></div>
+              </a>
+            </div>
+          </div>
+        <% end %>
+    </div>
+
+  </div>
+  <p class="centered">
+  <%# <iframe width="750" height="400" src="https://www.youtube.com/embed/By-XjCElg_I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> %>
+  </p>
+</div>
+
