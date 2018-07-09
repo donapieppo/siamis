@@ -27,7 +27,7 @@
         <% end %>
         <%= dropdown_menu fwicon('map-o') + ' PROGRAM' do  %>  
           <%= menu_link 'calendar',    'Program day by day', conference_program_day_path(0) %>  
-          <%= menu_link 'star',        'My program', personal_conference_program_day_path(0) %>  
+          <%# <%= menu_link 'star',        'My program', personal_conference_program_day_path(0) %1> %>  
           <li role="separator" class="divider"></li>
           <%= menu_link 'user',        'Plenary presentations', plenaries_path %>  
           <%= menu_link 'comments',    'Panel sessions', panel_sessions_path %>
@@ -129,7 +129,7 @@
         <% end %>
       <% end %>
 
-      <%= logged_user %>
+      <%# <%= logged_user %1> %>
     </ul>
   </nav>
 </div><!-- container -->
