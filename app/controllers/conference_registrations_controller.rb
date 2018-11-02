@@ -1,7 +1,7 @@
 # current_user does not create here but after payment.
 # organizing_commette creates here.
 class ConferenceRegistrationsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :new
+  skip_before_action :authenticate_user!, only: [ :new, :finisced ]
 
   before_action :user_in_organizer_committee!, only: [:manual_new, :manual_create, :edit, :update] # remember index
   before_action :user_in_organizer_or_management_committee!, only: [:index, :recipe]
@@ -93,6 +93,9 @@ class ConferenceRegistrationsController < ApplicationController
         @totals[fee[1]][:total] += fee[0]
       end
     end
+  end
+
+  def finisced
   end
 end
 
