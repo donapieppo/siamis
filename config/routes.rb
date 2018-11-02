@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # thanx to https://github.com/plataformatec/devise/wiki/How-To:-Use-Recaptcha-with-Devise
-  devise_for :users, controllers: { registrations: 'registrations', passwords: 'passwords' }
+  # devise_for :users, controllers: { registrations: 'registrations', passwords: 'passwords' }
 
   root to: 'home#index'
 
@@ -132,6 +132,7 @@ Rails.application.routes.draw do
     post :manual_create, on: :collection, as: :manual_create
 
     get :expected,       on: :collection
+    get :finisced,       on: :collection
   end
 
   resources :tags 
