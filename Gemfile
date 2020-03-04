@@ -8,7 +8,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.2.3'
 gem 'mysql2'
 
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.12'
 gem 'sassc'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
