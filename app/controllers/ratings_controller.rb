@@ -18,7 +18,7 @@ class RatingsController < ApplicationController
   def update
     @rating = @what.ratings.where(user: current_user).first || @what.ratings.new(user: current_user)
     @rating.user = current_user
-    if @rating.update_attributes(rating_params)
+    if @rating.update(rating_params)
       what_type = case @what
                   when Minisymposium
                     'minisymposium'

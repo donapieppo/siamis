@@ -21,7 +21,7 @@ class SightseeingsController < ApplicationController
   end
 
   def update
-    if @sightseeing.update_attributes(sightseeing_params)
+    if @sightseeing.update(sightseeing_params)
       redirect_to sightseeings_path, notice: 'OK'
     else
       render action: :edit

@@ -28,7 +28,7 @@ class InvitationLettersController < ApplicationController
 
   def update
     @invitation_letter = current_user.invitation_letter
-    if @invitation_letter.update_attributes(invitation_letter_params)
+    if @invitation_letter.update(invitation_letter_params)
       redirect_to visa_path, notice: "Your request has been recorded."
     else
       render :edit

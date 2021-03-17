@@ -19,7 +19,7 @@ class BuildingsController < ApplicationController
   end
 
   def update
-    if @building.update_attributes(building_params)
+    if @building.update(building_params)
       redirect_to rooms_path, notice: 'The building has been updated.'
     else
       render action: :edit

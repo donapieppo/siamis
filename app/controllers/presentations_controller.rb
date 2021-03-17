@@ -71,7 +71,7 @@ class PresentationsController < ApplicationController
   def update
     # only organizer_committee can move from presentations to posters and viceversa
     params.delete(:poster) unless user_in_organizer_committee?
-    if @presentation.update_attributes(presentation_params)
+    if @presentation.update(presentation_params)
       redirect_to @presentation, notice: "The presentation has been saved correctly."
     else
       render action: :edit
