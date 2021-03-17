@@ -30,7 +30,7 @@ class TagsController < ApplicationController
   end
 
   def update
-    @tag.update_attributes(name: params[:tag][:name], global: params[:tag][:global])
+    @tag.update(name: params[:tag][:name], global: params[:tag][:global])
     redirect_to tags_path
   end
 
