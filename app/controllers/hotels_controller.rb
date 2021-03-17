@@ -21,7 +21,7 @@ class HotelsController < ApplicationController
   end
 
   def update
-    if @hotel.update_attributes(hotel_params)
+    if @hotel.update(hotel_params)
       redirect_to hotels_path, notice: 'OK'
     else
       render action: :edit

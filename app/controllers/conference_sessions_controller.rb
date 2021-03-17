@@ -15,7 +15,7 @@ class ConferenceSessionsController < ApplicationController
   end
 
   def update
-    if @conference_session.update_attributes(conference_session_params)
+    if @conference_session.update(conference_session_params)
       redirect_to @conference_session, notice: 'The session has been updated.'
     else
       render action: :edit
@@ -39,7 +39,7 @@ class ConferenceSessionsController < ApplicationController
 
   def ordering
     params[:order].each do |presentation_id, o|
-      Presentation.find(presentation_id.to_i).update_attributes(o.permit(:part, :number))
+      Presentation.find(presentation_id.to_i).update(o.permit(:part, :number))
     end
     redirect_to manage_presentations_conference_session_path(@conference_session)
   end
