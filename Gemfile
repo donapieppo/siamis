@@ -5,11 +5,10 @@ source 'https://rubygems.org'
 #   "https://github.com/#{repo_name}.git"
 # end
 
-gem 'rails', '~> 5.2.3'
+gem 'rails', '~> 5.2'
 gem 'mysql2'
 
 gem 'puma', '~> 3.7'
-gem 'sassc'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 
@@ -24,13 +23,14 @@ gem "recaptcha", require: "recaptcha/rails"
 gem 'simple_form'
 gem 'country_select'
 
-gem 'coffee-rails', '~> 4.2'
+# gem 'coffee-rails', '~> 4.2'
 # gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
-gem 'bootstrap-sass'
-gem 'font-awesome-sass', '~> 4'
+gem 'bootstrap-sass', '~> 3.4.1'
+gem 'sassc-rails', '>= 2.1.0'
+gem 'font-awesome-sass', '~> 5.15.1'
 
 gem 'twitter-typeahead-rails'
 gem 'jquery-rails'
