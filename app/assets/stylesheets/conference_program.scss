@@ -44,5 +44,6 @@
 }
 
 .conference_program_item.interested {
+  @extend .alert;
   @extend .alert-success;
 }
