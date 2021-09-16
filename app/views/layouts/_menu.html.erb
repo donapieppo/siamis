@@ -47,7 +47,7 @@
       <% end %> <!-- cache common_menu -->
 
       <%= dropdown_menu fwicon('user') + ' INFO FOR PARTICIPANTS' do  %>  
-        <%= menu_link 'credit-card',  'Registration', new_conference_registration_path %>
+        <%= menu_link 'credit-card',  'Registration', finisced_conference_registrations_path || new_conference_registration_path %>
         <%= menu_link 'envelope-o',   'Submissions', submissions_path %>
         <li role="separator" class="divider"></li>
         <%= menu_link 'child',        'Child Care', child_care_path %>

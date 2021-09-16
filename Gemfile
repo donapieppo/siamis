@@ -1,15 +1,11 @@
 source 'https://rubygems.org'
 
-# git_source(:github) do |repo_name|
-#   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-#   "https://github.com/#{repo_name}.git"
-# end
-
-gem 'rails', '~> 5.2'
+gem 'rails', '~> 6.1'
 gem 'mysql2'
 
-gem 'puma', '~> 3.7'
-gem 'uglifier', '>= 1.3.0'
+gem 'sass-rails'
+
+gem 'uglifier'
 gem 'therubyracer', platforms: :ruby
 
 gem "shrine"
@@ -30,7 +26,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
-gem 'font-awesome-sass', '~> 5.15.1'
+gem 'font-awesome-sass', '~> 4'
 
 gem 'twitter-typeahead-rails'
 gem 'jquery-rails'

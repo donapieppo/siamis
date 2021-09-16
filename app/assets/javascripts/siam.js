@@ -10,7 +10,7 @@ var update_wcount = function(el) {
 
 function update_interests_highlight() {
   $(".interested").removeClass("interested");
-  $.getJSON("/interests/session_ids", function( data ) {
+  $.getJSON("/siamis/interests/session_ids", function( data ) {
     data.interests.forEach( function(el) {
       cs_id = el.conference_session_id + "-" + el.part;
       $("#" + cs_id).addClass("interested");
